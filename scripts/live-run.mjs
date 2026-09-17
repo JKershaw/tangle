@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Drives the built page through one complete run and records the experiment:
-//   node scripts/live-run.mjs --url http://localhost:8765/ --out experiments/2026-09-17-qwen3-0.6b-water-cycle
+//   node scripts/live-run.mjs --url http://127.0.0.1:8765/ --out experiments/2026-09-17-qwen3-0.6b-water-cycle
 // Options:
 //   --mode live|simulation   (default live)      --model <id>   (default Qwen3-0.6B-q4f16_1-MLC)
 //   --seed "<question>"      (live only)          --scenario revisit|blocked|repeat (simulation only)
@@ -20,7 +20,7 @@ const args = Object.fromEntries(
     return pairs;
   }, []),
 );
-const url = args.url || "http://localhost:8765/";
+const url = args.url || "http://127.0.0.1:8765/";
 const mode = args.mode || "live";
 const model = args.model || "Qwen3-0.6B-q4f16_1-MLC";
 const retries = Number(args.retries ?? 2);
