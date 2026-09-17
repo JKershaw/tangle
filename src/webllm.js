@@ -302,3 +302,23 @@ export function createLiveGenerator(adapter, sampling = SAMPLING) {
     }
   };
 }
+
+// ---- choosing a section ----
+// When a node asks again for the bare title of an article whose sections are
+// listed in its context, 1.7B repeats the title no matter what the context says
+// (experiments/2026-09-17-qwen3-1.7b-dead-sea-2 and -3). So the choice is put to
+// the model as a forced pick: one small call whose grammar is an enum of the
+// article's headings. The episode runner records it as a model call.
+export const SECTION_PROMPT = `Pick the one section of the article most likely to answer the question. Reply with JSON: {"section": "<exact heading>"}. /no_think`;
+export const sectionSchema = (sections) =>
+  Object.freeze({ type: "object", properties: { section: { enum: [...sections] } }, required: ["section"], additionalProperties: false });
+export function createSectionChooser(adapter, sampling = SAMPLING) {
+  return async ({ question, article, sections }, { signal } = {}) => {
+    const messages = [
+      { role: "system", content: SECTION_PROMPT },
+      { role: "user", content: JSON.stringify({ question, article, sections }) },
+    ];
+    const result = await adapter.generate(messages, { signal, seed: sampling.seed, temperature: sampling.temperature, maxTokens: 80, schema: sectionSchema(sections) });
+    return { text: result.text, tokens: result.tokens, messages };
+  };
+}

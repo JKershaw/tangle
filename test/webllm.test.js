@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { createEngineAdapter, createLiveGenerator, probeDevice, RESPONSE_SCHEMA, responseSchema, SAMPLING } from "../src/webllm.js";
+import { createEngineAdapter, createLiveGenerator, createSectionChooser, probeDevice, RESPONSE_SCHEMA, responseSchema, SAMPLING } from "../src/webllm.js";
 
 function fakeWebllm(chunks) {
   const calls = { reload: [], requests: [], resets: 0, unloads: 0, interrupts: 0 };
@@ -129,4 +129,14 @@ test("the grammar drops wiki once the visit's lookups are spent", async () => {
   const generate = createLiveGenerator({ generate: async (m, o) => { requests.push(o); return { text: "{}" }; }, interrupt() {} });
   await generate([], { context: { evidence: [{ id: "e1" }], questionsAllowed: 0, lookupsRemaining: 0 } });
   assert.deepEqual(actions(requests[0].schema), ["resolved", "blocked"]);
+});
+
+test("the section chooser asks with an enum-of-headings grammar", async () => {
+  const requests = [];
+  const chooser = createSectionChooser({ generate: async (messages, options) => { requests.push({ messages, options }); return { text: '{"section":"Geography"}', tokens: 5 }; }, interrupt() {} });
+  const pick = await chooser({ question: "Q", article: "Dead Sea", sections: ["Names", "Geography"] });
+  assert.equal(pick.text, '{"section":"Geography"}');
+  assert.deepEqual(requests[0].options.schema.properties.section, { enum: ["Names", "Geography"] });
+  assert.deepEqual(JSON.parse(requests[0].messages[1].content), { question: "Q", article: "Dead Sea", sections: ["Names", "Geography"] });
+  assert.equal(requests[0].options.seed, 1);
 });

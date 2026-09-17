@@ -6,7 +6,7 @@ import { clone, createRun, nextRunnable, outcomeLabel, trace, validateImport, bu
 import { runEpisode } from "./episode.js";
 import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
 import { lookupWikipedia, readWikipediaSection } from "./wiki.js";
-import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
+import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, createSectionChooser, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
 import { GraphMap } from "./map.js";
 
 const $ = (id) => document.getElementById(id);
@@ -264,7 +264,7 @@ function driversFor(run) {
   if (run.mode === "simulation") {
     return { ...simulationDrivers(run.preset), pace: (signal) => pace(320, signal) };
   }
-  return { generate: createLiveGenerator(adapter), wiki: liveWiki, approve: approveLookup, pace: null };
+  return { generate: createLiveGenerator(adapter), chooseSection: createSectionChooser(adapter), wiki: liveWiki, approve: approveLookup, pace: null };
 }
 
 // ---- running ----

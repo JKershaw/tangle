@@ -227,3 +227,25 @@ test("repeating the bare title of an article with sections hands back the sectio
   assert.deepEqual(inputs.map((context) => context.lookupsRemaining), [2, 1, 1, 0], "the bare repeat did not count");
   assert.deepEqual(run.nodes[0].evidence, ["e2"]);
 });
+
+test("with a section chooser, repeating a bare title becomes a forced pick from the headings and reads that section", async () => {
+  const run = createRun("Why is the Dead Sea shrinking?", "live");
+  const wiki = async (query, { readOn } = {}) => {
+    if (!readOn) return { ok: true, kind: "wiki", title: "Dead Sea", article: "Dead Sea", section: 0, text: "lead", headings: ["Names", "Geography", "Receding shoreline"] };
+    return { ok: true, kind: "wiki", title: "Dead Sea § " + readOn.section, article: "Dead Sea", section: 3, text: "diversion of the Jordan" };
+  };
+  const asked = [];
+  const chooseSection = async (request) => {
+    asked.push(request);
+    return { text: '{"section": "Receding shoreline"}', tokens: 7 };
+  };
+  const generate = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea" }, { action: "resolved", finding: "F", evidence: ["2"] }]);
+  assert.equal(await runEpisode(run, { generate, wiki, chooseSection }), true);
+  assert.deepEqual(asked, [{ question: "Why is the Dead Sea shrinking?", article: "Dead Sea", sections: ["Names", "Geography", "Receding shoreline"] }]);
+  assert.deepEqual(run.evidence.map((record) => record.title), ["Dead Sea", "Dead Sea § Receding shoreline"]);
+  const chosen = run.trace.find((event) => event.event === "section_chosen");
+  assert.equal(chosen.section, "Receding shoreline");
+  assert.equal(run.modelCalls, 4, "the pick counts as a model call");
+  assert.equal(run.lookups, 2, "the section read counts as a lookup");
+  assert.equal(run.nodes[0].status, "resolved");
+});

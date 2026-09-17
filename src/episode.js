@@ -24,7 +24,7 @@ export function buildMessages(context) {
 // Returns true when a node outcome was persisted, false when nothing ran or the
 // visit ended without an outcome (limit, cancellation or error).
 export async function runEpisode(run, options) {
-  const { signal, onUpdate = () => {}, generate, wiki, approve = async () => true, pace = null } = options;
+  const { signal, onUpdate = () => {}, generate, wiki, approve = async () => true, pace = null, chooseSection = null } = options;
   if (run.readOnly) throw new Error("Imported runs are inspect-only.");
   run.promptVersion ??= PROMPT_VERSION;
   if (run.visits >= run.limits.maxVisits) {
@@ -111,17 +111,35 @@ export async function runEpisode(run, options) {
         if (capture.ok) again = knownArticle(capture.article ?? capture.title);
       }
       const headings = again ? known.find((record) => (record.article ?? record.title) === (again.article ?? again.title) && record.headings?.length)?.headings ?? [] : [];
-      if (again && !heading && headings.length) {
-        // The bare title of an article with sections: a third 1.7B Dead Sea run
-        // repeated "Dead Sea" 98 times and let sequential read-on serve Names and
-        // Geography while Receding shoreline sat in the list. Hand the list back and
-        // ask for a section by name; no request was made, so no lookup is spent.
+      let chosen = null;
+      if (again && !heading && headings.length && chooseSection) {
+        // The bare title of an article with sections. 1.7B repeats the title however
+        // the context asks it not to (experiments/…-1.7b-dead-sea-2 and -3), so the
+        // section is chosen by a forced pick from the headings: one small model call.
+        const article = again.article ?? again.title;
+        onUpdate(node.id, "Choosing a section");
+        run.modelCalls++;
+        const pick = await chooseSection({ question: node.question, article, sections: headings }, { signal });
+        signal?.throwIfAborted();
+        if (Number.isFinite(pick.tokens)) run.tokens += pick.tokens;
+        try {
+          chosen = String(parseModelOutput(pick.text).section);
+        } catch {
+          chosen = null;
+        }
+        if (!headings.includes(chosen)) chosen = null;
+        trace(run, "section_chosen", { node: node.id, article, raw: pick.text, section: chosen, messages: pick.messages });
+      }
+      if (again && !heading && headings.length && !chosen) {
+        // No chooser (simulation), or an unusable pick: hand the list back as a
+        // visible failed lookup and ask for a section by name. No request was made,
+        // so no lookup is spent.
         const article = again.article ?? again.title;
         capture = { ok: false, error: { kind: "choose_section", message: `“${article}” is already in evidence. To read more, ask for one section by name as “${article} / <section>”. Sections: ${headings.join(", ")}.` } };
         trace(run, "tool_result", { node: node.id, query: result.query, result: capture });
       } else if (again) {
         const article = again.article ?? again.title;
-        const readOn = { article, section: heading ? heading.trim() : Math.max(0, ...known.filter((record) => (record.article ?? record.title) === article).map((record) => record.section ?? 0)) + 1 };
+        const readOn = { article, section: chosen ?? (heading ? heading.trim() : Math.max(0, ...known.filter((record) => (record.article ?? record.title) === article).map((record) => record.section ?? 0)) + 1) };
         capture = await fetch(result.query, readOn);
         if (capture.ok && context.evidence.some((excerpt) => excerpt.title === capture.title)) {
           capture = { ok: false, error: { kind: "no_match", message: `Already read: “${capture.title}” is in the context. Try a different term or decompose.` } };
