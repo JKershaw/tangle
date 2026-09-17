@@ -31,9 +31,22 @@ test("a finding about the wrong lake fails finding_avoids and finding_supported 
   assert.equal(grade.pass, false);
 });
 
-test("a correct finding citing a lead that does not contain it fails finding_supported only", () => {
-  const grade = gradeCase(caseFrom("resolved-correct-but-unsupported", { valid: true, finding_supported: true, finding_mentions: ["Jordan"] }), fixtures["resolved-correct-but-unsupported"].raw);
-  assert.deepEqual(verdicts(grade), { valid: true, finding_supported: false, finding_mentions: true });
+test("a correct finding citing a lead that does not contain it fails finding_supported and finding_grounded: invented, not mis-cited", () => {
+  const grade = gradeCase(caseFrom("resolved-correct-but-unsupported", { valid: true, finding_supported: true, finding_grounded: true, finding_mentions: ["Jordan"] }), fixtures["resolved-correct-but-unsupported"].raw);
+  assert.deepEqual(verdicts(grade), { valid: true, finding_supported: false, finding_grounded: false, finding_mentions: true });
+  assert.match(grade.checks[1].detail, /in no excerpt/);
+});
+
+test("a finding whose substance is in a shown but uncited excerpt fails finding_supported as mis-cited and passes finding_grounded", () => {
+  const context = { question: "Why is the Dead Sea shrinking?", children: [], evidence: [
+    { id: "e1", label: "1", title: "Dead Sea", text: "The Dead Sea is a landlocked salt lake bordered by Jordan.", kind: "wiki" },
+    { id: "e2", label: "2", title: "Dead Sea § Receding shoreline", text: "The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River as part of the National Water Carrier scheme, completed in 1964.", kind: "wiki" },
+  ], lookupsRemaining: 0, questionsAllowed: 3 };
+  const spec = { id: "miscited", kind: "action", context, expect: { finding_supported: true, finding_grounded: true } };
+  const grade = gradeCase(spec, '{"action":"resolved","finding":"The Dead Sea is shrinking because incoming water was diverted from the Jordan River under the National Water Carrier scheme completed in 1964.","evidence":["1"]}');
+  assert.deepEqual(verdicts(grade), { finding_supported: false, finding_grounded: true });
+  assert.match(grade.checks[0].detail, /mis-cited/);
+  assert.equal(gradeCase(spec, '{"action":"resolved","finding":"The Dead Sea is shrinking because incoming water was diverted from the Jordan River under the National Water Carrier scheme completed in 1964.","evidence":["2"]}').pass, true);
 });
 
 test("labels beyond those shown fail evidence_valid and valid", () => {

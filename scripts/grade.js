@@ -107,11 +107,23 @@ export const CHECKS = {
     const bad = (parsed.evidence ?? []).filter((label) => !shown.includes(String(label)));
     return { pass: bad.length === 0 && (parsed.evidence ?? []).length > 0, detail: bad.length ? `cites ${bad.join(", ")} of ${shown.length} shown` : `cites ${(parsed.evidence ?? []).join(", ")}` };
   },
+  // Against the excerpts the finding cites. When the words are in an excerpt
+  // that was shown but not cited, the detail says so: that is a citation
+  // error, not an invention, and the two need different fixes.
   finding_supported: ({ parsed, situation }) => {
     if (parsed?.action !== "resolved") return NOT_APPLICABLE(parsed, "resolution");
     const cited = (parsed.evidence ?? []).map((label) => situation.run.evidence.find((record) => record.id === situation.labels[label])).filter(Boolean);
     const missing = missingWords(parsed.finding, cited);
-    return { pass: missing.length < ABSENT_WORDS_THRESHOLD, detail: missing.length ? `absent: ${missing.slice(0, 6).join(", ")}` : "every content word is in a cited excerpt" };
+    if (missing.length < ABSENT_WORDS_THRESHOLD) return { pass: true, detail: "every content word is in a cited excerpt" };
+    const uncited = missingWords(parsed.finding, situation.run.evidence);
+    const where = uncited.length < ABSENT_WORDS_THRESHOLD ? "; in an uncited excerpt (mis-cited)" : uncited.length < missing.length ? `; ${uncited.length} in no excerpt` : "; in no excerpt (invented)";
+    return { pass: false, detail: `absent from cited: ${missing.slice(0, 6).join(", ")}${where}` };
+  },
+  // Against every excerpt shown, cited or not: did the substance come from the page at all?
+  finding_grounded: ({ parsed, situation }) => {
+    if (parsed?.action !== "resolved") return NOT_APPLICABLE(parsed, "resolution");
+    const missing = missingWords(parsed.finding, situation.run.evidence);
+    return { pass: missing.length < ABSENT_WORDS_THRESHOLD, detail: missing.length ? `in no excerpt: ${missing.slice(0, 6).join(", ")}` : "every content word is in a shown excerpt" };
   },
   finding_mentions: ({ parsed }, wanted) => {
     if (parsed?.action !== "resolved") return NOT_APPLICABLE(parsed, "resolution");

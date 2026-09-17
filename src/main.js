@@ -3,7 +3,7 @@
 
 import * as webllm from "@mlc-ai/web-llm";
 import { clone, createRun, nextRunnable, outcomeLabel, trace, validateImport, buildContext, VERSION } from "./graph.js";
-import { buildMessages, runEpisode } from "./episode.js";
+import { PROMPT_VERSION, buildMessages, runEpisode } from "./episode.js";
 import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
 import { lookupWikipedia, readWikipediaSection } from "./wiki.js";
 import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, createSectionChooser, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
@@ -544,6 +544,7 @@ window.__tangle = {
   runnable: () => !!nextRunnable(current()),
   outcome: () => outcomeLabel(current()),
   loadedModel: () => loadedModel,
+  versions: () => ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION, runtime: RUNTIME, page: VERSION }),
   newLive: (seed, limits = {}) => {
     if (locked()) throw new Error("Busy.");
     mode = "live";

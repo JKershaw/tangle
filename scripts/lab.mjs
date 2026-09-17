@@ -44,6 +44,18 @@ export function commitInfo() {
   }
 }
 
+// The served page is docs/index.html as last committed, whatever HEAD is; a
+// branch can be ahead of the build. Say which commit built the page.
+export function pageInfo() {
+  try {
+    const built = execSync("git log -1 --format=%h -- docs/index.html", { encoding: "utf8" }).trim();
+    const dirty = execSync("git status --porcelain -- docs/index.html", { encoding: "utf8" }).trim() ? " (uncommitted build)" : "";
+    return built + dirty;
+  } catch {
+    return "unknown";
+  }
+}
+
 export const machineInfo = () => `${os.cpus()[0]?.model ?? "unknown cpu"}, ${Math.round(os.totalmem() / 2 ** 30)} GB, ${os.platform()} ${os.release()}`;
 
 export function makeNotes() {

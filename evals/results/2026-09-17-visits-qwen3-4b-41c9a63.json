@@ -1,0 +1,809 @@
+{
+  "suite": "visits",
+  "model": "Qwen3-4B-q4f16_1-MLC",
+  "prompt": "tangle-pocket-9",
+  "schema": "per-action-6",
+  "commit": "41c9a63",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "152.0.7977.83",
+  "date": "2026-09-17T21:13:41.693Z",
+  "loadSeconds": 5,
+  "cases": 24,
+  "passed": 11,
+  "rate": 0.4583333333333333,
+  "byClass": {
+    "wiki first": {
+      "cases": 3,
+      "passed": 3
+    },
+    "evidence labels": {
+      "cases": 1,
+      "passed": 1
+    },
+    "ceiling": {
+      "cases": 2,
+      "passed": 2
+    },
+    "degenerate output": {
+      "cases": 1,
+      "passed": 0
+    },
+    "malformed question": {
+      "cases": 1,
+      "passed": 1
+    },
+    "memory over evidence": {
+      "cases": 1,
+      "passed": 1
+    },
+    "grounded resolution": {
+      "cases": 1,
+      "passed": 0
+    },
+    "section by name": {
+      "cases": 4,
+      "passed": 0
+    },
+    "resolve when supported": {
+      "cases": 3,
+      "passed": 0
+    },
+    "synthesis": {
+      "cases": 2,
+      "passed": 0
+    },
+    "specific finding": {
+      "cases": 1,
+      "passed": 0
+    },
+    "repeat question": {
+      "cases": 1,
+      "passed": 0
+    },
+    "section pick": {
+      "cases": 3,
+      "passed": 3
+    }
+  },
+  "results": [
+    {
+      "id": "wiki-first-0.6b-water-cycle-root",
+      "kind": "action",
+      "class": "wiki first",
+      "pass": true,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_short",
+          "pass": true,
+          "detail": "Water cycle"
+        },
+        {
+          "name": "query_mentions",
+          "pass": true,
+          "detail": "Water cycle"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"wiki\",\n  \"query\": \"Water cycle\"\n}",
+      "latencyMs": 22384,
+      "tokens": 397
+    },
+    {
+      "id": "wiki-first-0.6b-water-cycle-child",
+      "kind": "action",
+      "class": "wiki first",
+      "pass": true,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_short",
+          "pass": true,
+          "detail": "Water cycle"
+        },
+        {
+          "name": "query_mentions",
+          "pass": true,
+          "detail": "Water cycle"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"wiki\",\n  \"query\": \"Water cycle\"\n}",
+      "latencyMs": 1667,
+      "tokens": 396
+    },
+    {
+      "id": "evidence-labels-0.6b-one-excerpt",
+      "kind": "action",
+      "class": "evidence labels",
+      "pass": true,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "evidence_valid",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Water cycle / Processes\"}",
+      "latencyMs": 23535,
+      "tokens": 495
+    },
+    {
+      "id": "ceiling-depth-0.6b",
+      "kind": "action",
+      "class": "ceiling",
+      "pass": true,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"wiki\",\n  \"query\": \"Water cycle\"\n}",
+      "latencyMs": 15356,
+      "tokens": 400
+    },
+    {
+      "id": "ceiling-lookups-1.7b",
+      "kind": "action",
+      "class": "ceiling",
+      "pass": true,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "resolved"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "questions_differ",
+          "pass": true,
+          "detail": "not a decompose"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"resolved\",\"finding\":\"Water changes forms in the water cycle due to physical and chemical processes such as evaporation, transpiration, condensation, precipitation, sublimation, and infiltration. These processes drive the movement of water between reservoirs like the ocean, atmosphere, and rivers. The water cycle involves the continuous change in form of water across different reservoirs on Earth.\",\"evidence\":[\"1\"]}",
+      "latencyMs": 27256,
+      "tokens": 771
+    },
+    {
+      "id": "degenerate-whitespace-1.7b",
+      "kind": "action",
+      "class": "degenerate output",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "resolved"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": false,
+          "detail": "absent: evapor, locat, region, drain, difficult, escape"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea loses water primarily due to evaporation, as it is located in a hot and arid region. Its water is also lost through the Jordan River, which drains into the lake. The high salinity of the Dead Sea (34.2%) makes it difficult for water to escape through natural processes.\",\n  \"evidence\": [\"1\"]\n}",
+      "latencyMs": 19971,
+      "tokens": 918
+    },
+    {
+      "id": "one-question-per-child-1.7b",
+      "kind": "action",
+      "class": "malformed question",
+      "pass": true,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "questions_one_each",
+          "pass": true,
+          "detail": "not a decompose"
+        },
+        {
+          "name": "questions_differ",
+          "pass": true,
+          "detail": "not a decompose"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking due to the diversion of water from the Jordan River for agricultural and industrial use, which reduces the inflow of water into the lake. This has led to a decrease in the lake's volume over time. The Dead Sea's unique salinity and the lack of an outlet make it particularly vulnerable to such changes.\",\n  \"evidence\": [\"1\"]\n}",
+      "latencyMs": 6417,
+      "tokens": 919
+    },
+    {
+      "id": "memory-aral-0.6b",
+      "kind": "action",
+      "class": "memory over evidence",
+      "pass": true,
+      "action": "blocked",
+      "error": null,
+      "checks": [
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_avoids",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"blocked\",\"reason\":\"The provided evidence discusses the Aral Sea shrinking, not the Dead Sea. There is no information in the evidence about the Dead Sea or its shrinking.\"}",
+      "latencyMs": 3697,
+      "tokens": 721
+    },
+    {
+      "id": "grounded-8b-dead-sea",
+      "kind": "action",
+      "class": "grounded resolution",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "resolved"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "evidence_valid",
+          "pass": true,
+          "detail": "cites 1"
+        },
+        {
+          "name": "finding_supported",
+          "pass": false,
+          "detail": "absent: shrink, diversion, particular, nation, carrier, scheme"
+        },
+        {
+          "name": "finding_mentions",
+          "pass": true,
+          "detail": "all present"
+        },
+        {
+          "name": "finding_avoids",
+          "pass": true,
+          "detail": "clear"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking primarily due to the diversion of water from the Jordan River for human use, particularly through the National Water Carrier scheme initiated in the 1960s. This has reduced the inflow of water into the Dead Sea, leading to a rapid decline in its water level. The Dead Sea's water level has dropped significantly since 1970, reaching 439 meters below sea level by 2025.\",\n  \"evidence\": [\"1\" ]\n}",
+      "latencyMs": 7855,
+      "tokens": 1008
+    },
+    {
+      "id": "wiki-first-1.7b-dead-sea-root",
+      "kind": "action",
+      "class": "wiki first",
+      "pass": true,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_short",
+          "pass": true,
+          "detail": "Dead Sea shrinking"
+        },
+        {
+          "name": "query_mentions",
+          "pass": true,
+          "detail": "Dead Sea shrinking"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"wiki\",\n  \"query\": \"Dead Sea shrinking\"\n}",
+      "latencyMs": 1835,
+      "tokens": 420
+    },
+    {
+      "id": "section-by-name-1.7b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "resolved"
+        },
+        {
+          "name": "query_reads_section",
+          "pass": true,
+          "detail": "not a lookup"
+        },
+        {
+          "name": "query_new",
+          "pass": true,
+          "detail": "not a lookup"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking due to the diversion of the Jordan River for water supply and the extraction of water for human use, which reduces the inflow of water into the lake. This has led to a decrease in the lake's volume and a receding shoreline. The Dead Sea's unique salinity and the lack of an outlet mean that any reduction in water volume leads to a significant decrease in the lake's size.\",\n  \"evidence\": [\"1\"]\n}",
+      "latencyMs": 35217,
+      "tokens": 903
+    },
+    {
+      "id": "section-by-name-8b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "resolved"
+        },
+        {
+          "name": "query_reads_section",
+          "pass": true,
+          "detail": "not a lookup"
+        },
+        {
+          "name": "query_new",
+          "pass": true,
+          "detail": "not a lookup"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking due to the diversion of the Jordan River for water supply and the extraction of water for human use, which reduces the inflow of water into the lake. This has led to a decrease in the lake's volume and a receding shoreline. The Dead Sea's unique salinity and the lack of an outlet mean that any reduction in water volume leads to a significant decrease in the lake's size.\",\n  \"evidence\": [\"1\"]\n}",
+      "latencyMs": 6932,
+      "tokens": 903
+    },
+    {
+      "id": "section-by-name-4b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "resolved"
+        },
+        {
+          "name": "query_reads_section",
+          "pass": true,
+          "detail": "not a lookup"
+        },
+        {
+          "name": "query_new",
+          "pass": true,
+          "detail": "not a lookup"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking due to the diversion of the Jordan River for water supply and the extraction of water for human use, which reduces the inflow of water into the lake. This has led to a decrease in the lake's volume and a receding shoreline. The Dead Sea's unique salinity and the lack of an outlet mean that any reduction in water volume leads to a significant decrease in the lake's size.\",\n  \"evidence\": [\"1\"]\n}",
+      "latencyMs": 6928,
+      "tokens": 903
+    },
+    {
+      "id": "section-by-name-0.6b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "resolved"
+        },
+        {
+          "name": "query_reads_section",
+          "pass": true,
+          "detail": "not a lookup"
+        },
+        {
+          "name": "query_new",
+          "pass": true,
+          "detail": "not a lookup"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking due to the diversion of the Jordan River for water supply and the extraction of water for human use, which reduces the inflow of water into the lake. This has led to a decrease in the lake's volume and a receding shoreline. The Dead Sea's unique salinity and the lack of an outlet mean that any reduction in water volume leads to a significant decrease in the lake's size.\",\n  \"evidence\": [\"1\"]\n}",
+      "latencyMs": 6924,
+      "tokens": 903
+    },
+    {
+      "id": "resolve-when-supported-1.7b",
+      "kind": "action",
+      "class": "resolve when supported",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "resolved"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": false,
+          "detail": "absent: particular, initiat, continu, meter"
+        },
+        {
+          "name": "finding_mentions",
+          "pass": true,
+          "detail": "all present"
+        },
+        {
+          "name": "finding_avoids",
+          "pass": true,
+          "detail": "clear"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking due to the diversion of water from the Jordan River for human use, particularly through the National Water Carrier scheme initiated in the 1960s. This has led to a significant drop in the lake's water level, with a rate of 1 meter per year by 2006. The Dead Sea's water level has continued to fall, reaching 439 meters below sea level by 2025.\",\n  \"evidence\": [\"1\", \"2\"]\n}",
+      "latencyMs": 31079,
+      "tokens": 1169
+    },
+    {
+      "id": "resolve-when-supported-8b",
+      "kind": "action",
+      "class": "resolve when supported",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "resolved"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": false,
+          "detail": "absent: particular, initiat, continu, meter"
+        },
+        {
+          "name": "finding_mentions",
+          "pass": true,
+          "detail": "all present"
+        },
+        {
+          "name": "finding_avoids",
+          "pass": true,
+          "detail": "clear"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking due to the diversion of water from the Jordan River for human use, particularly through the National Water Carrier scheme initiated in the 1960s. This has led to a significant drop in the lake's water level, with a rate of 1 meter per year by 2006. The Dead Sea's water level has continued to fall, reaching 439 meters below sea level by 2025.\",\n  \"evidence\": [\"1\", \"2\"]\n}",
+      "latencyMs": 9119,
+      "tokens": 1169
+    },
+    {
+      "id": "resolve-when-supported-1.7b-water-cycle",
+      "kind": "action",
+      "class": "resolve when supported",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "resolved"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": false,
+          "detail": "absent: continuous, mov, infiltr, ensure, loc"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"resolved\",\"finding\":\"The water cycle keeps going because the total mass of water on Earth remains fairly constant, with water continuously moving between reservoirs through processes like evaporation, transpiration, condensation, precipitation, and infiltration. These processes ensure the continuous movement of water across different forms and locations.\",\"evidence\":[\"1\",\"2\"]}",
+      "latencyMs": 5100,
+      "tokens": 796
+    },
+    {
+      "id": "synthesis-1.7b-five-excerpts",
+      "kind": "action",
+      "class": "synthesis",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "resolved"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "evidence_valid",
+          "pass": true,
+          "detail": "cites 1, 2, 1"
+        },
+        {
+          "name": "finding_supported",
+          "pass": false,
+          "detail": "absent: shrink, diversion, decrease, unique, geologic, hydrologic"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea's shrinking is primarily due to the diversion of water from the Jordan River, which began in the 1960s. This has led to a significant decrease in the lake's surface area, with a drop rate of 1 meter per year by 2025. Additionally, the Dead Sea's unique geological and hydrological characteristics, including its high salinity, contribute to its shrinking.\",\n  \"evidence\": [\"1\", \"2\", \"1\"]\n}",
+      "latencyMs": 45259,
+      "tokens": 2342
+    },
+    {
+      "id": "no-repeat-read-1.7b",
+      "kind": "action",
+      "class": "synthesis",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "resolved"
+        },
+        {
+          "name": "query_new",
+          "pass": true,
+          "detail": "not a lookup"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": false,
+          "detail": "absent: reduction, volume, extraction, evapor, natur, contribute"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea loses water over time due to the diversion of water from the Jordan River to the north, which has led to a significant reduction in its volume since the 1960s. Additionally, the extraction of salt through evaporation pans and the natural processes of evaporation contribute to its shrinking size.\",\n  \"evidence\": [\"2\", \"3\"]\n}",
+      "latencyMs": 14824,
+      "tokens": 2251
+    },
+    {
+      "id": "specific-finding-1.7b",
+      "kind": "action",
+      "class": "specific finding",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "resolved"
+        },
+        {
+          "name": "query_new",
+          "pass": true,
+          "detail": "not a lookup"
+        },
+        {
+          "name": "finding_supported",
+          "pass": false,
+          "detail": "absent: unique, geologic, hydrologic, characteristic, contribute, decreas"
+        },
+        {
+          "name": "finding_mentions",
+          "pass": true,
+          "detail": "all present"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea loses water over time due to evaporation and the diversion of water from the Jordan River. The unique geological and hydrological characteristics of the Dead Sea, including its high salinity and the extraction of salt by companies like Dead Sea Works Ltd., contribute to its shrinking size. The water level has been decreasing significantly since the 1960s due to these factors.\",\n  \"evidence\": [\"2\", \"3\", \"5\"]\n}",
+      "latencyMs": 41029,
+      "tokens": 2679
+    },
+    {
+      "id": "no-self-repeat-1.7b",
+      "kind": "action",
+      "class": "repeat question",
+      "pass": false,
+      "action": "resolved",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "resolved"
+        },
+        {
+          "name": "questions_differ",
+          "pass": true,
+          "detail": "not a decompose"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": false,
+          "detail": "absent: particular, initiat, recent, link, extraction, mineral"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea's shrinking is primarily due to the diversion of water from the Jordan River for human use, particularly through the National Water Carrier scheme initiated in the 1960s. This has led to a significant drop in the Dead Sea's water level, with a rate of 1 meter per year in recent years. The Dead Sea's shrinking is also linked to the extraction of minerals and the maintenance of the Dead Sea Works, which further exacerbates the decline.\",\n  \"evidence\": [\"1\", \"2\"]\n}",
+      "latencyMs": 9230,
+      "tokens": 1174
+    },
+    {
+      "id": "section-pick-1.7b-root",
+      "kind": "section",
+      "class": "section pick",
+      "pass": true,
+      "action": "Receding shoreline",
+      "error": null,
+      "checks": [
+        {
+          "name": "section_in",
+          "pass": true,
+          "detail": "Receding shoreline"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}",
+      "latencyMs": 819,
+      "tokens": 188
+    },
+    {
+      "id": "section-pick-1.7b-lose-water",
+      "kind": "section",
+      "class": "section pick",
+      "pass": true,
+      "action": "Receding shoreline",
+      "error": null,
+      "checks": [
+        {
+          "name": "section_in",
+          "pass": true,
+          "detail": "Receding shoreline"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}",
+      "latencyMs": 824,
+      "tokens": 192
+    },
+    {
+      "id": "section-pick-1.7b-salinity",
+      "kind": "section",
+      "class": "section pick",
+      "pass": true,
+      "action": "Lake salinity",
+      "error": null,
+      "checks": [
+        {
+          "name": "section_in",
+          "pass": true,
+          "detail": "Lake salinity"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Lake salinity\"}",
+      "latencyMs": 787,
+      "tokens": 191
+    }
+  ],
+  "notes": [
+    "2026-09-17T21:13:41.692Z opened http://127.0.0.1:8765/ in 152.0.7977.83 (darwin arm64, Apple M1 Max)",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-17T21:13:41.813Z loading: Checking this device before downloading…",
+    "2026-09-17T21:13:46.823Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-4B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "2026-09-17T21:13:46.827Z 24 cases · prompt tangle-pocket-9 · grammar per-action-6 · commit 41c9a63",
+    "pass wiki-first-0.6b-water-cycle-root → wiki (22384 ms)",
+    "pass wiki-first-0.6b-water-cycle-child → wiki (1667 ms)",
+    "pass evidence-labels-0.6b-one-excerpt → wiki (23535 ms)",
+    "pass ceiling-depth-0.6b → wiki (15356 ms)",
+    "pass ceiling-lookups-1.7b → resolved (27256 ms)",
+    "FAIL degenerate-whitespace-1.7b → resolved (19971 ms) · finding_supported: absent: evapor, locat, region, drain, difficult, escape",
+    "pass one-question-per-child-1.7b → resolved (6417 ms)",
+    "pass memory-aral-0.6b → blocked (3697 ms)",
+    "FAIL grounded-8b-dead-sea → resolved (7855 ms) · finding_supported: absent: shrink, diversion, particular, nation, carrier, scheme",
+    "pass wiki-first-1.7b-dead-sea-root → wiki (1835 ms)",
+    "FAIL section-by-name-1.7b-lead-only → resolved (35217 ms) · action_in: resolved",
+    "FAIL section-by-name-8b-lead-only → resolved (6932 ms) · action_in: resolved",
+    "FAIL section-by-name-4b-lead-only → resolved (6928 ms) · action_in: resolved",
+    "FAIL section-by-name-0.6b-lead-only → resolved (6924 ms) · action_in: resolved",
+    "FAIL resolve-when-supported-1.7b → resolved (31079 ms) · finding_supported: absent: particular, initiat, continu, meter",
+    "FAIL resolve-when-supported-8b → resolved (9119 ms) · finding_supported: absent: particular, initiat, continu, meter",
+    "FAIL resolve-when-supported-1.7b-water-cycle → resolved (5100 ms) · finding_supported: absent: continuous, mov, infiltr, ensure, loc",
+    "FAIL synthesis-1.7b-five-excerpts → resolved (45259 ms) · finding_supported: absent: shrink, diversion, decrease, unique, geologic, hydrologic",
+    "FAIL no-repeat-read-1.7b → resolved (14824 ms) · finding_supported: absent: reduction, volume, extraction, evapor, natur, contribute",
+    "FAIL specific-finding-1.7b → resolved (41029 ms) · finding_supported: absent: unique, geologic, hydrologic, characteristic, contribute, decreas",
+    "FAIL no-self-repeat-1.7b → resolved (9230 ms) · finding_supported: absent: particular, initiat, recent, link, extraction, mineral",
+    "pass section-pick-1.7b-root → Receding shoreline (819 ms)",
+    "pass section-pick-1.7b-lose-water → Receding shoreline (824 ms)",
+    "pass section-pick-1.7b-salinity → Lake salinity (787 ms)"
+  ]
+}

@@ -177,12 +177,12 @@
           {
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa"
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa"
           },
           {
             "label": "2",
-            "title": "Dead Sea § Names",
-            "text": "The English name \"Dead Sea\" is a calque of the Arabic name, itself a calque of earlier Greek and Latin names, in reference to the scarcity of aquatic life caused by the lake's extreme salinity.\nHistorical English names include the Salt Sea, Lake of Sodom from the biblical account of its destruction and Lake Asphaltites from Greek and Latin.\nThe name \"Dead Sea\" occasionally appears in Hebrew literature as Yām HamMāvet (ים המוות), 'Sea of Death'. However, the most common name for the lake in both biblical and modern Hebrew—and also its oldest known name—is the 'Sea of Salt' (Hebrew: ים המלח, romanized: Yām HamMelaḥ). Other Hebrew names for the lake also mentioned in the Bible are the Sea of Ar"
+            "title": "Dead Sea \u00a7 Names",
+            "text": "The English name \"Dead Sea\" is a calque of the Arabic name, itself a calque of earlier Greek and Latin names, in reference to the scarcity of aquatic life caused by the lake's extreme salinity.\nHistorical English names include the Salt Sea, Lake of Sodom from the biblical account of its destruction and Lake Asphaltites from Greek and Latin.\nThe name \"Dead Sea\" occasionally appears in Hebrew literature as Y\u0101m HamM\u0101vet (\u05d9\u05dd \u05d4\u05de\u05d5\u05d5\u05ea), 'Sea of Death'. However, the most common name for the lake in both biblical and modern Hebrew\u2014and also its oldest known name\u2014is the 'Sea of Salt' (Hebrew: \u05d9\u05dd \u05d4\u05de\u05dc\u05d7, romanized: Y\u0101m HamMela\u1e25). Other Hebrew names for the lake also mentioned in the Bible are the Sea of Ar"
           }
         ],
         "questionsAllowed": 0,
@@ -195,7 +195,8 @@
           "blocked"
         ],
         "valid": true,
-        "finding_supported": true
+        "finding_supported": true,
+        "finding_grounded": true
       }
     },
     {
@@ -215,12 +216,12 @@
           {
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa"
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa"
           },
           {
             "label": "2",
-            "title": "Dead Sea § Names",
-            "text": "The English name \"Dead Sea\" is a calque of the Arabic name, itself a calque of earlier Greek and Latin names, in reference to the scarcity of aquatic life caused by the lake's extreme salinity.\nHistorical English names include the Salt Sea, Lake of Sodom from the biblical account of its destruction and Lake Asphaltites from Greek and Latin.\nThe name \"Dead Sea\" occasionally appears in Hebrew literature as Yām HamMāvet (ים המוות), 'Sea of Death'. However, the most common name for the lake in both biblical and modern Hebrew—and also its oldest known name—is the 'Sea of Salt' (Hebrew: ים המלח, romanized: Yām HamMelaḥ). Other Hebrew names for the lake also mentioned in the Bible are the Sea of Ar"
+            "title": "Dead Sea \u00a7 Names",
+            "text": "The English name \"Dead Sea\" is a calque of the Arabic name, itself a calque of earlier Greek and Latin names, in reference to the scarcity of aquatic life caused by the lake's extreme salinity.\nHistorical English names include the Salt Sea, Lake of Sodom from the biblical account of its destruction and Lake Asphaltites from Greek and Latin.\nThe name \"Dead Sea\" occasionally appears in Hebrew literature as Y\u0101m HamM\u0101vet (\u05d9\u05dd \u05d4\u05de\u05d5\u05d5\u05ea), 'Sea of Death'. However, the most common name for the lake in both biblical and modern Hebrew\u2014and also its oldest known name\u2014is the 'Sea of Salt' (Hebrew: \u05d9\u05dd \u05d4\u05de\u05dc\u05d7, romanized: Y\u0101m HamMela\u1e25). Other Hebrew names for the lake also mentioned in the Bible are the Sea of Ar"
           }
         ],
         "questionsAllowed": 3,
@@ -267,7 +268,8 @@
         "finding_avoids": [
           "Aral"
         ],
-        "finding_supported": true
+        "finding_supported": true,
+        "finding_grounded": true
       }
     },
     {
@@ -287,11 +289,11 @@
           {
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa"
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa"
           },
           {
             "label": "2",
-            "title": "Dead Sea § Receding shoreline",
+            "title": "Dead Sea \u00a7 Receding shoreline",
             "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev"
           }
         ],
@@ -311,7 +313,8 @@
         ],
         "finding_avoids": [
           "Aral"
-        ]
+        ],
+        "finding_grounded": true
       }
     },
     {
@@ -364,7 +367,7 @@
             "id": "e1",
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -433,7 +436,7 @@
             "id": "e1",
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -502,7 +505,7 @@
             "id": "e1",
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -571,7 +574,7 @@
             "id": "e1",
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -640,7 +643,7 @@
             "id": "e1",
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -678,7 +681,7 @@
           {
             "id": "e2",
             "label": "2",
-            "title": "Dead Sea § Receding shoreline",
+            "title": "Dead Sea \u00a7 Receding shoreline",
             "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev",
             "kind": "wiki"
           }
@@ -701,7 +704,8 @@
         ],
         "finding_avoids": [
           "Aral"
-        ]
+        ],
+        "finding_grounded": true
       }
     },
     {
@@ -722,7 +726,7 @@
             "id": "e1",
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -760,7 +764,7 @@
           {
             "id": "e2",
             "label": "2",
-            "title": "Dead Sea § Receding shoreline",
+            "title": "Dead Sea \u00a7 Receding shoreline",
             "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev",
             "kind": "wiki"
           }
@@ -783,7 +787,8 @@
         ],
         "finding_avoids": [
           "Aral"
-        ]
+        ],
+        "finding_grounded": true
       }
     },
     {
@@ -827,7 +832,8 @@
           "resolved"
         ],
         "valid": true,
-        "finding_supported": true
+        "finding_supported": true,
+        "finding_grounded": true
       }
     },
     {
@@ -846,7 +852,7 @@
           {
             "id": "n15",
             "question": "What factors contribute to the Dead Sea's shrinking?",
-            "finding": "The Dead Sea's shrinking is attributed to the diversion of water from the Jordan River to the north, which began in the 1960s. The evidence shows that the lake's surface area decreased from 1,050 km² to 395 m below sea level between 1970 and 2006, with a drop rate of 1 meter per year by 2025.",
+            "finding": "The Dead Sea's shrinking is attributed to the diversion of water from the Jordan River to the north, which began in the 1960s. The evidence shows that the lake's surface area decreased from 1,050 km\u00b2 to 395 m below sea level between 1970 and 2006, with a drop rate of 1 meter per year by 2025.",
             "evidence": [
               "e13"
             ]
@@ -875,7 +881,7 @@
             "id": "e13",
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -914,7 +920,7 @@
             "id": "e15",
             "label": "2",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -952,15 +958,15 @@
           {
             "id": "e16",
             "label": "3",
-            "title": "Dead Sea § Extraction",
-            "text": "Both  Dead Sea Works Ltd. and Arab Potash use extensive salt evaporation pans that have essentially diked the entire southern end of the Dead Sea for the purpose of producing carnallite, potassium magnesium chloride, which is then processed further to produce potassium chloride. The ponds are separated by a central dike that runs roughly north–south along the international border. The power plant on the Israeli side allows production of magnesium metal (by a subsidiary, Dead Sea Magnesium Ltd.).\nDue to the popularity of the sea's therapeutic and healing properties, several companies have also shown interest in the manufacturing and supplying of Dead Sea salts as raw materials for body and sk",
+            "title": "Dead Sea \u00a7 Extraction",
+            "text": "Both  Dead Sea Works Ltd. and Arab Potash use extensive salt evaporation pans that have essentially diked the entire southern end of the Dead Sea for the purpose of producing carnallite, potassium magnesium chloride, which is then processed further to produce potassium chloride. The ponds are separated by a central dike that runs roughly north\u2013south along the international border. The power plant on the Israeli side allows production of magnesium metal (by a subsidiary, Dead Sea Magnesium Ltd.).\nDue to the popularity of the sea's therapeutic and healing properties, several companies have also shown interest in the manufacturing and supplying of Dead Sea salts as raw materials for body and sk",
             "kind": "wiki"
           },
           {
             "id": "e17",
             "label": "4",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -1016,7 +1022,8 @@
         ],
         "valid": true,
         "evidence_valid": true,
-        "finding_supported": true
+        "finding_supported": true,
+        "finding_grounded": true
       }
     },
     {
@@ -1064,15 +1071,15 @@
           {
             "id": "e28",
             "label": "1",
-            "title": "Dead Sea § Extraction",
-            "text": "Both  Dead Sea Works Ltd. and Arab Potash use extensive salt evaporation pans that have essentially diked the entire southern end of the Dead Sea for the purpose of producing carnallite, potassium magnesium chloride, which is then processed further to produce potassium chloride. The ponds are separated by a central dike that runs roughly north–south along the international border. The power plant on the Israeli side allows production of magnesium metal (by a subsidiary, Dead Sea Magnesium Ltd.).\nDue to the popularity of the sea's therapeutic and healing properties, several companies have also shown interest in the manufacturing and supplying of Dead Sea salts as raw materials for body and sk",
+            "title": "Dead Sea \u00a7 Extraction",
+            "text": "Both  Dead Sea Works Ltd. and Arab Potash use extensive salt evaporation pans that have essentially diked the entire southern end of the Dead Sea for the purpose of producing carnallite, potassium magnesium chloride, which is then processed further to produce potassium chloride. The ponds are separated by a central dike that runs roughly north\u2013south along the international border. The power plant on the Israeli side allows production of magnesium metal (by a subsidiary, Dead Sea Magnesium Ltd.).\nDue to the popularity of the sea's therapeutic and healing properties, several companies have also shown interest in the manufacturing and supplying of Dead Sea salts as raw materials for body and sk",
             "kind": "wiki"
           },
           {
             "id": "e29",
             "label": "2",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -1110,7 +1117,7 @@
           {
             "id": "e30",
             "label": "3",
-            "title": "Dead Sea § Receding shoreline",
+            "title": "Dead Sea \u00a7 Receding shoreline",
             "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev",
             "kind": "wiki"
           },
@@ -1118,7 +1125,7 @@
             "id": "e31",
             "label": "4",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -1156,7 +1163,7 @@
           {
             "id": "e32",
             "label": "5",
-            "title": "Dead Sea § Lake salinity",
+            "title": "Dead Sea \u00a7 Lake salinity",
             "text": "The water levels and salinity of the successive lakes (Amora, Lisan, Dead Sea) have either risen or fallen as an effect of the tectonic dropping of the valley bottom, and due to climate variation. As the climate became more arid, Lake Lisan finally shrank and became saltier, leaving the Dead Sea as its last remainder.\nFrom 70,000 to 12,000 years ago, Lake Lisan's level was 100 to 250 m (330 to 820 ft) higher than its current level, possibly due to lower evaporation than in the present. Its level fluctuated dramatically, rising to its highest level around 26,000 years ago, indicating a very wet climate in West Asia. Around 10,000 years ago, the lake's level dropped dramatically, probably even",
             "kind": "wiki"
           }
@@ -1167,14 +1174,15 @@
         "lookupsRemaining": 2,
         "questionsAllowed": 3
       },
-      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"wiki\",\n  \"query\": \"Dead Sea § Extraction\"\n}",
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"wiki\",\n  \"query\": \"Dead Sea \u00a7 Extraction\"\n}",
       "expect": {
         "action_in": [
           "resolved"
         ],
         "query_new": true,
         "valid": true,
-        "finding_supported": true
+        "finding_supported": true,
+        "finding_grounded": true
       }
     },
     {
@@ -1249,7 +1257,7 @@
           {
             "id": "e62",
             "label": "1",
-            "title": "Dead Sea § Lake salinity",
+            "title": "Dead Sea \u00a7 Lake salinity",
             "text": "The water levels and salinity of the successive lakes (Amora, Lisan, Dead Sea) have either risen or fallen as an effect of the tectonic dropping of the valley bottom, and due to climate variation. As the climate became more arid, Lake Lisan finally shrank and became saltier, leaving the Dead Sea as its last remainder.\nFrom 70,000 to 12,000 years ago, Lake Lisan's level was 100 to 250 m (330 to 820 ft) higher than its current level, possibly due to lower evaporation than in the present. Its level fluctuated dramatically, rising to its highest level around 26,000 years ago, indicating a very wet climate in West Asia. Around 10,000 years ago, the lake's level dropped dramatically, probably even",
             "kind": "wiki"
           },
@@ -1257,7 +1265,7 @@
             "id": "e63",
             "label": "2",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -1295,15 +1303,15 @@
           {
             "id": "e64",
             "label": "3",
-            "title": "Dead Sea § Extraction",
-            "text": "Both  Dead Sea Works Ltd. and Arab Potash use extensive salt evaporation pans that have essentially diked the entire southern end of the Dead Sea for the purpose of producing carnallite, potassium magnesium chloride, which is then processed further to produce potassium chloride. The ponds are separated by a central dike that runs roughly north–south along the international border. The power plant on the Israeli side allows production of magnesium metal (by a subsidiary, Dead Sea Magnesium Ltd.).\nDue to the popularity of the sea's therapeutic and healing properties, several companies have also shown interest in the manufacturing and supplying of Dead Sea salts as raw materials for body and sk",
+            "title": "Dead Sea \u00a7 Extraction",
+            "text": "Both  Dead Sea Works Ltd. and Arab Potash use extensive salt evaporation pans that have essentially diked the entire southern end of the Dead Sea for the purpose of producing carnallite, potassium magnesium chloride, which is then processed further to produce potassium chloride. The ponds are separated by a central dike that runs roughly north\u2013south along the international border. The power plant on the Israeli side allows production of magnesium metal (by a subsidiary, Dead Sea Magnesium Ltd.).\nDue to the popularity of the sea's therapeutic and healing properties, several companies have also shown interest in the manufacturing and supplying of Dead Sea salts as raw materials for body and sk",
             "kind": "wiki"
           },
           {
             "id": "e65",
             "label": "4",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -1341,7 +1349,7 @@
           {
             "id": "e66",
             "label": "5",
-            "title": "Dead Sea § Receding shoreline",
+            "title": "Dead Sea \u00a7 Receding shoreline",
             "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev",
             "kind": "wiki"
           }
@@ -1351,30 +1359,30 @@
         "excerptCharacterLimit": 700,
         "failedLookups": [
           {
-            "query": "Dead Sea § Extraction",
-            "error": "Already read: “Dead Sea § Extraction” is in the context. Try a different term or decompose."
+            "query": "Dead Sea \u00a7 Extraction",
+            "error": "Already read: \u201cDead Sea \u00a7 Extraction\u201d is in the context. Try a different term or decompose."
           },
           {
-            "query": "Dead Sea § Extraction",
-            "error": "Already read: “Dead Sea § Extraction” is in the context. Try a different term or decompose."
+            "query": "Dead Sea \u00a7 Extraction",
+            "error": "Already read: \u201cDead Sea \u00a7 Extraction\u201d is in the context. Try a different term or decompose."
           },
           {
-            "query": "Dead Sea § Extraction",
-            "error": "Already read: “Dead Sea § Extraction” is in the context. Try a different term or decompose."
+            "query": "Dead Sea \u00a7 Extraction",
+            "error": "Already read: \u201cDead Sea \u00a7 Extraction\u201d is in the context. Try a different term or decompose."
           },
           {
-            "query": "Dead Sea § Extraction",
-            "error": "Already read: “Dead Sea § Extraction” is in the context. Try a different term or decompose."
+            "query": "Dead Sea \u00a7 Extraction",
+            "error": "Already read: \u201cDead Sea \u00a7 Extraction\u201d is in the context. Try a different term or decompose."
           },
           {
-            "query": "Dead Sea § Extraction",
-            "error": "Already read: “Dead Sea § Extraction” is in the context. Try a different term or decompose."
+            "query": "Dead Sea \u00a7 Extraction",
+            "error": "Already read: \u201cDead Sea \u00a7 Extraction\u201d is in the context. Try a different term or decompose."
           }
         ],
         "lookupsRemaining": 2,
         "questionsAllowed": 0
       },
-      "recorded": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Dead Sea § Extraction\"}",
+      "recorded": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Dead Sea \u00a7 Extraction\"}",
       "expect": {
         "action_in": [
           "resolved"
@@ -1383,7 +1391,8 @@
         "finding_supported": true,
         "finding_mentions": [
           "Jordan|diversion|National Water Carrier|extraction|evaporation|potash"
-        ]
+        ],
+        "finding_grounded": true
       }
     },
     {
@@ -1404,7 +1413,7 @@
             "id": "e3",
             "label": "1",
             "title": "Dead Sea",
-            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "text": "The Dead Sea (Arabic: \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0650\u0651\u062a, romanized: al-Ba\u1e25r al-Mayyit; or \u0627\u064e\u0644\u0652\u0628\u064e\u062d\u0652\u0631 \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u062a, al-Ba\u1e25r al-Mayt; Hebrew: \u05d9\u05b7\u05dd \u05d4\u05b7\u05de\u05b6\u05bc\u05dc\u05b7\u05d7, romanized: Yam hamMela\u1e25), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
             "kind": "wiki",
             "sections": [
               "Names",
@@ -1442,7 +1451,7 @@
           {
             "id": "e4",
             "label": "2",
-            "title": "Dead Sea § Receding shoreline",
+            "title": "Dead Sea \u00a7 Receding shoreline",
             "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev",
             "kind": "wiki"
           }
@@ -1461,7 +1470,8 @@
         ],
         "questions_differ": true,
         "valid": true,
-        "finding_supported": true
+        "finding_supported": true,
+        "finding_grounded": true
       }
     },
     {

@@ -10,11 +10,9 @@
 // exports go to evals/results/runs/ (not committed).
 import { existsSync, mkdirSync, readFileSync, writeFileSync, appendFileSync } from "node:fs";
 import { dirname } from "node:path";
-import { PROMPT_VERSION } from "../src/episode.js";
-import { RESPONSE_SCHEMA_VERSION } from "../src/webllm.js";
 import { FLAT_LIMITS, formatGrades, formatRunGrade, gradeCase, gradeRun, summariseGrades } from "./grade.js";
 import { summarise } from "./summarise.js";
-import { DEFAULT_MODEL, DEFAULT_URL, commitInfo, exportRun, loadModel, loadWikiCache, machineInfo, makeNotes, openLab, parseArgs, runToEnd, saveWikiCache, shortModel, stamp } from "./lab.mjs";
+import { DEFAULT_MODEL, DEFAULT_URL, commitInfo, exportRun, loadModel, loadWikiCache, machineInfo, makeNotes, openLab, pageInfo, parseArgs, runToEnd, saveWikiCache, shortModel, stamp } from "./lab.mjs";
 
 const args = parseArgs(process.argv.slice(2));
 const suiteName = args._[0];
@@ -27,20 +25,27 @@ const WIKI_CACHE = "evals/wiki-cache";
 const TABLE = "evals/results.md";
 const HEADER = "# Eval results\n\nOne row per suite run; the JSON next to each holds every graded output. Newest last.\n\n| date | commit | suite | model | prompt · grammar | passed | detail | latency |\n|---|---|---|---|---|---|---|---|\n";
 const model = args.model || DEFAULT_MODEL;
-const commit = commitInfo();
+// The page under test is docs/index.html as served; name it by the commit that built it.
+const commit = pageInfo();
+const head = commitInfo();
 const date = new Date().toISOString().slice(0, 10);
 const out = args.out || `evals/results/${date}-${suiteName}${suiteName === "runs" ? "-" + mode : ""}-${shortModel(model)}-${commit.replace(/ .*/, "")}`;
 const only = args.only ? new RegExp(args.only) : null;
 const { notes, note } = makeNotes();
 const { browser, page, version } = await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note });
 const results = [];
-const record = { suite: suiteName, model, prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION, commit, machine: machineInfo(), browser: version(), date: new Date().toISOString() };
+const record = { suite: suiteName, model, commit, head, machine: machineInfo(), browser: version(), date: new Date().toISOString() };
+let PROMPT_VERSION = "?";
+let RESPONSE_SCHEMA_VERSION = "?";
 const appendRow = (cells) => {
   if (!existsSync(TABLE)) writeFileSync(TABLE, HEADER);
   appendFileSync(TABLE, `| ${date} | ${commit} | ${cells.join(" | ")} |\n`);
 };
 try {
   record.loadSeconds = await loadModel(page, model, { loadTimeoutMs: Number(args["load-timeout"] ?? 20) * 60000, note });
+  const versions = await page.evaluate(() => window.__tangle.versions?.() ?? null);
+  if (versions) ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION } = versions);
+  Object.assign(record, { prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION });
   mkdirSync(dirname(out), { recursive: true });
   if (suiteName === "runs") {
     const seeds = JSON.parse(readFileSync(new URL("../evals/seeds.json", import.meta.url), "utf8")).seeds.filter((seed) => !only || only.test(seed.id));

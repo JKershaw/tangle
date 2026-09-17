@@ -1,0 +1,809 @@
+{
+  "suite": "visits",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "prompt": "tangle-pocket-9",
+  "schema": "per-action-6",
+  "commit": "9f8bc21",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "152.0.7977.83",
+  "date": "2026-09-17T21:13:40.503Z",
+  "loadSeconds": 5,
+  "cases": 24,
+  "passed": 12,
+  "rate": 0.5,
+  "byClass": {
+    "wiki first": {
+      "cases": 3,
+      "passed": 3
+    },
+    "evidence labels": {
+      "cases": 1,
+      "passed": 1
+    },
+    "ceiling": {
+      "cases": 2,
+      "passed": 2
+    },
+    "degenerate output": {
+      "cases": 1,
+      "passed": 1
+    },
+    "malformed question": {
+      "cases": 1,
+      "passed": 1
+    },
+    "memory over evidence": {
+      "cases": 1,
+      "passed": 1
+    },
+    "grounded resolution": {
+      "cases": 1,
+      "passed": 0
+    },
+    "section by name": {
+      "cases": 4,
+      "passed": 0
+    },
+    "resolve when supported": {
+      "cases": 3,
+      "passed": 0
+    },
+    "synthesis": {
+      "cases": 2,
+      "passed": 0
+    },
+    "specific finding": {
+      "cases": 1,
+      "passed": 0
+    },
+    "repeat question": {
+      "cases": 1,
+      "passed": 0
+    },
+    "section pick": {
+      "cases": 3,
+      "passed": 3
+    }
+  },
+  "results": [
+    {
+      "id": "wiki-first-0.6b-water-cycle-root",
+      "kind": "action",
+      "class": "wiki first",
+      "pass": true,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_short",
+          "pass": true,
+          "detail": "Water cycle"
+        },
+        {
+          "name": "query_mentions",
+          "pass": true,
+          "detail": "Water cycle"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\": \"wiki\", \"query\": \"Water cycle\"}",
+      "latencyMs": 22239,
+      "tokens": 393
+    },
+    {
+      "id": "wiki-first-0.6b-water-cycle-child",
+      "kind": "action",
+      "class": "wiki first",
+      "pass": true,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_short",
+          "pass": true,
+          "detail": "Water cycle"
+        },
+        {
+          "name": "query_mentions",
+          "pass": true,
+          "detail": "Water cycle"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\": \"wiki\", \"query\": \"Water cycle\"}",
+      "latencyMs": 702,
+      "tokens": 392
+    },
+    {
+      "id": "evidence-labels-0.6b-one-excerpt",
+      "kind": "action",
+      "class": "evidence labels",
+      "pass": true,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "evidence_valid",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Water cycle\"}",
+      "latencyMs": 22640,
+      "tokens": 493
+    },
+    {
+      "id": "ceiling-depth-0.6b",
+      "kind": "action",
+      "class": "ceiling",
+      "pass": true,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Water cycle\"}",
+      "latencyMs": 14224,
+      "tokens": 393
+    },
+    {
+      "id": "ceiling-lookups-1.7b",
+      "kind": "action",
+      "class": "ceiling",
+      "pass": true,
+      "action": "blocked",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "blocked"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "questions_differ",
+          "pass": true,
+          "detail": "not a decompose"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"blocked\",\"reason\":\"Lookups are exhausted and the excerpts cannot answer the question.\"}",
+      "latencyMs": 22898,
+      "tokens": 709
+    },
+    {
+      "id": "degenerate-whitespace-1.7b",
+      "kind": "action",
+      "class": "degenerate output",
+      "pass": true,
+      "action": "blocked",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "blocked"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"blocked\",\"reason\":\"Excerpts do not provide sufficient information to answer the question.\"}",
+      "latencyMs": 15188,
+      "tokens": 853
+    },
+    {
+      "id": "one-question-per-child-1.7b",
+      "kind": "action",
+      "class": "malformed question",
+      "pass": true,
+      "action": "decompose",
+      "error": null,
+      "checks": [
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "questions_one_each",
+          "pass": true,
+          "detail": "one question per child"
+        },
+        {
+          "name": "questions_differ",
+          "pass": true,
+          "detail": "3 questions"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"Why is the Dead Sea's name changed?\",\"What causes the Dead Sea to have such high salinity?\",\"How does the Dead Sea's location affect its shrinking?\"]}",
+      "latencyMs": 2073,
+      "tokens": 875
+    },
+    {
+      "id": "memory-aral-0.6b",
+      "kind": "action",
+      "class": "memory over evidence",
+      "pass": true,
+      "action": "decompose",
+      "error": null,
+      "checks": [
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_avoids",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"Why did the Aral Sea begin to shrink in the 1960s?\",\"What regions of Kazakhstan and Uzbekistan were part of the Aral Sea?\",\"What countries are part of the Aral Sea drainage basin?\"]}",
+      "latencyMs": 2062,
+      "tokens": 741
+    },
+    {
+      "id": "grounded-8b-dead-sea",
+      "kind": "action",
+      "class": "grounded resolution",
+      "pass": false,
+      "action": "decompose",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "decompose"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "evidence_valid",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_mentions",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_avoids",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"Why has the Dead Sea been shrinking?\",\"What causes the Dead Sea to recede?\",\"How does the Dead Sea's salinity relate to its shrinking?\"]}",
+      "latencyMs": 2176,
+      "tokens": 936
+    },
+    {
+      "id": "wiki-first-1.7b-dead-sea-root",
+      "kind": "action",
+      "class": "wiki first",
+      "pass": true,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_short",
+          "pass": true,
+          "detail": "Dead Sea"
+        },
+        {
+          "name": "query_mentions",
+          "pass": true,
+          "detail": "Dead Sea"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\": \"wiki\", \"query\": \"Dead Sea\"}",
+      "latencyMs": 732,
+      "tokens": 415
+    },
+    {
+      "id": "section-by-name-1.7b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "pass": false,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_reads_section",
+          "pass": false,
+          "detail": "bare query: Dead Sea"
+        },
+        {
+          "name": "query_new",
+          "pass": false,
+          "detail": "Dead Sea"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Dead Sea\"}",
+      "latencyMs": 29157,
+      "tokens": 807
+    },
+    {
+      "id": "section-by-name-8b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "pass": false,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_reads_section",
+          "pass": false,
+          "detail": "bare query: Dead Sea"
+        },
+        {
+          "name": "query_new",
+          "pass": false,
+          "detail": "Dead Sea"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Dead Sea\"}",
+      "latencyMs": 1257,
+      "tokens": 807
+    },
+    {
+      "id": "section-by-name-4b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "pass": false,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_reads_section",
+          "pass": false,
+          "detail": "bare query: Dead Sea"
+        },
+        {
+          "name": "query_new",
+          "pass": false,
+          "detail": "Dead Sea"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Dead Sea\"}",
+      "latencyMs": 1255,
+      "tokens": 807
+    },
+    {
+      "id": "section-by-name-0.6b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "pass": false,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_reads_section",
+          "pass": false,
+          "detail": "bare query: Dead Sea"
+        },
+        {
+          "name": "query_new",
+          "pass": false,
+          "detail": "Dead Sea"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Dead Sea\"}",
+      "latencyMs": 1254,
+      "tokens": 807
+    },
+    {
+      "id": "resolve-when-supported-1.7b",
+      "kind": "action",
+      "class": "resolve when supported",
+      "pass": false,
+      "action": "decompose",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "decompose"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_mentions",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_avoids",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"What factors contribute to the Dead Sea's shrinking?\" ]}",
+      "latencyMs": 23479,
+      "tokens": 1072
+    },
+    {
+      "id": "resolve-when-supported-8b",
+      "kind": "action",
+      "class": "resolve when supported",
+      "pass": false,
+      "action": "decompose",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "decompose"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_mentions",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_avoids",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"What factors contribute to the Dead Sea's shrinking?\" ]}",
+      "latencyMs": 1985,
+      "tokens": 1072
+    },
+    {
+      "id": "resolve-when-supported-1.7b-water-cycle",
+      "kind": "action",
+      "class": "resolve when supported",
+      "pass": false,
+      "action": "decompose",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "decompose"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"Why does evaporation contribute to the water cycle?\",\"What causes precipitation in the water cycle?\",\"How do different reservoirs of water interact in the water cycle?\"]}",
+      "latencyMs": 1823,
+      "tokens": 771
+    },
+    {
+      "id": "synthesis-1.7b-five-excerpts",
+      "kind": "action",
+      "class": "synthesis",
+      "pass": false,
+      "action": "decompose",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "decompose"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "evidence_valid",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"decompose\",\n  \"questions\": [\n    \"What factors contribute to the Dead Sea's shrinking? \",\n    \"What causes the Dead Sea to lose water over time? \",\n    \"How does the Dead Sea's salinity relate to its shrinking? \"\n  ]\n}",
+      "latencyMs": 33556,
+      "tokens": 2290
+    },
+    {
+      "id": "no-repeat-read-1.7b",
+      "kind": "action",
+      "class": "synthesis",
+      "pass": false,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_new",
+          "pass": false,
+          "detail": "Dead Sea § Extraction"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"wiki\",\n  \"query\": \"Dead Sea § Extraction\"\n}",
+      "latencyMs": 4236,
+      "tokens": 2182
+    },
+    {
+      "id": "specific-finding-1.7b",
+      "kind": "action",
+      "class": "specific finding",
+      "pass": false,
+      "action": "wiki",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": false,
+          "detail": "wiki"
+        },
+        {
+          "name": "query_new",
+          "pass": false,
+          "detail": "Dead Sea § Extraction"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        },
+        {
+          "name": "finding_mentions",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Dead Sea § Extraction\"}",
+      "latencyMs": 26463,
+      "tokens": 2586
+    },
+    {
+      "id": "no-self-repeat-1.7b",
+      "kind": "action",
+      "class": "repeat question",
+      "pass": false,
+      "action": "decompose",
+      "error": null,
+      "checks": [
+        {
+          "name": "action_in",
+          "pass": true,
+          "detail": "decompose"
+        },
+        {
+          "name": "questions_differ",
+          "pass": false,
+          "detail": "repeats the question: What factors contribute to the Dead Sea's shrinking?"
+        },
+        {
+          "name": "valid",
+          "pass": true,
+          "detail": "accepted by the validator"
+        },
+        {
+          "name": "finding_supported",
+          "pass": true,
+          "detail": "not a resolution"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"What factors contribute to the Dead Sea's shrinking?\",\"What causes the Dead Sea to lose water over time?\",\"How does the Dead Sea's salinity relate to its shrinking?\"]}",
+      "latencyMs": 2607,
+      "tokens": 1101
+    },
+    {
+      "id": "section-pick-1.7b-root",
+      "kind": "section",
+      "class": "section pick",
+      "pass": true,
+      "action": "Receding shoreline",
+      "error": null,
+      "checks": [
+        {
+          "name": "section_in",
+          "pass": true,
+          "detail": "Receding shoreline"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}",
+      "latencyMs": 383,
+      "tokens": 188
+    },
+    {
+      "id": "section-pick-1.7b-lose-water",
+      "kind": "section",
+      "class": "section pick",
+      "pass": true,
+      "action": "Extraction",
+      "error": null,
+      "checks": [
+        {
+          "name": "section_in",
+          "pass": true,
+          "detail": "Extraction"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Extraction\"}",
+      "latencyMs": 344,
+      "tokens": 190
+    },
+    {
+      "id": "section-pick-1.7b-salinity",
+      "kind": "section",
+      "class": "section pick",
+      "pass": true,
+      "action": "Lake salinity",
+      "error": null,
+      "checks": [
+        {
+          "name": "section_in",
+          "pass": true,
+          "detail": "Lake salinity"
+        }
+      ],
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Lake salinity\"}",
+      "latencyMs": 373,
+      "tokens": 191
+    }
+  ],
+  "notes": [
+    "2026-09-17T21:09:42.216Z opened http://127.0.0.1:8765/ in 152.0.7977.83 (darwin arm64, Apple M1 Max)",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-17T21:09:42.345Z loading: Checking this device before downloading…",
+    "2026-09-17T21:09:47.354Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "2026-09-17T21:09:47.354Z 24 cases · prompt tangle-pocket-9 · grammar per-action-6 · commit 9f8bc21",
+    "pass wiki-first-0.6b-water-cycle-root → wiki (22239 ms)",
+    "pass wiki-first-0.6b-water-cycle-child → wiki (702 ms)",
+    "pass evidence-labels-0.6b-one-excerpt → wiki (22640 ms)",
+    "pass ceiling-depth-0.6b → wiki (14224 ms)",
+    "pass ceiling-lookups-1.7b → blocked (22898 ms)",
+    "pass degenerate-whitespace-1.7b → blocked (15188 ms)",
+    "pass one-question-per-child-1.7b → decompose (2073 ms)",
+    "pass memory-aral-0.6b → decompose (2062 ms)",
+    "FAIL grounded-8b-dead-sea → decompose (2176 ms) · action_in: decompose",
+    "pass wiki-first-1.7b-dead-sea-root → wiki (732 ms)",
+    "FAIL section-by-name-1.7b-lead-only → wiki (29157 ms) · query_reads_section: bare query: Dead Sea · query_new: Dead Sea",
+    "FAIL section-by-name-8b-lead-only → wiki (1257 ms) · query_reads_section: bare query: Dead Sea · query_new: Dead Sea",
+    "FAIL section-by-name-4b-lead-only → wiki (1255 ms) · query_reads_section: bare query: Dead Sea · query_new: Dead Sea",
+    "FAIL section-by-name-0.6b-lead-only → wiki (1254 ms) · query_reads_section: bare query: Dead Sea · query_new: Dead Sea",
+    "FAIL resolve-when-supported-1.7b → decompose (23479 ms) · action_in: decompose",
+    "FAIL resolve-when-supported-8b → decompose (1985 ms) · action_in: decompose",
+    "FAIL resolve-when-supported-1.7b-water-cycle → decompose (1823 ms) · action_in: decompose",
+    "FAIL synthesis-1.7b-five-excerpts → decompose (33556 ms) · action_in: decompose",
+    "FAIL no-repeat-read-1.7b → wiki (4236 ms) · action_in: wiki · query_new: Dead Sea § Extraction",
+    "FAIL specific-finding-1.7b → wiki (26463 ms) · action_in: wiki · query_new: Dead Sea § Extraction",
+    "FAIL no-self-repeat-1.7b → decompose (2607 ms) · questions_differ: repeats the question: What factors contribute to the Dead Sea's shrinking?",
+    "pass section-pick-1.7b-root → Receding shoreline (383 ms)",
+    "pass section-pick-1.7b-lose-water → Extraction (344 ms)",
+    "pass section-pick-1.7b-salinity → Lake salinity (373 ms)"
+  ]
+}
