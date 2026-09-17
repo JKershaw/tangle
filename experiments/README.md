@@ -28,5 +28,6 @@ Machine: Apple M1 Max, Chrome 152, WebGPU. Seeds: "Why does the water cycle keep
 | `…-0.6b-dead-sea-2` | 0.6B · pocket-8 · forced pick | "root resolved" | copied the prompt's example as its query and then as its finding — which exposed that the example named the answer's section |
 | `…-4b-dead-sea-2` | 4B · pocket-8 · forced pick | root resolved | copied the example too; read the lead only; correct and unsupported again |
 | `…-8b-dead-sea-2` | 8B · **pocket-9 (neutral example)** · forced pick | root resolved | lead, then chose *Receding shoreline* from the listed headings unaided; correct, specific, fully supported |
+| `…-1.7b-dead-sea-5` | 1.7B · pocket-9 (neutral example) · forced pick | 32 resolved, 2 blocked, root waiting | the mechanism holds without the hint; two honest blocks freeze the root above 32 findings — the settled-children question, with a price tag |
 
 Prompt versions are in `src/episode.js`; grammar versions in `src/webllm.js`.
