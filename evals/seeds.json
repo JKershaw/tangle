@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "note": "Facts are pipe-separated alternatives; a fact counts when any alternative appears. 'where' records which article sections held each fact when the rubric was checked (rubric-check, 2026-09-17), so a seed's kind is a fact about Wikipedia, not a guess.",
+  "seeds": [
+    {
+      "id": "dead-sea",
+      "seed": "Why is the Dead Sea shrinking?",
+      "kind": "multi-section",
+      "facts": {
+        "jordan-diversion": "Jordan River|National Water Carrier|diversion|diverted",
+        "mineral-extraction": "Dead Sea Works|potash|evaporation pond|Arab Potash|mineral",
+        "rate": "per year|a year|annually"
+      },
+      "distractors": ["Aral"],
+      "where": "Dead Sea: jordan-diversion in the lead; mineral-extraction and rate only in Extraction and Receding shoreline"
+    },
+    {
+      "id": "water-cycle",
+      "seed": "Why does the water cycle keep going?",
+      "kind": "single-article",
+      "facts": {
+        "sun": "sun|solar",
+        "evaporation": "evaporat",
+        "condensation-precipitation": "condens|precipitat"
+      },
+      "where": "Water cycle: evaporation and condensation in the lead; the sun only in Overall process"
+    },
+    {
+      "id": "bronze-age",
+      "seed": "Why did the Late Bronze Age collapse happen?",
+      "kind": "multi-section",
+      "facts": {
+        "climate": "drought|climate|famine",
+        "sea-peoples": "Sea Peoples",
+        "earthquakes": "earthquake",
+        "systems": "systems collapse|combination|multiple|several"
+      },
+      "where": "Late Bronze Age collapse: climate and Sea Peoples in the full lead; earthquakes only in The Levant and Possible causes; systems in Possible causes"
+    },
+    {
+      "id": "colony-collapse",
+      "seed": "Why do honey bee colonies collapse?",
+      "kind": "multi-section",
+      "facts": {
+        "mites": "Varroa|mite",
+        "pesticides": "pesticide|neonicotinoid",
+        "pathogens": "pathogen|virus|Nosema|disease",
+        "stressors": "combination|multiple|stress"
+      },
+      "where": "Colony collapse disorder: pathogens in the first 700 characters; mites, pesticides and stressors later in the lead and in Possible causes"
+    },
+    {
+      "id": "coral",
+      "seed": "Why do coral reefs bleach?",
+      "kind": "single-lead",
+      "facts": {
+        "temperature": "temperature|warming|heat|warm",
+        "algae": "zooxanthellae|algae|symbio",
+        "climate": "climate change|global warming|greenhouse"
+      },
+      "where": "Coral bleaching: all three in the first 700 characters of the lead"
+    },
+    {
+      "id": "sky-blue",
+      "seed": "Why is the sky blue?",
+      "kind": "single-lead, search trap",
+      "facts": {
+        "rayleigh": "Rayleigh",
+        "wavelength": "wavelength",
+        "scattering": "scatter"
+      },
+      "where": "Rayleigh scattering and Diffuse sky radiation: all three in the lead. The search hit for 'sky blue' is the colour article, which has none of them"
+    },
+    {
+      "id": "aral",
+      "seed": "Why did the Aral Sea shrink?",
+      "kind": "single-article",
+      "facts": {
+        "irrigation": "irrigation|cotton",
+        "rivers": "Amu Darya|Syr Darya|diver",
+        "soviet": "Soviet"
+      },
+      "distractors": ["Jordan", "Dead Sea"],
+      "where": "Aral Sea: all three in the full lead, not all in the first 700 characters"
+    }
+  ]
+}

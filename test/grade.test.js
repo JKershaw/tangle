@@ -4,7 +4,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { CHECKS, formatGrades, gradeCase, summariseGrades } from "../scripts/grade.js";
+import { CHECKS, formatGrades, formatRunGrade, gradeCase, gradeRun, summariseGrades } from "../scripts/grade.js";
 import { mentions, missingWords, normalise } from "../scripts/text.js";
 
 const fixtures = JSON.parse(readFileSync(new URL("./fixtures/model-outputs.json", import.meta.url), "utf8"));
@@ -102,4 +102,29 @@ test("summariseGrades and formatGrades roll cases up by class", () => {
   const text = formatGrades(grades);
   assert.match(text, /FAIL b \[repeat\] → wiki · query_new: Dead Sea/);
   assert.match(text, /2\/3 passed \(67%\)/);
+});
+
+test("gradeRun scores a recorded run against a seed rubric: present, supported, read, distractors", () => {
+  const seed = { id: "dead-sea", seed: "Why is the Dead Sea shrinking?", facts: { "jordan-diversion": "Jordan River|National Water Carrier|diversion|diverted", "mineral-extraction": "Dead Sea Works|potash|evaporation pond|Arab Potash|mineral", rate: "per year|a year|annually" }, distractors: ["Aral"] };
+  const grounded = JSON.parse(readFileSync(new URL("../experiments/2026-09-17-qwen3-8b-dead-sea-2.json", import.meta.url), "utf8"));
+  const grade = gradeRun(seed, grounded);
+  assert.equal(grade.resolved, true);
+  assert.deepEqual(grade.facts["jordan-diversion"], { present: true, supported: true, read: true });
+  assert.equal(grade.factsPresent >= 1 && grade.factsPresent <= 3, true);
+  assert.equal(grade.factsSupported <= grade.factsPresent, true);
+  assert.deepEqual(grade.distractors, []);
+  assert.equal(grade.cost.nodes, grounded.nodes.length);
+  assert.match(formatRunGrade(grade), /^dead-sea: resolved · facts \d\/3 · supported \d\/3 · read \d\/3 · 1 nodes/);
+
+  const wrongLake = JSON.parse(readFileSync(new URL("../experiments/2026-09-17-qwen3-0.6b-dead-sea.json", import.meta.url), "utf8"));
+  const bad = gradeRun(seed, wrongLake);
+  assert.equal(bad.resolved, true);
+  assert.deepEqual(bad.distractors, ["n1"]);
+  assert.match(formatRunGrade(bad), /distractor in n1/);
+
+  const frozen = JSON.parse(readFileSync(new URL("../experiments/2026-09-17-qwen3-1.7b-dead-sea-5.json", import.meta.url), "utf8"));
+  const waiting = gradeRun(seed, frozen);
+  assert.equal(waiting.resolved, false);
+  assert.equal(waiting.factsPresent, 0, "an unresolved root states nothing");
+  assert.equal(waiting.facts["jordan-diversion"].read, true, "but the run did read the fact");
 });

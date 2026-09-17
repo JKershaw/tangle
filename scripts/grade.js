@@ -179,3 +179,46 @@ export function formatGrades(grades) {
   for (const [name, entry] of Object.entries(total.byClass)) lines.push(`  ${name}: ${entry.passed}/${entry.cases}`);
   return lines.join("\n");
 }
+
+// ---- whole runs ----
+// A benchmark seed: the question, the facts a correct answer contains (each a
+// pipe-separated set of interchangeable keywords), and distractors that mean
+// the model answered about something else. gradeRun says, per fact, whether
+// the root finding states it, whether an excerpt the root cites contains it,
+// and whether any excerpt in the run contains it at all (read but unsaid).
+export const FLAT_LIMITS = Object.freeze({ maxNodes: 1, maxVisits: 3, maxDepth: 0, maxLookups: 6, maxPasses: 8 });
+
+export function gradeRun(seed, run) {
+  const root = run.nodes[0];
+  const cited = (root.evidence ?? []).map((id) => run.evidence.find((record) => record.id === id)).filter(Boolean);
+  const excerptText = (record) => `${record.title ?? ""} ${record.text ?? ""}`;
+  const facts = {};
+  for (const [name, alternatives] of Object.entries(seed.facts)) {
+    facts[name] = {
+      present: root.status === "resolved" && mentions(root.finding, alternatives),
+      supported: root.status === "resolved" && mentions(root.finding, alternatives) && cited.some((record) => mentions(excerptText(record), alternatives)),
+      read: run.evidence.some((record) => mentions(excerptText(record), alternatives)),
+    };
+  }
+  const count = (key) => Object.values(facts).filter((fact) => fact[key]).length;
+  const distractors = run.nodes.filter((node) => node.finding && (seed.distractors ?? []).some((entry) => mentions(node.finding, entry))).map((node) => node.id);
+  const statuses = {};
+  for (const node of run.nodes) statuses[node.status] = (statuses[node.status] || 0) + 1;
+  return {
+    id: seed.id,
+    resolved: root.status === "resolved",
+    outcome: root.status === "resolved" ? "root resolved" : run.stopReason || `root ${root.status}`,
+    facts,
+    factsTotal: Object.keys(facts).length,
+    factsPresent: count("present"),
+    factsSupported: count("supported"),
+    factsRead: count("read"),
+    distractors,
+    cost: { nodes: run.nodes.length, visits: run.visits, modelCalls: run.modelCalls, lookups: run.lookups, tokens: run.tokens },
+    statuses,
+    finding: root.finding || null,
+  };
+}
+
+export const formatRunGrade = (grade) =>
+  `${grade.id}: ${grade.resolved ? "resolved" : grade.outcome} · facts ${grade.factsPresent}/${grade.factsTotal} · supported ${grade.factsSupported}/${grade.factsTotal} · read ${grade.factsRead}/${grade.factsTotal}${grade.distractors.length ? ` · distractor in ${grade.distractors.join(", ")}` : ""} · ${grade.cost.nodes} nodes, ${grade.cost.modelCalls} calls, ${grade.cost.lookups} lookups, ${grade.cost.tokens} tokens`;
