@@ -136,3 +136,19 @@ npm run build     # writes docs/index.html
 Open `docs/index.html` directly for the simulation. For live mode serve `docs/` over localhost or HTTPS (the browser needs a secure origin with storage to cache model weights) and open it in a WebGPU-capable browser.
 
 Exports from the page are the experimental record. They contain the prompt version, model, every model input and output, tool calls and results, findings, evidence and timings.
+
+## Run an experiment
+
+The hosted page is at https://www.jkershaw.com/tangle/ (deployed from `docs/` on every push to `main`). For recorded experiments, drive a local copy with the script so the export, map screenshot and notes land in `experiments/`:
+
+```
+python3 -m http.server 8765 -d docs --bind 127.0.0.1      # in one terminal
+node scripts/live-run.mjs --mode live --model Qwen3-1.7B-q4f16_1-MLC \
+  --seed "Why does the water cycle keep going?" \
+  --out experiments/2026-09-17-qwen3-1.7b-water-cycle       # in another
+node scripts/summarise.js experiments/2026-09-17-qwen3-1.7b-water-cycle.json
+```
+
+Live mode opens a headed Chrome (WebGPU is not available headless) and keeps model weights in a persistent profile at `~/.cache/tangle/chrome-profile`, so the first run per model downloads and later runs start in seconds. Use `127.0.0.1`, not `localhost`. `--mode simulation --headless --scenario revisit|blocked|repeat` runs the scripted scenarios without a model.
+
+Each run writes `<out>.json` (the export, the record of everything the model saw and said), `<out>.png` (the finished map) and `<out>.md` (driver log, summary and a place for observations). Commit all three.
