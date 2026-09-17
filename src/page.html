@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f5f0">
+<meta name="referrer" content="no-referrer">
+<title>Tangle · Pocket Lab</title>
+<style>:root{color-scheme:light dark;--bg:#f6f5f0;--paper:#fffefa;--ink:#273730;--muted:#67746b;--line:#d9dfd6;--soft:#edf0e8;--green:#316348;--green-soft:#e4eee3;--amber:#94652d;--amber-soft:#f7eddc;--red:#a44d41;--red-soft:#f6e7e3;--blue:#427486;--dot:#dbe2d7;font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink)}main{max-width:1280px;margin:auto;padding:30px 30px 50px}button,input,select,textarea{font:inherit;color:inherit}button{border:1px solid var(--line);border-radius:9px;background:var(--paper);padding:9px 14px;min-height:44px;cursor:pointer;touch-action:manipulation}button:hover:not(:disabled){background:var(--soft)}button:disabled{opacity:.46;cursor:default}button.primary{background:var(--green);border-color:var(--green);color:#fff}button.primary:hover:not(:disabled){filter:brightness(1.08);background:var(--green)}button.quiet{background:transparent}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:3px}button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}h1,h2,h3,p{margin:0}h1{font-size:32px;letter-spacing:-1.4px;font-weight:550}.serif{font-family:Georgia,serif;font-weight:400;font-style:italic;letter-spacing:-.8px}h2{font-size:20px;font-weight:500;line-height:1.35}h3{font-size:16px;font-weight:600;margin:24px 0 8px}.eyebrow{display:block;letter-spacing:2px;font-size:10px;color:var(--muted);margin-bottom:3px}.masthead{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:28px}.muted{color:var(--muted)}.small{font-size:12px}.buttons{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.mode-row{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-bottom:20px}.segmented{display:flex;gap:4px;background:var(--soft);border-radius:12px;padding:4px}.segmented button{border-color:transparent;background:transparent}.segmented button[aria-pressed=true]{background:var(--paper);color:var(--ink);box-shadow:0 1px 4px #0000000b}.setup{padding-bottom:22px}.setup-row{display:flex;align-items:center;justify-content:space-between;gap:24px}.setup-row p{margin-top:7px}label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:500}select,textarea,input[type=text]{border:1px solid var(--line);border-radius:9px;background:var(--paper);padding:10px 12px;font-size:16px;width:100%}textarea{resize:vertical;min-height:70px}.check{display:flex;flex-direction:row;align-items:center;gap:7px;font-weight:400;min-height:32px}.check input{accent-color:var(--green);width:17px;height:17px}.field-row{display:flex;gap:12px;align-items:end}.grow{flex:1;min-width:0}.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end;margin:15px 0}#modelSettings{margin-top:16px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:12px}#modelSettings p{margin:9px 0}summary{cursor:pointer;min-height:32px;font-size:13px}progress{width:100%;height:10px;accent-color:var(--green)}.lab{border:1px solid var(--line);border-radius:16px;background:var(--paper);overflow:hidden}.runbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;flex-wrap:wrap}.metrics{display:flex;gap:14px;font-size:12px;font-variant-numeric:tabular-nums;color:var(--muted)}.metrics b{font-weight:600;color:var(--ink)}.activity{padding:11px 18px;display:flex;gap:9px;align-items:center;background:var(--soft);font-size:13px;min-height:45px}#activityDot{width:7px;height:7px;flex:none;border-radius:50%;background:var(--green)}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 300px}.map-panel{min-width:0}.mapbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px}.mapbar button{min-height:36px;padding:4px 10px}#map{height:440px;position:relative;overflow:hidden;background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:22px 22px;touch-action:none;cursor:grab}#map.dragging{cursor:grabbing}#world{position:absolute;inset:0 auto auto 0;transform-origin:0 0;will-change:transform}#edges{position:absolute;overflow:visible;left:0;top:0;pointer-events:none}#edges path{fill:none;stroke:var(--line);stroke-width:2}#nodes{position:absolute;top:0;left:0}.graph-node{position:absolute;width:210px;height:88px;text-align:left;border-radius:12px;padding:10px 12px;background:var(--paper);color:var(--ink);box-shadow:0 2px 5px #253a2910;display:flex;flex-direction:column;gap:6px;transition:transform .28s ease;touch-action:none}.graph-node[aria-pressed=true]{background:var(--paper);color:var(--ink);border:2px solid var(--green);padding:9px 11px}.graph-node[data-status=resolved]{background:var(--green-soft)}.graph-node[data-status=working]{background:var(--green-soft);border:2px solid var(--green)}.graph-node[data-status=blocked],.graph-node[data-status=error]{background:var(--red-soft)}.graph-node .q{font-size:13px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;width:100%;font-weight:500}.graph-node .node-top{display:flex;align-items:center;justify-content:space-between;width:100%;font-size:11px;color:var(--muted)}.node-top span{display:flex;align-items:center;gap:5px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--muted);flex:none}.dot.resolved,.dot.working{background:var(--green)}.dot.waiting{background:var(--amber)}.dot.blocked,.dot.error{background:var(--red)}.mapfooter{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 14px;border-top:1px solid var(--line)}.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--muted)}.legend span{display:flex;align-items:center;gap:5px}aside{border-left:1px solid var(--line);padding:20px;max-height:590px;overflow:auto;overflow-wrap:anywhere}.node-meta{display:flex;justify-content:space-between;margin-bottom:9px;text-transform:uppercase;letter-spacing:1px;font-size:10px;color:var(--muted)}aside h2{font-size:18px}aside p{margin-top:9px}aside details{border-top:1px solid var(--line);margin-top:16px;padding-top:10px}#finding{font-size:14px;margin:15px 0}#finding strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:500;margin-bottom:6px}.evidence-card{border-top:1px solid var(--line);padding:12px 0;font-size:12px}.evidence-card strong{font-weight:500}.evidence-card p{margin:5px 0}.evidence-card blockquote{margin:8px 0;padding-left:10px;border-left:2px solid var(--line);color:var(--muted)}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:11px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;max-height:360px;overflow:auto;margin:8px 0}a{color:var(--green)}.exportbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 18px;border-top:1px solid var(--line);flex-wrap:wrap}.bottom-note{margin:13px 4px}.help{margin-top:25px;border-top:1px solid var(--line);padding:18px 4px}.help>summary{color:var(--muted)}.help p{max-width:850px;margin:12px 0;font-size:14px}.help ul,.help ol{padding-left:24px;max-width:900px;font-size:14px}.help li{margin:8px 0}.help h2{margin-top:18px}.approval{padding:16px 20px;border-bottom:1px solid var(--line);background:var(--amber-soft);display:flex;justify-content:space-between;gap:15px;align-items:center}.approval p{margin:5px 0;overflow-wrap:anywhere}[hidden]{display:none!important}
+@media(max-width:900px){main{padding:22px 18px 35px}.workspace{grid-template-columns:1fr}aside{border-left:0;border-top:1px solid var(--line);max-height:none;padding:18px}.setup-row{align-items:start}.metrics{gap:12px}#map{height:400px}.model-grid{grid-template-columns:1fr}}
+@media(max-width:550px){main{padding:20px 12px 30px}.masthead{align-items:start;margin-bottom:20px}h1{font-size:28px}.eyebrow{font-size:8px;letter-spacing:1.2px}.masthead button{padding:6px 9px;font-size:11px}.setup-row{flex-direction:column;gap:14px}.setup-row label{width:100%}h2{font-size:19px}.mode-row{gap:8px}.mode-row>.muted{font-size:12px}.segmented{width:100%}.segmented button{flex:1;font-size:13px}.runbar{padding:12px}.runbar .buttons{width:100%;gap:5px}.runbar button{flex:1;padding:8px 7px;font-size:12px}.activity{padding:10px 12px}.mapbar{padding:8px 10px}.mapbar>.small{font-size:10px;max-width:140px}.mapbar .buttons{gap:5px}#map{height:350px}.mapfooter{padding:8px 10px;gap:4px}.field-row{flex-direction:column;align-items:stretch}.exportbar{padding:12px}.exportbar>.buttons{width:100%}.exportbar button{flex:1;font-size:12px}.approval{flex-direction:column;align-items:start}.model-grid button{font-size:12px}.metrics{font-size:11px;gap:14px}#modelSettings{padding:12px}.help{padding:15px 0}}
+@media(prefers-color-scheme:dark){:root{--bg:#18211d;--paper:#202c25;--ink:#e0e9df;--muted:#a3b4a6;--line:#3e4f42;--soft:#2a382e;--green:#79b38e;--green-soft:#2c4434;--amber:#d3aa6d;--amber-soft:#453b29;--red:#e4a193;--red-soft:#47322d;--blue:#95bfcd;--dot:#344638}button.primary{color:#13251b}.graph-node[aria-pressed=true]{color:var(--ink)}.segmented button[aria-pressed=true]{background:var(--paper)}}
+@media(max-width:550px){h1 .serif{display:block;font-size:20px;white-space:nowrap;letter-spacing:-.4px}.setup-row p{font-size:12px}.masthead{margin-bottom:16px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main>
+  <header class="masthead">
+    <div><span class="eyebrow">A SMALL EXPERIMENT IN UNDERSTANDING</span><h1>Tangle<span class="serif"> / pocket lab</span></h1></div>
+    <button id="helpButton" class="quiet">About &amp; research</button>
+  </header>
+  <section class="setup" aria-label="Run setup">
+    <div class="mode-row">
+      <div class="segmented" role="group" aria-label="Choose run mode"><button id="simMode" aria-pressed="true">Simulation</button><button id="liveMode" aria-pressed="false">Local LLM + Wiki</button></div>
+      <span id="modeNote" class="muted">Precomputed responses · no network</span>
+    </div>
+    <div id="simSetup">
+      <div class="setup-row"><div><h2 id="seedTitle">Why does the water cycle keep going?</h2><p class="muted">Watch small questions become an inspectable understanding graph.</p></div>
+        <label>Experiment<select id="scenario"><option value="revisit">The parent asks again</option><option value="blocked">A source is unavailable</option><option value="repeat">Repeated questions</option></select></label>
+      </div>
+    </div>
+    <div id="liveSetup" hidden>
+      <div class="field-row"><label class="grow">Seed question<textarea id="seed" rows="2" maxlength="400">Why does the water cycle keep going?</textarea></label><button id="newLive">Start new graph</button></div>
+      <details id="modelSettings" open>
+        <summary>On-device model <span id="modelBadge" class="muted">not loaded</span></summary>
+        <div class="model-grid">
+          <label>Model<select id="model"></select></label>
+          <div class="buttons"><button id="checkDevice">Check device</button><button id="loadModel" class="primary">Download &amp; load</button><button id="unloadModel" disabled>Unload</button></div>
+        </div>
+        <p id="deviceStatus" class="small">Live mode needs WebGPU and enough memory. Nothing downloads until you choose Load.</p>
+        <progress id="loadProgress" max="1" value="0" hidden aria-label="Model loading"></progress>
+        <p id="loadStatus" class="small" role="status"></p>
+        <p class="small muted">Tiny does not mean lightweight: the 0.6B float16 model lists about 1.4 GB of GPU memory. First load needs internet and free storage. Model weights are cached by the browser, which usually requires an HTTPS or localhost origin rather than a downloaded file.</p>
+        <label class="check"><input type="checkbox" id="autoWiki">Allow Wikipedia lookups for this run without asking each time</label>
+        <p class="small muted">Queries go to English Wikipedia. Model files come from Hugging Face and MLC’s GitHub distribution. Inference runs on your device. No API key, proxy or cloud inference.</p>
+        <div class="buttons"><button id="testWiki">Test Wiki access</button><button id="clearModel" class="quiet">Remove selected model’s cached files</button></div>
+        <p id="wikiTestStatus" class="small" role="status"></p>
+      </details>
+    </div>
+  </section>
+  <section class="lab" aria-label="Graph experiment">
+    <div class="runbar">
+      <div class="buttons"><button id="run" class="primary">Run simulation</button><button id="step">One node</button><button id="stop" disabled>Stop now</button><button id="reset" class="quiet">New run</button></div>
+      <div id="metrics" class="metrics" aria-live="off"></div>
+    </div>
+    <div class="activity" role="status" aria-live="polite"><span id="activityDot"></span><span id="status">One seed. Press Run to watch the graph grow.</span></div>
+    <div id="approval" class="approval" hidden>
+      <div><strong>Allow Wikipedia lookup?</strong><p id="approvalQuery"></p><span class="small">Search and article-summary requests; no credentials are sent.</span></div>
+      <div class="buttons"><button id="allow" class="primary">Allow once</button><button id="deny">Decline</button></div>
+    </div>
+    <div class="workspace">
+      <section class="map-panel" aria-label="Understanding map">
+        <div class="mapbar"><span class="small muted">Drag to pan · pinch to zoom · tap a node</span><div class="buttons"><button id="zoomOut" aria-label="Zoom out">−</button><button id="zoomIn" aria-label="Zoom in">+</button><button id="fit">Fit map</button></div></div>
+        <div id="map" aria-label="Question graph"><div id="world"><svg id="edges" aria-hidden="true"></svg><div id="nodes"></div></div></div>
+        <div class="mapfooter"><div class="legend"><span><i class="dot open"></i>Open</span><span><i class="dot waiting"></i>Waiting</span><span><i class="dot resolved"></i>Resolved</span><span><i class="dot blocked"></i>Blocked / error</span></div><label class="check small"><input type="checkbox" id="follow" checked>Follow active node</label></div>
+      </section>
+      <aside id="inspector" aria-label="Selected node">
+        <div class="node-meta"><span id="nodeId">n1</span><span id="nodeStatus">open</span></div>
+        <h2 id="nodeQuestion"></h2><p id="nodeVisits" class="small muted"></p>
+        <div id="finding"></div><div id="evidence"></div>
+        <button id="retry" hidden>Retry this node</button>
+        <details><summary>Exact local context</summary><pre id="context"></pre></details>
+        <details><summary>Node trace &amp; raw responses</summary><pre id="nodeTrace"></pre></details>
+      </aside>
+    </div>
+    <footer class="exportbar"><span id="persistence" class="small muted">Export your run before closing this page.</span><div class="buttons"><button id="export">Export run JSON</button><button id="import">Inspect JSON</button><input id="importFile" type="file" accept=".json,application/json" hidden></div></footer>
+  </section>
+  <p class="small muted bottom-note">Findings can be wrong. Evidence records what was read. “Resolved” is a model decision, not a correctness guarantee.</p>
+  <details id="help" class="help">
+    <summary>Research, design, limits &amp; licences</summary>
+    <h2>A petri dish, not a verdict</h2>
+    <p>Tangle asks one question: can useful global understanding emerge from recursively resolving tiny, locally scoped questions? This page is a runnable prototype of that loop. A fresh model invocation receives one bounded node plus only the evidence that node has seen. It may look something up, decompose the question, resolve it with a finding, or report that it is blocked. The harness owns the graph: it validates every proposal and refuses findings that cite evidence the model was never shown.</p>
+    <p>The simulation replays authored responses and evidence paragraphs; they are neither model output nor captured Wikipedia pages. Live mode runs a small Qwen3 model on your device through WebLLM and reads English Wikipedia as its only source.</p>
+    <h3>How to use it on a phone</h3>
+    <ol><li>Open this page in a browser that executes JavaScript. Simulation needs no internet.</li><li>For live mode choose <strong>Local LLM + Wiki</strong>, then <strong>Check device</strong>. Start with Qwen3 0.6B.</li><li>Use Wi-Fi for the model download. Press <strong>Download &amp; load</strong>, wait for Ready, then start a graph and press Run.</li><li>Allow each Wikipedia lookup, or tick the box to allow them for the whole run.</li><li>Export the run before closing the page. Exports can be re-opened with <strong>Inspect JSON</strong>.</li></ol>
+    <p>Model weights are cached by the browser, which needs a secure origin with storage. A downloaded <code>file://</code> copy can usually run the simulation but often cannot keep a model; the served page over HTTPS or localhost can.</p>
+    <h3>Design decisions</h3>
+    <ul><li>One serial, deterministic, depth-first scheduler. A parent is revisited only after all its children resolve; a blocked child leaves it unresolved. Edges express parent–child decomposition only.</li><li>Both modes share the same validator and episode runner. Simulation and live graphs are kept separate.</li><li>Findings and evidence are distinct records. A finding may be wrong; the evidence records what was actually read, with the Wikipedia revision where available.</li><li>Model output is grammar-constrained to a JSON action object. The validator then decides whether the content is acceptable.</li><li>Strange behaviour is recorded rather than patched. Repeated questions, awkward decompositions and unresolved branches are observations.</li><li>Safety limits bound every run: nodes, visits, depth, lookups per visit and model calls per visit.</li></ul>
+    <h3>Limits</h3>
+    <p>Small local models may decompose poorly, repeat themselves, misread evidence or fail to return a useful finding. Keep the phone foregrounded; long sessions consume battery and can cause thermal throttling. This page is built from source with tests; see the repository for what is and is not covered.</p>
+    <h3>Data and privacy</h3>
+    <p>Run state stays in memory until you export it. There is no analytics or automatic upload. Exports contain prompts, source excerpts and responses, so inspect them before sharing. Wikipedia sees requested query terms and your network address. Model hosts see model-download traffic. Wikipedia content remains attributed to its article and contributors under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.</p>
+    <details><summary>Third-party notices</summary><pre id="licences">Tangle — John Kershaw — MIT License. Parts of the device probes and Wikipedia tool derive from Browser-agent (John Kershaw, MIT).
+
+WebLLM — Apache 2.0
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+------------------------------------------------------------------------------------
+This product bundles various third-party components under other open source licenses.
+This section summarizes those components and their licenses. See licenses/
+for text of these licenses.
+
+Apache Software Foundation License 2.0
+--------------------------------------
+
+src/openai_api_protocols
+
+
+loglevel
+Copyright (c) 2013 Tim Perry
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+</pre></details>
+  </details>
+</main>
+<script>
+<!-- BUNDLE -->
+</script>
+</body>
+</html>

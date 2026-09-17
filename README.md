@@ -101,3 +101,38 @@ The first meaningful milestone is deliberately modest:
 «Grow and persist one inspectable understanding graph from one repository and one seed.»
 
 Do not optimise for impressiveness. Optimise for learning.
+
+---
+
+## What is in this repository
+
+The text above is the brief. This section describes what currently exists.
+
+The first artefact is the **pocket lab**: a single self-contained web page that runs the Tangle loop, either as an offline simulation with authored responses or live, with a small Qwen3 model running on the device through WebLLM and English Wikipedia as the only source. The page is built from the source in `src/`; the built page is committed as `docs/index.html` so GitHub Pages can serve it.
+
+```
+src/graph.js       the harness-owned graph: run creation, deterministic scheduler, local context,
+                   output parsing, validation, mutation, import validation
+src/episode.js     one node visit (the episode runner) and the system prompt
+src/simulation.js  the scripted water-cycle scenarios and fixture evidence
+src/wiki.js        the Wikipedia lookup tool (HTTPS en.wikipedia.org only, timeout, byte cap)
+src/webllm.js      device, storage and cache probes; the WebLLM engine adapter
+src/map.js         the graph map (layout, pan, zoom)
+src/main.js        UI wiring
+src/page.html      page template; the bundle is inlined at build time
+build.js           esbuild bundle + inline -> docs/index.html
+test/              node --test suites; the three simulation scenarios are the fixed points
+experiments/       exported runs and notes, committed alongside the code
+```
+
+## Run it
+
+```
+npm ci
+npm test          # graph, episode, wiki and adapter tests
+npm run build     # writes docs/index.html
+```
+
+Open `docs/index.html` directly for the simulation. For live mode serve `docs/` over localhost or HTTPS (the browser needs a secure origin with storage to cache model weights) and open it in a WebGPU-capable browser.
+
+Exports from the page are the experimental record. They contain the prompt version, model, every model input and output, tool calls and results, findings, evidence and timings.

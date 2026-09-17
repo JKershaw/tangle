@@ -1,0 +1,20 @@
+{
+  "name": "tangle",
+  "version": "0.2.0",
+  "private": true,
+  "description": "A small experiment in whether useful global understanding can emerge from recursively resolving tiny local questions.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "build": "node build.js",
+    "check": "npm test && npm run build"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "playwright-core": "^1.63.0"
+  },
+  "dependencies": {
+    "@mlc-ai/web-llm": "0.2.84"
+  }
+}
