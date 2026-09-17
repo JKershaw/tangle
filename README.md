@@ -61,6 +61,7 @@ scripts/           live-run.mjs drives a full run and records it; summarise.js r
 experiments/       exported runs and notes, committed next to the code that produced them
 docs/index.html    the built page, served by GitHub Pages
 BRIEF.md           the original design brief the project is built to
+PLAN.md            the eval-driven plan for pushing tiny models further; PROGRESS.md logs against it
 ```
 
 The whole app is one HTML file. Open `docs/index.html` from disk and the simulation works offline; live mode wants an HTTPS or localhost origin so the browser will cache model weights.
