@@ -24,7 +24,14 @@ export const downloadBytes = (modelId) => MODELS.find((model) => model.id === mo
 
 // Grammar-constrained decoding: the model can only emit an object of this shape.
 // The harness validator still decides whether the content is acceptable.
-export const RESPONSE_SCHEMA_VERSION = "per-action-3";
+export const RESPONSE_SCHEMA_VERSION = "per-action-4";
+// Excerpts are cited by positional label, not ID. web-llm compiles a new grammar
+// for every distinct schema at ~22 s each (a token mask over Qwen's 151k-token
+// vocabulary, in wasm; experiments/2026-09-17-qwen3-0.6b-water-cycle-4), so an
+// enum of real IDs made nearly every resolved a fresh compile. A fixed alphabet
+// keeps the number of grammars at four for a whole session. The context shows
+// at most five excerpts (graph.js); the validator rejects an unused label.
+export const EVIDENCE_LABELS = Object.freeze(["1", "2", "3", "4", "5"]);
 // One variant per action, built per call from the evidence the model was shown:
 // decompose must carry 1–3 questions, wiki a query, blocked a reason, and
 // resolved may only cite IDs that are in context — with no evidence in context
@@ -43,7 +50,7 @@ export function responseSchema(evidenceIds = [], questionsAllowed = 3) {
         ? [variant("decompose", { questions: { type: "array", items: { type: "string", minLength: 1, maxLength: 300 }, minItems: 1, maxItems: questionsAllowed } }, ["questions"])]
         : []),
       ...(ids.length
-        ? [variant("resolved", { finding: { type: "string", minLength: 1, maxLength: 1400 }, evidence: { type: "array", items: { enum: ids }, minItems: 1, maxItems: Math.min(8, ids.length) } }, ["finding", "evidence"])]
+        ? [variant("resolved", { finding: { type: "string", minLength: 1, maxLength: 1400 }, evidence: { type: "array", items: { enum: EVIDENCE_LABELS }, minItems: 1, maxItems: EVIDENCE_LABELS.length } }, ["finding", "evidence"])]
         : []),
       variant("blocked", { reason: { type: "string", minLength: 1, maxLength: 1000 } }, ["reason"]),
     ],

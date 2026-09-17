@@ -149,3 +149,15 @@ test("the lookup limit still bounds a visit that keeps searching", async () => {
   assert.match(run.nodes[0].reason, /lookup safety limit/);
   assert.equal(run.nodes[0].failedLookups.length, 2);
 });
+
+test("a finding may cite excerpts by label; labels map back to evidence IDs and unknown labels are rejected", async () => {
+  const run = createRun("Root", "live");
+  const wiki = async () => ({ ok: true, kind: "wiki", title: "T", text: "some text" });
+  const cited = scriptedGenerate([{ action: "wiki", query: "X" }, { action: "resolved", finding: "F", evidence: ["1"] }]);
+  assert.equal(await runEpisode(run, { generate: cited, wiki }), true);
+  assert.deepEqual(run.nodes[0].evidence, ["e1"]);
+  const invented = createRun("Root", "live");
+  await runEpisode(invented, { generate: scriptedGenerate([{ action: "wiki", query: "X" }, { action: "resolved", finding: "F", evidence: ["3"] }]), wiki });
+  assert.equal(invented.nodes[0].status, "error");
+  assert.match(invented.nodes[0].reason, /invented evidence/);
+});

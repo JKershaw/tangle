@@ -152,3 +152,10 @@ test("the context says how many child questions may be proposed: fewer near the 
   assert.equal(buildContext(run, run.nodes[1]).questionsAllowed, 0, "depth ceiling");
   assert.equal(buildContext(run, run.nodes[0]).questionsAllowed, 1, "one node left under the ceiling");
 });
+
+test("excerpts in the context are labelled 1 to 5 in order, beside their IDs", () => {
+  const run = createRun("Root");
+  for (let i = 0; i < 6; i++) captureEvidence(run, "n1", { kind: "wiki", title: "T" + i, text: "text " + i });
+  const context = buildContext(run, run.nodes[0]);
+  assert.deepEqual(context.evidence.map((excerpt) => [excerpt.label, excerpt.id]), [["1", "e2"], ["2", "e3"], ["3", "e4"], ["4", "e5"], ["5", "e6"]]);
+});
