@@ -25,5 +25,8 @@ Machine: Apple M1 Max, Chrome 152, WebGPU. Seeds: "Why does the water cycle keep
 | `…-8b-dead-sea` | 8B · pocket-7 · per-action-6 · sections by name | root resolved | asked for "Dead Sea / Receding shoreline" — the prompt's example named that section (fixed in pocket-9); the first correct, fully supported answer to a question no lead answers |
 | `…-1.7b-dead-sea-3` | 1.7B · pocket-8 · section list on bare repeat | **40 resolved, root correct** | first full-graph root resolution: the list was enough at the third try; 59 section reads; two pass-ceiling retries |
 | `…-1.7b-dead-sea-4` | 1.7B · pocket-8 · forced section pick | **40 resolved, root correct, no errors** | 44 picks (Receding shoreline 32, Extraction 12); the loop is gone; one answer found forty times |
+| `…-0.6b-dead-sea-2` | 0.6B · pocket-8 · forced pick | "root resolved" | copied the prompt's example as its query and then as its finding — which exposed that the example named the answer's section |
+| `…-4b-dead-sea-2` | 4B · pocket-8 · forced pick | root resolved | copied the example too; read the lead only; correct and unsupported again |
+| `…-8b-dead-sea-2` | 8B · **pocket-9 (neutral example)** · forced pick | root resolved | lead, then chose *Receding shoreline* from the listed headings unaided; correct, specific, fully supported |
 
 Prompt versions are in `src/episode.js`; grammar versions in `src/webllm.js`.

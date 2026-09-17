@@ -32,4 +32,8 @@ worth a look:
 
 ## Observations
 
-(the three strangest things in the trace, quoting node questions and raw model output)
+Second 4B run, on the forced-pick build but still with the contaminated prompt example (tangle-pocket-8). Root resolved in two calls.
+
+1. **It copied the example too.** First query `"Dead Sea / Receding shoreline"` with nothing in context → the lead. It did not ask again; it resolved from the lead alone.
+
+2. **Correct and unsupported, again.** "The Dead Sea is shrinking due to the diversion of the Jordan River for agriculture and the lack of an outlet, leading to reduced inflow and increased evaporation. This has caused the lake's surface to recede, with the shoreline retreating over time." Cited: the lead only. Flagged: shrink, diversion, agriculture, outlet, lead, reduc … absent from it. 4B's habit across both runs: one lookup, then answer from memory and cite what it has.
