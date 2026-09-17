@@ -1,2 +1,24 @@
-Exported runs and notes live here, next to the code that produced them.
-Name files `<date>-<model>-<seed-slug>.json` with a matching `.md` for hardware, timings and observations.
+# Experiments
+
+Exported runs and notes live here, next to the code that produced them. Name files `<date>-<model>-<seed-slug>.json` with a matching `.md` (hardware, timings, observations) and `.png` (the map). `scripts/live-run.mjs` writes all three; `scripts/summarise.js` reads an export.
+
+Every export records the model, prompt version, grammar version, sampling settings and every model input and output, so a run can be re-read without re-running it. The `.md` quotes raw model output for the observations that matter.
+
+## 17 September 2026 — first live runs
+
+Machine: Apple M1 Max, Chrome 152, WebGPU. Seeds: "Why does the water cycle keep going?" and "Why is the Dead Sea shrinking?". Each row is one change and what it revealed.
+
+| run | model · prompt · grammar | outcome | what it showed |
+|---|---|---|---|
+| `qwen3-0.6b-water-cycle` | 0.6B · pocket-2 · flat | error | decompose with the questions written as prose in `reason`, ×3 identical |
+| `…-water-cycle-2` | 0.6B · pocket-2 · per-action-1 | error | decomposed cleanly, then `resolved` with evidence it wrote itself |
+| `…-water-cycle-3` | 0.6B · pocket-2 · per-action-2 | error | decompose ×9, never wiki, re-asked its own question to the depth ceiling |
+| `…-water-cycle-4` | 0.6B · pocket-3 · per-action-3 | 14 resolved, 10 blocked | searched only where decompose was gone; 387 of 420 s were grammar compiles |
+| `qwen3-1.7b-water-cycle` | 1.7B · pocket-3 · per-action-3 | blocked | the seed decomposed into itself six times, then blocked on "empty evidence" |
+| `…-0.6b-water-cycle-5` | 0.6B · pocket-4 · per-action-4 | error | compiles bounded; cited labels 2 and 3 when shown only 1 |
+| `…-0.6b-water-cycle-6` | 0.6B · pocket-5 · per-action-5 | root resolved | wiki-first works; one article, a correct half-answer, no decomposition |
+| `…-1.7b-water-cycle-2` | 1.7B · pocket-5 · per-action-5 | error | found the article at once, re-read it nine times, never resolved, decomposed well |
+| `…-0.6b-dead-sea` | 0.6B · pocket-5 · per-action-6 | root resolved | searched the whole question, found the Aral Sea, resolved with a fully cited answer about the wrong lake |
+| `…-1.7b-dead-sea` | 1.7B · pocket-5 · per-action-6 | 8 resolved, 20 blocked | 79 reads of the Dead Sea lead; honest blocks (the lead never mentions recession); Aral Sea from memory, cited to Dead Sea excerpts |
+
+Prompt versions are in `src/episode.js`; grammar versions in `src/webllm.js`.

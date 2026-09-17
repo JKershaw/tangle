@@ -32,7 +32,7 @@ A **visit** is one model invocation on one node. The model receives the question
 
 | action | what it must include | what the harness does |
 |---|---|---|
-| `wiki` | a search term | fetches the article summary, stores it as evidence, asks again |
+| `wiki` | a search term | fetches the article's lead as evidence and asks again; asking for an article already in context reads its next section |
 | `decompose` | 1–3 smaller questions | adds them as children; the parent waits |
 | `resolved` | a finding and the IDs of evidence it rests on | records the finding, rejects it if any ID was not actually shown to the model |
 | `blocked` | a reason | marks the node blocked; ancestors stay unresolved |
@@ -109,7 +109,7 @@ The first day of live runs (all in `experiments/`, raw model output quoted) resh
 - Every distinct schema costs about 22 s to compile in WebLLM; enumerating real evidence IDs made nearly every call a fresh compile. Excerpts are cited by positional label so a session compiles at most ten grammars.
 - Neither 0.6B nor 1.7B connected `wiki` with the arrival of evidence until the prompt said so plainly. 1.7B then found the right article at once — and re-read it nine times without resolving; 0.6B resolved the water-cycle seed from one article and, on "Why is the Dead Sea shrinking?", searched for the whole question, found the *Aral Sea*, and resolved with a fully cited finding about the wrong lake.
 
-What that last run shows is the current frontier: the evidence rule is necessary and not sufficient. A finding can rest entirely on its excerpts and still answer the wrong question. Open next: reading beyond an article's lead section (the models keep asking for the same article because 700 characters is not enough), search queries from the smallest model, and whether a parent should be revisited once its children are settled rather than all resolved.
+What that last run shows is the current frontier: the evidence rule is necessary and not sufficient. A finding can rest entirely on its excerpts and still answer the wrong question. Since then: asking again for an article already in context reads its next section, because both models kept re-requesting the same article — 1.7B read the two-sentence *Dead Sea* lead 79 times across one run and blocked twenty times, truthfully, on "insufficient evidence" while the answer sat in the Recession section. Open next: search queries from the smallest model, and whether a parent should be revisited once its children are settled rather than all resolved.
 
 Small models will decompose badly, repeat themselves, misread evidence and resolve too early. Keep the exports; that is the experiment.
 
