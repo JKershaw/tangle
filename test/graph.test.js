@@ -64,13 +64,13 @@ test("a resolution may cite only evidence that was in the model's context", () =
   assert.equal(record.id, "e1");
   assert.deepEqual(run.nodes[0].observed, ["e1"]);
   const node = run.nodes[0];
-  assert.throws(() => validateResult(run, node, { action: "resolved", finding: "F", evidence: ["e9"] }, ["e1"]), /invented evidence/);
-  assert.throws(() => validateResult(run, node, { action: "resolved", finding: "F", evidence: ["e1"] }, []), /invented evidence/);
-  assert.throws(() => validateResult(run, node, { action: "resolved", finding: "F", evidence: [] }, ["e1"]), /needs inspected evidence/);
-  validateResult(run, node, { action: "resolved", finding: "F", evidence: ["e1"] }, ["e1"]);
-  applyResult(run, "n1", { action: "resolved", finding: "  F  ", evidence: ["e1", "e1"] }, ["e1"]);
+  assert.throws(() => validateResult(run, node, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["e9"] }, ["e1"]), /invented evidence/);
+  assert.throws(() => validateResult(run, node, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["e1"] }, []), /invented evidence/);
+  assert.throws(() => validateResult(run, node, { action: "resolved", finding: "A finding with enough words in it.", evidence: [] }, ["e1"]), /needs inspected evidence/);
+  validateResult(run, node, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["e1"] }, ["e1"]);
+  applyResult(run, "n1", { action: "resolved", finding: "  A finding with enough words in it.  ", evidence: ["e1", "e1"] }, ["e1"]);
   assert.equal(node.status, "resolved");
-  assert.equal(node.finding, "F");
+  assert.equal(node.finding, "A finding with enough words in it.");
   assert.deepEqual(node.evidence, ["e1"]);
   assert.equal(outcomeLabel(run), "Root resolved");
 });
@@ -112,7 +112,7 @@ test("the local context holds the question, recent child findings and the last f
   assert.equal(context.excerptCharacterLimit, 700);
   // Child findings are claims; their evidence IDs are made visible so the parent may cite the source.
   captureEvidence(run, "n3", { kind: "wiki", title: "child", text: "child text" });
-  applyResult(run, "n3", { action: "resolved", finding: "F".repeat(600), evidence: ["e8"] }, ["e8"]);
+  applyResult(run, "n3", { action: "resolved", finding: "A finding with enough words in it. ".repeat(20), evidence: ["e8"] }, ["e8"]);
   const withChild = buildContext(run, run.nodes[0]);
   assert.equal(withChild.children.length, 1);
   assert.equal(withChild.children[0].finding.length, 500);

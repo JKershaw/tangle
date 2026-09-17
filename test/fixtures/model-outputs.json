@@ -245,5 +245,29 @@
     "raw": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking primarily due to the diversion of water from the Jordan River to the north as part of the National Water Carrier scheme, which was completed in 1964. Additionally, the southern end of the Dead Sea is fed by a canal maintained by the Dead Sea Works, which further contributes to the shrinking of the lake.\",\n  \"evidence\": [\"1\", \"2\"]\n}",
     "error": null,
     "why": "The good case: both cited excerpts contain the finding."
+  },
+  "resolved-with-prompt-fragment-as-finding": {
+    "class": "degenerate finding",
+    "run": "2026-09-17-qwen3-0.6b-dead-sea-2",
+    "seq": 8,
+    "model": "Qwen3-0.6B-q4f16_1-MLC",
+    "prompt": "tangle-pocket-8",
+    "schema": "per-action-6",
+    "question": "Why is the Dead Sea shrinking?",
+    "depth": 0,
+    "context": {
+      "evidence": [
+        {
+          "label": "1",
+          "title": "Dead Sea",
+          "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa"
+        }
+      ],
+      "questionsAllowed": 3,
+      "lookupsRemaining": 1
+    },
+    "raw": "<think>\n\n</think>\n\n{\"action\": \"resolved\", \"finding\": \"Dead Sea / Receding shoreline\", \"evidence\":  [\"1\"]}",
+    "error": null,
+    "why": "The finding is the prompt example \"Dead Sea / Receding shoreline\", echoed; a label cited as an answer."
   }
 }

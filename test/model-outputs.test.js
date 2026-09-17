@@ -107,3 +107,10 @@ for (const [name, expectFlag] of [["resolved-aral-sea-cited-to-dead-sea", true],
     assert.equal(flagged, expectFlag);
   });
 }
+
+test("degenerate finding: a prompt fragment echoed as the finding is rejected by the validator", () => {
+  const { run, node, ids, grammar, parsed, result } = situation(fixtures["resolved-with-prompt-fragment-as-finding"]);
+  assert.equal(parsed.finding, "Dead Sea / Receding shoreline");
+  assert.equal(permittedBy(grammar, parsed), true, "the grammar cannot tell a label from a claim");
+  assert.throws(() => validateResult(run, node, result, ids), /must be a sentence/);
+});

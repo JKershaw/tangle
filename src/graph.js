@@ -170,6 +170,9 @@ export function validateResult(run, node, result, visibleEvidenceIds) {
   }
   if (result.action === "resolved") {
     assert(isText(result.finding, 1400), "A resolution needs a finding of 1–1,400 characters.");
+    // A finding is a claim, not a label: 0.6B once resolved with the finding
+    // "Dead Sea / Receding shoreline" — the prompt's example query, echoed.
+    assert(String(result.finding).trim().split(/\s+/).length >= 6, "A finding must be a sentence, not a fragment.");
     assert(
       Array.isArray(result.evidence) && result.evidence.length >= 1 && result.evidence.length <= 8,
       "A resolution needs inspected evidence IDs.",

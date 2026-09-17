@@ -69,14 +69,14 @@ test("unparseable or invalid model output pauses the run on that node", async ()
   assert.equal(run.nodes[0].status, "error");
   assert.match(run.stopReason, /Paused on error/);
   const invalid = createRun("Root", "live");
-  await runEpisode(invalid, { generate: scriptedGenerate([{ action: "resolved", finding: "F", evidence: ["e1"] }]), wiki: async () => ({ ok: false }) });
+  await runEpisode(invalid, { generate: scriptedGenerate([{ action: "resolved", finding: "A finding with enough words in it.", evidence: ["e1"] }]), wiki: async () => ({ ok: false }) });
   assert.match(invalid.nodes[0].reason, /invented evidence/);
 });
 
 test("a wiki lookup captures evidence and the next pass can cite it", async () => {
   const run = createRun("Root", "live");
   const wiki = async (query) => ({ ok: true, kind: "wiki", title: query, text: "Text about " + query, url: "https://en.wikipedia.org/wiki/X" });
-  const generate = scriptedGenerate([{ action: "wiki", query: "X" }, { action: "resolved", finding: "F", evidence: ["e1"] }]);
+  const generate = scriptedGenerate([{ action: "wiki", query: "X" }, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["e1"] }]);
   const ok = await runEpisode(run, { generate, wiki });
   assert.equal(ok, true);
   assert.equal(run.nodes[0].status, "resolved");
@@ -112,7 +112,7 @@ test("lookups per visit are bounded", async () => {
 test("a failed lookup is fed back to the model instead of pausing the run", async () => {
   const run = createRun("Root", "live");
   const wiki = async (query) => (query === "zzz" ? { ok: false, error: { kind: "no_match", message: "No article matched." } } : { ok: true, kind: "wiki", title: query, text: "t" });
-  const generate = scriptedGenerate([{ action: "wiki", query: "zzz" }, { action: "wiki", query: "Water" }, { action: "resolved", finding: "F", evidence: ["e1"] }]);
+  const generate = scriptedGenerate([{ action: "wiki", query: "zzz" }, { action: "wiki", query: "Water" }, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["e1"] }]);
   const ok = await runEpisode(run, { generate, wiki });
   assert.equal(ok, true);
   assert.equal(run.nodes[0].status, "resolved");
@@ -153,11 +153,11 @@ test("the lookup limit still bounds a visit that keeps searching", async () => {
 test("a finding may cite excerpts by label; labels map back to evidence IDs and unknown labels are rejected", async () => {
   const run = createRun("Root", "live");
   const wiki = async () => ({ ok: true, kind: "wiki", title: "T", text: "some text" });
-  const cited = scriptedGenerate([{ action: "wiki", query: "X" }, { action: "resolved", finding: "F", evidence: ["1"] }]);
+  const cited = scriptedGenerate([{ action: "wiki", query: "X" }, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["1"] }]);
   assert.equal(await runEpisode(run, { generate: cited, wiki }), true);
   assert.deepEqual(run.nodes[0].evidence, ["e1"]);
   const invented = createRun("Root", "live");
-  await runEpisode(invented, { generate: scriptedGenerate([{ action: "wiki", query: "X" }, { action: "resolved", finding: "F", evidence: ["3"] }]), wiki });
+  await runEpisode(invented, { generate: scriptedGenerate([{ action: "wiki", query: "X" }, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["3"] }]), wiki });
   assert.equal(invented.nodes[0].status, "error");
   assert.match(invented.nodes[0].reason, /invented evidence/);
 });
@@ -168,7 +168,7 @@ test("looking up an article that is already in the context is a visible failed l
   const inputs = [];
   const generate = async (messages, { context }) => {
     inputs.push(context);
-    const proposal = inputs.length < 3 ? { action: "wiki", query: "water cycle" } : { action: "resolved", finding: "F", evidence: ["1"] };
+    const proposal = inputs.length < 3 ? { action: "wiki", query: "water cycle" } : { action: "resolved", finding: "A finding with enough words in it.", evidence: ["1"] };
     return { text: JSON.stringify(proposal), tokens: 1 };
   };
   assert.equal(await runEpisode(run, { generate, wiki }), true);
@@ -186,7 +186,7 @@ test("asking again for an article already in the context reads its next section"
     if (!readOn) return { ok: true, kind: "wiki", title: "Dead Sea", article: "Dead Sea", section: 0, text: "lead" };
     return { ok: true, kind: "wiki", title: "Dead Sea § Recession", article: "Dead Sea", section: readOn.section, text: "it is receding" };
   };
-  const generate = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea" }, { action: "resolved", finding: "F", evidence: ["1", "2"] }]);
+  const generate = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea" }, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["1", "2"] }]);
   assert.equal(await runEpisode(run, { generate, wiki }), true);
   assert.deepEqual(wikiCalls, [null, { article: "Dead Sea", section: 1 }]);
   assert.deepEqual(run.evidence.map((record) => record.title), ["Dead Sea", "Dead Sea § Recession"]);
@@ -202,7 +202,7 @@ test("a 'Title / Section' query reads that section of an article already in the 
     if (!readOn) return { ok: true, kind: "wiki", title: "Dead Sea", article: "Dead Sea", section: 0, text: "lead", headings: ["Geography", "Receding shoreline"] };
     return { ok: true, kind: "wiki", title: "Dead Sea § " + readOn.section, article: "Dead Sea", section: 2, text: "diversion" };
   };
-  const generate = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea / Receding shoreline" }, { action: "resolved", finding: "F", evidence: ["2"] }]);
+  const generate = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea / Receding shoreline" }, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["2"] }]);
   assert.equal(await runEpisode(run, { generate, wiki }), true);
   assert.deepEqual(wikiCalls, [["Dead Sea", null], ["Dead Sea / Receding shoreline", { article: "Dead Sea", section: "Receding shoreline" }]]);
   assert.deepEqual(run.nodes[0].evidence, ["e2"]);
@@ -219,7 +219,7 @@ test("repeating the bare title of an article with sections hands back the sectio
     return { ok: true, kind: "wiki", title: "Dead Sea § " + readOn.section, article: "Dead Sea", section: 2, text: "diversion" };
   };
   const inputs = [];
-  const scripted = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea / Receding shoreline" }, { action: "resolved", finding: "F", evidence: ["2"] }]);
+  const scripted = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea / Receding shoreline" }, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["2"] }]);
   const generate = async (messages, options) => { inputs.push(options.context); return scripted(messages, options); };
   assert.equal(await runEpisode(run, { generate, wiki }), true);
   assert.deepEqual(wikiCalls.map(([, readOn]) => readOn), [null, { article: "Dead Sea", section: "Receding shoreline" }], "the bare repeat made no request");
@@ -239,7 +239,7 @@ test("with a section chooser, repeating a bare title becomes a forced pick from 
     asked.push(request);
     return { text: '{"section": "Receding shoreline"}', tokens: 7 };
   };
-  const generate = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea" }, { action: "resolved", finding: "F", evidence: ["2"] }]);
+  const generate = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea" }, { action: "resolved", finding: "A finding with enough words in it.", evidence: ["2"] }]);
   assert.equal(await runEpisode(run, { generate, wiki, chooseSection }), true);
   assert.deepEqual(asked, [{ question: "Why is the Dead Sea shrinking?", article: "Dead Sea", sections: ["Names", "Geography", "Receding shoreline"] }]);
   assert.deepEqual(run.evidence.map((record) => record.title), ["Dead Sea", "Dead Sea § Receding shoreline"]);
