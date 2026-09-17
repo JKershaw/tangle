@@ -94,8 +94,8 @@ test("the response schema makes every action carry its payload and cite only sho
   assert.equal(variants.decompose.properties.questions.minItems, 1);
   assert.equal(variants.decompose.properties.questions.maxItems, 3);
   assert.deepEqual(variants.resolved.required, ["action", "finding", "evidence"]);
-  assert.deepEqual(variants.resolved.properties.evidence.items, { enum: ["1", "2", "3", "4", "5"] });
-  assert.equal(variants.resolved.properties.evidence.maxItems, 5);
+  assert.deepEqual(variants.resolved.properties.evidence.items, { enum: ["1", "2"] });
+  assert.equal(variants.resolved.properties.evidence.maxItems, 2);
   assert.deepEqual(variants.wiki.required, ["action", "query"]);
   assert.deepEqual(variants.blocked.required, ["action", "reason"]);
   for (const variant of Object.values(variants)) assert.equal(variant.additionalProperties, false);
@@ -108,7 +108,7 @@ test("the live generator builds the grammar from the evidence in the node's cont
   await generate([], { context: { evidence: [] } });
   await generate([], { context: { evidence: [{ id: "e3" }, { id: "e4" }] } });
   assert.deepEqual(requests[0].schema.anyOf.map((v) => v.properties.action.const), ["wiki", "decompose", "blocked"]);
-  assert.deepEqual(requests[1].schema.anyOf.find((v) => v.properties.action.const === "resolved").properties.evidence.items, { enum: ["1", "2", "3", "4", "5"] });
+  assert.deepEqual(requests[1].schema.anyOf.find((v) => v.properties.action.const === "resolved").properties.evidence.items, { enum: ["1", "2"] });
 });
 
 test("the grammar drops decompose when no questions may be proposed and caps it otherwise", () => {
