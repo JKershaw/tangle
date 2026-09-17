@@ -24,21 +24,31 @@ export const downloadBytes = (modelId) => MODELS.find((model) => model.id === mo
 
 // Grammar-constrained decoding: the model can only emit an object of this shape.
 // The harness validator still decides whether the content is acceptable.
-export const RESPONSE_SCHEMA_VERSION = "per-action-1";
-// One variant per action, so the grammar itself makes decompose carry 1–3
-// questions and resolved carry a finding plus evidence IDs. The first live run
-// (experiments/2026-09-17-qwen3-0.6b-water-cycle) chose decompose three times and
-// put the questions in `reason` because a flat schema only required `action`.
+export const RESPONSE_SCHEMA_VERSION = "per-action-2";
+// One variant per action, built per call from the evidence the model was shown:
+// decompose must carry 1–3 questions, wiki a query, blocked a reason, and
+// resolved may only cite IDs that are in context — with no evidence in context
+// there is no resolved variant at all, so the grammar itself refuses a finding
+// without inspected sources. The first two live runs (experiments/2026-09-17-*)
+// show why: a flat schema let a 0.6B model put its questions in `reason`, then
+// answer from memory with evidence it wrote itself.
 const variant = (action, properties, required) =>
   Object.freeze({ type: "object", properties: { action: { const: action }, ...properties }, required: ["action", ...required], additionalProperties: false });
-export const RESPONSE_SCHEMA = Object.freeze({
-  anyOf: [
-    variant("wiki", { query: { type: "string", minLength: 1, maxLength: 180 } }, ["query"]),
-    variant("decompose", { questions: { type: "array", items: { type: "string", minLength: 1, maxLength: 300 }, minItems: 1, maxItems: 3 } }, ["questions"]),
-    variant("resolved", { finding: { type: "string", minLength: 1, maxLength: 1400 }, evidence: { type: "array", items: { type: "string" }, minItems: 1, maxItems: 8 } }, ["finding", "evidence"]),
-    variant("blocked", { reason: { type: "string", minLength: 1, maxLength: 1000 } }, ["reason"]),
-  ],
-});
+export function responseSchema(evidenceIds = []) {
+  const ids = [...new Set(evidenceIds)];
+  return Object.freeze({
+    anyOf: [
+      variant("wiki", { query: { type: "string", minLength: 1, maxLength: 180 } }, ["query"]),
+      variant("decompose", { questions: { type: "array", items: { type: "string", minLength: 1, maxLength: 300 }, minItems: 1, maxItems: 3 } }, ["questions"]),
+      ...(ids.length
+        ? [variant("resolved", { finding: { type: "string", minLength: 1, maxLength: 1400 }, evidence: { type: "array", items: { enum: ids }, minItems: 1, maxItems: Math.min(8, ids.length) } }, ["finding", "evidence"])]
+        : []),
+      variant("blocked", { reason: { type: "string", minLength: 1, maxLength: 1000 } }, ["reason"]),
+    ],
+  });
+}
+// The schema before anything has been read: no resolved variant.
+export const RESPONSE_SCHEMA = responseSchema([]);
 
 export async function probeDevice(navigator = globalThis.navigator) {
   const report = { webgpu: false, reason: null, deviceMemoryGb: null, maxBufferBytes: null, lowMemory: false };
@@ -265,11 +275,12 @@ export function createEngineAdapter(webllm, options = {}) {
 
 // The generate driver the episode runner calls in live mode: one bounded action.
 export function createLiveGenerator(adapter, sampling = SAMPLING) {
-  return async (messages, { signal } = {}) => {
+  return async (messages, { signal, context } = {}) => {
+    const schema = responseSchema((context?.evidence ?? []).map((excerpt) => excerpt.id));
     const timer = setTimeout(() => adapter.interrupt(), GENERATION_TIMEOUT_MS);
     const started = performance.now();
     try {
-      const result = await adapter.generate(messages, { signal, seed: sampling.seed, temperature: sampling.temperature });
+      const result = await adapter.generate(messages, { signal, seed: sampling.seed, temperature: sampling.temperature, schema });
       if (performance.now() - started >= GENERATION_TIMEOUT_MS) {
         throw Object.assign(new Error(`Generation time limit reached (${GENERATION_TIMEOUT_MS / 1000} seconds).`), { partialText: result.text });
       }

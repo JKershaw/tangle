@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { createEngineAdapter, createLiveGenerator, probeDevice, RESPONSE_SCHEMA, SAMPLING } from "../src/webllm.js";
+import { createEngineAdapter, createLiveGenerator, probeDevice, RESPONSE_SCHEMA, responseSchema, SAMPLING } from "../src/webllm.js";
 
 function fakeWebllm(chunks) {
   const calls = { reload: [], requests: [], resets: 0, unloads: 0, interrupts: 0 };
@@ -86,14 +86,27 @@ test("probeDevice reports missing WebGPU without throwing", async () => {
   assert.equal(granted.lowMemory, false);
 });
 
-test("the response schema makes every action carry its payload", () => {
-  const variants = Object.fromEntries(RESPONSE_SCHEMA.anyOf.map((variant) => [variant.properties.action.const, variant]));
+test("the response schema makes every action carry its payload and cite only shown evidence", () => {
+  assert.deepEqual(RESPONSE_SCHEMA.anyOf.map((v) => v.properties.action.const), ["wiki", "decompose", "blocked"], "no evidence, no resolved");
+  const variants = Object.fromEntries(responseSchema(["e1", "e2", "e1"]).anyOf.map((variant) => [variant.properties.action.const, variant]));
   assert.deepEqual(Object.keys(variants).sort(), ["blocked", "decompose", "resolved", "wiki"]);
   assert.deepEqual(variants.decompose.required, ["action", "questions"]);
   assert.equal(variants.decompose.properties.questions.minItems, 1);
   assert.equal(variants.decompose.properties.questions.maxItems, 3);
   assert.deepEqual(variants.resolved.required, ["action", "finding", "evidence"]);
+  assert.deepEqual(variants.resolved.properties.evidence.items, { enum: ["e1", "e2"] });
+  assert.equal(variants.resolved.properties.evidence.maxItems, 2);
   assert.deepEqual(variants.wiki.required, ["action", "query"]);
   assert.deepEqual(variants.blocked.required, ["action", "reason"]);
   for (const variant of Object.values(variants)) assert.equal(variant.additionalProperties, false);
+});
+
+test("the live generator builds the grammar from the evidence in the node's context", async () => {
+  const requests = [];
+  const adapter = { generate: async (messages, options) => { requests.push(options); return { text: "{}", tokens: 1 }; }, interrupt() {} };
+  const generate = createLiveGenerator(adapter);
+  await generate([], { context: { evidence: [] } });
+  await generate([], { context: { evidence: [{ id: "e3" }, { id: "e4" }] } });
+  assert.deepEqual(requests[0].schema.anyOf.map((v) => v.properties.action.const), ["wiki", "decompose", "blocked"]);
+  assert.deepEqual(requests[1].schema.anyOf.find((v) => v.properties.action.const === "resolved").properties.evidence.items, { enum: ["e3", "e4"] });
 });

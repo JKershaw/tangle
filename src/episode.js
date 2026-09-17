@@ -52,7 +52,7 @@ export async function runEpisode(run, options) {
       const started = performance.now();
       run.modelCalls++;
       if (pace) await pace(signal);
-      const output = await generate(messages, { signal, run, node });
+      const output = await generate(messages, { signal, run, node, context });
       signal?.throwIfAborted();
       trace(run, "model_output", {
         node: node.id,
