@@ -57,7 +57,9 @@ src/main.js        UI wiring
 src/page.html      page template; the bundle is inlined at build time
 build.js           esbuild bundle + inline -> docs/index.html (one self-contained file, ~6 MB)
 test/              node --test suites, including one that drives the built page
-scripts/           live-run.mjs drives a full run and records it; summarise.js reads an export
+scripts/           lab.mjs drives the built page; live-run.mjs records one run; eval.mjs runs the
+                   eval suites; grade.js holds the graders; summarise.js reads an export
+evals/             micro-eval cases, benchmark seeds with rubrics, the Wikipedia recording, results
 experiments/       exported runs and notes, committed next to the code that produced them
 docs/index.html    the built page, served by GitHub Pages
 BRIEF.md           the original design brief the project is built to
@@ -111,6 +113,8 @@ The first day of live runs (all in `experiments/`, raw model output quoted) resh
 - Neither 0.6B nor 1.7B connected `wiki` with the arrival of evidence until the prompt said so plainly. 1.7B then found the right article at once — and re-read it nine times without resolving; 0.6B resolved the water-cycle seed from one article and, on "Why is the Dead Sea shrinking?", searched for the whole question, found the *Aral Sea*, and resolved with a fully cited finding about the wrong lake.
 
 What that run shows is the current frontier: the evidence rule is necessary and not sufficient. A finding can rest entirely on its excerpts and still answer the wrong question — 4B later did the reverse, a correct answer citing a lead that does not contain it. The summariser now flags words in a finding that appear in none of its cited excerpts. With sections readable by name, 8B asked for *Dead Sea / Receding shoreline* on its first move — though the prompt's own example of the section syntax named that section, a contamination found later that evening; with a neutral example 8B read the lead and then chose that section from the listed headings unaided, and gave a finding that is correct, numerically specific and fully supported. 1.7B, given the same list, repeated the bare title 98 times — so a bare-title repeat now becomes a forced pick from the headings (one small model call with the headings as its grammar), and with that 1.7B resolved a 40-node graph with a correct root finding, no errors and no retries, reading *Receding shoreline* and *Extraction* on its own account. The remaining cost is repetition: one question asked a dozen times, because no node can see its siblings. The real outputs behind every one of these failures are fixtures in `test/fixtures/`, and `test/model-outputs.test.js` states what the harness does with each. Since then: asking again for an article already in context reads its next section, because both models kept re-requesting the same article — 1.7B read the two-sentence *Dead Sea* lead 79 times across one run and blocked twenty times, truthfully, on "insufficient evidence" while the answer sat in the Recession section. Open next: search queries from the smallest model, and whether a parent should be revisited once its children are settled rather than all resolved.
+
+Since then the project has a measuring stick. [PLAN.md](PLAN.md) sets out three layers of checking: unit tests, fixture replays of real model outputs, and evals that run the model. Micro-evals (`evals/visits.json`) re-run recorded situations, one model call each, against named deterministic checks; a benchmark (`evals/seeds.json`) scores whole runs for facts stated, facts supported by a cited excerpt, and cost, with a flat one-node baseline as the control for the whole idea. Wikipedia is recorded and replayed so a harness change is the only variable. [PROGRESS.md](PROGRESS.md) holds the scoreboard.
 
 Small models will decompose badly, repeat themselves, misread evidence and resolve too early. Keep the exports; that is the experiment.
 
