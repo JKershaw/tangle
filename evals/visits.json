@@ -1,0 +1,1628 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "wiki-first-0.6b-water-cycle-root",
+      "kind": "action",
+      "class": "wiki first",
+      "from": {
+        "run": "2026-09-17-qwen3-0.6b-water-cycle",
+        "seq": 3,
+        "model": "Qwen3-0.6B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-2",
+        "fixture": "decompose-with-questions-in-reason"
+      },
+      "context": {
+        "question": "Why does the water cycle keep going?",
+        "evidence": [],
+        "questionsAllowed": 3,
+        "lookupsRemaining": 2
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"decompose\",\n  \"reason\": \"Decompose the question into smaller parts. Possible directions: 1. What factors keep the water cycle going? 2. How does the water cycle cycle through the Earth's systems? 3. What are the main processes involved in the water cycle?\"\n}",
+      "expect": {
+        "action_in": [
+          "wiki"
+        ],
+        "query_short": true,
+        "query_mentions": [
+          "water cycle"
+        ],
+        "valid": true
+      }
+    },
+    {
+      "id": "wiki-first-0.6b-water-cycle-child",
+      "kind": "action",
+      "class": "wiki first",
+      "from": {
+        "run": "2026-09-17-qwen3-0.6b-water-cycle-2",
+        "seq": 7,
+        "model": "Qwen3-0.6B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-2",
+        "fixture": "resolved-with-invented-evidence-sentences"
+      },
+      "context": {
+        "question": "What factors drive the water cycle?",
+        "evidence": [],
+        "questionsAllowed": 3,
+        "lookupsRemaining": 2
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The water cycle is driven by factors such as evaporation, condensation, and precipitation (evidence: 1). These processes involve the movement of water between different states of existence, including liquid, gas, and solid (evidence: 2). Additionally, factors like solar radiation and atmospheric pressure influence the cycle's dynamics (evidence: 3).\",\n  \"evidence\": [\n    \"1. Evaporation and condensation are key processes in the water cycle.\",\n    \"2. Solar radiation and atmospheric pressure influence the cycle's dynamics.\",\n    \"3. The water cycle involves the movement between liquid, gas, and solid states.\"\n  ]\n}",
+      "expect": {
+        "action_in": [
+          "wiki"
+        ],
+        "query_short": true,
+        "query_mentions": [
+          "water"
+        ],
+        "valid": true
+      }
+    },
+    {
+      "id": "evidence-labels-0.6b-one-excerpt",
+      "kind": "action",
+      "class": "evidence labels",
+      "from": {
+        "run": "2026-09-17-qwen3-0.6b-water-cycle-5",
+        "seq": 32,
+        "model": "Qwen3-0.6B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-4",
+        "fixture": "resolved-citing-labels-not-shown"
+      },
+      "context": {
+        "question": "How does the water cycle maintain its operations?",
+        "evidence": [
+          {
+            "label": "1",
+            "title": "Pressurized water reactor",
+            "text": "A pressurized water reactor (PWR) is a type of light-water nuclear reactor. PWRs are the most common type of nuclear power reactor, representing almost 70% of the world's commercial reactor fleet. Some countries, such as Canada and (historically) the United Kingdom, have relied heavily on other designs while others, including Japan and India, operate a mix of PWRs and other reactor types."
+          }
+        ],
+        "questionsAllowed": 0,
+        "lookupsRemaining": 1
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The water cycle maintains its operations through processes like evaporation, condensation, and precipitation, which convert water into different forms. This cycle is essential for sustaining life on Earth by distributing water resources.\",\n  \"evidence\": [\n    \"1\",\n    \"2\",\n    \"3\"\n  ]\n}",
+      "expect": {
+        "action_in": [
+          "wiki",
+          "resolved",
+          "blocked"
+        ],
+        "valid": true,
+        "evidence_valid": true
+      }
+    },
+    {
+      "id": "ceiling-depth-0.6b",
+      "kind": "action",
+      "class": "ceiling",
+      "from": {
+        "run": "2026-09-17-qwen3-0.6b-water-cycle-3",
+        "seq": 27,
+        "model": "Qwen3-0.6B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-2",
+        "fixture": "decompose-at-depth-ceiling"
+      },
+      "context": {
+        "question": "What are the main factors that drive the water cycle?",
+        "evidence": [],
+        "questionsAllowed": 0,
+        "lookupsRemaining": 2
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"decompose\",\n  \"questions\": [\n    \"What are the main factors that drive the water cycle?\",\n    \"What are the primary factors that influence the water cycle's processes?\"\n  ]\n}",
+      "expect": {
+        "action_in": [
+          "wiki",
+          "resolved",
+          "blocked"
+        ],
+        "valid": true
+      },
+      "note": "questionsAllowed 0 added to the recorded context; the run predates it"
+    },
+    {
+      "id": "ceiling-lookups-1.7b",
+      "kind": "action",
+      "class": "ceiling",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-water-cycle-2",
+        "seq": 41,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-5",
+        "fixture": "wiki-at-lookup-ceiling"
+      },
+      "context": {
+        "question": "What causes water to change forms in the water cycle?",
+        "evidence": [
+          {
+            "label": "1",
+            "title": "Water cycle",
+            "text": "The water cycle is a biogeochemical cycle that involves the continuous change in form of water on, above and below the surface of the Earth across different reservoirs. The mass of water on Earth remains fairly constant over time. However, the partitioning of the water into the major reservoirs of ice, fresh water, salt water and atmospheric water is variable and depends on climatic variables. The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere due to a variety of physical and chemical processes. The processes that drive these movements, or fluxes, are evaporation, transpiration, condensation, precipitation, sublimation, infiltratio"
+          },
+          {
+            "label": "2",
+            "title": "Water cycle",
+            "text": "The water cycle is a biogeochemical cycle that involves the continuous change in form of water on, above and below the surface of the Earth across different reservoirs. The mass of water on Earth remains fairly constant over time. However, the partitioning of the water into the major reservoirs of ice, fresh water, salt water and atmospheric water is variable and depends on climatic variables. The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere due to a variety of physical and chemical processes. The processes that drive these movements, or fluxes, are evaporation, transpiration, condensation, precipitation, sublimation, infiltratio"
+          }
+        ],
+        "questionsAllowed": 3,
+        "lookupsRemaining": 0
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Water cycle\"}",
+      "expect": {
+        "action_in": [
+          "resolved",
+          "decompose",
+          "blocked"
+        ],
+        "valid": true,
+        "questions_differ": true
+      }
+    },
+    {
+      "id": "degenerate-whitespace-1.7b",
+      "kind": "action",
+      "class": "degenerate output",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-2",
+        "seq": 629,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-7",
+        "fixture": "resolved-runs-to-token-cap-in-whitespace"
+      },
+      "context": {
+        "question": "What causes the Dead Sea to lose water?",
+        "evidence": [
+          {
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa"
+          },
+          {
+            "label": "2",
+            "title": "Dead Sea § Names",
+            "text": "The English name \"Dead Sea\" is a calque of the Arabic name, itself a calque of earlier Greek and Latin names, in reference to the scarcity of aquatic life caused by the lake's extreme salinity.\nHistorical English names include the Salt Sea, Lake of Sodom from the biblical account of its destruction and Lake Asphaltites from Greek and Latin.\nThe name \"Dead Sea\" occasionally appears in Hebrew literature as Yām HamMāvet (ים המוות), 'Sea of Death'. However, the most common name for the lake in both biblical and modern Hebrew—and also its oldest known name—is the 'Sea of Salt' (Hebrew: ים המלח, romanized: Yām HamMelaḥ). Other Hebrew names for the lake also mentioned in the Bible are the Sea of Ar"
+          }
+        ],
+        "questionsAllowed": 0,
+        "lookupsRemaining": 0
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"action\":\"resolved\",\"finding\":\"The Dead Sea losing water is related to its unique geological and hydrological features. The evidence shows that the Dead Sea is a hypersaline lake, and its extreme salinity leads to the evaporation of water, which is a primary factor in its water loss. Additionally, the lake's location in a endorheic basin and its limited inflow from the Jordan River contribute to its water scarcity. The text also mentions the \"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ",
+      "expect": {
+        "action_in": [
+          "resolved",
+          "blocked"
+        ],
+        "valid": true,
+        "finding_supported": true
+      }
+    },
+    {
+      "id": "one-question-per-child-1.7b",
+      "kind": "action",
+      "class": "malformed question",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-2",
+        "seq": 27,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-7",
+        "fixture": "decompose-three-questions-in-one-string"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "evidence": [
+          {
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa"
+          },
+          {
+            "label": "2",
+            "title": "Dead Sea § Names",
+            "text": "The English name \"Dead Sea\" is a calque of the Arabic name, itself a calque of earlier Greek and Latin names, in reference to the scarcity of aquatic life caused by the lake's extreme salinity.\nHistorical English names include the Salt Sea, Lake of Sodom from the biblical account of its destruction and Lake Asphaltites from Greek and Latin.\nThe name \"Dead Sea\" occasionally appears in Hebrew literature as Yām HamMāvet (ים המוות), 'Sea of Death'. However, the most common name for the lake in both biblical and modern Hebrew—and also its oldest known name—is the 'Sea of Salt' (Hebrew: ים המלח, romanized: Yām HamMelaḥ). Other Hebrew names for the lake also mentioned in the Bible are the Sea of Ar"
+          }
+        ],
+        "questionsAllowed": 3,
+        "lookupsRemaining": 0
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"Why is the Dead Sea shrinking? Why is the Dead Sea's surface level decreasing? What factors contribute to the Dead Sea's shrinking and lowering elevation? \"]}",
+      "expect": {
+        "valid": true,
+        "questions_one_each": true,
+        "questions_differ": true
+      }
+    },
+    {
+      "id": "memory-aral-0.6b",
+      "kind": "action",
+      "class": "memory over evidence",
+      "from": {
+        "run": "2026-09-17-qwen3-0.6b-dead-sea",
+        "seq": 13,
+        "model": "Qwen3-0.6B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-5",
+        "fixture": "resolved-aral-sea-cited-to-dead-sea"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "evidence": [
+          {
+            "label": "1",
+            "title": "Aral Sea",
+            "text": "The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely dried up into desert by 2007. It was in the Aktobe and Kyzylorda regions of Kazakhstan and the Karakalpakstan autonomous region of Uzbekistan. The name roughly translates from Mongolic and Turkic languages to \"Sea of Islands\", a reference to the large number of islands that once dotted its waters. The Aral Sea drainage basin encompasses Uzbekistan and parts of Afghanistan, Iran, Kazakhstan, Kyrgyzstan, Tajikistan, and Turkmenistan."
+          },
+          {
+            "label": "2",
+            "title": "Aral Sea",
+            "text": "The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely dried up into desert by 2007. It was in the Aktobe and Kyzylorda regions of Kazakhstan and the Karakalpakstan autonomous region of Uzbekistan. The name roughly translates from Mongolic and Turkic languages to \"Sea of Islands\", a reference to the large number of islands that once dotted its waters. The Aral Sea drainage basin encompasses Uzbekistan and parts of Afghanistan, Iran, Kazakhstan, Kyrgyzstan, Tajikistan, and Turkmenistan."
+          }
+        ],
+        "questionsAllowed": 3,
+        "lookupsRemaining": 0
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea shrinking is linked to the shrinking of the Aral Sea, a salt lake in Central Asia. The Aral Sea drainage basin, which includes regions like Kazakhstan and Uzbekistan, is mentioned in the evidence. The shrinking of the Aral Sea is attributed to its drying up into deserts.\",\n  \"evidence\": [\n    \"1\",\n    \"2\"\n  ]\n}",
+      "expect": {
+        "valid": true,
+        "finding_avoids": [
+          "Aral"
+        ],
+        "finding_supported": true
+      }
+    },
+    {
+      "id": "grounded-8b-dead-sea",
+      "kind": "action",
+      "class": "grounded resolution",
+      "from": {
+        "run": "2026-09-17-qwen3-8b-dead-sea",
+        "seq": 13,
+        "model": "Qwen3-8B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-7",
+        "fixture": "resolved-correct-and-supported"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "evidence": [
+          {
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa"
+          },
+          {
+            "label": "2",
+            "title": "Dead Sea § Receding shoreline",
+            "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev"
+          }
+        ],
+        "questionsAllowed": 3,
+        "lookupsRemaining": 0
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking primarily due to the diversion of water from the Jordan River to the north as part of the National Water Carrier scheme, which was completed in 1964. Additionally, the southern end of the Dead Sea is fed by a canal maintained by the Dead Sea Works, which further contributes to the shrinking of the lake.\",\n  \"evidence\": [\"1\", \"2\"]\n}",
+      "expect": {
+        "action_in": [
+          "resolved"
+        ],
+        "valid": true,
+        "evidence_valid": true,
+        "finding_supported": true,
+        "finding_mentions": [
+          "Jordan|National Water Carrier"
+        ],
+        "finding_avoids": [
+          "Aral"
+        ]
+      }
+    },
+    {
+      "id": "wiki-first-1.7b-dead-sea-root",
+      "kind": "action",
+      "class": "wiki first",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-5",
+        "seq": 2,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "children": [],
+        "evidence": [],
+        "omittedChildren": 0,
+        "omittedEvidence": 0,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 2,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"action\": \"wiki\", \"query\": \"Dead Sea\"}",
+      "expect": {
+        "action_in": [
+          "wiki"
+        ],
+        "query_short": true,
+        "query_mentions": [
+          "Dead Sea"
+        ],
+        "valid": true
+      }
+    },
+    {
+      "id": "section-by-name-1.7b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-5",
+        "seq": 7,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "children": [],
+        "evidence": [
+          {
+            "id": "e1",
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          }
+        ],
+        "omittedChildren": 0,
+        "omittedEvidence": 0,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 1,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Dead Sea\"}",
+      "expect": {
+        "action_in": [
+          "wiki"
+        ],
+        "query_reads_section": true,
+        "query_new": true
+      }
+    },
+    {
+      "id": "section-by-name-8b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "from": {
+        "run": "2026-09-17-qwen3-8b-dead-sea-2",
+        "seq": 7,
+        "model": "Qwen3-8B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "children": [],
+        "evidence": [
+          {
+            "id": "e1",
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          }
+        ],
+        "omittedChildren": 0,
+        "omittedEvidence": 0,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 1,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"wiki\",\n  \"query\": \"Dead Sea / Receding shoreline\"\n}",
+      "expect": {
+        "action_in": [
+          "wiki"
+        ],
+        "query_reads_section": true,
+        "query_new": true
+      }
+    },
+    {
+      "id": "section-by-name-4b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "from": {
+        "run": "2026-09-17-qwen3-4b-dead-sea-2",
+        "seq": 7,
+        "model": "Qwen3-4B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-8"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "children": [],
+        "evidence": [
+          {
+            "id": "e1",
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          }
+        ],
+        "omittedChildren": 0,
+        "omittedEvidence": 0,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 1,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking due to the diversion of the Jordan River for agriculture and the lack of an outlet, leading to reduced inflow and increased evaporation. This has caused the lake's surface to recede, with the shoreline retreating over time.\",\n  \"evidence\": [\"1\"]\n}",
+      "expect": {
+        "action_in": [
+          "wiki"
+        ],
+        "query_reads_section": true,
+        "query_new": true
+      }
+    },
+    {
+      "id": "section-by-name-0.6b-lead-only",
+      "kind": "action",
+      "class": "section by name",
+      "from": {
+        "run": "2026-09-17-qwen3-0.6b-dead-sea-2",
+        "seq": 7,
+        "model": "Qwen3-0.6B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-8"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "children": [],
+        "evidence": [
+          {
+            "id": "e1",
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          }
+        ],
+        "omittedChildren": 0,
+        "omittedEvidence": 0,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 1,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"action\": \"resolved\", \"finding\": \"Dead Sea / Receding shoreline\", \"evidence\":  [\"1\"]}",
+      "expect": {
+        "action_in": [
+          "wiki"
+        ],
+        "query_reads_section": true,
+        "query_new": true
+      }
+    },
+    {
+      "id": "resolve-when-supported-1.7b",
+      "kind": "action",
+      "class": "resolve when supported",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-5",
+        "seq": 13,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "children": [],
+        "evidence": [
+          {
+            "id": "e1",
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          },
+          {
+            "id": "e2",
+            "label": "2",
+            "title": "Dead Sea § Receding shoreline",
+            "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev",
+            "kind": "wiki"
+          }
+        ],
+        "omittedChildren": 0,
+        "omittedEvidence": 0,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 0,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"What factors contribute to the Dead Sea's shrinking?\" ]}",
+      "expect": {
+        "action_in": [
+          "resolved"
+        ],
+        "valid": true,
+        "finding_supported": true,
+        "finding_mentions": [
+          "Jordan|National Water Carrier|diversion"
+        ],
+        "finding_avoids": [
+          "Aral"
+        ]
+      }
+    },
+    {
+      "id": "resolve-when-supported-8b",
+      "kind": "action",
+      "class": "resolve when supported",
+      "from": {
+        "run": "2026-09-17-qwen3-8b-dead-sea-2",
+        "seq": 12,
+        "model": "Qwen3-8B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "children": [],
+        "evidence": [
+          {
+            "id": "e1",
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          },
+          {
+            "id": "e2",
+            "label": "2",
+            "title": "Dead Sea § Receding shoreline",
+            "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev",
+            "kind": "wiki"
+          }
+        ],
+        "omittedChildren": 0,
+        "omittedEvidence": 0,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 0,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"resolved\",\n  \"finding\": \"The Dead Sea is shrinking primarily due to the diversion of water from the Jordan River to the north as part of the National Water Carrier scheme, which was completed in 1964. This has led to a significant decrease in the water level, with the Dead Sea's surface dropping from 395 m (1,296 ft) below sea level in 1970 to 439 m (1,440 ft) below sea level by 2025.\",\n  \"evidence\": [\"1\", \"2\"]\n}",
+      "expect": {
+        "action_in": [
+          "resolved"
+        ],
+        "valid": true,
+        "finding_supported": true,
+        "finding_mentions": [
+          "Jordan|National Water Carrier|diversion"
+        ],
+        "finding_avoids": [
+          "Aral"
+        ]
+      }
+    },
+    {
+      "id": "resolve-when-supported-1.7b-water-cycle",
+      "kind": "action",
+      "class": "resolve when supported",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-water-cycle-2",
+        "seq": 12,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-5"
+      },
+      "context": {
+        "question": "Why does the water cycle keep going?",
+        "children": [],
+        "evidence": [
+          {
+            "id": "e1",
+            "label": "1",
+            "title": "Water cycle",
+            "text": "The water cycle is a biogeochemical cycle that involves the continuous change in form of water on, above and below the surface of the Earth across different reservoirs. The mass of water on Earth remains fairly constant over time. However, the partitioning of the water into the major reservoirs of ice, fresh water, salt water and atmospheric water is variable and depends on climatic variables. The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere due to a variety of physical and chemical processes. The processes that drive these movements, or fluxes, are evaporation, transpiration, condensation, precipitation, sublimation, infiltratio",
+            "kind": "wiki"
+          },
+          {
+            "id": "e2",
+            "label": "2",
+            "title": "Water cycle",
+            "text": "The water cycle is a biogeochemical cycle that involves the continuous change in form of water on, above and below the surface of the Earth across different reservoirs. The mass of water on Earth remains fairly constant over time. However, the partitioning of the water into the major reservoirs of ice, fresh water, salt water and atmospheric water is variable and depends on climatic variables. The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere due to a variety of physical and chemical processes. The processes that drive these movements, or fluxes, are evaporation, transpiration, condensation, precipitation, sublimation, infiltratio",
+            "kind": "wiki"
+          }
+        ],
+        "omittedChildren": 0,
+        "omittedEvidence": 0,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 0,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"Why does water continuously change forms in the water cycle?\",\"What processes drive the movement of water between reservoirs?\",\"How does the water cycle maintain a constant mass on Earth?\"]}",
+      "expect": {
+        "action_in": [
+          "resolved"
+        ],
+        "valid": true,
+        "finding_supported": true
+      }
+    },
+    {
+      "id": "synthesis-1.7b-five-excerpts",
+      "kind": "action",
+      "class": "synthesis",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-5",
+        "seq": 136,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "What factors contribute to the Dead Sea's shrinking?",
+        "children": [
+          {
+            "id": "n15",
+            "question": "What factors contribute to the Dead Sea's shrinking?",
+            "finding": "The Dead Sea's shrinking is attributed to the diversion of water from the Jordan River to the north, which began in the 1960s. The evidence shows that the lake's surface area decreased from 1,050 km² to 395 m below sea level between 1970 and 2006, with a drop rate of 1 meter per year by 2025.",
+            "evidence": [
+              "e13"
+            ]
+          },
+          {
+            "id": "n16",
+            "question": "What causes the Dead Sea to lose water over time?",
+            "finding": "The Dead Sea losing water over time is related to its unique geological and hydrological characteristics. The evidence suggests that the Dead Sea's water level is dropping due to the evaporation of water, which is exacerbated by the low rainfall in the region. Additionally, the Dead Sea is a hypersaline lake, and its water is being drawn out through various extraction processes, contributing to its declining water levels.",
+            "evidence": [
+              "e15",
+              "e16"
+            ]
+          },
+          {
+            "id": "n17",
+            "question": "How does the Dead Sea's salinity relate to its shrinking?",
+            "finding": "The Dead Sea's high salinity contributes to its unique geological and ecological characteristics, but the question of how this relates to its shrinking is more complex. The salinity level is a key factor in the Dead Sea's formation and stability. The high salinity causes the water to be extremely dense, leading to the formation of a salt crust on the surface. This crust, in turn, affects the water's ability to flow and support life, contributing to the Dead Sea's shrinking. The Dead Sea's salini",
+            "evidence": [
+              "e17",
+              "e18"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "e13",
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          },
+          {
+            "id": "e15",
+            "label": "2",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          },
+          {
+            "id": "e16",
+            "label": "3",
+            "title": "Dead Sea § Extraction",
+            "text": "Both  Dead Sea Works Ltd. and Arab Potash use extensive salt evaporation pans that have essentially diked the entire southern end of the Dead Sea for the purpose of producing carnallite, potassium magnesium chloride, which is then processed further to produce potassium chloride. The ponds are separated by a central dike that runs roughly north–south along the international border. The power plant on the Israeli side allows production of magnesium metal (by a subsidiary, Dead Sea Magnesium Ltd.).\nDue to the popularity of the sea's therapeutic and healing properties, several companies have also shown interest in the manufacturing and supplying of Dead Sea salts as raw materials for body and sk",
+            "kind": "wiki"
+          },
+          {
+            "id": "e17",
+            "label": "4",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          },
+          {
+            "id": "e18",
+            "label": "5",
+            "title": "List of bodies of water by salinity",
+            "text": "This is a list of bodies of water by salinity that is limited to natural bodies of water that have a stable salinity above 0.05%, at or below which water is considered fresh.\nWater salinity often varies by location and season, particularly with hypersaline lakes in arid areas, so the salinity figures in the table below should be interpreted as an approximate indicator.",
+            "kind": "wiki"
+          }
+        ],
+        "omittedChildren": 0,
+        "omittedEvidence": 2,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 2,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"decompose\",\n  \"questions\": [\n    \"What factors contribute to the Dead Sea's shrinking? \",\n    \"What causes the Dead Sea to lose water over time? \",\n    \"How does the Dead Sea's salinity relate to its shrinking? \"\n  ]\n}",
+      "expect": {
+        "action_in": [
+          "resolved"
+        ],
+        "valid": true,
+        "evidence_valid": true,
+        "finding_supported": true
+      }
+    },
+    {
+      "id": "no-repeat-read-1.7b",
+      "kind": "action",
+      "class": "synthesis",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-5",
+        "seq": 244,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "What causes the Dead Sea to lose water over time?",
+        "children": [
+          {
+            "id": "n21",
+            "question": "What causes the Dead Sea to lose water over time?",
+            "finding": "The Dead Sea losing water over time is related to its unique geological and hydrological characteristics. The lake's surface is 439.78 metres (1,443 ft) below sea level, indicating a significant reduction in volume. This suggests that the Dead Sea is a landlocked salt lake that is gradually sinking due to the evaporation of water and the accumulation of salt, which is a common process in arid environments. Additionally, the extraction of salt through evaporation pans and the natural processes of",
+            "evidence": [
+              "e27",
+              "e28"
+            ]
+          },
+          {
+            "id": "n22",
+            "question": "What factors contribute to the Dead Sea's shrinking size?",
+            "finding": "The Dead Sea's shrinking size is attributed to the diversion of water from the Jordan River to the north, which contributed to its rapid decrease in volume since the 1960s.",
+            "evidence": [
+              "e29",
+              "e30"
+            ]
+          },
+          {
+            "id": "n23",
+            "question": "Why does the Dead Sea have such high salinity?",
+            "finding": "The Dead Sea's high salinity is attributed to its hypersaline nature, which is a result of its formation and the surrounding geological and climatic factors. The evidence indicates that the Dead Sea's salinity is significantly higher than that of other lakes, and this is linked to the tectonic dropping of the valley bottom and climate variations that have affected the lake's evolution over time. The text also mentions that the Dead Sea is one of the world's sa",
+            "evidence": [
+              "e31",
+              "e32"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "e28",
+            "label": "1",
+            "title": "Dead Sea § Extraction",
+            "text": "Both  Dead Sea Works Ltd. and Arab Potash use extensive salt evaporation pans that have essentially diked the entire southern end of the Dead Sea for the purpose of producing carnallite, potassium magnesium chloride, which is then processed further to produce potassium chloride. The ponds are separated by a central dike that runs roughly north–south along the international border. The power plant on the Israeli side allows production of magnesium metal (by a subsidiary, Dead Sea Magnesium Ltd.).\nDue to the popularity of the sea's therapeutic and healing properties, several companies have also shown interest in the manufacturing and supplying of Dead Sea salts as raw materials for body and sk",
+            "kind": "wiki"
+          },
+          {
+            "id": "e29",
+            "label": "2",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          },
+          {
+            "id": "e30",
+            "label": "3",
+            "title": "Dead Sea § Receding shoreline",
+            "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev",
+            "kind": "wiki"
+          },
+          {
+            "id": "e31",
+            "label": "4",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          },
+          {
+            "id": "e32",
+            "label": "5",
+            "title": "Dead Sea § Lake salinity",
+            "text": "The water levels and salinity of the successive lakes (Amora, Lisan, Dead Sea) have either risen or fallen as an effect of the tectonic dropping of the valley bottom, and due to climate variation. As the climate became more arid, Lake Lisan finally shrank and became saltier, leaving the Dead Sea as its last remainder.\nFrom 70,000 to 12,000 years ago, Lake Lisan's level was 100 to 250 m (330 to 820 ft) higher than its current level, possibly due to lower evaporation than in the present. Its level fluctuated dramatically, rising to its highest level around 26,000 years ago, indicating a very wet climate in West Asia. Around 10,000 years ago, the lake's level dropped dramatically, probably even",
+            "kind": "wiki"
+          }
+        ],
+        "omittedChildren": 0,
+        "omittedEvidence": 3,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 2,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\n  \"action\": \"wiki\",\n  \"query\": \"Dead Sea § Extraction\"\n}",
+      "expect": {
+        "action_in": [
+          "resolved"
+        ],
+        "query_new": true,
+        "valid": true,
+        "finding_supported": true
+      }
+    },
+    {
+      "id": "specific-finding-1.7b",
+      "kind": "action",
+      "class": "specific finding",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-5",
+        "seq": 548,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "What causes the Dead Sea to lose water over time?",
+        "children": [
+          {
+            "id": "n35",
+            "question": "Why does the Dead Sea have such high salinity?",
+            "finding": "The Dead Sea's high salinity is attributed to its hypersaline nature and the tectonic and climatic factors that have shaped its evolution.",
+            "evidence": [
+              "e55",
+              "e56"
+            ]
+          },
+          {
+            "id": "n36",
+            "question": "What causes the Dead Sea to lose water over time?",
+            "finding": "The Dead Sea losing water over time is related to its unique geological and hydrological characteristics. The evidence suggests that the Dead Sea's water level is decreasing due to the evaporation of water and the inflow of salt from the Jordan River. Additionally, the formation of salt deposits and the use of salt evaporation pans by companies like Dead Sea Works Ltd. and Arab Potash contribute to the overall salinity and water loss in the region.",
+            "evidence": [
+              "e57",
+              "e58"
+            ]
+          },
+          {
+            "id": "n37",
+            "question": "What factors contribute to the Dead Sea's shrinking size?",
+            "finding": "The Dead Sea's shrinking size is attributed to several factors, including the diversion of water from the Jordan River to the north, which has led to a rapid decrease in the lake's volume. The evidence shows that the lake's surface area and depth have been changing over time, with a significant drop in level from 1970 to 2006 and reaching a height of 439 m below sea level by 2025.",
+            "evidence": [
+              "e59",
+              "e60"
+            ]
+          },
+          {
+            "id": "n38",
+            "question": "Why does the Dead Sea have such high salinity?",
+            "finding": "The Dead Sea's high salinity is attributed to its hypersaline nature and the tectonic and climatic factors that have shaped its evolution.",
+            "evidence": [
+              "e61",
+              "e62"
+            ]
+          },
+          {
+            "id": "n39",
+            "question": "What causes the Dead Sea to lose water over time?",
+            "finding": "The Dead Sea losing water over time is related to its unique geological and hydrological characteristics. The evidence suggests that the Dead Sea's water level is decreasing due to the evaporation of salt and the accumulation of sediment. Additionally, the Dead Sea is a hypersaline lake, and its water is being drawn down by the evaporation process, leading to a reduction in its volume over time.",
+            "evidence": [
+              "e63",
+              "e64"
+            ]
+          },
+          {
+            "id": "n40",
+            "question": "What factors contribute to the Dead Sea's shrinking size?",
+            "finding": "The Dead Sea's shrinking size is attributed to several factors, including the diversion of water from the Jordan River to the north, which has led to a rapid decrease in the lake's volume. The evidence also shows that the lake's surface area and elevation have been decreasing over time, further supporting this conclusion.",
+            "evidence": [
+              "e65",
+              "e66"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "e62",
+            "label": "1",
+            "title": "Dead Sea § Lake salinity",
+            "text": "The water levels and salinity of the successive lakes (Amora, Lisan, Dead Sea) have either risen or fallen as an effect of the tectonic dropping of the valley bottom, and due to climate variation. As the climate became more arid, Lake Lisan finally shrank and became saltier, leaving the Dead Sea as its last remainder.\nFrom 70,000 to 12,000 years ago, Lake Lisan's level was 100 to 250 m (330 to 820 ft) higher than its current level, possibly due to lower evaporation than in the present. Its level fluctuated dramatically, rising to its highest level around 26,000 years ago, indicating a very wet climate in West Asia. Around 10,000 years ago, the lake's level dropped dramatically, probably even",
+            "kind": "wiki"
+          },
+          {
+            "id": "e63",
+            "label": "2",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          },
+          {
+            "id": "e64",
+            "label": "3",
+            "title": "Dead Sea § Extraction",
+            "text": "Both  Dead Sea Works Ltd. and Arab Potash use extensive salt evaporation pans that have essentially diked the entire southern end of the Dead Sea for the purpose of producing carnallite, potassium magnesium chloride, which is then processed further to produce potassium chloride. The ponds are separated by a central dike that runs roughly north–south along the international border. The power plant on the Israeli side allows production of magnesium metal (by a subsidiary, Dead Sea Magnesium Ltd.).\nDue to the popularity of the sea's therapeutic and healing properties, several companies have also shown interest in the manufacturing and supplying of Dead Sea salts as raw materials for body and sk",
+            "kind": "wiki"
+          },
+          {
+            "id": "e65",
+            "label": "4",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          },
+          {
+            "id": "e66",
+            "label": "5",
+            "title": "Dead Sea § Receding shoreline",
+            "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev",
+            "kind": "wiki"
+          }
+        ],
+        "omittedChildren": 14,
+        "omittedEvidence": 9,
+        "excerptCharacterLimit": 700,
+        "failedLookups": [
+          {
+            "query": "Dead Sea § Extraction",
+            "error": "Already read: “Dead Sea § Extraction” is in the context. Try a different term or decompose."
+          },
+          {
+            "query": "Dead Sea § Extraction",
+            "error": "Already read: “Dead Sea § Extraction” is in the context. Try a different term or decompose."
+          },
+          {
+            "query": "Dead Sea § Extraction",
+            "error": "Already read: “Dead Sea § Extraction” is in the context. Try a different term or decompose."
+          },
+          {
+            "query": "Dead Sea § Extraction",
+            "error": "Already read: “Dead Sea § Extraction” is in the context. Try a different term or decompose."
+          },
+          {
+            "query": "Dead Sea § Extraction",
+            "error": "Already read: “Dead Sea § Extraction” is in the context. Try a different term or decompose."
+          }
+        ],
+        "lookupsRemaining": 2,
+        "questionsAllowed": 0
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"action\":\"wiki\",\"query\":\"Dead Sea § Extraction\"}",
+      "expect": {
+        "action_in": [
+          "resolved"
+        ],
+        "query_new": true,
+        "finding_supported": true,
+        "finding_mentions": [
+          "Jordan|diversion|National Water Carrier|extraction|evaporation|potash"
+        ]
+      }
+    },
+    {
+      "id": "no-self-repeat-1.7b",
+      "kind": "action",
+      "class": "repeat question",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-5",
+        "seq": 28,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "What factors contribute to the Dead Sea's shrinking?",
+        "children": [],
+        "evidence": [
+          {
+            "id": "e3",
+            "label": "1",
+            "title": "Dead Sea",
+            "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's sa",
+            "kind": "wiki",
+            "sections": [
+              "Names",
+              "Geography",
+              "Formation theories",
+              "Sedom Lagoon",
+              "Salt deposits",
+              "Lake formation",
+              "Lake salinity",
+              "Salt mounts formation",
+              "Climate",
+              "Chemistry",
+              "Putative therapies",
+              "Life forms",
+              "Human settlement",
+              "Biblical period",
+              "Hellenistic and Roman period",
+              "Byzantine period",
+              "Medieval period",
+              "Modern times",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "Palestine (West Bank)",
+              "British Mandate period",
+              "Israel",
+              "Jordan",
+              "West Bank",
+              "Extraction",
+              "Receding shoreline",
+              "Sinkholes and their impact",
+              "Link to the Red Sea"
+            ]
+          },
+          {
+            "id": "e4",
+            "label": "2",
+            "title": "Dead Sea § Receding shoreline",
+            "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea lev",
+            "kind": "wiki"
+          }
+        ],
+        "omittedChildren": 0,
+        "omittedEvidence": 0,
+        "excerptCharacterLimit": 700,
+        "lookupsRemaining": 0,
+        "questionsAllowed": 3
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"action\":\"decompose\",\"questions\":[ \"What factors contribute to the Dead Sea's shrinking?\",\"What causes the Dead Sea to lose water over time?\",\"How does the Dead Sea's salinity relate to its shrinking?\"]}",
+      "expect": {
+        "action_in": [
+          "resolved",
+          "decompose"
+        ],
+        "questions_differ": true,
+        "valid": true,
+        "finding_supported": true
+      }
+    },
+    {
+      "id": "section-pick-1.7b-root",
+      "kind": "section",
+      "class": "section pick",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-5",
+        "seq": 10,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "Why is the Dead Sea shrinking?",
+        "article": "Dead Sea",
+        "sections": [
+          "Names",
+          "Geography",
+          "Formation theories",
+          "Sedom Lagoon",
+          "Salt deposits",
+          "Lake formation",
+          "Lake salinity",
+          "Salt mounts formation",
+          "Climate",
+          "Chemistry",
+          "Putative therapies",
+          "Life forms",
+          "Human settlement",
+          "Biblical period",
+          "Hellenistic and Roman period",
+          "Byzantine period",
+          "Medieval period",
+          "Modern times",
+          "British Mandate period",
+          "Israel",
+          "Jordan",
+          "Palestine (West Bank)",
+          "British Mandate period",
+          "Israel",
+          "Jordan",
+          "West Bank",
+          "Extraction",
+          "Receding shoreline",
+          "Sinkholes and their impact",
+          "Link to the Red Sea"
+        ]
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}",
+      "expect": {
+        "section_in": [
+          "Receding shoreline"
+        ]
+      }
+    },
+    {
+      "id": "section-pick-1.7b-lose-water",
+      "kind": "section",
+      "class": "section pick",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-5",
+        "seq": 115,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "What causes the Dead Sea to lose water over time?",
+        "article": "Dead Sea",
+        "sections": [
+          "Names",
+          "Geography",
+          "Formation theories",
+          "Sedom Lagoon",
+          "Salt deposits",
+          "Lake formation",
+          "Lake salinity",
+          "Salt mounts formation",
+          "Climate",
+          "Chemistry",
+          "Putative therapies",
+          "Life forms",
+          "Human settlement",
+          "Biblical period",
+          "Hellenistic and Roman period",
+          "Byzantine period",
+          "Medieval period",
+          "Modern times",
+          "British Mandate period",
+          "Israel",
+          "Jordan",
+          "Palestine (West Bank)",
+          "British Mandate period",
+          "Israel",
+          "Jordan",
+          "West Bank",
+          "Extraction",
+          "Receding shoreline",
+          "Sinkholes and their impact",
+          "Link to the Red Sea"
+        ]
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"section\": \"Extraction\"}",
+      "expect": {
+        "section_in": [
+          "Receding shoreline",
+          "Extraction"
+        ]
+      }
+    },
+    {
+      "id": "section-pick-1.7b-salinity",
+      "kind": "section",
+      "class": "section pick",
+      "from": {
+        "run": "2026-09-17-qwen3-1.7b-dead-sea-5",
+        "seq": 237,
+        "model": "Qwen3-1.7B-q4f16_1-MLC",
+        "prompt": "tangle-pocket-9"
+      },
+      "context": {
+        "question": "Why does the Dead Sea have such high salinity?",
+        "article": "Dead Sea",
+        "sections": [
+          "Names",
+          "Geography",
+          "Formation theories",
+          "Sedom Lagoon",
+          "Salt deposits",
+          "Lake formation",
+          "Lake salinity",
+          "Salt mounts formation",
+          "Climate",
+          "Chemistry",
+          "Putative therapies",
+          "Life forms",
+          "Human settlement",
+          "Biblical period",
+          "Hellenistic and Roman period",
+          "Byzantine period",
+          "Medieval period",
+          "Modern times",
+          "British Mandate period",
+          "Israel",
+          "Jordan",
+          "Palestine (West Bank)",
+          "British Mandate period",
+          "Israel",
+          "Jordan",
+          "West Bank",
+          "Extraction",
+          "Receding shoreline",
+          "Sinkholes and their impact",
+          "Link to the Red Sea"
+        ]
+      },
+      "recorded": "<think>\n\n</think>\n\n{\"section\": \"Lake salinity\"}",
+      "expect": {
+        "section_in": [
+          "Lake salinity"
+        ]
+      }
+    }
+  ]
+}

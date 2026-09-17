@@ -7,9 +7,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { applyResult, captureEvidence, createRun, parseModelOutput, validateResult } from "../src/graph.js";
-import { responseSchema } from "../src/webllm.js";
+import { applyResult, parseModelOutput, validateResult } from "../src/graph.js";
 import { summarise } from "../scripts/summarise.js";
+import { interpret, reconstruct } from "../scripts/grade.js";
 
 const fixtures = JSON.parse(readFileSync(new URL("./fixtures/model-outputs.json", import.meta.url), "utf8"));
 
@@ -32,16 +32,11 @@ export function permittedBy(schema, value) {
   });
 }
 
-// Rebuild the node's situation: its excerpts (so labels map to IDs), the ceilings it faced.
+// Rebuild the node's situation (its excerpts, so labels map to IDs; the ceilings it faced) and read the recorded output.
 function situation(fixture, limits = {}) {
-  const run = createRun(fixture.question, "live", limits);
-  for (const excerpt of fixture.context.evidence) captureEvidence(run, "n1", { kind: "wiki", title: excerpt.title, text: excerpt.text || excerpt.title });
-  const ids = run.evidence.map((record) => record.id);
-  const labels = Object.fromEntries(ids.map((id, index) => [String(index + 1), id]));
-  const grammar = responseSchema(ids, fixture.context.questionsAllowed, fixture.context.lookupsRemaining);
-  const parsed = parseModelOutput(fixture.raw);
-  const result = Array.isArray(parsed.evidence) ? { ...parsed, evidence: parsed.evidence.map((label) => labels[label] ?? label) } : parsed;
-  return { run, node: run.nodes[0], ids, grammar, parsed, result };
+  const { run, node, ids, labels, grammar } = reconstruct(fixture.context, fixture.question, limits);
+  const { parsed, result } = interpret(fixture.raw, labels);
+  return { run, node, ids, grammar, parsed, result };
 }
 
 test("wrong field: questions written into reason are rejected by the validator and impossible under the grammar", () => {

@@ -4,8 +4,7 @@
 // visits, findings that lean on few sources). Usage: node scripts/summarise.js run.json
 import { readFileSync } from "node:fs";
 import { validateImport } from "../src/graph.js";
-
-const STOPWORDS = new Set(["because", "between", "through", "without", "including", "process", "processes", "involves", "involved", "primarily", "additionally", "significant", "however", "related", "various", "several", "different", "overall", "another", "further", "within", "against", "towards", "provided", "evidence", "excerpts", "question"]);
+import { missingWords } from "./text.js";
 
 export function summarise(run) {
   const lines = [];
@@ -55,14 +54,9 @@ export function summarise(run) {
   // Words in a finding that appear in none of its cited excerpts. A flag, not a
   // verdict: three models today produced fully cited findings whose substance
   // (the Aral Sea; diversion of the Jordan) came from their weights, not the text.
-  // Crude stemming so "reduced" matches "reduce" and "contributes" matches
-  // "contribution": strip common suffixes from both sides before comparing.
-  const stem = (word) => word.replace(/(ations?|ution|ing|ed|es|s|ly|ity|al|ive)$/, "");
-  const terms = (text) => new Set((text.toLowerCase().match(/[a-z][a-z'-]{5,}/g) || []).filter((word) => !STOPWORDS.has(word)).map(stem));
   for (const node of run.nodes.filter((candidate) => candidate.status === "resolved" && candidate.finding)) {
     const cited = node.evidence.map((id) => run.evidence.find((record) => record.id === id)).filter(Boolean);
-    const support = new Set(cited.flatMap((record) => [...terms(record.title + " " + record.text)]));
-    const missing = [...terms(node.finding)].filter((word) => !support.has(word));
+    const missing = missingWords(node.finding, cited);
     if (missing.length >= 4) notes.push(`${node.id} finding uses words absent from its cited excerpts: ${missing.slice(0, 6).join(", ")}${missing.length > 6 ? " …" : ""}`);
   }
   lines.push(notes.length ? "worth a look:" : "nothing flagged");
