@@ -75,10 +75,10 @@ The brief's constraints still hold. The harness owns the graph, findings are not
 
 ## Phases
 
-- [ ] **1. Graders and cases.** `scripts/grade.js` with unit tests; `evals/visits.json` seeded from the fixtures and the experiment traces; a command to add a case from an export.
-- [ ] **2. Page hooks.** `window.__tangle.visit(context)`, `pick(...)`, `newLive(seed, limits)`, and the Wikipedia record/replay cache. Built and tested through Playwright.
-- [ ] **3. The eval runner.** `scripts/eval.mjs visits --model …` sharing the browser driver with `live-run.mjs`. First micro-eval scoreboard for all four models.
-- [ ] **4. Benchmark.** `evals/seeds.json` with rubrics checked against the live articles; `gradeRun`; `scripts/eval.mjs runs --model … --mode flat|tangle`. First matrix on 1.7B and 8B, then 0.6B and 4B.
+- [x] **1. Graders and cases.** `scripts/grade.js` with unit tests; `evals/visits.json` seeded from the fixtures and the experiment traces; a command to add a case from an export.
+- [x] **2. Page hooks.** `window.__tangle.visit(context)`, `pick(...)`, `newLive(seed, limits)`, and the Wikipedia record/replay cache. Built and tested through Playwright.
+- [x] **3. The eval runner.** `scripts/eval.mjs visits --model …` sharing the browser driver with `live-run.mjs`. First micro-eval scoreboard for all four models.
+- [ ] **4. Benchmark.** `evals/seeds.json` with rubrics checked against the live articles (done); `gradeRun` (done); `scripts/eval.mjs runs --model … --mode flat|tangle` (done). First matrix across all four models: running.
 - [ ] **5. Frontier as A/B.** Each open issue below becomes a flag, a fixture, an eval case and a benchmark delta.
 - [ ] **6. UI, shaped by results.** A linear story view of a run and a map that survives 40 nodes, defaulting to whatever model and limits the scoreboard says.
 
