@@ -15,6 +15,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { summarise } from "./summarise.js";
+import { formatSample, sample, startSampling } from "./machine.js";
 import { DEFAULT_MODEL, DEFAULT_URL, commitInfo, exportRun, loadModel, loadWikiCache, machineInfo, makeNotes, openLab, parseArgs, runToEnd, saveWikiCache } from "./lab.mjs";
 
 const args = parseArgs(process.argv.slice(2));
@@ -39,7 +40,11 @@ try {
     await page.selectOption("#scenario", String(args.scenario));
   }
 
+  note(`machine at start: ${formatSample(sample())}`);
+  const health = startSampling(15000);
   const { retriesUsed, wallSeconds } = await runToEnd(page, { retries: Number(args.retries ?? 2), runTimeoutMs: Number(args["run-timeout"] ?? 90) * 60000, note });
+  const machineHealth = health.stop();
+  note(`machine during the run: gpu ${machineHealth.gpuPercent?.mean ?? "?"}% mean, ${machineHealth.gpuPercent?.max ?? "?"}% peak · vram up to ${machineHealth.vramGiB?.max ?? "?"} GiB · load up to ${machineHealth.load?.max ?? "?"} · ${machineHealth.throttledSamples ? `THROTTLED in ${machineHealth.throttledSamples} of ${machineHealth.samples} samples, worst ${machineHealth.worstSpeedLimit}%` : "no throttling in " + machineHealth.samples + " samples"}`);
   if (mode === "live" && args["wiki-cache"]) {
     const saved = await saveWikiCache(page, args["wiki-cache"]);
     note(`wiki recording: ${saved.hits} hits, ${saved.misses} misses, ${saved.added} new responses saved`);
@@ -58,6 +63,7 @@ try {
     `- machine: ${machineInfo()}`,
     `- browser: ${version()}`,
     `- run wall time: ${wallSeconds} s · retries used: ${retriesUsed}`,
+    `- machine during the run: ${JSON.stringify(machineHealth)}`,
     "",
     "## Driver log",
     "",

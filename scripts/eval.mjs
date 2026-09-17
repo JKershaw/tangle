@@ -12,6 +12,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync, appendFileSync } fr
 import { dirname } from "node:path";
 import { FLAT_LIMITS, formatGrades, formatRunGrade, gradeCase, gradeRun, summariseGrades } from "./grade.js";
 import { summarise } from "./summarise.js";
+import { formatSample, sample, startSampling } from "./machine.js";
 import { DEFAULT_MODEL, DEFAULT_URL, commitInfo, exportRun, loadModel, loadWikiCache, machineInfo, makeNotes, openLab, pageInfo, parseArgs, runToEnd, saveWikiCache, shortModel, stamp } from "./lab.mjs";
 
 const args = parseArgs(process.argv.slice(2));
@@ -46,6 +47,14 @@ try {
   const versions = await page.evaluate(() => window.__tangle.versions?.() ?? null);
   if (versions) ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION } = versions);
   Object.assign(record, { prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION });
+  note(`machine at start: ${formatSample(sample())}`);
+  const health = startSampling(15000);
+  const machineNote = () => {
+    const rolled = health.stop();
+    record.machineHealth = rolled;
+    note(`machine during the suite: gpu ${rolled.gpuPercent?.mean ?? "?"}% mean, ${rolled.gpuPercent?.max ?? "?"}% peak · vram up to ${rolled.vramGiB?.max ?? "?"} GiB · load up to ${rolled.load?.max ?? "?"} · ${rolled.throttledSamples ? `THROTTLED in ${rolled.throttledSamples} of ${rolled.samples} samples, worst ${rolled.worstSpeedLimit}%` : "no throttling in " + rolled.samples + " samples"}`);
+    return rolled;
+  };
   mkdirSync(dirname(out), { recursive: true });
   if (suiteName === "runs") {
     const seeds = JSON.parse(readFileSync(new URL("../evals/seeds.json", import.meta.url), "utf8")).seeds.filter((seed) => !only || only.test(seed.id));
@@ -64,6 +73,7 @@ try {
       results.push(grade);
       note(`${formatRunGrade(grade)} · ${wallSeconds} s · wiki ${saved.hits} hits ${saved.misses} misses`);
     }
+    const rolled = machineNote();
     const sum = (key) => results.reduce((total, grade) => total + grade[key], 0);
     Object.assign(record, { mode, limits: mode === "flat" ? FLAT_LIMITS : "default", seeds: results.length, resolved: results.filter((grade) => grade.resolved).length, factsPresent: sum("factsPresent"), factsSupported: sum("factsSupported"), factsRead: sum("factsRead"), factsTotal: sum("factsTotal"), results, notes });
     writeFileSync(`${out}.json`, JSON.stringify(record, null, 2) + "\n");
@@ -71,7 +81,7 @@ try {
     const lookups = results.reduce((total, grade) => total + grade.cost.lookups, 0);
     const seconds = results.reduce((total, grade) => total + grade.wallSeconds, 0);
     const perSeed = results.map((grade) => `${grade.id} ${grade.resolved ? "✓" : "✗"} ${grade.factsSupported}/${grade.factsPresent}/${grade.factsTotal}${grade.distractors.length ? "!" : ""}`).join(", ");
-    appendRow([`runs · ${mode}`, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${record.resolved}/${record.seeds} resolved** · facts ${record.factsPresent}/${record.factsTotal} · supported ${record.factsSupported}/${record.factsTotal}`, `${perSeed} (supported/present/total) · ${calls} calls · ${lookups} lookups`, `${seconds} s`]);
+    appendRow([`runs · ${mode}`, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${record.resolved}/${record.seeds} resolved** · facts ${record.factsPresent}/${record.factsTotal} · supported ${record.factsSupported}/${record.factsTotal}`, `${perSeed} (supported/present/total) · ${calls} calls · ${lookups} lookups`, `${seconds} s${rolled?.throttledSamples ? ` · throttled to ${rolled.worstSpeedLimit}%` : ""}`]);
     console.log("\n" + results.map(formatRunGrade).join("\n") + `\n\nwrote ${out}.json and a row in ${TABLE}`);
     process.exitCode = 0;
     await browser.close();
@@ -96,6 +106,7 @@ try {
     const failed = grade.checks.filter((check) => !check.pass);
     note(`${grade.pass ? "pass" : "FAIL"} ${entry.id} → ${grade.action ?? grade.error ?? "?"} (${output.latencyMs ?? "?"} ms)${failed.length ? " · " + failed.map((check) => `${check.name}: ${check.detail}`).join(" · ") : ""}`);
   }
+  const rolled = machineNote();
   const total = summariseGrades(results);
   Object.assign(record, { cases: results.length, passed: total.passed, rate: total.rate, byClass: total.byClass, results, notes });
   writeFileSync(`${out}.json`, JSON.stringify(record, null, 2) + "\n");
@@ -105,7 +116,7 @@ try {
     .join(", ");
   const latencies = results.map((result) => result.latencyMs).filter(Number.isFinite).sort((a, b) => a - b);
   const median = latencies.length ? latencies[Math.floor(latencies.length / 2)] : null;
-  appendRow([suiteName, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${total.passed}/${total.cases}**`, failing ? `not fully passing: ${failing}` : "all classes pass", `median ${median ?? "?"} ms`]);
+  appendRow([suiteName, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${total.passed}/${total.cases}**`, failing ? `not fully passing: ${failing}` : "all classes pass", `median ${median ?? "?"} ms${rolled?.throttledSamples ? ` · throttled to ${rolled.worstSpeedLimit}%` : ""}`]);
   console.log("\n" + formatGrades(results) + `\n\nwrote ${out}.json and a row in ${TABLE}`);
 } finally {
   await browser.close();
