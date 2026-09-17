@@ -55,12 +55,15 @@ export function summarise(run) {
   // Words in a finding that appear in none of its cited excerpts. A flag, not a
   // verdict: three models today produced fully cited findings whose substance
   // (the Aral Sea; diversion of the Jordan) came from their weights, not the text.
-  const terms = (text) => new Set((text.toLowerCase().match(/[a-z][a-z'-]{5,}/g) || []).filter((word) => !STOPWORDS.has(word)));
+  // Crude stemming so "reduced" matches "reduce" and "contributes" matches
+  // "contribution": strip common suffixes from both sides before comparing.
+  const stem = (word) => word.replace(/(ations?|ution|ing|ed|es|s|ly|ity|al|ive)$/, "");
+  const terms = (text) => new Set((text.toLowerCase().match(/[a-z][a-z'-]{5,}/g) || []).filter((word) => !STOPWORDS.has(word)).map(stem));
   for (const node of run.nodes.filter((candidate) => candidate.status === "resolved" && candidate.finding)) {
     const cited = node.evidence.map((id) => run.evidence.find((record) => record.id === id)).filter(Boolean);
     const support = new Set(cited.flatMap((record) => [...terms(record.title + " " + record.text)]));
     const missing = [...terms(node.finding)].filter((word) => !support.has(word));
-    if (missing.length >= 3) notes.push(`${node.id} finding uses words absent from its cited excerpts: ${missing.slice(0, 6).join(", ")}${missing.length > 6 ? " …" : ""}`);
+    if (missing.length >= 4) notes.push(`${node.id} finding uses words absent from its cited excerpts: ${missing.slice(0, 6).join(", ")}${missing.length > 6 ? " …" : ""}`);
   }
   lines.push(notes.length ? "worth a look:" : "nothing flagged");
   for (const note of notes) lines.push(`- ${note}`);
