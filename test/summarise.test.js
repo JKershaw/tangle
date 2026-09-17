@@ -17,3 +17,15 @@ test("the summary shows the tree, counters and flagged oddities", async () => {
   assert.match(repeated, /n3 re-asks its parent's question verbatim/);
   assert.match(repeated, /n7 error: Depth safety limit/);
 });
+
+test("a finding whose substance is absent from its cited excerpts is flagged, a supported one is not", async () => {
+  const { createRun, captureEvidence, applyResult } = await import("../src/graph.js");
+  const run = createRun("Why is the Dead Sea shrinking?", "live");
+  captureEvidence(run, "n1", { kind: "wiki", title: "Dead Sea", text: "The Dead Sea is a salt lake bordered by Jordan. Its main tributary is the Jordan River." });
+  applyResult(run, "n1", { action: "resolved", finding: "The Dead Sea is shrinking because of diversion of water for agriculture and industry, reducing inflow.", evidence: ["e1"] }, ["e1"]);
+  assert.match(summarise(run), /n1 finding uses words absent from its cited excerpts: .*diversion/);
+  const supported = createRun("Root", "live");
+  captureEvidence(supported, "n1", { kind: "wiki", title: "Dead Sea", text: "The Dead Sea has been shrinking since the 1960s because of diversion of incoming water from the Jordan River for agriculture." });
+  applyResult(supported, "n1", { action: "resolved", finding: "It is shrinking because of diversion of Jordan River water for agriculture.", evidence: ["e1"] }, ["e1"]);
+  assert.doesNotMatch(summarise(supported), /absent from its cited excerpts/);
+});

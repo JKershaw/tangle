@@ -5,6 +5,8 @@
 import { readFileSync } from "node:fs";
 import { validateImport } from "../src/graph.js";
 
+const STOPWORDS = new Set(["because", "between", "through", "without", "including", "process", "processes", "involves", "involved", "primarily", "additionally", "significant", "however", "related", "various", "several", "different", "overall", "another", "further", "within", "against", "towards", "provided", "evidence", "excerpts", "question"]);
+
 export function summarise(run) {
   const lines = [];
   const byId = new Map(run.nodes.map((node) => [node.id, node]));
@@ -49,6 +51,16 @@ export function summarise(run) {
   for (const node of run.nodes.filter((candidate) => candidate.status === "resolved")) {
     const kids = run.nodes.filter((candidate) => candidate.parent === node.id && candidate.status === "resolved");
     if (kids.length && !node.evidence.some((id) => node.observed.includes(id))) notes.push(`${node.id} resolved citing only its children's sources`);
+  }
+  // Words in a finding that appear in none of its cited excerpts. A flag, not a
+  // verdict: three models today produced fully cited findings whose substance
+  // (the Aral Sea; diversion of the Jordan) came from their weights, not the text.
+  const terms = (text) => new Set((text.toLowerCase().match(/[a-z][a-z'-]{5,}/g) || []).filter((word) => !STOPWORDS.has(word)));
+  for (const node of run.nodes.filter((candidate) => candidate.status === "resolved" && candidate.finding)) {
+    const cited = node.evidence.map((id) => run.evidence.find((record) => record.id === id)).filter(Boolean);
+    const support = new Set(cited.flatMap((record) => [...terms(record.title + " " + record.text)]));
+    const missing = [...terms(node.finding)].filter((word) => !support.has(word));
+    if (missing.length >= 3) notes.push(`${node.id} finding uses words absent from its cited excerpts: ${missing.slice(0, 6).join(", ")}${missing.length > 6 ? " …" : ""}`);
   }
   lines.push(notes.length ? "worth a look:" : "nothing flagged");
   for (const note of notes) lines.push(`- ${note}`);
