@@ -209,3 +209,21 @@ test("a 'Title / Section' query reads that section of an article already in the 
   const context = run.trace.filter((event) => event.event === "model_input")[1].context;
   assert.deepEqual(context.evidence[0].sections, ["Geography", "Receding shoreline"]);
 });
+
+test("repeating the bare title of an article with sections hands back the section list without spending a lookup", async () => {
+  const run = createRun("Root", "live");
+  const wikiCalls = [];
+  const wiki = async (query, { readOn } = {}) => {
+    wikiCalls.push([query, readOn ?? null]);
+    if (!readOn) return { ok: true, kind: "wiki", title: "Dead Sea", article: "Dead Sea", section: 0, text: "lead", headings: ["Geography", "Receding shoreline"] };
+    return { ok: true, kind: "wiki", title: "Dead Sea § " + readOn.section, article: "Dead Sea", section: 2, text: "diversion" };
+  };
+  const inputs = [];
+  const scripted = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea / Receding shoreline" }, { action: "resolved", finding: "F", evidence: ["2"] }]);
+  const generate = async (messages, options) => { inputs.push(options.context); return scripted(messages, options); };
+  assert.equal(await runEpisode(run, { generate, wiki }), true);
+  assert.deepEqual(wikiCalls.map(([, readOn]) => readOn), [null, { article: "Dead Sea", section: "Receding shoreline" }], "the bare repeat made no request");
+  assert.match(run.nodes[0].failedLookups[0].error, /ask for one section by name as “Dead Sea \/ <section>”\. Sections: Geography, Receding shoreline\./);
+  assert.deepEqual(inputs.map((context) => context.lookupsRemaining), [2, 1, 1, 0], "the bare repeat did not count");
+  assert.deepEqual(run.nodes[0].evidence, ["e2"]);
+});
