@@ -173,7 +173,23 @@ test("looking up an article that is already in the context is a visible failed l
   };
   assert.equal(await runEpisode(run, { generate, wiki }), true);
   assert.equal(run.evidence.length, 1);
-  assert.match(run.nodes[0].failedLookups[0].error, /Already read: “Water cycle” is excerpt 1/);
+  assert.match(run.nodes[0].failedLookups[0].error, /Already read: “Water cycle” is in the context/);
   assert.equal(inputs[2].failedLookups.length, 1, "the next pass sees the failed lookup");
   assert.equal(run.nodes[0].status, "resolved");
+});
+
+test("asking again for an article already in the context reads its next section", async () => {
+  const run = createRun("Root", "live");
+  const wikiCalls = [];
+  const wiki = async (query, { readOn } = {}) => {
+    wikiCalls.push(readOn ?? null);
+    if (!readOn) return { ok: true, kind: "wiki", title: "Dead Sea", article: "Dead Sea", section: 0, text: "lead" };
+    return { ok: true, kind: "wiki", title: "Dead Sea § Recession", article: "Dead Sea", section: readOn.section, text: "it is receding" };
+  };
+  const generate = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea" }, { action: "resolved", finding: "F", evidence: ["1", "2"] }]);
+  assert.equal(await runEpisode(run, { generate, wiki }), true);
+  assert.deepEqual(wikiCalls, [null, { article: "Dead Sea", section: 1 }]);
+  assert.deepEqual(run.evidence.map((record) => record.title), ["Dead Sea", "Dead Sea § Recession"]);
+  assert.deepEqual(run.nodes[0].evidence, ["e1", "e2"]);
+  assert.equal(run.trace.filter((event) => event.event === "tool_result").length, 2);
 });

@@ -5,7 +5,7 @@ import * as webllm from "@mlc-ai/web-llm";
 import { clone, createRun, nextRunnable, outcomeLabel, trace, validateImport, buildContext, VERSION } from "./graph.js";
 import { runEpisode } from "./episode.js";
 import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
-import { lookupWikipedia } from "./wiki.js";
+import { lookupWikipedia, readWikipediaSection } from "./wiki.js";
 import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
 import { GraphMap } from "./map.js";
 
@@ -244,8 +244,8 @@ async function approveLookup(query, signal) {
 $("allow").onclick = () => approvalResolver?.(true);
 $("deny").onclick = () => approvalResolver?.(false);
 
-async function liveWiki(query, { signal }) {
-  const result = await lookupWikipedia(query, { signal });
+async function liveWiki(query, { signal, readOn }) {
+  const result = readOn ? await readWikipediaSection(readOn.article, readOn.section, { signal }) : await lookupWikipedia(query, { signal });
   if (!result.ok && result.error?.kind === "unreachable") {
     return {
       ...result,

@@ -166,11 +166,67 @@ export async function lookupWikipedia(query, options = {}) {
     kind: "wiki",
     query: term,
     title,
+    article: title,
+    section: 0,
     text: extract.slice(0, EXTRACT_LIMIT),
     exact,
     alternatives,
     revision,
     url: revision ? revisionUrl(revision) : articleUrl(title),
+    requests,
+  };
+}
+
+// ---- reading on ----
+// A lookup returns an article's lead, and the lead is often silent on the
+// actual question (the Dead Sea's two-sentence lead never mentions recession;
+// experiments/2026-09-17-qwen3-1.7b-dead-sea.md). When a node asks again for an
+// article it already has, the episode runner reads the next section instead.
+export const EXTRACT_MAX_BYTES = 262144;
+export const extractUrl = (title) =>
+  `https://${WIKI_HOST}/w/api.php?action=query&prop=extracts&explaintext=1&redirects=1&titles=${titlePath(title)}&format=json&origin=*`;
+const SKIPPED_SECTIONS = new Set(["See also", "References", "External links", "Further reading", "Notes", "Bibliography", "Gallery", "Sources", "Citations"]);
+
+// Split a plain-text extract on its "== Heading ==" lines; index 0 is the lead.
+// Headings with no text of their own (parents of subsections) are dropped.
+export function splitSections(extract) {
+  const parts = String(extract ?? "").split(/\n+(?==+ [^=\n]+? =+\n)/);
+  return parts
+    .map((part) => {
+      const match = part.match(/^(=+) ([^=\n]+?) =+\n?([\s\S]*)$/);
+      return match ? { heading: match[2].trim(), text: match[3].trim() } : { heading: "", text: part.trim() };
+    })
+    .filter((section) => section.text.length > 0 && !SKIPPED_SECTIONS.has(section.heading));
+}
+
+export async function readWikipediaSection(title, index, options = {}) {
+  const requests = [];
+  const failure = (kind, message) => ({ ok: false, tool: "wiki", query: title, error: { kind, message }, requests });
+  const response = await fetchWikipedia(extractUrl(title), { maxBytes: EXTRACT_MAX_BYTES, ...options });
+  requests.push(requestRecord(response));
+  if (!response.ok) return failure("unreachable", response.error.message);
+  let page;
+  try {
+    page = Object.values(JSON.parse(response.body)?.query?.pages ?? {})[0];
+  } catch {
+    page = null;
+  }
+  if (!page || typeof page.extract !== "string") return failure("bad_response", `Wikipedia's extract API returned no text for "${title}" (HTTP ${response.status}).`);
+  const sections = splitSections(page.extract);
+  const section = sections[index];
+  if (!section) return failure("no_match", `All ${sections.length} sections of "${page.title}" have been read. Try a different term or decompose.`);
+  const anchor = section.heading.replace(/\s+/g, "_");
+  return {
+    ok: true,
+    tool: "wiki",
+    kind: "wiki",
+    query: title,
+    title: section.heading ? `${page.title} § ${section.heading}` : String(page.title),
+    article: String(page.title),
+    section: index,
+    sections: sections.length,
+    text: section.text.slice(0, EXTRACT_LIMIT),
+    url: section.heading ? `${articleUrl(page.title)}#${encodeURIComponent(anchor)}` : articleUrl(page.title),
     requests,
   };
 }

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { fetchWikipedia, lookupWikipedia, searchUrl, stripHtml, summaryUrl } from "../src/wiki.js";
+import { extractUrl, fetchWikipedia, lookupWikipedia, readWikipediaSection, searchUrl, splitSections, stripHtml, summaryUrl } from "../src/wiki.js";
 
 const jsonResponse = (value, status = 200) => new Response(JSON.stringify(value), { status, headers: { "content-type": "application/json" } });
 
@@ -81,4 +81,20 @@ test("network failures and timeouts are reported, never thrown", async () => {
 
 test("stripHtml flattens search snippets", () => {
   assert.equal(stripHtml('<span class="searchmatch">Water</span> &quot;cycle&quot;  &#39;x&#39;'), 'Water "cycle" \'x\'');
+});
+
+test("reading on returns one section of the plain-text extract, skipping reference-like sections", async () => {
+  const extract = "The Dead Sea is a salt lake.\n\n== Geography ==\nIt lies in a rift valley.\n\n== Recession ==\nIt is receding fast.\n\n=== Causes ===\nDiversion of the Jordan.\n\n== See also ==\nAral Sea";
+  assert.deepEqual(splitSections(extract).map((section) => section.heading), ["", "Geography", "Recession", "Causes"]);
+  const { fetchImpl, calls } = fakeFetch([["prop=extracts", () => jsonResponse({ query: { pages: { 1: { title: "Dead Sea", extract } } } })]]);
+  const recession = await readWikipediaSection("Dead Sea", 2, { fetchImpl });
+  assert.equal(calls[0].url, extractUrl("Dead Sea"));
+  assert.equal(recession.ok, true);
+  assert.equal(recession.title, "Dead Sea § Recession");
+  assert.equal(recession.text, "It is receding fast.");
+  assert.deepEqual([recession.article, recession.section, recession.sections], ["Dead Sea", 2, 4]);
+  assert.match(recession.url, /^https:\/\/en\.wikipedia\.org\/wiki\/Dead_Sea#Recession$/);
+  const beyond = await readWikipediaSection("Dead Sea", 4, { fetchImpl });
+  assert.equal(beyond.ok, false);
+  assert.match(beyond.error.message, /All 4 sections of "Dead Sea" have been read/);
 });
