@@ -144,3 +144,11 @@ test("import accepts an export, rejects unsafe files, and marks in-progress node
   badLookups.nodes[0].failedLookups = [{ query: "", error: "x" }];
   assert.throws(() => validateImport(JSON.stringify(badLookups)), /Invalid failed lookups/);
 });
+
+test("the context says how many child questions may be proposed: fewer near the node ceiling, none at the depth ceiling", () => {
+  const run = createRun("Root", "simulation", { maxDepth: 1, maxNodes: 5 });
+  assert.equal(buildContext(run, run.nodes[0]).questionsAllowed, 3);
+  applyResult(run, "n1", { action: "decompose", questions: ["a", "b", "c"] }, []);
+  assert.equal(buildContext(run, run.nodes[1]).questionsAllowed, 0, "depth ceiling");
+  assert.equal(buildContext(run, run.nodes[0]).questionsAllowed, 1, "one node left under the ceiling");
+});

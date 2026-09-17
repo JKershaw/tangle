@@ -24,7 +24,7 @@ export const downloadBytes = (modelId) => MODELS.find((model) => model.id === mo
 
 // Grammar-constrained decoding: the model can only emit an object of this shape.
 // The harness validator still decides whether the content is acceptable.
-export const RESPONSE_SCHEMA_VERSION = "per-action-2";
+export const RESPONSE_SCHEMA_VERSION = "per-action-3";
 // One variant per action, built per call from the evidence the model was shown:
 // decompose must carry 1–3 questions, wiki a query, blocked a reason, and
 // resolved may only cite IDs that are in context — with no evidence in context
@@ -34,12 +34,14 @@ export const RESPONSE_SCHEMA_VERSION = "per-action-2";
 // answer from memory with evidence it wrote itself.
 const variant = (action, properties, required) =>
   Object.freeze({ type: "object", properties: { action: { const: action }, ...properties }, required: ["action", ...required], additionalProperties: false });
-export function responseSchema(evidenceIds = []) {
+export function responseSchema(evidenceIds = [], questionsAllowed = 3) {
   const ids = [...new Set(evidenceIds)];
   return Object.freeze({
     anyOf: [
       variant("wiki", { query: { type: "string", minLength: 1, maxLength: 180 } }, ["query"]),
-      variant("decompose", { questions: { type: "array", items: { type: "string", minLength: 1, maxLength: 300 }, minItems: 1, maxItems: 3 } }, ["questions"]),
+      ...(questionsAllowed > 0
+        ? [variant("decompose", { questions: { type: "array", items: { type: "string", minLength: 1, maxLength: 300 }, minItems: 1, maxItems: questionsAllowed } }, ["questions"])]
+        : []),
       ...(ids.length
         ? [variant("resolved", { finding: { type: "string", minLength: 1, maxLength: 1400 }, evidence: { type: "array", items: { enum: ids }, minItems: 1, maxItems: Math.min(8, ids.length) } }, ["finding", "evidence"])]
         : []),
@@ -276,7 +278,7 @@ export function createEngineAdapter(webllm, options = {}) {
 // The generate driver the episode runner calls in live mode: one bounded action.
 export function createLiveGenerator(adapter, sampling = SAMPLING) {
   return async (messages, { signal, context } = {}) => {
-    const schema = responseSchema((context?.evidence ?? []).map((excerpt) => excerpt.id));
+    const schema = responseSchema((context?.evidence ?? []).map((excerpt) => excerpt.id), context?.questionsAllowed ?? 3);
     const timer = setTimeout(() => adapter.interrupt(), GENERATION_TIMEOUT_MS);
     const started = performance.now();
     try {

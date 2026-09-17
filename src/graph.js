@@ -122,6 +122,11 @@ export function buildContext(run, node, { lookupsRemaining = null } = {}) {
   };
   if (node.failedLookups?.length) context.failedLookups = node.failedLookups.slice(-5);
   if (lookupsRemaining !== null) context.lookupsRemaining = lookupsRemaining;
+  // How many child questions decompose may propose here: none at the depth
+  // ceiling, fewer as the node ceiling approaches. Live mode builds its grammar
+  // from this, so a ceiling is a choice the model can see rather than a
+  // rejection it cannot (experiments/2026-09-17-qwen3-0.6b-water-cycle-3).
+  context.questionsAllowed = node.depth < run.limits.maxDepth ? Math.max(0, Math.min(3, run.limits.maxNodes - run.nodes.length)) : 0;
   return context;
 }
 

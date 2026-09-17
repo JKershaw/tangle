@@ -110,3 +110,12 @@ test("the live generator builds the grammar from the evidence in the node's cont
   assert.deepEqual(requests[0].schema.anyOf.map((v) => v.properties.action.const), ["wiki", "decompose", "blocked"]);
   assert.deepEqual(requests[1].schema.anyOf.find((v) => v.properties.action.const === "resolved").properties.evidence.items, { enum: ["e3", "e4"] });
 });
+
+test("the grammar drops decompose when no questions may be proposed and caps it otherwise", () => {
+  const actions = (schema) => schema.anyOf.map((v) => v.properties.action.const);
+  assert.deepEqual(actions(responseSchema(["e1"], 0)), ["wiki", "resolved", "blocked"]);
+  assert.equal(responseSchema([], 2).anyOf.find((v) => v.properties.action.const === "decompose").properties.questions.maxItems, 2);
+  const requests = [];
+  const generate = createLiveGenerator({ generate: async (m, o) => { requests.push(o); return { text: "{}" }; }, interrupt() {} });
+  return generate([], { context: { evidence: [], questionsAllowed: 0 } }).then(() => assert.deepEqual(actions(requests[0].schema), ["wiki", "blocked"]));
+});
