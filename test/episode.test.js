@@ -161,3 +161,19 @@ test("a finding may cite excerpts by label; labels map back to evidence IDs and 
   assert.equal(invented.nodes[0].status, "error");
   assert.match(invented.nodes[0].reason, /invented evidence/);
 });
+
+test("looking up an article that is already in the context is a visible failed lookup, not a second excerpt", async () => {
+  const run = createRun("Root", "live");
+  const wiki = async () => ({ ok: true, kind: "wiki", title: "Water cycle", text: "lead section" });
+  const inputs = [];
+  const generate = async (messages, { context }) => {
+    inputs.push(context);
+    const proposal = inputs.length < 3 ? { action: "wiki", query: "water cycle" } : { action: "resolved", finding: "F", evidence: ["1"] };
+    return { text: JSON.stringify(proposal), tokens: 1 };
+  };
+  assert.equal(await runEpisode(run, { generate, wiki }), true);
+  assert.equal(run.evidence.length, 1);
+  assert.match(run.nodes[0].failedLookups[0].error, /Already read: “Water cycle” is excerpt 1/);
+  assert.equal(inputs[2].failedLookups.length, 1, "the next pass sees the failed lookup");
+  assert.equal(run.nodes[0].status, "resolved");
+});
