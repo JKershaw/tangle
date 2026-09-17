@@ -20,5 +20,8 @@ Machine: Apple M1 Max, Chrome 152, WebGPU. Seeds: "Why does the water cycle keep
 | `…-1.7b-water-cycle-2` | 1.7B · pocket-5 · per-action-5 | error | found the article at once, re-read it nine times, never resolved, decomposed well |
 | `…-0.6b-dead-sea` | 0.6B · pocket-5 · per-action-6 | root resolved | searched the whole question, found the Aral Sea, resolved with a fully cited answer about the wrong lake |
 | `…-1.7b-dead-sea` | 1.7B · pocket-5 · per-action-6 | 8 resolved, 20 blocked | 79 reads of the Dead Sea lead; honest blocks (the lead never mentions recession); Aral Sea from memory, cited to Dead Sea excerpts |
+| `…-4b-dead-sea` | 4B · pocket-5 · per-action-6 | root resolved | the best query ("Dead Sea shrinking causes"); a correct finding citing a two-sentence lead that does not contain it |
+| `…-1.7b-dead-sea-2` | 1.7B · pocket-7 · per-action-6 · sections by name | 33 resolved, 1 blocked | never asked for a section by name; repeated "Dead Sea" 98×; 33 supported-and-wrong salinity findings; one output ran to the token cap in spaces |
+| `…-8b-dead-sea` | 8B · pocket-7 · per-action-6 · sections by name | root resolved | asked for "Dead Sea / Receding shoreline" unprompted; the first correct, fully supported answer to a question no lead answers |
 
 Prompt versions are in `src/episode.js`; grammar versions in `src/webllm.js`.
