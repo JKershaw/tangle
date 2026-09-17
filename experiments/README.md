@@ -23,5 +23,7 @@ Machine: Apple M1 Max, Chrome 152, WebGPU. Seeds: "Why does the water cycle keep
 | `…-4b-dead-sea` | 4B · pocket-5 · per-action-6 | root resolved | the best query ("Dead Sea shrinking causes"); a correct finding citing a two-sentence lead that does not contain it |
 | `…-1.7b-dead-sea-2` | 1.7B · pocket-7 · per-action-6 · sections by name | 33 resolved, 1 blocked | never asked for a section by name; repeated "Dead Sea" 98×; 33 supported-and-wrong salinity findings; one output ran to the token cap in spaces |
 | `…-8b-dead-sea` | 8B · pocket-7 · per-action-6 · sections by name | root resolved | asked for "Dead Sea / Receding shoreline" unprompted; the first correct, fully supported answer to a question no lead answers |
+| `…-1.7b-dead-sea-3` | 1.7B · pocket-8 · section list on bare repeat | **40 resolved, root correct** | first full-graph root resolution: the list was enough at the third try; 59 section reads; two pass-ceiling retries |
+| `…-1.7b-dead-sea-4` | 1.7B · pocket-8 · forced section pick | **40 resolved, root correct, no errors** | 44 picks (Receding shoreline 32, Extraction 12); the loop is gone; one answer found forty times |
 
 Prompt versions are in `src/episode.js`; grammar versions in `src/webllm.js`.
