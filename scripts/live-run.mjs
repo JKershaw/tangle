@@ -7,10 +7,11 @@
 //   --retries N              (default 2: retries after "Paused on error")
 //   --headless               (simulation only; live mode needs a headed browser for WebGPU)
 //   --chromium <path>        (executable; default: installed Google Chrome via Playwright's "chrome" channel)
+//   --profile <dir>          (persistent browser profile so model weights stay cached; default ~/.cache/tangle/chrome-profile)
 //   --load-timeout <minutes> (default 20)         --run-timeout <minutes> (default 90)
 // Writes <out>.json (the export), <out>.png (the map) and <out>.md (notes skeleton with the summary).
 import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname } from "node:path";
+import { dirname, join } from "node:path";
 import os from "node:os";
 import { summarise } from "./summarise.js";
 
@@ -33,10 +34,15 @@ const loadTimeoutMs = Number(args["load-timeout"] ?? 20) * 60000;
 const runTimeoutMs = Number(args["run-timeout"] ?? 90) * 60000;
 
 const { chromium } = await import("playwright-core");
-const launchOptions = { headless: !!args.headless };
+// A persistent profile keeps the browser's model-weight cache between runs; a
+// throwaway profile re-downloads gigabytes every time.
+const profile = args.profile || join(os.homedir(), ".cache", "tangle", "chrome-profile");
+mkdirSync(profile, { recursive: true });
+const launchOptions = { headless: !!args.headless, viewport: { width: 1280, height: 1000 } };
 if (args.chromium) launchOptions.executablePath = args.chromium;
 else launchOptions.channel = "chrome";
-const browser = await chromium.launch(launchOptions);
+const browser = await chromium.launchPersistentContext(profile, launchOptions);
+const version = () => browser.browser()?.version() ?? "unknown";
 const notes = [];
 const note = (line) => {
   notes.push(line);
@@ -46,11 +52,14 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const stamp = () => new Date().toISOString();
 
 try {
-  const page = await browser.newPage({ viewport: { width: 1280, height: 1000 } });
+  const page = await browser.newPage();
   page.on("dialog", (dialog) => dialog.accept());
   page.on("pageerror", (error) => note(`page error: ${error}`));
+  page.on("console", (message) => {
+    if (message.type() === "error") note(`console error: ${message.text().slice(0, 300)}`);
+  });
   await page.goto(url);
-  note(`${stamp()} opened ${url} in ${browser.version()} (${os.platform()} ${os.arch()}, ${os.cpus()[0]?.model ?? "unknown cpu"})`);
+  note(`${stamp()} opened ${url} in ${version()} (${os.platform()} ${os.arch()}, ${os.cpus()[0]?.model ?? "unknown cpu"})`);
 
   if (mode === "live") {
     await page.click("#liveMode");
@@ -65,12 +74,25 @@ try {
     await page.check("#autoWiki");
     const loadStarted = Date.now();
     await page.click("#loadModel");
-    await page.waitForFunction(
-      () => document.getElementById("modelBadge").textContent === "ready" || document.getElementById("loadStatus").textContent.startsWith("Could not load"),
-      null,
-      { timeout: loadTimeoutMs, polling: 2000 },
-    );
-    const loadStatus = await page.locator("#loadStatus").innerText();
+    // Read textContent, not innerText: the page collapses the settings panel once
+    // the model is ready, and innerText of a collapsed element is "". Poll rather
+    // than waitForFunction so the notes show download and compile progress; a
+    // stalled load is otherwise indistinguishable from a slow one.
+    const loadState = () =>
+      page.evaluate(() => ({ badge: document.getElementById("modelBadge").textContent, status: document.getElementById("loadStatus").textContent }));
+    let loadStatus = "";
+    for (let lastNoted = 0; ; ) {
+      const { badge, status } = await loadState();
+      loadStatus = status;
+      const done = badge === "ready" || status.startsWith("Could not load");
+      if (done || Date.now() - lastNoted > 30000) {
+        note(`${stamp()} loading: ${status}`);
+        lastNoted = Date.now();
+      }
+      if (done) break;
+      if (Date.now() - loadStarted > loadTimeoutMs) throw new Error(`Model load timed out after ${loadTimeoutMs / 60000} minutes; last status: ${status}`);
+      await wait(5000);
+    }
     note(`model ${model}: ${loadStatus} (${Math.round((Date.now() - loadStarted) / 1000)} s)`);
     if (!loadStatus.startsWith("Ready")) throw new Error("Model did not load.");
   } else {
@@ -113,7 +135,7 @@ try {
     `- date: ${exported.created}`,
     `- commit: (fill in: git rev-parse --short HEAD)`,
     `- machine / GPU: (fill in)`,
-    `- browser: ${browser.version()}`,
+    `- browser: ${version()}`,
     `- run wall time: ${wallSeconds} s · retries used: ${retriesUsed}`,
     "",
     "## Driver log",
