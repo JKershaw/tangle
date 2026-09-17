@@ -96,7 +96,7 @@ export async function runEpisode(run, options) {
         // An article already in this node's context is not new evidence. Say so where
         // the model will see it rather than filling the window with copies: 1.7B
         // read Water cycle nine times from one node (experiments/…-1.7b-water-cycle-2).
-        recordFailedLookup(run, node.id, result.query, `Already read: “” is excerpt . Try a different term or decompose.`);
+        recordFailedLookup(run, node.id, result.query, `Already read: “${lookup.title}” is excerpt ${alreadyRead.label}. Try a different term or decompose.`);
         onUpdate(node.id, "Article already in context");
       } else if (lookup.ok) {
         captureEvidence(run, node.id, lookup);
