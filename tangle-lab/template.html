@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f5f0">
+<meta name="referrer" content="no-referrer">
+<title>Tangle · Pocket Lab</title>
+<style>/* APP_STYLE */</style>
+</head>
+<body>
+<main>
+  <header class="masthead">
+    <div><span class="eyebrow">A SMALL EXPERIMENT IN UNDERSTANDING</span><h1>Tangle<span class="serif"> / pocket lab</span></h1></div>
+    <button id="helpButton" class="quiet">About &amp; research</button>
+  </header>
+  <section class="setup" aria-label="Run setup">
+    <div class="mode-row">
+      <div class="segmented" role="group" aria-label="Choose run mode"><button id="simMode" aria-pressed="true">Simulation</button><button id="liveMode" aria-pressed="false">Local LLM + Wiki</button></div>
+      <span id="modeNote" class="muted">Precomputed responses · no network</span>
+    </div>
+    <div id="simSetup">
+      <div class="setup-row"><div><h2 id="seedTitle">Why does the water cycle keep going?</h2><p class="muted">Watch small questions become an inspectable understanding graph.</p></div>
+        <label>Experiment<select id="scenario"><option value="revisit">The parent asks again</option><option value="blocked">A source is unavailable</option><option value="repeat">Repeated questions</option></select></label>
+      </div>
+    </div>
+    <div id="liveSetup" hidden>
+      <div class="field-row"><label class="grow">Seed question<textarea id="seed" rows="2" maxlength="400">Why does the water cycle keep going?</textarea></label><button id="newLive">Start new graph</button></div>
+      <details id="modelSettings" open>
+        <summary>On-device model <span id="modelBadge" class="muted">not loaded</span></summary>
+        <div class="model-grid">
+          <label>Model<select id="model"><option value="Qwen3-0.6B-q4f16_1-MLC">Qwen3 0.6B · tiny · ~0.4 GB download</option><option value="Qwen3-1.7B-q4f16_1-MLC">Qwen3 1.7B · small · ~1 GB download</option><option value="Qwen3-0.6B-q4f32_1-MLC">Qwen3 0.6B · float32 compatibility</option></select></label>
+          <div class="buttons"><button id="checkDevice">Check device</button><button id="loadModel" class="primary">Download &amp; load</button><button id="unloadModel" disabled>Unload</button></div>
+        </div>
+        <p id="deviceStatus" class="small">Live mode needs WebGPU and enough memory. Nothing downloads until you choose Load.</p>
+        <progress id="loadProgress" max="1" value="0" hidden aria-label="Model loading"></progress>
+        <p id="loadStatus" class="small" role="status"></p>
+        <p class="small muted">Tiny does not mean lightweight: the 0.6B float16 model lists about 1.4 GB of GPU memory. First load needs internet and free storage. A compatible Android browser may work from a downloaded file; file viewers and some devices will not. An HTTPS copy of this same file is the fallback, not a guarantee.</p>
+        <label class="check"><input type="checkbox" id="autoWiki">Allow Wikipedia lookups for this run without asking each time</label>
+        <p class="small muted">Queries go to English Wikipedia. Model files come from Hugging Face and MLC’s GitHub distribution. Inference runs on your device. No API key, proxy or cloud inference.</p>
+        <div class="buttons"><button id="testWiki">Test Wiki access</button><button id="clearModel" class="quiet">Remove selected model’s cached files</button></div>
+        <p id="wikiTestStatus" class="small" role="status"></p>
+      </details>
+    </div>
+  </section>
+  <section class="lab" aria-label="Graph experiment">
+    <div class="runbar">
+      <div class="buttons"><button id="run" class="primary">Run simulation</button><button id="step">One node</button><button id="stop" disabled>Stop now</button><button id="reset" class="quiet">New run</button></div>
+      <div id="metrics" class="metrics" aria-live="off"></div>
+    </div>
+    <div class="activity" role="status" aria-live="polite"><span id="activityDot"></span><span id="status">One seed. Press Run to watch the graph grow.</span></div>
+    <div id="approval" class="approval" hidden>
+      <div><strong>Allow Wikipedia lookup?</strong><p id="approvalQuery"></p><span class="small">Search and article-summary requests; no credentials are sent.</span></div>
+      <div class="buttons"><button id="allow" class="primary">Allow once</button><button id="deny">Decline</button></div>
+    </div>
+    <div class="workspace">
+      <section class="map-panel" aria-label="Understanding map">
+        <div class="mapbar"><span class="small muted">Drag to pan · pinch to zoom · tap a node</span><div class="buttons"><button id="zoomOut" aria-label="Zoom out">−</button><button id="zoomIn" aria-label="Zoom in">+</button><button id="fit">Fit map</button></div></div>
+        <div id="map" aria-label="Question graph"><div id="world"><svg id="edges" aria-hidden="true"></svg><div id="nodes"></div></div></div>
+        <div class="mapfooter"><div class="legend"><span><i class="dot open"></i>Open</span><span><i class="dot waiting"></i>Waiting</span><span><i class="dot resolved"></i>Resolved</span><span><i class="dot blocked"></i>Blocked / error</span></div><label class="check small"><input type="checkbox" id="follow" checked>Follow active node</label></div>
+      </section>
+      <aside id="inspector" aria-label="Selected node">
+        <div class="node-meta"><span id="nodeId">n1</span><span id="nodeStatus">open</span></div>
+        <h2 id="nodeQuestion"></h2><p id="nodeVisits" class="small muted"></p>
+        <div id="finding"></div><div id="evidence"></div>
+        <button id="retry" hidden>Retry this node</button>
+        <details><summary>Exact local context</summary><pre id="context"></pre></details>
+        <details><summary>Node trace &amp; raw responses</summary><pre id="nodeTrace"></pre></details>
+      </aside>
+    </div>
+    <footer class="exportbar"><span id="persistence" class="small muted">Export your run before closing this file.</span><div class="buttons"><button id="export">Export run JSON</button><button id="import">Inspect JSON</button><input id="importFile" type="file" accept=".json,application/json" hidden></div></footer>
+  </section>
+  <p class="small muted bottom-note">Findings can be wrong. Evidence records what was read. “Resolved” is a model decision, not a correctness guarantee.</p>
+  <details id="help" class="help">
+    <summary>Research, design, limits &amp; licences</summary>
+    <h2>A petri dish, not a verdict</h2>
+    <p>This is a runnable, single-file Tangle prototype. It combines an offline demonstration with a live in-browser research loop. The demonstration’s JSON responses and evidence paragraphs were authored in advance; they are neither real model measurements nor captured Wikipedia pages. The live mode does not use those scripts.</p>
+    <h3>How to use it on a phone</h3>
+    <ol><li>Open this HTML in a browser that executes JavaScript, not a document-preview app. Simulation needs no internet.</li><li>For live mode choose <strong>Local LLM + Wiki</strong>, then <strong>Check device</strong>. Start with Qwen3 0.6B.</li><li>Use Wi-Fi for the model download. Press <strong>Download &amp; load</strong>, wait for Ready, then start a graph and press Run.</li><li>Allow each Wikipedia request, or opt into automatic lookups for that run. Stop cancels the current visit; Pause waits for it to finish.</li><li>Tap any node for findings, captured source text, exact prompts and raw outputs. Export a JSON trace before closing. Imports are inspection-only.</li></ol>
+    <p><code>file://</code> can be a secure context, but availability of WebGPU and persistent caching is browser-dependent. Android file managers may open <code>content://</code> URLs or restricted viewers. This file probes WebGPU and caches rather than treating every local file as incompatible. If probes fail, serve the identical file over HTTPS or localhost. No server was deployed for this delivery. iOS support is best-effort.</p>
+    <h3>Research basis</h3>
+    <p>Inspected <a href="https://github.com/JKershaw/Browser-agent/tree/68d7f4c263d8ca20613bd2ed231035d3ed343678" target="_blank" rel="noopener noreferrer">Browser-agent at commit 68d7f4c</a>: README, architecture, engine contract, WebLLM adapter, Wikipedia lookup, prompt design and storage handling. This build directly bundles its WebLLM engine adapter, capability/storage helpers and Wikipedia tool—not the general HTTP agent loop.</p>
+    <ul><li><a href="https://webllm.mlc.ai/docs/user/basic_usage.html" target="_blank" rel="noopener noreferrer">WebLLM interface</a>: asynchronous model loading and browser-local chat completion. Runtime pinned to <code>@mlc-ai/web-llm 0.2.84</code>, matching the repository lockfile.</li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API" target="_blank" rel="noopener noreferrer">WebGPU requirements</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Secure_Contexts" target="_blank" rel="noopener noreferrer">secure contexts</a>: browser capability must be checked, including on file origins.</li><li><a href="https://www.mediawiki.org/wiki/API:Cross-site_requests" target="_blank" rel="noopener noreferrer">MediaWiki CORS</a>: anonymous cross-origin search uses <code>origin=*</code>, followed by the repository’s Wikipedia summary endpoint. A labelled search snippet is the existing tool’s fallback.</li></ul>
+    <h3>Decisions for this build</h3>
+    <ul><li>One serial deterministic depth-first scheduler. A parent revisits only after all children resolve; blocked children leave it unresolved. Edges currently express parent–child decomposition, not semantic links or an assertion that all future graphs must be trees.</li><li>Both modes use the same graph mutation validator and episode runner. Simulation and live graphs are separate. Changing modes never relabels a simulated node as live.</li><li>A node visit has a fresh context. Multiple inference passes may request a tool and consume its result. Each pass resets the model’s conversation and receives only this node’s question, bounded child findings and captured evidence—not global chat history.</li><li>The harness assigns evidence IDs. Resolutions must cite IDs supplied in the current context. This checks provenance, not whether the quoted material logically proves the claim.</li><li>Context ceilings: last six resolved child findings (500 characters each), last five evidence excerpts (700 characters each). Omissions are counted in the exact context. These are prototype controls, not researched optimal settings.</li><li>Safety ceilings: 40 nodes, 60 visits, depth 6, two lookups and four model passes per visit; maximum 420 output tokens per pass. Hitting a ceiling stops unresolved work—it does not manufacture completion. Repeated questions remain visible.</li><li>Structured JSON generation is requested from WebLLM. Malformed output pauses with its raw trace. There are no invisible repair loops, verifier agents or automatic model escalation.</li><li>No general HTTP tools, arbitrary URLs, remote inference, API keys, model-authored HTML or code execution. Wikipedia queries and model downloads are the only intentional network traffic. Approval can be revoked between lookups.</li><li>App code, styles and WebLLM JavaScript are embedded. Model weights, tokenizers and compiled model WebAssembly remain external downloads. Cache API is preferred; IndexedDB is probed as a fallback. Offline live inference is not guaranteed.</li></ul>
+    <h3>What has and has not been verified</h3>
+    <p id="testReport">Verified: 15 automated graph and episode-runner tests; standalone file:// startup with normal browser web security; zero network requests during simulation; all three scenarios; pause and cancellation; touch selection, pan and zoom; export and inspect-only import; unsafe URL rejection and HTML rendered as text; separate mode state; missing-GPU recovery; 320 px, 390 px and 1280 px layouts, plus light and dark appearance. Wikipedia integration passed with controlled API responses. Both real Wikipedia endpoints responded to an HTTP client, but this environment’s browser could not complete a real Wikipedia request. The test machine supplied no usable WebGPU adapter, so real model loading, generation quality and an end-to-end run on a physical phone remain unverified.</p>
+    <p>Browser-agent’s measured tool-call reliability does not transfer to Tangle’s new decomposition prompts. Small local models may make poor decompositions, repeat themselves, misread evidence or fail to return useful findings. Keep the phone foregrounded; long sessions can consume battery and cause thermal throttling.</p>
+    <h3>Data and privacy</h3>
+    <p>Run state stays in memory until you export it. There is no analytics or automatic upload. Exports contain prompts, source excerpts and responses, so inspect them before sharing. Wikipedia sees requested query terms and your network address. Model hosts see model-download traffic. Live Wikipedia content remains attributed to its article and contributors under the applicable <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA licence</a>.</p>
+    <details><summary>Third-party notices</summary><pre id="licences">THIRD_PARTY_NOTICES</pre></details>
+  </details>
+</main>
+<noscript>This playground needs JavaScript. Open it in a web browser rather than a file-preview app.</noscript>
+<script>/* APP_CODE */</script>
+</body>
+</html>

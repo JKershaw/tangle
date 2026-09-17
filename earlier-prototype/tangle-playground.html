@@ -1,0 +1,119 @@
+<div id="tangle-playground">
+  <h2>Tangle · a question at a time</h2>
+  <div class="viz-controls">
+    <label class="form-label">Simulated run
+      <select class="form-select" id="tg-scenario">
+        <option value="straight">Evidence is enough</option>
+        <option value="revisit" selected>Parent needs another question</option>
+        <option value="blocked">A branch gets blocked</option>
+      </select>
+    </label>
+  </div>
+  <div class="viz-controls">
+    <button class="btn" id="tg-back" type="button">Back</button>
+    <button class="btn btn-primary" id="tg-step" type="button">Next invocation</button>
+    <span class="text-small tabular-nums" id="tg-count"></span>
+  </div>
+  <p id="tg-event" aria-live="polite"></p>
+  <div id="tg-graph" role="group" aria-label="Simulated understanding graph"></div>
+  <div id="tg-detail" class="text-small" aria-live="polite"></div>
+</div>
+<style>
+  #tangle-playground { color:var(--foreground); }
+  #tangle-playground #tg-graph { margin:16px 0; }
+  #tangle-playground .tg-branch { margin-left:14px; padding-left:12px; border-left:1px solid var(--border); }
+  #tangle-playground .tg-node { display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:6px 0; }
+  #tangle-playground .tg-node .tg-label { flex:1; min-width:130px; }
+  #tangle-playground .tg-dot { width:9px; height:9px; border-radius:50%; flex:none; background:var(--muted-foreground); }
+  #tangle-playground .tg-dot.resolved { background:var(--viz-series-1); }
+  #tangle-playground .tg-dot.waiting { background:var(--viz-series-2); }
+  #tangle-playground .tg-dot.blocked { background:var(--viz-series-3); }
+  #tangle-playground #tg-detail { padding-top:12px; border-top:1px solid var(--border); overflow-wrap:anywhere; }
+  #tangle-playground #tg-event { min-height:3em; }
+</style>
+<script>
+(() => {
+  const root = document.getElementById('tangle-playground');
+  const $ = id => root.querySelector('#'+id);
+  const definitions = {
+    n1:{q:'How does Tiny Library work?',parent:null},
+    n2:{q:'What data does it hold?',parent:'n1'},
+    n3:{q:'How are books joined to authors?',parent:'n1'},
+    n4:{q:'What happens when an author is missing?',parent:'n1'}
+  };
+  const evidence = {
+    data:'data.js:1–10 — two authors and three books, including an unmatched author ID',
+    join:'catalogue.js:3–8 — map books; find author by ID; fall back to null',
+    api:'index.js:1 — exports listBooks',
+    missing:'catalogue.js:6 — authors.find(…) ?? null'
+  };
+  let scenario='revisit', history=[], selected='n1';
+  const newNode = id => ({id,...definitions[id],status:'open',visits:0,finding:'',evidence:[],input:'Not invoked yet.'});
+  function initial(){return {nodes:[newNode('n1')],calls:0,event:'Seed created. Only the root question exists.',ended:false};}
+  function node(state,id){return state.nodes.find(n=>n.id===id);}
+  function children(state,id){return state.nodes.filter(n=>n.parent===id);}
+  function runnable(state,n){return n.status==='open'||(n.status==='waiting'&&children(state,n.id).every(c=>c.status==='resolved'));}
+  function next(state){
+    function visit(n){for(const c of children(state,n.id)){const found=visit(c);if(found)return found;}return runnable(state,n)?n:null;}
+    return visit(node(state,'n1'));
+  }
+  function resolve(n,f,refs){n.status='resolved';n.finding=f;n.evidence=refs;}
+  function step(){
+    const state=structuredClone(history[history.length-1]);
+    const n=next(state);if(!n||state.ended)return;
+    const kids=children(state,n.id);
+    n.input=kids.length ? 'Own question + resolved child findings and their evidence: '+kids.map(c=>c.id).join(', ')+'. No sibling or global history.' : 'Own question + read-only fixture repository tools. No parent or sibling answers.';
+    n.visits++;state.calls++;selected=n.id;
+    if(n.id==='n1'&&n.visits===1){
+      n.status='waiting';state.nodes.push(newNode('n2'),newNode('n3'));
+      state.event='n1 decomposes → two child questions. The harness creates them; the parent waits.';
+    }else if(n.id==='n2'){
+      resolve(n,'In-memory arrays contain two authors and three books. One book refers to a missing author.',[evidence.data]);
+      state.event='n2 resolves from a repository read. Its finding is a claim; the file range records what was inspected.';
+    }else if(n.id==='n3'&&scenario==='blocked'){
+      n.status='blocked';n.finding='The simulated repository tool could not read catalogue.js.';
+      state.event='n3 reports blocked. n1 remains unresolved; no runnable nodes remain. Stopped, not successful.';state.ended=true;
+    }else if(n.id==='n3'){
+      resolve(n,'listBooks maps over books and looks up each author by ID.',[evidence.join]);
+      state.event='n3 resolves. Both children are resolved; n1 becomes runnable, but is not automatically resolved.';
+    }else if(n.id==='n1'&&n.visits===2&&scenario==='revisit'){
+      n.status='waiting';state.nodes.push(newNode('n4'));
+      state.event='n1 revisits with child findings → asks about missing authors. This is a scripted extra question, not an automatic rule.';
+    }else if(n.id==='n4'){
+      resolve(n,'When no matching author exists, the returned book has author: null.',[evidence.missing]);
+      state.event='n4 resolves from the inspected fallback expression. n1 is ready for another fresh invocation.';
+    }else{
+      resolve(n,'Tiny Library exports listBooks, joining in-memory book and author records by ID and returning null for missing authors.',[evidence.data,evidence.join,evidence.api]);
+      state.event='n1 resolves after reviewing child findings and inspecting the public export. Root resolved; run ends.';state.ended=true;
+    }
+    history.push(state);render();
+  }
+  function render(){
+    const state=history[history.length-1];
+    $('tg-count').textContent=state.calls+' invocations · '+state.nodes.length+' nodes';
+    $('tg-event').textContent=state.event;
+    $('tg-back').disabled=history.length===1;
+    $('tg-step').disabled=state.ended||!next(state);
+    $('tg-step').textContent=state.ended?'Run stopped':'Next invocation';
+    $('tg-graph').replaceChildren();
+    function draw(n,container){
+      const row=document.createElement('div');row.className='tg-node';
+      const dot=document.createElement('span');dot.className='tg-dot '+n.status;dot.setAttribute('aria-hidden','true');
+      const label=document.createElement('div');label.className='tg-label';
+      const button=document.createElement('button');button.type='button';button.className='btn btn-ghost';
+      button.textContent=n.id+' · '+n.q;button.setAttribute('aria-pressed',String(selected===n.id));
+      button.onclick=()=>{selected=n.id;render();};label.append(button);
+      const status=document.createElement('span');status.className='text-small';status.textContent=n.status+(n.visits>1?' · visit '+n.visits:'');
+      row.append(dot,label,status);container.append(row);
+      const kids=children(state,n.id);if(kids.length){const branch=document.createElement('div');branch.className='tg-branch';container.append(branch);kids.forEach(c=>draw(c,branch));}
+    }
+    draw(node(state,'n1'),$('tg-graph'));
+    const n=node(state,selected)||state.nodes[0];
+    $('tg-detail').textContent=n.id+' · Context: '+n.input+(n.finding?' Finding: '+n.finding:'')+(n.evidence.length?' Inspected evidence: '+n.evidence.join('; ')+'.':'');
+  }
+  $('tg-step').onclick=step;
+  $('tg-back').onclick=()=>{if(history.length>1){history.pop();if(!node(history[history.length-1],selected))selected='n1';render();}};
+  $('tg-scenario').onchange=e=>{scenario=e.target.value;history=[initial()];selected='n1';render();};
+  history=[initial()];render();
+})();
+</script>
