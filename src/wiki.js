@@ -124,8 +124,50 @@ export async function fetchWikipedia(url, options = {}) {
 
 const requestRecord = ({ body, ...rest }) => rest;
 
-// Search, then summarise the top hit. The result is shaped as evidence
-// ({ kind, title, text, url }) plus the request records for the trace.
+// ---- articles ----
+// One request gives an article's plain text, split on its "== Heading ==" lines
+// (index 0 is the lead), plus the revision. Leads are often silent on the actual
+// question — the Dead Sea's never mentions recession, which is section 28 of 31
+// (experiments/2026-09-17-qwen3-1.7b-dead-sea.md) — so the lead excerpt carries
+// the headings and a node can ask for a section by name.
+export const EXTRACT_MAX_BYTES = 262144;
+export const extractUrl = (title) =>
+  `https://${WIKI_HOST}/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=${titlePath(title)}&format=json&origin=*`;
+const SKIPPED_SECTIONS = new Set(["See also", "References", "External links", "Further reading", "Notes", "Bibliography", "Gallery", "Sources", "Citations"]);
+
+// Headings with no text of their own (parents of subsections) are dropped.
+export function splitSections(extract) {
+  const parts = String(extract ?? "").split(/\n+(?==+ [^=\n]+? =+\n)/);
+  return parts
+    .map((part) => {
+      const match = part.match(/^(=+) ([^=\n]+?) =+\n?([\s\S]*)$/);
+      return match ? { heading: match[2].trim(), text: match[3].trim() } : { heading: "", text: part.trim() };
+    })
+    .filter((section) => section.text.length > 0 && !SKIPPED_SECTIONS.has(section.heading));
+}
+
+async function fetchArticle(title, options) {
+  const response = await fetchWikipedia(extractUrl(title), { maxBytes: EXTRACT_MAX_BYTES, ...options });
+  const record = requestRecord(response);
+  if (!response.ok) return { ok: false, kind: "unreachable", message: response.error.message, record };
+  let page;
+  try {
+    page = Object.values(JSON.parse(response.body)?.query?.pages ?? {})[0];
+  } catch {
+    page = null;
+  }
+  if (!page || typeof page.extract !== "string" || !page.extract.trim()) {
+    return { ok: false, kind: "bad_response", message: `Wikipedia's extract API returned no text for "${title}" (HTTP ${response.status}).`, record };
+  }
+  const revision = page.revisions?.[0]?.revid;
+  return { ok: true, title: String(page.title), sections: splitSections(page.extract), revision: Number.isInteger(revision) ? String(revision) : null, record };
+}
+
+const sectionUrl = (title, revision, heading) =>
+  (revision ? revisionUrl(revision) : articleUrl(title)) + (heading ? "#" + encodeURIComponent(heading.replace(/\s+/g, "_")) : "");
+
+// Search, then read the top hit's lead. The result is shaped as evidence
+// ({ kind, title, text, url, headings }) plus the request records for the trace.
 export async function lookupWikipedia(query, options = {}) {
   const term = String(query ?? "").trim();
   const requests = [];
@@ -144,89 +186,68 @@ export async function lookupWikipedia(query, options = {}) {
   if (hits.length === 0) return failure("no_match", `No Wikipedia article matched "${term}".`, { alternatives: [] });
   const title = String(hits[0].title);
   const alternatives = hits.slice(1).map((hit) => String(hit.title));
-  const summary = await fetchWikipedia(summaryUrl(title), options);
-  requests.push(requestRecord(summary));
-  let extract = "";
-  let revision = null;
-  if (summary.ok && summary.status < 400) {
-    try {
-      const parsed = JSON.parse(summary.body);
-      extract = String(parsed?.extract ?? "").trim();
-      revision = typeof parsed?.revision === "string" && /^\d+$/.test(parsed.revision) ? parsed.revision : null;
-    } catch {
-      extract = "";
-    }
-  }
-  const exact = extract !== "";
-  if (!exact) extract = stripHtml(hits[0].snippet);
+  const article = await fetchArticle(title, options);
+  requests.push(article.record);
+  const exact = article.ok;
+  const extract = exact ? article.sections[0]?.text ?? "" : stripHtml(hits[0].snippet);
   if (!extract) return failure("bad_response", `Found the article "${title}" but could not read any text from it.`, { title, alternatives });
+  const name = exact ? article.title : title;
   return {
     ok: true,
     tool: "wiki",
     kind: "wiki",
     query: term,
-    title,
-    article: title,
+    title: name,
+    article: name,
     section: 0,
+    headings: exact ? article.sections.slice(1).map((section) => section.heading) : [],
     text: extract.slice(0, EXTRACT_LIMIT),
     exact,
     alternatives,
-    revision,
-    url: revision ? revisionUrl(revision) : articleUrl(title),
+    revision: exact ? article.revision : null,
+    url: exact ? sectionUrl(name, article.revision, "") : articleUrl(title),
     requests,
   };
 }
 
-// ---- reading on ----
-// A lookup returns an article's lead, and the lead is often silent on the
-// actual question (the Dead Sea's two-sentence lead never mentions recession;
-// experiments/2026-09-17-qwen3-1.7b-dead-sea.md). When a node asks again for an
-// article it already has, the episode runner reads the next section instead.
-export const EXTRACT_MAX_BYTES = 262144;
-export const extractUrl = (title) =>
-  `https://${WIKI_HOST}/w/api.php?action=query&prop=extracts&explaintext=1&redirects=1&titles=${titlePath(title)}&format=json&origin=*`;
-const SKIPPED_SECTIONS = new Set(["See also", "References", "External links", "Further reading", "Notes", "Bibliography", "Gallery", "Sources", "Citations"]);
-
-// Split a plain-text extract on its "== Heading ==" lines; index 0 is the lead.
-// Headings with no text of their own (parents of subsections) are dropped.
-export function splitSections(extract) {
-  const parts = String(extract ?? "").split(/\n+(?==+ [^=\n]+? =+\n)/);
-  return parts
-    .map((part) => {
-      const match = part.match(/^(=+) ([^=\n]+?) =+\n?([\s\S]*)$/);
-      return match ? { heading: match[2].trim(), text: match[3].trim() } : { heading: "", text: part.trim() };
-    })
-    .filter((section) => section.text.length > 0 && !SKIPPED_SECTIONS.has(section.heading));
-}
-
-export async function readWikipediaSection(title, index, options = {}) {
+// Read one section of an article, by index (0 = lead) or by heading.
+export async function readWikipediaSection(title, which, options = {}) {
   const requests = [];
   const failure = (kind, message) => ({ ok: false, tool: "wiki", query: title, error: { kind, message }, requests });
-  const response = await fetchWikipedia(extractUrl(title), { maxBytes: EXTRACT_MAX_BYTES, ...options });
-  requests.push(requestRecord(response));
-  if (!response.ok) return failure("unreachable", response.error.message);
-  let page;
-  try {
-    page = Object.values(JSON.parse(response.body)?.query?.pages ?? {})[0];
-  } catch {
-    page = null;
+  const article = await fetchArticle(title, options);
+  requests.push(article.record);
+  if (!article.ok) return failure(article.kind, article.message);
+  const headings = article.sections.map((section) => section.heading);
+  const wanted = String(which ?? "").trim().toLowerCase();
+  const index =
+    typeof which === "number"
+      ? which
+      : Math.max(
+          headings.findIndex((heading) => heading.toLowerCase() === wanted),
+          headings.findIndex((heading) => heading && heading.toLowerCase().includes(wanted)),
+        );
+  const section = article.sections[index];
+  if (!section) {
+    return failure(
+      "no_match",
+      typeof which === "number"
+        ? `All ${article.sections.length} sections of "${article.title}" have been read. Try a different term or decompose.`
+        : `"${article.title}" has no section "${which}". Its sections: ${headings.filter(Boolean).join(", ")}.`,
+    );
   }
-  if (!page || typeof page.extract !== "string") return failure("bad_response", `Wikipedia's extract API returned no text for "${title}" (HTTP ${response.status}).`);
-  const sections = splitSections(page.extract);
-  const section = sections[index];
-  if (!section) return failure("no_match", `All ${sections.length} sections of "${page.title}" have been read. Try a different term or decompose.`);
-  const anchor = section.heading.replace(/\s+/g, "_");
   return {
     ok: true,
     tool: "wiki",
     kind: "wiki",
     query: title,
-    title: section.heading ? `${page.title} § ${section.heading}` : String(page.title),
-    article: String(page.title),
+    title: section.heading ? `${article.title} § ${section.heading}` : article.title,
+    article: article.title,
     section: index,
-    sections: sections.length,
+    sections: article.sections.length,
     text: section.text.slice(0, EXTRACT_LIMIT),
-    url: section.heading ? `${articleUrl(page.title)}#${encodeURIComponent(anchor)}` : articleUrl(page.title),
+    exact: true,
+    revision: article.revision,
+    url: sectionUrl(article.title, article.revision, section.heading),
     requests,
   };
 }

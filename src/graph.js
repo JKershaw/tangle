@@ -113,7 +113,7 @@ export function buildContext(run, node, { lookupsRemaining = null } = {}) {
     .filter(Boolean)
     // Excerpts carry a positional label as well as their ID: live mode cites by
     // label so the response grammar is the same for every node (see webllm.js).
-    .map((record, index) => ({ id: record.id, label: String(index + 1), title: record.title, text: record.text.slice(0, EXCERPT_LIMIT), kind: record.kind }));
+    .map((record, index) => ({ id: record.id, label: String(index + 1), title: record.title, text: record.text.slice(0, EXCERPT_LIMIT), kind: record.kind, ...(record.headings?.length ? { sections: record.headings } : {}) }));
   const context = {
     question: node.question,
     children: childSummaries,

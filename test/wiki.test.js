@@ -34,10 +34,10 @@ test("requests carry no credentials, follow no redirects, and are bounded by a b
   assert.equal(calls[0].init.referrerPolicy, "no-referrer");
 });
 
-test("a lookup searches, summarises the top hit, and pins the evidence URL to the revision", async () => {
+test("a lookup searches, reads the top hit's lead and headings, and pins the evidence URL to the revision", async () => {
   const { fetchImpl, calls } = fakeFetch([
     ["list=search", () => jsonResponse({ query: { search: [{ title: "Water cycle", snippet: "The <b>water</b> cycle" }, { title: "Rain" }] } })],
-    ["page/summary", () => jsonResponse({ extract: "The water cycle describes movement of water.", revision: "12345" })],
+    ["prop=extracts", () => jsonResponse({ query: { pages: { 1: { title: "Water cycle", extract: "The water cycle describes movement of water.\n\n== Processes ==\nEvaporation.\n\n== References ==\nx", revisions: [{ revid: 12345 }] } } } })],
   ]);
   const result = await lookupWikipedia("water cycle", { fetchImpl });
   assert.equal(result.ok, true);
@@ -47,15 +47,17 @@ test("a lookup searches, summarises the top hit, and pins the evidence URL to th
   assert.equal(result.text, "The water cycle describes movement of water.");
   assert.equal(result.url, "https://en.wikipedia.org/w/index.php?oldid=12345");
   assert.deepEqual(result.alternatives, ["Rain"]);
-  assert.equal(calls[1].url, summaryUrl("Water cycle"));
+  assert.equal(calls[1].url, extractUrl("Water cycle"));
+  assert.deepEqual(result.headings, ["Processes"]);
+  assert.deepEqual([result.article, result.section], ["Water cycle", 0]);
   assert.equal(result.requests.length, 2);
   assert.ok(!("body" in result.requests[0]), "request records omit bodies to keep exports small");
 });
 
-test("a missing summary falls back to the search snippet, and no hits is a no_match", async () => {
+test("a missing article text falls back to the search snippet, and no hits is a no_match", async () => {
   const { fetchImpl } = fakeFetch([
     ["list=search", () => jsonResponse({ query: { search: [{ title: "Rain", snippet: "Rain is <span>liquid</span> water &amp; more" }] } })],
-    ["page/summary", () => jsonResponse({ type: "not_found" }, 404)],
+    ["prop=extracts", () => jsonResponse({ query: { pages: { "-1": { title: "Rain", missing: "" } } } })],
   ]);
   const fallback = await lookupWikipedia("rain", { fetchImpl });
   assert.equal(fallback.ok, true);
@@ -97,4 +99,18 @@ test("reading on returns one section of the plain-text extract, skipping referen
   const beyond = await readWikipediaSection("Dead Sea", 4, { fetchImpl });
   assert.equal(beyond.ok, false);
   assert.match(beyond.error.message, /All 4 sections of "Dead Sea" have been read/);
+});
+
+test("a section can be read by heading, case-insensitively, and an unknown heading lists the sections", async () => {
+  const extract = "Lead.\n\n== Geography ==\nRift valley.\n\n== Receding shoreline ==\nDiversion of the Jordan.";
+  const { fetchImpl } = fakeFetch([["prop=extracts", () => jsonResponse({ query: { pages: { 1: { title: "Dead Sea", extract, revisions: [{ revid: 99 }] } } } })]]);
+  const byName = await readWikipediaSection("Dead Sea", "receding shoreline", { fetchImpl });
+  assert.equal(byName.title, "Dead Sea § Receding shoreline");
+  assert.equal(byName.text, "Diversion of the Jordan.");
+  assert.equal(byName.url, "https://en.wikipedia.org/w/index.php?oldid=99#Receding_shoreline");
+  const partial = await readWikipediaSection("Dead Sea", "shoreline", { fetchImpl });
+  assert.equal(partial.section, 2);
+  const unknown = await readWikipediaSection("Dead Sea", "Economy", { fetchImpl });
+  assert.equal(unknown.ok, false);
+  assert.match(unknown.error.message, /has no section "Economy"\. Its sections: Geography, Receding shoreline\./);
 });

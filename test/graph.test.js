@@ -159,3 +159,12 @@ test("excerpts in the context are labelled 1 to 5 in order, beside their IDs", (
   const context = buildContext(run, run.nodes[0]);
   assert.deepEqual(context.evidence.map((excerpt) => [excerpt.label, excerpt.id]), [["1", "e2"], ["2", "e3"], ["3", "e4"], ["4", "e5"], ["5", "e6"]]);
 });
+
+test("a lead excerpt in the context lists the article's sections", () => {
+  const run = createRun("Root");
+  captureEvidence(run, "n1", { kind: "wiki", title: "Dead Sea", text: "lead", headings: ["Geography", "Receding shoreline"] });
+  captureEvidence(run, "n1", { kind: "wiki", title: "Dead Sea § Geography", text: "rift", article: "Dead Sea", section: 1 });
+  const [lead, section] = buildContext(run, run.nodes[0]).evidence;
+  assert.deepEqual(lead.sections, ["Geography", "Receding shoreline"]);
+  assert.equal("sections" in section, false);
+});

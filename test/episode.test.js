@@ -193,3 +193,19 @@ test("asking again for an article already in the context reads its next section"
   assert.deepEqual(run.nodes[0].evidence, ["e1", "e2"]);
   assert.equal(run.trace.filter((event) => event.event === "tool_result").length, 2);
 });
+
+test("a 'Title / Section' query reads that section of an article already in the context", async () => {
+  const run = createRun("Root", "live");
+  const wikiCalls = [];
+  const wiki = async (query, { readOn } = {}) => {
+    wikiCalls.push([query, readOn ?? null]);
+    if (!readOn) return { ok: true, kind: "wiki", title: "Dead Sea", article: "Dead Sea", section: 0, text: "lead", headings: ["Geography", "Receding shoreline"] };
+    return { ok: true, kind: "wiki", title: "Dead Sea § " + readOn.section, article: "Dead Sea", section: 2, text: "diversion" };
+  };
+  const generate = scriptedGenerate([{ action: "wiki", query: "Dead Sea" }, { action: "wiki", query: "Dead Sea / Receding shoreline" }, { action: "resolved", finding: "F", evidence: ["2"] }]);
+  assert.equal(await runEpisode(run, { generate, wiki }), true);
+  assert.deepEqual(wikiCalls, [["Dead Sea", null], ["Dead Sea / Receding shoreline", { article: "Dead Sea", section: "Receding shoreline" }]]);
+  assert.deepEqual(run.nodes[0].evidence, ["e2"]);
+  const context = run.trace.filter((event) => event.event === "model_input")[1].context;
+  assert.deepEqual(context.evidence[0].sections, ["Geography", "Receding shoreline"]);
+});
