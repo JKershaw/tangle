@@ -99,7 +99,17 @@ Models available in the page, all Qwen3 at 4-bit: 0.6B (~0.4 GB download, runs o
 
 ## Where it stands
 
-Verified: the graph and episode logic under test; all three simulation scenarios in a real browser; export and re-import; the Pages deploy. Live mode with a real model was first exercised on 17 September 2026 — earlier builds were developed on machines without WebGPU and had never run it. Results, including the strange ones, go in `experiments/` as they happen.
+Verified: the graph and episode logic under test; all three simulation scenarios in a real browser; export and re-import; the Pages deploy. Live mode with a real model was first exercised on 17 September 2026 — earlier builds were developed on machines without WebGPU and had never run it.
+
+The first day of live runs (all in `experiments/`, raw model output quoted) reshaped the harness. In order:
+
+- A flat response schema let Qwen3 0.6B answer `decompose` with its questions written as prose in `reason`. The grammar is now one variant per action.
+- Given no evidence, it chose `resolved` and wrote its own evidence sentences. Now `resolved` exists in the grammar only when the context holds excerpts, and the citation enum is exactly the labels shown.
+- It decomposed to the depth ceiling, re-asking its own question, and never searched. The ceilings (depth, node count, lookups) are now part of the context and the grammar, so a ceiling is a choice the model can see rather than a rejection it cannot.
+- Every distinct schema costs about 22 s to compile in WebLLM; enumerating real evidence IDs made nearly every call a fresh compile. Excerpts are cited by positional label so a session compiles at most ten grammars.
+- Neither 0.6B nor 1.7B connected `wiki` with the arrival of evidence until the prompt said so plainly. 1.7B then found the right article at once — and re-read it nine times without resolving; 0.6B resolved the water-cycle seed from one article and, on "Why is the Dead Sea shrinking?", searched for the whole question, found the *Aral Sea*, and resolved with a fully cited finding about the wrong lake.
+
+What that last run shows is the current frontier: the evidence rule is necessary and not sufficient. A finding can rest entirely on its excerpts and still answer the wrong question. Open next: reading beyond an article's lead section (the models keep asking for the same article because 700 characters is not enough), search queries from the smallest model, and whether a parent should be revisited once its children are settled rather than all resolved.
 
 Small models will decompose badly, repeat themselves, misread evidence and resolve too early. Keep the exports; that is the experiment.
 
