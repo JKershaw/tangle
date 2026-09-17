@@ -7,6 +7,7 @@ import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { validateImport } from "../src/graph.js";
+import { extractUrl, searchUrl } from "../src/wiki.js";
 
 const PAGE = new URL("../docs/index.html", import.meta.url);
 
@@ -71,6 +72,48 @@ test("the built page runs the revisit simulation to a resolved root and exports 
     assert.equal(await page.locator('.graph-node[data-status="blocked"]').count(), 1);
 
     assert.deepEqual(requests, [], "the simulation must make no network requests");
+    assert.deepEqual(errors, []);
+  } finally {
+    await browser.close();
+  }
+});
+
+test("the driver hooks: a live run with custom limits, and Wikipedia served from a loaded recording without the network", { timeout: 120000 }, async (t) => {
+  if (!existsSync(PAGE)) return t.skip("docs/index.html not built");
+  const browser = await launch();
+  if (!browser) return t.skip("no Chromium available");
+  try {
+    const page = await browser.newPage({ viewport: { width: 1200, height: 900 } });
+    const errors = [];
+    page.on("pageerror", (error) => errors.push(String(error)));
+    page.on("dialog", (dialog) => dialog.accept());
+    const requests = [];
+    page.on("request", (request) => !request.url().startsWith("file:") && requests.push(request.url()));
+    await page.goto(pathToFileURL(PAGE.pathname).href);
+
+    // The flat baseline is a limits preset on a live run.
+    const limits = await page.evaluate(() => window.__tangle.newLive("Why is the Dead Sea shrinking?", { maxDepth: 0, maxLookups: 6, maxPasses: 8 }));
+    assert.deepEqual(limits, { maxNodes: 40, maxVisits: 60, maxDepth: 0, maxLookups: 6, maxPasses: 8 });
+    assert.deepEqual(await page.evaluate(() => [window.__tangle.current().mode, window.__tangle.current().seed]), ["live", "Why is the Dead Sea shrinking?"]);
+    assert.equal(await page.locator("#liveMode").getAttribute("aria-pressed"), "true");
+
+    // A recording loaded through the hook answers the wiki test without touching the network.
+    const search = JSON.stringify({ query: { search: [{ title: "Water cycle", snippet: "The <span>water cycle</span>" }] } });
+    const extract = JSON.stringify({ query: { pages: { 1: { title: "Water cycle", extract: "The water cycle is driven by the sun.\n\n== Processes ==\nEvaporation and precipitation.", revisions: [{ revid: 123 }] } } } });
+    const loaded = await page.evaluate(
+      ([search, extract, searchUrl, extractUrl]) => window.__tangle.wiki.load([{ url: searchUrl, status: 200, body: search }, { url: extractUrl, status: 200, body: extract }]),
+      [search, extract, searchUrl("Water cycle"), extractUrl("Water cycle")],
+    );
+    assert.equal(loaded, 2);
+    await page.click("#testWiki");
+    await page.waitForFunction(() => /Water cycle|failed|not complete/.test(document.getElementById("wikiTestStatus").textContent), null, { timeout: 20000 });
+    assert.match(await page.locator("#wikiTestStatus").innerText(), /Water cycle/);
+    assert.deepEqual(await page.evaluate(() => window.__tangle.wiki.stats()), { hits: 2, misses: 0, entries: 2 });
+    assert.equal((await page.evaluate(() => window.__tangle.wiki.dump())).length, 2);
+    assert.deepEqual(requests.filter((url) => url.includes("wikipedia")), [], "the recording must answer every Wikipedia request");
+
+    // Model calls need a loaded model; the hook says so rather than hanging.
+    await assert.rejects(page.evaluate(() => window.__tangle.visit({ question: "Q?", children: [], evidence: [] })), /Load a model first/);
     assert.deepEqual(errors, []);
   } finally {
     await browser.close();

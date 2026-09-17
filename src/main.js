@@ -3,7 +3,7 @@
 
 import * as webllm from "@mlc-ai/web-llm";
 import { clone, createRun, nextRunnable, outcomeLabel, trace, validateImport, buildContext, VERSION } from "./graph.js";
-import { runEpisode } from "./episode.js";
+import { buildMessages, runEpisode } from "./episode.js";
 import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
 import { lookupWikipedia, readWikipediaSection } from "./wiki.js";
 import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, createSectionChooser, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
@@ -244,8 +244,28 @@ async function approveLookup(query, signal) {
 $("allow").onclick = () => approvalResolver?.(true);
 $("deny").onclick = () => approvalResolver?.(false);
 
+// ---- Wikipedia record and replay ----
+// Evals want the same articles every time (PLAN.md): the driver can load a
+// recording before a run and dump what the run fetched afterwards. A miss
+// still goes to Wikipedia, so a model that asks for something new is not
+// punished for it; only successful responses are kept.
+const wikiCache = new Map();
+const wikiStats = { hits: 0, misses: 0 };
+async function cachedFetch(url, init) {
+  const hit = wikiCache.get(url);
+  if (hit) {
+    wikiStats.hits++;
+    return new Response(hit.body, { status: hit.status, headers: { "content-type": "application/json; charset=utf-8" } });
+  }
+  const response = await fetch(url, init);
+  wikiStats.misses++;
+  if (response.ok) wikiCache.set(url, { url, status: response.status, body: await response.clone().text(), fetchedAt: new Date().toISOString() });
+  return response;
+}
+
 async function liveWiki(query, { signal, readOn }) {
-  const result = readOn ? await readWikipediaSection(readOn.article, readOn.section, { signal }) : await lookupWikipedia(query, { signal });
+  const options = { signal, fetchImpl: cachedFetch };
+  const result = readOn ? await readWikipediaSection(readOn.article, readOn.section, options) : await lookupWikipedia(query, options);
   if (!result.ok && result.error?.kind === "unreachable") {
     return {
       ...result,
@@ -507,6 +527,15 @@ window.addEventListener("beforeunload", (event) => {
 });
 
 // Exposed for browser-level tests and the scripts/live-run.mjs driver only.
+// Hooks for the driver scripts (scripts/live-run.mjs, scripts/eval.mjs). They
+// do what the buttons do, plus three things the buttons cannot: start a live
+// run with custom limits (the flat baseline), run one model call on a recorded
+// context (a micro-eval), and load or dump the Wikipedia recording.
+const timed = async (work) => {
+  const started = performance.now();
+  const output = await work();
+  return { ...output, latencyMs: Math.round(performance.now() - started) };
+};
 window.__tangle = {
   current,
   step,
@@ -515,5 +544,34 @@ window.__tangle = {
   runnable: () => !!nextRunnable(current()),
   outcome: () => outcomeLabel(current()),
   loadedModel: () => loadedModel,
+  newLive: (seed, limits = {}) => {
+    if (locked()) throw new Error("Busy.");
+    mode = "live";
+    imported = null;
+    runs.live = createRun(seed, "live", limits);
+    resetView();
+    map.scale = 1;
+    render();
+    return clone(runs.live.limits);
+  },
+  visit: async (context) => {
+    if (!loadedModel) throw new Error("Load a model first.");
+    if (locked()) throw new Error("Busy.");
+    const messages = buildMessages(context);
+    return timed(async () => ({ ...(await createLiveGenerator(adapter)(messages, { context })), messages }));
+  },
+  pick: async (request) => {
+    if (!loadedModel) throw new Error("Load a model first.");
+    if (locked()) throw new Error("Busy.");
+    return timed(() => createSectionChooser(adapter)(request));
+  },
+  wiki: {
+    load: (entries) => {
+      for (const entry of entries) wikiCache.set(entry.url, entry);
+      return wikiCache.size;
+    },
+    dump: () => [...wikiCache.values()],
+    stats: () => ({ ...wikiStats, entries: wikiCache.size }),
+  },
 };
 render();
