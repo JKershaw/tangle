@@ -85,3 +85,15 @@ test("probeDevice reports missing WebGPU without throwing", async () => {
   assert.equal(granted.webgpu, true);
   assert.equal(granted.lowMemory, false);
 });
+
+test("the response schema makes every action carry its payload", () => {
+  const variants = Object.fromEntries(RESPONSE_SCHEMA.anyOf.map((variant) => [variant.properties.action.const, variant]));
+  assert.deepEqual(Object.keys(variants).sort(), ["blocked", "decompose", "resolved", "wiki"]);
+  assert.deepEqual(variants.decompose.required, ["action", "questions"]);
+  assert.equal(variants.decompose.properties.questions.minItems, 1);
+  assert.equal(variants.decompose.properties.questions.maxItems, 3);
+  assert.deepEqual(variants.resolved.required, ["action", "finding", "evidence"]);
+  assert.deepEqual(variants.wiki.required, ["action", "query"]);
+  assert.deepEqual(variants.blocked.required, ["action", "reason"]);
+  for (const variant of Object.values(variants)) assert.equal(variant.additionalProperties, false);
+});

@@ -24,18 +24,20 @@ export const downloadBytes = (modelId) => MODELS.find((model) => model.id === mo
 
 // Grammar-constrained decoding: the model can only emit an object of this shape.
 // The harness validator still decides whether the content is acceptable.
+export const RESPONSE_SCHEMA_VERSION = "per-action-1";
+// One variant per action, so the grammar itself makes decompose carry 1–3
+// questions and resolved carry a finding plus evidence IDs. The first live run
+// (experiments/2026-09-17-qwen3-0.6b-water-cycle) chose decompose three times and
+// put the questions in `reason` because a flat schema only required `action`.
+const variant = (action, properties, required) =>
+  Object.freeze({ type: "object", properties: { action: { const: action }, ...properties }, required: ["action", ...required], additionalProperties: false });
 export const RESPONSE_SCHEMA = Object.freeze({
-  type: "object",
-  properties: {
-    action: { type: "string", enum: ["wiki", "decompose", "resolved", "blocked"] },
-    query: { type: "string" },
-    questions: { type: "array", items: { type: "string" } },
-    finding: { type: "string" },
-    evidence: { type: "array", items: { type: "string" } },
-    reason: { type: "string" },
-  },
-  required: ["action"],
-  additionalProperties: false,
+  anyOf: [
+    variant("wiki", { query: { type: "string", minLength: 1, maxLength: 180 } }, ["query"]),
+    variant("decompose", { questions: { type: "array", items: { type: "string", minLength: 1, maxLength: 300 }, minItems: 1, maxItems: 3 } }, ["questions"]),
+    variant("resolved", { finding: { type: "string", minLength: 1, maxLength: 1400 }, evidence: { type: "array", items: { type: "string" }, minItems: 1, maxItems: 8 } }, ["finding", "evidence"]),
+    variant("blocked", { reason: { type: "string", minLength: 1, maxLength: 1000 } }, ["reason"]),
+  ],
 });
 
 export async function probeDevice(navigator = globalThis.navigator) {
