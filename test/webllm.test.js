@@ -140,3 +140,36 @@ test("the section chooser asks with an enum-of-headings grammar", async () => {
   assert.deepEqual(JSON.parse(requests[0].messages[1].content), { question: "Q", article: "Dead Sea", sections: ["Names", "Geography"] });
   assert.equal(requests[0].options.seed, 1);
 });
+
+test("the adapter bounds the whitespace XGrammar allows between JSON elements, even though WebLLM creates the compiler lazily", async () => {
+  const { boundJsonWhitespace, MAX_JSON_WHITESPACE } = await import("../src/webllm.js");
+  const calls = [];
+  const pipeline = { grammarCompiler: undefined };
+  assert.equal(boundJsonWhitespace(pipeline), true);
+  // WebLLM assigns the compiler on the first grammar-constrained call.
+  pipeline.grammarCompiler = { compileJSONSchema: async (...args) => calls.push(args) && "compiled" };
+  assert.equal(await pipeline.grammarCompiler.compileJSONSchema('{"type":"object"}'), "compiled");
+  assert.deepEqual(calls, [['{"type":"object"}', true, 2, undefined, true, MAX_JSON_WHITESPACE]]);
+  // Explicit arguments still win, and wrapping is idempotent.
+  await pipeline.grammarCompiler.compileJSONSchema("{}", false, -1, undefined, true, 3);
+  assert.deepEqual(calls[1], ["{}", false, -1, undefined, true, 3]);
+  const compiler = pipeline.grammarCompiler;
+  pipeline.grammarCompiler = compiler;
+  assert.equal(pipeline.grammarCompiler.boundedWhitespace, MAX_JSON_WHITESPACE);
+  assert.equal(boundJsonWhitespace(null), false);
+
+  // Through the adapter: the loaded engine's pipeline gets the bound.
+  const { webllm } = fakeWebllm();
+  const pipelines = new Map();
+  class EngineWithPipeline extends webllm.MLCEngine {
+    loadedModelIdToPipeline = pipelines;
+    async reload(id, options) {
+      pipelines.set(id, { grammarCompiler: undefined });
+      return super.reload(id, options);
+    }
+  }
+  const adapter = createEngineAdapter({ ...webllm, MLCEngine: EngineWithPipeline });
+  await adapter.load("Qwen3-0.6B-q4f16_1-MLC");
+  pipelines.get("Qwen3-0.6B-q4f16_1-MLC").grammarCompiler = { compileJSONSchema: async (...args) => args };
+  assert.equal((await pipelines.get("Qwen3-0.6B-q4f16_1-MLC").grammarCompiler.compileJSONSchema("{}")).at(-1), MAX_JSON_WHITESPACE);
+});

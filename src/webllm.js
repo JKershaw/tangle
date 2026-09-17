@@ -24,7 +24,7 @@ export const downloadBytes = (modelId) => MODELS.find((model) => model.id === mo
 
 // Grammar-constrained decoding: the model can only emit an object of this shape.
 // The harness validator still decides whether the content is acceptable.
-export const RESPONSE_SCHEMA_VERSION = "per-action-6";
+export const RESPONSE_SCHEMA_VERSION = "per-action-7";
 // Excerpts are cited by positional label, not ID. web-llm compiles a new grammar
 // for every distinct schema at ~22 s each (a token mask over Qwen's 151k-token
 // vocabulary, in wasm; experiments/2026-09-17-qwen3-0.6b-water-cycle-4), so an
@@ -173,6 +173,39 @@ export async function probeEnvironment() {
 
 // webllm: the module namespace (MLCEngine, prebuiltAppConfig, hasModelInCache, deleteModelAllInfoInCache).
 // options.cacheBackend is read on every call so the UI can set it after probing.
+// XGrammar can bound the whitespace it permits between JSON elements, but
+// WebLLM compiles every schema with the unlimited default. Twice a model has
+// finished a finding and then emitted whitespace to the token cap, so the
+// JSON never closed (experiments/2026-09-17-qwen3-1.7b-dead-sea-2 seq 629;
+// 0.6B on the same context in evals/results). The compiler is created lazily
+// inside the model's pipeline, so it is wrapped at the moment it is assigned.
+// Pretty-printed JSON needs a newline plus indentation between elements;
+// eight characters covers two levels and leaves no room for a runaway.
+export const MAX_JSON_WHITESPACE = 8;
+export function boundJsonWhitespace(pipeline, limit = MAX_JSON_WHITESPACE) {
+  if (!pipeline || typeof pipeline !== "object") return false;
+  let compiler = pipeline.grammarCompiler;
+  const wrap = (value) => {
+    if (value && typeof value.compileJSONSchema === "function" && !value.boundedWhitespace) {
+      const original = value.compileJSONSchema.bind(value);
+      value.compileJSONSchema = (schema, anyWhitespace = true, indent = 2, separators, strictMode = true, maxWhitespaceCnt = limit) =>
+        original(schema, anyWhitespace, indent, separators, strictMode, maxWhitespaceCnt);
+      value.boundedWhitespace = limit;
+    }
+    return value;
+  };
+  Object.defineProperty(pipeline, "grammarCompiler", {
+    configurable: true,
+    enumerable: true,
+    get: () => compiler,
+    set: (value) => {
+      compiler = wrap(value);
+    },
+  });
+  if (compiler) pipeline.grammarCompiler = compiler;
+  return true;
+}
+
 export function createEngineAdapter(webllm, options = {}) {
   let engine = null;
   let modelId = null;
@@ -216,6 +249,7 @@ export function createEngineAdapter(webllm, options = {}) {
         await candidate.unload().catch(() => {});
         throw error;
       }
+      boundJsonWhitespace(candidate.loadedModelIdToPipeline?.get?.(id));
       engine = candidate;
       modelId = id;
       lastUsage = null;
