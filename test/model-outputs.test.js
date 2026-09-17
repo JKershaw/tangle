@@ -90,11 +90,11 @@ test("degenerate output: a finding followed by whitespace to the token cap does 
   assert.throws(() => parseModelOutput(fixture.raw), SyntaxError);
 });
 
-test("malformed question: three questions in one child string are currently accepted (documented gap)", () => {
+test("malformed question: three questions in one child string are rejected by the validator", () => {
   const { run, node, ids, result } = situation(fixtures["decompose-three-questions-in-one-string"]);
   assert.equal(result.questions.length, 1);
   assert.equal((result.questions[0].match(/\?/g) || []).length, 3);
-  assert.doesNotThrow(() => validateResult(run, node, result, ids));
+  assert.throws(() => validateResult(run, node, result, ids), /One question per child/);
 });
 
 for (const [name, expectFlag] of [["resolved-aral-sea-cited-to-dead-sea", true], ["resolved-correct-but-unsupported", true], ["resolved-correct-and-supported", false]]) {

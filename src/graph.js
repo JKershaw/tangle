@@ -156,6 +156,12 @@ export function validateResult(run, node, result, visibleEvidenceIds) {
       "Propose 1–3 questions.",
     );
     assert(result.questions.every((question) => isText(question, 300)), "Each question must be 1–300 characters.");
+    // One question per child: 1.7B once proposed "Why is the Dead Sea shrinking? Why is
+    // the Dead Sea's surface level decreasing? What factors …" as a single child.
+    assert(
+      result.questions.every((question) => (question.match(/\?/g) || []).length <= 1),
+      "One question per child; split multiple questions into separate children.",
+    );
     assert(node.depth < run.limits.maxDepth, "Depth safety limit reached. The node remains unresolved.");
     assert(
       run.nodes.length + result.questions.length <= run.limits.maxNodes,
