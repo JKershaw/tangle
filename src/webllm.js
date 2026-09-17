@@ -24,7 +24,7 @@ export const downloadBytes = (modelId) => MODELS.find((model) => model.id === mo
 
 // Grammar-constrained decoding: the model can only emit an object of this shape.
 // The harness validator still decides whether the content is acceptable.
-export const RESPONSE_SCHEMA_VERSION = "per-action-5";
+export const RESPONSE_SCHEMA_VERSION = "per-action-6";
 // Excerpts are cited by positional label, not ID. web-llm compiles a new grammar
 // for every distinct schema at ~22 s each (a token mask over Qwen's 151k-token
 // vocabulary, in wasm; experiments/2026-09-17-qwen3-0.6b-water-cycle-4), so an
@@ -42,11 +42,13 @@ export const EVIDENCE_LABELS = Object.freeze(["1", "2", "3", "4", "5"]);
 // answer from memory with evidence it wrote itself.
 const variant = (action, properties, required) =>
   Object.freeze({ type: "object", properties: { action: { const: action }, ...properties }, required: ["action", ...required], additionalProperties: false });
-export function responseSchema(evidenceIds = [], questionsAllowed = 3) {
+export function responseSchema(evidenceIds = [], questionsAllowed = 3, lookupsRemaining = null) {
   const ids = [...new Set(evidenceIds)];
   return Object.freeze({
     anyOf: [
-      variant("wiki", { query: { type: "string", minLength: 1, maxLength: 180 } }, ["query"]),
+      // No wiki variant once the visit's lookups are spent: 1.7B kept searching
+      // at lookupsRemaining 0 and the validator had to stop the run.
+      ...(lookupsRemaining === null || lookupsRemaining > 0 ? [variant("wiki", { query: { type: "string", minLength: 1, maxLength: 180 } }, ["query"])] : []),
       ...(questionsAllowed > 0
         ? [variant("decompose", { questions: { type: "array", items: { type: "string", minLength: 1, maxLength: 300 }, minItems: 1, maxItems: questionsAllowed } }, ["questions"])]
         : []),
@@ -286,7 +288,7 @@ export function createEngineAdapter(webllm, options = {}) {
 // The generate driver the episode runner calls in live mode: one bounded action.
 export function createLiveGenerator(adapter, sampling = SAMPLING) {
   return async (messages, { signal, context } = {}) => {
-    const schema = responseSchema((context?.evidence ?? []).map((excerpt) => excerpt.id), context?.questionsAllowed ?? 3);
+    const schema = responseSchema((context?.evidence ?? []).map((excerpt) => excerpt.id), context?.questionsAllowed ?? 3, context?.lookupsRemaining ?? null);
     const timer = setTimeout(() => adapter.interrupt(), GENERATION_TIMEOUT_MS);
     const started = performance.now();
     try {

@@ -119,3 +119,14 @@ test("the grammar drops decompose when no questions may be proposed and caps it 
   const generate = createLiveGenerator({ generate: async (m, o) => { requests.push(o); return { text: "{}" }; }, interrupt() {} });
   return generate([], { context: { evidence: [], questionsAllowed: 0 } }).then(() => assert.deepEqual(actions(requests[0].schema), ["wiki", "blocked"]));
 });
+
+test("the grammar drops wiki once the visit's lookups are spent", async () => {
+  const actions = (schema) => schema.anyOf.map((v) => v.properties.action.const);
+  assert.deepEqual(actions(responseSchema(["e1"], 3, 0)), ["decompose", "resolved", "blocked"]);
+  assert.deepEqual(actions(responseSchema([], 3, 2)), ["wiki", "decompose", "blocked"]);
+  assert.deepEqual(actions(responseSchema([], 3)), ["wiki", "decompose", "blocked"], "unknown means allowed");
+  const requests = [];
+  const generate = createLiveGenerator({ generate: async (m, o) => { requests.push(o); return { text: "{}" }; }, interrupt() {} });
+  await generate([], { context: { evidence: [{ id: "e1" }], questionsAllowed: 0, lookupsRemaining: 0 } });
+  assert.deepEqual(actions(requests[0].schema), ["resolved", "blocked"]);
+});
