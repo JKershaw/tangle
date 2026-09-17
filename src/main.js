@@ -6,7 +6,7 @@ import { clone, createRun, nextRunnable, outcomeLabel, trace, validateImport, bu
 import { runEpisode } from "./episode.js";
 import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
 import { lookupWikipedia } from "./wiki.js";
-import { MODELS, RUNTIME, createEngineAdapter, createLiveGenerator, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
+import { MODELS, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
 import { GraphMap } from "./map.js";
 
 const $ = (id) => document.getElementById(id);
@@ -280,6 +280,7 @@ async function step() {
   if (run.mode === "live") {
     run.model = loadedModel;
     run.runtime = RUNTIME;
+    run.sampling = { ...SAMPLING };
   }
   render();
   const ok = await runEpisode(run, {

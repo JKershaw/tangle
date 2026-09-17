@@ -8,6 +8,9 @@ export const RUNTIME = "@mlc-ai/web-llm@0.2.84";
 export const CONTEXT_WINDOW = 4096;
 export const GENERATION_TIMEOUT_MS = 120000;
 export const MAX_ACTION_TOKENS = 420;
+// Fixed sampling so repeated runs on one commit differ only in what we change.
+// Recorded on every live run; GPU kernels may still introduce small nondeterminism.
+export const SAMPLING = Object.freeze({ temperature: 0.2, seed: 1 });
 
 export const MODELS = Object.freeze([
   { id: "Qwen3-0.6B-q4f16_1-MLC", label: "Qwen3 0.6B · tiny · ~0.4 GB download", downloadBytes: 0.4 * GiB },
@@ -257,12 +260,12 @@ export function createEngineAdapter(webllm, options = {}) {
 }
 
 // The generate driver the episode runner calls in live mode: one bounded action.
-export function createLiveGenerator(adapter, { seed = null } = {}) {
+export function createLiveGenerator(adapter, sampling = SAMPLING) {
   return async (messages, { signal } = {}) => {
     const timer = setTimeout(() => adapter.interrupt(), GENERATION_TIMEOUT_MS);
     const started = performance.now();
     try {
-      const result = await adapter.generate(messages, { signal, seed });
+      const result = await adapter.generate(messages, { signal, seed: sampling.seed, temperature: sampling.temperature });
       if (performance.now() - started >= GENERATION_TIMEOUT_MS) {
         throw Object.assign(new Error(`Generation time limit reached (${GENERATION_TIMEOUT_MS / 1000} seconds).`), { partialText: result.text });
       }

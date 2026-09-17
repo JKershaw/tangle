@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { createEngineAdapter, createLiveGenerator, probeDevice, RESPONSE_SCHEMA } from "../src/webllm.js";
+import { createEngineAdapter, createLiveGenerator, probeDevice, RESPONSE_SCHEMA, SAMPLING } from "../src/webllm.js";
 
 function fakeWebllm(chunks) {
   const calls = { reload: [], requests: [], resets: 0, unloads: 0, interrupts: 0 };
@@ -64,6 +64,16 @@ test("cancellation interrupts generation and surfaces the partial text", async (
   await assert.rejects(pending, (error) => error.name === "AbortError" && error.partialText === "{");
   assert.equal(late.calls.interrupts, 1);
   assert.ok(calls.interrupts >= 0);
+});
+
+test("the live generator uses the fixed sampling settings by default", async () => {
+  const { calls, webllm } = fakeWebllm([{ choices: [{ delta: { content: "{}" } }], usage: { total_tokens: 3 } }]);
+  const adapter = createEngineAdapter(webllm);
+  await adapter.load("m");
+  const result = await createLiveGenerator(adapter)([{ role: "user", content: "x" }], {});
+  assert.deepEqual(result, { text: "{}", tokens: 3 });
+  assert.equal(calls.requests[0].seed, SAMPLING.seed);
+  assert.equal(calls.requests[0].temperature, SAMPLING.temperature);
 });
 
 test("probeDevice reports missing WebGPU without throwing", async () => {
