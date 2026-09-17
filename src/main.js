@@ -505,6 +505,14 @@ window.addEventListener("beforeunload", (event) => {
   }
 });
 
-// Exposed for browser-level tests only.
-window.__tangle = { current, step, runs: () => runs };
+// Exposed for browser-level tests and the scripts/live-run.mjs driver only.
+window.__tangle = {
+  current,
+  step,
+  runs: () => runs,
+  busy: () => running || autorun || busy,
+  runnable: () => !!nextRunnable(current()),
+  outcome: () => outcomeLabel(current()),
+  loadedModel: () => loadedModel,
+};
 render();

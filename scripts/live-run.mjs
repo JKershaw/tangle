@@ -1,0 +1,138 @@
+#!/usr/bin/env node
+// Drives the built page through one complete run and records the experiment:
+//   node scripts/live-run.mjs --url http://localhost:8765/ --out experiments/2026-09-17-qwen3-0.6b-water-cycle
+// Options:
+//   --mode live|simulation   (default live)      --model <id>   (default Qwen3-0.6B-q4f16_1-MLC)
+//   --seed "<question>"      (live only)          --scenario revisit|blocked|repeat (simulation only)
+//   --retries N              (default 2: retries after "Paused on error")
+//   --headless               (simulation only; live mode needs a headed browser for WebGPU)
+//   --chromium <path>        (executable; default: installed Google Chrome via Playwright's "chrome" channel)
+//   --load-timeout <minutes> (default 20)         --run-timeout <minutes> (default 90)
+// Writes <out>.json (the export), <out>.png (the map) and <out>.md (notes skeleton with the summary).
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname } from "node:path";
+import os from "node:os";
+import { summarise } from "./summarise.js";
+
+const args = Object.fromEntries(
+  process.argv.slice(2).reduce((pairs, token, index, all) => {
+    if (token.startsWith("--")) pairs.push([token.slice(2), all[index + 1]?.startsWith("--") || all[index + 1] === undefined ? true : all[index + 1]]);
+    return pairs;
+  }, []),
+);
+const url = args.url || "http://localhost:8765/";
+const mode = args.mode || "live";
+const model = args.model || "Qwen3-0.6B-q4f16_1-MLC";
+const retries = Number(args.retries ?? 2);
+const out = args.out;
+if (!out) {
+  console.error("--out <path-without-extension> is required");
+  process.exit(2);
+}
+const loadTimeoutMs = Number(args["load-timeout"] ?? 20) * 60000;
+const runTimeoutMs = Number(args["run-timeout"] ?? 90) * 60000;
+
+const { chromium } = await import("playwright-core");
+const launchOptions = { headless: !!args.headless };
+if (args.chromium) launchOptions.executablePath = args.chromium;
+else launchOptions.channel = "chrome";
+const browser = await chromium.launch(launchOptions);
+const notes = [];
+const note = (line) => {
+  notes.push(line);
+  console.log(line);
+};
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const stamp = () => new Date().toISOString();
+
+try {
+  const page = await browser.newPage({ viewport: { width: 1280, height: 1000 } });
+  page.on("dialog", (dialog) => dialog.accept());
+  page.on("pageerror", (error) => note(`page error: ${error}`));
+  await page.goto(url);
+  note(`${stamp()} opened ${url} in ${browser.version()} (${os.platform()} ${os.arch()}, ${os.cpus()[0]?.model ?? "unknown cpu"})`);
+
+  if (mode === "live") {
+    await page.click("#liveMode");
+    await page.click("#checkDevice");
+    await page.waitForFunction(() => !document.getElementById("deviceStatus").textContent.startsWith("Checking"), null, { timeout: 60000 });
+    note(`device: ${await page.locator("#deviceStatus").innerText()}`);
+    if (args.seed) {
+      await page.fill("#seed", String(args.seed));
+      await page.click("#newLive");
+    }
+    await page.selectOption("#model", model);
+    await page.check("#autoWiki");
+    const loadStarted = Date.now();
+    await page.click("#loadModel");
+    await page.waitForFunction(
+      () => document.getElementById("modelBadge").textContent === "ready" || document.getElementById("loadStatus").textContent.startsWith("Could not load"),
+      null,
+      { timeout: loadTimeoutMs, polling: 2000 },
+    );
+    const loadStatus = await page.locator("#loadStatus").innerText();
+    note(`model ${model}: ${loadStatus} (${Math.round((Date.now() - loadStarted) / 1000)} s)`);
+    if (!loadStatus.startsWith("Ready")) throw new Error("Model did not load.");
+  } else {
+    if (args.scenario) await page.selectOption("#scenario", String(args.scenario));
+  }
+
+  const terminal = () => page.evaluate(() => !window.__tangle.busy() && window.__tangle.outcome() !== "Ready");
+  const runStarted = Date.now();
+  let retriesUsed = 0;
+  for (;;) {
+    await page.click("#run");
+    await wait(1500);
+    await page.waitForFunction(() => !window.__tangle.busy(), null, { timeout: runTimeoutMs, polling: 3000 });
+    const outcome = await page.evaluate(() => window.__tangle.outcome());
+    note(`${stamp()} run stopped: ${outcome}`);
+    if (!outcome.startsWith("Paused on error") || retriesUsed >= retries) break;
+    const errored = await page.evaluate(() => window.__tangle.current().nodes.find((node) => node.status === "error"));
+    note(`retry ${retriesUsed + 1}: ${errored.id} ${errored.reason}`);
+    await page.click("#fit");
+    await page.click(`.graph-node[data-id="${errored.id}"]`);
+    await page.click("#retry");
+    retriesUsed++;
+  }
+  if (!(await terminal())) note("warning: the page does not report a terminal state");
+  const wallSeconds = Math.round((Date.now() - runStarted) / 1000);
+
+  const exported = await page.evaluate(() => {
+    const run = JSON.parse(JSON.stringify(window.__tangle.current()));
+    run.exportedAt = new Date().toISOString();
+    return run;
+  });
+  mkdirSync(dirname(out), { recursive: true });
+  writeFileSync(`${out}.json`, JSON.stringify(exported, null, 2));
+  await page.click("#fit");
+  await page.locator(".map-panel").screenshot({ path: `${out}.png` });
+  const summary = summarise(exported);
+  const md = [
+    `# ${exported.mode} run · ${exported.model ?? "scripted"} · ${exported.seed}`,
+    "",
+    `- date: ${exported.created}`,
+    `- commit: (fill in: git rev-parse --short HEAD)`,
+    `- machine / GPU: (fill in)`,
+    `- browser: ${browser.version()}`,
+    `- run wall time: ${wallSeconds} s · retries used: ${retriesUsed}`,
+    "",
+    "## Driver log",
+    "",
+    ...notes.map((line) => `- ${line}`),
+    "",
+    "## Summary",
+    "",
+    "```",
+    summary,
+    "```",
+    "",
+    "## Observations",
+    "",
+    "(the three strangest things in the trace, quoting node questions and raw model output)",
+    "",
+  ].join("\n");
+  writeFileSync(`${out}.md`, md);
+  console.log("\n" + summary + `\n\nwrote ${out}.json, ${out}.png, ${out}.md`);
+} finally {
+  await browser.close();
+}
