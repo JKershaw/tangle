@@ -15,6 +15,8 @@ export const SAMPLING = Object.freeze({ temperature: 0.2, seed: 1 });
 export const MODELS = Object.freeze([
   { id: "Qwen3-0.6B-q4f16_1-MLC", label: "Qwen3 0.6B · tiny · ~0.4 GB download", downloadBytes: 0.4 * GiB },
   { id: "Qwen3-1.7B-q4f16_1-MLC", label: "Qwen3 1.7B · small · ~1 GB download", downloadBytes: 1 * GiB },
+  { id: "Qwen3-4B-q4f16_1-MLC", label: "Qwen3 4B · medium · ~2.5 GB download · desktop GPU", downloadBytes: 2.5 * GiB },
+  { id: "Qwen3-8B-q4f16_1-MLC", label: "Qwen3 8B · large · ~5 GB download · desktop GPU", downloadBytes: 5 * GiB },
   { id: "Qwen3-0.6B-q4f32_1-MLC", label: "Qwen3 0.6B · float32 compatibility · ~0.5 GB download", downloadBytes: 0.5 * GiB },
 ]);
 
