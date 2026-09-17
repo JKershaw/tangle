@@ -151,6 +151,11 @@ function render() {
     }
     $("evidence").append(card);
   }
+  if (node.failedLookups?.length) {
+    const list = make("p", undefined, "small muted");
+    list.textContent = "Lookups that found nothing: " + node.failedLookups.map((entry) => `“${entry.query}” (${entry.error})`).join("; ");
+    $("evidence").append(list);
+  }
   const lastInput = [...run.trace].reverse().find((event) => event.event === "model_input" && event.node === node.id);
   $("context").textContent = JSON.stringify(lastInput?.context || buildContext(run, node), null, 2) + (lastInput ? "" : "\n\nNot yet sent to a model.");
   $("nodeTrace").textContent =

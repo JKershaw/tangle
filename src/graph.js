@@ -24,7 +24,7 @@ export function assert(condition, message) {
 }
 
 function makeNode(id, parent, depth, question) {
-  return { id, parent, depth, question, status: "open", visits: 0, finding: "", evidence: [], observed: [], reason: "" };
+  return { id, parent, depth, question, status: "open", visits: 0, finding: "", evidence: [], observed: [], failedLookups: [], reason: "" };
 }
 
 export function createRun(seed, mode = "simulation", limits = {}) {
@@ -77,6 +77,15 @@ export function nextRunnable(run) {
   return visit(run.nodes[0]);
 }
 
+// A lookup that found nothing is still an observation: the node remembers it so
+// a later pass or visit is not tempted to repeat the same query.
+export function recordFailedLookup(run, nodeId, query, error) {
+  const node = getNode(run, nodeId);
+  node.failedLookups ??= [];
+  node.failedLookups.push({ query, error: String(error?.message || error || "Lookup failed.").slice(0, 300) });
+  trace(run, "lookup_failed", { node: nodeId, query, error: node.failedLookups.at(-1).error });
+}
+
 export function captureEvidence(run, nodeId, evidence) {
   assert(isText(evidence.text, 16000), "Evidence must contain captured text.");
   const record = { ...evidence, id: "e" + (run.evidence.length + 1), capturedAt: new Date().toISOString(), node: nodeId };
@@ -89,7 +98,7 @@ export function captureEvidence(run, nodeId, evidence) {
 // The exact local context a model invocation receives for one node: the
 // question, up to six resolved child findings, and up to five source excerpts
 // the node (or its children) actually observed. Nothing about parents or siblings.
-export function buildContext(run, node) {
+export function buildContext(run, node, { lookupsRemaining = null } = {}) {
   const resolved = children(run, node.id).filter((child) => child.status === "resolved");
   const childSummaries = resolved.slice(-6).map((child) => ({
     id: child.id,
@@ -103,7 +112,7 @@ export function buildContext(run, node) {
     .map((id) => run.evidence.find((record) => record.id === id))
     .filter(Boolean)
     .map((record) => ({ id: record.id, title: record.title, text: record.text.slice(0, EXCERPT_LIMIT), kind: record.kind }));
-  return {
+  const context = {
     question: node.question,
     children: childSummaries,
     evidence: excerpts,
@@ -111,6 +120,9 @@ export function buildContext(run, node) {
     omittedEvidence: evidenceIds.length - excerpts.length,
     excerptCharacterLimit: EXCERPT_LIMIT,
   };
+  if (node.failedLookups?.length) context.failedLookups = node.failedLookups.slice(-5);
+  if (lookupsRemaining !== null) context.lookupsRemaining = lookupsRemaining;
+  return context;
 }
 
 export function parseModelOutput(text) {
@@ -229,6 +241,13 @@ export function validateImport(text) {
         "Missing evidence reference.",
       );
     }
+    node.failedLookups ??= [];
+    assert(
+      Array.isArray(node.failedLookups) &&
+        node.failedLookups.length <= 50 &&
+        node.failedLookups.every((entry) => isText(entry?.query, 180) && isText(entry?.error, 300)),
+      "Invalid failed lookups.",
+    );
   }
   assert(run.nodes[0].id === "n1" && run.nodes[0].parent === null, "Invalid root.");
   for (const node of run.nodes) {

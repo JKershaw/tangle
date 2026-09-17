@@ -17,7 +17,7 @@ test("a run starts with one open seed node and empty counters", () => {
   assert.equal(run.nodes.length, 1);
   assert.deepEqual(run.nodes[0], {
     id: "n1", parent: null, depth: 0, question: "Why is the sky blue?", status: "open",
-    visits: 0, finding: "", evidence: [], observed: [], reason: "",
+    visits: 0, finding: "", evidence: [], observed: [], failedLookups: [], reason: "",
   });
   assert.equal(run.mode, "live");
   assert.equal(run.stopReason, null);
@@ -137,4 +137,10 @@ test("import accepts an export, rejects unsafe files, and marks in-progress node
   const orphan = JSON.parse(JSON.stringify(run));
   orphan.nodes.push({ ...orphan.nodes[0], id: "n2", parent: "n9", depth: 1 });
   assert.throws(() => validateImport(JSON.stringify(orphan)), /Missing parent/);
+  const legacy = JSON.parse(JSON.stringify(run));
+  delete legacy.nodes[0].failedLookups;
+  assert.deepEqual(validateImport(JSON.stringify(legacy)).nodes[0].failedLookups, []);
+  const badLookups = JSON.parse(JSON.stringify(run));
+  badLookups.nodes[0].failedLookups = [{ query: "", error: "x" }];
+  assert.throws(() => validateImport(JSON.stringify(badLookups)), /Invalid failed lookups/);
 });

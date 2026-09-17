@@ -109,10 +109,43 @@ test("lookups per visit are bounded", async () => {
   assert.equal(run.lookups, 2);
 });
 
-test("current behaviour: a failed lookup pauses the run on that node (see issue #4)", async () => {
+test("a failed lookup is fed back to the model instead of pausing the run", async () => {
   const run = createRun("Root", "live");
-  const wiki = async () => ({ ok: false, error: { kind: "no_match", message: "No article matched." } });
-  await runEpisode(run, { generate: scriptedGenerate([{ action: "wiki", query: "zzz" }]), wiki });
+  const wiki = async (query) => (query === "zzz" ? { ok: false, error: { kind: "no_match", message: "No article matched." } } : { ok: true, kind: "wiki", title: query, text: "t" });
+  const generate = scriptedGenerate([{ action: "wiki", query: "zzz" }, { action: "wiki", query: "Water" }, { action: "resolved", finding: "F", evidence: ["e1"] }]);
+  const ok = await runEpisode(run, { generate, wiki });
+  assert.equal(ok, true);
+  assert.equal(run.nodes[0].status, "resolved");
+  assert.equal(run.stopReason, null);
+  assert.deepEqual(run.nodes[0].failedLookups, [{ query: "zzz", error: "No article matched." }]);
+  const inputs = run.trace.filter((event) => event.event === "model_input").map((event) => event.context);
+  assert.equal(inputs[0].failedLookups, undefined);
+  assert.deepEqual(inputs[0].lookupsRemaining, 2);
+  assert.deepEqual(inputs[1].failedLookups, [{ query: "zzz", error: "No article matched." }]);
+  assert.equal(inputs[1].lookupsRemaining, 1);
+  assert.equal(inputs[2].lookupsRemaining, 0);
+  assert.ok(run.trace.some((event) => event.event === "lookup_failed" && event.query === "zzz"));
+});
+
+test("failed lookups are remembered across visits so a revisit sees them", async () => {
+  const run = createRun("Root", "live");
+  const wiki = async () => ({ ok: false, error: { kind: "no_match", message: "Nothing." } });
+  await runEpisode(run, { generate: scriptedGenerate([{ action: "wiki", query: "a" }, { action: "decompose", questions: ["child"] }]), wiki });
+  assert.equal(run.nodes[0].status, "waiting");
+  await runEpisode(run, { generate: scriptedGenerate([{ action: "blocked", reason: "no source" }]), wiki });
+  assert.equal(run.nodes[1].status, "blocked");
+  run.nodes[1].status = "resolved";
+  await runEpisode(run, { generate: scriptedGenerate([{ action: "blocked", reason: "still nothing" }]), wiki });
+  const revisit = run.trace.filter((event) => event.event === "model_input" && event.node === "n1").at(-1).context;
+  assert.deepEqual(revisit.failedLookups, [{ query: "a", error: "Nothing." }]);
+  assert.equal(run.nodes[0].visits, 2);
+});
+
+test("the lookup limit still bounds a visit that keeps searching", async () => {
+  const run = createRun("Root", "live");
+  const wiki = async () => ({ ok: false, error: { kind: "no_match", message: "Nothing." } });
+  await runEpisode(run, { generate: scriptedGenerate([{ action: "wiki", query: "a" }, { action: "wiki", query: "b" }, { action: "wiki", query: "c" }]), wiki });
   assert.equal(run.nodes[0].status, "error");
-  assert.equal(run.nodes[0].reason, "No article matched.");
+  assert.match(run.nodes[0].reason, /lookup safety limit/);
+  assert.equal(run.nodes[0].failedLookups.length, 2);
 });
