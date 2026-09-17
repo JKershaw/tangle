@@ -11,6 +11,7 @@
 //   --load-timeout <minutes> (default 20)         --run-timeout <minutes> (default 90)
 // Writes <out>.json (the export), <out>.png (the map) and <out>.md (notes skeleton with the summary).
 import { mkdirSync, writeFileSync } from "node:fs";
+import { execSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import os from "node:os";
 import { summarise } from "./summarise.js";
@@ -50,6 +51,14 @@ const note = (line) => {
 };
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const stamp = () => new Date().toISOString();
+const commit = () => {
+  try {
+    const dirty = execSync("git status --porcelain -- docs/index.html src", { encoding: "utf8" }).trim() ? " (uncommitted changes)" : "";
+    return execSync("git rev-parse --short HEAD", { encoding: "utf8" }).trim() + dirty;
+  } catch {
+    return "unknown";
+  }
+};
 
 try {
   const page = await browser.newPage();
@@ -133,8 +142,8 @@ try {
     `# ${exported.mode} run · ${exported.model ?? "scripted"} · ${exported.seed}`,
     "",
     `- date: ${exported.created}`,
-    `- commit: (fill in: git rev-parse --short HEAD)`,
-    `- machine / GPU: (fill in)`,
+    `- commit: ${commit()} (docs/index.html as served; the page loaded at run start)`,
+    `- machine: ${os.cpus()[0]?.model ?? "unknown cpu"}, ${Math.round(os.totalmem() / 2 ** 30)} GB, ${os.platform()} ${os.release()}`,
     `- browser: ${version()}`,
     `- run wall time: ${wallSeconds} s · retries used: ${retriesUsed}`,
     "",
