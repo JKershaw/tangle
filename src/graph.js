@@ -25,6 +25,12 @@ export const DEFAULT_LIMITS = Object.freeze({
   // the walk: after a checked pick it asks again over what remains, so a
   // question with several parts can collect several verbatim sentences.
   maxSentences: 3,
+  // A finding's length. Under the walk a finding is verbatim sentences, or a
+  // parent's children's findings joined; a brief's profile can run to a few
+  // thousand characters.
+  maxFindingChars: 6000,
+  // How many sections of an article a brief may hand to children.
+  maxSections: 6,
 });
 export const SETTLED = Object.freeze(["resolved", "blocked"]);
 export const ACTIONS = Object.freeze(["wiki", "decompose", "resolved", "blocked"]);
@@ -187,7 +193,7 @@ export function validateResult(run, node, result, visibleEvidenceIds) {
     );
   }
   if (result.action === "resolved") {
-    assert(isText(result.finding, 1400), "A resolution needs a finding of 1–1,400 characters.");
+    assert(isText(result.finding, run.limits.maxFindingChars ?? 6000), `A resolution needs a finding of 1–${(run.limits.maxFindingChars ?? 6000).toLocaleString("en")} characters.`);
     // A finding is a claim, not a label: 0.6B once resolved with the finding
     // "Dead Sea / Receding shoreline" — the prompt's example query, echoed.
     assert(String(result.finding).trim().split(/\s+/).length >= 6, "A finding must be a sentence, not a fragment.");
@@ -265,7 +271,7 @@ export function validateImport(text) {
     nodeIds.add(node.id);
     assert(isText(node.question, 400) && NODE_STATUSES.includes(node.status), "Invalid node.");
     assert(
-      typeof node.finding === "string" && node.finding.length <= 1400 && typeof node.reason === "string" && node.reason.length <= 4000,
+      typeof node.finding === "string" && node.finding.length <= 12000 && typeof node.reason === "string" && node.reason.length <= 4000,
       "Invalid node text.",
     );
     assert(Number.isInteger(node.visits) && node.visits >= 0 && node.visits <= 10000, "Invalid visits.");

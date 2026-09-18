@@ -10,7 +10,7 @@
 // maxTokens }) and combines the raw outputs into one answer. Schemas stay tiny
 // and few: web-llm compiles a grammar per distinct schema (see webllm.js).
 
-export const ASK_VERSION = "asks-2";
+export const ASK_VERSION = "asks-3";
 export const NO_THINK = " /no_think";
 
 // Sentences are what the model picks between, so they are made by code, the
@@ -53,6 +53,7 @@ const SENTENCE_SYSTEM = {
   json: `Which numbered sentence answers the question? Reply with JSON: {"sentence": "<number>"}, or {"sentence": "none"} if no sentence answers it.`,
   list: `You are given a question and numbered sentences. Pick the one sentence that answers the question. If none of them answers it, pick none. Reply with JSON only.`,
   strict: `Pick the sentence that states the answer to the question. Only pick a sentence if the answer is written in it; do not use anything you know. If no sentence states the answer, reply none. Reply with JSON only.`,
+  brief: `You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only.`,
 };
 const sentenceCall = (system, user) => (input) => ({
   messages: [
@@ -70,6 +71,9 @@ export const ASKS = Object.freeze({
     variants: {
       json: single(sentenceCall(SENTENCE_SYSTEM.json, (input) => JSON.stringify({ question: input.question, sentences: Object.fromEntries(input.sentences.map((sentence, index) => [String(index + 1), sentence])) })), readSentence),
       list: single(sentenceCall(SENTENCE_SYSTEM.list, (input) => `Question: ${input.question}\n\n${numbered(input.sentences)}\n\nWhich sentence answers the question? Reply {"sentence": "<number>"} or {"sentence": "none"}.`), readSentence),
+      // A brief ("Tell me about X and the impact of his work") has no single
+      // answering sentence; the pick is the sentence most worth keeping.
+      brief: single(sentenceCall(SENTENCE_SYSTEM.brief, (input) => `Brief: ${input.question}\n\n${numbered(input.sentences)}\n\nWhich sentence is most worth keeping for the brief? Reply {"sentence": "<number>"} or {"sentence": "none"}.`), readSentence),
       strict: single(sentenceCall(SENTENCE_SYSTEM.strict, (input) => `Question: ${input.question}\n\n${numbered(input.sentences)}\n\nReply {"sentence": "<number>"} or {"sentence": "none"}.`), readSentence),
       // The source named: 1.7B picked an Aral Sea sentence as the answer to a
       // Dead Sea question when the sentences came unlabelled
@@ -198,6 +202,16 @@ export const ASKS = Object.freeze({
         schema: enumSchema("section", input.sections),
         maxTokens: 80,
       }), (parsed) => String(parsed.section)),
+      // For a brief: the section most worth reading next; "none" when the
+      // rest would add nothing. Input may carry { chosen: [string] }.
+      brief: single((input) => ({
+        messages: [
+          { role: "system", content: `You are given a brief and the section headings of a Wikipedia article. Pick the heading of the section most worth reading for the brief${input.chosen?.length ? ", other than those already chosen" : ""}. If none of the remaining sections would add anything the brief asks for, pick none. Reply with JSON only.` + NO_THINK },
+          { role: "user", content: `Brief: ${input.question}\nArticle: ${input.article}${input.chosen?.length ? `\nAlready chosen: ${input.chosen.join(", ")}` : ""}\n\nSections:\n${input.sections.map((heading) => `- ${heading}`).join("\n")}\n\nReply {"section": "<heading>"} or {"section": "none"}.` },
+        ],
+        schema: enumSchema("section", [...input.sections, "none"]),
+        maxTokens: 80,
+      }), (parsed) => String(parsed.section)),
       list: single((input) => ({
         messages: [
           { role: "system", content: `You are given a question and the section headings of a Wikipedia article. Pick the heading of the section most likely to contain the answer. Reply with JSON only.` + NO_THINK },
@@ -253,6 +267,16 @@ export const ASKS = Object.freeze({
         messages: [
           { role: "system", content: `The sentences do not answer the question. Name the Wikipedia article (1 to 4 words) most likely to answer it. Reply with JSON: {"search": "<words>"}.` + NO_THINK },
           { role: "user", content: `Question: ${input.question}\n\n${input.sentences.length ? numbered(input.sentences) : "(nothing read yet)"}` },
+        ],
+        schema: stringSchema("search", 60),
+        maxTokens: 40,
+      }), (parsed) => String(parsed.search).trim()),
+      // The hop, for a brief: from what was just read, the one thing worth
+      // reading about next. A name to search, not a question.
+      hop: single((input) => ({
+        messages: [
+          { role: "system", content: `You are given a brief and sentences kept for it. Name the one person, machine, place, work or event in the sentences that is most worth reading about next for the brief, as the title of its Wikipedia article (1 to 4 words). Reply with JSON: {"search": "<title>"}.` + NO_THINK },
+          { role: "user", content: `Brief: ${input.question}\n\n${input.sentences.length ? numbered(input.sentences) : "(nothing read yet)"}` },
         ],
         schema: stringSchema("search", 60),
         maxTokens: 40,

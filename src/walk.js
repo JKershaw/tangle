@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { contentWords, isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-7"; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
+export const WALK_VERSION = "walk-8"; // walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -42,6 +42,20 @@ export function variantsFor(modelId = "") {
 // Aral Sea's own reason for shrinking (node evals and the walk-4 benchmark),
 // and a wrong pick about the right subject costs less than a lost answer.
 export const CHECK_FOREIGN = true;
+// A brief rather than a question: "Tell me about Alan Turing and elaborate on
+// the impact of his work." There is no answering sentence to find, so the
+// asks change wording (asks.js: sentence/brief, section/brief, missing/hop)
+// and the walk changes shape: the lead is read, the model chooses the
+// sections worth reading (one child each, made by code), each child keeps
+// its sentences and may hop once to an article named from them, and the
+// root's finding is the kept sentences and the children's findings in order.
+export const BRIEF = /^(tell|describe|explain|write|give|summari[sz]e|elaborate|outline|profile|discuss)\b/i;
+export const BRIEF_VARIANTS = Object.freeze({ sentence: "brief", section: "brief", missing: "hop" });
+export function isBrief(question) {
+  const text = String(question ?? "").trim();
+  const base = text.includes(FOCUS) ? text.slice(0, text.indexOf(FOCUS)) : text;
+  return !base.includes("?") || BRIEF.test(base);
+}
 // How many sentences one pick sees. Beyond this, the walk asks again over the
 // next window; a visit's passes bound how far it reads.
 export const WINDOW = 12;
@@ -187,9 +201,12 @@ export async function runWalk(run, options) {
     if (Number.isFinite(output.tokens)) run.tokens += output.tokens;
     return output;
   };
+  const brief = isBrief(node.question);
+  const variantOf = (askName) => (brief && ASKS[askName].variants[BRIEF_VARIANTS[askName]] ? BRIEF_VARIANTS[askName] : variants[askName]);
   const answer = async (askName, input, status) => {
-    const definition = ASKS[askName].variants[variants[askName]];
-    const meta = { ask: askName, variant: variants[askName], status };
+    const variant = variantOf(askName);
+    const definition = ASKS[askName].variants[variant];
+    const meta = { ask: askName, variant, status };
     if (definition.run) return (await definition.run((call) => send(call, meta), input)).answer;
     const outputs = [];
     for (const call of definition.calls(input)) outputs.push((await send(call, meta)).text);
@@ -246,6 +263,7 @@ export async function runWalk(run, options) {
   // runs 2026-09-18, sky-blue).
   const readSentences = () => candidates(run, node).slice(0, WINDOW).map((candidate) => candidate.text);
   const firstLookup = async () => {
+    if (node.readFirst) return lookup(`${node.readFirst.article} / ${node.readFirst.section}`, { ...node.readFirst });
     const { focus } = focusOf(node.question);
     const terms = [...new Set([searchTerm(node.question), focus ? focus.replace(/^the /, "") : String(node.question).trim()])];
     if (variants.article === "off" || !wiki.length || terms.length < 2) return lookup(terms[0]);
@@ -298,10 +316,14 @@ export async function runWalk(run, options) {
         return true;
       }
     }
-    if (node.split && children(run, node.id).length) {
+    if ((node.split || node.fanned) && children(run, node.id).length) {
       const found = children(run, node.id).filter((child) => child.status === "resolved" && child.finding);
-      if (found.length) {
-        applyResult(run, node.id, { action: "resolved", finding: found.map((child) => child.finding).join(" "), evidence: [...new Set(found.flatMap((child) => child.evidence))] }, visible());
+      const kept = node.kept ?? [];
+      if (found.length || kept.length) {
+        const parts = [...(kept.length ? [kept.map((entry) => entry.text).join(" ")] : []), ...found.map((child) => child.finding)];
+        const cap = run.limits.maxFindingChars ?? 6000;
+        while (parts.length > 1 && parts.join(node.fanned ? "\n\n" : " ").length > cap) parts.pop();
+        applyResult(run, node.id, { action: "resolved", finding: parts.join(node.fanned ? "\n\n" : " "), evidence: [...new Set([...kept.flatMap((entry) => entry.evidence), ...found.flatMap((child) => child.evidence)])] }, visible());
         onUpdate(node.id, "Findings gathered");
       } else {
         applyResult(run, node.id, { action: "blocked", reason: "Neither part of the question could be answered." }, visible());
@@ -323,6 +345,9 @@ export async function runWalk(run, options) {
     // text, verbatim, in the order found. After a pick the walk asks again
     // over what remains until it says none or maxSentences is reached.
     const gathered = [];
+    // How many sentences this visit may keep: maxSentences, and as many
+    // again after a brief's hop, so the hop's article is not read for nothing.
+    const room = () => (run.limits.maxSentences ?? 1) * (node.hopped ? 2 : 1);
     const resolveWith = () => {
       applyResult(run, node.id, { action: "resolved", finding: gathered.map((candidate) => candidate.text).join(" "), evidence: [...new Set(gathered.flatMap((candidate) => candidate.evidence))] }, visible());
       onUpdate(node.id, "Finding recorded");
@@ -332,10 +357,47 @@ export async function runWalk(run, options) {
     // Sea lead says it is receding, the section says why. While the finding
     // has room, lookups remain and the article has unread sections, the walk
     // reads one more (the model picks the heading) and asks again over it.
+    // For a brief the sections are not read on by this node: the model
+    // chooses which are worth reading and code makes one child per section,
+    // keeping this node's own picks for the front of the profile.
+    const fanOut = async (unread) => {
+      const budget = Math.min(run.limits.maxSections ?? 6, run.limits.maxNodes - run.nodes.length);
+      const chosen = [];
+      let remaining = [...unread.headings];
+      while (chosen.length < budget && remaining.length) {
+        const pick = await answer("section", { question: node.question, article: unread.article, sections: remaining, chosen }, "Choosing sections");
+        if (pick === "none" || !remaining.includes(pick)) break;
+        chosen.push(pick);
+        remaining = remaining.filter((heading) => heading !== pick);
+      }
+      trace(run, "sections_chosen", { node: node.id, article: unread.article, sections: chosen });
+      if (!chosen.length) return false;
+      node.kept = gathered.map((candidate) => ({ text: candidate.text, evidence: [...candidate.evidence] }));
+      node.fanned = true;
+      applyResult(run, node.id, { action: "decompose", questions: chosen.map((heading) => `${String(node.question).trim()}${FOCUS}${heading}`) }, visible());
+      for (const child of run.nodes.slice(-chosen.length)) child.readFirst = { article: unread.article, section: chosen[run.nodes.slice(-chosen.length).indexOf(child)] };
+      onUpdate(node.id, `Reading ${chosen.length} section${chosen.length === 1 ? "" : "s"} below`);
+      return "fanned";
+    };
+    // A brief's child, having kept what its section says, may hop once: it
+    // names the one thing in its kept sentences most worth reading about,
+    // and reads that article's lead.
+    const hop = async () => {
+      if (!brief || !gathered.length || lookups >= run.limits.maxLookups || node.hopped || !node.readFirst) return false;
+      node.hopped = true;
+      const search = await answer("missing", { question: node.question, sentences: gathered.map((candidate) => candidate.text) }, "Choosing where to hop");
+      const known = node.observed.some((id) => normalise(run.evidence.find((record) => record.id === id)?.article) === normalise(search));
+      trace(run, "hop_chosen", { node: node.id, search, known });
+      if (known) return false;
+      return (await lookup(search)) === "captured";
+    };
     const readOn = async () => {
-      if (gathered.length >= (run.limits.maxSentences ?? 1) || lookups >= run.limits.maxLookups || passes >= run.limits.maxPasses) return false;
       const unread = unreadSections(run, node)[0];
-      if (!unread) return false;
+      // A brief's own picks are the front of the profile, whatever their
+      // number; the sections are handed down regardless.
+      if (brief && unread && node.depth < run.limits.maxDepth && !children(run, node.id).length) return fanOut(unread);
+      if (gathered.length >= room() || lookups >= run.limits.maxLookups || passes >= run.limits.maxPasses) return false;
+      if (!unread) return hop();
       const section = await answer("section", { question: node.question, article: unread.article, sections: unread.headings }, "Reading on");
       trace(run, "section_chosen", { node: node.id, article: unread.article, section, readOn: true });
       return (await lookup(`${unread.article} / ${section}`, { article: unread.article, section })) === "captured";
@@ -343,7 +405,7 @@ export async function runWalk(run, options) {
     while (true) {
       signal?.throwIfAborted();
       const pool = candidates(run, node).filter((candidate) => !judged.has(candidate.text));
-      if (pool.length && passes < run.limits.maxPasses && gathered.length < (run.limits.maxSentences ?? 1)) {
+      if (pool.length && passes < run.limits.maxPasses && gathered.length < room()) {
         const window = pool.slice(0, WINDOW);
         passes++;
         const pick = await answer("sentence", { question: node.question, sentences: window.map((candidate) => candidate.text), titles: window.map((candidate) => (candidate.from === "child" ? "a finding below" : String(candidate.source).split(" § ")[0])) }, gathered.length ? "Reading for more" : "Reading");
@@ -352,7 +414,9 @@ export async function runWalk(run, options) {
           const index = Number(pick) - 1;
           const chosen = window[index];
           if (!chosen) throw new Error(`The model picked sentence ${pick} of ${window.length}.`);
-          if (CHECK_FOREIGN && variants.sentence !== "check" && chosen.from === "excerpt" && isForeign(chosen.source, node.question)) {
+          // A brief's hop article is foreign to the brief by design (the
+          // Bombe for Turing), so its picks are not confirmed.
+          if (CHECK_FOREIGN && !brief && variants.sentence !== "check" && chosen.from === "excerpt" && isForeign(chosen.source, node.question)) {
             const verdict = await answer("confirm", { question: node.question, sentence: chosen.text }, "Checking the pick");
             trace(run, "pick_checked", { node: node.id, pick, source: chosen.source, verdict });
             if (verdict !== "yes") {
@@ -369,14 +433,18 @@ export async function runWalk(run, options) {
         }
         if (gathered.length) {
           for (const candidate of window) judged.add(candidate.text);
-          if (await readOn()) continue;
+          const next = await readOn();
+          if (next === "fanned") return true;
+          if (next) continue;
           return resolveWith();
         }
         for (const candidate of window) judged.add(candidate.text);
         continue;
       }
       if (gathered.length) {
-        if (await readOn()) continue;
+        const next = await readOn();
+        if (next === "fanned") return true;
+        if (next) continue;
         return resolveWith();
       }
       // Nothing left to judge. A parent whose children answered resolves with

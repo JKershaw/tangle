@@ -95,7 +95,7 @@ test("the driver hooks: a live run with custom limits, and Wikipedia served from
 
     // The flat baseline is a limits preset on a live run.
     const limits = await page.evaluate(() => window.__tangle.newLive("Why is the Dead Sea shrinking?", { maxDepth: 0, maxLookups: 6, maxPasses: 8 }));
-    assert.deepEqual(limits, { maxNodes: 40, maxVisits: 60, maxDepth: 0, maxLookups: 6, maxPasses: 8, revisitSettled: true, walk: true, maxSentences: 3 });
+    assert.deepEqual(limits, { maxNodes: 40, maxVisits: 60, maxDepth: 0, maxLookups: 6, maxPasses: 8, revisitSettled: true, walk: true, maxSentences: 3, maxFindingChars: 6000, maxSections: 6 });
     assert.deepEqual(await page.evaluate(() => [window.__tangle.current().mode, window.__tangle.current().seed]), ["live", "Why is the Dead Sea shrinking?"]);
     assert.equal(await page.locator("#liveMode").getAttribute("aria-pressed"), "true");
 
