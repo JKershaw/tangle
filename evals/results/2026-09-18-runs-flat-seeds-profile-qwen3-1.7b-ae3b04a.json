@@ -1,0 +1,451 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "ae3b04a",
+  "head": "120c0fc",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T15:50:26.536Z",
+  "loadSeconds": 5,
+  "prompt": "walk-10/asks-3",
+  "schema": "sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-10",
+    "asks": "asks-3",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 93,
+      "mean": 46.5
+    },
+    "vramGiB": {
+      "min": 0.62,
+      "max": 2.9,
+      "mean": 1.8
+    },
+    "load": {
+      "min": 25.96,
+      "max": 27.1,
+      "mean": 26.5
+    },
+    "memoryFreePercent": {
+      "min": 76,
+      "max": 83,
+      "mean": 79.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "flat",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "maxNodes": 1,
+    "maxVisits": 3,
+    "maxDepth": 0,
+    "maxLookups": 6,
+    "maxPasses": 8
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 8,
+  "factsSupported": 8,
+  "factsRead": 24,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1914
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science. Despite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 461,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "entries": 555,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-turing.json",
+      "summary": "live run · seed: Tell me about Alan Turing and elaborate on the impact of his work.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:50:31.944Z · exported 2026-09-18T15:50:36.863Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1914\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. → He was highly influential in the development of theoretical computer science, providing a \n\nmodel latency ms: median 805 · max 818 · n 4\nnothing flagged"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 6,
+        "lookups": 2,
+        "tokens": 2323
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The name \"Silk Road\" was coined in the late 19th century, but some 20th- and 21st-century historians instead prefer the term Silk Routes, on the grounds that it more accurately describes the intricate web of land and sea routes connecting Central, East, South, Southeast, and West Asia as well as East Africa and Southern Europe.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 624,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 9,
+      "wiki": {
+        "hits": 10,
+        "misses": 0,
+        "entries": 555,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-silk-road.json",
+      "summary": "live run · seed: Tell me about the Silk Road and elaborate on its influence.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:50:36.870Z · exported 2026-09-18T15:50:45.904Z\nnodes 1 · visits 1 · model calls 6 · lookups 2 · evidence 1 · tokens 2323\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved 1 failed lookup] Tell me about the Silk Road and elaborate on its influence. → The Silk Road was a network of Asian trade routes active from the second century BCE until\n\nmodel latency ms: median 806 · max 2489 · n 6\nworth a look:\n- n1 lookup found nothing: “Tell me about Silk Road and elaborate on influence” (None of the articles found is about the question: Tame Impala, Madonna, Lady Gaga, Godzilla Minus One, Babylon 5, Nineveh, Wentworth Miller.)"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "expansion": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1487
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Hubble proved that many objects previously thought to be clouds of dust and gas and classified as \"nebulae\" were actually galaxies beyond the Milky Way. Hubble confirmed in 1929 that the recessional velocity of a galaxy increases with its distance from Earth, a behavior that became known as Hubble's law, although it had been proposed two years earlier by Georges Lemaître. Hubble's name is most widely recognized for the Hubble Space Telescope, which was named in his honor, with a model prominently displayed in his hometown of Marshfield, Missouri.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 552,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 14,
+        "misses": 0,
+        "entries": 555,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-hubble.json",
+      "summary": "live run · seed: Tell me about the Hubble Space Telescope and what it has discovered.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:50:45.911Z · exported 2026-09-18T15:50:50.586Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1487\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. → Hubble proved that many objects previously thought to be clouds of dust and gas and classi\n\nmodel latency ms: median 633 · max 637 · n 4\nnothing flagged"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1922
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 695,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 18,
+        "misses": 0,
+        "entries": 555,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-great-barrier-reef.json",
+      "summary": "live run · seed: Describe the Great Barrier Reef and the threats it faces.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:50:50.589Z · exported 2026-09-18T15:50:55.249Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1922\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Describe the Great Barrier Reef and the threats it faces. → It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Ot\n\nmodel latency ms: median 814 · max 879 · n 4\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-18T15:50:26.535Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-10\",\"asks\":\"asks-3\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T15:50:26.669Z loading: Checking this device before downloading…",
+    "2026-09-18T15:50:31.679Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 94% · vram 0.61 GiB · load 25.96 · mem 83% free (normal) · no throttling recorded",
+    "2026-09-18T15:50:31.776Z 4 seeds from evals/seeds-profile.json · mode flat · limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8} · prompt walk-10/asks-3 · grammar sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit ae3b04a",
+    "wiki recording: 555 responses loaded",
+    "2026-09-18T15:50:36.731Z run stopped: Root resolved",
+    "turing: resolved · topics 1/8 · supported 1/8 · read 7/8 · ¶1 · 3 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 1 lookups, 1914 tokens · 5 s · wiki 4 hits 0 misses",
+    "2026-09-18T15:50:45.777Z run stopped: Root resolved",
+    "silk-road: resolved · topics 2/9 · supported 2/9 · read 7/9 · ¶1 · 3 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 2 lookups, 2323 tokens · 9 s · wiki 10 hits 0 misses",
+    "2026-09-18T15:50:50.460Z run stopped: Root resolved",
+    "hubble: resolved · topics 0/8 · supported 0/8 · read 1/8 · ¶1 · 3 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 1 lookups, 1487 tokens · 5 s · wiki 14 hits 0 misses",
+    "2026-09-18T15:50:55.128Z run stopped: Root resolved",
+    "great-barrier-reef: resolved · topics 5/10 · supported 5/10 · read 9/10 · ¶1 · 3 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 1 lookups, 1922 tokens · 5 s · wiki 18 hits 0 misses",
+    "machine during the suite: gpu 46.5% mean, 93% peak · vram up to 2.9 GiB · load up to 27.1 · no throttling in 2 samples"
+  ]
+}

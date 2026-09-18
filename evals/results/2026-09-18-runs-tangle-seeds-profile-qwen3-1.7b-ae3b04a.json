@@ -1,0 +1,445 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "ae3b04a",
+  "head": "ea39412 (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T15:43:44.499Z",
+  "loadSeconds": 5,
+  "prompt": "walk-10/asks-3",
+  "schema": "sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-10",
+    "asks": "asks-3",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 9,
+    "gpuPercent": {
+      "min": 0,
+      "max": 96,
+      "mean": 85
+    },
+    "vramGiB": {
+      "min": 0.2,
+      "max": 2.65,
+      "mean": 2.3
+    },
+    "load": {
+      "min": 16.32,
+      "max": 20.19,
+      "mean": 18.8
+    },
+    "memoryFreePercent": {
+      "min": 78,
+      "max": 86,
+      "mean": 79.3
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 21,
+  "factsSupported": 21,
+  "factsRead": 33,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "ace": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "morphogenesis": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "conviction": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 7,
+        "visits": 8,
+        "modelCalls": 44,
+        "lookups": 13,
+        "tokens": 14457
+      },
+      "statuses": {
+        "resolved": 7
+      },
+      "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science. Despite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act.\n\nMorcom, who was successful, had various advantages over Turing – he was nearly a year older, and both his father and brother had studied at Trinity. It was finally accepted on 16 March 1935. By spring of that same year, Turing started his master's course (Part III)—which he completed in 1937—and, at the same time, he published his first paper, a one-page article called Equivalence of left and right almost periodicity (sent on 23 April), featured in the tenth volume of the Journal of the London Mathematical Society.\n\nWhen Turing returned to Cambridge, he attended lectures given in 1939 by Ludwig Wittgenstein about the foundations of mathematics. The lectures have been reconstructed verbatim, including interjections from Turing and other students, from students' notes. Turing and Wittgenstein argued and disagreed, with Turing defending formalism and Wittgenstein propounding his view that mathematics does not discover any absolute truths, but rather invents them. The Tractatus Logico-Philosophicus (widely abbreviated and cited as TLP) is the only book-length philosophical work by the Austrian philosopher Ludwig Wittgenstein that was published during his lifetime. The Tractatus is recognized by philosophers as one of the most significant philosophical works of the twentieth century and was influential among the logical positivists of the Vienna Circle, such as Rudolf Carnap and Friedrich Waismann. Wittgenstein's later works, notably the posthumously published Philosophical Investigations, criticised many of his ideas in the Tractatus.\n\nHe presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.\n\nWhen Turing was 39 years old in 1951, he turned to mathematical biology, finally publishing his masterpiece \"The Chemical Basis of Morphogenesis\" in January 1952. He was interested in morphogenesis, the development of patterns and shapes in biological organisms. Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.\n\nTuring invented a hybrid chess sport, earlier than chess boxing, referred to as round-the-house chess, one player makes a chess move, then that player runs around the house, and the other player must make a chess move before the first player returns.\n\nDuring the investigation, he acknowledged a sexual relationship with Murray. Homosexual acts were criminal offences in the United Kingdom at that time, and both men were charged with \"gross indecency\" under Section 11 of the Criminal Law Amendment Act 1885. Turing and Murray, was brought to trial on 31 March 1952. Turing's barrister pushed for him not to be incarcerated, and he was sentenced to 12 months' probation. His probation would be conditional on his agreement to undergo organotherapy or 'chemical castration' in the Manchester Royal Infirmary, a process which induces hormonal physical changes with the aim of reducing libido. In a letter, Turing wrote that \"no doubt I shall emerge from it all a different man, but quite who I've not found out\".",
+      "profile": {
+        "paragraphs": 7,
+        "sentences": 25,
+        "chars": 3941,
+        "duplicates": 0,
+        "articles": 4,
+        "sections": 10,
+        "hopsChosen": 6,
+        "hopsRead": 3,
+        "hopsCited": 1,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 29,
+      "wiki": {
+        "hits": 26,
+        "misses": 0,
+        "entries": 542,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-turing.json",
+      "summary": "live run · seed: Tell me about Alan Turing and elaborate on the impact of his work.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:43:49.905Z · exported 2026-09-18T15:44:18.839Z\nnodes 7 · visits 8 · model calls 44 · lookups 13 · evidence 10 · tokens 14457\nstatuses {\"resolved\":7} · outcome: root resolved\n\nn1 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. → He was highly influential in the development of theoretical computer science, providing a \n  n2 [resolved 1 failed lookup] Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability → Morcom, who was successful, had various advantages over Turing – he was nearly a year olde\n  n3 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Career and research → When Turing returned to Cambridge, he attended lectures given in 1939 by Ludwig Wittgenste\n  n4 [resolved 1 failed lookup] Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test → He presented a paper on 19 February 1946, which was the first detailed design of a stored-\n  n5 [resolved 1 failed lookup] Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology → When Turing was 39 years old in 1951, he turned to mathematical biology, finally publishin\n  n6 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Chess → Turing invented a hybrid chess sport, earlier than chess boxing, referred to as round-the-\n  n7 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Homosexuality and indecency conviction → During the investigation, he acknowledged a sexual relationship with Murray. Homosexual ac\n\nmodel latency ms: median 484 · max 2616 · n 44\nworth a look:\n- n2 lookup found nothing: “Turing” (Already read: “Alan Turing”.)\n- n4 lookup found nothing: “Turing” (Already read: “Alan Turing”.)\n- n5 lookup found nothing: “The Chemical Basis of Morphogenesis” (Already read: “Alan Turing”.)"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mongol": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 7,
+        "visits": 8,
+        "modelCalls": 58,
+        "lookups": 14,
+        "tokens": 21382
+      },
+      "statuses": {
+        "resolved": 7
+      },
+      "finding": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The name \"Silk Road\" was coined in the late 19th century, but some 20th- and 21st-century historians instead prefer the term Silk Routes, on the grounds that it more accurately describes the intricate web of land and sea routes connecting Central, East, South, Southeast, and West Asia as well as East Africa and Southern Europe.\n\nBy the Umayyad era, Damascus had overtaken Ctesiphon as a major trade center until the Abbasid dynasty built the city of Baghdad, which became the most important city along the silk road. At the end of its glory, the routes brought about the largest continental empire ever, the Mongol Empire, with its political centres strung along the Silk Road (Beijing) in North China, Karakorum in central Mongolia, Samarkand in Transoxiana, Tabriz in Northern Iran, realising the political unification of zones previously loosely and intermittently connected by material and cultural goods. During the early 13th century, Khwarazm was invaded by the Mongol Empire. The Mongol ruler Genghis Khan had the once vibrant cities of Bukhara and Samarkand burned to the ground after besieging them. However, in 1370 Samarkand saw a revival as the capital of the new Timurid Empire. The Turko-Mongol ruler Timur forcefully moved artisans and intellectuals from across Asia to Samarkand, making it one of the most important trade centers and cultural entrepôts of the Islamic world.\n\nThe Mongol expansion throughout the Asian continent from around 1207 to 1360 helped bring political stability and re-established the Silk Road (via Karakorum and Khanbaliq). Because the Mongols came to control the trade routes, trade circulated throughout the region, though they never abandoned their nomadic lifestyle. The Mongol rulers wanted to establish their capital on the Central Asian steppe, so to accomplish this goal, after every conquest they enlisted local people (traders, scholars, artisans) to help them construct and manage their empire. The Mongols developed overland and maritime routes throughout the Eurasian continent, Black Sea and the Mediterranean in the west, and the Indian Ocean in the south. In the second half of the thirteenth century Mongol-sponsored business partnerships flourished in the Indian Ocean connecting Mongol Middle East and Mongol China The Mongol diplomat Rabban Bar Sauma visited the courts of Europe in 1287–88 and provided a detailed written report to the Mongols. One theory holds that Genoese traders coming from the entrepôt of Trebizond in northern Turkey carried the disease to Western Europe; like many other outbreaks of plague, there is strong evidence that it originated in marmots in Central Asia and was carried westwards to the Black Sea by Silk Road traders.\n\nRichard Foltz, Xinru Liu, and others have described how trading activities along the Silk Road over many centuries facilitated the transmission not just of goods but also ideas and culture, notably in the area of religions. Zoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across Eurasia through trade networks that were tied to specific religious communities and their institutions. Notably, established Buddhist monasteries along the Silk Road offered a haven, as well as a new religion for foreigners. The spread of religions and cultural traditions along the Silk Roads, according to Jerry H. Bentley, also led to syncretism. Perhaps most surprising of the cultural exchanges between China and the Xiongnu, Chinese soldiers sometimes defected and converted to the Xiongnu way of life, and stayed in the steppes for fear of punishment.\n\nThe transmission of Christianity was primarily known as Nestorianism on the Silk Road. In 781, an inscribed stele shows Nestorian Christian missionaries arriving on the Silk Road. Christianity had spread both east and west, simultaneously bringing Syriac language and evolving the forms of worship. The Mogao Christian painting, also known as Painting of a Christian figure or Fragment of a Christian figure, is a partially-recovered silk painting which was produced in the 9th century CE in Guiyi Prefecture, a historical region of Western China.\n\nThe transmission of Buddhism to China via the Silk Road began in the 1st century CE, according to a semi-legendary account of an ambassador sent to the West by the Chinese Emperor Ming (58–75). During this period Buddhism began to spread throughout Southeast, East, and Central Asia. Mahayana, Theravada, and Vajrayana are the three primary forms of Buddhism that spread across Asia via the Silk Road. The Buddhist movement was the first large-scale missionary movement in the history of world religions. Chinese missionaries were able to assimilate Buddhism, to an extent, to native Chinese Daoists, which brought the two beliefs together. Parthian scholars were involved in one of the first-ever Buddhist text translations into the Chinese language.\n\nMany artistic influences were transmitted via the Silk Road, particularly through Central Asia, where Hellenistic, Iranian, Indian and Chinese influences could intermix. Greco-Buddhist art represents one of the most vivid examples of this interaction. Silk was also a representation of art, serving as a religious symbol. These artistic influences can be seen in the development of Buddhism where, for instance, Buddha was first depicted as human in the Kushan period. The mixture of Greek and Indian elements can be found in later Buddhist art in China and throughout countries on the Silk Road. Many artistic influences transited along the Silk Road, especially through the Central Asia, where Hellenistic, Iranian, Indian and Chinese influence were able to interact.",
+      "profile": {
+        "paragraphs": 7,
+        "sentences": 37,
+        "chars": 5959,
+        "duplicates": 0,
+        "articles": 7,
+        "sections": 13,
+        "hopsChosen": 6,
+        "hopsRead": 6,
+        "hopsCited": 2,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 41,
+      "wiki": {
+        "hits": 45,
+        "misses": 9,
+        "entries": 551,
+        "added": 9
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-silk-road.json",
+      "summary": "live run · seed: Tell me about the Silk Road and elaborate on its influence.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:44:18.869Z · exported 2026-09-18T15:44:59.567Z\nnodes 7 · visits 8 · model calls 58 · lookups 14 · evidence 13 · tokens 21382\nstatuses {\"resolved\":7} · outcome: root resolved\n\nn1 [resolved v2 1 failed lookup] Tell me about the Silk Road and elaborate on its influence. → The Silk Road was a network of Asian trade routes active from the second century BCE until\n  n2 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Islamic era (8th–13th centuries) → By the Umayyad era, Damascus had overtaken Ctesiphon as a major trade center until the Abb\n  n3 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Mongol Empire (13th–14th centuries) → The Mongol expansion throughout the Asian continent from around 1207 to 1360 helped bring \n  n4 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Expansion of religions → Richard Foltz, Xinru Liu, and others have described how trading activities along the Silk \n  n5 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Transmission of Christianity → The transmission of Christianity was primarily known as Nestorianism on the Silk Road. In \n  n6 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Transmission of Buddhism → The transmission of Buddhism to China via the Silk Road began in the 1st century CE, accor\n  n7 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Expansion of the arts → Many artistic influences were transmitted via the Silk Road, particularly through Central \n\nmodel latency ms: median 528 · max 1026 · n 58\nworth a look:\n- n1 lookup found nothing: “Tell me about Silk Road and elaborate on influence” (None of the articles found is about the question: Tame Impala, Madonna, Lady Gaga, Godzilla Minus One, Babylon 5, Nineveh, Wentworth Miller.)"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 7,
+        "visits": 8,
+        "modelCalls": 36,
+        "lookups": 8,
+        "tokens": 11959
+      },
+      "statuses": {
+        "resolved": 7
+      },
+      "finding": "Hubble proved that many objects previously thought to be clouds of dust and gas and classified as \"nebulae\" were actually galaxies beyond the Milky Way. Hubble confirmed in 1929 that the recessional velocity of a galaxy increases with its distance from Earth, a behavior that became known as Hubble's law, although it had been proposed two years earlier by Georges Lemaître. Hubble's name is most widely recognized for the Hubble Space Telescope, which was named in his honor, with a model prominently displayed in his hometown of Marshfield, Missouri.\n\nInstead, he proceeded to teach Spanish, physics and mathematics at New Albany High School in New Albany, Indiana, where he also coached the boys' basketball team. After a year of high-school teaching, he entered graduate school with the help of his former professor from the University of Chicago to study astronomy at the university's Yerkes Observatory, where he received his Ph.D. in 1921. His dissertation was titled \"Photographic Investigations of Faint Nebulae\". Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe. Hubble completed 30 years of operation in April 2020 and is predicted to last until 2030 to 2040. Hubble is the visible light telescope in NASA's Great Observatories program; other parts of the spectrum are covered by the Compton Gamma Ray Observatory, the Chandra X-ray Observatory, and the Spitzer Space Telescope (which covers the infrared bands).\n\nHis observations, made in 1924, proved conclusively that these nebulae were much too distant to be part of the Milky Way and were, in fact, entire galaxies outside the Milky Way galaxy; thus, today they are no longer considered nebulae. Hubble's results for the Andromeda galaxy were formally published in a peer-reviewed scientific journal in 1929. Hubble's findings fundamentally changed the scientific view of the universe.\n\nHubble went on to estimate the distances to 24 extra-galactic nebulae, using a variety of methods. In 1929, Hubble examined the relationship between these distances and their radial velocities as determined from their redshifts. Humason, he found a roughly linear relationship between the distances of the galaxies and their radial velocities (corrected for solar motion), a discovery that later became known as Hubble's law.\n\nAside from his contributions in stellar and extragalactic astronomy, Hubble also discovered a comet of his own, C/1937 P1 (Hubble), on 4 August 1937. This comet remained observable for 58 days until 28 October 1937.\n\nAsteroid 2069 Hubble; The crater Hubble on the Moon; Orbiting Hubble Space Telescope; Edwin P. Hubble Planetarium, located in the Edward R. Murrow High School, Brooklyn, New York; Edwin Hubble Highway, the stretch of Interstate 44 passing through his birthplace of Marshfield, Missouri; Hubble Middle School, a public school in Wheaton, Illinois, where he lived from 11 years old and up.\n\n1934 delivered the Halley Lecture at University of Oxford; 2003 Hall of Famous Missourians; 2017 Indiana Basketball Hall of Fame. The play Creation's Birthday, written by Cornell physicist Hasan Padamsee, tells Hubble's life story.",
+      "profile": {
+        "paragraphs": 7,
+        "sentences": 22,
+        "chars": 3194,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 8,
+        "hopsChosen": 6,
+        "hopsRead": 1,
+        "hopsCited": 1,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 23,
+      "wiki": {
+        "hits": 57,
+        "misses": 9,
+        "entries": 551,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-hubble.json",
+      "summary": "live run · seed: Tell me about the Hubble Space Telescope and what it has discovered.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:44:59.608Z · exported 2026-09-18T15:45:22.292Z\nnodes 7 · visits 8 · model calls 36 · lookups 8 · evidence 8 · tokens 11959\nstatuses {\"resolved\":7} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. → Hubble proved that many objects previously thought to be clouds of dust and gas and classi\n  n2 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Undergraduate studies → Instead, he proceeded to teach Spanish, physics and mathematics at New Albany High School \n  n3 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Universe goes beyond the Milky Way galaxy → His observations, made in 1924, proved conclusively that these nebulae were much too dista\n  n4 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Redshift increases with distance → Hubble went on to estimate the distances to 24 extra-galactic nebulae, using a variety of \n  n5 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Other discoveries → Aside from his contributions in stellar and extragalactic astronomy, Hubble also discovere\n  n6 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Namesakes → Asteroid 2069 Hubble; The crater Hubble on the Moon; Orbiting Hubble Space Telescope; Edwi\n  n7 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Other notable appearances → 1934 delivered the Halley Lecture at University of Oxford; 2003 Hall of Famous Missourians\n\nmodel latency ms: median 436 · max 849 · n 36\nnothing flagged"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "queensland": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 9,
+      "factsSupported": 9,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 7,
+        "visits": 8,
+        "modelCalls": 42,
+        "lookups": 9,
+        "tokens": 16026
+      },
+      "statuses": {
+        "resolved": 7
+      },
+      "finding": "It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified.\n\nThe Great Barrier Reef supports an extraordinary diversity of life, including many vulnerable or endangered species, some of which may be endemic to the reef system. Thirty species of cetaceans have been recorded in the Great Barrier Reef, including the dwarf minke whale, Indo-Pacific humpback dolphin, and the humpback whale. None found in the Great Barrier Reef World Heritage Area are endemic, nor are any endangered.\n\nClimate change, pollution, crown-of-thorns starfish and fishing are the primary threats to the health of this reef system. Other threats include shipping accidents, oil spills, and tropical cyclones. According to a 2012 study by the National Academy of Sciences, since 1985, the Great Barrier Reef has lost more than half of its corals with two-thirds of the loss occurring from 1998 due to the factors listed before.\n\nThe Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Barrier Reef to be climate change, causing ocean warming which increases coral bleaching. Mass coral bleaching events due to marine heatwaves occurred in the summers of 1998, 2002, 2006, 2016, 2017 and 2020, and coral bleaching is expected to become an annual occurrence. In 2020, a study found that the Great Barrier Reef has lost more than half of its corals since 1995 due to warmer seas driven by climate change. As global warming continues, corals will not be able to keep up with increasing ocean temperatures. Coral bleaching events lead to increased disease susceptibility, which causes detrimental ecological effects for reef communities. In July 2017 UNESCO published in a draft decision, expressing serious concern about the impact of coral bleaching on the Great Barrier Reef.\n\nIn March 2015, the Australian and Queensland's governments formed a plan for the protection and preservation of the reef's universal heritage until 2050. This 35-year plan, titled \"Reef 2050 Plan\" is a document proposing possible measures for the long-term management of the pollution, climate change and other issues that threaten the life-span and value of this global heritage. The plan contains all the elements for measurement and improvements, including long-term sustainability plan, water quality improvement plan and the investment plan for the protection and preservation of The Reef until 2050. However, whereas the 2050 plan aims to incorporate protective measures such as improving water quality, reef restoration and killing predatory starfish, it does not incorporate additional measures to address what may be the root cause of the problem – climate change, which is caused by greenhouse gas emissions. A 2014 report of the Australian Government's Great Barrier Reef Marine Park Authority (GBRMPA) says that climate change is the most significant environmental threat to the Great Barrier Reef. The report concluded that the Great Barrier Reef should be included on the list of World Heritage in Danger, which would probably have had an impact on tourism.\n\nThe Great Barrier Reef has long been known to and used by the Aboriginal Australian and Torres Strait Islander peoples. Because the reef had no atolls, it was largely unstudied in the 19th century. In 1922, the Great Barrier Reef Committee began carrying out much of the early research on the reef.\n\nA Deloitte report published by the Great Barrier Reef Marine Park Authority in March 2013 states that the Reef's 2,000 kilometres of coastline attracts tourism worth A$6.4 billion annually and employs more than 64,000 people. Approximately two million people visit the Great Barrier Reef each year. Although most of these visits are managed in partnership with the marine Tourism industry, there is a concern among the general public that tourism is harmful to the Great Barrier Reef.",
+      "profile": {
+        "paragraphs": 7,
+        "sentences": 27,
+        "chars": 4474,
+        "duplicates": 0,
+        "articles": 3,
+        "sections": 9,
+        "hopsChosen": 6,
+        "hopsRead": 2,
+        "hopsCited": 1,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 29,
+      "wiki": {
+        "hits": 69,
+        "misses": 13,
+        "entries": 555,
+        "added": 4
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-great-barrier-reef.json",
+      "summary": "live run · seed: Describe the Great Barrier Reef and the threats it faces.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:45:22.309Z · exported 2026-09-18T15:45:50.991Z\nnodes 7 · visits 8 · model calls 42 · lookups 9 · evidence 9 · tokens 16026\nstatuses {\"resolved\":7} · outcome: root resolved\n\nn1 [resolved v2] Describe the Great Barrier Reef and the threats it faces. → It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Ot\n  n2 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Ecology → The Great Barrier Reef supports an extraordinary diversity of life, including many vulnera\n  n3 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Environmental threats → Climate change, pollution, crown-of-thorns starfish and fishing are the primary threats to\n  n4 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Climate change → The Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Ba\n  n5 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Protection and preservation: Reef 2050 plan → In March 2015, the Australian and Queensland's governments formed a plan for the protectio\n  n6 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Human use → The Great Barrier Reef has long been known to and used by the Aboriginal Australian and To\n  n7 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Tourism → A Deloitte report published by the Great Barrier Reef Marine Park Authority in March 2013 \n\nmodel latency ms: median 617 · max 1006 · n 42\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-18T15:43:44.499Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-10\",\"asks\":\"asks-3\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T15:43:44.662Z loading: Checking this device before downloading…",
+    "2026-09-18T15:43:49.666Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 93% · vram 0.2 GiB · load 16.32 · mem 86% free (normal) · no throttling recorded",
+    "2026-09-18T15:43:49.744Z 4 seeds from evals/seeds-profile.json · mode tangle · limits {} · prompt walk-10/asks-3 · grammar sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit ae3b04a",
+    "wiki recording: 542 responses loaded",
+    "2026-09-18T15:44:18.718Z run stopped: Root resolved",
+    "turing: resolved · topics 5/8 · supported 5/8 · read 8/8 · ¶7 · 25 sentences · read 4 articles, 10 sections · hops 1 cited / 3 read / 6 chosen · 7 nodes, 44 calls, 13 lookups, 14457 tokens · 29 s · wiki 26 hits 0 misses",
+    "2026-09-18T15:44:59.437Z run stopped: Root resolved",
+    "silk-road: resolved · topics 5/9 · supported 5/9 · read 8/9 · ¶7 · 37 sentences · read 7 articles, 13 sections · hops 2 cited / 6 read / 6 chosen · 7 nodes, 58 calls, 14 lookups, 21382 tokens · 41 s · wiki 45 hits 9 misses",
+    "2026-09-18T15:45:22.163Z run stopped: Root resolved",
+    "hubble: resolved · topics 2/8 · supported 2/8 · read 7/8 · ¶7 · 22 sentences · read 2 articles, 8 sections · hops 1 cited / 1 read / 6 chosen · 7 nodes, 36 calls, 8 lookups, 11959 tokens · 23 s · wiki 57 hits 9 misses",
+    "2026-09-18T15:45:50.864Z run stopped: Root resolved",
+    "great-barrier-reef: resolved · topics 9/10 · supported 9/10 · read 10/10 · ¶7 · 27 sentences · read 3 articles, 9 sections · hops 1 cited / 2 read / 6 chosen · 7 nodes, 42 calls, 9 lookups, 16026 tokens · 29 s · wiki 69 hits 13 misses",
+    "machine during the suite: gpu 85% mean, 96% peak · vram up to 2.65 GiB · load up to 20.19 · no throttling in 9 samples"
+  ]
+}

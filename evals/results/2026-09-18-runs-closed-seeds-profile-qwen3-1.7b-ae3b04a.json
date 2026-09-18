@@ -1,0 +1,407 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "ae3b04a",
+  "head": "120c0fc",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T15:47:31.386Z",
+  "loadSeconds": 5,
+  "prompt": "closed-profile-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-10",
+    "asks": "asks-3",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 72,
+      "mean": 36
+    },
+    "vramGiB": {
+      "min": 0.62,
+      "max": 2.7,
+      "mean": 1.7
+    },
+    "load": {
+      "min": 21.64,
+      "max": 23.26,
+      "mean": 22.5
+    },
+    "memoryFreePercent": {
+      "min": 77,
+      "max": 84,
+      "mean": 80.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 15,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "turing-machine": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "enigma": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "turing-test": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "conviction": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 235
+      },
+      "statuses": {},
+      "finding": "Alan Turing was a British mathematician, logician, and pioneer of computer science. He is best known for his work on the concept of the computer and the idea of a universal machine, which laid the foundation for modern computing. Turing also played a crucial role in breaking the Enigma code during World War II, contributing to the Allied victory. His work on the Turing test, which evaluates artificial intelligence, remains a key concept in the field. However, Turing's legacy is marred by the tragic case of his punishment for homosexuality, which led to his chemical castration and eventual death. His contributions have had a lasting impact on technology, AI, and the ethical implications of artificial intelligence. Turing's story is a reminder of the importance of recognizing and protecting individuals based on their identity and contributions to society.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 7,
+        "chars": 865,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 10,
+      "latencyMs": 9953,
+      "raw": "<think>\n\n</think>\n\n{  \n\"answer\" : \"Alan Turing was a British mathematician, logician, and pioneer of computer science. He is best known for his work on the concept of the computer and the idea of a universal machine, which laid the foundation for modern computing. Turing also played a crucial role in breaking the Enigma code during World War II, contributing to the Allied victory. His work on the Turing test, which evaluates artificial intelligence, remains a key concept in the field. However, Turing's legacy is marred by the tragic case of his punishment for homosexuality, which led to his chemical castration and eventual death. His contributions have had a lasting impact on technology, AI, and the ethical implications of artificial intelligence. Turing's story is a reminder of the importance of recognizing and protecting individuals based on their identity and contributions to society.\"  \n}"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "silk": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "buddhism": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mongol": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 5,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 268
+      },
+      "statuses": {},
+      "finding": "The Silk Road was a network of land and sea routes that connected East Asia to the Mediterranean, spanning over 2,000 miles. It was established during the Han Dynasty in China and flourished during the Tang and Mongol periods. The Silk Road facilitated the exchange of goods, ideas, and cultures between East and West. Key works include the *Silk Road: A History* by Peter H. Frost, and the *Mandate of Heaven* by Qianlong. The route was vital for the spread of Buddhism, the transmission of papermaking and printing techniques, and the exchange of scientific knowledge. Its influence extended to the development of trade networks, the spread of religions, and the cultural integration of diverse civilizations. However, it also led to conflicts, such as the Mongol invasion, and the eventual decline of the route due to European exploration and the rise of maritime trade. The Silk Road remains a symbol of global interconnectedness and the enduring impact of cross-cultural exchange.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 9,
+        "chars": 985,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 3,
+      "latencyMs": 3225,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Silk Road was a network of land and sea routes that connected East Asia to the Mediterranean, spanning over 2,000 miles. It was established during the Han Dynasty in China and flourished during the Tang and Mongol periods. The Silk Road facilitated the exchange of goods, ideas, and cultures between East and West. Key works include the *Silk Road: A History* by Peter H. Frost, and the *Mandate of Heaven* by Qianlong. The route was vital for the spread of Buddhism, the transmission of papermaking and printing techniques, and the exchange of scientific knowledge. Its influence extended to the development of trade networks, the spread of religions, and the cultural integration of diverse civilizations. However, it also led to conflicts, such as the Mongol invasion, and the eventual decline of the route due to European exploration and the rise of maritime trade. The Silk Road remains a symbol of global interconnectedness and the enduring impact of cross-cultural exchange.\"\n}"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "expansion": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 197
+      },
+      "statuses": {},
+      "finding": "The Hubble Space Telescope, launched in 1990, is a space-based observatory that provides clear images of celestial objects without atmospheric distortion. It has discovered numerous important features, such as the expansion of the universe, the formation of stars and galaxies, and the presence of dark matter. Hubble has also identified exoplanets and studied the life cycle of stars. Its discoveries have significantly advanced our understanding of the universe and have led to major scientific breakthroughs, including the confirmation of the accelerating expansion of the universe. The telescope is one of the most valuable tools in modern astronomy and space exploration.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 5,
+        "chars": 676,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 2,
+      "latencyMs": 2119,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Hubble Space Telescope, launched in 1990, is a space-based observatory that provides clear images of celestial objects without atmospheric distortion. It has discovered numerous important features, such as the expansion of the universe, the formation of stars and galaxies, and the presence of dark matter. Hubble has also identified exoplanets and studied the life cycle of stars. Its discoveries have significantly advanced our understanding of the universe and have led to major scientific breakthroughs, including the confirmation of the accelerating expansion of the universe. The telescope is one of the most valuable tools in modern astronomy and space exploration.\"\n}"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "bleaching": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "heritage": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 5,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 264
+      },
+      "statuses": {},
+      "finding": "The Great Barrier Reef is the world's largest coral reef system, located in the Coral Sea off the northeastern coast of Australia. It is a UNESCO World Heritage Site and one of the most diverse ecosystems on Earth, home to thousands of marine species. The reef is formed by coral polyps that have grown over millions of years, creating a vast network of limestone structures and underwater canyons. It is also a critical habitat for many endangered species, including the great white shark, green sea turtle, and the rarest of all, the dugong. The Great Barrier Reef is one of the most visited natural wonders in the world, drawing millions of tourists each year. However, it faces significant threats, including climate change, ocean acidification, warming waters, and destructive fishing practices. These factors have led to coral bleaching, reduced fish populations, and the decline of some species. Conservation efforts, such as marine protected areas and international agreements, are crucial to preserving this unique and vital ecosystem.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 8,
+        "chars": 1044,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 3,
+      "latencyMs": 3170,
+      "raw": "<think>\n\n</think>\n\n{  \"answer\": \"The Great Barrier Reef is the world's largest coral reef system, located in the Coral Sea off the northeastern coast of Australia. It is a UNESCO World Heritage Site and one of the most diverse ecosystems on Earth, home to thousands of marine species. The reef is formed by coral polyps that have grown over millions of years, creating a vast network of limestone structures and underwater canyons. It is also a critical habitat for many endangered species, including the great white shark, green sea turtle, and the rarest of all, the dugong. The Great Barrier Reef is one of the most visited natural wonders in the world, drawing millions of tourists each year. However, it faces significant threats, including climate change, ocean acidification, warming waters, and destructive fishing practices. These factors have led to coral bleaching, reduced fish populations, and the decline of some species. Conservation efforts, such as marine protected areas and international agreements, are crucial to preserving this unique and vital ecosystem.\" }"
+    }
+  ],
+  "notes": [
+    "2026-09-18T15:47:31.385Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-10\",\"asks\":\"asks-3\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T15:47:31.502Z loading: Checking this device before downloading…",
+    "2026-09-18T15:47:36.506Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 82% · vram 0.62 GiB · load 21.64 · mem 84% free (normal) · no throttling recorded",
+    "2026-09-18T15:47:36.603Z 4 seeds from evals/seeds-profile.json · mode closed · limits {\"closed\":true} · prompt closed-profile-1 · grammar answer:string · commit ae3b04a",
+    "wiki recording: 555 responses loaded",
+    "turing: resolved · topics 3/8 · supported 0/8 · read 0/8 · ¶1 · 7 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 235 tokens · 10 s",
+    "silk-road: resolved · topics 5/9 · supported 0/9 · read 0/9 · ¶1 · 9 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 268 tokens · 3 s",
+    "hubble: resolved · topics 2/8 · supported 0/8 · read 0/8 · ¶1 · 5 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 197 tokens · 2 s",
+    "great-barrier-reef: resolved · topics 5/10 · supported 0/10 · read 0/10 · ¶1 · 8 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 264 tokens · 3 s",
+    "machine during the suite: gpu 36% mean, 72% peak · vram up to 2.7 GiB · load up to 23.26 · no throttling in 2 samples"
+  ]
+}

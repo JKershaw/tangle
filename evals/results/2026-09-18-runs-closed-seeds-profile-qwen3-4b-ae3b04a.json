@@ -1,0 +1,407 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-4B-q4f16_1-MLC",
+  "commit": "ae3b04a",
+  "head": "120c0fc",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T15:46:55.604Z",
+  "loadSeconds": 5,
+  "prompt": "closed-profile-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-10",
+    "asks": "asks-3",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 84,
+      "mean": 42
+    },
+    "vramGiB": {
+      "min": 0.65,
+      "max": 4.14,
+      "mean": 2.4
+    },
+    "load": {
+      "min": 15.37,
+      "max": 17.91,
+      "mean": 16.6
+    },
+    "memoryFreePercent": {
+      "min": 73,
+      "max": 84,
+      "mean": 78.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 10,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "enigma": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "turing-test": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "conviction": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "apology": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 5,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 304
+      },
+      "statuses": {},
+      "finding": "Alan Turing was a British mathematician, logician, and computer scientist whose work laid the foundation for modern computer science and artificial intelligence. He is best known for his role in breaking the German Enigma code during World War II, which significantly contributed to the Allied victory. Turing’s work at Bletchley Park, particularly through the development of the Bombe machine, helped decrypt Nazi communications, shortening the war by an estimated two years. His 1936 paper on the Entscheidungsproblem introduced the concept of the Turing machine, a theoretical model that defined the limits of computation and became the basis for the modern computer. Turing also proposed the Turing test as a criterion for machine intelligence, influencing the development of AI. In 1952, Turing faced persecution for his sexual orientation and was convicted of gross indecency, leading to his chemical castration. He died by suicide in 1954, a year after his death, the UK posthumously awarded him a pardon. Turing’s work has had a profound impact on computer science, mathematics, and the philosophy of mind, and his legacy continues to influence technology and society today.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 8,
+        "chars": 1182,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 14,
+      "latencyMs": 13940,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"Alan Turing was a British mathematician, logician, and computer scientist whose work laid the foundation for modern computer science and artificial intelligence. He is best known for his role in breaking the German Enigma code during World War II, which significantly contributed to the Allied victory. Turing’s work at Bletchley Park, particularly through the development of the Bombe machine, helped decrypt Nazi communications, shortening the war by an estimated two years. His 1936 paper on the Entscheidungsproblem introduced the concept of the Turing machine, a theoretical model that defined the limits of computation and became the basis for the modern computer. Turing also proposed the Turing test as a criterion for machine intelligence, influencing the development of AI. In 1952, Turing faced persecution for his sexual orientation and was convicted of gross indecency, leading to his chemical castration. He died by suicide in 1954, a year after his death, the UK posthumously awarded him a pardon. Turing’s work has had a profound impact on computer science, mathematics, and the philosophy of mind, and his legacy continues to influence technology and society today.\"\n}"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "silk": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 161
+      },
+      "statuses": {},
+      "finding": "The Silk Road was a vast network of trade routes that connected the East and West, facilitating the exchange of goods, ideas, and cultures between Asia, the Middle East, and Europe. Originating in the 2nd century BCE, it was not a single road but a system of interconnected paths that spanned thousands of miles, from China to the Mediterranean. Key routes included the Northern, Central, and Southern Silk Roads, each with distinct characteristics and trade goods.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 465,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 3,
+      "latencyMs": 2819,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The Silk Road was a vast network of trade routes that connected the East and West, facilitating the exchange of goods, ideas, and cultures between Asia, the Middle East, and Europe. Originating in the 2nd century BCE, it was not a single road but a system of interconnected paths that spanned thousands of miles, from China to the Mediterranean. Key routes included the Northern, Central, and Southern Silk Roads, each with distinct characteristics and trade goods.\"\n\n  }"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "expansion": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "edwin": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 177
+      },
+      "statuses": {},
+      "finding": "The Hubble Space Telescope (HST) is a powerful space-based observatory launched by NASA in 1990. Named after astronomer Edwin Hubble, it has revolutionized our understanding of the universe by providing clear, undistorted images of celestial objects beyond Earth’s atmosphere. Unlike ground-based telescopes, Hubble avoids atmospheric distortion, allowing for sharper and more accurate observations. Its primary mirror is 2.4 meters in diameter, and it operates in the ultraviolet, visible, and near-infrared wavelengths.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 4,
+        "chars": 521,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 3,
+      "latencyMs": 3208,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The Hubble Space Telescope (HST) is a powerful space-based observatory launched by NASA in 1990. Named after astronomer Edwin Hubble, it has revolutionized our understanding of the universe by providing clear, undistorted images of celestial objects beyond Earth’s atmosphere. Unlike ground-based telescopes, Hubble avoids atmospheric distortion, allowing for sharper and more accurate observations. Its primary mirror is 2.4 meters in diameter, and it operates in the ultraviolet, visible, and near-infrared wavelengths.\"\n\n  }"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "bleaching": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "heritage": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 213
+      },
+      "statuses": {},
+      "finding": "The Great Barrier Reef, located off the northeastern coast of Australia, is the world's largest coral reef system, spanning over 2,300 kilometers and encompassing over 300,000 square kilometers of marine habitat. It is home to an estimated 1,500 species of fish, 411 types of hard corals, and countless other marine organisms, including endangered species like the green sea turtle and the dugong. The reef is a UNESCO World Heritage Site and a critical part of Australia's tourism industry, attracting millions of visitors annually. Key locations include the Coral Sea, the Whitsunday Islands, and the Ningaloo Reef, which are part of the broader ecosystem.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 4,
+        "chars": 658,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 4,
+      "latencyMs": 4225,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The Great Barrier Reef, located off the northeastern coast of Australia, is the world's largest coral reef system, spanning over 2,300 kilometers and encompassing over 300,000 square kilometers of marine habitat. It is home to an estimated 1,500 species of fish, 411 types of hard corals, and countless other marine organisms, including endangered species like the green sea turtle and the dugong. The reef is a UNESCO World Heritage Site and a critical part of Australia's tourism industry, attracting millions of visitors annually. Key locations include the Coral Sea, the Whitsunday Islands, and the Ningaloo Reef, which are part of the broader ecosystem.\"\n\n  }"
+    }
+  ],
+  "notes": [
+    "2026-09-18T15:46:55.604Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-10\",\"asks\":\"asks-3\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T15:46:55.735Z loading: Checking this device before downloading…",
+    "2026-09-18T15:47:00.744Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-4B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 89% · vram 0.65 GiB · load 15.37 · mem 84% free (normal) · no throttling recorded",
+    "2026-09-18T15:47:00.845Z 4 seeds from evals/seeds-profile.json · mode closed · limits {\"closed\":true} · prompt closed-profile-1 · grammar answer:string · commit ae3b04a",
+    "wiki recording: 555 responses loaded",
+    "turing: resolved · topics 5/8 · supported 0/8 · read 0/8 · ¶1 · 8 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 304 tokens · 14 s",
+    "silk-road: resolved · topics 1/9 · supported 0/9 · read 0/9 · ¶1 · 3 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 161 tokens · 3 s",
+    "hubble: resolved · topics 2/8 · supported 0/8 · read 0/8 · ¶1 · 4 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 177 tokens · 3 s",
+    "great-barrier-reef: resolved · topics 2/10 · supported 0/10 · read 0/10 · ¶1 · 4 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 213 tokens · 4 s",
+    "machine during the suite: gpu 42% mean, 84% peak · vram up to 4.14 GiB · load up to 17.91 · no throttling in 2 samples"
+  ]
+}

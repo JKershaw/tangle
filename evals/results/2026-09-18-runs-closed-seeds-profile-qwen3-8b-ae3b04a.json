@@ -1,0 +1,407 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-8B-q4f16_1-MLC",
+  "commit": "ae3b04a",
+  "head": "120c0fc",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T15:45:52.204Z",
+  "loadSeconds": 10,
+  "prompt": "closed-profile-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-10",
+    "asks": "asks-3",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 4,
+    "gpuPercent": {
+      "min": 0,
+      "max": 92,
+      "mean": 67.8
+    },
+    "vramGiB": {
+      "min": 0.65,
+      "max": 6.38,
+      "mean": 4.9
+    },
+    "load": {
+      "min": 12.54,
+      "max": 15.72,
+      "mean": 13.6
+    },
+    "memoryFreePercent": {
+      "min": 65,
+      "max": 84,
+      "mean": 70.3
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 20,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "enigma": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "turing-test": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "conviction": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "apology": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 5,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 294
+      },
+      "statuses": {},
+      "finding": "Alan Turing was a British mathematician, logician, and cryptanalyst who played a pivotal role in breaking the German Enigma code during World War II. His most notable work involved developing the Bombe machine, which helped decrypt messages sent by the Nazi regime, significantly aiding the Allied war effort. This work is widely credited with shortening the war by an estimated two years, saving countless lives. Turing also laid the foundational concepts for modern computing with his 1936 paper on 'On Computable Numbers,' introducing the concept of a 'Turing machine.' His work in artificial intelligence, particularly the Turing Test, remains a benchmark for evaluating machine intelligence. Despite his contributions, Turing was persecuted for his homosexuality, which was illegal at the time. He was subjected to chemical castration and died by suicide in 1954. In 2009, the British government issued a formal apology for his treatment, and in 2013, he was posthumously awarded a royal pardon. Turing's legacy endures in computer science, cryptography, and the ongoing pursuit of understanding artificial intelligence.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 8,
+        "chars": 1125,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 16,
+      "latencyMs": 15875,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"Alan Turing was a British mathematician, logician, and cryptanalyst who played a pivotal role in breaking the German Enigma code during World War II. His most notable work involved developing the Bombe machine, which helped decrypt messages sent by the Nazi regime, significantly aiding the Allied war effort. This work is widely credited with shortening the war by an estimated two years, saving countless lives. Turing also laid the foundational concepts for modern computing with his 1936 paper on 'On Computable Numbers,' introducing the concept of a 'Turing machine.' His work in artificial intelligence, particularly the Turing Test, remains a benchmark for evaluating machine intelligence. Despite his contributions, Turing was persecuted for his homosexuality, which was illegal at the time. He was subjected to chemical castration and died by suicide in 1954. In 2009, the British government issued a formal apology for his treatment, and in 2013, he was posthumously awarded a royal pardon. Turing's legacy endures in computer science, cryptography, and the ongoing pursuit of understanding artificial intelligence.\"\n}"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "silk": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "buddhism": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mongol": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 5,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 399
+      },
+      "statuses": {},
+      "finding": "The Silk Road was a vast network of trade routes connecting the East and West, facilitating the exchange of goods, ideas, and cultures between China, Central Asia, the Middle East, and Europe. It originated during the Han Dynasty (2nd century BCE) under Emperor Wu, when Zhang Qian's diplomatic missions opened trade with Central Asian kingdoms. The term 'Silk Road' was coined by 19th-century historian Herman Schlegel, though the routes were used for centuries before that. Key cities like Chang'an (modern Xi'an), Samarkand, and Constantinople served as major hubs. Goods such as silk, spices, and paper traveled westward, while glassware, horses, and precious metals moved east. The Silk Road also enabled the spread of religions, including Buddhism, which reached China via Central Asia, and Zoroastrianism and Islam, which expanded into new regions. Cultural exchanges flourished, influencing art, science, and technology. For example, papermaking and printing techniques spread from China to the Islamic world and then to Europe. The Mongol Empire in the 13th century, under Genghis Khan and his successors, significantly expanded and secured the Silk Road, leading to a period of increased trade and cultural exchange known as the Pax Mongolica. However, the fall of the Mongol Empire and the rise of the Ottoman Empire in the 15th century disrupted the Silk Road, leading to the decline of overland trade and the rise of maritime routes. Despite its decline, the Silk Road's legacy endures in the interconnectedness of global cultures and the enduring impact of cross-cultural exchange.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 11,
+        "chars": 1595,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 14,
+      "latencyMs": 13510,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The Silk Road was a vast network of trade routes connecting the East and West, facilitating the exchange of goods, ideas, and cultures between China, Central Asia, the Middle East, and Europe. It originated during the Han Dynasty (2nd century BCE) under Emperor Wu, when Zhang Qian's diplomatic missions opened trade with Central Asian kingdoms. The term 'Silk Road' was coined by 19th-century historian Herman Schlegel, though the routes were used for centuries before that. Key cities like Chang'an (modern Xi'an), Samarkand, and Constantinople served as major hubs. Goods such as silk, spices, and paper traveled westward, while glassware, horses, and precious metals moved east. The Silk Road also enabled the spread of religions, including Buddhism, which reached China via Central Asia, and Zoroastrianism and Islam, which expanded into new regions. Cultural exchanges flourished, influencing art, science, and technology. For example, papermaking and printing techniques spread from China to the Islamic world and then to Europe. The Mongol Empire in the 13th century, under Genghis Khan and his successors, significantly expanded and secured the Silk Road, leading to a period of increased trade and cultural exchange known as the Pax Mongolica. However, the fall of the Mongol Empire and the rise of the Ottoman Empire in the 15th century disrupted the Silk Road, leading to the decline of overland trade and the rise of maritime routes. Despite its decline, the Silk Road's legacy endures in the interconnectedness of global cultures and the enduring impact of cross-cultural exchange.\"\n}"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "servicing": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "expansion": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "deep-field": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 4,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 326
+      },
+      "statuses": {},
+      "finding": "The Hubble Space Telescope (Hubble) is a space-based observatory launched in 1990 as part of NASA's Space Shuttle program. It was deployed into low Earth orbit by the Space Shuttle Discovery during STS-31 mission. Hubble's primary purpose is to observe the universe without the distorting effects of Earth's atmosphere, allowing for clearer and more detailed images of celestial objects. One of its most significant discoveries is the accelerated expansion of the universe, which was confirmed through observations of distant supernovae in the 1990s. This led to the discovery of dark energy, a mysterious force driving the universe's expansion. Hubble has also provided critical data on the age of the universe, estimated to be around 13.8 billion years. Notable images include the Hubble Deep Field, which revealed thousands of galaxies in a tiny patch of sky, and the iconic 'Cosmic Tapestry' image of the Carina Nebula. Hubble's contributions have revolutionized our understanding of cosmology, galaxy formation, and the nature of dark matter and dark energy. The telescope has been serviced by several space shuttle missions, with the last servicing mission occurring in 2009, extending its operational life and enhancing its capabilities.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 9,
+        "chars": 1244,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 11,
+      "latencyMs": 10814,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The Hubble Space Telescope (Hubble) is a space-based observatory launched in 1990 as part of NASA's Space Shuttle program. It was deployed into low Earth orbit by the Space Shuttle Discovery during STS-31 mission. Hubble's primary purpose is to observe the universe without the distorting effects of Earth's atmosphere, allowing for clearer and more detailed images of celestial objects. One of its most significant discoveries is the accelerated expansion of the universe, which was confirmed through observations of distant supernovae in the 1990s. This led to the discovery of dark energy, a mysterious force driving the universe's expansion. Hubble has also provided critical data on the age of the universe, estimated to be around 13.8 billion years. Notable images include the Hubble Deep Field, which revealed thousands of galaxies in a tiny patch of sky, and the iconic 'Cosmic Tapestry' image of the Carina Nebula. Hubble's contributions have revolutionized our understanding of cosmology, galaxy formation, and the nature of dark matter and dark energy. The telescope has been serviced by several space shuttle missions, with the last servicing mission occurring in 2009, extending its operational life and enhancing its capabilities.\"\n}"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "bleaching": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "heritage": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 6,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 338
+      },
+      "statuses": {},
+      "finding": "The Great Barrier Reef, located off the northeastern coast of Australia, is the world's largest coral reef system, stretching over 2,300 kilometers. It is a UNESCO World Heritage Site and home to an astonishing array of marine life, including over 1,500 species of fish, 400 types of coral, and numerous sea turtles, dolphins, and whales. The reef is also a vital part of the ecosystem, supporting both local and global biodiversity and providing livelihoods for many Indigenous communities and commercial fishermen. However, the Great Barrier Reef faces significant threats, including climate change, which leads to rising ocean temperatures and ocean acidification. These factors cause coral bleaching, where stressed corals expel the algae that provide them with color and nutrients. In recent years, mass bleaching events have devastated large portions of the reef, with the most severe occurring in 2016, 2017, and 2022. Pollution from agricultural runoff, coastal development, and plastic waste also contribute to the reef's decline. Additionally, the introduction of invasive species and overfishing have disrupted the delicate balance of the marine environment. Conservation efforts, such as the Reef 2050 Plan, aim to protect and restore the reef, but its future remains uncertain without urgent and sustained action to address these threats.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 9,
+        "chars": 1351,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 11,
+      "latencyMs": 11459,
+      "raw": "<think>\n\n</think>\n\n{\"answer\": \"The Great Barrier Reef, located off the northeastern coast of Australia, is the world's largest coral reef system, stretching over 2,300 kilometers. It is a UNESCO World Heritage Site and home to an astonishing array of marine life, including over 1,500 species of fish, 400 types of coral, and numerous sea turtles, dolphins, and whales. The reef is also a vital part of the ecosystem, supporting both local and global biodiversity and providing livelihoods for many Indigenous communities and commercial fishermen. However, the Great Barrier Reef faces significant threats, including climate change, which leads to rising ocean temperatures and ocean acidification. These factors cause coral bleaching, where stressed corals expel the algae that provide them with color and nutrients. In recent years, mass bleaching events have devastated large portions of the reef, with the most severe occurring in 2016, 2017, and 2022. Pollution from agricultural runoff, coastal development, and plastic waste also contribute to the reef's decline. Additionally, the introduction of invasive species and overfishing have disrupted the delicate balance of the marine environment. Conservation efforts, such as the Reef 2050 Plan, aim to protect and restore the reef, but its future remains uncertain without urgent and sustained action to address these threats.\"}"
+    }
+  ],
+  "notes": [
+    "2026-09-18T15:45:52.204Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-10\",\"asks\":\"asks-3\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T15:45:52.362Z loading: Checking this device before downloading…",
+    "2026-09-18T15:46:02.370Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-8B-q4f16_1-MLC: Ready. Inference runs on this device. (10 s)",
+    "machine at start: gpu 28% · vram 0.65 GiB · load 15.72 · mem 84% free (normal) · no throttling recorded",
+    "2026-09-18T15:46:02.469Z 4 seeds from evals/seeds-profile.json · mode closed · limits {\"closed\":true} · prompt closed-profile-1 · grammar answer:string · commit ae3b04a",
+    "wiki recording: 555 responses loaded",
+    "turing: resolved · topics 5/8 · supported 0/8 · read 0/8 · ¶1 · 8 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 294 tokens · 16 s",
+    "silk-road: resolved · topics 5/9 · supported 0/9 · read 0/9 · ¶1 · 11 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 399 tokens · 14 s",
+    "hubble: resolved · topics 4/8 · supported 0/8 · read 0/8 · ¶1 · 9 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 326 tokens · 11 s",
+    "great-barrier-reef: resolved · topics 6/10 · supported 0/10 · read 0/10 · ¶1 · 9 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 338 tokens · 11 s",
+    "machine during the suite: gpu 67.8% mean, 92% peak · vram up to 6.38 GiB · load up to 15.72 · no throttling in 4 samples"
+  ]
+}

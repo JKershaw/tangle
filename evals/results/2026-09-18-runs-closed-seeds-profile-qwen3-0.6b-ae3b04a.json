@@ -1,0 +1,407 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-0.6B-q4f16_1-MLC",
+  "commit": "ae3b04a",
+  "head": "120c0fc",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T15:48:05.246Z",
+  "loadSeconds": 5,
+  "prompt": "closed-profile-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-10",
+    "asks": "asks-3",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 63,
+      "mean": 31.5
+    },
+    "vramGiB": {
+      "min": 0.64,
+      "max": 2.13,
+      "mean": 1.4
+    },
+    "load": {
+      "min": 20.62,
+      "max": 24.66,
+      "mean": 22.6
+    },
+    "memoryFreePercent": {
+      "min": 79,
+      "max": 84,
+      "mean": 81.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 7,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 207
+      },
+      "statuses": {},
+      "finding": "Alan Turing was a British computer scientist, mathematician, and inventor. He is best known for his work in the field of computing, particularly in the development of the Turing machine, a theoretical model that helped define the concept of computers. His work had a profound impact on the field of computer science, including the creation of the first computer, the ENIAC, and the development of algorithms that are still used today. His work also had a significant impact on the field of cryptography, which is essential in the field of information security. Alan Turing's contributions to computing and his work in mathematics have had a lasting impact on the field of computer science and continue to be relevant today.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 5,
+        "chars": 723,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 9,
+      "latencyMs": 8963,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"Alan Turing was a British computer scientist, mathematician, and inventor. He is best known for his work in the field of computing, particularly in the development of the Turing machine, a theoretical model that helped define the concept of computers. His work had a profound impact on the field of computer science, including the creation of the first computer, the ENIAC, and the development of algorithms that are still used today. His work also had a significant impact on the field of cryptography, which is essential in the field of information security. Alan Turing's contributions to computing and his work in mathematics have had a lasting impact on the field of computer science and continue to be relevant today.\"  \n}"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "silk": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "buddhism": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 248
+      },
+      "statuses": {},
+      "finding": "The Silk Road was a vast network of trade routes that connected the East and West, facilitating the exchange of goods, ideas, and technologies between Asia, the Middle East, and Europe. It was a crucial economic and cultural phenomenon that shaped the world. Some of its key events include the fabled journey of the Silk Road, which was a legendary trade route that spanned thousands of miles. The influence of the Silk Road can be seen in the spread of religions, such as Buddhism and Islam, and in the development of art, music, and literature. The consequences of the Silk Road include the increased trade and the spread of cultural and religious connections between different regions of the world. The Silk Road also had a significant impact on the economy, as it allowed for the exchange of materials and ideas across vast distances, which in turn contributed to the growth of trade and commerce in different parts of the world.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 933,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 2,
+      "latencyMs": 2200,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Silk Road was a vast network of trade routes that connected the East and West, facilitating the exchange of goods, ideas, and technologies between Asia, the Middle East, and Europe. It was a crucial economic and cultural phenomenon that shaped the world. Some of its key events include the fabled journey of the Silk Road, which was a legendary trade route that spanned thousands of miles. The influence of the Silk Road can be seen in the spread of religions, such as Buddhism and Islam, and in the development of art, music, and literature. The consequences of the Silk Road include the increased trade and the spread of cultural and religious connections between different regions of the world. The Silk Road also had a significant impact on the economy, as it allowed for the exchange of materials and ideas across vast distances, which in turn contributed to the growth of trade and commerce in different parts of the world.\"\n}"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "expansion": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 221
+      },
+      "statuses": {},
+      "finding": "The Hubble Space Telescope is a space observatory launched by NASA in 1999. It has been instrumental in observing the universe, including the cosmos beyond our solar system. Some of its key discoveries include the study of distant galaxies, exoplanets, and the study of the universe's early formation. The Hubble has helped us understand the universe's structure, including the discovery of exoplanets, which is a significant contribution to the field of astronomy. The Hubble has also contributed to the study of the universe's early stages, such as the formation of the first stars and galaxies. The Hubble's data has been crucial in advancing our knowledge of the cosmos, and its discoveries have had a lasting impact on the field of astronomy.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 747,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 2,
+      "latencyMs": 1903,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Hubble Space Telescope is a space observatory launched by NASA in 1999. It has been instrumental in observing the universe, including the cosmos beyond our solar system. Some of its key discoveries include the study of distant galaxies, exoplanets, and the study of the universe's early formation. The Hubble has helped us understand the universe's structure, including the discovery of exoplanets, which is a significant contribution to the field of astronomy. The Hubble has also contributed to the study of the universe's early stages, such as the formation of the first stars and galaxies. The Hubble's data has been crucial in advancing our knowledge of the cosmos, and its discoveries have had a lasting impact on the field of astronomy.\"\n}"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "bleaching": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 4,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 295
+      },
+      "statuses": {},
+      "finding": "The Great Barrier Reef is a marine ecosystem located off the coast of Australia, spanning over 200 kilometers of the Pacific Ocean. It is home to approximately 250,000 marine animals, including coral reefs, and is one of the most biodiverse and ecologically significant marine environments on Earth. The reef is vital for its role in supporting marine life and maintaining the balance of the surrounding ocean. However, it is facing several threats, including climate change, pollution, and overexploitation of marine resources. Climate change, such as rising sea levels and ocean acidification, is causing the reef to experience stress, leading to coral bleaching and reduced biodiversity. Pollution, including plastic and chemical pollution, is also impacting the health of the reef. Overfishing and destructive fishing practices are disrupting the reef's ecosystem, leading to the decline of its natural populations. These threats have led to the degradation of the Great Barrier Reef, making it one of the most vulnerable marine environments on Earth. Without immediate and effective conservation efforts, the Great Barrier Reef may face irreversible damage, impacting both marine and human communities that depend on it.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 9,
+        "chars": 1225,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 3,
+      "latencyMs": 2806,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Great Barrier Reef is a marine ecosystem located off the coast of Australia, spanning over 200 kilometers of the Pacific Ocean. It is home to approximately 250,000 marine animals, including coral reefs, and is one of the most biodiverse and ecologically significant marine environments on Earth. The reef is vital for its role in supporting marine life and maintaining the balance of the surrounding ocean. However, it is facing several threats, including climate change, pollution, and overexploitation of marine resources. Climate change, such as rising sea levels and ocean acidification, is causing the reef to experience stress, leading to coral bleaching and reduced biodiversity. Pollution, including plastic and chemical pollution, is also impacting the health of the reef. Overfishing and destructive fishing practices are disrupting the reef's ecosystem, leading to the decline of its natural populations. These threats have led to the degradation of the Great Barrier Reef, making it one of the most vulnerable marine environments on Earth. Without immediate and effective conservation efforts, the Great Barrier Reef may face irreversible damage, impacting both marine and human communities that depend on it.\"\n}"
+    }
+  ],
+  "notes": [
+    "2026-09-18T15:48:05.246Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-10\",\"asks\":\"asks-3\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T15:48:05.377Z loading: Checking this device before downloading…",
+    "2026-09-18T15:48:10.382Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-0.6B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 65% · vram 0.64 GiB · load 24.66 · mem 84% free (normal) · no throttling recorded",
+    "2026-09-18T15:48:10.480Z 4 seeds from evals/seeds-profile.json · mode closed · limits {\"closed\":true} · prompt closed-profile-1 · grammar answer:string · commit ae3b04a",
+    "wiki recording: 555 responses loaded",
+    "turing: resolved · topics 1/8 · supported 0/8 · read 0/8 · ¶1 · 5 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 207 tokens · 9 s",
+    "silk-road: resolved · topics 2/9 · supported 0/9 · read 0/9 · ¶1 · 6 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 248 tokens · 2 s",
+    "hubble: resolved · topics 0/8 · supported 0/8 · read 0/8 · ¶1 · 6 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 221 tokens · 2 s",
+    "great-barrier-reef: resolved · topics 4/10 · supported 0/10 · read 0/10 · ¶1 · 9 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 295 tokens · 3 s",
+    "machine during the suite: gpu 31.5% mean, 63% peak · vram up to 2.13 GiB · load up to 24.66 · no throttling in 2 samples"
+  ]
+}

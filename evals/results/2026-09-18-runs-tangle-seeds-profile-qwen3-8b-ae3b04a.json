@@ -1,0 +1,446 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-8B-q4f16_1-MLC",
+  "commit": "ae3b04a",
+  "head": "38d529a",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T15:32:00.807Z",
+  "loadSeconds": 10,
+  "prompt": "walk-10/asks-3",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-10",
+    "asks": "asks-3",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 33,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 95.5
+    },
+    "vramGiB": {
+      "min": 0.21,
+      "max": 6.26,
+      "mean": 5.6
+    },
+    "load": {
+      "min": 9.25,
+      "max": 21.23,
+      "mean": 16.2
+    },
+    "memoryFreePercent": {
+      "min": 66,
+      "max": 85,
+      "mean": 67.7
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 22,
+  "factsSupported": 22,
+  "factsRead": 34,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "turing-test": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "morphogenesis": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "conviction": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "apology": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "manchester": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 8,
+      "factsSupported": 8,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 7,
+        "visits": 8,
+        "modelCalls": 52,
+        "lookups": 12,
+        "tokens": 22404
+      },
+      "statuses": {
+        "resolved": 6,
+        "blocked": 1
+      },
+      "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n\nDuring the Second World War, Turing was a leading participant in the breaking of German ciphers at Bletchley Park. The historian and wartime codebreaker Asa Briggs has said, \"You needed exceptional talent, you needed genius at Bletchley and Turing's was that genius.\" Turing's approach was more general, using crib-based decryption for which he produced the functional specification of the bombe (an improvement on the Polish Bomba). Specifying the bombe was the first of five major cryptanalytical advances that Turing made during the war. By using statistical techniques to optimise the trial of different possibilities in the code breaking process, Turing made an innovative contribution to the subject. A GCHQ mathematician, \"who identified himself only as Richard,\" said at the time that the fact that the contents had been restricted under the Official Secrets Act for some 70 years demonstrated their importance, and their relevance to post-war cryptanalysis: [He] said the fact that the contents had been restricted \"shows what a tremendous importance it has in the foundations of our subject\". ...\n\nHe presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15. \"Computing Machinery and Intelligence\" is a paper written by Alan Turing on the topic of artificial intelligence. The paper, published in 1950 in Mind, was the first to introduce his concept of what is now known as the Turing test to the general public. Turing's paper considers the question \"Can machines think?\"\n\nWhen Turing was 39 years old in 1951, he turned to mathematical biology, finally publishing his masterpiece \"The Chemical Basis of Morphogenesis\" in January 1952. He was interested in morphogenesis, the development of patterns and shapes in biological organisms. He suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology. \"The Chemical Basis of Morphogenesis\" is an article that the English mathematician Alan Turing wrote in 1952. Such patterns have come to be known as Turing patterns.\n\nDuring the investigation, he acknowledged a sexual relationship with Murray. Homosexual acts were criminal offences in the United Kingdom at that time, and both men were charged with \"gross indecency\" under Section 11 of the Criminal Law Amendment Act 1885. Turing and Murray, was brought to trial on 31 March 1952. His probation would be conditional on his agreement to undergo organotherapy or 'chemical castration' in the Manchester Royal Infirmary, a process which induces hormonal physical changes with the aim of reducing libido. Turing was given injections of what was then called stilboestrol (now known as diethylstilbestrol or DES), a synthetic oestrogen. Most famously, Oscar Wilde was convicted under section 11 and sentenced to two years' hard labour, and Alan Turing was convicted under it and sentenced to oestrogen injections (chemical castration) as an alternative to prison.\n\nThe prime minister, Gordon Brown, acknowledged the petition, releasing a statement on 10 September 2009 apologising and describing the treatment of Turing as \"appalling\": Thousands of people have come together to demand justice for Alan Turing and recognition of the appalling way he was treated. While Turing was dealt with under the law of the time and we can't put the clock back, his treatment was of course utterly unfair and I am pleased to have the chance to say how deeply sorry I and we all are for what happened to him ... So on behalf of the British government, and all those who live freely thanks to Alan's work I am very proud to say: we're sorry, you deserved so much better. Alan Turing was driven to a terrible despair and early death by the nation he'd done so much to save. The provision is named after Alan Turing, the World War II codebreaker and computing pioneer, who was convicted of gross indecency in 1952. Turing received a royal pardon posthumously in 2013.",
+      "profile": {
+        "paragraphs": 6,
+        "sentences": 33,
+        "chars": 5121,
+        "duplicates": 0,
+        "articles": 6,
+        "sections": 12,
+        "hopsChosen": 5,
+        "hopsRead": 5,
+        "hopsCited": 4,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 165,
+      "wiki": {
+        "hits": 26,
+        "misses": 0,
+        "entries": 495,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-turing.json",
+      "summary": "live run · seed: Tell me about Alan Turing and elaborate on the impact of his work.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:32:11.268Z · exported 2026-09-18T15:34:56.687Z\nnodes 7 · visits 8 · model calls 52 · lookups 12 · evidence 12 · tokens 22404\nstatuses {\"resolved\":6,\"blocked\":1} · outcome: root resolved\n\nn1 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. → He was highly influential in the development of theoretical computer science, providing a \n  n2 [blocked 1 failed lookup] Tell me about Alan Turing and elaborate on the impact of his work. — about Career and research !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n3 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Cryptanalysis → During the Second World War, Turing was a leading participant in the breaking of German ci\n  n4 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test → He presented a paper on 19 February 1946, which was the first detailed design of a stored-\n  n5 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology → When Turing was 39 years old in 1951, he turned to mathematical biology, finally publishin\n  n6 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Homosexuality and indecency conviction → During the investigation, he acknowledged a sexual relationship with Murray. Homosexual ac\n  n7 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Government apology and pardon → The prime minister, Gordon Brown, acknowledged the petition, releasing a statement on 10 S\n\nmodel latency ms: median 3485 · max 5614 · n 52\nworth a look:\n- n2 lookup found nothing: “Alan Turing” (Already read.)\n- n2 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mongol": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marco-polo": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 7,
+        "visits": 8,
+        "modelCalls": 53,
+        "lookups": 13,
+        "tokens": 18178
+      },
+      "statuses": {
+        "resolved": 7
+      },
+      "finding": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. Aside from generating substantial wealth for emerging mercantile classes, the proliferation of goods such as paper and gunpowder greatly affected the trajectory of political history in several theatres in Eurasia and beyond.\n\nThe Silk Road derives its name from the lucrative trade in silk, first developed in China, and a major reason for the connection of trade routes into an extensive transcontinental network. The use of the term 'Silk Road' is not without its detractors. For instance, Warwick Ball contends that the maritime spice trade with India and Arabia was far more consequential for the economy of the Roman Empire than the silk trade with China, which at sea was conducted mostly through India and on land was handled by numerous intermediaries such as the Sogdians. Going as far as to call the whole thing a \"myth\" of modern academia, Ball argues that there was no coherent overland trade system and no free movement of goods from East Asia to the West until the period of the Mongol Empire. He notes that traditional authors discussing east–west trade such as Marco Polo and Edward Gibbon never labelled any route a \"silk\" one in particular. William Dalrymple points out that in pre-modern times, maritime travel cost only a fifth of overland transport, and argues for the pre-13th century primacy of an India-dominated \"Golden Road\" extending from Rome to Japan.\n\nThe fragmentation of the Mongol Empire loosened the political, cultural, and economic unity of the Silk Road. After the fall of the Mongol Empire, the great political powers along the Silk Road became economically and culturally separated. Accompanying the crystallisation of regional states was the decline of nomad power, partly due to the devastation of the Black Death and partly due to the encroachment of sedentary civilisations equipped with gunpowder. Significant is Armenians' role in making Europe–Asia trade possible by being located in the crossing roads between these two. From 1700 to 1765, the total export of Persian silk was entirely conducted by Armenians. The silk trade continued to flourish until it was disrupted by the collapse of the Safavid Empire in the 1720s.\n\nRichard Foltz, Xinru Liu, and others have described how trading activities along the Silk Road over many centuries facilitated the transmission not just of goods but also ideas and culture, notably in the area of religions. Zoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across Eurasia through trade networks that were tied to specific religious communities and their institutions. The spread of religions and cultural traditions along the Silk Roads, according to Jerry H.\n\nThe transmission of Christianity was primarily known as Nestorianism on the Silk Road. In 781, an inscribed stele shows Nestorian Christian missionaries arriving on the Silk Road. Christianity had spread both east and west, simultaneously bringing Syriac language and evolving the forms of worship.\n\nThe transmission of Buddhism to China via the Silk Road began in the 1st century CE, according to a semi-legendary account of an ambassador sent to the West by the Chinese Emperor Ming (58–75). During this period Buddhism began to spread throughout Southeast, East, and Central Asia. The Buddhist movement was the first large-scale missionary movement in the history of world religions. It is believed that under the control of the Kushans, Buddhism was spread to China and other parts of Asia from the middle of the first century to the middle of the third century. Extensive contacts started in the 2nd century, probably as a consequence of the expansion of the Kushan empire into the Chinese territory of the Tarim Basin, due to the missionary efforts of a great number of Buddhist monks to Chinese lands. Gandhara was a major centre for Greco-Buddhism (4th century BCE–5th century CE) under the Indo-Greeks and Gandharan Buddhism under later dynasties; it was also the central location for the Silk Road transmission of Buddhism to Central and East Asia.\n\nMany artistic influences were transmitted via the Silk Road, particularly through Central Asia, where Hellenistic, Iranian, Indian and Chinese influences could intermix. Greco-Buddhist art represents one of the most vivid examples of this interaction. These artistic influences can be seen in the development of Buddhism where, for instance, Buddha was first depicted as human in the Kushan period. The mixture of Greek and Indian elements can be found in later Buddhist art in China and throughout countries on the Silk Road. The production of art consisted of many different items that were traded along the Silk Roads from the East to the West.",
+      "profile": {
+        "paragraphs": 7,
+        "sentences": 32,
+        "chars": 4983,
+        "duplicates": 0,
+        "articles": 6,
+        "sections": 12,
+        "hopsChosen": 6,
+        "hopsRead": 5,
+        "hopsCited": 1,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 140,
+      "wiki": {
+        "hits": 34,
+        "misses": 14,
+        "entries": 509,
+        "added": 14
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-silk-road.json",
+      "summary": "live run · seed: Tell me about the Silk Road and elaborate on its influence.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:34:56.723Z · exported 2026-09-18T15:37:16.460Z\nnodes 7 · visits 8 · model calls 53 · lookups 13 · evidence 12 · tokens 18178\nstatuses {\"resolved\":7} · outcome: root resolved\n\nn1 [resolved v2 1 failed lookup] Tell me about the Silk Road and elaborate on its influence. → The Silk Road was a network of Asian trade routes active from the second century BCE until\n  n2 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Name and contested significance → The Silk Road derives its name from the lucrative trade in silk, first developed in China,\n  n3 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Decline (15th century–present) → The fragmentation of the Mongol Empire loosened the political, cultural, and economic unit\n  n4 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Expansion of religions → Richard Foltz, Xinru Liu, and others have described how trading activities along the Silk \n  n5 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Transmission of Christianity → The transmission of Christianity was primarily known as Nestorianism on the Silk Road. In \n  n6 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Transmission of Buddhism → The transmission of Buddhism to China via the Silk Road began in the 1st century CE, accor\n  n7 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Expansion of the arts → Many artistic influences were transmitted via the Silk Road, particularly through Central \n\nmodel latency ms: median 2242 · max 4398 · n 53\nworth a look:\n- n1 lookup found nothing: “Tell me about Silk Road and elaborate on influence” (None of the articles found is about the question: Tame Impala, Madonna, Lady Gaga, Godzilla Minus One, Babylon 5, Nineveh, Wentworth Miller.)"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 4,
+        "visits": 5,
+        "modelCalls": 25,
+        "lookups": 6,
+        "tokens": 9655
+      },
+      "statuses": {
+        "resolved": 4
+      },
+      "finding": "Hubble proved that many objects previously thought to be clouds of dust and gas and classified as \"nebulae\" were actually galaxies beyond the Milky Way. Hubble confirmed in 1929 that the recessional velocity of a galaxy increases with its distance from Earth, a behavior that became known as Hubble's law, although it had been proposed two years earlier by Georges Lemaître. The Hubble law implies that the universe is expanding.\n\nAt that time, the prevailing view of the cosmos was that the universe consisted entirely of the Milky Way galaxy. His observations, made in 1924, proved conclusively that these nebulae were much too distant to be part of the Milky Way and were, in fact, entire galaxies outside the Milky Way galaxy; thus, today they are no longer considered nebulae. Hubble's findings fundamentally changed the scientific view of the universe. Hubble's law is considered the first observational basis for the expansion of the universe, and is one of the pieces of evidence most often cited in support of the Big Bang model.\n\nIn 1929, Hubble examined the relationship between these distances and their radial velocities as determined from their redshifts. Humason, he found a roughly linear relationship between the distances of the galaxies and their radial velocities (corrected for solar motion), a discovery that later became known as Hubble's law. This meant that the greater the distance between any two galaxies, the greater their relative speed of separation.\n\nHubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 13,
+        "chars": 1892,
+        "duplicates": 0,
+        "articles": 3,
+        "sections": 6,
+        "hopsChosen": 2,
+        "hopsRead": 2,
+        "hopsCited": 2,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 74,
+      "wiki": {
+        "hits": 37,
+        "misses": 22,
+        "entries": 517,
+        "added": 8
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-hubble.json",
+      "summary": "live run · seed: Tell me about the Hubble Space Telescope and what it has discovered.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:37:16.492Z · exported 2026-09-18T15:38:30.182Z\nnodes 4 · visits 5 · model calls 25 · lookups 6 · evidence 6 · tokens 9655\nstatuses {\"resolved\":4} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. → Hubble proved that many objects previously thought to be clouds of dust and gas and classi\n  n2 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Universe goes beyond the Milky Way galaxy → At that time, the prevailing view of the cosmos was that the universe consisted entirely o\n  n3 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Redshift increases with distance → In 1929, Hubble examined the relationship between these distances and their radial velocit\n  n4 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Other discoveries → Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely\n\nmodel latency ms: median 2526 · max 4706 · n 25\nnothing flagged"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 7,
+      "factsSupported": 7,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 7,
+        "visits": 8,
+        "modelCalls": 47,
+        "lookups": 13,
+        "tokens": 13612
+      },
+      "statuses": {
+        "resolved": 7
+      },
+      "finding": "It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified.\n\nClimate change, pollution, crown-of-thorns starfish and fishing are the primary threats to the health of this reef system. According to a 2012 study by the National Academy of Sciences, since 1985, the Great Barrier Reef has lost more than half of its corals with two-thirds of the loss occurring from 1998 due to the factors listed before. In 2022, the northern and central parts of the reef had the highest amount of coral cover since monitoring began, but the cover in the southern part had decreased and bleaching events occurred more frequently.\n\nThe Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Barrier Reef to be climate change, causing ocean warming which increases coral bleaching. Mass coral bleaching events due to marine heatwaves occurred in the summers of 1998, 2002, 2006, 2016, 2017 and 2020, and coral bleaching is expected to become an annual occurrence. In 2020, a study found that the Great Barrier Reef has lost more than half of its corals since 1995 due to warmer seas driven by climate change. As global warming continues, corals will not be able to keep up with increasing ocean temperatures. Large-scale bleaching events can devastate entire reef ecosystems, affecting biodiversity and the livelihoods of coastal communities that depend on healthy reefs for food, tourism, and protection from storm surges. In 2016, bleaching of coral on the Great Barrier Reef killed 29 to 50 percent of the reef's coral.\n\nA threat for the Great Barrier Reef is the rising levels of ocean acidification. Ocean acidification occurs when excess atmospheric carbon dioxide gets absorbed into the ocean. This causes a decrease in the pH and this alters the chemistry of the ocean's water. This reduces the amount of aragonite, a key mineral for coral to grow, in the water. The Great Barrier Reef is predicted to lose aragonite at a rate of about 0.1 per decade this century. The acidic water breaks down the materials that coral and shell building creatures need to grow.\n\nAnother key threat faced by the Great Barrier Reef is pollution and declining water quality. The rivers of north-eastern Australia pollute the Reef during tropical flood events. Over 90% of this pollution comes from farm runoff. 80% of the land adjacent to the Great Barrier Reef is used for farming including intensive cropping of sugar cane, and major beef cattle grazing. Farming practices damage the reef due to overgrazing, increased run-off of agricultural sediments, nutrients and chemicals including fertilisers, herbicides and pesticides representing a major health risk for the coral and biodiversity of the reefs. Some 67% of corals died in the reef's worst-hit northern section, the ARC Centre of Excellence for Coral Reef Studies report said.\n\nFarming fertiliser runoff release nitrogen, phosphorus, and potassium into the oceanic ecosystem, and these limiting nutrients cause massive algal growth which eventually leads to a reduction in oxygen available for other creatures in a process called eutrophication. Fertilizers also increase the amount of phytoplankton available for the crown-of-thorns starfish larvae to consume. A study showed that a doubling of the chlorophyll in the water leads to a tenfold increase in the crown-of-thorns starfish larvae's survival rate.\n\nSediment runoff from farming carries chemicals into the reef environment also reduces the amount of light available to the corals decreasing their ability to extract energy from their environment.",
+      "profile": {
+        "paragraphs": 7,
+        "sentences": 28,
+        "chars": 4201,
+        "duplicates": 0,
+        "articles": 4,
+        "sections": 10,
+        "hopsChosen": 6,
+        "hopsRead": 3,
+        "hopsCited": 1,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 107,
+      "wiki": {
+        "hits": 53,
+        "misses": 34,
+        "entries": 529,
+        "added": 12
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-great-barrier-reef.json",
+      "summary": "live run · seed: Describe the Great Barrier Reef and the threats it faces.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:38:30.199Z · exported 2026-09-18T15:40:16.934Z\nnodes 7 · visits 8 · model calls 47 · lookups 13 · evidence 10 · tokens 13612\nstatuses {\"resolved\":7} · outcome: root resolved\n\nn1 [resolved v2] Describe the Great Barrier Reef and the threats it faces. → It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Ot\n  n2 [resolved 1 failed lookup] Describe the Great Barrier Reef and the threats it faces. — about Environmental threats → Climate change, pollution, crown-of-thorns starfish and fishing are the primary threats to\n  n3 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Climate change → The Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Ba\n  n4 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Ocean Acidification → A threat for the Great Barrier Reef is the rising levels of ocean acidification. Ocean aci\n  n5 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Pollution → Another key threat faced by the Great Barrier Reef is pollution and declining water qualit\n  n6 [resolved 1 failed lookup] Describe the Great Barrier Reef and the threats it faces. — about Eutrophication → Farming fertiliser runoff release nitrogen, phosphorus, and potassium into the oceanic eco\n  n7 [resolved 1 failed lookup] Describe the Great Barrier Reef and the threats it faces. — about Sediment runoff → Sediment runoff from farming carries chemicals into the reef environment also reduces the \n\nmodel latency ms: median 1960 · max 3914 · n 47\nworth a look:\n- n2 lookup found nothing: “Crown-of-thorns starfish” (Already read: “Great Barrier Reef”.)\n- n6 lookup found nothing: “Crown-of-thorns starfish” (Already read: “Great Barrier Reef”.)\n- n7 lookup found nothing: “Sediment runoff” (Already read: “Great Barrier Reef”.)"
+    }
+  ],
+  "notes": [
+    "2026-09-18T15:32:00.806Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-10\",\"asks\":\"asks-3\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T15:32:00.921Z loading: Checking this device before downloading…",
+    "2026-09-18T15:32:10.933Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-8B-q4f16_1-MLC: Ready. Inference runs on this device. (10 s)",
+    "machine at start: gpu 8% · vram 0.22 GiB · load 19.51 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T15:32:11.036Z 4 seeds from evals/seeds-profile.json · mode tangle · limits {} · prompt walk-10/asks-3 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit ae3b04a",
+    "wiki recording: 495 responses loaded",
+    "2026-09-18T15:34:56.568Z run stopped: Root resolved",
+    "turing: resolved · topics 8/8 · supported 8/8 · read 8/8 · ¶6 · 33 sentences · read 6 articles, 12 sections · hops 4 cited / 5 read / 5 chosen · 1 blocked · 7 nodes, 52 calls, 12 lookups, 22404 tokens · 165 s · wiki 26 hits 0 misses",
+    "2026-09-18T15:37:16.337Z run stopped: Root resolved",
+    "silk-road: resolved · topics 6/9 · supported 6/9 · read 9/9 · ¶7 · 32 sentences · read 6 articles, 12 sections · hops 1 cited / 5 read / 6 chosen · 7 nodes, 53 calls, 13 lookups, 18178 tokens · 140 s · wiki 34 hits 14 misses",
+    "2026-09-18T15:38:30.069Z run stopped: Root resolved",
+    "hubble: resolved · topics 1/8 · supported 1/8 · read 7/8 · ¶4 · 13 sentences · read 3 articles, 6 sections · hops 2 cited / 2 read / 2 chosen · 4 nodes, 25 calls, 6 lookups, 9655 tokens · 74 s · wiki 37 hits 22 misses",
+    "2026-09-18T15:40:16.807Z run stopped: Root resolved",
+    "great-barrier-reef: resolved · topics 7/10 · supported 7/10 · read 10/10 · ¶7 · 28 sentences · read 4 articles, 10 sections · hops 1 cited / 3 read / 6 chosen · 7 nodes, 47 calls, 13 lookups, 13612 tokens · 107 s · wiki 53 hits 34 misses",
+    "machine during the suite: gpu 95.5% mean, 99% peak · vram up to 6.26 GiB · load up to 21.23 · no throttling in 33 samples"
+  ]
+}

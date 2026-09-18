@@ -1,0 +1,446 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-0.6B-q4f16_1-MLC",
+  "commit": "ae3b04a",
+  "head": "120c0fc",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T15:50:59.016Z",
+  "loadSeconds": 5,
+  "prompt": "walk-10/asks-3",
+  "schema": "sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-10",
+    "asks": "asks-3",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 86,
+      "mean": 43
+    },
+    "vramGiB": {
+      "min": 0.63,
+      "max": 0.64,
+      "mean": 0.6
+    },
+    "load": {
+      "min": 20.92,
+      "max": 25.71,
+      "mean": 23.3
+    },
+    "memoryFreePercent": {
+      "min": 83,
+      "max": 83,
+      "mean": 83
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 4,
+  "resolved": 1,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 23,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "turing-machine": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 8,
+        "lookups": 2,
+        "tokens": 3168
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 5,
+        "misses": 0,
+        "entries": 555,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-turing.json",
+      "summary": "live run · seed: Tell me about Alan Turing and elaborate on the impact of his work.\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:51:04.413Z · exported 2026-09-18T15:51:09.333Z\nnodes 1 · visits 1 · model calls 8 · lookups 2 · evidence 2 · tokens 3168\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 352 · max 519 · n 8\nworth a look:\n- n1 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "silk": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 6,
+        "lookups": 2,
+        "tokens": 1960
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 6,
+      "wiki": {
+        "hits": 9,
+        "misses": 0,
+        "entries": 555,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-silk-road.json",
+      "summary": "live run · seed: Tell me about the Silk Road and elaborate on its influence.\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:51:09.341Z · exported 2026-09-18T15:51:15.036Z\nnodes 1 · visits 1 · model calls 6 · lookups 2 · evidence 1 · tokens 1960\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked 1 failed lookup] Tell me about the Silk Road and elaborate on its influence. !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 403 · max 2350 · n 6\nworth a look:\n- n1 lookup found nothing: “Tell me about Silk Road and elaborate on influence” (None of the articles found is about the question: Tame Impala, Madonna, Lady Gaga, Godzilla Minus One, Babylon 5, Nineveh, Wentworth Miller.)\n- n1 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "expansion": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 3,
+        "lookups": 2,
+        "tokens": 983
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 12,
+        "misses": 2,
+        "entries": 557,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-hubble.json",
+      "summary": "live run · seed: Tell me about the Hubble Space Telescope and what it has discovered.\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:51:15.041Z · exported 2026-09-18T15:51:19.707Z\nnodes 1 · visits 1 · model calls 3 · lookups 2 · evidence 1 · tokens 983\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked 1 failed lookup] Tell me about the Hubble Space Telescope and what it has discovered. !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 317 · max 396 · n 3\nworth a look:\n- n1 lookup found nothing: “Nancy Grace Roman Space Telescope / none” (\"Nancy Grace Roman Space Telescope\" has no section \"none\". Its sections: Science objectives, Instruments, Wide-Field Instrument, CGI, Origins, Formulation, Development, Construction, Launch, Partnerships.)\n- n1 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "bleaching": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 2,
+        "visits": 3,
+        "modelCalls": 12,
+        "lookups": 3,
+        "tokens": 4512
+      },
+      "statuses": {
+        "resolved": 1,
+        "blocked": 1
+      },
+      "finding": "The annual global economic value of coral reefs has been estimated at anywhere from US$30–375 billion (1997 and 2003 estimates) to US$2.7 trillion (a 2020 estimate) to US$9.9 trillion (a 2014 estimate).",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 1,
+        "chars": 202,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 3,
+        "hopsChosen": 0,
+        "hopsRead": 1,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 17,
+        "misses": 4,
+        "entries": 559,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-great-barrier-reef.json",
+      "summary": "live run · seed: Describe the Great Barrier Reef and the threats it faces.\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-10/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:51:19.711Z · exported 2026-09-18T15:51:27.374Z\nnodes 2 · visits 3 · model calls 12 · lookups 3 · evidence 3 · tokens 4512\nstatuses {\"resolved\":1,\"blocked\":1} · outcome: root resolved\n\nn1 [resolved v2] Describe the Great Barrier Reef and the threats it faces. → The annual global economic value of coral reefs has been estimated at anywhere from US$30–\n  n2 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Threats !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 288 · max 505 · n 12\nworth a look:\n- n2 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
+    }
+  ],
+  "notes": [
+    "2026-09-18T15:50:59.016Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-10\",\"asks\":\"asks-3\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T15:50:59.144Z loading: Checking this device before downloading…",
+    "2026-09-18T15:51:04.152Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-0.6B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 87% · vram 0.64 GiB · load 25.71 · mem 83% free (normal) · no throttling recorded",
+    "2026-09-18T15:51:04.246Z 4 seeds from evals/seeds-profile.json · mode tangle · limits {} · prompt walk-10/asks-3 · grammar sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit ae3b04a",
+    "wiki recording: 555 responses loaded",
+    "2026-09-18T15:51:09.207Z run stopped: No runnable nodes · root unresolved",
+    "turing: No runnable nodes · root unresolved · topics 0/8 · supported 0/8 · read 7/8 · ¶0 · 0 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 8 calls, 2 lookups, 3168 tokens · 5 s · wiki 5 hits 0 misses",
+    "2026-09-18T15:51:14.908Z run stopped: No runnable nodes · root unresolved",
+    "silk-road: No runnable nodes · root unresolved · topics 0/9 · supported 0/9 · read 7/9 · ¶0 · 0 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 6 calls, 2 lookups, 1960 tokens · 6 s · wiki 9 hits 0 misses",
+    "2026-09-18T15:51:19.583Z run stopped: No runnable nodes · root unresolved",
+    "hubble: No runnable nodes · root unresolved · topics 0/8 · supported 0/8 · read 1/8 · ¶0 · 0 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 3 calls, 2 lookups, 983 tokens · 5 s · wiki 12 hits 2 misses",
+    "2026-09-18T15:51:27.250Z run stopped: Root resolved",
+    "great-barrier-reef: resolved · topics 0/10 · supported 0/10 · read 8/10 · ¶1 · 1 sentences · read 2 articles, 3 sections · hops 0 cited / 1 read / 0 chosen · 1 blocked · 2 nodes, 12 calls, 3 lookups, 4512 tokens · 8 s · wiki 17 hits 4 misses",
+    "machine during the suite: gpu 43% mean, 86% peak · vram up to 0.64 GiB · load up to 25.71 · no throttling in 2 samples"
+  ]
+}
