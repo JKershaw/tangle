@@ -120,7 +120,8 @@ The bridge (ROADMAP milestone 4): the same walk in Node against an OpenAI-compat
 | 2026-09-18 | b71a368 (walk-12) | Ollama | 1.7B | 15/23 | 43 · 15 · **12** | — |
 | 2026-09-18 | b71a368 | Ollama | 4B | 12/23 | 69 · 22 · 75 | — |
 | 2026-09-18 | b71a368 | Ollama | 8B | 12/23 | 61 · 16 · 96 | 18/23 |
-| 2026-09-18 | b71a368 | Ollama | 14B | **16/23** | 96 · 28 · 372 | **21/23** |
+| 2026-09-18 | b71a368 | Ollama | 14B | 16/23 | 96 · 28 · 372 | **21/23** |
+| 2026-09-18 | 27f36a8 | Ollama | 32B | **17/23** | 73 · 18 · 358 | 19/23 |
 | 2026-09-18 | b71a368 | LM Studio (MLX) | 4B | 16/23 · Dead Sea lost to a schema error, fixed at 27f36a8 | 52 · 13 · 104 | — |
 | 2026-09-18 | 4ea1f89 | LM Studio (MLX) | 30B-A3B (2507) | 16/23 · the same error | 50 · 15 · 239 | — |
 
