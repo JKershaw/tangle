@@ -25,6 +25,7 @@ Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · c
 | 2026-09-17 | 79e918e | 8B | tangle | 7/7 | 18/23 | 18/23 | 23/23 | 15k | 218 |
 | 2026-09-18 | ee83f51 (walk-1) | 1.7B | flat | 2/7 | 2/23 | 2/23 | 18/23 | 21k | 49 |
 | 2026-09-18 | ee83f51 (walk-1) | 1.7B | tangle | 6/7 | **7/23** | **7/23** | 20/23 | 261k | 515 |
+| 2026-09-18 | ce5474e (walk-3) | 1.7B | tangle | 6/7 | **8/23** | **8/23** | 20/23 | 101k | 202 |
 
 **Read as a verdict on that build, not on the approach.** Decomposition only fires at 1.7B; every other model resolves at the root, so those tangle rows are not a test of it. Where it does fire it costs twenty times the tokens to deliver a quarter of the facts, while reading more of the rubric than any other row — because the scheduler froze the root on six of seven seeds, and because a visit asked the model for five decisions at once. Full table and reading in [evals/results.md](evals/results.md). The plan turned on this result: see *The turn* in [PLAN.md](PLAN.md).
 
@@ -42,6 +43,12 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 | 2026-09-18 | f571e0b | section (15) | **list** | **12** | 14 | 14 | 14 | — |
 | 2026-09-18 | f571e0b | missing (9) | **search** (name an article) | 7 | **9** | 9 | 9 | — |
 | 2026-09-18 | f571e0b | missing (9) | fact (name the missing fact) | 5 | 4 | 5 | 5 | — |
+| 2026-09-18 | 3106cb9 | sentence (23, + Aral traps) | list | 11 | 18 | 20 | 19 | — |
+| 2026-09-18 | 3106cb9 | sentence (23) | titled (article labelled) | 6 | 18 | 19 | 19 | — |
+| 2026-09-18 | 3106cb9 | sentence (23) | **check** | 11 | 17 | 21 | **23** | — |
+| 2026-09-18 | ce5474e | question (6, paraphrases fail) | one | 1 | 3 | 4 | 3 | — |
+| 2026-09-18 | ce5474e | question (6) | part | 2 | 4 | 0 | 0 | — |
+| 2026-09-18 | ce5474e | question (6) | first | 2 | 3 | 2 | 5 | — |
 
 **What the node evals say.** From 1.7B up, the model finds the answering sentence in every positive case with a plain numbered list, and every failure is a *none* case: shown sentences that do not answer, it picks one anyway (the same two Dead Sea cases defeat 4B and 8B too; a reference model is needed to say whether those cases are fair). 8B is perfect when a pick is followed by one yes-or-no on that sentence alone. 0.6B does best when *none* is an ordinary numbered option, and answers yes to every sentence in the one-per-sentence floor. Section picks are 14/15 from 1.7B up; naming an article to search is 9/9 from 1.7B up while naming "the missing fact" is not, so the walk asks for a search term. Every one of these calls is 0.2 to 4 seconds; the grammar compile cost that ate half a run under the old prompt is gone, because the schemas are tiny enums. The walk (`src/walk.js`) uses list / list / search.
 
@@ -68,7 +75,8 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 - First live walk on 1.7B answered "Why is the Dead Sea shrinking?" with the wrong lake: Wikipedia's search ranked the Aral Sea first for the raw question, and the pick took the sentence that explains a shrinking sea. Labelling sentences with their article did not help at any size; a yes-or-no on the picked sentence alone does (8B 23/23). The first search term is now the question minus its question words (a63c8e4, ee83f51).
 - Second live walk: the National Water Carrier sentence, five calls, five seconds (experiments/2026-09-18-qwen3-1.7b-dead-sea-walk-2).
 - The walk's first benchmark on 1.7B: tangle 7/23 facts, all supported, against 2/23 for its flat control and 8/23 (7 supported) for the old composing flat prompt. Reading in [evals/readings.md](evals/readings.md). Three seeds lost to drift (child questions about "the text"), junk gathered upward, and one-sentence findings.
-- The question ask mostly rephrases its parent at every size; a paraphrase that keeps every content word is now refused by code (walk-2), and questions about the text (walk-3). Findings gather up to three checked sentences. Rerunning.
+- The question ask mostly rephrases its parent at every size; a paraphrase that keeps every content word is now refused by code (walk-2), and questions about the text (walk-3). Findings gather up to three checked sentences.
+- walk-3 on 1.7B: **8/23, all supported, 202 s** — level with the old composing flat prompt's count with every fact grounded, at a similar cost. Aral runaway gone (6 nodes). Water cycle blocked (same windows re-shown across visits, the check refusing the true sentence); sky-blue and Aral read the wrong first hit for visits. walk-4 (42c937e): the article is picked from the five hits, judged sentences are remembered, six passes. Running.
 - Also learned: Chrome's persistent profile served a two-builds-old page from its HTTP cache. The driver now busts the cache and records the page's own versions.
 
 ### 2026-09-18 · morning
