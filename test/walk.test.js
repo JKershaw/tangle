@@ -595,3 +595,20 @@ test("under a brief a short section is not handed to a child, and an over-long p
   assert.equal(parent.finding, "Alan Turing was an English mathematician and computer scientist.\n\nFirst section sentence about Turing here.\n\nSecond section sentence about Turing here.\n\nThird section sentence about Turing here.", "both hop paragraphs went, no section did");
   assert.ok(parent.finding.length <= 200);
 });
+
+test("the first search asks for approval before anything is sent, and a refusal blocks the node with nothing fetched", async () => {
+  const sent = [];
+  const wiki = async (query, options = {}) => {
+    sent.push(query);
+    if (options.searchOnly) return { ok: true, kind: "search", hits: ["Dead Sea", "Aral Sea"], snippets: ["", ""] };
+    return wikiFixture(query, options);
+  };
+  const asked = [];
+  const run = createRun("Why is the Dead Sea shrinking?", "live", ONE);
+  const { ask } = scripted([]);
+  assert.equal(await runWalk(run, { ask, wiki, approve: async (query) => (asked.push(query), false) }), true);
+  assert.deepEqual(sent, [], "nothing was sent to Wikipedia");
+  assert.deepEqual(asked, ["Dead Sea shrinking | Why is the Dead Sea shrinking?"]);
+  assert.equal(run.nodes[0].status, "blocked");
+  assert.match(run.nodes[0].reason, /declined/);
+});

@@ -2,6 +2,8 @@
 // summary. Requests are pinned to HTTPS en.wikipedia.org, carry no credentials,
 // follow no redirects, and are bounded by a timeout and a byte cap.
 
+import { namesSubject, subjectWords } from "./text.js";
+
 export const WIKI_HOST = "en.wikipedia.org";
 export const DEFAULT_TIMEOUT_MS = 20000;
 export const DEFAULT_MAX_BYTES = 65536;
@@ -220,10 +222,11 @@ export async function lookupWikipedia(query, options = {}) {
 // does. A brief's hop child reads the Bombe for what it says about Turing,
 // and that is often not in the lead (walk-11 at 8B: seven of ten hop
 // articles had no lead sentence naming the subject and were dropped).
-const GENERIC_WORDS = new Set(["space", "great", "river", "lake", "sea", "national", "united", "north", "south", "east", "west", "new", "old", "saint", "state", "city", "island", "mount", "system"]);
+// The subject's naming words (text.js: capitalised, with their capitals),
+// else the phrase as it is.
 export function aboutWords(phrase) {
-  const words = String(phrase ?? "").split(/\s+/).filter((word) => word.replace(/[^\p{L}\p{N}]/gu, "").length >= 4 && !GENERIC_WORDS.has(word.toLowerCase()));
-  return words.length ? words : String(phrase ?? "").split(/\s+/).filter(Boolean);
+  const { cased } = subjectWords(phrase);
+  return cased.length ? cased : String(phrase ?? "").split(/\s+/).filter(Boolean);
 }
 const wordIn = (word, text) => new RegExp(`(?:^|[^\\p{L}\\p{N}])${word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=$|[^\\p{L}\\p{N}])`, "iu").test(text);
 export async function readWikipediaAbout(title, phrase, options = {}) {
@@ -234,7 +237,7 @@ export async function readWikipediaAbout(title, phrase, options = {}) {
   if (!article.ok) return failure(article.kind, article.message);
   const whole = String(phrase ?? "").trim();
   const words = aboutWords(whole);
-  const index = [article.sections.findIndex((section) => whole && wordIn(whole, section.text)), article.sections.findIndex((section) => words.some((word) => wordIn(word, section.text)))].find((found) => found >= 0);
+  const index = [article.sections.findIndex((section) => whole && wordIn(whole, section.text)), article.sections.findIndex((section) => namesSubject(section.text, whole) || (!subjectWords(whole).cased.length && words.some((word) => wordIn(word, section.text))))].find((found) => found >= 0);
   if (index === undefined) return failure("no_match", `"${article.title}" never mentions ${whole || words.join(", ")}.`);
   const section = article.sections[index];
   return {

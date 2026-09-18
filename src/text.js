@@ -50,3 +50,22 @@ export function isParaphrase(child, parent) {
   const added = [...have].filter((word) => !wanted.has(word)).length;
   return [...wanted].every((word) => have.has(word)) && added < 2;
 }
+
+// The words of a subject that name it. A subject's capitalised words of four
+// or more letters, minus generic ones ("Space", "Sea"), kept with their
+// capitals: a "rosetta orbit" is not the Rosetta mission, and "the Juno
+// mission" is not either, though both share a word with it (1.7B's Rosetta
+// profile, evals/results/runs 2026-09-18). A subject with no capitalised
+// words ("coral bleaching") falls back to its content words.
+export const GENERIC_WORDS = new Set(["space", "great", "river", "lake", "sea", "national", "united", "north", "south", "east", "west", "new", "old", "saint", "state", "city", "island", "mount", "system"]);
+export function subjectWords(subject) {
+  const words = String(subject ?? "").split(/\s+/).map((word) => word.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, "")).filter(Boolean);
+  const cased = words.filter((word) => /^\p{Lu}/u.test(word) && word.length >= 4 && !GENERIC_WORDS.has(word.toLowerCase()));
+  return { cased, plain: contentWords(subject) };
+}
+const escape = (word) => word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+export function namesSubject(text, subject) {
+  const { cased, plain } = subjectWords(subject);
+  if (cased.length) return cased.some((word) => new RegExp(`(?:^|[^\\p{L}\\p{N}])${escape(word)}(?=$|[^\\p{L}\\p{N}])`, "u").test(String(text)));
+  return [...contentWords(text)].some((word) => plain.has(word));
+}
