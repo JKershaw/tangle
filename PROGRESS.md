@@ -39,8 +39,16 @@ Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · c
 | 2026-09-18 | 7279d41 (walk-6, check) | 4B | tangle | 7/7 | 14/23 | 14/23 | 19/23 | 12k | 62 |
 | 2026-09-18 | 7279d41 (walk-6, check) | 8B | tangle | **7/7** | **16/23** | **16/23** | 21/23 | 14k | 104 |
 | 2026-09-18 | dca1958 (walk-6, plain pick) | 4B | tangle | **7/7** | **16/23** | **16/23** | 19/23 | 13k | 65 |
+| 2026-09-18 | dca1958 (walk-6) ×3 identical | 1.7B | tangle | 7/7 | 9/23 | 9/23 | 20/23 | 21k | 47–53 |
+| 2026-09-18 | dca1958 (walk-6) ×3 identical | 1.7B | flat (walk, one node) | 7/7 | 11/23 | 11/23 | 20/23 | 15k | 38 |
+| 2026-09-18 | dca1958 (pocket-10 prompt) ×3 identical | 1.7B | composing (one node) | 7/7 | **16/23** | **16/23** | 21/23 | 48k | 107–180 |
+| 2026-09-18 | dca1958 (walk-6) ×3 identical | 4B | tangle | 7/7 | **16/23** | **16/23** | 19/23 | 13k | 65 |
+| 2026-09-18 | dca1958 (walk-6) ×3 identical | 4B | flat (walk, one node) | 7/7 | **16/23** | **16/23** | 19/23 | 13k | 65 |
+| 2026-09-18 | dca1958 (pocket-10 prompt) ×3 identical | 4B | composing (one node) | 7/7 | 13/23 | 13/23 | 19/23 | 8k | 65–100 |
 
-**Read as a verdict on that build, not on the approach.** Decomposition only fires at 1.7B; every other model resolves at the root, so those tangle rows are not a test of it. Where it does fire it costs twenty times the tokens to deliver a quarter of the facts, while reading more of the rubric than any other row — because the scheduler froze the root on six of seven seeds, and because a visit asked the model for five decisions at once. Full table and reading in [evals/results.md](evals/results.md). The plan turned on this result: see *The turn* in [PLAN.md](PLAN.md).
+**The benchmark is deterministic** (temperature 0.2, fixed seed, Wikipedia replayed): three passes of nine rows did not differ by a fact, so a one-fact gap is one seed's gap and only more seeds widen a claim. **The right single-node control is pocket-10's composing prompt**, never benchmarked until 2026-09-18: 16/23 at 1.7B (the walk: 9) and 13/23 at 4B (the walk: 16). Reading in [evals/readings.md](evals/readings.md).
+
+**Read the 2026-09-17 rows as a verdict on that build, not on the approach.** Decomposition only fires at 1.7B; every other model resolves at the root, so those tangle rows are not a test of it. Where it does fire it costs twenty times the tokens to deliver a quarter of the facts, while reading more of the rubric than any other row — because the scheduler froze the root on six of seven seeds, and because a visit asked the model for five decisions at once. Full table and reading in [evals/results.md](evals/results.md). The plan turned on this result: see *The turn* in [PLAN.md](PLAN.md).
 
 Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<ask>.json`, by ask variant. Full rows in [evals/node/results.md](evals/node/results.md).
 
@@ -84,6 +92,11 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-18 · midday
+
+- Three repeats of walk, one-node walk and the composing one-node control at 1.7B and 4B: every pass identical, so the benchmark is deterministic given the recording and repeats measure nothing; variance lives across seeds. The pocket-10 composing control, never run before, scores 16/23 at 1.7B — seven above the walk — and 13/23 at 4B, three below it. At 1.7B the one-node walk (11) beats the graph (9): the sky seed's section pick and question ask led two children into photosynthesis and the root gathered them. `scripts/eval.mjs` gained `--mode composing`, `--repeat N` and `--seeds <path>` (d786061).
+- `evals/seeds-graph.json`: ten seeds no single article answers (two-lake and two-collapse comparisons, a two-hop river question, section-only answers, one control), facts checked against live Wikipedia sections. Running at 1.7B, 4B and 8B in all three modes.
 
 ### 2026-09-18 · morning, continued
 

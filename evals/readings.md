@@ -2,6 +2,24 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-18 · repeats, and the control we never ran
+
+Three passes of each row, same page (walk-6, dca1958), same seeds, same Wikipedia recording. `tangle` is the walk with default limits; `flat` is the walk on one node with six lookups; `composing` is the old one-prompt visit on one node (pocket-10, the prompt written on the 17th after the first matrix and never benchmarked, because the walk started the next morning).
+
+| model | tangle (walk) | flat (walk, one node) | composing (pocket-10, one node) |
+|---|---|---|---|
+| 1.7B | 9/23 · 9 · 9 (47–53 s) | 11/23 · 11 · 11 (38 s) | **16/23** · 16 · 16 (107–180 s) |
+| 4B | **16/23** · 16 · 16 (65 s) | **16/23** · 16 · 16 (65 s) | 13/23 · 13 · 13 (65–100 s) |
+
+Every fact stated in every row is supported.
+
+- **The benchmark is deterministic.** Nine rows, three passes each, not one fact of difference. Sampling is temperature 0.2 with a fixed seed and Wikipedia is replayed from the recording, so a rerun is the same run. Repeats cannot measure noise here; the noise is across seeds. Every earlier single row was already the whole story, and a one-fact gap is a one-seed gap — real for that seed, and no evidence about the next one. More seeds are the only way to a wider claim.
+- **The control we compared against was the wrong one.** The "fair control" in the walk readings was pocket-9's composing node: 8/23 (7 supported) at 1.7B. pocket-10 — resolve when the excerpts answer, read a listed section when the lead does not — scores **16/23, all supported**, at 1.7B on the same seeds. Against that, the walk at 1.7B is seven facts behind, not one ahead. At 4B the composing node scores 13 and the walk 16, so the order flips with size; 8B is not rerun yet.
+- **At 1.7B the graph loses to its own single node** (9 against 11). The two facts are the sky seed: the section pick chose "The diffused skylight effect" (Pinatubo, photosynthesis), the question ask made two children about photosynthesis, and the root gathered their findings as its answer. The one-node walk, with no children to lean on, read on to the "Color" section and picked the wavelength sentence. Every other seed is identical between the two rows: at 1.7B the walk reads one article and picks from it whether or not it may have children.
+- **Where the composing node wins at 1.7B,** it is by reading a section and writing a paragraph that names several facts: Dead Sea 2 against 0 (it read "Receding shoreline" and named the Jordan diversion; the walk stopped at the lead's "receding at a swift rate"), water cycle 2 against 0, sky 2 against 0, colony collapse 4 against 1. The walk wins Aral (3 against 2) and Bronze Age (2 against 1). The rubric counts facts named in the finding; a composed paragraph names more of them than three verbatim sentences, at every size, and the pocket-10 prompt now reads on as well.
+
+So the standing claim is narrower than the walk readings said. Against a single node that reads on and composes, the graph is behind at 1.7B and ahead at 4B, on seeds that one article answers. What the walk keeps is that nothing it states is unsupported, by construction rather than by grading. The seeds no single article answers (`evals/seeds-graph.json`) are the next round.
+
 ## 2026-09-18 · the walk's first benchmark (1.7B)
 
 The walk (`src/walk.js`) replaced the one-prompt visit: code sequences the visit, the model only picks a numbered sentence (then confirms it with one yes-or-no), a section heading, a search term, or one smaller question. Same seven seeds, same rubric, same Wikipedia recording.
