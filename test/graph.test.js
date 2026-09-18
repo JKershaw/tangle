@@ -39,8 +39,8 @@ test("decompose parks the parent as waiting and children run first, in order", (
   assert.equal(nextRunnable(run).id, "n3");
 });
 
-test("a parent is revisited only when every child has resolved; a blocked child leaves it unrunnable", () => {
-  const run = createRun("Root");
+test("a parent is revisited once every child is settled; under the older strict rule a blocked child leaves it unrunnable", () => {
+  const run = createRun("Root", "simulation", { revisitSettled: false });
   applyResult(run, "n1", { action: "decompose", questions: ["A", "B"] }, []);
   run.nodes[1].status = "resolved";
   run.nodes[2].status = "blocked";
@@ -167,4 +167,42 @@ test("a lead excerpt in the context lists the article's sections", () => {
   const [lead, section] = buildContext(run, run.nodes[0]).evidence;
   assert.deepEqual(lead.sections, ["Geography", "Receding shoreline"]);
   assert.equal("sections" in section, false);
+});
+
+test("revisitSettled: a parent frozen by a blocked child becomes runnable again, and an errored child still stops it", () => {
+  // The shape the first benchmark matrix produced on six of seven seeds: a
+  // root waiting over children that are done with, one of them honestly blocked.
+  const build = (limits) => {
+    const run = createRun("Why is the Dead Sea shrinking?", "live", limits);
+    applyResult(run, "n1", { action: "decompose", questions: ["What feeds it?", "What drains it?"] }, []);
+    captureEvidence(run, "n2", { kind: "wiki", title: "Dead Sea", text: "The Jordan River is its main tributary." });
+    applyResult(run, "n2", { action: "resolved", finding: "The Jordan River is the main tributary of the Dead Sea.", evidence: ["e1"] }, ["e1"]);
+    return run;
+  };
+
+  const strict = build({ revisitSettled: false });
+  applyResult(strict, "n3", { action: "blocked", reason: "The excerpts do not say." }, []);
+  assert.equal(nextRunnable(strict), null, "the older strict rule leaves the root frozen");
+  assert.equal(strict.nodes[0].status, "waiting");
+  assert.equal(outcomeLabel(strict), "No runnable nodes · root unresolved");
+
+  const settled = build({});
+  applyResult(settled, "n3", { action: "blocked", reason: "The excerpts do not say." }, []);
+  assert.equal(nextRunnable(settled).id, "n1", "by default the root runs again");
+
+  // Until then the root waits: an unsettled child is still tried first.
+  const waiting = build({ revisitSettled: true });
+  assert.equal(nextRunnable(waiting).id, "n3", "the open child goes before the parent");
+
+  // An error is not an answer: it holds the parent under either rule.
+  const errored = build({ revisitSettled: true });
+  errored.nodes[2].status = "error";
+  errored.nodes[2].reason = "Generation timed out.";
+  assert.equal(nextRunnable(errored), null);
+});
+
+test("revisitSettled is on by default and travels with the run", () => {
+  assert.equal(createRun("Why?", "live").limits.revisitSettled, true);
+  assert.equal(createRun("Why?", "live", { revisitSettled: false }).limits.revisitSettled, false);
+  assert.equal(validateImport(JSON.stringify(createRun("Why?", "live", { revisitSettled: true }))).limits.revisitSettled, true);
 });

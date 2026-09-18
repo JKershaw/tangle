@@ -18,7 +18,7 @@ We don't know yet. That is the point. Tangle is built to make the behaviour visi
 
 The page has two modes.
 
-**Simulation** replays scripted model responses so you can see the mechanics without a model. Three scenarios are worth a minute each: *The parent asks again* (children resolve, the parent is revisited and asks one more question before it will answer), *A source is unavailable* (one blocked leaf leaves the whole chain above it unresolved) and *Repeated questions* (a question that keeps re-asking itself until it hits the depth limit).
+**Simulation** replays scripted model responses so you can see the mechanics without a model. Three scenarios are worth a minute each: *The parent asks again* (children resolve, the parent is revisited and asks one more question before it will answer), *A source is unavailable* (one leaf blocks; its parent runs again with what it has, and the root still resolves) and *Repeated questions* (a question that keeps re-asking itself until it hits the depth limit).
 
 **Local LLM + Wiki** is the real thing. Pick a Qwen3 model (0.6B to 8B), download it once, and the browser runs it on your GPU via [WebLLM](https://webllm.mlc.ai/). English Wikipedia is the only source the model may consult, and you approve each lookup — or allow them all for a run. Type any seed question and press Run.
 

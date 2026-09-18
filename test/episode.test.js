@@ -21,8 +21,19 @@ test("revisit: the parent asks again after its children resolve, then resolves t
   assert.ok(run.trace.every((event) => event.event !== "model_output" || event.simulated === true));
 });
 
-test("blocked: one blocked leaf leaves its ancestors waiting and the root unresolved", async () => {
+test("blocked: a blocked leaf no longer freezes its ancestors; the parent runs again with what it has and the root resolves", async () => {
   const { run, steps } = await runSimulation("blocked");
+  assert.equal(steps, 11);
+  assert.deepEqual(statusCounts(run), { resolved: 7, blocked: 1 });
+  assert.equal(run.nodes[0].status, "resolved");
+  assert.equal(run.nodes[0].visits, 2);
+  assert.equal(run.stopReason, null);
+  assert.deepEqual([run.visits, run.modelCalls, run.lookups, run.evidence.length], [11, 15, 4, 4]);
+  assert.deepEqual(provenanceViolations(run), []);
+});
+
+test("blocked, strict rule: with revisitSettled off one blocked leaf leaves its ancestors waiting and the root unresolved", async () => {
+  const { run, steps } = await runSimulation("blocked", { revisitSettled: false });
   assert.equal(steps, 9);
   assert.deepEqual(statusCounts(run), { waiting: 2, resolved: 5, blocked: 1 });
   assert.equal(run.nodes[0].status, "waiting");

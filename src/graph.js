@@ -10,7 +10,14 @@ export const DEFAULT_LIMITS = Object.freeze({
   maxDepth: 6,
   maxLookups: 2,
   maxPasses: 4,
+  // Revisit a parent once every child is settled — resolved or blocked —
+  // rather than only when all resolved. The first benchmark matrix showed the
+  // stricter rule freezing roots above full graphs (evals/results.md); a
+  // blocked child is an answer too, so the parent runs again. Set false to
+  // reproduce the older rule.
+  revisitSettled: true,
 });
+export const SETTLED = Object.freeze(["resolved", "blocked"]);
 export const ACTIONS = Object.freeze(["wiki", "decompose", "resolved", "blocked"]);
 export const NODE_STATUSES = Object.freeze(["open", "waiting", "working", "resolved", "blocked", "error"]);
 export const EXCERPT_LIMIT = 700;
@@ -61,17 +68,19 @@ export function children(run, parentId) {
 }
 
 // Deterministic depth-first choice: the first open node, or the first waiting
-// node whose children have all resolved. Children are tried before their parent,
-// so a parent is only revisited once nothing below it can run.
+// node whose children are all done with. Children are tried before their parent,
+// so a parent is only revisited once nothing below it can run. What counts as
+// "done with" is the run's revisitSettled limit: all children resolved, or all
+// children settled either way. A node in error is neither, and still stops the
+// parent — an error is a thing to retry, not an answer.
 export function nextRunnable(run) {
+  const done = run.limits.revisitSettled ? (child) => SETTLED.includes(child.status) : (child) => child.status === "resolved";
   function visit(node) {
     for (const child of children(run, node.id)) {
       const found = visit(child);
       if (found) return found;
     }
-    const runnable =
-      node.status === "open" ||
-      (node.status === "waiting" && children(run, node.id).every((child) => child.status === "resolved"));
+    const runnable = node.status === "open" || (node.status === "waiting" && children(run, node.id).every(done));
     return runnable ? node : null;
   }
   return visit(run.nodes[0]);
