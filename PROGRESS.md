@@ -28,9 +28,20 @@ Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · c
 
 Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<ask>.json`, by ask variant. Full rows in [evals/node/results.md](evals/node/results.md).
 
-| date | commit | ask | variant | 0.6B | 1.7B | 4B | 8B | reference |
+| date | commit | ask (cases) | variant | 0.6B | 1.7B | 4B | 8B | reference |
 |---|---|---|---|---|---|---|---|---|
-| (running) | | sentence | json · list · strict · yesno | | | | | |
+| 2026-09-18 | f571e0b | sentence (20) | json | 11 | 15 | 17 | 18 | — |
+| 2026-09-18 | f571e0b | sentence (20) | **list** | 9 | **17** | 18 | 18 | — |
+| 2026-09-18 | f571e0b | sentence (20) | strict | 9 | 17 | 18 | 19 | — |
+| 2026-09-18 | f571e0b | sentence (20) | zero (none is option 0) | **13** | 17 | 17 | 18 | — |
+| 2026-09-18 | f571e0b | sentence (20) | check (pick, then one yes/no) | 9 | 15 | 18 | **20** | — |
+| 2026-09-18 | f571e0b | sentence (20) | yesno (one per sentence) | 0 | 15 | 15 | 15 | — |
+| 2026-09-18 | f571e0b | section (15) | json | 8 | 14 | 14 | 14 | — |
+| 2026-09-18 | f571e0b | section (15) | **list** | **12** | 14 | 14 | 14 | — |
+| 2026-09-18 | f571e0b | missing (9) | **search** (name an article) | 7 | **9** | 9 | 9 | — |
+| 2026-09-18 | f571e0b | missing (9) | fact (name the missing fact) | 5 | 4 | 5 | 5 | — |
+
+**What the node evals say.** From 1.7B up, the model finds the answering sentence in every positive case with a plain numbered list, and every failure is a *none* case: shown sentences that do not answer, it picks one anyway (the same two Dead Sea cases defeat 4B and 8B too; a reference model is needed to say whether those cases are fair). 8B is perfect when a pick is followed by one yes-or-no on that sentence alone. 0.6B does best when *none* is an ordinary numbered option, and answers yes to every sentence in the one-per-sentence floor. Section picks are 14/15 from 1.7B up; naming an article to search is 9/9 from 1.7B up while naming "the missing fact" is not, so the walk asks for a search term. Every one of these calls is 0.2 to 4 seconds; the grammar compile cost that ate half a run under the old prompt is gone, because the schemas are tiny enums. The walk (`src/walk.js`) uses list / list / search.
 
 ## Frontier
 
@@ -55,7 +66,9 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 - John's reading of the matrix: the "no" is about unreliable code and prompts, not the idea. Agreed. A node has never been shown to work on its own; whole-run scores on top of that measure noise.
 - Revisit-on-settled is the default (7cb40c1). The blocked simulation scenario now ends with the root resolved; the strict rule survives as `revisitSettled: false` and a test.
 - The turn (PLAN.md): one decision per model call, code sequences the visit, the model only selects from things code prepared. Harbour's prompt discipline borrowed for the method.
-- Built `src/asks.js` (sentence / section / missing asks, four sentence variants down to yes-or-no per sentence), `evals/node/` (20 sentence, 15 section, 9 missing cases from the cached articles), `scripts/node-eval.mjs` (model × variant table, OpenRouter reference models), `__tangle.ask` on the page (f571e0b). First sentence-pick run on 0.6B and 1.7B in progress.
+- Built `src/asks.js` (sentence / section / missing / question asks, six sentence variants down to yes-or-no per sentence), `evals/node/` (20 sentence, 15 section, 9 missing cases from the cached articles), `scripts/node-eval.mjs` (model × variant table, OpenRouter reference models), `__tangle.ask` on the page (f571e0b).
+- Ran all three asks across the ladder (scoreboard above, 3106cb9). 1.7B: 17/20 sentence, 14/15 section, 9/9 search. No OpenRouter key on this machine, so the reference column is empty.
+- Built the walk (`src/walk.js`, bc012dd): a live visit as a fixed sequence of asks, code deciding everything else. Seven scripted-driver tests. Live runs use it by default; `limits.walk: false` runs the old one-prompt visit. First live smoke run on 1.7B next, then the benchmark again.
 
 ### 2026-09-17 · night
 
