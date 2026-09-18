@@ -21,6 +21,10 @@ export const DEFAULT_LIMITS = Object.freeze({
   // on the same seed for comparison. Simulation always replays the one-prompt
   // visit, since its scripted responses are actions.
   walk: true,
+  // How many answering sentences one visit may gather into a finding under
+  // the walk: after a checked pick it asks again over what remains, so a
+  // question with several parts can collect several verbatim sentences.
+  maxSentences: 3,
 });
 export const SETTLED = Object.freeze(["resolved", "blocked"]);
 export const ACTIONS = Object.freeze(["wiki", "decompose", "resolved", "blocked"]);

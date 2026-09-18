@@ -8,6 +8,7 @@ import { candidates, isRepeat, runWalk, searchTerm, unreadSections } from "../sr
 // The sequencing tests use the plain pick so each scripted answer is one ask;
 // the default (pick, then one yes-or-no) has its own test below.
 const PLAIN = { variants: { sentence: "list" } };
+const ONE = { maxSentences: 1 };
 
 function scripted(queue) {
   const seen = [];
@@ -43,7 +44,7 @@ test("the first lookup is the question minus its question words", () => {
 });
 
 test("the first lookup needs no model call; a picked sentence becomes the finding verbatim, cited", async () => {
-  const run = createRun("What is the Dead Sea's main tributary?", "live");
+  const run = createRun("What is the Dead Sea's main tributary?", "live", ONE);
   const { ask, seen } = scripted([["sentence", "2"]]);
   assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
   const root = run.nodes[0];
@@ -65,7 +66,7 @@ test("the first lookup needs no model call; a picked sentence becomes the findin
 });
 
 test("when the lead does not answer, the walk reads a chosen section and picks from it", async () => {
-  const run = createRun("Why is the Dead Sea shrinking?", "live");
+  const run = createRun("Why is the Dead Sea shrinking?", "live", ONE);
   const { ask, seen } = scripted([["sentence", "none"], ["section", "Receding shoreline"], ["sentence", "2"]]);
   assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
   const root = run.nodes[0];
@@ -78,7 +79,7 @@ test("when the lead does not answer, the walk reads a chosen section and picks f
 });
 
 test("with lookups exhausted the walk hands down one question; the parent later chooses among its children's findings", async () => {
-  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 2 });
+  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 2, ...ONE });
   const { ask } = scripted([["sentence", "none"], ["section", "Geography"], ["sentence", "none"], ["question", "What diverts water from the Jordan River?"]]);
   assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
   assert.equal(run.nodes[0].status, "waiting");
@@ -107,7 +108,7 @@ test("with lookups exhausted the walk hands down one question; the parent later 
 });
 
 test("a parent that finds none of its children's sentences answers alone still resolves with what they found", async () => {
-  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1 });
+  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1, ...ONE });
   await runWalk(run, { ask: scripted([["sentence", "none"], ["question", "What feeds the Dead Sea?"]]).ask, wiki: wikiFixture, ...PLAIN });
   await runWalk(run, { ask: scripted([["sentence", "2"]]).ask, wiki: wikiFixture, ...PLAIN });
   assert.equal(run.nodes[1].finding, "Its main tributary is the Jordan River.");
@@ -121,7 +122,7 @@ test("a parent that finds none of its children's sentences answers alone still r
 });
 
 test("a repeated question is refused by code and the node blocks", async () => {
-  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1 });
+  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1, ...ONE });
   const { ask } = scripted([["sentence", "none"], ["question", "Why is the Dead Sea shrinking?"]]);
   assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
   assert.equal(run.nodes[0].status, "blocked");
@@ -134,7 +135,7 @@ test("a repeated question is refused by code and the node blocks", async () => {
 });
 
 test("flat limits: no children, the walk searches for what is missing and reads on", async () => {
-  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxDepth: 0, maxLookups: 6, maxPasses: 8 });
+  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxDepth: 0, maxLookups: 6, maxPasses: 8, ...ONE });
   // The lead answers nothing; both sections get read; a search finds nothing;
   // the same search again is refused by code and the node blocks.
   const { ask, seen } = scripted([["sentence", "none"], ["section", "Receding shoreline"], ["sentence", "none"], ["section", "Geography"], ["sentence", "none"], ["search", "Jordan River"], ["search", "jordan river"]]);
@@ -148,7 +149,7 @@ test("flat limits: no children, the walk searches for what is missing and reads 
 });
 
 test("a bad pick pauses the visit as an error and a cancellation leaves the node open", async () => {
-  const run = createRun("What is the Dead Sea's main tributary?", "live");
+  const run = createRun("What is the Dead Sea's main tributary?", "live", ONE);
   assert.equal(await runWalk(run, { ask: scripted([["sentence", "9"]]).ask, wiki: wikiFixture, ...PLAIN }), false);
   assert.equal(run.nodes[0].status, "error");
   assert.match(run.nodes[0].reason, /picked sentence 9/);
@@ -163,7 +164,7 @@ test("a bad pick pauses the visit as an error and a cancellation leaves the node
 });
 
 test("by default a pick is checked with one yes-or-no on that sentence; a no is treated as none", async () => {
-  const run = createRun("What is the Dead Sea's main tributary?", "live");
+  const run = createRun("What is the Dead Sea's main tributary?", "live", ONE);
   const { ask, seen } = scripted([["sentence", "2"], ["answers", "yes"]]);
   assert.equal(await runWalk(run, { ask, wiki: wikiFixture }), true);
   assert.equal(run.nodes[0].finding, "Its main tributary is the Jordan River.");
@@ -172,14 +173,38 @@ test("by default a pick is checked with one yes-or-no on that sentence; a no is 
   assert.equal(run.modelCalls, 2);
 
   // The wrong lake: the check says no, so the walk reads on instead of resolving.
-  const wrong = createRun("What is the Dead Sea's main tributary?", "live", { maxLookups: 1, maxDepth: 0 });
+  const wrong = createRun("What is the Dead Sea's main tributary?", "live", { maxLookups: 1, maxDepth: 0, ...ONE });
   const doubted = scripted([["sentence", "2"], ["answers", "no"], ["section", "Geography"]]);
   assert.equal(await runWalk(wrong, { ask: doubted.ask, wiki: wikiFixture }), true);
   assert.notEqual(wrong.nodes[0].status, "resolved");
   assert.ok(wrong.trace.some((event) => event.event === "sentence_picked" && event.pick === "none"));
 
   // An out-of-range pick is rejected before any check.
-  const bad = createRun("What is the Dead Sea's main tributary?", "live");
+  const bad = createRun("What is the Dead Sea's main tributary?", "live", ONE);
   assert.equal(await runWalk(bad, { ask: scripted([["sentence", "9"]]).ask, wiki: wikiFixture }), false);
   assert.match(bad.nodes[0].reason, /picked sentence 9/);
+});
+
+test("a finding can gather several sentences: after a pick the walk asks again over what remains, up to maxSentences", async () => {
+  const run = createRun("What is the Dead Sea like?", "live");
+  const { ask, seen } = scripted([["sentence", "1"], ["sentence", "2"], ["sentence", "none"]]);
+  assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
+  assert.equal(run.nodes[0].finding, "The Dead Sea is a salt lake bordered by Jordan and Israel. The Dead Sea is receding at a swift rate today.");
+  assert.deepEqual(run.nodes[0].evidence, ["e1"]);
+  assert.deepEqual(seen[1].options, ["1", "2", "none"], "the second pick no longer shows the chosen sentence");
+  assert.match(seen[1].user, /1\. Its main tributary/);
+  const capped = createRun("What is the Dead Sea like?", "live", { maxSentences: 2 });
+  await runWalk(capped, { ask: scripted([["sentence", "1"], ["sentence", "1"]]).ask, wiki: wikiFixture, ...PLAIN });
+  assert.equal(capped.nodes[0].status, "resolved");
+  assert.equal(capped.nodes[0].finding.split(". ").length, 2);
+});
+
+test("a child question about the text it was shown is refused", async () => {
+  const run = createRun("Why did the Aral Sea shrink?", "live", { maxLookups: 1, ...ONE });
+  const { ask } = scripted([["sentence", "none"], ["question", "What is the name of the weapon described in the text?"]]);
+  const noSea = async (query, options) => (/aral/i.test(query) ? wikiFixture("Dead Sea", options) : wikiFixture(query, options));
+  assert.equal(await runWalk(run, { ask, wiki: noSea, ...PLAIN }), true);
+  assert.equal(run.nodes.length, 1);
+  assert.equal(run.nodes[0].status, "blocked");
+  assert.equal(run.trace.find((event) => event.event === "question_rejected").reason, "about the text");
 });

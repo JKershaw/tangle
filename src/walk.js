@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-2"; // walk-2: a paraphrase of an ancestor or sibling question is refused as a repeat
+export const WALK_VERSION = "walk-3"; // walk-2: a paraphrase of an ancestor or sibling question is refused; walk-3: questions about "the text" refused, up to maxSentences per finding
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -73,6 +73,12 @@ export function unreadSections(run, node) {
   }
   return out;
 }
+
+// A child question about the sentences it was shown rather than the world
+// ("What is the name of the weapon described in the text?", 1.7B under
+// "Why did the Aral Sea shrink?", evals/results/runs 2026-09-18) sends the
+// graph away from its seed and never comes back.
+export const ABOUT_THE_TEXT = /\b(the|these|those|this|given|above|provided)\s+(text|sentences?|passage|excerpts?|context)\b|\b(mentioned|described|highlighted|listed|stated)\s+(in|above|here)\b/i;
 
 // A question is a repeat if it is any ancestor's or sibling's question again,
 // verbatim or as a paraphrase that keeps every content word.
@@ -167,29 +173,39 @@ export async function runWalk(run, options) {
       if ((await lookup(searchTerm(node.question))) === "declined") return true;
     }
     const judged = new Set();
+    // Sentences picked and checked so far this visit; the finding is their
+    // text, verbatim, in the order found. After a pick the walk asks again
+    // over what remains until it says none or maxSentences is reached.
+    const gathered = [];
+    const resolveWith = () => {
+      applyResult(run, node.id, { action: "resolved", finding: gathered.map((candidate) => candidate.text).join(" "), evidence: [...new Set(gathered.flatMap((candidate) => candidate.evidence))] }, visible());
+      onUpdate(node.id, "Finding recorded");
+      return true;
+    };
     while (true) {
       signal?.throwIfAborted();
       const pool = candidates(run, node).filter((candidate) => !judged.has(candidate.text));
-      if (pool.length && passes < run.limits.maxPasses) {
+      if (pool.length && passes < run.limits.maxPasses && gathered.length < (run.limits.maxSentences ?? 1)) {
         const window = pool.slice(0, WINDOW);
         passes++;
-        const pick = await answer("sentence", { question: node.question, sentences: window.map((candidate) => candidate.text), titles: window.map((candidate) => (candidate.from === "child" ? "a finding below" : String(candidate.source).split(" § ")[0])) }, "Reading");
-        trace(run, "sentence_picked", { node: node.id, pick, shown: window.length });
+        const pick = await answer("sentence", { question: node.question, sentences: window.map((candidate) => candidate.text), titles: window.map((candidate) => (candidate.from === "child" ? "a finding below" : String(candidate.source).split(" § ")[0])) }, gathered.length ? "Reading for more" : "Reading");
+        trace(run, "sentence_picked", { node: node.id, pick, shown: window.length, gathered: gathered.length });
         if (pick !== "none") {
           const index = Number(pick) - 1;
           const chosen = window[index];
           if (!chosen) throw new Error(`The model picked sentence ${pick} of ${window.length}.`);
-          let finding = chosen.text;
           // A finding is a sentence, not a fragment (validateResult). A very
-          // short pick keeps its neighbour for context — still verbatim.
-          if (finding.split(/\s+/).length < MIN_FINDING_WORDS && index > 0 && window[index - 1].evidence[0] === chosen.evidence[0]) finding = `${window[index - 1].text} ${finding}`;
-          applyResult(run, node.id, { action: "resolved", finding, evidence: chosen.evidence }, visible());
-          onUpdate(node.id, "Finding recorded");
-          return true;
+          // short first pick keeps its neighbour for context — still verbatim.
+          if (!gathered.length && chosen.text.split(/\s+/).length < MIN_FINDING_WORDS && index > 0 && window[index - 1].evidence[0] === chosen.evidence[0]) gathered.push(window[index - 1]);
+          gathered.push(chosen);
+          judged.add(chosen.text);
+          continue;
         }
+        if (gathered.length) return resolveWith();
         for (const candidate of window) judged.add(candidate.text);
         continue;
       }
+      if (gathered.length) return resolveWith();
       // Nothing left to judge. A parent whose children answered resolves with
       // what they found: the answer to a decomposed question is its parts.
       const found = children(run, node.id).filter((child) => child.status === "resolved" && child.finding);
@@ -219,12 +235,13 @@ export async function runWalk(run, options) {
       const questionsAllowed = node.depth < run.limits.maxDepth ? Math.max(0, run.limits.maxNodes - run.nodes.length) : 0;
       if (questionsAllowed > 0) {
         const question = await answer("question", { question: node.question, sentences: readSentences() }, "Asking a smaller question");
-        if (!isRepeat(run, node, question) && (question.match(/\?/g) || []).length <= 1) {
+        const rejected = isRepeat(run, node, question) ? "repeat" : ABOUT_THE_TEXT.test(question) ? "about the text" : (question.match(/\?/g) || []).length > 1 ? "several questions" : null;
+        if (!rejected) {
           applyResult(run, node.id, { action: "decompose", questions: [question] }, visible());
           onUpdate(node.id, "New question added");
           return true;
         }
-        trace(run, "question_rejected", { node: node.id, question, reason: "repeat" });
+        trace(run, "question_rejected", { node: node.id, question, reason: rejected });
       }
       applyResult(run, node.id, { action: "blocked", reason: node.observed.length ? "Nothing read states the answer, and no further lookup or question is allowed here." : "Nothing could be read for this question." }, visible());
       onUpdate(node.id, "Blocked");
