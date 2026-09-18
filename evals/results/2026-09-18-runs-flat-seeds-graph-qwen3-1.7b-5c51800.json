@@ -1,0 +1,594 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "5c51800",
+  "head": "bf18f62",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T11:45:19.289Z",
+  "loadSeconds": 5,
+  "prompt": "walk-7/asks-2",
+  "schema": "sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-7",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 4,
+    "gpuPercent": {
+      "min": 0,
+      "max": 96,
+      "mean": 71.8
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 2.28,
+      "mean": 1.7
+    },
+    "load": {
+      "min": 15.17,
+      "max": 19.41,
+      "mean": 16.7
+    },
+    "memoryFreePercent": {
+      "min": 79,
+      "max": 86,
+      "mean": 80.8
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "flat",
+  "seedSet": "evals/seeds-graph.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "maxNodes": 1,
+    "maxVisits": 3,
+    "maxDepth": 0,
+    "maxLookups": 6,
+    "maxPasses": 8
+  },
+  "seeds": 10,
+  "resolved": 8,
+  "factsPresent": 12,
+  "factsSupported": 12,
+  "factsRead": 18,
+  "factsTotal": 30,
+  "results": [
+    {
+      "id": "dead-aral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "aral-rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "irrigation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 2080
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects. The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely dried up into desert by 2007. By 2007, it had declined to 10% of its original size, splitting into four lakes: the North Aral Sea, the eastern and western basins of the once far larger South Aral Sea, and the smaller intermediate Barsakelmes Lake.",
+      "kind": "comparison",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "entries": 378,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-dead-aral.json",
+      "summary": "live run · seed: Why did the Dead Sea and the Aral Sea both shrink?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-7/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T11:45:24.623Z · exported 2026-09-18T11:45:29.505Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 2080\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did the Dead Sea and the Aral Sea both shrink? → Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), th\n\nmodel latency ms: median 850 · max 924 · n 4\nnothing flagged"
+    },
+    {
+      "id": "chad-dead",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "irrigation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rainfall": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "jordan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 15,
+        "lookups": 2,
+        "tokens": 4625
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "kind": "comparison",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 9,
+        "misses": 0,
+        "entries": 378,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-chad-dead.json",
+      "summary": "live run · seed: What do the shrinking of Lake Chad and the Dead Sea have in common?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-7/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T11:45:29.516Z · exported 2026-09-18T11:45:37.115Z\nnodes 1 · visits 1 · model calls 15 · lookups 2 · evidence 2 · tokens 4625\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked] What do the shrinking of Lake Chad and the Dead Sea have in common? !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 498 · max 898 · n 15\nworth a look:\n- n1 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
+    },
+    {
+      "id": "rome-bronze",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "sea-peoples": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "barbarians": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1717
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Roman Empire lost the strengths that had allowed it to exercise effective control over its Western provinces; modern historians posit factors including the effectiveness and numbers of the army, the health and numbers of the Roman population, the strength of the economy, the competence of the emperors, the internal struggles for power, the religious changes of the period, and the efficiency of the civil administration. The reasons for the collapse are major subjects of the historiography of the ancient world and they inform much modern discourse on state failure. The fall of the Western Roman Empire, also called the fall of the Roman Empire or the fall of Rome, was the loss of central political control in the Western Roman Empire, a process in which the Empire failed to enforce its rule, and its vast territory was divided among several successor polities.",
+      "kind": "comparison",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 13,
+        "misses": 0,
+        "entries": 378,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-rome-bronze.json",
+      "summary": "live run · seed: What causes do the Late Bronze Age collapse and the fall of the Western Roman Empire have in common?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-7/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T11:45:37.125Z · exported 2026-09-18T11:45:41.746Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1717\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] What causes do the Late Bronze Age collapse and the fall of the Western Roman Empire have in common? → The Roman Empire lost the strengths that had allowed it to exercise effective control over\n\nmodel latency ms: median 650 · max 684 · n 4\nnothing flagged"
+    },
+    {
+      "id": "sahara-dry",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "hadley": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sinking": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rain-shadow": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1813
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The air descends on the leeward side, but due to the precipitation it has lost much of its moisture. A rain shadow is an area of significantly reduced rainfall behind a mountainous region, on the side facing away from prevailing winds, known as its leeward side. Evaporated moisture from bodies of water (such as oceans and large lakes) is carried by the prevailing onshore breezes towards the drier and hotter inland areas.",
+      "kind": "sections",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 17,
+        "misses": 0,
+        "entries": 378,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-sahara-dry.json",
+      "summary": "live run · seed: Why does the Sahara get so little rain?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-7/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T11:45:41.750Z · exported 2026-09-18T11:45:46.387Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1813\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why does the Sahara get so little rain? → The air descends on the leeward side, but due to the precipitation it has lost much of its\n\nmodel latency ms: median 681 · max 742 · n 4\nnothing flagged"
+    },
+    {
+      "id": "black-death",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "crimea": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "genoese": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "vector": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1392
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Black Death was a plague pandemic that occurred in Europe from 1346 to 1353. The disease was caused by the bacterium Yersinia pestis, which is primarily spread by flea bites, though it may also spread through contact with infected tissues or fluids and, in pneumonic cases, through respiratory droplets. It was one of the most fatal pandemics in human history, leading to the death of up to 50 million people, around 30% to 60% of the European population and approximately 33% of the Middle Eastern population.",
+      "kind": "sections",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 21,
+        "misses": 0,
+        "entries": 378,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-black-death.json",
+      "summary": "live run · seed: How did the Black Death reach Europe?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-7/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T11:45:46.392Z · exported 2026-09-18T11:45:51.009Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1392\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] How did the Black Death reach Europe? → The Black Death was a plague pandemic that occurred in Europe from 1346 to 1353. The disea\n\nmodel latency ms: median 575 · max 622 · n 4\nnothing flagged"
+    },
+    {
+      "id": "almond-bees",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "pollination": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "self-incompatible": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "hives": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 16,
+        "lookups": 2,
+        "tokens": 4346
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "kind": "sections, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 26,
+        "misses": 0,
+        "entries": 378,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-almond-bees.json",
+      "summary": "live run · seed: Why do California almond growers depend on rented honey bee hives?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-7/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T11:45:51.018Z · exported 2026-09-18T11:45:58.659Z\nnodes 1 · visits 1 · model calls 16 · lookups 2 · evidence 2 · tokens 4346\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked] Why do California almond growers depend on rented honey bee hives? !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 396 · max 794 · n 16\nworth a look:\n- n1 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
+    },
+    {
+      "id": "jordan-flow",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "carrier": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "diversion": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "neighbours": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1788
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The country's major surface water resources, the Jordan River and the Yarmouk River, are shared with Israel and Syria who leave only a small amount for Jordan. Water supply and sanitation in Jordan is characterized by severe water scarcity, which has been exacerbated by forced immigration as a result of the 1948 Arab–Israeli War, the Six-Day War in 1967, the Gulf War of 1990, the Iraq War of 2003 and the Syrian Civil War since 2011. Jordan is considered one of the ten most water scarce countries in the world.",
+      "kind": "two-hop",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 30,
+        "misses": 0,
+        "entries": 378,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-jordan-flow.json",
+      "summary": "live run · seed: Why does less water from the Jordan River reach the Dead Sea than before?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-7/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T11:45:58.665Z · exported 2026-09-18T11:46:03.294Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1788\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why does less water from the Jordan River reach the Dead Sea than before? → The country's major surface water resources, the Jordan River and the Yarmouk River, are s\n\nmodel latency ms: median 686 · max 751 · n 4\nnothing flagged"
+    },
+    {
+      "id": "venus-earth",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "co2": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sun": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "carbonate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1817
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Similar in size and mass to Earth, Venus has no liquid water, and its atmosphere is far thicker and denser than that of any other rocky body in the Solar System. Venus has no moons and a very slow retrograde rotation about its axis, a result of competing forces of solar tidal locking and differential heating of Venus's massive atmosphere. The atmosphere is composed mostly of carbon dioxide and has a thick cloud layer of sulfuric acid that spans the whole planet.",
+      "kind": "sections",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 34,
+        "misses": 0,
+        "entries": 378,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-venus-earth.json",
+      "summary": "live run · seed: Why did Venus end up with a runaway greenhouse effect while Earth did not?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-7/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T11:46:03.300Z · exported 2026-09-18T11:46:07.934Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1817\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did Venus end up with a runaway greenhouse effect while Earth did not? → Similar in size and mass to Earth, Venus has no liquid water, and its atmosphere is far th\n\nmodel latency ms: median 701 · max 723 · n 4\nnothing flagged"
+    },
+    {
+      "id": "gulf-stream",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "current": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "westerlies": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "warm": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 6,
+        "lookups": 2,
+        "tokens": 2714
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The European climate is affected by warm Atlantic currents, such as the Gulf Stream, which produce a temperate climate, tempering winters and summers, on much of the continent. Further from the sea, seasonal differences are more noticeable producing more continental climates. The climate is milder in comparison to other areas of the same latitude around the globe due to the influence of the Gulf Stream, an ocean current which carries warm water from the Gulf of Mexico across the Atlantic Ocean to Europe.",
+      "kind": "sections",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 39,
+        "misses": 0,
+        "entries": 378,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-gulf-stream.json",
+      "summary": "live run · seed: Why is Western Europe milder than places in Canada at the same latitude?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-7/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T11:46:07.940Z · exported 2026-09-18T11:46:12.567Z\nnodes 1 · visits 1 · model calls 6 · lookups 2 · evidence 2 · tokens 2714\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is Western Europe milder than places in Canada at the same latitude? → The European climate is affected by warm Atlantic currents, such as the Gulf Stream, which\n\nmodel latency ms: median 777 · max 792 · n 6\nnothing flagged"
+    },
+    {
+      "id": "moon-face",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "tidal": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rotation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "same-side": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 5,
+        "lookups": 1,
+        "tokens": 2290
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Moon's gravity helps stabilize Earth's axis, causes tides, and gradually slows Earth's rotation. Earth is orbited by one permanent natural satellite, the Moon, which orbits Earth at 384,400 km (238,855 mi)—1.28 light seconds—and is roughly a quarter as wide as Earth. Likewise, Earth's gravitational pull has already made the Moon's rotation tidally locked, keeping the same near side facing Earth.",
+      "kind": "control",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 43,
+        "misses": 0,
+        "entries": 378,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-moon-face.json",
+      "summary": "live run · seed: Why does the Moon always show the same face to Earth?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-7/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T11:46:12.573Z · exported 2026-09-18T11:46:17.194Z\nnodes 1 · visits 1 · model calls 5 · lookups 1 · evidence 1 · tokens 2290\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why does the Moon always show the same face to Earth? → The Moon's gravity helps stabilize Earth's axis, causes tides, and gradually slows Earth's\n\nmodel latency ms: median 659 · max 700 · n 5\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-18T11:45:19.289Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-7\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T11:45:19.412Z loading: Checking this device before downloading…",
+    "2026-09-18T11:45:24.420Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 95% · vram 0.03 GiB · load 19.41 · mem 86% free (normal) · no throttling recorded",
+    "2026-09-18T11:45:24.518Z 10 seeds from evals/seeds-graph.json · mode flat · limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8} · prompt walk-7/asks-2 · grammar sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit 5c51800",
+    "wiki recording: 378 responses loaded",
+    "2026-09-18T11:45:29.415Z run stopped: Root resolved",
+    "dead-aral: resolved · facts 1/3 · supported 1/3 · read 2/3 · 1 nodes, 4 calls, 1 lookups, 2080 tokens · 5 s · wiki 4 hits 0 misses",
+    "2026-09-18T11:45:37.052Z run stopped: No runnable nodes · root unresolved",
+    "chad-dead: No runnable nodes · root unresolved · facts 0/3 · supported 0/3 · read 1/3 · 1 nodes, 15 calls, 2 lookups, 4625 tokens · 8 s · wiki 9 hits 0 misses",
+    "2026-09-18T11:45:41.661Z run stopped: Root resolved",
+    "rome-bronze: resolved · facts 0/3 · supported 0/3 · read 1/3 · 1 nodes, 4 calls, 1 lookups, 1717 tokens · 5 s · wiki 13 hits 0 misses",
+    "2026-09-18T11:45:46.298Z run stopped: Root resolved",
+    "sahara-dry: resolved · facts 2/3 · supported 2/3 · read 2/3 · 1 nodes, 4 calls, 1 lookups, 1813 tokens · 5 s · wiki 17 hits 0 misses",
+    "2026-09-18T11:45:50.930Z run stopped: Root resolved",
+    "black-death: resolved · facts 1/3 · supported 1/3 · read 1/3 · 1 nodes, 4 calls, 1 lookups, 1392 tokens · 5 s · wiki 21 hits 0 misses",
+    "2026-09-18T11:45:58.567Z run stopped: No runnable nodes · root unresolved",
+    "almond-bees: No runnable nodes · root unresolved · facts 0/3 · supported 0/3 · read 2/3 · 1 nodes, 16 calls, 2 lookups, 4346 tokens · 8 s · wiki 26 hits 0 misses",
+    "2026-09-18T11:46:03.209Z run stopped: Root resolved",
+    "jordan-flow: resolved · facts 1/3 · supported 1/3 · read 1/3 · 1 nodes, 4 calls, 1 lookups, 1788 tokens · 5 s · wiki 30 hits 0 misses",
+    "2026-09-18T11:46:07.848Z run stopped: Root resolved",
+    "venus-earth: resolved · facts 2/3 · supported 2/3 · read 2/3 · 1 nodes, 4 calls, 1 lookups, 1817 tokens · 5 s · wiki 34 hits 0 misses",
+    "2026-09-18T11:46:12.481Z run stopped: Root resolved",
+    "gulf-stream: resolved · facts 2/3 · supported 2/3 · read 3/3 · 1 nodes, 6 calls, 2 lookups, 2714 tokens · 5 s · wiki 39 hits 0 misses",
+    "2026-09-18T11:46:17.112Z run stopped: Root resolved",
+    "moon-face: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 5 calls, 1 lookups, 2290 tokens · 5 s · wiki 43 hits 0 misses",
+    "machine during the suite: gpu 71.8% mean, 96% peak · vram up to 2.28 GiB · load up to 19.41 · no throttling in 4 samples"
+  ]
+}

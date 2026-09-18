@@ -46,6 +46,12 @@ Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · c
 | 2026-09-18 | dca1958 (walk-6) ×3 identical | 4B | flat (walk, one node) | 7/7 | **16/23** | **16/23** | 19/23 | 13k | 65 |
 | 2026-09-18 | dca1958 (pocket-10 prompt) ×3 identical | 4B | composing (one node) | 7/7 | 13/23 | 13/23 | 19/23 | 8k | 65–100 |
 | 2026-09-18 | dca1958 (pocket-10 prompt) | 8B | composing (one node) | 7/7 | **18/23** | **18/23** | 23/23 | 37k | 480 |
+| 2026-09-18 | 5c51800 (walk-7) | 1.7B | tangle | 7/7 | 10/23 | 10/23 | 20/23 | 25k | 62 |
+| 2026-09-18 | 5c51800 (walk-7) | 1.7B | flat (walk, one node) | 7/7 | 12/23 | 12/23 | 20/23 | 18k | 44 |
+| 2026-09-18 | 5c51800 (walk-7) | 4B | tangle | 7/7 | **17/23** | **17/23** | 20/23 | 15k | 71 |
+| 2026-09-18 | 5c51800 (walk-7) | 4B | flat (walk, one node) | 7/7 | **17/23** | **17/23** | 20/23 | 16k | 74 |
+| 2026-09-18 | 5c51800 (walk-7) | 8B | tangle | 7/7 | 16/23 | 16/23 | 21/23 | 18k | 125 |
+| 2026-09-18 | 5c51800 (walk-7) | 8B | flat (walk, one node) | 7/7 | **17/23** | **17/23** | 22/23 | 32k | 200 |
 
 **The benchmark is deterministic** (temperature 0.2, fixed seed, Wikipedia replayed): three passes of nine rows did not differ by a fact, so a one-fact gap is one seed's gap and only more seeds widen a claim. **The right single-node control is pocket-10's composing prompt**, never benchmarked until 2026-09-18: 16/23 at 1.7B (the walk: 9) and 13/23 at 4B (the walk: 16). Reading in [evals/readings.md](evals/readings.md).
 
@@ -58,8 +64,11 @@ Graph seeds (`evals/seeds-graph.json`, 10 seeds no single article answers, 30 fa
 | 2026-09-18 | dca1958 (walk-6) | 1.7B | 12/30 (12 supported) | 12/30 (12) | 12/30 (11) |
 | 2026-09-18 | dca1958 (walk-6) | 4B | 10/30 (10) | 10/30 (10) | 14/30 (9) |
 | 2026-09-18 | dca1958 (walk-6) | 8B | 12/30 (12) | 11/30 (11) | **17/30** (16) |
+| 2026-09-18 | 5c51800 (walk-7) | 1.7B | **16/30** (16) · 102 s | 12/30 (12) | — |
+| 2026-09-18 | 5c51800 (walk-7) | 4B | **15/30** (15) · 143 s | 12/30 (12) | — |
+| 2026-09-18 | 5c51800 (walk-7) | 8B | 14/30 (14) · 828 s | 12/30 (12) | — |
 
-Every size reads one article and resolves with half an answer; the graph never splits the question, and where it adds children they drift. Reading in [evals/readings.md](evals/readings.md). walk-7 (5c51800) splits two-subject questions in code and reads on after a first answer; rerunning.
+At walk-6 every size read one article and resolved with half an answer. walk-7 (5c51800) splits a two-subject question in code, one child per subject, and reads on after a first answer: on the three comparison seeds the graph states 5, 6 and 6 facts against 1, 2 and 3 for one node, and leads its one-node control at every size on this set. The model-asked children are still the cost (8B: 828 s). Reading in [evals/readings.md](evals/readings.md).
 
 Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<ask>.json`, by ask variant. Full rows in [evals/node/results.md](evals/node/results.md).
 
@@ -106,6 +115,7 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 
 ### 2026-09-18 · afternoon
 
+- walk-7 rows: on the graph seeds the tangle leads its one-node control at every size (16, 15, 14 against 12, 12, 12 of 30) and the whole lead is the code-made split of two-subject questions; reading on adds about a fact on the base seeds (4B 17/23, the best walk row yet). 8B's model-asked children take the graph seeds to 828 s. Base seeds against the composing node: behind at 1.7B and 8B, ahead at 4B.
 - Graph seeds at three sizes and three modes: the walk is 10–12/30 at every size, level with its own one-node control, because every size reads one article and resolves with half an answer; the composing node reaches 17/30 at 8B but starts stating facts its evidence does not hold (4B: 14 stated, 9 supported). 8B composing on the base seeds: 18/23.
 - walk-7 (5c51800): a question naming two subjects joined by and/or is split by code before anything is read, one child per subject; the parent's answer is their findings. After a first pick, while the finding has room and lookups remain, the node reads one more section and asks again. Both seed sets rerunning at 1.7B, 4B and 8B, tangle and flat.
 

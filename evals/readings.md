@@ -2,6 +2,28 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-18 · walk-7: the split, and reading on
+
+Two code changes from the graph-seed traces (5c51800). A question naming two subjects joined by *and* or *or* is split before anything is read, one child per subject ("… — about the Aral Sea"), each child's search term drops the other subject, and the parent's answer is its children's findings with no pick. After a first pick, while the finding has room and lookups remain, a node reads one more section the model chooses and asks again over it. Both seed sets, three sizes, tangle and flat; the composing column is the pocket-10 one-node control from the rounds above.
+
+| model | seeds | tangle walk-7 (walk-6) | flat walk-7 (walk-6) | composing |
+|---|---|---|---|---|
+| 1.7B | base 23 | 10 (9) · 62 s | **12** (11) · 44 s | **16** · 107 s |
+| 4B | base 23 | **17** (16) · 71 s | **17** (16) · 74 s | 13 · 65 s |
+| 8B | base 23 | 16 (16) · 125 s | **17** (—) · 200 s | **18** · 480 s |
+| 1.7B | graph 30 | **16** (12) · 102 s | 12 (12) · 56 s | 12 (11 supported) · 244 s |
+| 4B | graph 30 | **15** (10) · 143 s | 12 (10) · 110 s | 14 (9 supported) · 136 s |
+| 8B | graph 30 | 14 (12) · **828 s** | 12 (11) · 311 s | **17** (16 supported) · 522 s |
+
+Every walk fact is supported.
+
+- **The split is the first decomposition that pays, at every size.** On the three comparison seeds the graph states 5, 6 and 6 facts (1.7B, 4B, 8B) against 1, 2 and 3 for the same walk on one node. Lake Chad and the Dead Sea went from 0 or 1 at every size to 2 at every size; the Dead Sea and the Aral Sea from 1 to 2 at 1.7B and 8B. This is decomposition by code — the model is not asked — and it is the whole of the graph's lead over its one-node control on the graph seeds (16, 15, 14 against 12, 12, 12).
+- **Reading on is worth about a fact.** Dead Sea 1.7B 0 → 1 (the lead's "receding" sentence, then the section's "shrinking since the 1960s"); 4B base 16 → 17; 8B base unchanged. It cannot fix a pick that stops at the wrong sentence: 1.7B's water cycle finding is "the water returns to the ocean, to continue the water cycle", and its colony-collapse finding is the definition of the disorder.
+- **Against the composing node the picture is now split by seed set.** On the graph seeds the walk is ahead at 1.7B (16 against 12) and 4B (15 against 14, with 9 of the 14 supported), behind at 8B (14 against 17). On the base seeds it is behind at 1.7B (10 against 16), ahead at 4B (17 against 13), behind at 8B (16 against 18). Where the composing node loses it is because it stops reading; where it wins it is because a paragraph names more facts than three sentences, and at 4B and above on hard seeds some of those facts are not in its evidence.
+- **The model-asked children are still the cost.** 8B on the graph seeds took 828 s: Lake Chad and the Dead Sea grew to 14 nodes and 312 s, the Jordan two-hop to 11 nodes and 206 s, because each split child went on to ask its own questions. The Sahara at 8B is four nodes with the same junk sentence as every finding — the check said yes to "the rainfall inhibition … most accentuated over the eastern section" — and Venus is a lead sentence about early oceans, twice. The 1.7B sky seed lost its two facts to photosynthesis children again.
+
+So the frontier moved by one mechanism: where code can see the shape of the question, the graph beats one node at every size. The model-asked question is still the ask that drifts, and the pick still takes the first sentence that reads like an answer.
+
 ## 2026-09-18 · the seeds no single article answers
 
 Ten seeds in `evals/seeds-graph.json`: three comparisons (the Dead Sea and the Aral Sea; Lake Chad and the Dead Sea; the Bronze Age collapse and the fall of Rome), one two-hop (why less Jordan water reaches the Dead Sea), five whose first article's lead lacks the answer (the Sahara's dryness, the Black Death's route, almond pollination, Venus against Earth, the Gulf Stream), and one control both leads answer (the Moon's face). Thirty facts, checked against live Wikipedia sections. Same page (walk-6, dca1958), three sizes, three modes, one pass each (the benchmark is deterministic, above).
