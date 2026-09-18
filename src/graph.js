@@ -26,9 +26,9 @@ export const DEFAULT_LIMITS = Object.freeze({
   // question with several parts can collect several verbatim sentences.
   maxSentences: 3,
   // A finding's length. Under the walk a finding is verbatim sentences, or a
-  // parent's children's findings joined; a brief's profile can run to a few
-  // thousand characters.
-  maxFindingChars: 6000,
+  // parent's children's findings joined; a brief's profile with hops runs to
+  // several thousand characters (an export allows 12,000).
+  maxFindingChars: 8000,
   // How many sections of an article a brief may hand to children.
   maxSections: 6,
   // How many things named in what a brief's child kept it may hand to

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "note": "Briefs whose answer is spread over more text than one context window holds and whose subjects are less memorised than the profile set's: the topics sit in many sections of the subject's article and in the articles it links to (Philae, the Kok-Aral Dam, Derek de Solla Price), so a single node reading a few sections cannot reach them and a model answering from memory should not know them well (roadmap, milestone 3). Same format as seeds-profile.json; 'facts' are topics, checked against live Wikipedia (rubric-check, 2026-09-18), 'where' says which sections hold each.",
+  "seeds": [
+    {
+      "id": "antikythera",
+      "seed": "Tell me about the Antikythera mechanism and how it was decoded.",
+      "kind": "brief",
+      "article": "Antikythera mechanism",
+      "facts": {
+        "wreck": "1901|shipwreck|Antikythera wreck",
+        "price": "de Solla Price|Solla Price",
+        "wright": "Michael Wright",
+        "research-project": "Antikythera Mechanism Research Project|Freeth",
+        "cycles": "Metonic|Saros|eclipse",
+        "imaging": "X-ray|tomography|computed tomography",
+        "olympiad": "Olympiad|games",
+        "divers": "Elias Stadiatis|sponge diver",
+        "origin": "Corinth|Rhodes|Hipparchus|Archimedes",
+        "museum": "National Archaeological Museum"
+      },
+      "where": "Antikythera mechanism (17 sections): wreck, cycles, imaging, olympiad, origin and museum in the lead; price only in Discovery, Proposed gear schemes and Popular culture; wright only in Front face, Gearing, Proposed gear schemes; research-project in Origin, Mechanics, Gearing and others, not the lead; divers only in Discovery."
+    },
+    {
+      "id": "rosetta",
+      "seed": "Tell me about the Rosetta mission and what it found at comet 67P.",
+      "kind": "brief",
+      "article": "Rosetta (spacecraft)",
+      "facts": {
+        "philae": "Philae",
+        "comet": "67P|Churyumov",
+        "launch": "2004|Ariane",
+        "arrival": "2014",
+        "water": "deuterium|isotop|water",
+        "organics": "organic|glycine|amino",
+        "landing": "Abydos|Agilkia|landing",
+        "end": "30 September 2016|end of mission|crash",
+        "esa": "European Space Agency|ESA",
+        "flybys": "Mars|Earth flyby|gravity assist"
+      },
+      "where": "Rosetta (spacecraft) (23 sections, lead 1,137 chars): philae, comet, launch, arrival, landing, end, esa and flybys in the lead; water only in Nucleus, Inorganic chemistry and Organic chemistry; organics only in Philae lander and Organic chemistry."
+    },
+    {
+      "id": "aral-restoration",
+      "seed": "Tell me about the Aral Sea and the efforts to restore it.",
+      "kind": "brief",
+      "article": "Aral Sea",
+      "facts": {
+        "dam": "Kok-Aral|Kokaral|dam",
+        "north-aral": "North Aral|Small Aral",
+        "kazakhstan": "Kazakhstan",
+        "uzbekistan": "Uzbekistan",
+        "world-bank": "World Bank",
+        "rivers": "Amu Darya|Syr Darya",
+        "cotton": "cotton|irrigation",
+        "salinity": "salinity|salt",
+        "fishing": "fishing|fishery",
+        "desert": "Aralkum|desert|dust"
+      },
+      "where": "Aral Sea (28 sections): every topic in the lead except world-bank (Proposed environmental solutions, ASBP: Phase Two, Aral Sea Basin Programme – 2, North Aral Sea restoration work, Institutional bodies). The restoration sections (ASBP-1 to ASBP-3, North Aral Sea restoration work, Future of South Aral Sea) hold the detail."
+    }
+  ]
+}

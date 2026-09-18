@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { contentWords, isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-12"; // walk-12: a hop child may hand down hops of its own (one level), a reserve keeps room for every open node's hops, and a name is offered only if its article says something about the subject; // walk-11: a hop child reads the part of its article that names the brief's subject, and a brief's root keeps twice the sentences; a brief's child hands the things its kept sentences name (the article's links that occur in them, else capitalised phrases) to children of its own, the model picking which from a list ranked by how often the run has met each; a sentence kept anywhere is never offered again; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
+export const WALK_VERSION = "walk-12"; // walk-12: an over-long profile loses hop paragraphs before it loses sections, and a short section is not handed to a child; a hop child may hand down hops of its own (one level), a reserve keeps room for every open node's hops, and a name is offered only if its article says something about the subject; // walk-11: a hop child reads the part of its article that names the brief's subject, and a brief's root keeps twice the sentences; a brief's child hands the things its kept sentences name (the article's links that occur in them, else capitalised phrases) to children of its own, the model picking which from a list ranked by how often the run has met each; a sentence kept anywhere is never offered again; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -53,6 +53,8 @@ export const BRIEF = /^(tell|describe|explain|write|give|summari[sz]e|elaborate|
 export const BRIEF_VARIANTS = Object.freeze({ sentence: "brief", section: "brief", missing: "names" });
 // How many named things one hop pick sees.
 export const NAMES_SHOWN = 8;
+// A section shorter than this is not handed to a child under a brief.
+export const SHORT_SECTION = 600;
 export function isBrief(question) {
   const text = String(question ?? "").trim();
   const base = text.includes(FOCUS) ? text.slice(0, text.indexOf(FOCUS)) : text;
@@ -81,12 +83,23 @@ const JOIN_WORDS = new Set("and or both common share shared versus vs have in of
 // found Nancy Grace Roman and Edwin Hubble and never the telescope (8B,
 // walk-10, evals/results 2026-09-18). The first capitalised phrase that is
 // not the brief's opening word.
+// Lower-case words that continue a subject ("the Antikythera mechanism",
+// "the Rosetta mission") are kept up to the first joining word or mark, so
+// the search is not for "Antikythera", the island.
+const SUBJECT_STOP = new Set("and or but that which who whom whose what how why when where in on at of for from with by to as into over under since during after before its his her their it he she they is was were are be been has have had does did".split(" "));
 export function briefSubject(question) {
   const text = String(question ?? "").split(FOCUS)[0];
   for (const match of text.matchAll(NAME_IN_TEXT)) {
     // The brief's first word is its verb ("Describe the Great Barrier Reef").
     const name = (match.index === 0 ? match[1].replace(/^\S+\s+(?:me\s+|us\s+)?(?:about\s+)?(?:the\s+)?/i, "") : match[1]).replace(/^the /i, "").trim();
-    if (name && !BRIEF.test(name)) return name;
+    if (!name || BRIEF.test(name)) continue;
+    const rest = text.slice(match.index + match[0].length).match(/^((?:\s+[a-z][a-z'’-]*)*)/)?.[1] ?? "";
+    const tail = [];
+    for (const word of rest.trim().split(/\s+/).filter(Boolean)) {
+      if (SUBJECT_STOP.has(word.toLowerCase()) || /[.,;:!?]$/.test(word)) break;
+      tail.push(word);
+    }
+    return [name, ...tail].join(" ");
   }
   return null;
 }
@@ -422,8 +435,18 @@ export async function runWalk(run, options) {
         const fresh = (text) => String(text).split(/\n\n+/).map((paragraph) => splitSentences(paragraph).filter((sentence) => !seenText.has(sentence) && seenText.add(sentence)).join(" ")).filter(Boolean).join("\n\n");
         const parts = [...(kept.length ? [fresh(kept.map((entry) => entry.text).join(" "))] : []), ...found.map((child) => fresh(child.finding))].filter(Boolean);
         const cap = run.limits.maxFindingChars ?? 6000;
-        while (parts.length > 1 && parts.join(node.fanned ? "\n\n" : " ").length > cap) parts.pop();
-        applyResult(run, node.id, { action: "resolved", harness: true, finding: parts.join(node.fanned ? "\n\n" : " "), evidence: [...new Set([...kept.flatMap((entry) => entry.evidence), ...found.flatMap((child) => child.evidence)])] }, visible());
+        const joiner = node.fanned ? "\n\n" : " ";
+        // Over the cap, a child's hop paragraphs go before any child does: the
+        // 8B Turing profile at walk-12 lost its last three sections, and their
+        // topics, to hops under the first three.
+        while (parts.join(joiner).length > cap) {
+          const split = parts.map((part, index) => [index, part.split(/\n\n+/)]).filter(([, paragraphs]) => paragraphs.length > 1);
+          if (!split.length) break;
+          const [index, paragraphs] = split.sort((a, b) => b[1].join("").length - a[1].join("").length)[0];
+          parts[index] = paragraphs.slice(0, -1).join("\n\n");
+        }
+        while (parts.length > 1 && parts.join(joiner).length > cap) parts.pop();
+        applyResult(run, node.id, { action: "resolved", harness: true, finding: parts.join(joiner), evidence: [...new Set([...kept.flatMap((entry) => entry.evidence), ...found.flatMap((child) => child.evidence)])] }, visible());
         onUpdate(node.id, "Findings gathered");
       } else {
         applyResult(run, node.id, { action: "blocked", reason: "Neither part of the question could be answered." }, visible());
@@ -474,7 +497,13 @@ export async function runWalk(run, options) {
     const fanOut = async (unread) => {
       const budget = Math.min(run.limits.maxSections ?? 6, run.limits.maxNodes - run.nodes.length);
       const chosen = [];
-      let remaining = [...unread.headings];
+      // A heading whose own text is a few lines of introduction ("Career and
+      // research", 452 characters, chosen and blocked at every size) is not
+      // worth a child; its subsections are offered instead.
+      const lead = run.evidence.find((record) => record.article === unread.article && record.section === 0 && record.headings?.length);
+      const sizes = lead?.sizes ?? [];
+      let remaining = unread.headings.filter((heading) => { const size = sizes[lead.headings.indexOf(heading)]; return !(Number.isFinite(size) && size < SHORT_SECTION); });
+      if (!remaining.length) remaining = [...unread.headings];
       while (chosen.length < budget && remaining.length) {
         const pick = await answer("section", { question: node.question, article: unread.article, sections: remaining, chosen }, "Choosing sections");
         if (pick === "none" || !remaining.includes(pick)) break;
@@ -672,7 +701,7 @@ export async function runWalk(run, options) {
       // subject; when its lead has none, no section of it is read either
       // (8B's Gordon Brown child read on and asked for section "none").
       if (brief && node.hopTo) {
-        applyResult(run, node.id, { action: "blocked", reason: `Nothing read about ${node.hopTo} names the subject of the brief.` }, visible());
+        applyResult(run, node.id, { action: "blocked", reason: judged.size ? `Nothing of what ${node.hopTo} says about the subject was kept.` : `Nothing read about ${node.hopTo} names the subject of the brief.` }, visible());
         onUpdate(node.id, "Blocked");
         return true;
       }

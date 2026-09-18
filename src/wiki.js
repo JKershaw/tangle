@@ -203,6 +203,9 @@ export async function lookupWikipedia(query, options = {}) {
     article: name,
     section: 0,
     headings: exact ? article.sections.slice(1).map((section) => section.heading) : [],
+    // Characters per section after the lead, so a brief can skip a heading
+    // that is only a short introduction to its subsections.
+    sizes: exact ? article.sections.slice(1).map((section) => section.text.length) : [],
     text: extract.slice(0, EXTRACT_LIMIT),
     exact,
     alternatives,

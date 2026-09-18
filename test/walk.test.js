@@ -41,6 +41,10 @@ test("a brief's search term is its subject, and a hit that is the search term it
   assert.equal(searchTerm("Tell me about Alan Turing and elaborate on the impact of his work."), "Alan Turing");
   assert.equal(searchTerm("Describe the Great Barrier Reef and the threats it faces."), "Great Barrier Reef");
   assert.equal(briefSubject("Tell me about coral bleaching."), null, "no capitalised subject");
+  assert.equal(searchTerm("Tell me about the Antikythera mechanism and how it was decoded."), "Antikythera mechanism", "lower-case words continue the subject up to a joining word: not Antikythera, the island");
+  assert.equal(searchTerm("Tell me about the Rosetta mission and what it found at comet 67P."), "Rosetta mission");
+  assert.equal(briefSubject("Describe Marie Curie, her discoveries and their influence."), "Marie Curie", "a mark ends the subject");
+  assert.equal(briefSubject("Tell me about the Aral Sea and the efforts to restore it."), "Aral Sea");
   assert.equal(searchTerm("Tell me about coral bleaching."), "Tell me about coral bleaching");
   const hits = { "Hubble Space Telescope": ["Nancy Grace Roman Space Telescope", "Hubble Space Telescope", "Edwin Hubble"], "Tell me about the Hubble Space Telescope and what it has discovered.": ["Edwin Hubble", "Nancy Grace Roman Space Telescope"] };
   const wiki = async (query, options = {}) => {
@@ -560,4 +564,28 @@ test("variants by model size: the sentence pick is checked at 8B and above, plai
   assert.equal(variantsFor("Qwen3-1.7B-q4f16_1-MLC").sentence, "list");
   assert.equal(variantsFor("Qwen3-0.6B-q4f16_1-MLC").sentence, "list");
   assert.equal(variantsFor("Qwen3-1.7B-q4f16_1-MLC").article, "snippets");
+});
+
+test("under a brief a short section is not handed to a child, and an over-long profile loses hop paragraphs before it loses sections", async () => {
+  const wiki = async (query, { readOn, links } = {}) => {
+    if (links) return { ok: true, kind: "links", title: query, links: [] };
+    if (readOn) return { ok: true, kind: "wiki", title: `Alan Turing § ${readOn.section}`, article: "Alan Turing", section: 1, text: `In the ${readOn.section} years Turing did a great deal that mattered to everyone.`, url: "u" };
+    return { ok: true, kind: "wiki", title: "Alan Turing", article: "Alan Turing", section: 0, headings: ["Career and research", "Cryptanalysis", "Legacy"], sizes: [450, 4000, 3000], text: "Alan Turing was an English mathematician and computer scientist.", url: "u" };
+  };
+  const run = createRun("Tell me about Alan Turing.", "live", { maxSentences: 1, maxLookups: 2 });
+  const root = scripted([["sentence", "1"], ["section", "Legacy"], ["section", "none"]]);
+  assert.equal(await runWalk(run, { ask: root.ask, wiki, ...PLAIN }), true, run.nodes[0].reason);
+  assert.deepEqual(root.seen[1].options, ["Cryptanalysis", "Legacy", "none"], "the 450-character heading is not offered");
+  // The cap: a parent with three children whose findings carry hop paragraphs.
+  const capped = createRun("Tell me about Alan Turing.", "live", { maxFindingChars: 260 });
+  const parent = capped.nodes[0];
+  parent.status = "waiting";
+  parent.fanned = true;
+  parent.kept = [{ text: "Alan Turing was an English mathematician and computer scientist.", evidence: ["e1"] }];
+  capped.evidence.push({ id: "e1", node: "n1", article: "Alan Turing", title: "Alan Turing", text: "…" });
+  const child = (id, finding) => ({ id, parent: "n1", depth: 1, question: `Tell me about Alan Turing. — about ${id}`, status: "resolved", visits: 1, observed: [], evidence: ["e1"], children: [], finding });
+  capped.nodes.push(child("n2", "First section sentence about Turing here.\n\nA hop paragraph under the first section that is long enough to matter."), child("n3", "Second section sentence about Turing here.\n\nA hop paragraph under the second one."), child("n4", "Third section sentence about Turing here."));
+  assert.equal(await runWalk(capped, { ask: scripted([]).ask, wiki, ...PLAIN }), true, parent.reason);
+  assert.equal(parent.finding, "Alan Turing was an English mathematician and computer scientist.\n\nFirst section sentence about Turing here.\n\nSecond section sentence about Turing here.\n\nThird section sentence about Turing here.", "both hop paragraphs went, no section did");
+  assert.ok(parent.finding.length <= 260);
 });
