@@ -283,8 +283,11 @@ test("a brief reads the lead, hands one child per chosen section; a child hands 
   const LEGACY = "Turing has been honoured in various ways in Manchester, the city where he worked. The Turing Award is given annually for contributions to computer science, and a bombe is displayed at Bletchley Park.";
   const BOMBE = "The bombe was an electro-mechanical device used by British cryptologists to help decipher Enigma. The initial design was produced by Turing at Bletchley Park. Each bombe weighed about a ton and stood over six feet tall.";
   const LINKS = { "Alan Turing": ["Bombe", "Bletchley Park", "Enigma machine", "Government Code and Cypher School", "Manchester", "Turing Award"], Bombe: ["Enigma machine", "Alan Turing", "Bletchley Park"] };
+  const reads = [];
   const wiki = async (query, { readOn, links } = {}) => {
     if (links) return { ok: true, kind: "links", title: query, links: LINKS[query] ?? [] };
+    if (readOn) reads.push(`${readOn.article} / ${readOn.section}`);
+    if (readOn?.article === "Bombe") return { ok: true, kind: "wiki", title: "Bombe", article: "Bombe", section: 0, text: BOMBE, url: "u" };
     if (readOn) return { ok: true, kind: "wiki", title: `Alan Turing § ${readOn.section}`, article: "Alan Turing", section: readOn.section === "War" ? 1 : 2, text: readOn.section === "War" ? WAR : LEGACY, url: "u" };
     if (/bombe/i.test(query)) return { ok: true, kind: "wiki", title: "Bombe", article: "Bombe", section: 0, headings: ["Design", "Use"], text: BOMBE, url: "u" };
     if (/turing/i.test(query)) return { ok: true, kind: "wiki", title: "Alan Turing", article: "Alan Turing", section: 0, headings: ["War", "Legacy"], text: TURING, url: "u" };
@@ -309,22 +312,24 @@ test("a brief reads the lead, hands one child per chosen section; a child hands 
     ["Tell me about Alan Turing and elaborate on the impact of his work. — about Legacy", { article: "Alan Turing", section: "Legacy" }],
   ]);
   assert.equal(root.kept.length, 2);
-  // Child 1 reads its section first and keeps one sentence. The things that
-  // sentence names — the article's link "Bombe" (occurring as "bombe") and
-  // the capitalised "German" — are offered; it picks the Bombe, then none.
-  const child = scripted([["sentence", "2"], ["sentence", "none"], ["search", "Bombe"], ["search", "none"]]);
+  // Child 1 reads its section first and keeps one sentence. The article's
+  // links that occur in that sentence — "Bombe", as "bombe" — are offered
+  // (with links to hand, no capitalised phrase such as "German" is); it
+  // picks the Bombe and there is nothing left to offer.
+  const child = scripted([["sentence", "2"], ["sentence", "none"], ["search", "Bombe"]]);
   assert.equal(await runWalk(run, { ask: child.ask, wiki, ...PLAIN }), true);
   assert.equal(run.nodes[1].status, "waiting");
   assert.equal(run.trace.filter((event) => event.event === "tool_proposed" && event.node === "n2")[0].query, "Alan Turing / War", "the section is read first, no search");
-  assert.deepEqual(child.seen[2].options, ["Bombe", "German", "none"]);
+  assert.deepEqual(child.seen[2].options, ["Bombe", "none"]);
   assert.match(child.seen[2].user, /^Brief: /);
   assert.match(child.seen[2].user, /Kept:\n1\. He devised techniques/);
-  assert.deepEqual(child.seen[3].options, ["German", "none"], "a chosen name is not offered again");
-  assert.deepEqual(run.trace.find((event) => event.event === "hops_chosen" && event.node === "n2"), { ...run.trace.find((event) => event.event === "hops_chosen" && event.node === "n2"), offered: ["Bombe", "German"], chosen: ["Bombe"] });
+  assert.equal(child.seen.length, 3, "nothing left to offer, so no second ask");
+  assert.deepEqual(run.trace.find((event) => event.event === "hops_chosen" && event.node === "n2"), { ...run.trace.find((event) => event.event === "hops_chosen" && event.node === "n2"), offered: ["Bombe"], chosen: ["Bombe"] });
   assert.deepEqual([run.nodes[3].question, run.nodes[3].hopTo, run.nodes[3].depth], ["Tell me about Alan Turing and elaborate on the impact of his work. — about Bombe", "Bombe", 2], "the brief with a new focus, not the section's");
   // The Bombe child reads that article; only its sentences naming the subject are offered; it keeps one and does not hop on.
   const hop = scripted([["sentence", "1"], ["sentence", "none"]]);
   assert.equal(await runWalk(run, { ask: hop.ask, wiki, ...PLAIN }), true);
+  assert.deepEqual(reads.at(-1), "Bombe / 0", "a linked name is an article title: read directly, no search");
   assert.deepEqual(hop.seen[0].options, ["1", "none"], "of the Bombe's three sentences only the one naming Turing is offered");
   assert.match(hop.seen[0].user, /1\. The initial design was produced by Turing/);
   assert.equal(run.nodes[3].status, "resolved");
@@ -353,6 +358,7 @@ test("without an article's links the names are capitalised phrases; a hop child 
   const TURING = "Alan Turing was an English mathematician. He worked at Bletchley Park during the war.";
   const wiki = async (query, { readOn, links } = {}) => {
     if (links) return { ok: false, error: { kind: "unreachable", message: "no links here" } };
+    if (readOn && readOn.article !== "Alan Turing") return { ok: false, error: { kind: "no_match", message: `no article ${readOn.article}` } };
     if (readOn) return { ok: true, kind: "wiki", title: `Alan Turing § ${readOn.section}`, article: "Alan Turing", section: 1, text: "He worked at Bletchley Park during the war. The Government Code and Cypher School was based there.", url: "u" };
     if (/turing/i.test(query)) return { ok: true, kind: "wiki", title: "Alan Turing", article: "Alan Turing", section: 0, headings: ["War"], text: TURING, url: "u" };
     return { ok: false, error: { kind: "no_match", message: `nothing for ${query}` } };
@@ -375,6 +381,7 @@ test("without an article's links the names are capitalised phrases; a hop child 
   assert.equal(await runWalk(run, { ask: scripted([]).ask, wiki, ...PLAIN }), true);
   assert.equal(run.nodes[2].status, "blocked");
   assert.match(run.nodes[2].reason, /Nothing could be read about Government Code/);
+  assert.equal(run.lookups, 4, "lead, War, the direct read and the search for Government Code");
   assert.equal(await runWalk(run, { ask: scripted([]).ask, wiki, ...PLAIN }), true);
   assert.equal(run.nodes[1].finding, "The Government Code and Cypher School was based there.");
   // At the depth limit, or under flat limits, no hops are offered.
@@ -481,19 +488,31 @@ test("the first lookup searches both terms and picks from every title found; a f
   assert.equal(own.modelCalls, 2);
 });
 
-test("an article pick of none is overridden by a title that is the query itself", async () => {
+test("a search hit whose title is the query itself is read by code, and a hop child whose article never names the subject blocks without reading on", async () => {
   const wiki = async (query, options = {}) => {
     if (options.searchOnly) return { ok: true, hits: ["Alan Turing"], snippets: [""] };
+    if (options.readOn) return { ok: false, error: { kind: "no_match", message: "no direct read here" } };
     if (/^bombe$/i.test(query)) return { ok: true, kind: "wiki", title: "Bombe", article: "Bombe", section: 0, headings: [], text: "The bombe was an electro-mechanical device used by British cryptologists to help decipher Enigma. The initial design was produced by Turing at Bletchley Park.", url: "u", alternatives: ["Baked Alaska", "Bombe glacée"] };
     if (/turing/i.test(query)) return { ok: true, kind: "wiki", title: "Alan Turing", article: "Alan Turing", section: 0, headings: [], text: "Alan Turing was an English mathematician and computer scientist.", url: "u" };
     return wikiFixture(query, options);
   };
-  // A one-node question: the lead does not answer, the model names the Bombe to look up, and says none when offered Bombe, Baked Alaska and Bombe glacée (8B, the Turing profiles at walk-10).
+  // A one-node question: the lead does not answer, the model names the Bombe to look up; Bombe, Baked Alaska and Bombe glacée are found and the first is the query itself, so it is read without asking (8B once said none to that list).
   const run = createRun("Who designed the bombe used at Bletchley Park?", "live", { maxLookups: 2, maxSentences: 1, maxDepth: 0 });
-  const { ask } = scripted([["article", "Alan Turing"], ["sentence", "none"], ["search", "Bombe"], ["article", "none"], ["sentence", "2"]]);
+  const { ask } = scripted([["article", "Alan Turing"], ["sentence", "none"], ["search", "Bombe"], ["sentence", "2"]]);
   assert.equal(await runWalk(run, { ask, wiki, variants: { sentence: "list" } }), true);
-  assert.ok(run.trace.some((event) => event.event === "article_chosen" && event.article === "none" && event.readInstead === "Bombe"), JSON.stringify(run.trace.filter((event) => event.event === "article_chosen")));
+  assert.ok(run.trace.some((event) => event.event === "article_chosen" && event.article === "Bombe" && event.byCode === true), JSON.stringify(run.trace.filter((event) => event.event === "article_chosen")));
   assert.equal(run.nodes[0].finding, "The initial design was produced by Turing at Bletchley Park.");
+  // A hop child under a brief whose article has no sentence naming the subject blocks at once: no section ask, no search.
+  const brief = createRun("Tell me about Alan Turing.", "live", { maxSentences: 1, maxLookups: 2 });
+  brief.nodes.push({ id: "n2", parent: "n1", depth: 1, question: "Tell me about Alan Turing. — about Gordon Brown", status: "open", visits: 0, observed: [], evidence: [], children: [], hopTo: "Gordon Brown" });
+  brief.nodes[0].status = "waiting";
+  const gordon = async (query, options = {}) => (options.readOn ? { ok: true, kind: "wiki", title: "Gordon Brown", article: "Gordon Brown", section: 0, headings: ["Early life", "Premiership"], text: "James Gordon Brown is a British politician who served as Prime Minister of the United Kingdom from 2007 to 2010. He was Chancellor of the Exchequer before that.", url: "u" } : { ok: false, error: { kind: "no_match", message: "no" } });
+  const leaf = scripted([]);
+  assert.equal(await runWalk(brief, { ask: leaf.ask, wiki: gordon, ...PLAIN }), true);
+  assert.equal(brief.nodes[1].status, "blocked");
+  assert.match(brief.nodes[1].reason, /Nothing read about Gordon Brown names the subject/);
+  assert.equal(leaf.seen.length, 0, "no sentence naming Turing to offer, no section asked");
+  assert.equal(brief.lookups, 1);
 });
 
 test("an article pick of none is honoured only when no title shares a content word with the question", async () => {

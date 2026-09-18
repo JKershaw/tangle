@@ -139,6 +139,7 @@ const normalise = (text) => String(text ?? "").toLowerCase().replace(/[^a-z0-9 ]
 // to be had; a link that occurs in the sentence is the better candidate,
 // since it is what the article's editors decided the words refer to.
 const NAME_IN_TEXT = new RegExp(`(?:^|[\\s(“"'])(${NAME})`, "g");
+const UNWANTED_NAME = /\(disambiguation\)|^(?:January|February|March|April|May|June|July|August|September|October|November|December|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|British|English|German|French|American|European|Polish|Scottish|Welsh|Irish|Thousands|Section)$/i;
 const LEADING_WORD = /^(?:During|After|Before|In|On|At|With|When|While|Since|Following|Under|By|For|From|He|She|It|They|This|That|These|Those|Although|Because|Despite|Throughout|Its|His|Her|Their|Among|Between|Over|Through|Until|Upon|Within|As|An|A|The)\b\s*(?:the\s+)?/;
 export function namesIn(sentences, subject = "") {
   const wanted = contentWords(subject);
@@ -310,12 +311,13 @@ export async function runWalk(run, options) {
     // walk reads that one instead. "none" is a failed lookup.
     if (!readOn && !chosen && outcome.ok && outcome.alternatives?.length && variants.article !== "off") {
       const titles = [outcome.title, ...outcome.alternatives];
-      let chosen = await answer("article", { question: node.question, titles }, "Choosing an article");
+      const exact = titles.find((title) => normalise(title) === normalise(query));
+      let chosen = exact ?? (await answer("article", { question: node.question, titles }, "Choosing an article"));
       // "none" is overridden by a title that is the query itself (a hop to
       // "Bombe" offered Bombe, Baked Alaska and Bombe glacée; 8B said none)
       // or that shares a content word with the question.
       const fallback = chosen === "none" ? titles.find((title) => normalise(title) === normalise(query)) ?? titles.find((title) => !isForeign(title, node.question)) ?? null : null;
-      trace(run, "article_chosen", { node: node.id, query, titles, article: chosen, ...(fallback ? { readInstead: fallback } : {}) });
+      trace(run, "article_chosen", { node: node.id, query, titles, article: chosen, ...(exact ? { byCode: true } : {}), ...(fallback ? { readInstead: fallback } : {}) });
       if (fallback) chosen = fallback;
       if (chosen === "none") outcome = { ok: false, error: { kind: "no_match", message: `None of the articles found for “${query}” is about the question: ${titles.join(", ")}.` } };
       else if (chosen !== outcome.title) {
@@ -344,7 +346,13 @@ export async function runWalk(run, options) {
   const readSentences = () => candidates(run, node).slice(0, WINDOW).map((candidate) => candidate.text);
   const firstLookup = async () => {
     if (node.readFirst) return lookup(`${node.readFirst.article} / ${node.readFirst.section}`, { ...node.readFirst });
-    if (node.hopTo) return lookup(node.hopTo, null, { fresh: true });
+    if (node.hopTo) {
+      // A name from the article's links is an article title: read it
+      // directly. A capitalised phrase may not be; then search for it.
+      const direct = await lookup(node.hopTo, { article: node.hopTo, section: 0 }, { fresh: true });
+      if (direct !== "nothing" || lookups >= run.limits.maxLookups) return direct;
+      return lookup(node.hopTo, null, { fresh: true });
+    }
     const { focus } = focusOf(node.question);
     const terms = [...new Set([searchTerm(node.question), focus ? focus.replace(/^the /, "") : String(node.question).trim()])];
     if (variants.article === "off" || !wiki.length || terms.length < 2) return lookup(terms[0]);
@@ -509,11 +517,19 @@ export async function runWalk(run, options) {
       const add = (name) => {
         if (unseen(name) && !names.some((known) => normalise(known) === normalise(name) || occurs(known, name) || occurs(name, known))) names.push(name);
       };
+      // With the article's links, only they are offered: they are what its
+      // editors decided the words refer to. Without them, capitalised phrases.
+      // Never a disambiguation page, a month, or a nationality (8B's Turing
+      // children were offered "Turing (disambiguation)", "February", "German").
+      let linked = false;
       for (const candidate of kept) {
         const article = run.evidence.find((record) => record.id === candidate.evidence[0])?.article;
-        for (const link of frontier.links.get(article) ?? []) if (occurs(link, candidate.text)) add(link);
+        const links = frontier.links.get(article);
+        if (!links) continue;
+        linked = true;
+        for (const link of links) if (!UNWANTED_NAME.test(link) && occurs(link, candidate.text)) add(link);
       }
-      for (const name of namesIn(kept.map((candidate) => candidate.text), subject)) add(name);
+      if (!linked) for (const name of namesIn(kept.map((candidate) => candidate.text), subject)) if (!UNWANTED_NAME.test(name)) add(name);
       // Ranked by how many excerpts in the run name each: what several
       // nodes met is what the profile most needs.
       const met = (name) => run.evidence.filter((record) => occurs(name, record.text)).length;
@@ -621,13 +637,24 @@ export async function runWalk(run, options) {
         onUpdate(node.id, "Findings gathered");
         return true;
       }
+      // A hop child reads one article for sentences that name the brief's
+      // subject; when its lead has none, no section of it is read either
+      // (8B's Gordon Brown child read on and asked for section "none").
+      if (brief && node.hopTo) {
+        applyResult(run, node.id, { action: "blocked", reason: `Nothing read about ${node.hopTo} names the subject of the brief.` }, visible());
+        onUpdate(node.id, "Blocked");
+        return true;
+      }
       if (lookups < run.limits.maxLookups && passes < run.limits.maxPasses) {
         const unread = unreadSections(run, node)[0];
         if (unread) {
           const section = await answer("section", { question: node.question, article: unread.article, sections: unread.headings }, "Choosing a section");
           trace(run, "section_chosen", { node: node.id, article: unread.article, section });
-          if ((await lookup(`${unread.article} / ${section}`, { article: unread.article, section })) === "declined") return true;
-          continue;
+          if (section === "none") lookups = run.limits.maxLookups;
+          else {
+            if ((await lookup(`${unread.article} / ${section}`, { article: unread.article, section })) === "declined") return true;
+            continue;
+          }
         }
         // Under a brief the walk never names a search term: what to read
         // next is a pick from what was kept (hopOut), and a node that kept
