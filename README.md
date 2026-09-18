@@ -2,93 +2,138 @@
 
 **Can a very small language model understand something by asking itself small questions?**
 
-Tangle is a research toy for finding out. You give it one question. It hands that question to a model that can see almost nothing else, and the model must do one of three things: answer it from evidence it has actually read, break it into smaller questions, or admit it is stuck. Every smaller question gets the same treatment, with a fresh, empty context. When the children are answered, the parent is asked again with their findings in hand. What grows is a graph of questions, and you can watch it grow.
+Tangle is a research toy for finding out. Give it a question or a brief. Instead of answering in one go, it grows a graph: each node is one small question, answered from one Wikipedia article by a tiny model that sees almost nothing else. The model never writes the answer. It only picks: which article, which section, which sentence. Code does the rest, and every sentence in the result is Wikipedia's own, cited to where it was read.
 
-**Try it: [www.jkershaw.com/tangle](https://www.jkershaw.com/tangle/)** — the simulation runs instantly with no download; live mode runs a real model on your own GPU, in the browser, with nothing sent to any server.
+**Try it: [www.jkershaw.com/tangle](https://www.jkershaw.com/tangle/).** The simulation runs instantly with no download. Live mode runs a real model on your own GPU, in the browser, with nothing sent to any server.
 
 ![A finished run: nine question nodes, all resolved, growing down from the seed](previews/water-cycle-simulation.png)
 
-## Why
+## The idea
 
-Large models answer questions in one long, linear pass, and they need to be large to hold the whole problem in view at once. Tangle asks whether the *shape of the work* can substitute for size: if every model call only ever sees one bounded question plus a few paragraphs of evidence, then a model with 600 million parameters, running on a phone, is not asked to do anything it is bad at. The open question is whether the pieces add up to anything — or whether error compounds at every hop and the graph fills with confident nonsense.
+Large models answer in one long pass, and they need to be large to hold a whole problem in view at once. Tangle asks whether the *shape of the work* can stand in for size. If every model call sees one bounded question and a few paragraphs of evidence, a model with 600 million parameters is never asked to do anything it is bad at. The open question is whether the pieces add up, or whether errors compound at every step and the graph fills with confident nonsense.
 
-We don't know yet. That is the point. Tangle is built to make the behaviour visible rather than to hide it: repeated questions, awkward decompositions, branches that never resolve and findings that contradict each other are the data, and the harness is designed to record them before anyone is tempted to fix them.
+Tangle is built to make that visible rather than hide it. Repeated questions, odd decompositions, branches that never resolve: those are the data. The harness records them before anyone is tempted to fix them.
 
-## What you'll see
+## What we have found so far
 
-The page has two modes.
+After two days of measured runs (September 2026), three things are clear.
 
-**Simulation** replays scripted model responses so you can see the mechanics without a model. Three scenarios are worth a minute each: *The parent asks again* (children resolve, the parent is revisited and asks one more question before it will answer), *A source is unavailable* (one leaf blocks; its parent runs again with what it has, and the root still resolves) and *Repeated questions* (a question that keeps re-asking itself until it hits the depth limit).
+**It works when the answer is spread out.** Ask for a profile ("Tell me about Alan Turing and elaborate on the impact of his work") and the graph reads the article's lead, one section per child, and then the articles those sections mention, keeping only sentences about the subject. At 8B the Turing profile is seventeen paragraphs from twenty-two articles. Scored on how many rubric topics each profile touches, the graph beats both a single node and the model's own memory at every size from 1.7B up:
 
-**Local LLM + Wiki** is the real thing. Pick a Qwen3 model (0.6B to 8B), download it once, and the browser runs it on your GPU via [WebLLM](https://webllm.mlc.ai/). English Wikipedia is the only source the model may consult, and you approve each lookup — or allow them all for a run. Type any seed question and press Run.
+| brief set (topics) | model | graph | one node | memory alone |
+|---|---|---|---|---|
+| four profiles (35) | 8B | **27** | 13 | 20 |
+| | 4B | **23** | 16 | 10 |
+| | 1.7B | **26** | 15 | 15 |
+| three briefs where memory is weak (30) | 8B | **27** | 16 | 17 |
+| | 4B | **25** | 18 | 12 |
+| | 1.7B | **24** | 18 | 5 |
 
-Either way, tap a node to see its exact local context — precisely what the model was shown — and its raw responses. The whole run exports as JSON: every prompt, every output, every lookup, every finding, and which pieces of evidence each finding leans on.
+The 1.7B model names five of thirty topics from memory and reads its way to twenty-four. Every sentence is Wikipedia's, in Wikipedia's order, cited to its section.
+
+**It does not beat memory on questions the model already knows.** On short factual questions ("Why is the sky blue?") a 4B or larger model recites more from memory than any amount of reading adds. Those questions measure recall, not understanding, and the benchmark had to learn to avoid them.
+
+**Small models pick well and write badly.** Shown a numbered list, a 1.7B model chooses the right sentence, section or article nearly every time. Asked to write anything, even a search term, every size drifts. So the design rule became: code prepares the choices, the model picks one, and the model is never asked to compose. Almost every fault found by reading the output turned out to be code's, and code is cheap to fix and test.
+
+The full account is in [LEARNED.md](LEARNED.md).
 
 ## How it works
 
-A **node** is one bounded question. It is `open` until visited, `waiting` while its children are open, and ends `resolved`, `blocked` or `error`.
+A **node** is one question. A run starts with one node, the seed, and grows children below it. The harness visits one node at a time, deepest first, and comes back to a parent once its children are settled.
 
-A **visit** is one model invocation on one node. The model receives the question, the findings of any resolved children (as claims, not evidence) and up to five short excerpts of evidence it or its children have captured. Nothing else — no parent, no siblings, no history. It replies with one JSON object choosing an action:
+A **visit** is a fixed sequence of small decisions, each a single model call with a single choice:
 
-| action | what it must include | what the harness does |
-|---|---|---|
-| `wiki` | a search term | fetches the article's lead as evidence and asks again; asking for an article already in context reads its next section |
-| `decompose` | 1–3 smaller questions | adds them as children; the parent waits |
-| `resolved` | a finding and the IDs of evidence it rests on | records the finding, rejects it if any ID was not actually shown to the model |
-| `blocked` | a reason | marks the node blocked; ancestors stay unresolved |
+1. Code turns the question into a search term and searches Wikipedia. If several articles match, the model picks one from the titles.
+2. Code reads the article's lead and numbers its sentences. The model picks the sentence that answers the question, or says none. That sentence, verbatim, is the **finding**, cited to the excerpt it came from. Up to three sentences can be kept.
+3. If nothing answers, the model picks a section to read on into, or names a smaller question. A smaller question becomes a child node, with an empty context of its own.
+4. When the children are settled, the parent's answer is what they found.
 
-The **harness owns the graph**. Models only propose; deterministic code validates every mutation and refuses invented evidence, over-long output, too many children or too much depth. Output is grammar-constrained to the schema, so the model physically cannot reply off-format — what it *can* do is reply with well-formed nonsense, and that is what the experiments are for.
+A **brief** (no question mark, or "tell me about…") takes a different shape: the lead, one child per section the model chooses, and under each child up to two more children opened on the things its sentences name, each reading the part of that article that is about the subject. The root's finding is the profile, paragraph by paragraph, in the article's order.
 
-The scheduler is depth-first and serial: the deepest open node runs next, and a parent is revisited only once every child has resolved. Safety limits: 40 nodes, 60 visits, depth 6, 4 model calls and 2 lookups per visit.
+Two rules hold everything up.
 
-**Findings are not evidence.** A finding is what the model claims ("Evaporation and transpiration supply atmospheric water vapour"). Evidence is what was actually read (the *Water cycle* article, revision 1234, these 700 characters). The finding can be wrong; the evidence records what happened. "Resolved" is a model decision, never a guarantee of correctness.
+- **The harness owns the graph.** The model only picks from things code prepared. Code validates every choice, refuses invented evidence, and bounds the graph: 40 nodes, 60 visits, depth 6, two lookups per visit.
+- **Findings are not evidence.** A finding is what the model chose. Evidence is what was actually read: the article, the revision, the characters. A finding can be wrong; the evidence records what happened. "Resolved" is a decision, never a guarantee.
 
-## In this repository
+## What you'll see on the page
+
+**Simulation** replays scripted responses so you can watch the mechanics without a model. Three scenarios take a minute each: a parent that asks again once its children answer, a source that is unavailable so one branch blocks, and a question that keeps re-asking itself until it hits the depth limit.
+
+**Local LLM + Wiki** is the real thing. Pick a Qwen3 model from 0.6B to 8B, download it once, and the browser runs it on your GPU through [WebLLM](https://webllm.mlc.ai/). English Wikipedia is the only source, and you approve each lookup or allow them all. Type a question or a brief and press Run.
+
+Either way, tap a node to see exactly what the model was shown and what it said. The whole run exports as JSON: every prompt, every output, every lookup, every finding, and which evidence each finding rests on.
+
+## The frontier
+
+Where it stands as of 18 September 2026 (walk-12 and the bridge). Kept current as the numbers move.
+
+**Known to work.**
+- A pick from a numbered list is reliable from 1.7B up, and every finding is supported by construction. No run has stated a fact its evidence did not hold.
+- Profiles beat one node and memory at every size on every brief set tried (table above).
+- Splitting a two-subject question in code beats one node at every size on the seeds no single article answers. Model-written sub-questions drift and rarely help.
+- The same walk runs in Node with no browser against Ollama or LM Studio, and a parity test shows both runtimes grow the identical graph from the same seed, recording and picks. That extends the ladder to 14B and 32B, and Node is fast: the 1.7B suite in 12 seconds against a minute in the page.
+
+**Known to fail.**
+- Memory beats reading on memorised questions, and size does not change that: through Ollama the question seeds score about the same from 1.7B to 14B while memory climbs.
+- 8B fills every hop slot and rejects a third of what it finds; 1.7B opens fewer hops and cites every one. Neither uses the forty-node budget. The topic rubric counts touches and cannot say whether a longer profile is better; a judge is missing.
+- 0.6B says none to every sentence under a brief. It is below the floor for profiles.
+- Section choice sets breadth: 4B stops after three sections, and a short parent heading is chosen and blocks. 14B says none more often than any smaller size, then asks a question, and a question child may re-read what its parent read.
+
+**Next.** The last rows of roadmap milestone 4 (32B, and the briefs at 14B and 32B), then milestone 5: read-only tools over files, with this repository as the first corpus. The milestones and their exit conditions are in [ROADMAP.md](ROADMAP.md).
+
+Small models will decompose badly, repeat themselves, misread evidence and resolve too early. Keep the exports; that is the experiment.
+
+## For developers
+
+### The measuring stick
+
+Live mode first ran on 17 September 2026, and the first day's failures reshaped the harness: 0.6B wrote its own evidence and answered a Dead Sea question with a cited finding about the Aral Sea; 1.7B read a two-sentence lead 79 times. The one-prompt visit that asked for five decisions at once was measured and replaced by the walk described above (PLAN.md, *The turn*).
+
+[PLAN.md](PLAN.md) sets out three layers of checking: unit tests, fixture replays of real model outputs, and evals that run the model. Node evals re-run one ask at a time across the model ladder. A benchmark scores whole runs for facts stated, facts supported by a cited excerpt, and cost, against three controls: the same walk on one node, a one-node model that writes its own answer, and the model alone. Wikipedia is recorded and replayed so a harness change is the only variable. [PROGRESS.md](PROGRESS.md) holds the scoreboard, [evals/readings.md](evals/readings.md) says what each round meant, and [BRIEF.md](BRIEF.md) is the design brief the project is built to.
+
+### In this repository
 
 ```
-src/graph.js       the harness-owned graph: run creation, scheduler, local context,
-                   output parsing, validation, mutation, import validation
-src/episode.js     one visit (the episode runner) and the system prompt
+src/graph.js       the harness-owned graph: run creation, scheduler, validation, mutation
+src/walk.js        the walk: one visit as a fixed sequence of picks, sequenced by code
+src/asks.js        the asks: each pick as a prompt and a tiny JSON schema, in variants
+src/episode.js     the earlier one-prompt visit, kept for the simulation and comparison
 src/simulation.js  the scripted water-cycle scenarios and fixture evidence
 src/wiki.js        the Wikipedia tool (HTTPS en.wikipedia.org only, timeout, byte cap)
 src/webllm.js      device, storage and cache probes; the WebLLM engine adapter; model list
-src/endpoint.js    the second model adapter: an OpenAI-compatible endpoint (Ollama, LM Studio), for Node
+src/endpoint.js    the second model adapter: an OpenAI-compatible endpoint (Ollama, LM Studio)
 src/scripted.js    a scripted first-choice model, for the runtime parity test
 src/map.js         the graph map (layout, pan, zoom)
 src/main.js        UI wiring
 src/page.html      page template; the bundle is inlined at build time
 build.js           esbuild bundle + inline -> docs/index.html (one self-contained file, ~6 MB)
-test/              node --test suites, including one that drives the built page
-scripts/           lab.mjs drives the built page; node-lab.mjs runs the walk in Node with no browser;
-                   recording.mjs is the Wikipedia recording; live-run.mjs and run.mjs record one run
-                   (page, Node); eval.mjs runs the eval suites in either runtime; grade.js holds the
-                   graders; summarise.js reads an export
-evals/             micro-eval cases, benchmark seeds with rubrics, the Wikipedia recording, results
+test/              node --test suites, including ones that drive the built page
+scripts/           lab.mjs drives the built page; node-lab.mjs runs the walk in Node; recording.mjs
+                   is the Wikipedia recording; live-run.mjs and run.mjs record one run (page, Node);
+                   eval.mjs runs the eval suites in either runtime; grade.js holds the graders;
+                   summarise.js reads an export
+evals/             eval cases, benchmark seeds with rubrics, the Wikipedia recording, results
 experiments/       exported runs and notes, committed next to the code that produced them
 docs/index.html    the built page, served by GitHub Pages
-BRIEF.md           the original design brief the project is built to
-PLAN.md            the eval-driven plan for pushing tiny models further; PROGRESS.md logs against it
-ROADMAP.md         the milestones from the pocket lab to a self-building agent, and what verifies each
-LEARNED.md         what two days of measured runs taught, and how far the idea can go
 ```
 
 The whole app is one HTML file. Open `docs/index.html` from disk and the simulation works offline; live mode wants an HTTPS or localhost origin so the browser will cache model weights.
 
-## Run it locally
+### Run it locally
 
 Node 22 or later.
 
 ```
 npm ci
-npm test          # graph, episode, wiki and adapter tests, plus the built page in headless Chrome
+npm test          # graph, walk, wiki and adapter tests, plus the built page in headless Chrome
 npm run build     # rewrites docs/index.html
 ```
 
 CI rebuilds the page on every push to `main` and refuses to deploy if the committed `docs/index.html` differs from a fresh build.
 
-## Run an experiment
+### Run an experiment
 
-Experiments are driven by a script so that the export, a screenshot of the map and a notes file land in `experiments/` together.
+In the page, a script drives a headed Chrome so the export, a map screenshot and a notes file land in `experiments/` together:
 
 ```
 python3 -m http.server 8765 -d docs --bind 127.0.0.1        # in one terminal
@@ -100,50 +145,23 @@ node scripts/live-run.mjs --mode live --model Qwen3-1.7B-q4f16_1-MLC \
 node scripts/summarise.js experiments/2026-09-17-qwen3-1.7b-water-cycle.json
 ```
 
-Live mode opens a headed Chrome (WebGPU is not available headless) and keeps model weights in a persistent profile at `~/.cache/tangle/chrome-profile`, so only the first run per model downloads. Use `127.0.0.1`, not `localhost`. `--mode simulation --headless --scenario revisit|blocked|repeat` runs a scripted scenario without a model.
+WebGPU is not available headless, so live mode opens a visible Chrome. Model weights stay in a profile at `~/.cache/tangle/chrome-profile`, so only the first run per model downloads. Use `127.0.0.1`, not `localhost`. The page's models are Qwen3 at 4-bit: 0.6B (~0.4 GB, runs on a recent phone), 1.7B (~1 GB), 4B (~2.5 GB) and 8B (~5 GB).
 
-Each run writes `<out>.json` (the export — everything the model saw and said), `<out>.png` (the finished map) and `<out>.md` (driver log, summary, and space for observations). Commit all three. The summariser flags what deserves a second look: repeated questions, lookups that found nothing, findings that cite only their children's sources, generations cut off mid-way.
-
-Models available in the page, all Qwen3 at 4-bit: 0.6B (~0.4 GB download, runs on a recent phone), 1.7B (~1 GB), 4B (~2.5 GB) and 8B (~5 GB, ~5.7 GB of GPU memory). Same family, quantisation and chat template, so size is the only thing that changes between runs.
-
-The same walk runs in Node with no browser against any OpenAI-compatible server (Ollama, LM Studio, llama.cpp), which is how the ladder reaches 14B and 32B:
+In Node, the same walk runs with no browser against any OpenAI-compatible server (Ollama, LM Studio, llama.cpp), which is how the ladder reaches 14B and 32B:
 
 ```
-node scripts/run.mjs --seed "Why is the Dead Sea shrinking?" --model qwen3:8b   --out experiments/2026-09-19-qwen3-8b-dead-sea-node          # --endpoint http://127.0.0.1:11434/v1 by default
+node scripts/run.mjs --seed "Why is the Dead Sea shrinking?" --model qwen3:8b \
+  --out experiments/2026-09-19-qwen3-8b-dead-sea-node          # --endpoint http://127.0.0.1:11434/v1 by default
 
 node scripts/eval.mjs runs --endpoint http://127.0.0.1:11434/v1 --model qwen3:14b --mode tangle
 ```
 
-The page stays the lab and the single file; Node is an adapter behind the same two seams (the model, Wikipedia). A parity test (`test/parity.test.js`) runs the same seeds, recording and scripted picks in both and asserts the same graph. The weights differ by quantisation between the page (MLC q4f16) and a server (GGUF or MLX 4-bit), so a Node row is its own column, not a rerun of the page's.
+The page stays the lab and the single file; Node is an adapter behind the same two seams, the model and Wikipedia. The weights differ by quantisation between the page and a server, so a Node row is its own column rather than a rerun of the page's.
 
-## Where it stands
-
-Live mode first ran on 17 September 2026. The first day's failures (all in `experiments/`, raw model output quoted, each pinned as a fixture in `test/fixtures/`) reshaped the harness: 0.6B wrote its own evidence, decomposed to the depth ceiling, and answered a Dead Sea question with a fully cited finding about the Aral Sea; 1.7B read a two-sentence lead 79 times. The one-prompt visit that asked the model for five decisions at once was measured and replaced (PLAN.md, *The turn*) by the walk: one decision per model call, the model only ever picking from things code prepared, and a finding that is the chosen sentence verbatim.
-
-Since then the project has a measuring stick. [PLAN.md](PLAN.md) sets out three layers of checking: unit tests, fixture replays of real model outputs, and evals that run the model. Node evals (`evals/node/`) re-run one ask at a time across the model ladder; a benchmark (`evals/seeds.json`, `evals/seeds-graph.json`, `evals/seeds-profile.json`) scores whole runs for facts stated, facts supported by a cited excerpt, and cost, against three controls: the same walk on one node, a one-node model that writes its own answer, and the model alone with no tools. Wikipedia is recorded and replayed so a harness change is the only variable. [PROGRESS.md](PROGRESS.md) holds the scoreboard, [evals/readings.md](evals/readings.md) says what each round meant, [LEARNED.md](LEARNED.md) says what it all taught, and [ROADMAP.md](ROADMAP.md) says what comes next.
-
-## The frontier
-
-What is known to work, what is known to fail, and what is next, as of walk-12 at 0f58764 (18 September 2026). Kept current as the numbers move.
-
-**Works, measured.**
-- A node finds the sentence that answers a question in every node-eval case from 1.7B up; every walk finding is supported by construction, and no walk row has ever stated a fact its evidence did not hold. The one-node model that writes its own answer states more on easy seeds and invents on hard ones.
-- Decomposition pays only where code can see the join: a two-subject question split by code leads its one-node control at every size on the seeds no single article answers (16, 15, 14 against 12, 12, 12 of 30). Model-asked sub-questions drift and are refused as paraphrases far more often than they help.
-- A brief ("Tell me about Alan Turing and elaborate on the impact of his work") becomes a cited profile: the lead, one child per section the model chooses, and under each up to two levels of children opened on the things the kept sentences name, each reading the part of that article that names the subject. Up to 28 nodes and 22 articles in 17 paragraphs at 8B, every sentence Wikipedia's and cited. On four profile briefs (35 topics) the graph touches 27 / 23 / 26 at 8B / 4B / 1.7B against 13–16 for one node and 20 / 10 / 15 for memory; on three briefs chosen where memory is weak (30 topics) it touches 27 / 25 / 24 against 16–18 and 17 / 12 / 5. The shape beats both controls at every size on every brief set tried.
-
-**Fails, measured.**
-- Memory beats reading. From 4B up the model alone names more rubric facts than any reading mode on the question seeds, because those questions are ones it has memorised. Seeds have to be chosen where the closed-book score is low, or they measure recall.
-- 8B fills every hop slot and rejects a third of what its hops find; 1.7B opens fewer and cites every one. Neither reaches the forty-node budget: the models choose fewer hops than the harness allows. The topic rubric counts touches and cannot see that a longer profile is better or worse; a judge is missing.
-- What a profile sheds when it is over its cap decides what it keeps. Hop paragraphs go before sections now; the earlier rule dropped a biography's last sections first.
-- 0.6B answers "none" to every sentence under a brief and blocks; it is below the floor for profiles. A free-text ask is the weakest kind at every size (the old hop named the subject itself at 4B); a pick from a code-made list is not.
-- Section choice sets breadth. 4B stops choosing after three sections; a short parent heading ("Career and research") is chosen and blocks.
-
-**Next (roadmap milestone 4).** The bridge: the same walk in Node against an OpenAI-compatible endpoint, with a parity test against the page, so the ladder can extend to Qwen3 14B and 32B through Ollama. Then read-only tools over files, with this repository as the first corpus. The order and the exit conditions are in [ROADMAP.md](ROADMAP.md).
-
-Small models will decompose badly, repeat themselves, misread evidence and resolve too early. Keep the exports; that is the experiment.
+Each run writes an export (everything the model saw and said) and a notes file with the summary and space for observations. Commit them. The summariser flags what deserves a second look: repeated questions, lookups that found nothing, generations cut off mid-way.
 
 ## Lineage
 
-This is the third iteration of the idea. The WebLLM adapter and Wikipedia tool descend from [Browser-agent](https://github.com/JKershaw/Browser-agent). The project's design brief — the rules it is built to, written for the agents helping build it — is [`BRIEF.md`](BRIEF.md); read it before changing how the harness works. The source bundle as originally delivered is preserved at the git tag `original-source`.
+This is the third iteration of the idea. The WebLLM adapter and Wikipedia tool descend from [Browser-agent](https://github.com/JKershaw/Browser-agent). The source bundle as originally delivered is preserved at the git tag `original-source`.
 
 MIT licence. Wikipedia content remains attributed to its contributors under CC BY-SA 4.0; model weights are under their own licences.
