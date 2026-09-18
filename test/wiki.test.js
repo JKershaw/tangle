@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { aboutWords, extractUrl, fetchWikipedia, fetchWikipediaLinks, linksUrl, lookupWikipedia, readWikipediaAbout, readWikipediaSection, searchUrl, splitSections, stripHtml, summaryUrl } from "../src/wiki.js";
+import { aboutWords, extractUrl, fetchWikipedia, fetchWikipediaLinks, linksUrl, lookupWikipedia, readWikipediaAbout, readWikipediaSection, searchUrl, splitSections, stripHtml, summaryUrl, wikiDriver } from "../src/wiki.js";
 
 const jsonResponse = (value, status = 200) => new Response(JSON.stringify(value), { status, headers: { "content-type": "application/json" } });
 
@@ -139,4 +139,27 @@ test("an article's links come from the parse API, main namespace, existing pages
   const bad = await fetchWikipediaLinks("Alan Turing", { fetchImpl: async () => new Response("{}", { status: 200 }) });
   assert.equal(bad.ok, false);
   assert.match(bad.error.message, /no links/);
+});
+
+test("the wiki driver routes one call to a search and read, a section, the part about something, or the links", async () => {
+  const article = { query: { pages: { 1: { title: "Dead Sea", extract: "The Dead Sea is a salt lake.\n\n== Shoreline ==\nThe Jordan River feeds it and it is receding.", revisions: [{ revid: 5 }] } } } };
+  const { fetchImpl, calls } = fakeFetch([
+    ["list=search", () => jsonResponse({ query: { search: [{ title: "Dead Sea", snippet: "salt" }, { title: "Jordan River" }] } })],
+    ["prop=extracts", () => jsonResponse(article)],
+    ["prop=links", () => jsonResponse({ parse: { title: "Dead Sea", links: [{ ns: 0, exists: "", "*": "Jordan River" }] } })],
+  ]);
+  const wiki = wikiDriver({ fetchImpl });
+  assert.equal(wiki.length, 2, "the walk checks the driver takes options");
+  const search = await wiki("Dead Sea", { searchOnly: true });
+  assert.deepEqual(search.hits, ["Dead Sea", "Jordan River"]);
+  const read = await wiki("Dead Sea", {});
+  assert.equal(read.title, "Dead Sea");
+  assert.deepEqual(read.headings, ["Shoreline"]);
+  const section = await wiki("Dead Sea", { readOn: { article: "Dead Sea", section: "Shoreline" } });
+  assert.equal(section.title, "Dead Sea § Shoreline");
+  const about = await wiki("Dead Sea", { readOn: { article: "Dead Sea", section: 0, about: "Jordan River" } });
+  assert.equal(about.section, 1);
+  const links = await wiki("Dead Sea", { links: true });
+  assert.deepEqual(links.links, ["Jordan River"]);
+  assert.equal(calls.length, 6);
 });

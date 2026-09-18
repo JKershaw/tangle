@@ -318,3 +318,16 @@ export async function readWikipediaSection(title, which, options = {}) {
     requests,
   };
 }
+
+// The one Wikipedia driver the walk calls, in either runtime: a search and
+// read, one section, the part about something, or the links. The page wraps
+// it with a cache (main.js); Node with the recording (scripts/recording.mjs).
+export function wikiDriver({ fetchImpl = globalThis.fetch } = {}) {
+  return (query, { signal, readOn, searchOnly = false, links = false }) => {
+    const options = { signal, fetchImpl, searchOnly };
+    if (links) return fetchWikipediaLinks(query, options);
+    if (readOn?.about) return readWikipediaAbout(readOn.article, readOn.about, options);
+    if (readOn) return readWikipediaSection(readOn.article, readOn.section, options);
+    return lookupWikipedia(query, options);
+  };
+}

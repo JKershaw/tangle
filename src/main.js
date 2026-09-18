@@ -7,7 +7,8 @@ import { PROMPT_VERSION, buildMessages, runEpisode } from "./episode.js";
 import { ASK_VERSION } from "./asks.js";
 import { DEFAULT_VARIANTS, WALK_VERSION, runWalk, variantsFor } from "./walk.js";
 import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
-import { fetchWikipediaLinks, lookupWikipedia, readWikipediaAbout, readWikipediaSection } from "./wiki.js";
+import { wikiDriver } from "./wiki.js";
+import { SCRIPTED } from "./scripted.js";
 import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, createSectionChooser, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
 import { GraphMap } from "./map.js";
 
@@ -32,6 +33,7 @@ let autorun = false; // the Run loop is active
 let busy = false; // model load/unload/cache work in progress
 let controller = null;
 let loadedModel = null;
+let scripted = null; // a scripted model standing in for the loaded one (window.__tangle.script)
 let approvalResolver = null;
 const current = () => imported || runs[mode];
 const locked = () => running || autorun || busy;
@@ -265,9 +267,9 @@ async function cachedFetch(url, init) {
   return response;
 }
 
-async function liveWiki(query, { signal, readOn, searchOnly = false, links = false }) {
-  const options = { signal, fetchImpl: cachedFetch, searchOnly };
-  const result = links ? await fetchWikipediaLinks(query, options) : readOn?.about ? await readWikipediaAbout(readOn.article, readOn.about, options) : readOn ? await readWikipediaSection(readOn.article, readOn.section, options) : await lookupWikipedia(query, options);
+const readWiki = wikiDriver({ fetchImpl: cachedFetch });
+async function liveWiki(query, options) {
+  const result = await readWiki(query, options);
   if (!result.ok && result.error?.kind === "unreachable") {
     return {
       ...result,
@@ -286,7 +288,7 @@ function driversFor(run) {
   if (run.mode === "simulation") {
     return { ...simulationDrivers(run.preset), pace: (signal) => pace(320, signal) };
   }
-  const ask = (call, { signal } = {}) => adapter.generate(call.messages, { signal, schema: call.schema, maxTokens: call.maxTokens, seed: SAMPLING.seed, temperature: SAMPLING.temperature });
+  const ask = scripted ? async (call) => scripted(call) : (call, { signal } = {}) => adapter.generate(call.messages, { signal, schema: call.schema, maxTokens: call.maxTokens, seed: SAMPLING.seed, temperature: SAMPLING.temperature });
   return { ask, variants: variantsFor(loadedModel), generate: createLiveGenerator(adapter), chooseSection: createSectionChooser(adapter), wiki: liveWiki, approve: approveLookup, pace: null };
 }
 const runnerFor = (run) => (run.mode === "live" && run.limits.walk !== false ? runWalk : runEpisode);
@@ -576,6 +578,17 @@ window.__tangle = {
     if (!loadedModel) throw new Error("Load a model first.");
     if (locked()) throw new Error("Busy.");
     return timed(() => adapter.generate(messages, { schema, maxTokens, seed: SAMPLING.seed, temperature: SAMPLING.temperature }));
+  },
+  // A scripted model in place of a loaded one, for the runtime parity test
+  // (test/parity.test.js): the same picks in the page and in Node.
+  script: (name) => {
+    if (locked()) throw new Error("Busy.");
+    if (name && !SCRIPTED[name]) throw new Error(`No script "${name}".`);
+    scripted = name ? SCRIPTED[name] : null;
+    loadedModel = name ? `scripted:${name}` : null;
+    $("modelBadge").textContent = name ? "scripted" : "not loaded";
+    render();
+    return loadedModel;
   },
   wiki: {
     load: (entries) => {

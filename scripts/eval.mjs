@@ -2,6 +2,10 @@
 // Run an eval suite against a model in the built page (PLAN.md):
 //   node scripts/eval.mjs visits --model Qwen3-1.7B-q4f16_1-MLC [--only <regex>] [--out evals/results/<name>]
 //   node scripts/eval.mjs runs --model <id> --mode tangle|flat|composing|closed [--seeds <path>] [--repeat N] [--only <regex>] [--run-timeout <minutes>]
+//   node scripts/eval.mjs runs --endpoint http://127.0.0.1:11434/v1 --model qwen3:8b --mode tangle
+// With --endpoint the suite runs in Node (scripts/node-lab.mjs) against an
+// OpenAI-compatible server instead of in the page; the same walk, the same
+// recording, one more row. The visits and composing suites need the page.
 // Modes: tangle is the walk with default limits; flat is the walk on one node
 // (no children, more lookups); composing is the old one-prompt visit on one
 // node, where the model writes its own finding; closed is the model alone,
@@ -20,7 +24,8 @@ import { FLAT_LIMITS, formatGrades, formatRunGrade, gradeCase, gradeRun, profile
 import { summarise } from "./summarise.js";
 import { mentions } from "./text.js";
 import { formatSample, sample, startSampling } from "./machine.js";
-import { DEFAULT_MODEL, DEFAULT_URL, commitInfo, exportRun, loadModel, loadWikiCache, machineInfo, makeNotes, openLab, pageInfo, parseArgs, runToEnd, saveWikiCache, shortModel, stamp } from "./lab.mjs";
+import { DEFAULT_MODEL, DEFAULT_URL, browserLab, commitInfo, machineInfo, makeNotes, openLab, pageInfo, parseArgs, shortModel, stamp } from "./lab.mjs";
+import { openNodeLab } from "./node-lab.mjs";
 
 const args = parseArgs(process.argv.slice(2));
 const suiteName = args._[0];
@@ -52,16 +57,23 @@ const WIKI_CACHE = "evals/wiki-cache";
 const TABLE = "evals/results.md";
 const HEADER = "# Eval results\n\nOne row per suite run; the JSON next to each holds every graded output. Newest last.\n\n| date | commit | suite | model | prompt · grammar | passed | detail | latency |\n|---|---|---|---|---|---|---|---|\n";
 const model = args.model || DEFAULT_MODEL;
-// The page under test is docs/index.html as served; name it by the commit that built it.
-const commit = pageInfo();
+const endpoint = args.endpoint ? String(args.endpoint) : null;
+if (endpoint && (suiteName === "visits" || mode === "composing")) {
+  console.error("the visits suite and the composing mode run in the page; drop --endpoint");
+  process.exit(2);
+}
+// The page under test is docs/index.html as served; name it by the commit
+// that built it. In Node the code under test is src/ at HEAD.
+const commit = endpoint ? commitInfo() : pageInfo();
 const head = commitInfo();
 const date = new Date().toISOString().slice(0, 10);
-const out = args.out || `evals/results/${date}-${suiteName}${suiteName === "runs" ? "-" + mode : ""}${seedSet !== "seeds" ? "-" + seedSet : ""}-${shortModel(model)}-${commit.replace(/ .*/, "")}${repeats > 1 ? "-" + new Date().toISOString().slice(11, 16).replace(":", "") : ""}`;
+const modelName = `${shortModel(model)}${endpoint ? "-node" : ""}`;
+const out = args.out || `evals/results/${date}-${suiteName}${suiteName === "runs" ? "-" + mode : ""}${seedSet !== "seeds" ? "-" + seedSet : ""}-${modelName.replace(/[:/]/g, "-")}-${commit.replace(/ .*/, "")}${repeats > 1 ? "-" + new Date().toISOString().slice(11, 16).replace(":", "") : ""}`;
 const only = args.only ? new RegExp(args.only) : null;
 const { notes, note } = makeNotes();
-const { browser, page, version } = await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note });
+const lab = endpoint ? await openNodeLab({ endpoint, wikiCache: WIKI_CACHE, note }) : browserLab(await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note }));
 const results = [];
-const record = { suite: suiteName, model, commit, head, machine: machineInfo(), browser: version(), date: new Date().toISOString() };
+const record = { suite: suiteName, model, runtime: lab.kind, ...(endpoint ? { endpoint } : {}), commit, head, machine: machineInfo(), browser: lab.version(), date: new Date().toISOString() };
 let PROMPT_VERSION = "?";
 let RESPONSE_SCHEMA_VERSION = "?";
 const appendRow = (cells) => {
@@ -69,8 +81,8 @@ const appendRow = (cells) => {
   appendFileSync(TABLE, `| ${date} | ${commit} | ${cells.join(" | ")} |\n`);
 };
 try {
-  record.loadSeconds = await loadModel(page, model, { loadTimeoutMs: Number(args["load-timeout"] ?? 20) * 60000, note });
-  const versions = await page.evaluate(() => window.__tangle.versions?.() ?? null);
+  record.loadSeconds = await lab.loadModel(model, { loadTimeoutMs: Number(args["load-timeout"] ?? 20) * 60000, note });
+  const versions = await lab.versions();
   if (versions) ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION } = versions);
   // Live runs are the walk unless a run's limits say otherwise: label rows
   // with the walk and its ask variants rather than the one-prompt visit.
@@ -95,7 +107,7 @@ try {
     const seeds = allSeeds.filter((seed) => !only || only.test(seed.id));
     const limits = mode === "flat" ? FLAT_LIMITS : mode === "composing" ? { ...FLAT_LIMITS, walk: false } : mode === "closed" ? { closed: true } : {};
     note(`${stamp()} ${seeds.length} seeds from ${seedsPath} · mode ${mode} · limits ${JSON.stringify(limits)} · prompt ${PROMPT_VERSION} · grammar ${RESPONSE_SCHEMA_VERSION} · commit ${commit}${repeats > 1 ? ` · ${repeats} repeats` : ""}`);
-    note(`wiki recording: ${await loadWikiCache(page, WIKI_CACHE)} responses loaded`);
+    note(`wiki recording: ${await lab.wikiLoad(WIKI_CACHE)} responses loaded`);
     for (let repeat = 1; repeat <= repeats; repeat++) {
     const results = [];
     const suffix = repeats > 1 ? `-r${repeat}` : "";
@@ -105,7 +117,7 @@ try {
         const started = Date.now();
         let output;
         try {
-          output = await page.evaluate((call) => window.__tangle.ask(call), closedCall(seed));
+          output = await lab.ask(closedCall(seed));
         } catch (error) {
           output = { text: "", error: String(error?.message || error) };
         }
@@ -123,11 +135,11 @@ try {
         note(`${formatRunGrade(grade)} · ${grade.wallSeconds} s`);
         continue;
       }
-      await page.evaluate(([seed, limits]) => window.__tangle.newLive(seed, limits), [seed.seed, limits]);
-      const { outcome, retriesUsed, wallSeconds } = await runToEnd(page, { retries: Number(args.retries ?? 2), runTimeoutMs: Number(args["run-timeout"] ?? 45) * 60000, note });
-      const saved = await saveWikiCache(page, WIKI_CACHE);
-      const exported = await exportRun(page);
-      const exportPath = `evals/results/runs/${date}-${shortModel(model)}-${mode}-${seed.id}${suffix}.json`;
+      await lab.newLive(seed.seed, limits);
+      const { outcome, retriesUsed, wallSeconds } = await lab.runToEnd({ retries: Number(args.retries ?? 2), runTimeoutMs: Number(args["run-timeout"] ?? 45) * 60000, note });
+      const saved = await lab.wikiSave(WIKI_CACHE);
+      const exported = await lab.exportRun();
+      const exportPath = `evals/results/runs/${date}-${modelName.replace(/[:/]/g, "-")}-${mode}-${seed.id}${suffix}.json`;
       mkdirSync(dirname(exportPath), { recursive: true });
       writeFileSync(exportPath, JSON.stringify(exported));
       const grade = { ...gradeRun(seed, exported), kind: seed.kind, outcome, retriesUsed, wallSeconds, wiki: saved, export: exportPath, summary: summarise(exported) };
@@ -143,11 +155,11 @@ try {
     const seconds = results.reduce((total, grade) => total + grade.wallSeconds, 0);
     const perSeed = results.map((grade) => `${grade.id} ${grade.resolved ? "✓" : "✗"} ${grade.factsSupported}/${grade.factsPresent}/${grade.factsTotal}${grade.distractors.length ? "!" : ""}${grade.kind === "brief" && grade.profile ? ` ¶${grade.profile.paragraphs} h${grade.profile.hopsCited}/${grade.profile.hopsRead}/${grade.profile.hopsChosen}` : ""}`).join(", ");
     const briefs = results.some((grade) => grade.kind === "brief");
-    appendRow([`runs · ${mode}${seedSet !== "seeds" ? ` · ${seedSet}` : ""}${repeats > 1 ? ` · r${repeat}/${repeats}` : ""}`, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${repeatRecord.resolved}/${repeatRecord.seeds} resolved** · facts ${repeatRecord.factsPresent}/${repeatRecord.factsTotal} · supported ${repeatRecord.factsSupported}/${repeatRecord.factsTotal}`, `${perSeed} (supported/present/total${briefs ? " topics; ¶ paragraphs; hops cited/read/chosen" : ""}) · ${calls} calls · ${lookups} lookups`, `${seconds} s${rolled?.throttledSamples ? ` · throttled to ${rolled.worstSpeedLimit}%` : ""}`]);
+    appendRow([`runs · ${mode}${seedSet !== "seeds" ? ` · ${seedSet}` : ""}${repeats > 1 ? ` · r${repeat}/${repeats}` : ""}`, endpoint ? `${shortModel(model)} · node` : shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${repeatRecord.resolved}/${repeatRecord.seeds} resolved** · facts ${repeatRecord.factsPresent}/${repeatRecord.factsTotal} · supported ${repeatRecord.factsSupported}/${repeatRecord.factsTotal}`, `${perSeed} (supported/present/total${briefs ? " topics; ¶ paragraphs; hops cited/read/chosen" : ""}) · ${calls} calls · ${lookups} lookups`, `${seconds} s${rolled?.throttledSamples ? ` · throttled to ${rolled.worstSpeedLimit}%` : ""}`]);
     console.log("\n" + results.map(formatRunGrade).join("\n") + `\n\nwrote ${out}${suffix}.json and a row in ${TABLE}`);
     }
     process.exitCode = 0;
-    await browser.close();
+    await lab.close();
     process.exit(0);
   }
   const suite = JSON.parse(readFileSync(new URL("../evals/visits.json", import.meta.url), "utf8"));
@@ -156,10 +168,7 @@ try {
   for (const entry of cases) {
     let output;
     try {
-      output = await page.evaluate(
-        ([kind, context]) => (kind === "section" ? window.__tangle.pick(context) : window.__tangle.visit(context)),
-        [entry.kind, entry.context],
-      );
+      output = await (entry.kind === "section" ? lab.pick(entry.context) : lab.visit(entry.context));
     } catch (error) {
       output = { text: "", error: String(error?.message || error), latencyMs: null, tokens: null };
     }
@@ -182,5 +191,5 @@ try {
   appendRow([suiteName, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${total.passed}/${total.cases}**`, failing ? `not fully passing: ${failing}` : "all classes pass", `median ${median ?? "?"} ms${rolled?.throttledSamples ? ` · throttled to ${rolled.worstSpeedLimit}%` : ""}`]);
   console.log("\n" + formatGrades(results) + `\n\nwrote ${out}.json and a row in ${TABLE}`);
 } finally {
-  await browser.close();
+  await lab.close();
 }

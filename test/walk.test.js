@@ -563,6 +563,12 @@ test("variants by model size: the sentence pick is checked at 8B and above, plai
   assert.equal(variantsFor("Qwen3-4B-q4f16_1-MLC").sentence, "list");
   assert.equal(variantsFor("Qwen3-1.7B-q4f16_1-MLC").sentence, "list");
   assert.equal(variantsFor("Qwen3-0.6B-q4f16_1-MLC").sentence, "list");
+  assert.equal(variantsFor("qwen3:8b").sentence, "check", "an endpoint's model id");
+  assert.equal(variantsFor("qwen3:14b-q4_K_M").sentence, "check");
+  assert.equal(variantsFor("qwen3:32b").sentence, "check");
+  assert.equal(variantsFor("qwen3:1.7b").sentence, "list");
+  assert.equal(variantsFor("Qwen3-30B-A3B").sentence, "list");
+  assert.equal(variantsFor("scripted:first").sentence, "list");
   assert.equal(variantsFor("Qwen3-1.7B-q4f16_1-MLC").article, "snippets");
 });
 

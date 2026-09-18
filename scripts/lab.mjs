@@ -2,11 +2,10 @@
 // profile (model weights stay cached), loads a model with progress notes, runs
 // a graph to its end, exports it, and loads or saves the Wikipedia recording.
 // scripts/live-run.mjs and scripts/eval.mjs are thin wrappers over this.
-import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { join } from "node:path";
 import os from "node:os";
+import { readRecording, writeEntry } from "./recording.mjs";
 
 export const DEFAULT_URL = "http://127.0.0.1:8765/";
 export const DEFAULT_MODEL = "Qwen3-0.6B-q4f16_1-MLC";
@@ -156,28 +155,40 @@ export const exportRun = (page) =>
   });
 
 // ---- the Wikipedia recording ----
-// One file per response, named by the URL's hash, so a diff shows which
-// articles changed and the directory can be committed.
-const entryPath = (dir, url) => join(dir, createHash("sha1").update(url).digest("hex").slice(0, 16) + ".json");
-
+// The files are recording.mjs's; the page holds them in memory for a run.
 export async function loadWikiCache(page, dir) {
-  if (!existsSync(dir)) return 0;
-  const entries = readdirSync(dir)
-    .filter((name) => name.endsWith(".json"))
-    .map((name) => JSON.parse(readFileSync(join(dir, name), "utf8")));
+  const entries = readRecording(dir);
+  if (!entries.length) return 0;
   return page.evaluate((entries) => window.__tangle.wiki.load(entries), entries);
 }
 
 export async function saveWikiCache(page, dir) {
   const entries = await page.evaluate(() => window.__tangle.wiki.dump());
-  mkdirSync(dir, { recursive: true });
   let added = 0;
-  for (const entry of entries) {
-    const path = entryPath(dir, entry.url);
-    if (existsSync(path)) continue;
-    writeFileSync(path, JSON.stringify(entry) + "\n");
-    added++;
-  }
+  for (const entry of entries) if (writeEntry(dir, entry)) added++;
   const stats = await page.evaluate(() => window.__tangle.wiki.stats());
   return { ...stats, added };
+}
+
+// ---- the lab interface ----
+// What a driver needs from a runtime, in one shape: the page through
+// Playwright here, the walk in Node in node-lab.mjs. scripts/eval.mjs and
+// scripts/run.mjs speak only this.
+export function browserLab({ browser, page, version }) {
+  return {
+    kind: "page",
+    page,
+    version,
+    versions: () => page.evaluate(() => window.__tangle.versions?.() ?? null),
+    loadModel: (model, options) => loadModel(page, model, options),
+    newLive: (seed, limits = {}) => page.evaluate(([seed, limits]) => window.__tangle.newLive(seed, limits), [seed, limits]),
+    runToEnd: (options) => runToEnd(page, options),
+    exportRun: () => exportRun(page),
+    ask: (call) => page.evaluate((call) => window.__tangle.ask(call), call),
+    visit: (context) => page.evaluate((context) => window.__tangle.visit(context), context),
+    pick: (context) => page.evaluate((context) => window.__tangle.pick(context), context),
+    wikiLoad: (dir) => loadWikiCache(page, dir),
+    wikiSave: (dir) => saveWikiCache(page, dir),
+    close: () => browser.close(),
+  };
 }

@@ -32,7 +32,9 @@ export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "list
 // only 8B and above check every pick; the rest take the plain pick and
 // confirm only foreign-source picks (CHECK_FOREIGN).
 export function variantsFor(modelId = "") {
-  const big = /-(8|14|32)B-/i.test(String(modelId));
+  // "Qwen3-8B-q4f16_1-MLC" in the page; "qwen3:8b", "qwen3:14b-q4_K_M" over
+  // an endpoint (endpoint.js). Not "Qwen3-30B-A3B", not "qwen3:1.7b".
+  const big = /(?:^|[-:_/])(8|14|32)b(?=$|[-:_@\s])/i.test(String(modelId));
   return { ...DEFAULT_VARIANTS, ...(big ? { sentence: "check" } : {}) };
 }
 // When the picked sentence comes from an article that shares no content
