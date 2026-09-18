@@ -10,7 +10,7 @@
 // maxTokens }) and combines the raw outputs into one answer. Schemas stay tiny
 // and few: web-llm compiles a grammar per distinct schema (see webllm.js).
 
-export const ASK_VERSION = "asks-1";
+export const ASK_VERSION = "asks-2";
 export const NO_THINK = " /no_think";
 
 // Sentences are what the model picks between, so they are made by code, the
@@ -71,6 +71,47 @@ export const ASKS = Object.freeze({
       json: single(sentenceCall(SENTENCE_SYSTEM.json, (input) => JSON.stringify({ question: input.question, sentences: Object.fromEntries(input.sentences.map((sentence, index) => [String(index + 1), sentence])) })), readSentence),
       list: single(sentenceCall(SENTENCE_SYSTEM.list, (input) => `Question: ${input.question}\n\n${numbered(input.sentences)}\n\nWhich sentence answers the question? Reply {"sentence": "<number>"} or {"sentence": "none"}.`), readSentence),
       strict: single(sentenceCall(SENTENCE_SYSTEM.strict, (input) => `Question: ${input.question}\n\n${numbered(input.sentences)}\n\nReply {"sentence": "<number>"} or {"sentence": "none"}.`), readSentence),
+      // "none" as an ordinary numbered choice: 1.7B found the answering
+      // sentence in every positive case but picked one anyway when nothing
+      // answered (evals/node/results.md, f571e0b). A pick from a list may be
+      // easier than invoking a special value.
+      zero: {
+        calls: (input) => [{
+          messages: [
+            { role: "system", content: SENTENCE_SYSTEM.list + NO_THINK },
+            { role: "user", content: `Question: ${input.question}\n\n0. None of the sentences below answers the question.\n${numbered(input.sentences)}\n\nReply {"sentence": "<number>"}.` },
+          ],
+          schema: enumSchema("sentence", ["0", ...labels(input.sentences.length)]),
+          maxTokens: 24,
+        }],
+        combine: (outputs) => {
+          const pick = String(parseJson(outputs[0]).sentence);
+          return pick === "0" ? "none" : pick;
+        },
+      },
+      // Pick, then check the pick with one yes-or-no on that sentence alone.
+      // Two calls; the second sees only the chosen sentence.
+      check: {
+        calls: (input) => [sentenceCall(SENTENCE_SYSTEM.list, (input) => `Question: ${input.question}\n\n${numbered(input.sentences)}\n\nWhich sentence answers the question? Reply {"sentence": "<number>"} or {"sentence": "none"}.`)(input)],
+        run: async (send, input) => {
+          const first = ASKS.sentence.variants.check.calls(input)[0];
+          const outputs = [await send(first)];
+          const pick = String(parseJson(outputs[0].text).sentence);
+          if (pick === "none") return { answer: "none", outputs };
+          const sentence = input.sentences[Number(pick) - 1];
+          const second = {
+            messages: [
+              { role: "system", content: `Does the sentence state the answer to the question? Reply with JSON: {"answers": "yes"} or {"answers": "no"}.` + NO_THINK },
+              { role: "user", content: `Question: ${input.question}\nSentence: ${sentence}` },
+            ],
+            schema: enumSchema("answers", ["yes", "no"]),
+            maxTokens: 16,
+          };
+          outputs.push(await send(second));
+          return { answer: parseJson(outputs[1].text).answers === "yes" ? pick : "none", outputs };
+        },
+        combine: () => { throw new Error("check runs its own steps"); },
+      },
       // The floor: one yes-or-no per sentence. The answer is the set of yeses,
       // rendered as "3" when exactly one, "none" when none, "2+5" when several.
       yesno: {
@@ -111,6 +152,22 @@ export const ASKS = Object.freeze({
         schema: enumSchema("section", input.sections),
         maxTokens: 80,
       }), (parsed) => String(parsed.section)),
+    },
+  },
+
+  // ---- question: the decomposition. One smaller question a child could answer. ----
+  // Input { question, sentences: [string] }. Answer: a question.
+  question: {
+    describe: (input) => `${input.sentences.length} sentences read`,
+    variants: {
+      one: single((input) => ({
+        messages: [
+          { role: "system", content: `The sentences do not answer the question. Write one smaller question whose answer would help answer it. It must ask for something the sentences do not say, and must not repeat the question. Reply with JSON: {"question": "<one question>"}.` + NO_THINK },
+          { role: "user", content: `Question: ${input.question}\n\n${input.sentences.length ? numbered(input.sentences) : "(nothing read yet)"}` },
+        ],
+        schema: stringSchema("question", 200),
+        maxTokens: 64,
+      }), (parsed) => String(parsed.question).trim()),
     },
   },
 

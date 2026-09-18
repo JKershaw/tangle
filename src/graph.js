@@ -16,6 +16,11 @@ export const DEFAULT_LIMITS = Object.freeze({
   // blocked child is an answer too, so the parent runs again. Set false to
   // reproduce the older rule.
   revisitSettled: true,
+  // Live visits are the walk (walk.js): a fixed sequence of one-decision asks
+  // sequenced by code. false runs the earlier one-prompt visit (episode.js)
+  // on the same seed for comparison. Simulation always replays the one-prompt
+  // visit, since its scripted responses are actions.
+  walk: true,
 });
 export const SETTLED = Object.freeze(["resolved", "blocked"]);
 export const ACTIONS = Object.freeze(["wiki", "decompose", "resolved", "blocked"]);

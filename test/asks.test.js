@@ -36,9 +36,26 @@ test("every ask variant builds calls with a tiny schema and reads the answer bac
   assert.equal(askAnswer("sentence", "yesno", ['{"answers":"no"}', '{"answers":"yes"}'], input), "2");
   assert.equal(askAnswer("sentence", "yesno", ['{"answers":"yes"}', '{"answers":"yes"}'], input), "1+2");
   assert.equal(askAnswer("sentence", "yesno", ['{"answers":"no"}', '{"answers":"no"}'], input), "none");
+  assert.equal(askAnswer("sentence", "zero", ['{"sentence":"0"}'], input), "none");
+  assert.equal(askAnswer("sentence", "zero", ['{"sentence":"2"}'], input), "2");
   assert.deepEqual(askCalls("section", "json", input)[0].schema.properties.section.enum, ["One", "Two"]);
   assert.equal(askAnswer("missing", "search", ['{"search": " Dead Sea "}'], input), "Dead Sea");
   assert.throws(() => askCalls("sentence", "nope", input), /Unknown ask/);
+});
+
+test("the check variant asks once more about the chosen sentence and returns none when it says no", async () => {
+  const input = { question: "Why?", sentences: ["Because A.", "Because B."] };
+  const seen = [];
+  const send = async (call) => {
+    seen.push(call);
+    return { text: seen.length === 1 ? '{"sentence":"2"}' : '{"answers":"no"}' };
+  };
+  const result = await ASKS.sentence.variants.check.run(send, input);
+  assert.equal(result.answer, "none");
+  assert.equal(seen.length, 2);
+  assert.match(seen[1].messages[1].content, /Sentence: Because B\./);
+  const quick = await ASKS.sentence.variants.check.run(async () => ({ text: '{"sentence":"none"}' }), input);
+  assert.equal(quick.answer, "none");
 });
 
 test("parseJson tolerates text around the object and rejects garbage", () => {

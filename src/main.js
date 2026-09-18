@@ -4,6 +4,8 @@
 import * as webllm from "@mlc-ai/web-llm";
 import { clone, createRun, nextRunnable, outcomeLabel, trace, validateImport, buildContext, VERSION } from "./graph.js";
 import { PROMPT_VERSION, buildMessages, runEpisode } from "./episode.js";
+import { ASK_VERSION } from "./asks.js";
+import { DEFAULT_VARIANTS, WALK_VERSION, runWalk } from "./walk.js";
 import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
 import { lookupWikipedia, readWikipediaSection } from "./wiki.js";
 import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, createSectionChooser, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
@@ -284,8 +286,10 @@ function driversFor(run) {
   if (run.mode === "simulation") {
     return { ...simulationDrivers(run.preset), pace: (signal) => pace(320, signal) };
   }
-  return { generate: createLiveGenerator(adapter), chooseSection: createSectionChooser(adapter), wiki: liveWiki, approve: approveLookup, pace: null };
+  const ask = (call, { signal } = {}) => adapter.generate(call.messages, { signal, schema: call.schema, maxTokens: call.maxTokens, seed: SAMPLING.seed, temperature: SAMPLING.temperature });
+  return { ask, generate: createLiveGenerator(adapter), chooseSection: createSectionChooser(adapter), wiki: liveWiki, approve: approveLookup, pace: null };
 }
+const runnerFor = (run) => (run.mode === "live" && run.limits.walk !== false ? runWalk : runEpisode);
 
 // ---- running ----
 async function step() {
@@ -301,10 +305,10 @@ async function step() {
     run.model = loadedModel;
     run.runtime = RUNTIME;
     run.sampling = { ...SAMPLING };
-    run.schema = RESPONSE_SCHEMA_VERSION;
+    run.schema = run.limits.walk !== false ? `${WALK_VERSION}/${ASK_VERSION}` : RESPONSE_SCHEMA_VERSION;
   }
   render();
-  const ok = await runEpisode(run, {
+  const ok = await runnerFor(run)(run, {
     ...driversFor(run),
     signal: controller.signal,
     onUpdate: (nodeId, message) => {
@@ -544,7 +548,7 @@ window.__tangle = {
   runnable: () => !!nextRunnable(current()),
   outcome: () => outcomeLabel(current()),
   loadedModel: () => loadedModel,
-  versions: () => ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION, runtime: RUNTIME, page: VERSION }),
+  versions: () => ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION, walk: WALK_VERSION, asks: ASK_VERSION, variants: { ...DEFAULT_VARIANTS }, runtime: RUNTIME, page: VERSION }),
   newLive: (seed, limits = {}) => {
     if (locked()) throw new Error("Busy.");
     mode = "live";
