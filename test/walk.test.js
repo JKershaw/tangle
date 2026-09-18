@@ -201,6 +201,16 @@ test("a finding can gather several sentences: after a pick the walk asks again o
   assert.equal(capped.nodes[0].finding.split(". ").length, 2);
 });
 
+test("the asks that name something see at most one window of sentences", async () => {
+  const long = Array.from({ length: 40 }, (_, index) => `Sentence number ${index + 1} says nothing useful about anything at all.`).join(" ");
+  const wiki = async (query, options = {}) => (options.readOn ? wikiFixture(query, options) : { ok: true, kind: "wiki", title: "Dead Sea", article: "Dead Sea", section: 0, headings: [], text: long, url: "u" });
+  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1, maxPasses: 6, ...ONE });
+  const { ask, seen } = scripted([["sentence", "none"], ["sentence", "none"], ["sentence", "none"], ["sentence", "none"], ["question", "What feeds the Dead Sea?"]]);
+  assert.equal(await runWalk(run, { ask, wiki, ...PLAIN }), true);
+  const question = seen.find((call) => call.field === "question");
+  assert.equal((question.user.match(/^\d+\. /gm) || []).length, 12, "one window, not all forty");
+});
+
 test("a child question about the text it was shown is refused", async () => {
   const run = createRun("Why did the Aral Sea shrink?", "live", { maxLookups: 1, ...ONE });
   const { ask } = scripted([["sentence", "none"], ["question", "What is the name of the weapon described in the text?"]]);

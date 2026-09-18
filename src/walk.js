@@ -198,7 +198,11 @@ export async function runWalk(run, options) {
     onUpdate(node.id, "Lookup found nothing");
     return "nothing";
   };
-  const readSentences = () => candidates(run, node).map((candidate) => candidate.text);
+  // The asks that name something (a search term, a smaller question) see
+  // what was read most recently, one window of it: 8B once overflowed the
+  // 4,096-token context with every sentence of five excerpts (evals/results/
+  // runs 2026-09-18, sky-blue).
+  const readSentences = () => candidates(run, node).slice(0, WINDOW).map((candidate) => candidate.text);
   const firstLookup = async () => {
     const terms = [...new Set([searchTerm(node.question), String(node.question).trim()])];
     if (variants.article === "off" || !wiki.length || terms.length < 2) return lookup(terms[0]);
