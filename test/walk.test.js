@@ -9,6 +9,7 @@ import { candidates, isRepeat, runWalk, searchTerm, unreadSections } from "../sr
 // the default (pick, then one yes-or-no) has its own test below.
 const PLAIN = { variants: { sentence: "list" } };
 const ONE = { maxSentences: 1 };
+// Scenario fixtures return no alternative hits, so no article pick is asked.
 
 function scripted(queue) {
   const seen = [];
@@ -207,4 +208,45 @@ test("a child question about the text it was shown is refused", async () => {
   assert.equal(run.nodes.length, 1);
   assert.equal(run.nodes[0].status, "blocked");
   assert.equal(run.trace.find((event) => event.event === "question_rejected").reason, "about the text");
+});
+
+test("when a search returns several hits the model picks the article; none is a failed lookup; the pick is remembered", async () => {
+  const hits = async (query, options) => {
+    if (options?.readOn) return wikiFixture(query, options);
+    if (/aral/i.test(query)) return { ok: true, kind: "wiki", title: "North Aral Sea", article: "North Aral Sea", section: 0, headings: [], text: "The North Aral Sea is the northern part of the former Aral Sea, fed by the Syr Darya.", url: "u", alternatives: ["South Aral Sea", "Aral Sea"] };
+    return wikiFixture(query, options);
+  };
+  const seaFixture = async (query, options) => (query === "Aral Sea" ? { ok: true, kind: "wiki", title: "Aral Sea", article: "Aral Sea", section: 0, headings: [], text: "The Aral Sea was a lake between Kazakhstan and Uzbekistan. It began shrinking in the 1960s after the rivers that fed it were diverted for irrigation.", url: "u" } : hits(query, options));
+  const run = createRun("Why did the Aral Sea shrink?", "live", ONE);
+  const { ask, seen } = scripted([["article", "Aral Sea"], ["sentence", "2"]]);
+  assert.equal(await runWalk(run, { ask, wiki: seaFixture, ...PLAIN }), true);
+  assert.deepEqual(seen[0].options, ["North Aral Sea", "South Aral Sea", "Aral Sea", "none"]);
+  assert.equal(run.nodes[0].finding, "It began shrinking in the 1960s after the rivers that fed it were diverted for irrigation.");
+  assert.equal(run.evidence.length, 1, "only the chosen article is captured");
+  assert.equal(run.evidence[0].title, "Aral Sea");
+  assert.equal(run.lookups, 1, "the re-read is part of the same lookup");
+
+  const refused = createRun("Why did the Aral Sea shrink?", "live", { maxLookups: 1, maxDepth: 0, ...ONE });
+  await runWalk(refused, { ask: scripted([["article", "none"]]).ask, wiki: hits, ...PLAIN });
+  assert.equal(refused.nodes[0].status, "blocked");
+  assert.match(refused.nodes[0].failedLookups[0].error, /None of the articles/);
+  assert.equal(refused.evidence.length, 0);
+});
+
+test("sentences judged as not answering are remembered across visits, so a revisit reads on", async () => {
+  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1, maxPasses: 1, ...ONE });
+  // Visit 1: the lead's three sentences are shown, none; no lookups left; a child is asked.
+  await runWalk(run, { ask: scripted([["sentence", "none"], ["question", "What feeds the Dead Sea?"]]).ask, wiki: wikiFixture, ...PLAIN });
+  assert.equal(run.nodes.length, 2);
+  // The child blocks (its search finds the same lead, already judged? no — its own copy), keep it simple: block it by hand.
+  run.nodes[1].status = "blocked";
+  run.nodes[1].reason = "test";
+  // Visit 2 of the root: the lead was judged already, so no sentence ask is
+  // made over it; the walk goes straight to reading a section.
+  const revisit = scripted([["section", "Geography"], ["sentence", "none"], ["question", "What drains the Dead Sea?"]]);
+  assert.equal(nextRunnable(run).id, "n1");
+  assert.equal(await runWalk(run, { ask: revisit.ask, wiki: wikiFixture, ...PLAIN }), true);
+  assert.equal(revisit.seen[0].field, "section", "no re-showing of judged sentences");
+  assert.match(revisit.seen[1].user, /1\. The Dead Sea lies in the Jordan Rift Valley/);
+  assert.equal(run.nodes.length, 3);
 });

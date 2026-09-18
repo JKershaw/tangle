@@ -37,6 +37,7 @@ export function buildInput(ask, spec) {
     if (spec.expect.contains && !sentences[Number(spec.expect.sentence) - 1]?.includes(spec.expect.contains)) throw new Error(`${spec.id}: sentence ${spec.expect.sentence} does not contain "${spec.expect.contains}" — has the splitter changed?`);
     return { question: spec.question, sentences, titles: sentences.map(() => spec.source.article) };
   }
+  if (ask === "article") return { question: spec.question, titles: [...spec.titles] };
   if (ask === "section") {
     const sections = cachedArticle(spec.article).sections.map((section) => section.heading).filter(Boolean);
     for (const heading of spec.expect.accept) if (!sections.includes(heading)) throw new Error(`${spec.id}: "${heading}" is not a heading of ${spec.article}`);
@@ -55,7 +56,7 @@ export function grade(ask, spec, answer) {
     const parts = String(answer).split("+");
     return parts.length > 0 && parts.every((part) => accept.includes(part));
   }
-  if (ask === "section") return spec.expect.accept.includes(answer);
+  if (ask === "section" || ask === "article") return spec.expect.accept.includes(answer);
   if (ask === "missing") return new RegExp(spec.expect.mentions, "i").test(String(answer));
   if (ask === "question") {
     const text = String(answer).trim();

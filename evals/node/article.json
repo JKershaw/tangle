@@ -1,0 +1,216 @@
+{
+  "ask": "article",
+  "note": "Which of the five titles a Wikipedia search returned is the article to read, or none. Hits are copied from real searches in evals/wiki-cache (the query is noted); 'accept' lists every defensible pick.",
+  "cases": [
+    {
+      "id": "dead-sea-stripped",
+      "question": "Why is the Dead Sea shrinking?",
+      "query": "Dead Sea shrinking",
+      "titles": [
+        "Dead Sea",
+        "Aral Sea",
+        "Mediterranean–Dead Sea Canal",
+        "Red Sea–Dead Sea Water Conveyance",
+        "Kaydak Inlet"
+      ],
+      "expect": {
+        "accept": [
+          "Dead Sea"
+        ]
+      }
+    },
+    {
+      "id": "dead-sea-raw-none",
+      "question": "Why is the Dead Sea shrinking?",
+      "query": "Why is the Dead Sea shrinking?",
+      "titles": [
+        "Aral Sea",
+        "List of drying lakes",
+        "Red Sea crisis",
+        "Ted McGinley",
+        "Caspian Sea"
+      ],
+      "expect": {
+        "accept": [
+          "none",
+          "List of drying lakes"
+        ]
+      },
+      "note": "The wrong lake first. The list of drying lakes is a defensible second choice."
+    },
+    {
+      "id": "sky-colour",
+      "question": "Why is the sky blue?",
+      "query": "Sky color",
+      "titles": [
+        "Sky blue",
+        "Diffuse sky radiation",
+        "Color of water",
+        "Rayleigh scattering",
+        "Compositions for Guitar by Takashi Yoshimatsu"
+      ],
+      "expect": {
+        "accept": [
+          "Diffuse sky radiation",
+          "Rayleigh scattering"
+        ]
+      },
+      "note": "'Sky blue' is the colour; the answer is in the other two."
+    },
+    {
+      "id": "sky-raw",
+      "question": "Why is the sky blue?",
+      "query": "Why is the sky blue?",
+      "titles": [
+        "Diffuse sky radiation",
+        "Sky blue",
+        "Blue moon",
+        "Ask the StoryBots",
+        "Blue"
+      ],
+      "expect": {
+        "accept": [
+          "Diffuse sky radiation"
+        ]
+      }
+    },
+    {
+      "id": "sky-studios-none",
+      "question": "What is the scientific reason for the sky appearing blue?",
+      "query": "scientific reason for sky appearing blue",
+      "titles": [
+        "Blue Sky Studios",
+        "Blue",
+        "Feeling Pinkie Keen",
+        "Science",
+        "Pale Blue Dot"
+      ],
+      "expect": {
+        "accept": [
+          "none",
+          "Blue"
+        ]
+      },
+      "note": "Seen live: the walk read Blue Sky Studios for three visits."
+    },
+    {
+      "id": "aral-shrink",
+      "question": "Why did the Aral Sea shrink?",
+      "query": "Aral Sea shrink",
+      "titles": [
+        "North Aral Sea",
+        "South Aral Sea",
+        "Aral Sea",
+        "International Fund for Saving the Aral Sea",
+        "Aral, Kazakhstan"
+      ],
+      "expect": {
+        "accept": [
+          "Aral Sea"
+        ]
+      }
+    },
+    {
+      "id": "lba",
+      "question": "Why did the Late Bronze Age collapse happen?",
+      "query": "Late Bronze Age",
+      "titles": [
+        "Late Bronze Age collapse",
+        "Bronze Age",
+        "Nordic Bronze Age",
+        "Bronze Age sword",
+        "Bronze Age Europe"
+      ],
+      "expect": {
+        "accept": [
+          "Late Bronze Age collapse"
+        ]
+      }
+    },
+    {
+      "id": "bees",
+      "question": "Why do honey bee colonies collapse?",
+      "query": "Honey bee colonies",
+      "titles": [
+        "Africanized bee",
+        "Colony collapse disorder",
+        "Honey bee",
+        "Western honey bee",
+        "Swarming (honey bee)"
+      ],
+      "expect": {
+        "accept": [
+          "Colony collapse disorder"
+        ]
+      }
+    },
+    {
+      "id": "coral",
+      "question": "Why do coral reefs bleach?",
+      "query": "Coral Reefs",
+      "titles": [
+        "Coral reef",
+        "Coral Reef Alliance",
+        "Coral reefs in India",
+        "Coral reef fish",
+        "Coral bleaching"
+      ],
+      "expect": {
+        "accept": [
+          "Coral bleaching"
+        ]
+      }
+    },
+    {
+      "id": "water-cycle",
+      "question": "Why does the water cycle keep going?",
+      "query": "role of sun in water cycle",
+      "titles": [
+        "Water cycle",
+        "Solar cycle",
+        "Marine biogeochemical cycles",
+        "Water splitting",
+        "Biogeochemical cycle"
+      ],
+      "expect": {
+        "accept": [
+          "Water cycle"
+        ]
+      }
+    },
+    {
+      "id": "aral-split",
+      "question": "What caused the split between the North Aral Sea and the South Aral Sea?",
+      "query": "caused split between North Aral Sea and South Aral Sea",
+      "titles": [
+        "Aral Sea",
+        "Caribbean Sea",
+        "Red Sea",
+        "Amu Darya",
+        "Baltic Sea"
+      ],
+      "expect": {
+        "accept": [
+          "Aral Sea"
+        ]
+      }
+    },
+    {
+      "id": "weapon-none",
+      "question": "Why did the Aral Sea shrink?",
+      "query": "name of weapon described in text",
+      "titles": [
+        "Weapons of Norse mythology",
+        "Sharur (mythological weapon)",
+        "Kontos (weapon)",
+        "Cheiroballistra",
+        "The Weapon Makers"
+      ],
+      "expect": {
+        "accept": [
+          "none"
+        ]
+      }
+    }
+  ]
+}

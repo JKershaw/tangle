@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-3"; // walk-2: a paraphrase of an ancestor or sibling question is refused; walk-3: questions about "the text" refused, up to maxSentences per finding
+export const WALK_VERSION = "walk-4"; // walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences are remembered across visits
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -25,11 +25,15 @@ export const WALK_VERSION = "walk-3"; // walk-2: a paraphrase of an ancestor or 
 // subject (every size picked the Aral Sea's reason for a Dead Sea question,
 // even labelled); the check catches it from 1.7B up, trading a few false
 // "none"s — which cost a lookup — for false findings, which cost the run.
-export const DEFAULT_VARIANTS = Object.freeze({ sentence: "check", section: "list", missing: "search", question: "one" });
+export const DEFAULT_VARIANTS = Object.freeze({ sentence: "check", section: "list", missing: "search", question: "one", article: "list" });
 // How many sentences one pick sees. Beyond this, the walk asks again over the
 // next window; a visit's passes bound how far it reads.
 export const WINDOW = 12;
 export const MIN_FINDING_WORDS = 6;
+// Sentences a node has already judged as not answering, kept across visits
+// so a revisit reads on instead of re-showing the same windows (the water
+// cycle root, walk-3: four passes over the same lead, twice).
+const judgedByNode = new WeakMap();
 
 // The first lookup is code: the question minus its question words. The raw
 // question sent to Wikipedia's search found the Aral Sea for "Why is the Dead
@@ -152,6 +156,20 @@ export async function runWalk(run, options) {
     let outcome = await wiki(query, readOn ? { signal, readOn } : { signal });
     signal?.throwIfAborted();
     trace(run, "tool_result", { node: node.id, query, ...(readOn ? { readOn } : {}), result: outcome });
+    // A search's first hit is Wikipedia's guess. When there are others, the
+    // model picks the article from the titles — one enum call — and the
+    // walk reads that one instead. "none" is a failed lookup.
+    if (!readOn && outcome.ok && outcome.alternatives?.length && variants.article !== "off") {
+      const titles = [outcome.title, ...outcome.alternatives];
+      const chosen = await answer("article", { question: node.question, titles }, "Choosing an article");
+      trace(run, "article_chosen", { node: node.id, query, titles, article: chosen });
+      if (chosen === "none") outcome = { ok: false, error: { kind: "no_match", message: `None of the articles found for “${query}” is about the question: ${titles.join(", ")}.` } };
+      else if (chosen !== outcome.title) {
+        outcome = await wiki(chosen, { signal });
+        signal?.throwIfAborted();
+        trace(run, "tool_result", { node: node.id, query: chosen, result: outcome });
+      }
+    }
     if (outcome.ok && node.observed.some((id) => run.evidence.find((record) => record.id === id)?.title === outcome.title)) {
       outcome = { ok: false, error: { kind: "no_match", message: `Already read: “${outcome.title}”.` } };
     }
@@ -172,7 +190,8 @@ export async function runWalk(run, options) {
     if (!node.observed.length && !children(run, node.id).length && lookups < run.limits.maxLookups) {
       if ((await lookup(searchTerm(node.question))) === "declined") return true;
     }
-    const judged = new Set();
+    if (!judgedByNode.has(node)) judgedByNode.set(node, new Set());
+    const judged = judgedByNode.get(node);
     // Sentences picked and checked so far this visit; the finding is their
     // text, verbatim, in the order found. After a pick the walk asks again
     // over what remains until it says none or maxSentences is reached.

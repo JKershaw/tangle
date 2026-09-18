@@ -137,6 +137,25 @@ export const ASKS = Object.freeze({
     },
   },
 
+  // ---- article: which of the search hits is the right article? ----
+  // Input { question, titles: [string] }. Answer: one title or "none".
+  // Wikipedia's first hit was "Sky blue" (the colour) for "sky blue" and
+  // "North Aral Sea" for "Aral Sea shrink" (evals/results/runs, 2026-09-18);
+  // the right article was in the five hits both times.
+  article: {
+    describe: (input) => `${input.titles.length} hits`,
+    variants: {
+      list: single((input) => ({
+        messages: [
+          { role: "system", content: `You are given a question and the titles of Wikipedia articles a search returned. Pick the title of the article most likely to answer the question. If none of them is about the question's subject, pick none. Reply with JSON only.` + NO_THINK },
+          { role: "user", content: `Question: ${input.question}\n\nArticles:\n${input.titles.map((title) => `- ${title}`).join("\n")}\n\nReply {"article": "<title>"} or {"article": "none"}.` },
+        ],
+        schema: enumSchema("article", [...input.titles, "none"]),
+        maxTokens: 80,
+      }), (parsed) => String(parsed.article)),
+    },
+  },
+
   // ---- section: which section of the article is most likely to hold the answer? ----
   // Input { question, article, sections: [string] }. Answer: one heading.
   section: {

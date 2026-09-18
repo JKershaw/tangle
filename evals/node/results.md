@@ -72,3 +72,15 @@ One row per model and ask variant; the JSON named in the row holds every raw out
 | 2026-09-18 | ee83f51 | question | one | qwen3-1.7b | 4/6 | 646 | 6 | dead-sea-after-lead, lba-after-lead |
 | 2026-09-18 | ee83f51 | question | one | qwen3-4b | 6/6 | 1517 | 6 | — |
 | 2026-09-18 | ee83f51 | question | one | qwen3-8b | 6/6 | 2381 | 6 | — |
+| 2026-09-18 | ce5474e | question | one | qwen3-0.6b | 1/6 | 441 | 6 | dead-sea-after-lead, dead-sea-cold, water-cycle-after-lead, coral-after-tail, bees-cold |
+| 2026-09-18 | ce5474e | question | part | qwen3-0.6b | 2/6 | 390 | 6 | dead-sea-after-lead, dead-sea-cold, lba-after-lead, bees-cold |
+| 2026-09-18 | ce5474e | question | first | qwen3-0.6b | 2/6 | 358 | 6 | dead-sea-after-lead, dead-sea-cold, lba-after-lead, bees-cold |
+| 2026-09-18 | ce5474e | question | one | qwen3-1.7b | 3/6 | 656 | 6 | dead-sea-after-lead, lba-after-lead, coral-after-tail |
+| 2026-09-18 | ce5474e | question | part | qwen3-1.7b | 4/6 | 693 | 6 | dead-sea-after-lead, dead-sea-cold |
+| 2026-09-18 | ce5474e | question | first | qwen3-1.7b | 3/6 | 712 | 6 | dead-sea-after-lead, dead-sea-cold, lba-after-lead |
+| 2026-09-18 | ce5474e | question | one | qwen3-4b | 4/6 | 1523 | 6 | dead-sea-after-lead, bees-cold |
+| 2026-09-18 | ce5474e | question | part | qwen3-4b | 0/6 | 1366 | 6 | dead-sea-after-lead, dead-sea-cold, water-cycle-after-lead, lba-after-lead, coral-after-tail, bees-cold |
+| 2026-09-18 | ce5474e | question | first | qwen3-4b | 2/6 | 1583 | 6 | dead-sea-after-lead, dead-sea-cold, lba-after-lead, coral-after-tail |
+| 2026-09-18 | ce5474e | question | one | qwen3-8b | 3/6 | 2396 | 6 | dead-sea-after-lead, lba-after-lead, coral-after-tail |
+| 2026-09-18 | ce5474e | question | part | qwen3-8b | 0/6 | 2387 | 6 | dead-sea-after-lead, dead-sea-cold, water-cycle-after-lead, lba-after-lead, coral-after-tail, bees-cold |
+| 2026-09-18 | ce5474e | question | first | qwen3-8b | 5/6 | 2476 | 6 | coral-after-tail |

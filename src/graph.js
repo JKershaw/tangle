@@ -9,7 +9,7 @@ export const DEFAULT_LIMITS = Object.freeze({
   maxVisits: 60,
   maxDepth: 6,
   maxLookups: 2,
-  maxPasses: 4,
+  maxPasses: 6,
   // Revisit a parent once every child is settled — resolved or blocked —
   // rather than only when all resolved. The first benchmark matrix showed the
   // stricter rule freezing roots above full graphs (evals/results.md); a
