@@ -29,11 +29,11 @@ One HTML file. Questions: the walk reads, picks a sentence, reads on, splits two
 - **Entry:** now.
 - **Work:** `evals/seeds-profile.json`, four briefs from different fields (a person, a place, an instrument, a living system), each with a topic list checked against live Wikipedia. `gradeProfile` in `scripts/grade.js`: paragraphs, sentences, articles and sections read, hops chosen and hops that added a sentence, topics touched (and whether the sentence that touches each is cited), duplicate sentences, calls, tokens, seconds. `scripts/eval.mjs runs --seeds evals/seeds-profile.json` in every column, with a closed-book profile prompt for the vanilla column.
 - **Verified by:** grader tests on a scripted run and on a real export; one ladder row per column per size.
-- **Exit:** a scoreboard table for profiles exists and the Turing row on it matches what reading the profile says.
+- **Exit:** a scoreboard table for profiles exists and the Turing row on it matches what reading the profile says. **Exited 2026-09-18 (38d529a, rows at ae3b04a):** tangle 22 / 17 / 21 of 35 topics at 8B / 4B / 1.7B against 8 for one node and 20 / 10 / 15 for memory; the Turing row (8 of 8, six paragraphs, four hops cited) is the profile read by hand.
 
 ### 2. Generic decomposition and the frontier
 
-- **Entry:** milestone 1's table.
+- **Entry:** milestone 1's table. Begun 2026-09-18 (walk-11, ea39412 → 71ee567).
 - **Work:** the things a node's kept sentences name (linked titles first, capitalised phrases as fallback) become candidate children; the model picks which deserve a node, from a list code prepared, or none; each child is the same brief with a new focus and a budget. This generalises the hop, which is a child done inline and once. A run-wide *frontier* ranks candidates by how many nodes named them; a run-wide *kept* set means no sentence is picked twice; a parent may wait on named nodes, not only its children. Only depth and node budgets bound the graph, not templates.
 - **Verified by:** scripted tests on shape (which children, in what order, refused repeats); the profile table at every size; the base and graph seeds must not fall.
 - **Exit:** a forty-node profile at 1.7B in a few minutes whose paragraphs come from at least five articles, and a topic count above the walk-10 row at every size.
