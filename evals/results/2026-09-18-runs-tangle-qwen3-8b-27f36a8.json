@@ -1,0 +1,530 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-8B-q4f16_1-MLC",
+  "runtime": "page",
+  "commit": "27f36a8",
+  "head": "572b6fb",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T19:19:32.088Z",
+  "loadSeconds": 15,
+  "prompt": "walk-12/asks-4",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-12",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 17,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 91.7
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 24.95,
+      "mean": 9.4
+    },
+    "load": {
+      "min": 10.9,
+      "max": 25.2,
+      "mean": 19.2
+    },
+    "memoryFreePercent": {
+      "min": 5,
+      "max": 92,
+      "mean": 48.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 14,
+  "factsSupported": 14,
+  "factsRead": 20,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "kind": "multi-section",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 10,
+        "lookups": 2,
+        "tokens": 3539
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. As of 2021, the surface of the Sea has shrunk by about 33 percent since the 1960s, which is partly attributed to the much-reduced flow of the Jordan River since the construction of the National Water Carrier project, and the amount of water from the rains reaching the Dead Sea has diminished even further since flash floods started pouring into the sinkholes left by its shrinkage. The EcoPeace Middle East, a joint Israeli-Palestinian-Jordanian environmental group, has estimated that the annual flow into the Dead Sea from the Jordan is as of 2021 less than 100,000,000 cubic metres (3.5×109 cu ft) of water, compared with former flows of between 1,200,000,000 cubic metres (4.2×1010 cu ft) and 1,300,000,000 cubic metres (4.6×1010 cu ft).",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 937,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 35,
+      "wiki": {
+        "hits": 5,
+        "misses": 0,
+        "entries": 1177,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-dead-sea.json",
+      "summary": "live run · seed: Why is the Dead Sea shrinking?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T19:19:48.587Z · exported 2026-09-18T19:20:24.297Z\nnodes 1 · visits 1 · model calls 10 · lookups 2 · evidence 2 · tokens 3539\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is the Dead Sea shrinking? → The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming w\n\nmodel latency ms: median 3693 · max 5204 · n 10\nnothing flagged"
+    },
+    {
+      "id": "water-cycle",
+      "kind": "single-article",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "sun": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "evaporation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 2,
+        "tokens": 2061
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The water cycle is powered by the energy emitted from the sun.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 1,
+        "chars": 62,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 20,
+      "wiki": {
+        "hits": 10,
+        "misses": 0,
+        "entries": 1177,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-water-cycle.json",
+      "summary": "live run · seed: Why does the water cycle keep going?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T19:20:24.319Z · exported 2026-09-18T19:20:46.061Z\nnodes 1 · visits 1 · model calls 7 · lookups 2 · evidence 2 · tokens 2061\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why does the water cycle keep going? → The water cycle is powered by the energy emitted from the sun.\n\nmodel latency ms: median 2710 · max 3901 · n 7\nnothing flagged"
+    },
+    {
+      "id": "bronze-age",
+      "kind": "multi-section",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sea-peoples": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 6,
+        "lookups": 2,
+        "tokens": 1667
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea Peoples, economic disruptions due to increased ironworking, and changes in military technology and strategy that brought the decline of chariot warfare.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 1,
+        "chars": 242,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 14,
+      "wiki": {
+        "hits": 15,
+        "misses": 0,
+        "entries": 1177,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-bronze-age.json",
+      "summary": "live run · seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T19:20:46.079Z · exported 2026-09-18T19:21:00.430Z\nnodes 1 · visits 1 · model calls 6 · lookups 2 · evidence 2 · tokens 1667\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did the Late Bronze Age collapse happen? → These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea \n\nmodel latency ms: median 2270 · max 3932 · n 6\nnothing flagged"
+    },
+    {
+      "id": "colony-collapse",
+      "kind": "multi-section",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pesticides": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pathogens": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "stressors": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 8,
+        "lookups": 2,
+        "tokens": 2378
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Suggested causes include pesticides, infections with various pathogens (especially those transmitted by Varroa and Acarapis mites), malnutrition, genetic factors, immunodeficiencies, loss of habitat, or changing beekeeping practices; combinations of these factors have also been cited.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 1,
+        "chars": 285,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 17,
+      "wiki": {
+        "hits": 20,
+        "misses": 0,
+        "entries": 1177,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-colony-collapse.json",
+      "summary": "live run · seed: Why do honey bee colonies collapse?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T19:21:00.440Z · exported 2026-09-18T19:21:17.408Z\nnodes 1 · visits 1 · model calls 8 · lookups 2 · evidence 2 · tokens 2378\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do honey bee colonies collapse? → Suggested causes include pesticides, infections with various pathogens (especially those t\n\nmodel latency ms: median 1779 · max 3655 · n 8\nnothing flagged"
+    },
+    {
+      "id": "coral",
+      "kind": "single-lead",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "algae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 10,
+        "lookups": 2,
+        "tokens": 2215
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Coral bleaching is the process where corals become white due to loss of symbiotic algae and photosynthetic pigments. The leading cause of coral bleaching is rising ocean temperatures due to climate change. While localized triggers lead to localized bleaching, the large-scale coral bleaching events of recent years have been triggered by global warming.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 353,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 17,
+      "wiki": {
+        "hits": 25,
+        "misses": 0,
+        "entries": 1177,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-coral.json",
+      "summary": "live run · seed: Why do coral reefs bleach?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T19:21:17.415Z · exported 2026-09-18T19:21:34.396Z\nnodes 1 · visits 1 · model calls 10 · lookups 2 · evidence 2 · tokens 2215\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do coral reefs bleach? → Coral bleaching is the process where corals become white due to loss of symbiotic algae an\n\nmodel latency ms: median 1560 · max 2398 · n 10\nnothing flagged"
+    },
+    {
+      "id": "sky-blue",
+      "kind": "single-lead, search trap",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 7,
+        "visits": 13,
+        "modelCalls": 56,
+        "lookups": 16,
+        "tokens": 14957
+      },
+      "statuses": {
+        "resolved": 7
+      },
+      "finding": "The third most abundant constituent of the Uranian atmosphere is methane (CH4), the presence of which has been known for some time as a result of the ground-based spectroscopic observations. Methane possesses prominent absorption bands in the visible and near-infrared, making Uranus aquamarine or cyan in color. Below the methane cloud deck at 1.3 bar methane molecules account for about 2.3% of the atmosphere by molar fraction; about 10 to 30 times that found in the Sun. Infrared spectroscopy, including measurements with Spitzer Space Telescope (SST), and UV occultation observations, found trace amounts of complex hydrocarbons in the stratosphere of Uranus, which are thought to be produced from methane by photolysis induced by solar UV radiation.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 4,
+        "chars": 755,
+        "duplicates": 0,
+        "articles": 3,
+        "sections": 6,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 119,
+      "wiki": {
+        "hits": 60,
+        "misses": 2,
+        "entries": 1179,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-sky-blue.json",
+      "summary": "live run · seed: Why is the sky blue?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T19:21:34.404Z · exported 2026-09-18T19:23:34.047Z\nnodes 7 · visits 13 · model calls 56 · lookups 16 · evidence 11 · tokens 14957\nstatuses {\"resolved\":7} · outcome: root resolved\n\nn1 [resolved v2] Why is the sky blue? → The third most abundant constituent of the Uranian atmosphere is methane (CH4), the presen\n  n2 [resolved v2 1 failed lookup] What conditions allow for the visibility of the pure celeste color in the sky? → The third most abundant constituent of the Uranian atmosphere is methane (CH4), the presen\n    n3 [resolved v2 1 failed lookup] What specific atmospheric conditions contribute to the appearance of the pure celeste color in the sky? → The third most abundant constituent of the Uranian atmosphere is methane (CH4), the presen\n      n4 [resolved v2 1 failed lookup] What atmospheric factors influence the specific shade of pure celeste in the sky? → The third most abundant constituent of the Uranian atmosphere is methane (CH4), the presen\n        n5 [resolved v2 1 failed lookup] What are the atmospheric conditions that contribute to the appearance of pure celeste in the sky? → The third most abundant constituent of the Uranian atmosphere is methane (CH4), the presen\n          n6 [resolved v2 1 failed lookup] What is the composition of Uranus's atmosphere that leads to its cyan color? → The third most abundant constituent of the Uranian atmosphere is methane (CH4), the presen\n            n7 [resolved] What gas in Uranus's atmosphere is responsible for its cyan color? → The third most abundant constituent of the Uranian atmosphere is methane (CH4), the presen\n\nmodel latency ms: median 1567 · max 12983 · n 56\nworth a look:\n- n2 lookup found nothing: “conditions allow for visibility of pure celeste color in sky” (None of the articles found is about the question: Venus, Black British people.)\n- n3 lookup found nothing: “specific atmospheric conditions contribute to appearance of pure celeste color in sky” (No Wikipedia article matched \"specific atmospheric conditions contribute to appearance of pure celeste color in sky\".)\n- n4 lookup found nothing: “atmospheric factors influence specific shade of pure celeste in sky” (No Wikipedia article matched \"atmospheric factors influence specific shade of pure celeste in sky\".)\n- n5 lookup found nothing: “atmospheric conditions that contribute to appearance of pure celeste in sky” (No Wikipedia article matched \"atmospheric conditions that contribute to appearance of pure celeste in sky\".)\n- n6 lookup found nothing: “composition of Uranus's atmosphere that leads to cyan color” (None of the articles found is about the question: Binoculars.)\n- n1 resolved citing only its children's sources\n- n2 resolved citing only its children's sources\n- n3 resolved citing only its children's sources\n- n4 resolved citing only its children's sources\n- n5 resolved citing only its children's sources"
+    },
+    {
+      "id": "aral",
+      "kind": "single-article",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rivers": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "soviet": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 6,
+        "lookups": 2,
+        "tokens": 2428
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 1,
+        "chars": 203,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 17,
+      "wiki": {
+        "hits": 65,
+        "misses": 2,
+        "entries": 1179,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-aral.json",
+      "summary": "live run · seed: Why did the Aral Sea shrink?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T19:23:34.076Z · exported 2026-09-18T19:23:51.003Z\nnodes 1 · visits 1 · model calls 6 · lookups 2 · evidence 2 · tokens 2428\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did the Aral Sea shrink? → Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), th\n\nmodel latency ms: median 2951 · max 3777 · n 6\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-18T19:19:32.087Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-12\",\"asks\":\"asks-4\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T19:19:32.233Z loading: Checking this device before downloading…",
+    "2026-09-18T19:19:47.289Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-8B-q4f16_1-MLC: Ready. Inference runs on this device. (15 s)",
+    "machine at start: gpu 24% · vram 19.61 GiB · load 15.06 · mem 11% free (warning) · no throttling recorded",
+    "2026-09-18T19:19:47.423Z 7 seeds from evals/seeds.json · mode tangle · limits {} · prompt walk-12/asks-4 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit 27f36a8",
+    "wiki recording: 1177 responses loaded",
+    "2026-09-18T19:20:23.618Z run stopped: Root resolved",
+    "dead-sea: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 10 calls, 2 lookups, 3539 tokens · 35 s · wiki 5 hits 0 misses",
+    "2026-09-18T19:20:44.105Z run stopped: Root resolved",
+    "water-cycle: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 7 calls, 2 lookups, 2061 tokens · 20 s · wiki 10 hits 0 misses",
+    "2026-09-18T19:20:59.674Z run stopped: Root resolved",
+    "bronze-age: resolved · facts 2/4 · supported 2/4 · read 4/4 · 1 nodes, 6 calls, 2 lookups, 1667 tokens · 14 s · wiki 15 hits 0 misses",
+    "2026-09-18T19:21:17.010Z run stopped: Root resolved",
+    "colony-collapse: resolved · facts 4/4 · supported 4/4 · read 4/4 · 1 nodes, 8 calls, 2 lookups, 2378 tokens · 17 s · wiki 20 hits 0 misses",
+    "2026-09-18T19:21:34.013Z run stopped: Root resolved",
+    "coral: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 10 calls, 2 lookups, 2215 tokens · 17 s · wiki 25 hits 0 misses",
+    "2026-09-18T19:23:33.648Z run stopped: Root resolved",
+    "sky-blue: resolved · facts 0/3 · supported 0/3 · read 0/3 · 7 nodes, 56 calls, 16 lookups, 14957 tokens · 119 s · wiki 60 hits 2 misses",
+    "2026-09-18T19:23:50.630Z run stopped: Root resolved",
+    "aral: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 6 calls, 2 lookups, 2428 tokens · 17 s · wiki 65 hits 2 misses",
+    "machine during the suite: gpu 91.7% mean, 98% peak · vram up to 24.95 GiB · load up to 25.2 · no throttling in 17 samples"
+  ]
+}
