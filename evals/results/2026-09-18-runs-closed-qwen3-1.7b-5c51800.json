@@ -1,0 +1,377 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "5c51800",
+  "head": "52db6e9",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T12:20:31.414Z",
+  "loadSeconds": 5,
+  "prompt": "closed-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-7",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 76,
+      "mean": 38
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 2.2,
+      "mean": 1.1
+    },
+    "load": {
+      "min": 18.63,
+      "max": 18.94,
+      "mean": 18.8
+    },
+    "memoryFreePercent": {
+      "min": 79,
+      "max": 86,
+      "mean": 82.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 14,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 131
+      },
+      "statuses": {},
+      "finding": "The Dead Sea is shrinking due to the diversion of the Jordan River, which reduces the water flow into the sea. This, combined with the natural evaporation rate in the desert, leads to a decrease in water volume. Additionally, some areas of the sea are being filled with water from the Jordan River, further contributing to its decline.",
+      "kind": "multi-section",
+      "wallSeconds": 8,
+      "latencyMs": 8391,
+      "raw": "<think>\n\n</think>\n\n{        \"answer\": \"The Dead Sea is shrinking due to the diversion of the Jordan River, which reduces the water flow into the sea. This, combined with the natural evaporation rate in the desert, leads to a decrease in water volume. Additionally, some areas of the sea are being filled with water from the Jordan River, further contributing to its decline.\"  }"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "sun": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "evaporation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "condensation-precipitation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 134
+      },
+      "statuses": {},
+      "finding": "The water cycle continues because water is constantly being recycled through evaporation, condensation, precipitation, and collection.  These processes move water through the Earth's systems, ensuring the cycle never ends.  Key players include the Sun, which provides energy for evaporation, and the Earth's atmosphere, which facilitates condensation and precipitation.",
+      "kind": "single-article",
+      "wallSeconds": 1,
+      "latencyMs": 1278,
+      "raw": "<think>\n\n</think>\n\n{  \n\n\n\n\n\n\"answer\"  \n\n\n\n\n\n:  \n\n\n\n\n\n\"The water cycle continues because water is constantly being recycled through evaporation, condensation, precipitation, and collection.  These processes move water through the Earth's systems, ensuring the cycle never ends.  Key players include the Sun, which provides energy for evaporation, and the Earth's atmosphere, which facilitates condensation and precipitation.\"  \n\n\n\n\n\n}"
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sea-peoples": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 111
+      },
+      "statuses": {},
+      "finding": "The Late Bronze Age collapse was caused by a combination of factors, including environmental changes, overuse of resources, and conflict between city-states. These factors led to societal breakdown and the collapse of major civilizations in the region.",
+      "kind": "multi-section",
+      "wallSeconds": 1,
+      "latencyMs": 932,
+      "raw": "<think>\n\n</think>\n\n{        \"answer\": \"The Late Bronze Age collapse was caused by a combination of factors, including environmental changes, overuse of resources, and conflict between city-states. These factors led to societal breakdown and the collapse of major civilizations in the region.\"  }"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "mites": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "pesticides": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "pathogens": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "stressors": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 109
+      },
+      "statuses": {},
+      "finding": "Honey bee colonies collapse due to specific causes such as habitat loss, pesticide use, disease, and climate change. These factors affect the bees' ability to forage, reproduce, and survive, leading to colony collapse.",
+      "kind": "multi-section",
+      "wallSeconds": 1,
+      "latencyMs": 927,
+      "raw": "<think>\n\n</think>\n\n{        \"answer\": \"Honey bee colonies collapse due to specific causes such as habitat loss, pesticide use, disease, and climate change. These factors affect the bees' ability to forage, reproduce, and survive, leading to colony collapse.\"  }"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "algae": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 129
+      },
+      "statuses": {},
+      "finding": "Coral reefs bleach when they are exposed to high sea temperatures, which causes corals to expel their algae partners. These algae provide corals with food and color. When corals bleach, they appear white or pale because they lack their algae. The main causes include rising sea temperatures due to climate change and ocean acidification.",
+      "kind": "single-lead",
+      "wallSeconds": 1,
+      "latencyMs": 1231,
+      "raw": "<think>\n\n</think>\n\n{        \"answer\": \"Coral reefs bleach when they are exposed to high sea temperatures, which causes corals to expel their algae partners. These algae provide corals with food and color. When corals bleach, they appear white or pale because they lack their algae. The main causes include rising sea temperatures due to climate change and ocean acidification.\"  }"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "rayleigh": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 143
+      },
+      "statuses": {},
+      "finding": "The sky appears blue because of Rayleigh scattering, a process in which shorter wavelengths of light (blue and violet) are scattered more than longer wavelengths by the Earth's atmosphere. This scattering is more pronounced for blue light, which is why the sky looks blue. The exact reason why blue is more prominent than violet is due to the way human eyes perceive light and the concentration of blue light in the atmosphere.",
+      "kind": "single-lead, search trap",
+      "wallSeconds": 1,
+      "latencyMs": 1461,
+      "raw": "<think>\n\n</think>\n\n{  \n\n\n\n\n\n\"answer\"  :\n\n\n\n\"The sky appears blue because of Rayleigh scattering, a process in which shorter wavelengths of light (blue and violet) are scattered more than longer wavelengths by the Earth's atmosphere. This scattering is more pronounced for blue light, which is why the sky looks blue. The exact reason why blue is more prominent than violet is due to the way human eyes perceive light and the concentration of blue light in the atmosphere.\"  \n\n\n\n\n\n}"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "irrigation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "soviet": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 128
+      },
+      "statuses": {},
+      "finding": "The Aral Sea shrank primarily due to human activities such as the construction of the As-Shyr and As-Kul reservoirs, which diverted water flow from the Amu Darya River. This led to the drying up of the Aral Sea, and the subsequent ecological and agricultural consequences.",
+      "kind": "single-article",
+      "wallSeconds": 1,
+      "latencyMs": 1189,
+      "raw": "<think>\n\n</think>\n\n{        \"answer\": \"The Aral Sea shrank primarily due to human activities such as the construction of the As-Shyr and As-Kul reservoirs, which diverted water flow from the Amu Darya River. This led to the drying up of the Aral Sea, and the subsequent ecological and agricultural consequences.\"  }"
+    }
+  ],
+  "notes": [
+    "2026-09-18T12:20:31.413Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-7\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T12:20:31.556Z loading: Checking this device before downloading…",
+    "2026-09-18T12:20:36.564Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 98% · vram 0.03 GiB · load 18.63 · mem 86% free (normal) · no throttling recorded",
+    "2026-09-18T12:20:36.662Z 7 seeds from evals/seeds.json · mode closed · limits {\"closed\":true} · prompt closed-1 · grammar answer:string · commit 5c51800",
+    "wiki recording: 434 responses loaded",
+    "dead-sea: resolved · facts 1/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 131 tokens · 8 s",
+    "water-cycle: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 134 tokens · 1 s",
+    "bronze-age: resolved · facts 1/4 · supported 0/4 · read 0/4 · 0 nodes, 1 calls, 0 lookups, 111 tokens · 1 s",
+    "colony-collapse: resolved · facts 2/4 · supported 0/4 · read 0/4 · 0 nodes, 1 calls, 0 lookups, 109 tokens · 1 s",
+    "coral: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 129 tokens · 1 s",
+    "sky-blue: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 143 tokens · 1 s",
+    "aral: resolved · facts 1/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 128 tokens · 1 s",
+    "machine during the suite: gpu 38% mean, 76% peak · vram up to 2.2 GiB · load up to 18.94 · no throttling in 2 samples"
+  ]
+}

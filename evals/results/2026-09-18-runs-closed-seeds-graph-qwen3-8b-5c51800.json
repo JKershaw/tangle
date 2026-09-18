@@ -1,0 +1,490 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-8B-q4f16_1-MLC",
+  "commit": "5c51800",
+  "head": "52db6e9",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T12:23:16.534Z",
+  "loadSeconds": 10,
+  "prompt": "closed-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-7",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 3,
+    "gpuPercent": {
+      "min": 0,
+      "max": 91,
+      "mean": 60.7
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 5.65,
+      "mean": 3.8
+    },
+    "load": {
+      "min": 14.7,
+      "max": 17,
+      "mean": 15.9
+    },
+    "memoryFreePercent": {
+      "min": 67,
+      "max": 85,
+      "mean": 73
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds-graph.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 10,
+  "resolved": 10,
+  "factsPresent": 18,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 30,
+  "results": [
+    {
+      "id": "dead-aral",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "jordan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "aral-rivers": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "irrigation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 125
+      },
+      "statuses": {},
+      "finding": "The Dead Sea and the Aral Sea both shrank due to human water usage. The Aral Sea decreased because of excessive irrigation from the Amu Darya and Syr Darya rivers for cotton farming, while the Dead Sea's shrinking is mainly due to high evaporation rates and water diversion for industrial and domestic use.",
+      "kind": "comparison",
+      "wallSeconds": 10,
+      "latencyMs": 9813,
+      "raw": "<think>\n\n</think>\n\n{\"answer\": \"The Dead Sea and the Aral Sea both shrank due to human water usage. The Aral Sea decreased because of excessive irrigation from the Amu Darya and Syr Darya rivers for cotton farming, while the Dead Sea's shrinking is mainly due to high evaporation rates and water diversion for industrial and domestic use.\"}"
+    },
+    {
+      "id": "chad-dead",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "irrigation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rainfall": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "jordan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 115
+      },
+      "statuses": {},
+      "finding": "The shrinking of Lake Chad and the Dead Sea are both primarily caused by human water use and climate change. Lake Chad has been affected by overuse of water for agriculture and reduced rainfall, while the Dead Sea is shrinking due to mineral extraction and reduced river inflows.",
+      "kind": "comparison",
+      "wallSeconds": 2,
+      "latencyMs": 2371,
+      "raw": "<think>\n\n</think>\n\n{\"answer\": \"The shrinking of Lake Chad and the Dead Sea are both primarily caused by human water use and climate change. Lake Chad has been affected by overuse of water for agriculture and reduced rainfall, while the Dead Sea is shrinking due to mineral extraction and reduced river inflows.\"}"
+    },
+    {
+      "id": "rome-bronze",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "sea-peoples": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "barbarians": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 140
+      },
+      "statuses": {},
+      "finding": "Both the Late Bronze Age collapse and the fall of the Western Roman Empire were caused by a combination of invasions, economic decline, and internal strife. The Late Bronze Age collapse involved invasions by the Sea Peoples and internal unrest, while the fall of the Western Roman Empire was marked by invasions by Germanic tribes, economic troubles, and political instability.",
+      "kind": "comparison",
+      "wallSeconds": 3,
+      "latencyMs": 3107,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"Both the Late Bronze Age collapse and the fall of the Western Roman Empire were caused by a combination of invasions, economic decline, and internal strife. The Late Bronze Age collapse involved invasions by the Sea Peoples and internal unrest, while the fall of the Western Roman Empire was marked by invasions by Germanic tribes, economic troubles, and political instability.\"\n}"
+    },
+    {
+      "id": "sahara-dry",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "hadley": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "sinking": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "rain-shadow": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 122
+      },
+      "statuses": {},
+      "finding": "The Sahara receives little rain primarily due to its location in a subtropical high-pressure zone, where descending air inhibits cloud formation. This region is influenced by the subtropical jet stream and the Atlantic and Mediterranean highs, which suppress precipitation. Additionally, the Sahara's vast, dry surface and minimal vegetation further reduce moisture retention and rainfall.",
+      "kind": "sections",
+      "wallSeconds": 3,
+      "latencyMs": 2807,
+      "raw": "<think>\n\n</think>\n\n{\"answer\": \"The Sahara receives little rain primarily due to its location in a subtropical high-pressure zone, where descending air inhibits cloud formation. This region is influenced by the subtropical jet stream and the Atlantic and Mediterranean highs, which suppress precipitation. Additionally, the Sahara's vast, dry surface and minimal vegetation further reduce moisture retention and rainfall.\"}"
+    },
+    {
+      "id": "black-death",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "crimea": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "genoese": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "vector": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 121
+      },
+      "statuses": {},
+      "finding": "The Black Death reached Europe through trade routes, primarily via the port city of Caffa in the Crimea, where it was introduced by infected rodents on merchant ships. The disease, known as the plague, spread rapidly through Europe, reaching cities like Venice and Genoa, and eventually spreading throughout the continent via trade and human contact.",
+      "kind": "sections",
+      "wallSeconds": 3,
+      "latencyMs": 2940,
+      "raw": "<think>\n\n</think>\n\n{\"answer\": \"The Black Death reached Europe through trade routes, primarily via the port city of Caffa in the Crimea, where it was introduced by infected rodents on merchant ships. The disease, known as the plague, spread rapidly through Europe, reaching cities like Venice and Genoa, and eventually spreading throughout the continent via trade and human contact.\"}"
+    },
+    {
+      "id": "almond-bees",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "pollination": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "self-incompatible": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "hives": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 137
+      },
+      "statuses": {},
+      "finding": "California almond growers depend on rented honey bee hives because almonds require extensive pollination to produce a good yield. The state's almond industry is highly concentrated, and there are not enough wild bee populations to adequately pollinate the vast number of almond orchards. As a result, growers rent honey bee hives from commercial beekeepers to ensure sufficient pollination during the bloom period.",
+      "kind": "sections, search trap",
+      "wallSeconds": 3,
+      "latencyMs": 3442,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"California almond growers depend on rented honey bee hives because almonds require extensive pollination to produce a good yield. The state's almond industry is highly concentrated, and there are not enough wild bee populations to adequately pollinate the vast number of almond orchards. As a result, growers rent honey bee hives from commercial beekeepers to ensure sufficient pollination during the bloom period.\"\n}"
+    },
+    {
+      "id": "jordan-flow",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "carrier": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "diversion": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "neighbours": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 126
+      },
+      "statuses": {},
+      "finding": "The reduced flow of water from the Jordan River to the Dead Sea is primarily due to over-extraction for agriculture and domestic use, particularly in Israel and Jordan. Additionally, climate change has led to decreased rainfall and reduced river inflows. The diversion of water for human consumption has significantly diminished the amount reaching the Dead Sea.",
+      "kind": "two-hop",
+      "wallSeconds": 3,
+      "latencyMs": 2954,
+      "raw": "<think>\n\n</think>\n\n{\"answer\": \"The reduced flow of water from the Jordan River to the Dead Sea is primarily due to over-extraction for agriculture and domestic use, particularly in Israel and Jordan. Additionally, climate change has led to decreased rainfall and reduced river inflows. The diversion of water for human consumption has significantly diminished the amount reaching the Dead Sea.\"}"
+    },
+    {
+      "id": "venus-earth",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "co2": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "carbonate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 158
+      },
+      "statuses": {},
+      "finding": "Venus experienced a runaway greenhouse effect primarily due to its dense atmosphere rich in carbon dioxide, which traps heat efficiently. Unlike Earth, Venus lacks a significant amount of liquid water to absorb and regulate heat, and its geological activity has not been able to remove CO₂ from the atmosphere over geological timescales. This, combined with a lack of a strong magnetic field to protect its atmosphere, led to the extreme greenhouse effect that makes Venus's surface temperature much hotter than Earth's.",
+      "kind": "sections",
+      "wallSeconds": 4,
+      "latencyMs": 4196,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"Venus experienced a runaway greenhouse effect primarily due to its dense atmosphere rich in carbon dioxide, which traps heat efficiently. Unlike Earth, Venus lacks a significant amount of liquid water to absorb and regulate heat, and its geological activity has not been able to remove CO₂ from the atmosphere over geological timescales. This, combined with a lack of a strong magnetic field to protect its atmosphere, led to the extreme greenhouse effect that makes Venus's surface temperature much hotter than Earth's.\"\n}"
+    },
+    {
+      "id": "gulf-stream",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "current": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "westerlies": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "warm": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 139
+      },
+      "statuses": {},
+      "finding": "Western Europe is milder than parts of Canada at the same latitude due to the warming influence of the Gulf Stream and North Atlantic Drift, which carry warm water from the tropics. These ocean currents moderate the climate of Western Europe, especially along the coasts of countries like the UK and Norway, making winters milder and summers cooler than in similar latitudes in Canada.",
+      "kind": "sections",
+      "wallSeconds": 3,
+      "latencyMs": 3483,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"Western Europe is milder than parts of Canada at the same latitude due to the warming influence of the Gulf Stream and North Atlantic Drift, which carry warm water from the tropics. These ocean currents moderate the climate of Western Europe, especially along the coasts of countries like the UK and Norway, making winters milder and summers cooler than in similar latitudes in Canada.\"\n}"
+    },
+    {
+      "id": "moon-face",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "tidal": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "rotation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "same-side": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 114
+      },
+      "statuses": {},
+      "finding": "The Moon always shows the same face to Earth due to a phenomenon called tidal locking. This occurs because the Moon's rotation period matches its orbital period around Earth, which is caused by gravitational interactions over time. As a result, the same side of the Moon always faces Earth.",
+      "kind": "control",
+      "wallSeconds": 3,
+      "latencyMs": 2628,
+      "raw": "<think>\n\n</think>\n\n{\"answer\": \"The Moon always shows the same face to Earth due to a phenomenon called tidal locking. This occurs because the Moon's rotation period matches its orbital period around Earth, which is caused by gravitational interactions over time. As a result, the same side of the Moon always faces Earth.\"}"
+    }
+  ],
+  "notes": [
+    "2026-09-18T12:23:16.534Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-7\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T12:23:16.672Z loading: Checking this device before downloading…",
+    "2026-09-18T12:23:26.688Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-8B-q4f16_1-MLC: Ready. Inference runs on this device. (10 s)",
+    "machine at start: gpu 91% · vram 0.03 GiB · load 14.7 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T12:23:26.779Z 10 seeds from evals/seeds-graph.json · mode closed · limits {\"closed\":true} · prompt closed-1 · grammar answer:string · commit 5c51800",
+    "wiki recording: 434 responses loaded",
+    "dead-aral: resolved · facts 2/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 125 tokens · 10 s",
+    "chad-dead: resolved · facts 1/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 115 tokens · 2 s",
+    "rome-bronze: resolved · facts 2/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 140 tokens · 3 s",
+    "sahara-dry: resolved · facts 2/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 122 tokens · 3 s",
+    "black-death: resolved · facts 2/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 121 tokens · 3 s",
+    "almond-bees: resolved · facts 2/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 137 tokens · 3 s",
+    "jordan-flow: resolved · facts 1/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 126 tokens · 3 s",
+    "venus-earth: resolved · facts 1/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 158 tokens · 4 s",
+    "gulf-stream: resolved · facts 2/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 139 tokens · 3 s",
+    "moon-face: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 114 tokens · 3 s",
+    "machine during the suite: gpu 60.7% mean, 91% peak · vram up to 5.65 GiB · load up to 17 · no throttling in 3 samples"
+  ]
+}

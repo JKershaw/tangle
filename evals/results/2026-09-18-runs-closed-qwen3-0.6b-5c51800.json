@@ -1,0 +1,377 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-0.6B-q4f16_1-MLC",
+  "commit": "5c51800",
+  "head": "52db6e9",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T12:24:05.764Z",
+  "loadSeconds": 5,
+  "prompt": "closed-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-7",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 1,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 0.04,
+      "max": 0.04,
+      "mean": 0
+    },
+    "load": {
+      "min": 19.38,
+      "max": 19.38,
+      "mean": 19.4
+    },
+    "memoryFreePercent": {
+      "min": 85,
+      "max": 85,
+      "mean": 85
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 8,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "jordan-diversion": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 176
+      },
+      "statuses": {},
+      "finding": "The Dead Sea's shrinking is due to the depletion of its saltwater, which is a result of the depletion of its surface water, and this process is caused by the removal of surface water from the area, which is a natural process. The specific causes include the removal of surface water and the depletion of the saltwater, and the places involved include the Dead Sea itself, and the surface water that is being removed. The processes involved include the removal of surface water and the depletion of the saltwater, and the people involved include the surface water and the saltwater that are being removed.",
+      "kind": "multi-section",
+      "wallSeconds": 9,
+      "latencyMs": 8792,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Dead Sea's shrinking is due to the depletion of its saltwater, which is a result of the depletion of its surface water, and this process is caused by the removal of surface water from the area, which is a natural process. The specific causes include the removal of surface water and the depletion of the saltwater, and the places involved include the Dead Sea itself, and the surface water that is being removed. The processes involved include the removal of surface water and the depletion of the saltwater, and the people involved include the surface water and the saltwater that are being removed.\"  \n}"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "evaporation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "condensation-precipitation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 139
+      },
+      "statuses": {},
+      "finding": "The water cycle keeps going because of the continuous movement of water, which is essential for all forms of life, including humans. This cycle is driven by natural processes such as evaporation, condensation, and precipitation, which together create and distribute water across the Earth. The processes involved include the movement of water from one place to another, and the role of both people and nature in maintaining this cycle.",
+      "kind": "single-article",
+      "wallSeconds": 1,
+      "latencyMs": 1006,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The water cycle keeps going because of the continuous movement of water, which is essential for all forms of life, including humans. This cycle is driven by natural processes such as evaporation, condensation, and precipitation, which together create and distribute water across the Earth. The processes involved include the movement of water from one place to another, and the role of both people and nature in maintaining this cycle.\"  \n}"
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sea-peoples": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 112
+      },
+      "statuses": {},
+      "finding": "The Late Bronze Age collapse was caused by environmental and societal changes, such as the depletion of natural resources and the rise of new political powers, and it occurred in regions like the Levant and the Middle East, leading to the eventual decline of these ancient civilizations.",
+      "kind": "multi-section",
+      "wallSeconds": 1,
+      "latencyMs": 692,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Late Bronze Age collapse was caused by environmental and societal changes, such as the depletion of natural resources and the rise of new political powers, and it occurred in regions like the Levant and the Middle East, leading to the eventual decline of these ancient civilizations.\"  \n}"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "mites": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "pesticides": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "pathogens": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "stressors": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 112
+      },
+      "statuses": {},
+      "finding": "Honey bee colonies collapse due to factors like disease, lack of food, environmental changes, and poor management of the hive. These factors can lead to a decrease in population size and overall health, which in turn affects the colony's ability to reproduce and maintain its structure.",
+      "kind": "multi-section",
+      "wallSeconds": 1,
+      "latencyMs": 717,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"Honey bee colonies collapse due to factors like disease, lack of food, environmental changes, and poor management of the hive. These factors can lead to a decrease in population size and overall health, which in turn affects the colony's ability to reproduce and maintain its structure.\"  \n}"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "algae": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 169
+      },
+      "statuses": {},
+      "finding": "Coral reefs bleach due to environmental stressors, such as rising ocean temperatures and acidification, which disrupt the symbiotic relationship between corals and their symbiotic algae. This process is often linked to overfishing, pollution, and other environmental degradation factors. The bleaching can lead to coral death, which in turn affects marine ecosystems. The specific causes include ocean acidification, warming oceans, and human activities like overfishing and pollution. The places involved include coral reefs worldwide, and the processes involved include the biological and environmental impacts of these stressors.",
+      "kind": "single-lead",
+      "wallSeconds": 1,
+      "latencyMs": 1423,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"Coral reefs bleach due to environmental stressors, such as rising ocean temperatures and acidification, which disrupt the symbiotic relationship between corals and their symbiotic algae. This process is often linked to overfishing, pollution, and other environmental degradation factors. The bleaching can lead to coral death, which in turn affects marine ecosystems. The specific causes include ocean acidification, warming oceans, and human activities like overfishing and pollution. The places involved include coral reefs worldwide, and the processes involved include the biological and environmental impacts of these stressors.\"  \n}"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "rayleigh": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 130
+      },
+      "statuses": {},
+      "finding": "The sky appears blue because of the scattering of sunlight by the Earth's atmosphere, which causes shorter wavelengths of light to be scattered more than longer wavelengths. This scattering is due to molecules and atoms in the atmosphere, and it results in the perception of a blue sky. The specific causes include the scattering of light and the processes involved in how light interacts with the atmosphere.",
+      "kind": "single-lead, search trap",
+      "wallSeconds": 1,
+      "latencyMs": 929,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The sky appears blue because of the scattering of sunlight by the Earth's atmosphere, which causes shorter wavelengths of light to be scattered more than longer wavelengths. This scattering is due to molecules and atoms in the atmosphere, and it results in the perception of a blue sky. The specific causes include the scattering of light and the processes involved in how light interacts with the atmosphere.\"  \n}"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "soviet": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 154
+      },
+      "statuses": {},
+      "finding": "The shrinking of the Aral Sea was due to the construction of the Aral River Basin, which led to the removal of water from the area, reducing its area and causing its shrinking. This was a result of human activities, including the removal of water for irrigation and other agricultural practices. The process was driven by the need for water in the region, leading to its depletion. The area was once a vast expanse, and its shrinking is a result of these factors.",
+      "kind": "single-article",
+      "wallSeconds": 1,
+      "latencyMs": 1173,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The shrinking of the Aral Sea was due to the construction of the Aral River Basin, which led to the removal of water from the area, reducing its area and causing its shrinking. This was a result of human activities, including the removal of water for irrigation and other agricultural practices. The process was driven by the need for water in the region, leading to its depletion. The area was once a vast expanse, and its shrinking is a result of these factors.\"  \n}"
+    }
+  ],
+  "notes": [
+    "2026-09-18T12:24:05.764Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-7\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T12:24:05.881Z loading: Checking this device before downloading…",
+    "2026-09-18T12:24:10.890Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-0.6B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 91% · vram 0.04 GiB · load 19.38 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T12:24:10.988Z 7 seeds from evals/seeds.json · mode closed · limits {\"closed\":true} · prompt closed-1 · grammar answer:string · commit 5c51800",
+    "wiki recording: 434 responses loaded",
+    "dead-sea: resolved · facts 0/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 176 tokens · 9 s",
+    "water-cycle: resolved · facts 2/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 139 tokens · 1 s",
+    "bronze-age: resolved · facts 0/4 · supported 0/4 · read 0/4 · 0 nodes, 1 calls, 0 lookups, 112 tokens · 1 s",
+    "colony-collapse: resolved · facts 1/4 · supported 0/4 · read 0/4 · 0 nodes, 1 calls, 0 lookups, 112 tokens · 1 s",
+    "coral: resolved · facts 2/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 169 tokens · 1 s",
+    "sky-blue: resolved · facts 2/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 130 tokens · 1 s",
+    "aral: resolved · facts 1/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 154 tokens · 1 s",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 0.04 GiB · load up to 19.38 · no throttling in 1 samples"
+  ]
+}

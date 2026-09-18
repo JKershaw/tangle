@@ -1,0 +1,377 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-4B-q4f16_1-MLC",
+  "commit": "5c51800",
+  "head": "52db6e9",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T12:21:26.131Z",
+  "loadSeconds": 5,
+  "prompt": "closed-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-7",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 86,
+      "mean": 43
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 3.56,
+      "mean": 1.8
+    },
+    "load": {
+      "min": 17.79,
+      "max": 18.76,
+      "mean": 18.3
+    },
+    "memoryFreePercent": {
+      "min": 74,
+      "max": 86,
+      "mean": 80
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 19,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 154
+      },
+      "statuses": {},
+      "finding": "The Dead Sea is shrinking primarily due to the extraction of water for agriculture and industry in the Jordan River basin, which reduces the inflow of water into the Dead Sea. Additionally, the Jordan River has been heavily diverted for use elsewhere, leading to a decline in the water level. The Dead Sea's unique high salinity (about 34% salt) makes it difficult for water to evaporate, but the reduced inflow and increased outflow are the main factors causing its shrinking.",
+      "kind": "multi-section",
+      "wallSeconds": 10,
+      "latencyMs": 9986,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The Dead Sea is shrinking primarily due to the extraction of water for agriculture and industry in the Jordan River basin, which reduces the inflow of water into the Dead Sea. Additionally, the Jordan River has been heavily diverted for use elsewhere, leading to a decline in the water level. The Dead Sea's unique high salinity (about 34% salt) makes it difficult for water to evaporate, but the reduced inflow and increased outflow are the main factors causing its shrinking.\"\n}"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "sun": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "evaporation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "condensation-precipitation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 118
+      },
+      "statuses": {},
+      "finding": "The water cycle keeps going because of the continuous processes of evaporation, condensation, precipitation, and collection, driven by the sun's energy. These processes occur globally in places like oceans, forests, and deserts, and are influenced by factors such as temperature, pressure, and the Earth's rotation.",
+      "kind": "single-article",
+      "wallSeconds": 2,
+      "latencyMs": 1903,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The water cycle keeps going because of the continuous processes of evaporation, condensation, precipitation, and collection, driven by the sun's energy. These processes occur globally in places like oceans, forests, and deserts, and are influenced by factors such as temperature, pressure, and the Earth's rotation.\"\n}"
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "climate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "sea-peoples": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 154
+      },
+      "statuses": {},
+      "finding": "The collapse of the Late Bronze Age (c. 1200–800 BCE) was caused by a combination of factors including climate change, warfare, and economic disruption. Droughts and shifting agricultural patterns led to food shortages, while invasions by groups like the Sea Peoples and internal strife weakened societies. The collapse affected regions from the Mediterranean to the Near East, leading to the decline of complex civilizations like the Mycenaean and Hittite states.",
+      "kind": "multi-section",
+      "wallSeconds": 3,
+      "latencyMs": 2790,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The collapse of the Late Bronze Age (c. 1200–800 BCE) was caused by a combination of factors including climate change, warfare, and economic disruption. Droughts and shifting agricultural patterns led to food shortages, while invasions by groups like the Sea Peoples and internal strife weakened societies. The collapse affected regions from the Mediterranean to the Near East, leading to the decline of complex civilizations like the Mycenaean and Hittite states.\"\n}"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "pesticides": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "pathogens": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "stressors": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 147
+      },
+      "statuses": {},
+      "finding": "Honey bee colonies can collapse due to a variety of factors, including pesticide exposure, habitat loss, and the Varroa mite infestation. These issues are often exacerbated by climate change and poor management practices. The Varroa mite is a primary threat, as it weakens the colony and transmits viruses. Additionally, the use of neonicotinoid pesticides can impair bees' navigation and foraging abilities, leading to colony decline.",
+      "kind": "multi-section",
+      "wallSeconds": 3,
+      "latencyMs": 2686,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"Honey bee colonies can collapse due to a variety of factors, including pesticide exposure, habitat loss, and the Varroa mite infestation. These issues are often exacerbated by climate change and poor management practices. The Varroa mite is a primary threat, as it weakens the colony and transmits viruses. Additionally, the use of neonicotinoid pesticides can impair bees' navigation and foraging abilities, leading to colony decline.\"\n}"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "algae": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 133
+      },
+      "statuses": {},
+      "finding": "Coral reefs bleach primarily due to stress from rising sea temperatures, which are linked to climate change. This stress can also be exacerbated by factors such as ocean acidification, pollution, and overfishing. The bleaching process occurs when corals expel the symbiotic algae (zooxanthellae) living in their tissues, which provide them with nutrients and their bright colors.",
+      "kind": "single-lead",
+      "wallSeconds": 2,
+      "latencyMs": 2331,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"Coral reefs bleach primarily due to stress from rising sea temperatures, which are linked to climate change. This stress can also be exacerbated by factors such as ocean acidification, pollution, and overfishing. The bleaching process occurs when corals expel the symbiotic algae (zooxanthellae) living in their tissues, which provide them with nutrients and their bright colors.\"\n}"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "rayleigh": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 138
+      },
+      "statuses": {},
+      "finding": "The sky appears blue because molecules in the Earth's atmosphere scatter shorter wavelengths of light, like blue, more efficiently than longer wavelengths, such as red. This scattering is called Rayleigh scattering, and it's caused by the interaction of sunlight with the atmosphere. The effect is most noticeable during the day when the sun is low in the sky, as the light travels through more atmosphere, scattering the blue light more widely.",
+      "kind": "single-lead, search trap",
+      "wallSeconds": 2,
+      "latencyMs": 2462,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The sky appears blue because molecules in the Earth's atmosphere scatter shorter wavelengths of light, like blue, more efficiently than longer wavelengths, such as red. This scattering is called Rayleigh scattering, and it's caused by the interaction of sunlight with the atmosphere. The effect is most noticeable during the day when the sun is low in the sky, as the light travels through more atmosphere, scattering the blue light more widely.\"\n}"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "soviet": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 148
+      },
+      "statuses": {},
+      "finding": "The Aral Sea shrank primarily due to the diversion of the Amu Darya and Syr Darya rivers for irrigation projects in the 1960s, which led to the drying up of the sea. This process was accelerated by the Soviet Union's focus on agriculture in Central Asia, particularly the cultivation of cotton. The shrinking sea has had severe environmental and human consequences, including the exposure of salt flats and the destruction of local ecosystems.",
+      "kind": "single-article",
+      "wallSeconds": 3,
+      "latencyMs": 2697,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The Aral Sea shrank primarily due to the diversion of the Amu Darya and Syr Darya rivers for irrigation projects in the 1960s, which led to the drying up of the sea. This process was accelerated by the Soviet Union's focus on agriculture in Central Asia, particularly the cultivation of cotton. The shrinking sea has had severe environmental and human consequences, including the exposure of salt flats and the destruction of local ecosystems.\"\n}"
+    }
+  ],
+  "notes": [
+    "2026-09-18T12:21:26.130Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-7\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T12:21:26.264Z loading: Checking this device before downloading…",
+    "2026-09-18T12:21:31.269Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-4B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 77% · vram 0.03 GiB · load 17.79 · mem 86% free (normal) · no throttling recorded",
+    "2026-09-18T12:21:31.362Z 7 seeds from evals/seeds.json · mode closed · limits {\"closed\":true} · prompt closed-1 · grammar answer:string · commit 5c51800",
+    "wiki recording: 434 responses loaded",
+    "dead-sea: resolved · facts 1/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 154 tokens · 10 s",
+    "water-cycle: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 118 tokens · 2 s",
+    "bronze-age: resolved · facts 3/4 · supported 0/4 · read 0/4 · 0 nodes, 1 calls, 0 lookups, 154 tokens · 3 s",
+    "colony-collapse: resolved · facts 3/4 · supported 0/4 · read 0/4 · 0 nodes, 1 calls, 0 lookups, 147 tokens · 3 s",
+    "coral: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 133 tokens · 2 s",
+    "sky-blue: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 138 tokens · 2 s",
+    "aral: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 148 tokens · 3 s",
+    "machine during the suite: gpu 43% mean, 86% peak · vram up to 3.56 GiB · load up to 18.76 · no throttling in 2 samples"
+  ]
+}

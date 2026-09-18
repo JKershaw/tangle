@@ -2,6 +2,26 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-18 · the vanilla column: what the model already knows
+
+John asked whether we can now stack the vanilla models against models-plus-Tangle. The missing column was the model alone: `--mode closed` asks the seed question with no tools, one call, and grades the answer on facts named. Nothing in that column is supported, by construction — there is no evidence — so it measures memory, and the other columns measure reading.
+
+| model | seeds | closed (memory) | tangle walk-7 | flat walk-7 | composing (one node + Wikipedia) |
+|---|---|---|---|---|---|
+| 0.6B | base 23 | 8 | 2 (walk-6) | — | 0 (pocket-9) |
+| 1.7B | base 23 | 14 | 10 | 12 | **16** |
+| 4B | base 23 | **19** | 17 | 17 | 13 |
+| 8B | base 23 | **20** | 16 | 17 | 18 |
+| 0.6B | graph 30 | 8 | — | — | — |
+| 1.7B | graph 30 | 9 | **16** | 12 | 12 (11 supported) |
+| 4B | graph 30 | **21** | 15 | 12 | 14 (9 supported) |
+| 8B | graph 30 | **18** | 14 | 12 | 17 (16 supported) |
+
+- **From 4B up, memory names more rubric facts than any reading mode, on both seed sets.** 4B alone names 19 of 23 and 21 of 30; 8B 20 and 18. The seeds are Wikipedia's best-known questions — why the sky is blue, why the Dead Sea shrinks — and a 4B model has read that Wikipedia. Every column that reads is capped by what it reads and how it picks; the memory column is capped by nothing but recall, and these seeds do not test recall.
+- **Tangle beats memory in one cell: 1.7B on the graph seeds, 16 against 9.** That is the size that does not know the answers and the seeds that need more than one article — the split did that. At 1.7B on the base seeds memory (14) beats the walk (10) and the composing node (16) beats both. At 0.6B memory names 8 and the walk 2.
+- **The columns measure different things, and the table should say so.** Closed-book facts are named, not shown: 1.7B's Dead Sea answer names the Jordan River and then says the sea is being filled from it. The walk's facts are verbatim sentences from a cited excerpt. "Vanilla beats Tangle" on this table means "recall beats grounded reading on questions the model has memorised"; it does not say which answer to trust.
+- **What this changes.** The benchmark's seeds were chosen for where the facts sit in Wikipedia, not for whether the model already knows them. A seed the model answers from memory cannot show what reading adds. The next seed set should be filtered by the closed column — keep questions where 8B names under a third of the facts alone — and the same four columns rerun. Only there can the thesis be tested; here it is being tested against a model that has already read the book.
+
 ## 2026-09-18 · walk-7: the split, and reading on
 
 Two code changes from the graph-seed traces (5c51800). A question naming two subjects joined by *and* or *or* is split before anything is read, one child per subject ("… — about the Aral Sea"), each child's search term drops the other subject, and the parent's answer is its children's findings with no pick. After a first pick, while the finding has room and lookups remain, a node reads one more section the model chooses and asks again over it. Both seed sets, three sizes, tangle and flat; the composing column is the pocket-10 one-node control from the rounds above.

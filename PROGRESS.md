@@ -57,6 +57,15 @@ Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · c
 
 **Read the 2026-09-17 rows as a verdict on that build, not on the approach.** Decomposition only fires at 1.7B; every other model resolves at the root, so those tangle rows are not a test of it. Where it does fire it costs twenty times the tokens to deliver a quarter of the facts, while reading more of the rubric than any other row — because the scheduler froze the root on six of seven seeds, and because a visit asked the model for five decisions at once. Full table and reading in [evals/results.md](evals/results.md). The plan turned on this result: see *The turn* in [PLAN.md](PLAN.md).
 
+Closed book (`--mode closed`: the model alone, no tools, facts named, none supported by construction):
+
+| date | commit | seeds | 0.6B | 1.7B | 4B | 8B |
+|---|---|---|---|---|---|---|
+| 2026-09-18 | 5c51800 | base (23) | 8 | 14 | **19** | **20** |
+| 2026-09-18 | 5c51800 | graph (30) | 8 | 9 | **21** | **18** |
+
+From 4B up, memory names more rubric facts than any reading mode on both seed sets; the walk beats memory only at 1.7B on the graph seeds (16 against 9). The seeds test what the model has memorised, not what reading adds; the next seed set is to be filtered by this column. Reading in [evals/readings.md](evals/readings.md).
+
 Graph seeds (`evals/seeds-graph.json`, 10 seeds no single article answers, 30 facts; `--seeds evals/seeds-graph.json`):
 
 | date | commit | model | tangle | flat (walk, one node) | composing (one node) |
@@ -115,6 +124,7 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 
 ### 2026-09-18 · afternoon
 
+- The vanilla column, on John's question: `--mode closed` (the model alone, one call, no tools). 4B names 19/23 and 21/30 from memory, 8B 20 and 18, above every reading mode; 1.7B 14 and 9; 0.6B 8 and 8. The walk beats memory only at 1.7B on the graph seeds (16 vs 9). The benchmark seeds are questions these models have memorised; the next seed set is to be chosen where 8B's closed-book score is low.
 - walk-7 rows: on the graph seeds the tangle leads its one-node control at every size (16, 15, 14 against 12, 12, 12 of 30) and the whole lead is the code-made split of two-subject questions; reading on adds about a fact on the base seeds (4B 17/23, the best walk row yet). 8B's model-asked children take the graph seeds to 828 s. Base seeds against the composing node: behind at 1.7B and 8B, ahead at 4B.
 - Graph seeds at three sizes and three modes: the walk is 10–12/30 at every size, level with its own one-node control, because every size reads one article and resolves with half an answer; the composing node reaches 17/30 at 8B but starts stating facts its evidence does not hold (4B: 14 stated, 9 supported). 8B composing on the base seeds: 18/23.
 - walk-7 (5c51800): a question naming two subjects joined by and/or is split by code before anything is read, one child per subject; the parent's answer is their findings. After a first pick, while the finding has room and lookups remain, the node reads one more section and asks again. Both seed sets rerunning at 1.7B, 4B and 8B, tangle and flat.
