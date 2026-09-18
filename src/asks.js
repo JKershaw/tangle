@@ -32,7 +32,11 @@ export function splitSentences(text, { minLength = 25 } = {}) {
 
 const numbered = (sentences) => sentences.map((sentence, index) => `${index + 1}. ${sentence}`).join("\n");
 const labels = (count) => Array.from({ length: count }, (_, index) => String(index + 1));
-const enumSchema = (key, values) => Object.freeze({ type: "object", properties: { [key]: { enum: [...values] } }, required: [key], additionalProperties: false });
+// An enum is a set: an article's headings can repeat ("History" under two
+// parents), and LM Studio refuses a schema whose enum repeats an item where
+// the page's grammar let it pass (2026-09-18, the Dead Sea). A repeated
+// heading was never addressable by name anyway.
+const enumSchema = (key, values) => Object.freeze({ type: "object", properties: { [key]: { enum: [...new Set(values)] } }, required: [key], additionalProperties: false });
 const stringSchema = (key, maxLength) => Object.freeze({ type: "object", properties: { [key]: { type: "string", maxLength } }, required: [key], additionalProperties: false });
 
 export function parseJson(raw) {

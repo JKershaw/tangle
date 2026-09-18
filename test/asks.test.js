@@ -71,3 +71,10 @@ test("isParaphrase: a child that keeps every content word of its parent is the p
   assert.equal(isParaphrase("What causes the energy exchanges that drive the water cycle?", "Why does the water cycle keep going?"), false);
   assert.equal(isParaphrase("What causes coral reefs to bleach?", "Why do coral reefs bleach?"), true);
 });
+
+test("an ask's enum never repeats an item, even when an article's headings do", () => {
+  const [call] = askCalls("section", "list", { question: "Why is the Dead Sea shrinking?", article: "Dead Sea", sections: ["Geography", "History", "Flora and fauna", "History", "Extraction"] });
+  assert.deepEqual(call.schema.properties.section.enum, ["Geography", "History", "Flora and fauna", "Extraction"]);
+  const [brief] = askCalls("section", "brief", { question: "Tell me about the Dead Sea.", article: "Dead Sea", sections: ["History", "History"] });
+  assert.deepEqual(brief.schema.properties.section.enum, ["History", "none"]);
+});
