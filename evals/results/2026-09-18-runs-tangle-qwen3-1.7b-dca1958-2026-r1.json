@@ -1,0 +1,420 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "dca1958",
+  "head": "570fe77",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T10:36:36.628Z",
+  "loadSeconds": 5,
+  "prompt": "walk-6/asks-2",
+  "schema": "sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-6",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds.json",
+  "repeat": 1,
+  "repeats": 3,
+  "limits": "default",
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 9,
+  "factsSupported": 9,
+  "factsRead": 20,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 2195
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Dead Sea is receding at a swift rate; its surface area today is 605 km2 (234 sq mi), having been 1,050 km2 (410 sq mi) in 1930. Multiple canal and pipeline proposals, such as the scrapped Red Sea–Dead Sea Water Conveyance project, have been made to reduce its recession.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-dead-sea-r1.json",
+      "summary": "live run · seed: Why is the Dead Sea shrinking?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:36:41.935Z · exported 2026-09-18T10:36:46.807Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 2195\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is the Dead Sea shrinking? → The Dead Sea is receding at a swift rate; its surface area today is 605 km2 (234 sq mi), h\n\nmodel latency ms: median 917 · max 967 · n 4\nnothing flagged"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "evaporation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 2,
+        "tokens": 2637
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Over time, the water returns to the ocean, to continue the water cycle.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 9,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-water-cycle-r1.json",
+      "summary": "live run · seed: Why does the water cycle keep going?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:36:46.821Z · exported 2026-09-18T10:36:51.425Z\nnodes 1 · visits 1 · model calls 7 · lookups 2 · evidence 2 · tokens 2637\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why does the water cycle keep going? → Over time, the water returns to the ocean, to continue the water cycle.\n\nmodel latency ms: median 613 · max 717 · n 7\nnothing flagged"
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sea-peoples": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1848
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Competing theories of the cause of the Late Bronze Age collapse have been proposed since the 19th century, with most involving the violent destruction of cities and towns. These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea Peoples, economic disruptions due to increased ironworking, and changes in military technology and strategy that brought the decline of chariot warfare. The palace economy of Mycenaean Greece, the Aegean region, and Anatolia that characterized the Late Bronze Age disintegrated, transforming into the small isolated village cultures of the Greek Dark Ages, which lasted from c. 1200 BC to c. 800 BC, and were followed by the better-known Archaic Age.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 13,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-bronze-age-r1.json",
+      "summary": "live run · seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:36:51.431Z · exported 2026-09-18T10:36:56.036Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1848\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did the Late Bronze Age collapse happen? → Competing theories of the cause of the Late Bronze Age collapse have been proposed since t\n\nmodel latency ms: median 726 · max 750 · n 4\nnothing flagged"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "mites": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "pesticides": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "pathogens": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "stressors": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1974
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Colony collapse disorder (CCD) is an abnormal phenomenon that occurs when the majority of worker bees in a honey bee colony disappear, leaving behind a queen, plenty of food, and a few nurse bees to care for the remaining immature bees. While such disappearances have occurred sporadically throughout the history of apiculture, and have been known by various names (including disappearing disease, spring dwindle, May disease, autumn collapse, and fall dwindle disease), the syndrome was renamed colony collapse disorder in early 2007 in conjunction with a drastic rise in reports of disappearances of western honey bee (Apis mellifera) colonies in North America. Several possible causes for CCD have been proposed, but no single proposal has gained widespread acceptance among the scientific community.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 17,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-colony-collapse-r1.json",
+      "summary": "live run · seed: Why do honey bee colonies collapse?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:36:56.045Z · exported 2026-09-18T10:37:00.638Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1974\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do honey bee colonies collapse? → Colony collapse disorder (CCD) is an abnormal phenomenon that occurs when the majority of \n\nmodel latency ms: median 797 · max 849 · n 4\nnothing flagged"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "algae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1395
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Coral bleaching is the process where corals become white due to loss of symbiotic algae and photosynthetic pigments. A bleached coral is under stress, more vulnerable to starvation and disease, and at risk of death. The leading cause of coral bleaching is rising ocean temperatures due to climate change.",
+      "kind": "single-lead",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 21,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-coral-r1.json",
+      "summary": "live run · seed: Why do coral reefs bleach?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:37:00.642Z · exported 2026-09-18T10:37:05.238Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1395\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do coral reefs bleach? → Coral bleaching is the process where corals become white due to loss of symbiotic algae an\n\nmodel latency ms: median 576 · max 677 · n 4\nnothing flagged"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "wavelength": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "scattering": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 3,
+        "visits": 5,
+        "modelCalls": 34,
+        "lookups": 5,
+        "tokens": 8540
+      },
+      "statuses": {
+        "resolved": 3
+      },
+      "finding": "Proceeding from analyses of the aftermath of the eruption of the Philippines volcano Mount Pinatubo (in June 1991) and other studies: Diffused skylight, owing to its intrinsic structure and behavior, can illuminate under-canopy leaves, permitting more efficient total whole-plant photosynthesis than would otherwise be the case; this in stark contrast to the effect of totally clear skies with direct sunlight that casts shadows onto understory leaves and thereby limits plant photosynthesis to the top canopy layer, (see below).",
+      "kind": "single-lead, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 23,
+      "wiki": {
+        "hits": 35,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-sky-blue-r1.json",
+      "summary": "live run · seed: Why is the sky blue?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:37:05.242Z · exported 2026-09-18T10:37:28.001Z\nnodes 3 · visits 5 · model calls 34 · lookups 5 · evidence 5 · tokens 8540\nstatuses {\"resolved\":3} · outcome: root resolved\n\nn1 [resolved v2] Why is the sky blue? → Proceeding from analyses of the aftermath of the eruption of the Philippines volcano Mount\n  n2 [resolved v2] What is the role of diffused skylight in plant photosynthesis? → Proceeding from analyses of the aftermath of the eruption of the Philippines volcano Mount\n    n3 [resolved] What is the primary mechanism by which diffused skylight enhances plant photosynthesis? → Proceeding from analyses of the aftermath of the eruption of the Philippines volcano Mount\n\nmodel latency ms: median 386 · max 7993 · n 34\nworth a look:\n- n1 resolved citing only its children's sources\n- n2 resolved citing only its children's sources"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rivers": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "soviet": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 2073
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects. The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely dried up into desert by 2007. By 2007, it had declined to 10% of its original size, splitting into four lakes: the North Aral Sea, the eastern and western basins of the once far larger South Aral Sea, and the smaller intermediate Barsakelmes Lake.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 39,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-aral-r1.json",
+      "summary": "live run · seed: Why did the Aral Sea shrink?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:37:28.015Z · exported 2026-09-18T10:37:32.616Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 2073\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did the Aral Sea shrink? → Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), th\n\nmodel latency ms: median 786 · max 836 · n 4\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-18T10:36:36.627Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-6\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T10:36:36.751Z loading: Checking this device before downloading…",
+    "2026-09-18T10:36:41.760Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 26% · vram 0.03 GiB · load 18.04 · mem 87% free (normal) · no throttling recorded",
+    "2026-09-18T10:36:41.860Z 7 seeds from evals/seeds.json · mode tangle · limits {} · prompt walk-6/asks-2 · grammar sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit dca1958 · 3 repeats",
+    "wiki recording: 238 responses loaded",
+    "2026-09-18T10:36:41.934Z repeat 1 of 3",
+    "2026-09-18T10:36:46.743Z run stopped: Root resolved",
+    "dead-sea: resolved · facts 0/3 · supported 0/3 · read 2/3 · 1 nodes, 4 calls, 1 lookups, 2195 tokens · 5 s · wiki 4 hits 0 misses",
+    "2026-09-18T10:36:51.364Z run stopped: Root resolved",
+    "water-cycle: resolved · facts 0/3 · supported 0/3 · read 3/3 · 1 nodes, 7 calls, 2 lookups, 2637 tokens · 5 s · wiki 9 hits 0 misses",
+    "2026-09-18T10:36:55.974Z run stopped: Root resolved",
+    "bronze-age: resolved · facts 2/4 · supported 2/4 · read 2/4 · 1 nodes, 4 calls, 1 lookups, 1848 tokens · 5 s · wiki 13 hits 0 misses",
+    "2026-09-18T10:37:00.585Z run stopped: Root resolved",
+    "colony-collapse: resolved · facts 1/4 · supported 1/4 · read 4/4 · 1 nodes, 4 calls, 1 lookups, 1974 tokens · 5 s · wiki 17 hits 0 misses",
+    "2026-09-18T10:37:05.189Z run stopped: Root resolved",
+    "coral: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 4 calls, 1 lookups, 1395 tokens · 5 s · wiki 21 hits 0 misses",
+    "2026-09-18T10:37:27.944Z run stopped: Root resolved",
+    "sky-blue: resolved · facts 0/3 · supported 0/3 · read 3/3 · 3 nodes, 34 calls, 5 lookups, 8540 tokens · 23 s · wiki 35 hits 0 misses",
+    "2026-09-18T10:37:32.561Z run stopped: Root resolved",
+    "aral: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 4 calls, 1 lookups, 2073 tokens · 5 s · wiki 39 hits 0 misses"
+  ]
+}

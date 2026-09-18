@@ -1,0 +1,452 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-8B-q4f16_1-MLC",
+  "commit": "dca1958",
+  "head": "3e3d2d8",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T11:32:34.338Z",
+  "loadSeconds": 10,
+  "prompt": "tangle-pocket-10",
+  "schema": "per-action-7",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-6",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 32,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 88.9
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 5.84,
+      "mean": 3.9
+    },
+    "load": {
+      "min": 10.41,
+      "max": 20.7,
+      "mean": 15.6
+    },
+    "memoryFreePercent": {
+      "min": 67,
+      "max": 86,
+      "mean": 73.4
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "composing",
+  "seedSet": "evals/seeds.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "maxNodes": 1,
+    "maxVisits": 3,
+    "maxDepth": 0,
+    "maxLookups": 6,
+    "maxPasses": 8,
+    "walk": false
+  },
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 18,
+  "factsSupported": 18,
+  "factsRead": 23,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 7578
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Dead Sea is shrinking primarily due to the diversion of water from the Jordan River to the north as part of the National Water Carrier scheme, which began in 1964. Additionally, the shrinking of the Dead Sea has led to the formation of sinkholes along its western shore as groundwater levels drop and salt layers dissolve.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 127,
+      "wiki": {
+        "hits": 7,
+        "misses": 0,
+        "entries": 370,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-composing-dead-sea.json",
+      "summary": "live run · seed: Why is the Dead Sea shrinking?\nmodel Qwen3-8B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:32:44.718Z · exported 2026-09-18T11:34:51.626Z\nnodes 1 · visits 1 · model calls 7 · lookups 6 · evidence 3 · tokens 7578\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved 3 failed lookups] Why is the Dead Sea shrinking? → The Dead Sea is shrinking primarily due to the diversion of water from the Jordan River to\n\nmodel latency ms: median 15495 · max 29599 · n 7\nworth a look:\n- n1 lookup found nothing: “Dead Sea / Receding shoreline” (Already read: “Dead Sea § Receding shoreline” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Dead Sea / Receding shoreline” (Already read: “Dead Sea § Receding shoreline” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Dead Sea / Receding shoreline” (Already read: “Dead Sea § Receding shoreline” is in the context. Try a different term or decompose.)"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "sun": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "evaporation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 6025
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The water cycle keeps going because it is powered by the energy from the sun, which drives processes like evaporation, transpiration, and sublimation, moving water between different reservoirs on Earth.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 60,
+      "wiki": {
+        "hits": 14,
+        "misses": 0,
+        "entries": 370,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-composing-water-cycle.json",
+      "summary": "live run · seed: Why does the water cycle keep going?\nmodel Qwen3-8B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:34:51.637Z · exported 2026-09-18T11:35:52.203Z\nnodes 1 · visits 1 · model calls 7 · lookups 6 · evidence 2 · tokens 6025\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved 4 failed lookups] Why does the water cycle keep going? → The water cycle keeps going because it is powered by the energy from the sun, which drives\n\nmodel latency ms: median 6286 · max 24013 · n 7\nworth a look:\n- n1 lookup found nothing: “Water cycle / Overall process” (Already read: “Water cycle § Overall process” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Water cycle / Overall process” (Already read: “Water cycle § Overall process” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Water cycle / Energy sources” (\"Water cycle\" has no section \"Energy sources\". Its sections: Overall process, Residence times, Water in storage, Land cover and land use changes, Water cycle intensification due to climate change, Biogeochemical cycling, Slow loss over geologic time, Historical interpretations, Discovery of the corr)\n- n1 lookup found nothing: “Water cycle / Energy sources” (\"Water cycle\" has no section \"Energy sources\". Its sections: Overall process, Residence times, Water in storage, Land cover and land use changes, Water cycle intensification due to climate change, Biogeochemical cycling, Slow loss over geologic time, Historical interpretations, Discovery of the corr)"
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sea-peoples": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "systems": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 6574
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Late Bronze Age collapse is thought to have been caused by a combination of factors, including climatic changes such as drought, which led to environmental stress, and possibly migratory invasions and warfare. These factors contributed to the sudden societal collapse and material decline in the region.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 87,
+      "wiki": {
+        "hits": 21,
+        "misses": 0,
+        "entries": 370,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-composing-bronze-age.json",
+      "summary": "live run · seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-8B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:35:52.210Z · exported 2026-09-18T11:37:18.966Z\nnodes 1 · visits 1 · model calls 7 · lookups 6 · evidence 4 · tokens 6574\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved 2 failed lookups] Why did the Late Bronze Age collapse happen? → The Late Bronze Age collapse is thought to have been caused by a combination of factors, i\n\nmodel latency ms: median 6135 · max 29599 · n 7\nworth a look:\n- n1 lookup found nothing: “Late Bronze Age collapse / Possible causes” (Already read: “Late Bronze Age collapse § Possible causes” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Late Bronze Age collapse / Drought” (Already read: “Late Bronze Age collapse § Drought” is in the context. Try a different term or decompose.)"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pesticides": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pathogens": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "stressors": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 6812
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Honey bee colonies may collapse due to a combination of factors including pesticides, mites, viruses, and other pathogens. These factors can act additively or synergistically to cause Colony Collapse Disorder (CCD).",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 53,
+      "wiki": {
+        "hits": 28,
+        "misses": 0,
+        "entries": 370,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-composing-colony-collapse.json",
+      "summary": "live run · seed: Why do honey bee colonies collapse?\nmodel Qwen3-8B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:37:18.975Z · exported 2026-09-18T11:38:11.639Z\nnodes 1 · visits 1 · model calls 7 · lookups 6 · evidence 3 · tokens 6812\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved 3 failed lookups] Why do honey bee colonies collapse? → Honey bee colonies may collapse due to a combination of factors including pesticides, mite\n\nmodel latency ms: median 6821 · max 12617 · n 7\nworth a look:\n- n1 lookup found nothing: “Colony collapse disorder / Possible causes” (Already read: “Colony collapse disorder § Possible causes” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Colony collapse disorder / Possible causes” (Already read: “Colony collapse disorder § Possible causes” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Colony collapse disorder / Pesticides” (Already read: “Colony collapse disorder § Pesticides” is in the context. Try a different term or decompose.)"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "algae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 6522
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Coral reefs bleach due to the loss of symbiotic algae and photosynthetic pigments, which occurs when corals experience stress from factors such as changes in water temperature, light, salinity, or nutrients. The leading cause of coral bleaching is rising ocean temperatures due to climate change, and ocean acidification also affects coral health.",
+      "kind": "single-lead",
+      "retriesUsed": 0,
+      "wallSeconds": 53,
+      "wiki": {
+        "hits": 35,
+        "misses": 0,
+        "entries": 370,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-composing-coral.json",
+      "summary": "live run · seed: Why do coral reefs bleach?\nmodel Qwen3-8B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:38:11.648Z · exported 2026-09-18T11:39:04.296Z\nnodes 1 · visits 1 · model calls 7 · lookups 6 · evidence 2 · tokens 6522\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved 4 failed lookups] Why do coral reefs bleach? → Coral reefs bleach due to the loss of symbiotic algae and photosynthetic pigments, which o\n\nmodel latency ms: median 7186 · max 11717 · n 7\nworth a look:\n- n1 lookup found nothing: “Coral bleaching / Trends due to climate change” (Already read: “Coral bleaching § Trends due to climate change” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Coral bleaching / Trends due to climate change” (Already read: “Coral bleaching § Trends due to climate change” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Coral bleaching / Trends due to climate change” (Already read: “Coral bleaching § Trends due to climate change” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Coral bleaching / Trends due to climate change” (Already read: “Coral bleaching § Trends due to climate change” is in the context. Try a different term or decompose.)\n- n1 finding uses words absent from its cited excerpts: occur, experience, factor, acidific"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "wavelength": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "scattering": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 5751
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The sky appears blue due to Rayleigh scattering, where shorter wavelengths of light (blue) are scattered more than longer wavelengths (red) in the atmosphere. This scattered blue light is what reaches our eyes from all directions, making the sky appear blue.",
+      "kind": "single-lead, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 44,
+      "wiki": {
+        "hits": 42,
+        "misses": 0,
+        "entries": 370,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-composing-sky-blue.json",
+      "summary": "live run · seed: Why is the sky blue?\nmodel Qwen3-8B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:39:04.303Z · exported 2026-09-18T11:39:47.961Z\nnodes 1 · visits 1 · model calls 7 · lookups 6 · evidence 2 · tokens 5751\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved 4 failed lookups] Why is the sky blue? → The sky appears blue due to Rayleigh scattering, where shorter wavelengths of light (blue)\n\nmodel latency ms: median 5793 · max 9413 · n 7\nworth a look:\n- n1 lookup found nothing: “Sky / During daytime” (Already read: “Sky § During daytime” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Sky / During daytime” (Already read: “Sky § During daytime” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Sky / During daytime” (Already read: “Sky § During daytime” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Sky / During daytime” (Already read: “Sky § During daytime” is in the context. Try a different term or decompose.)"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rivers": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "soviet": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 6940
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Aral Sea shrank primarily due to the diversion of the Amu Darya and Syr Darya rivers for irrigation purposes, which was part of the Soviet government's plan to boost cotton production. This diversion led to a significant reduction in the water supply to the Aral Sea, causing it to shrink and eventually dry up.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 56,
+      "wiki": {
+        "hits": 49,
+        "misses": 0,
+        "entries": 370,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-composing-aral.json",
+      "summary": "live run · seed: Why did the Aral Sea shrink?\nmodel Qwen3-8B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:39:47.968Z · exported 2026-09-18T11:40:43.637Z\nnodes 1 · visits 1 · model calls 7 · lookups 6 · evidence 2 · tokens 6940\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved 4 failed lookups] Why did the Aral Sea shrink? → The Aral Sea shrank primarily due to the diversion of the Amu Darya and Syr Darya rivers f\n\nmodel latency ms: median 7893 · max 12145 · n 7\nworth a look:\n- n1 lookup found nothing: “Aral Sea / Irrigation canals” (Already read: “Aral Sea § Irrigation canals” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Aral Sea / Irrigation canals” (Already read: “Aral Sea § Irrigation canals” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Aral Sea / Irrigation canals” (Already read: “Aral Sea § Irrigation canals” is in the context. Try a different term or decompose.)\n- n1 lookup found nothing: “Aral Sea / Irrigation canals” (Already read: “Aral Sea § Irrigation canals” is in the context. Try a different term or decompose.)\n- n1 finding uses words absent from its cited excerpts: diversion, purpos, government', reduction, supp, caus …"
+    }
+  ],
+  "notes": [
+    "2026-09-18T11:32:34.338Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-6\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T11:32:34.459Z loading: Checking this device before downloading…",
+    "2026-09-18T11:32:44.472Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-8B-q4f16_1-MLC: Ready. Inference runs on this device. (10 s)",
+    "machine at start: gpu 96% · vram 0.03 GiB · load 20.37 · mem 86% free (normal) · no throttling recorded",
+    "2026-09-18T11:32:44.571Z 7 seeds from evals/seeds.json · mode composing · limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8,\"walk\":false} · prompt tangle-pocket-10 · grammar per-action-7 · commit dca1958",
+    "wiki recording: 370 responses loaded",
+    "2026-09-18T11:34:51.535Z run stopped: Root resolved",
+    "dead-sea: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 7 calls, 6 lookups, 7578 tokens · 127 s · wiki 7 hits 0 misses",
+    "2026-09-18T11:35:52.116Z run stopped: Root resolved",
+    "water-cycle: resolved · facts 2/3 · supported 2/3 · read 3/3 · 1 nodes, 7 calls, 6 lookups, 6025 tokens · 60 s · wiki 14 hits 0 misses",
+    "2026-09-18T11:37:18.877Z run stopped: Root resolved",
+    "bronze-age: resolved · facts 2/4 · supported 2/4 · read 4/4 · 1 nodes, 7 calls, 6 lookups, 6574 tokens · 87 s · wiki 21 hits 0 misses",
+    "2026-09-18T11:38:11.549Z run stopped: Root resolved",
+    "colony-collapse: resolved · facts 4/4 · supported 4/4 · read 4/4 · 1 nodes, 7 calls, 6 lookups, 6812 tokens · 53 s · wiki 28 hits 0 misses",
+    "2026-09-18T11:39:04.211Z run stopped: Root resolved",
+    "coral: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 7 calls, 6 lookups, 6522 tokens · 53 s · wiki 35 hits 0 misses",
+    "2026-09-18T11:39:47.871Z run stopped: Root resolved",
+    "sky-blue: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 7 calls, 6 lookups, 5751 tokens · 44 s · wiki 42 hits 0 misses",
+    "2026-09-18T11:40:43.548Z run stopped: Root resolved",
+    "aral: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 7 calls, 6 lookups, 6940 tokens · 56 s · wiki 49 hits 0 misses",
+    "machine during the suite: gpu 88.9% mean, 99% peak · vram up to 5.84 GiB · load up to 20.7 · no throttling in 32 samples"
+  ]
+}

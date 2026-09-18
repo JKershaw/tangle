@@ -1,0 +1,595 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-4B-q4f16_1-MLC",
+  "commit": "dca1958",
+  "head": "3e3d2d8",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T11:11:34.163Z",
+  "loadSeconds": 5,
+  "prompt": "tangle-pocket-10",
+  "schema": "per-action-7",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-6",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 9,
+    "gpuPercent": {
+      "min": 0,
+      "max": 97,
+      "mean": 84
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 3.56,
+      "mean": 1.9
+    },
+    "load": {
+      "min": 13.17,
+      "max": 18.12,
+      "mean": 15.7
+    },
+    "memoryFreePercent": {
+      "min": 75,
+      "max": 86,
+      "mean": 80
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "composing",
+  "seedSet": "evals/seeds-graph.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "maxNodes": 1,
+    "maxVisits": 3,
+    "maxDepth": 0,
+    "maxLookups": 6,
+    "maxPasses": 8,
+    "walk": false
+  },
+  "seeds": 10,
+  "resolved": 10,
+  "factsPresent": 14,
+  "factsSupported": 9,
+  "factsRead": 13,
+  "factsTotal": 30,
+  "results": [
+    {
+      "id": "dead-aral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "aral-rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "irrigation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1375
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Aral Sea shrank due to the diversion of water for irrigation, leading to its drying up. The Dead Sea also shrank due to the diversion of water for human use and the extraction of minerals. Both seas are now significantly smaller than they once were.",
+      "kind": "comparison",
+      "retriesUsed": 0,
+      "wallSeconds": 43,
+      "wiki": {
+        "hits": 1,
+        "misses": 1,
+        "entries": 323,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-composing-dead-aral.json",
+      "summary": "live run · seed: Why did the Dead Sea and the Aral Sea both shrink?\nmodel Qwen3-4B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:11:39.498Z · exported 2026-09-18T11:12:22.902Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 1375\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did the Dead Sea and the Aral Sea both shrink? → The Aral Sea shrank due to the diversion of water for irrigation, leading to its drying up\n\nmodel latency ms: median 27698 · max 27698 · n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: shrank, diversion, lead, dry, extraction, mineral …"
+    },
+    {
+      "id": "chad-dead",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rainfall": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "jordan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1036
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The shrinking of Lake Chad and the Dead Sea is linked to human activities such as irrigation and urban use that divert inflow. Both lakes are drying due to water diversion.",
+      "kind": "comparison",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 2,
+        "misses": 2,
+        "entries": 324,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-composing-chad-dead.json",
+      "summary": "live run · seed: What do the shrinking of Lake Chad and the Dead Sea have in common?\nmodel Qwen3-4B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:12:22.914Z · exported 2026-09-18T11:12:30.543Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 1036\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] What do the shrinking of Lake Chad and the Dead Sea have in common? → The shrinking of Lake Chad and the Dead Sea is linked to human activities such as irrigati\n\nmodel latency ms: median 3151 · max 3151 · n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: shrink, link, activiti, diversion"
+    },
+    {
+      "id": "rome-bronze",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "sea-peoples": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "barbarians": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1265
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Late Bronze Age collapse and the fall of the Western Roman Empire are both attributed to a combination of factors including warfare, migration, and environmental changes. Both events led to the decline of complex societies and the rise of smaller, isolated communities.",
+      "kind": "comparison",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 3,
+        "misses": 3,
+        "entries": 325,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-composing-rome-bronze.json",
+      "summary": "live run · seed: What causes do the Late Bronze Age collapse and the fall of the Western Roman Empire have in common?\nmodel Qwen3-4B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:12:30.548Z · exported 2026-09-18T11:12:41.181Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 1265\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] What causes do the Late Bronze Age collapse and the fall of the Western Roman Empire have in common? → The Late Bronze Age collapse and the fall of the Western Roman Empire are both attributed \n\nmodel latency ms: median 4726 · max 4726 · n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: western, attribut, combin, factor, migr, environment …"
+    },
+    {
+      "id": "sahara-dry",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "hadley": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "sinking": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "rain-shadow": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1294
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Sahara receives very little rain due to its location in a subtropical high-pressure zone, where air descends and warms, inhibiting cloud formation. This is supported by the 'Climate' section of the Sahara article.",
+      "kind": "sections",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 4,
+        "misses": 4,
+        "entries": 326,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-composing-sahara-dry.json",
+      "summary": "live run · seed: Why does the Sahara get so little rain?\nmodel Qwen3-4B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:12:41.189Z · exported 2026-09-18T11:12:48.806Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 1294\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why does the Sahara get so little rain? → The Sahara receives very little rain due to its location in a subtropical high-pressure zo\n\nmodel latency ms: median 4763 · max 4763 · n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: receiv, little, subtropic, high-pressure, descend, inhibit …"
+    },
+    {
+      "id": "black-death",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "crimea": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "genoese": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "vector": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1270
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Black Death reached Europe through trade routes, particularly via merchant ships and caravans that carried infected fleas and rodents from Asia. The disease was spread by fleas on rats, which traveled along trade routes connecting Europe, Asia, and Africa. This is supported by the evidence from the Black Death article, which mentions the role of trade in the spread of the plague.",
+      "kind": "sections",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 5,
+        "misses": 5,
+        "entries": 327,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-composing-black-death.json",
+      "summary": "live run · seed: How did the Black Death reach Europe?\nmodel Qwen3-4B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:12:48.811Z · exported 2026-09-18T11:12:59.423Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 1270\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] How did the Black Death reach Europe? → The Black Death reached Europe through trade routes, particularly via merchant ships and c\n\nmodel latency ms: median 5813 · max 5813 · n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: reach, rout, particular, merchant, caravan, carri …"
+    },
+    {
+      "id": "almond-bees",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "pollination": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "self-incompatible": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "hives": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1307
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "California almond growers depend on rented honey bee hives because honey bees are essential for pollinating the almonds. The honey bees help ensure the successful pollination of almond trees, which is crucial for the production of almonds. This is supported by the 'Pollination' section in the Almond article.",
+      "kind": "sections, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 5,
+        "misses": 7,
+        "entries": 329,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-composing-almond-bees.json",
+      "summary": "live run · seed: Why do California almond growers depend on rented honey bee hives?\nmodel Qwen3-4B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:12:59.428Z · exported 2026-09-18T11:13:10.106Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 1307\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do California almond growers depend on rented honey bee hives? → California almond growers depend on rented honey bee hives because honey bees are essentia\n\nmodel latency ms: median 5776 · max 5776 · n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: grower, depend, rent, essenti, pollinat, ensure …"
+    },
+    {
+      "id": "jordan-flow",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "carrier": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "diversion": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "neighbours": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1331
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Jordan River's flow to the Dead Sea has decreased due to reduced water availability from upstream sources, including reduced rainfall and increased water usage for agriculture and industry in the region. This has led to a lower volume of water reaching the Dead Sea, affecting its water levels.",
+      "kind": "two-hop",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 5,
+        "misses": 9,
+        "entries": 331,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-composing-jordan-flow.json",
+      "summary": "live run · seed: Why does less water from the Jordan River reach the Dead Sea than before?\nmodel Qwen3-4B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:13:10.112Z · exported 2026-09-18T11:13:20.731Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 1331\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why does less water from the Jordan River reach the Dead Sea than before? → The Jordan River's flow to the Dead Sea has decreased due to reduced water availability fr\n\nmodel latency ms: median 5668 · max 5668 · n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: river', decreas, reduc, availabil, upstream, sourc …"
+    },
+    {
+      "id": "venus-earth",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "co2": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "carbonate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1216
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Venus's runaway greenhouse effect is due to its dense atmosphere of carbon dioxide, which traps heat and prevents liquid water from existing on the surface. Earth avoided this because its atmosphere contains less carbon dioxide and more water vapor, which allows for the presence of liquid water. The difference in atmospheric composition and the role of water vapor in the greenhouse effect are key factors.",
+      "kind": "sections",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 6,
+        "misses": 10,
+        "entries": 332,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-composing-venus-earth.json",
+      "summary": "live run · seed: Why did Venus end up with a runaway greenhouse effect while Earth did not?\nmodel Qwen3-4B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:13:20.734Z · exported 2026-09-18T11:13:31.357Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 1216\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did Venus end up with a runaway greenhouse effect while Earth did not? → Venus's runaway greenhouse effect is due to its dense atmosphere of carbon dioxide, which \n\nmodel latency ms: median 5261 · max 5261 · n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: venus', exist, avoid, allow, presence, difference …"
+    },
+    {
+      "id": "gulf-stream",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "current": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "westerlies": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "warm": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 1,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1210
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Western Europe is milder than places in Canada at the same latitude due to the Gulf Stream, a warm ocean current that brings moist air and warmth to the region. This current helps moderate temperatures, leading to milder winters and cooler summers compared to areas at similar latitudes like Canada. The Gulf Stream is a key factor in the temperate climate of Western Europe.",
+      "kind": "sections",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 7,
+        "misses": 11,
+        "entries": 333,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-composing-gulf-stream.json",
+      "summary": "live run · seed: Why is Western Europe milder than places in Canada at the same latitude?\nmodel Qwen3-4B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:13:31.360Z · exported 2026-09-18T11:13:41.973Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 1210\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is Western Europe milder than places in Canada at the same latitude? → Western Europe is milder than places in Canada at the same latitude due to the Gulf Stream\n\nmodel latency ms: median 5558 · max 5558 · n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: milder, canada, latitude, stream, current, bring …"
+    },
+    {
+      "id": "moon-face",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "tidal": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rotation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "same-side": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1466
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Moon always shows the same face to Earth due to tidal locking, where gravitational forces have synchronized its rotation with its orbit. This tidal locking is the result of gravitational interactions between the Moon and Earth, which have caused the Moon to rotate at the same rate it orbits Earth. The tidal forces have shaped the Moon's orientation over time.",
+      "kind": "control",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 9,
+        "misses": 11,
+        "entries": 333,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-composing-moon-face.json",
+      "summary": "live run · seed: Why does the Moon always show the same face to Earth?\nmodel Qwen3-4B-q4f16_1-MLC · prompt tangle-pocket-10 · created 2026-09-18T11:13:41.978Z · exported 2026-09-18T11:13:52.606Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 1466\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why does the Moon always show the same face to Earth? → The Moon always shows the same face to Earth due to tidal locking, where gravitational for\n\nmodel latency ms: median 6570 · max 6570 · n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: interaction, rotate, shap, orient"
+    }
+  ],
+  "notes": [
+    "2026-09-18T11:11:34.163Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-6\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T11:11:34.301Z loading: Checking this device before downloading…",
+    "2026-09-18T11:11:39.310Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-4B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 95% · vram 0.13 GiB · load 16.96 · mem 86% free (normal) · no throttling recorded",
+    "2026-09-18T11:11:39.406Z 10 seeds from evals/seeds-graph.json · mode composing · limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8,\"walk\":false} · prompt tangle-pocket-10 · grammar per-action-7 · commit dca1958",
+    "wiki recording: 322 responses loaded",
+    "2026-09-18T11:12:22.819Z run stopped: Root resolved",
+    "dead-aral: resolved · facts 1/3 · supported 1/3 · read 2/3 · 1 nodes, 2 calls, 1 lookups, 1375 tokens · 43 s · wiki 1 hits 1 misses",
+    "2026-09-18T11:12:30.463Z run stopped: Root resolved",
+    "chad-dead: resolved · facts 1/3 · supported 1/3 · read 1/3 · 1 nodes, 2 calls, 1 lookups, 1036 tokens · 8 s · wiki 2 hits 2 misses",
+    "2026-09-18T11:12:41.100Z run stopped: Root resolved",
+    "rome-bronze: resolved · facts 1/3 · supported 1/3 · read 2/3 · 1 nodes, 2 calls, 1 lookups, 1265 tokens · 11 s · wiki 3 hits 3 misses",
+    "2026-09-18T11:12:48.726Z run stopped: Root resolved",
+    "sahara-dry: resolved · facts 2/3 · supported 0/3 · read 0/3 · 1 nodes, 2 calls, 1 lookups, 1294 tokens · 8 s · wiki 4 hits 4 misses",
+    "2026-09-18T11:12:59.352Z run stopped: Root resolved",
+    "black-death: resolved · facts 1/3 · supported 1/3 · read 1/3 · 1 nodes, 2 calls, 1 lookups, 1270 tokens · 11 s · wiki 5 hits 5 misses",
+    "2026-09-18T11:13:10.026Z run stopped: Root resolved",
+    "almond-bees: resolved · facts 2/3 · supported 0/3 · read 0/3 · 1 nodes, 2 calls, 1 lookups, 1307 tokens · 11 s · wiki 5 hits 7 misses",
+    "2026-09-18T11:13:20.652Z run stopped: Root resolved",
+    "jordan-flow: resolved · facts 0/3 · supported 0/3 · read 1/3 · 1 nodes, 2 calls, 1 lookups, 1331 tokens · 11 s · wiki 5 hits 9 misses",
+    "2026-09-18T11:13:31.274Z run stopped: Root resolved",
+    "venus-earth: resolved · facts 1/3 · supported 1/3 · read 2/3 · 1 nodes, 2 calls, 1 lookups, 1216 tokens · 11 s · wiki 6 hits 10 misses",
+    "2026-09-18T11:13:41.899Z run stopped: Root resolved",
+    "gulf-stream: resolved · facts 2/3 · supported 1/3 · read 1/3 · 1 nodes, 2 calls, 1 lookups, 1210 tokens · 11 s · wiki 7 hits 11 misses",
+    "2026-09-18T11:13:52.527Z run stopped: Root resolved",
+    "moon-face: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 2 calls, 1 lookups, 1466 tokens · 11 s · wiki 9 hits 11 misses",
+    "machine during the suite: gpu 84% mean, 97% peak · vram up to 3.56 GiB · load up to 18.12 · no throttling in 9 samples"
+  ]
+}

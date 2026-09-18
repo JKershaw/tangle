@@ -1,0 +1,441 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-4B-q4f16_1-MLC",
+  "commit": "dca1958",
+  "head": "d786061",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T10:50:40.554Z",
+  "loadSeconds": 5,
+  "prompt": "walk-6/asks-2",
+  "schema": "sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-6",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "mode": "flat",
+  "seedSet": "evals/seeds.json",
+  "repeat": 2,
+  "repeats": 3,
+  "limits": {
+    "maxNodes": 1,
+    "maxVisits": 3,
+    "maxDepth": 0,
+    "maxLookups": 6,
+    "maxPasses": 8
+  },
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 16,
+  "factsSupported": 16,
+  "factsRead": 19,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1785
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "This is largely due to the diversion of most of the flow into the Dead Sea from the Jordan River, much of which originates in the Sea of Galilee. The water level in the Dead Sea is shrinking at a rate of more than one metre per year, and its surface area has shrunk by about 33% since the 1960s. The decline of the Dead Sea level is causing major local environmental problems, including sinkholes and receding shorelines.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 33,
+        "misses": 0,
+        "entries": 240,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-dead-sea-r2.json",
+      "summary": "live run · seed: Why is the Dead Sea shrinking?\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:51:48.454Z · exported 2026-09-18T10:51:56.066Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1785\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is the Dead Sea shrinking? → This is largely due to the diversion of most of the flow into the Dead Sea from the Jordan\n\nmodel latency ms: median 1710 · max 1981 · n 4\nnothing flagged"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "evaporation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1646
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The water cycle is driven by energy exchanges in the form of heat transfers between different phases. The water cycle (or hydrologic cycle or hydrological cycle) is a biogeochemical cycle that involves the continuous change in form of water on, above and below the surface of the Earth across different reservoirs. The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere due to a variety of physical and chemical processes.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 37,
+        "misses": 0,
+        "entries": 240,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-water-cycle-r2.json",
+      "summary": "live run · seed: Why does the water cycle keep going?\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:51:56.070Z · exported 2026-09-18T10:52:03.673Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1646\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why does the water cycle keep going? → The water cycle is driven by energy exchanges in the form of heat transfers between differ\n\nmodel latency ms: median 1487 · max 1630 · n 4\nnothing flagged"
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sea-peoples": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 1427
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea Peoples, economic disruptions due to increased ironworking, and changes in military technology and strategy that brought the decline of chariot warfare.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 41,
+        "misses": 0,
+        "entries": 240,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-bronze-age-r2.json",
+      "summary": "live run · seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:52:03.676Z · exported 2026-09-18T10:52:11.275Z\nnodes 1 · visits 1 · model calls 3 · lookups 1 · evidence 1 · tokens 1427\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did the Late Bronze Age collapse happen? → These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea \n\nmodel latency ms: median 1789 · max 1821 · n 3\nnothing flagged"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pesticides": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pathogens": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "stressors": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 5,
+        "lookups": 1,
+        "tokens": 1486
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Suggested causes include pesticides, infections with various pathogens (especially those transmitted by Varroa and Acarapis mites), malnutrition, genetic factors, immunodeficiencies, loss of habitat, or changing beekeeping practices; combinations of these factors have also been cited. Several possible causes for CCD have been proposed, but no single proposal has gained widespread acceptance among the scientific community. A large amount of speculation has surrounded the contributions of the neonicotinoid family of pesticides to CCD, but many collapsing apiaries show no trace of these chemicals.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 45,
+        "misses": 0,
+        "entries": 240,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-colony-collapse-r2.json",
+      "summary": "live run · seed: Why do honey bee colonies collapse?\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:52:11.282Z · exported 2026-09-18T10:52:18.885Z\nnodes 1 · visits 1 · model calls 5 · lookups 1 · evidence 1 · tokens 1486\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do honey bee colonies collapse? → Suggested causes include pesticides, infections with various pathogens (especially those t\n\nmodel latency ms: median 847 · max 2099 · n 5\nnothing flagged"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "algae": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1407
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The leading cause of coral bleaching is rising ocean temperatures due to climate change. This loss of pigment can be caused by various stressors, such as changes in water temperature, light, salinity, or nutrients.",
+      "kind": "single-lead",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 49,
+        "misses": 0,
+        "entries": 240,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-coral-r2.json",
+      "summary": "live run · seed: Why do coral reefs bleach?\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:52:18.889Z · exported 2026-09-18T10:52:26.485Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1407\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do coral reefs bleach? → The leading cause of coral bleaching is rising ocean temperatures due to climate change. T\n\nmodel latency ms: median 1329 · max 1465 · n 4\nnothing flagged"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "wavelength": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "scattering": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 13,
+        "lookups": 2,
+        "tokens": 3525
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Because its wavelengths are shorter, blue light is more strongly scattered than the longer-wavelength lights, red or green. Earth's atmosphere scatters short-wavelength light more efficiently than that of longer wavelengths. For the example of the Sun at zenith, in broad daylight, the sky is blue due to Rayleigh scattering, which also involves the diatomic gases N2 and O2.",
+      "kind": "single-lead, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 17,
+      "wiki": {
+        "hits": 54,
+        "misses": 0,
+        "entries": 240,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-sky-blue-r2.json",
+      "summary": "live run · seed: Why is the sky blue?\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:52:26.489Z · exported 2026-09-18T10:52:43.089Z\nnodes 1 · visits 1 · model calls 13 · lookups 2 · evidence 2 · tokens 3525\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is the sky blue? → Because its wavelengths are shorter, blue light is more strongly scattered than the longer\n\nmodel latency ms: median 1328 · max 1881 · n 13\nnothing flagged"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rivers": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "soviet": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 1559
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 58,
+        "misses": 0,
+        "entries": 240,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-aral-r2.json",
+      "summary": "live run · seed: Why did the Aral Sea shrink?\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T10:52:43.095Z · exported 2026-09-18T10:52:50.693Z\nnodes 1 · visits 1 · model calls 3 · lookups 1 · evidence 1 · tokens 1559\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did the Aral Sea shrink? → Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), th\n\nmodel latency ms: median 1874 · max 2057 · n 3\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-18T10:50:40.553Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-6\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T10:50:40.706Z loading: Checking this device before downloading…",
+    "2026-09-18T10:50:45.711Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-4B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 98% · vram 0.03 GiB · load 17.63 · mem 86% free (normal) · no throttling recorded",
+    "2026-09-18T10:50:45.806Z 7 seeds from evals/seeds.json · mode flat · limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8} · prompt walk-6/asks-2 · grammar sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit dca1958 · 3 repeats",
+    "wiki recording: 240 responses loaded",
+    "2026-09-18T10:50:45.897Z repeat 1 of 3",
+    "2026-09-18T10:50:53.700Z run stopped: Root resolved",
+    "dead-sea: resolved · facts 2/3 · supported 2/3 · read 2/3 · 1 nodes, 4 calls, 1 lookups, 1785 tokens · 8 s · wiki 4 hits 0 misses",
+    "2026-09-18T10:51:01.319Z run stopped: Root resolved",
+    "water-cycle: resolved · facts 0/3 · supported 0/3 · read 2/3 · 1 nodes, 4 calls, 1 lookups, 1646 tokens · 8 s · wiki 8 hits 0 misses",
+    "2026-09-18T10:51:08.936Z run stopped: Root resolved",
+    "bronze-age: resolved · facts 2/4 · supported 2/4 · read 2/4 · 1 nodes, 3 calls, 1 lookups, 1427 tokens · 8 s · wiki 12 hits 0 misses",
+    "2026-09-18T10:51:16.558Z run stopped: Root resolved",
+    "colony-collapse: resolved · facts 4/4 · supported 4/4 · read 4/4 · 1 nodes, 5 calls, 1 lookups, 1486 tokens · 8 s · wiki 16 hits 0 misses",
+    "2026-09-18T10:51:24.166Z run stopped: Root resolved",
+    "coral: resolved · facts 2/3 · supported 2/3 · read 3/3 · 1 nodes, 4 calls, 1 lookups, 1407 tokens · 8 s · wiki 20 hits 0 misses",
+    "2026-09-18T10:51:40.773Z run stopped: Root resolved",
+    "sky-blue: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 13 calls, 2 lookups, 3525 tokens · 17 s · wiki 25 hits 0 misses",
+    "2026-09-18T10:51:48.389Z run stopped: Root resolved",
+    "aral: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 3 calls, 1 lookups, 1559 tokens · 8 s · wiki 29 hits 0 misses",
+    "2026-09-18T10:51:48.453Z repeat 2 of 3",
+    "2026-09-18T10:51:55.999Z run stopped: Root resolved",
+    "dead-sea: resolved · facts 2/3 · supported 2/3 · read 2/3 · 1 nodes, 4 calls, 1 lookups, 1785 tokens · 8 s · wiki 33 hits 0 misses",
+    "2026-09-18T10:52:03.615Z run stopped: Root resolved",
+    "water-cycle: resolved · facts 0/3 · supported 0/3 · read 2/3 · 1 nodes, 4 calls, 1 lookups, 1646 tokens · 8 s · wiki 37 hits 0 misses",
+    "2026-09-18T10:52:11.212Z run stopped: Root resolved",
+    "bronze-age: resolved · facts 2/4 · supported 2/4 · read 2/4 · 1 nodes, 3 calls, 1 lookups, 1427 tokens · 8 s · wiki 41 hits 0 misses",
+    "2026-09-18T10:52:18.825Z run stopped: Root resolved",
+    "colony-collapse: resolved · facts 4/4 · supported 4/4 · read 4/4 · 1 nodes, 5 calls, 1 lookups, 1486 tokens · 8 s · wiki 45 hits 0 misses",
+    "2026-09-18T10:52:26.427Z run stopped: Root resolved",
+    "coral: resolved · facts 2/3 · supported 2/3 · read 3/3 · 1 nodes, 4 calls, 1 lookups, 1407 tokens · 8 s · wiki 49 hits 0 misses",
+    "2026-09-18T10:52:43.033Z run stopped: Root resolved",
+    "sky-blue: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 13 calls, 2 lookups, 3525 tokens · 17 s · wiki 54 hits 0 misses",
+    "2026-09-18T10:52:50.638Z run stopped: Root resolved",
+    "aral: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 3 calls, 1 lookups, 1559 tokens · 8 s · wiki 58 hits 0 misses"
+  ]
+}
