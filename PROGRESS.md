@@ -114,6 +114,8 @@ Overflow briefs (`evals/seeds-overflow.json`: the Antikythera mechanism and how 
 | 2026-09-18 | 27f36a8 (walk-12, Node · Ollama q4_K_M) | 8B | 24/30 · hops 17/25/25 · ¶35 · 147 s | — | — |
 | 2026-09-18 | 27f36a8 (walk-12, Node · Ollama q4_K_M) | 14B | 24/30 · hops 17/24/24 · ¶38 · 291 s | — | — |
 | 2026-09-18 | 3cecdec (walk-12, Node · Ollama q4_K_M) | 32B | 26/30 · hops 17/22/22 · ¶37 · 717 s | — | — |
+| 2026-09-18 | 495d69d (walk-13, hops name the subject by its capitalised words) | 1.7B | 24/30 · hops 21/21/21 · ¶42 · 106 s · the Juno and "rosetta orbit" paragraphs gone | — | — |
+| 2026-09-18 | 495d69d (walk-13, Node · Ollama) | 1.7B | 24/30 · hops 8/8/8 · ¶28 · 37 s | — | — |
 
 The graph beats both controls at every size on both brief sets, and on the overflow briefs the gap to memory is 19 topics at 1.7B. Reading in [evals/readings.md](evals/readings.md).
 
@@ -129,7 +131,7 @@ The bridge (ROADMAP milestone 4): the same walk in Node against an OpenAI-compat
 | 2026-09-18 | b71a368 | Ollama | 14B | 16/23 | 96 · 28 · 372 | **21/23** |
 | 2026-09-18 | 27f36a8 | Ollama | 32B | **17/23** | 73 · 18 · 358 | 19/23 |
 | 2026-09-18 | b71a368 | LM Studio (MLX) | 4B | 16/23 · Dead Sea lost to a schema error, fixed at 27f36a8; rerun 16/23 with the Dead Sea resolved at 0 | 52 · 13 · 104 | — |
-| 2026-09-18 | 4ea1f89 | LM Studio (MLX) | 30B-A3B (2507) | 16/23 · the same error; rerun below | 50 · 15 · 239 | — |
+| 2026-09-18 | 4ea1f89 | LM Studio (MLX) | 30B-A3B (2507) | 16/23 · the same error; rerun at 495d69d: **17/23** in 313 s | 50 · 15 · 239 | — |
 
 On the briefs the ladder does move: profiles 25 / 27 / **30** of 35 and overflow 24 / 24 / 26 of 30 at 8B / 14B / 32B in Node (rows in the profile and overflow tables above; the page's 8B: 27 and 27). 32B's four profiles are the best row on that set, in twenty minutes.
 
