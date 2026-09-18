@@ -137,6 +137,24 @@ export const ASKS = Object.freeze({
     },
   },
 
+  // ---- confirm: does this one sentence state the answer? ----
+  // Input { question, sentence }. Answer: "yes" or "no". The second half of
+  // the sentence ask's check variant, on its own, for when the walk decides
+  // a pick needs confirming.
+  confirm: {
+    describe: () => "one sentence",
+    variants: {
+      yesno: single((input) => ({
+        messages: [
+          { role: "system", content: `Does the sentence state the answer to the question? Reply with JSON: {"answers": "yes"} or {"answers": "no"}.` + NO_THINK },
+          { role: "user", content: `Question: ${input.question}\nSentence: ${input.sentence}` },
+        ],
+        schema: enumSchema("answers", ["yes", "no"]),
+        maxTokens: 16,
+      }), (parsed) => String(parsed.answers)),
+    },
+  },
+
   // ---- article: which of the search hits is the right article? ----
   // Input { question, titles: [string] }. Answer: one title or "none".
   // Wikipedia's first hit was "Sky blue" (the colour) for "sky blue" and

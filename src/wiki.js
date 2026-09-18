@@ -186,6 +186,8 @@ export async function lookupWikipedia(query, options = {}) {
   if (hits.length === 0) return failure("no_match", `No Wikipedia article matched "${term}".`, { alternatives: [] });
   const title = String(hits[0].title);
   const alternatives = hits.slice(1).map((hit) => String(hit.title));
+  // The walk searches first and reads after the article is chosen.
+  if (options.searchOnly) return { ok: true, tool: "wiki", kind: "search", query: term, title, alternatives, hits: [title, ...alternatives], requests };
   const article = await fetchArticle(title, options);
   requests.push(article.record);
   const exact = article.ok;

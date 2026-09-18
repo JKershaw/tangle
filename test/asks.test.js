@@ -14,7 +14,7 @@ test("splitSentences: one sentence per choice, no fragments, abbreviations kept 
 });
 
 test("every ask variant builds calls with a tiny schema and reads the answer back", () => {
-  const input = { question: "Why?", sentences: ["Because A.", "Because B."], article: "X", sections: ["One", "Two"], titles: ["X", "Y"] };
+  const input = { question: "Why?", sentences: ["Because A.", "Because B."], article: "X", sections: ["One", "Two"], titles: ["X", "Y"], sentence: "Because A." };
   for (const [name, ask] of Object.entries(ASKS)) {
     for (const [variant, definition] of Object.entries(ask.variants)) {
       const calls = definition.calls(input);

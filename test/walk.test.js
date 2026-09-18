@@ -1,13 +1,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createRun, nextRunnable } from "../src/graph.js";
-import { candidates, isRepeat, runWalk, searchTerm, unreadSections } from "../src/walk.js";
+import { candidates, isForeign, isRepeat, runWalk, searchTerm, unreadSections } from "../src/walk.js";
 
 // A scripted model: answers come off a queue, keyed by the field the schema
 // asks for, so a test states exactly what the model says at each ask.
 // The sequencing tests use the plain pick so each scripted answer is one ask;
 // the default (pick, then one yes-or-no) has its own test below.
-const PLAIN = { variants: { sentence: "list" } };
+const PLAIN = { variants: { sentence: "list", article: "off" } };
 const ONE = { maxSentences: 1 };
 // Scenario fixtures return no alternative hits, so no article pick is asked.
 
@@ -167,7 +167,7 @@ test("a bad pick pauses the visit as an error and a cancellation leaves the node
 test("by default a pick is checked with one yes-or-no on that sentence; a no is treated as none", async () => {
   const run = createRun("What is the Dead Sea's main tributary?", "live", ONE);
   const { ask, seen } = scripted([["sentence", "2"], ["answers", "yes"]]);
-  assert.equal(await runWalk(run, { ask, wiki: wikiFixture }), true);
+  assert.equal(await runWalk(run, { ask, wiki: wikiFixture, variants: { sentence: "check", article: "off" } }), true);
   assert.equal(run.nodes[0].finding, "Its main tributary is the Jordan River.");
   assert.match(seen[1].user, /^Question: What is the Dead Sea's main tributary\?\nSentence: Its main tributary is the Jordan River\.$/);
   assert.match(run.promptVersion, /sentence:check/);
@@ -176,13 +176,13 @@ test("by default a pick is checked with one yes-or-no on that sentence; a no is 
   // The wrong lake: the check says no, so the walk reads on instead of resolving.
   const wrong = createRun("What is the Dead Sea's main tributary?", "live", { maxLookups: 1, maxDepth: 0, ...ONE });
   const doubted = scripted([["sentence", "2"], ["answers", "no"], ["section", "Geography"]]);
-  assert.equal(await runWalk(wrong, { ask: doubted.ask, wiki: wikiFixture }), true);
+  assert.equal(await runWalk(wrong, { ask: doubted.ask, wiki: wikiFixture, variants: { sentence: "check", article: "off" } }), true);
   assert.notEqual(wrong.nodes[0].status, "resolved");
   assert.ok(wrong.trace.some((event) => event.event === "sentence_picked" && event.pick === "none"));
 
   // An out-of-range pick is rejected before any check.
   const bad = createRun("What is the Dead Sea's main tributary?", "live", ONE);
-  assert.equal(await runWalk(bad, { ask: scripted([["sentence", "9"]]).ask, wiki: wikiFixture }), false);
+  assert.equal(await runWalk(bad, { ask: scripted([["sentence", "9"]]).ask, wiki: wikiFixture, variants: { sentence: "check", article: "off" } }), false);
   assert.match(bad.nodes[0].reason, /picked sentence 9/);
 });
 
@@ -219,7 +219,7 @@ test("when a search returns several hits the model picks the article; none is a 
   const seaFixture = async (query, options) => (query === "Aral Sea" ? { ok: true, kind: "wiki", title: "Aral Sea", article: "Aral Sea", section: 0, headings: [], text: "The Aral Sea was a lake between Kazakhstan and Uzbekistan. It began shrinking in the 1960s after the rivers that fed it were diverted for irrigation.", url: "u" } : hits(query, options));
   const run = createRun("Why did the Aral Sea shrink?", "live", ONE);
   const { ask, seen } = scripted([["article", "Aral Sea"], ["sentence", "2"]]);
-  assert.equal(await runWalk(run, { ask, wiki: seaFixture, ...PLAIN }), true);
+  assert.equal(await runWalk(run, { ask, wiki: seaFixture, variants: { sentence: "list" } }), true);
   assert.deepEqual(seen[0].options, ["North Aral Sea", "South Aral Sea", "Aral Sea", "none"]);
   assert.equal(run.nodes[0].finding, "It began shrinking in the 1960s after the rivers that fed it were diverted for irrigation.");
   assert.equal(run.evidence.length, 1, "only the chosen article is captured");
@@ -227,7 +227,7 @@ test("when a search returns several hits the model picks the article; none is a 
   assert.equal(run.lookups, 1, "the re-read is part of the same lookup");
 
   const refused = createRun("Why did the Aral Sea shrink?", "live", { maxLookups: 1, maxDepth: 0, ...ONE });
-  await runWalk(refused, { ask: scripted([["article", "none"]]).ask, wiki: hits, ...PLAIN });
+  await runWalk(refused, { ask: scripted([["article", "none"]]).ask, wiki: hits, variants: { sentence: "list" } });
   assert.equal(refused.nodes[0].status, "blocked");
   assert.match(refused.nodes[0].failedLookups[0].error, /None of the articles/);
   assert.equal(refused.evidence.length, 0);
@@ -249,4 +249,35 @@ test("sentences judged as not answering are remembered across visits, so a revis
   assert.equal(revisit.seen[0].field, "section", "no re-showing of judged sentences");
   assert.match(revisit.seen[1].user, /1\. The Dead Sea lies in the Jordan Rift Valley/);
   assert.equal(run.nodes.length, 3);
+});
+
+test("the first lookup searches both terms and picks from every title found; a foreign source gets its pick confirmed", async () => {
+  const searches = [];
+  const wiki = async (query, options = {}) => {
+    if (options.searchOnly) {
+      searches.push(query);
+      return { ok: true, kind: "search", hits: query === "Dead Sea shrinking" ? ["Dead Sea", "Aral Sea"] : ["Aral Sea", "List of drying lakes"] };
+    }
+    if (query === "Aral Sea") return { ok: true, kind: "wiki", title: "Aral Sea", article: "Aral Sea", section: 0, headings: [], text: "The Aral Sea was a lake in Central Asia. It began shrinking in the 1960s after its rivers were diverted for irrigation.", url: "u" };
+    return wikiFixture(query, options);
+  };
+  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1, maxDepth: 0, ...ONE });
+  const { ask, seen } = scripted([["article", "Aral Sea"], ["sentence", "2"], ["answers", "no"], ["sentence", "none"]]);
+  assert.equal(await runWalk(run, { ask, wiki }), true);
+  assert.deepEqual(searches, ["Dead Sea shrinking", "Why is the Dead Sea shrinking?"]);
+  assert.deepEqual(seen[0].options, ["Dead Sea", "Aral Sea", "List of drying lakes", "none"], "the union of both searches, in order");
+  assert.equal(seen[2].field, "answers", "a pick from an article foreign to the question is confirmed");
+  assert.match(seen[2].user, /Sentence: It began shrinking/);
+  assert.notEqual(run.nodes[0].status, "resolved", "the confirmation said no");
+  assert.equal(run.lookups, 1);
+  assert.equal(isForeign("Aral Sea", "Why is the Dead Sea shrinking?"), true);
+  assert.equal(isForeign("Dead Sea § Receding shoreline", "Why is the Dead Sea shrinking?"), false);
+  assert.equal(isForeign("Rayleigh scattering", "Why is the sky blue?"), true, "a foreign-looking right article still gets checked; that costs one call, not the answer");
+
+  // The same pick from the question's own subject is taken without a check.
+  const own = createRun("Why is the Dead Sea shrinking?", "live", ONE);
+  const direct = scripted([["article", "Dead Sea"], ["sentence", "3"]]);
+  assert.equal(await runWalk(own, { ask: direct.ask, wiki }), true);
+  assert.equal(own.nodes[0].status, "resolved");
+  assert.equal(own.modelCalls, 2);
 });

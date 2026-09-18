@@ -15,9 +15,9 @@
 
 import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
-import { isParaphrase } from "./text.js";
+import { contentWords, isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-4"; // walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences are remembered across visits
+export const WALK_VERSION = "walk-5"; // walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -25,7 +25,14 @@ export const WALK_VERSION = "walk-4"; // walk-2: paraphrases refused; walk-3: qu
 // subject (every size picked the Aral Sea's reason for a Dead Sea question,
 // even labelled); the check catches it from 1.7B up, trading a few false
 // "none"s — which cost a lookup — for false findings, which cost the run.
-export const DEFAULT_VARIANTS = Object.freeze({ sentence: "check", section: "list", missing: "search", question: "one", article: "list" });
+export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "list", missing: "search", question: "one", article: "list", confirm: "yesno" });
+// When the picked sentence comes from an article that shares no content
+// word with the question (the Aral Sea for a Dead Sea question), the pick is
+// confirmed with one yes-or-no on that sentence alone. When the source is
+// about the question's subject it is not: at 1.7B the check refused the
+// Aral Sea's own reason for shrinking (node evals and the walk-4 benchmark),
+// and a wrong pick about the right subject costs less than a lost answer.
+export const CHECK_FOREIGN = true;
 // How many sentences one pick sees. Beyond this, the walk asks again over the
 // next window; a visit's passes bound how far it reads.
 export const WINDOW = 12;
@@ -86,6 +93,13 @@ export const ABOUT_THE_TEXT = /\b(the|these|those|this|given|above|provided)\s+(
 
 // A question is a repeat if it is any ancestor's or sibling's question again,
 // verbatim or as a paraphrase that keeps every content word.
+// An article whose title shares no content word with the question.
+export function isForeign(title, question) {
+  const wanted = contentWords(question);
+  const have = contentWords(String(title).split(" § ")[0]);
+  return ![...have].some((word) => wanted.has(word));
+}
+
 export function isRepeat(run, node, question) {
   const wanted = normalise(question);
   if (!wanted) return true;
@@ -141,7 +155,7 @@ export async function runWalk(run, options) {
   };
 
   const visible = () => [...new Set([...node.observed, ...children(run, node.id).filter((child) => child.status === "resolved").flatMap((child) => child.evidence)])];
-  const lookup = async (query, readOn = null) => {
+  const lookup = async (query, readOn = null, { chosen = false } = {}) => {
     trace(run, "tool_proposed", { node: node.id, query, tool: "wiki", ...(readOn ? { readOn } : {}) });
     if (!(await approve(query, signal))) {
       signal?.throwIfAborted();
@@ -159,7 +173,7 @@ export async function runWalk(run, options) {
     // A search's first hit is Wikipedia's guess. When there are others, the
     // model picks the article from the titles — one enum call — and the
     // walk reads that one instead. "none" is a failed lookup.
-    if (!readOn && outcome.ok && outcome.alternatives?.length && variants.article !== "off") {
+    if (!readOn && !chosen && outcome.ok && outcome.alternatives?.length && variants.article !== "off") {
       const titles = [outcome.title, ...outcome.alternatives];
       const chosen = await answer("article", { question: node.question, titles }, "Choosing an article");
       trace(run, "article_chosen", { node: node.id, query, titles, article: chosen });
@@ -183,12 +197,42 @@ export async function runWalk(run, options) {
     return "nothing";
   };
   const readSentences = () => candidates(run, node).map((candidate) => candidate.text);
+  const firstLookup = async () => {
+    const terms = [...new Set([searchTerm(node.question), String(node.question).trim()])];
+    if (variants.article === "off" || !wiki.length || terms.length < 2) return lookup(terms[0]);
+    const titles = [];
+    for (const term of terms) {
+      let found = null;
+      try {
+        found = await wiki(term, { signal, searchOnly: true });
+      } catch (error) {
+        if (signal?.aborted || error?.name === "AbortError") throw error;
+      }
+      signal?.throwIfAborted();
+      trace(run, "tool_result", { node: node.id, query: term, searchOnly: true, result: found });
+      for (const title of found?.hits ?? []) if (!titles.includes(title)) titles.push(title);
+    }
+    if (!titles.length) return lookup(terms[0]);
+    const chosen = await answer("article", { question: node.question, titles: titles.slice(0, 8) }, "Choosing an article");
+    trace(run, "article_chosen", { node: node.id, query: terms.join(" | "), titles, article: chosen });
+    if (chosen === "none") {
+      lookups++;
+      run.lookups++;
+      recordFailedLookup(run, node.id, terms[0], { kind: "no_match", message: `None of the articles found is about the question: ${titles.join(", ")}.` });
+      onUpdate(node.id, "Lookup found nothing");
+      return "nothing";
+    }
+    return lookup(chosen, null, { chosen: true });
+  };
 
   try {
-    // Nothing read and nothing found by children: the first lookup is the
-    // question minus its question words. No model call.
+    // Nothing read and nothing found by children: the first lookup searches
+    // for the question minus its question words and for the question itself
+    // — neither term is right every time ("sky blue" finds the colour; the
+    // raw Dead Sea question finds the Aral Sea) — and the article is picked
+    // from every title both found.
     if (!node.observed.length && !children(run, node.id).length && lookups < run.limits.maxLookups) {
-      if ((await lookup(searchTerm(node.question))) === "declined") return true;
+      if ((await firstLookup()) === "declined") return true;
     }
     if (!judgedByNode.has(node)) judgedByNode.set(node, new Set());
     const judged = judgedByNode.get(node);
@@ -213,6 +257,14 @@ export async function runWalk(run, options) {
           const index = Number(pick) - 1;
           const chosen = window[index];
           if (!chosen) throw new Error(`The model picked sentence ${pick} of ${window.length}.`);
+          if (CHECK_FOREIGN && variants.sentence !== "check" && chosen.from === "excerpt" && isForeign(chosen.source, node.question)) {
+            const verdict = await answer("confirm", { question: node.question, sentence: chosen.text }, "Checking the pick");
+            trace(run, "pick_checked", { node: node.id, pick, source: chosen.source, verdict });
+            if (verdict !== "yes") {
+              judged.add(chosen.text);
+              continue;
+            }
+          }
           // A finding is a sentence, not a fragment (validateResult). A very
           // short first pick keeps its neighbour for context — still verbatim.
           if (!gathered.length && chosen.text.split(/\s+/).length < MIN_FINDING_WORDS && index > 0 && window[index - 1].evidence[0] === chosen.evidence[0]) gathered.push(window[index - 1]);

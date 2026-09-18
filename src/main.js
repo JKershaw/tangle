@@ -265,8 +265,8 @@ async function cachedFetch(url, init) {
   return response;
 }
 
-async function liveWiki(query, { signal, readOn }) {
-  const options = { signal, fetchImpl: cachedFetch };
+async function liveWiki(query, { signal, readOn, searchOnly = false }) {
+  const options = { signal, fetchImpl: cachedFetch, searchOnly };
   const result = readOn ? await readWikipediaSection(readOn.article, readOn.section, options) : await lookupWikipedia(query, options);
   if (!result.ok && result.error?.kind === "unreachable") {
     return {
