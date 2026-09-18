@@ -197,8 +197,10 @@ export function validateResult(run, node, result, visibleEvidenceIds) {
     // A finding is a claim, not a label: 0.6B once resolved with the finding
     // "Dead Sea / Receding shoreline" — the prompt's example query, echoed.
     assert(String(result.finding).trim().split(/\s+/).length >= 6, "A finding must be a sentence, not a fragment.");
+    // The model cites up to eight; a harness-gathered profile cites every
+    // excerpt its paragraphs rest on (1.7B's Turing profile: eleven).
     assert(
-      Array.isArray(result.evidence) && result.evidence.length >= 1 && result.evidence.length <= 8,
+      Array.isArray(result.evidence) && result.evidence.length >= 1 && result.evidence.length <= (result.harness === true ? 64 : 8),
       "A resolution needs inspected evidence IDs.",
     );
     assert(

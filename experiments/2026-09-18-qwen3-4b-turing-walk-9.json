@@ -1,0 +1,1775 @@
+{
+  "format": "tangle-pocket-1",
+  "version": "0.2.0",
+  "promptVersion": "walk-9/asks-3/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "created": "2026-09-18T14:27:33.448Z",
+  "mode": "live",
+  "seed": "Tell me about Alan Turing and elaborate on the impact of his work.",
+  "limits": {
+    "maxNodes": 40,
+    "maxVisits": 60,
+    "maxDepth": 6,
+    "maxLookups": 2,
+    "maxPasses": 6,
+    "revisitSettled": true,
+    "walk": true,
+    "maxSentences": 3,
+    "maxFindingChars": 6000,
+    "maxSections": 6
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "parent": null,
+      "depth": 0,
+      "question": "Tell me about Alan Turing and elaborate on the impact of his work.",
+      "status": "resolved",
+      "visits": 2,
+      "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n\nHe was awarded first-class honours in mathematics. His dissertation, On the Gaussian error function, written during his senior year and delivered in November 1934 proved a version of the central limit theorem.\n\nHe presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.\n\nHe suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A. Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.",
+      "evidence": [
+        "e1",
+        "e2",
+        "e3",
+        "e4"
+      ],
+      "observed": [
+        "e1"
+      ],
+      "failedLookups": [],
+      "reason": "",
+      "kept": [
+        {
+          "text": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer.",
+          "evidence": [
+            "e1"
+          ]
+        },
+        {
+          "text": "Turing is widely considered to be the father of theoretical computer science.",
+          "evidence": [
+            "e1"
+          ]
+        },
+        {
+          "text": "He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.",
+          "evidence": [
+            "e1"
+          ]
+        }
+      ],
+      "fanned": true
+    },
+    {
+      "id": "n2",
+      "parent": "n1",
+      "depth": 1,
+      "question": "Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability",
+      "status": "resolved",
+      "visits": 1,
+      "finding": "He was awarded first-class honours in mathematics. His dissertation, On the Gaussian error function, written during his senior year and delivered in November 1934 proved a version of the central limit theorem.",
+      "evidence": [
+        "e2"
+      ],
+      "observed": [
+        "e2"
+      ],
+      "failedLookups": [],
+      "reason": "",
+      "readFirst": {
+        "article": "Alan Turing",
+        "section": "University and work on computability"
+      },
+      "hopped": true
+    },
+    {
+      "id": "n3",
+      "parent": "n1",
+      "depth": 1,
+      "question": "Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test",
+      "status": "resolved",
+      "visits": 1,
+      "finding": "He presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.",
+      "evidence": [
+        "e3"
+      ],
+      "observed": [
+        "e3"
+      ],
+      "failedLookups": [],
+      "reason": "",
+      "readFirst": {
+        "article": "Alan Turing",
+        "section": "Early computers and the Turing test"
+      },
+      "hopped": true
+    },
+    {
+      "id": "n4",
+      "parent": "n1",
+      "depth": 1,
+      "question": "Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology",
+      "status": "resolved",
+      "visits": 1,
+      "finding": "He suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A. Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.",
+      "evidence": [
+        "e4"
+      ],
+      "observed": [
+        "e4"
+      ],
+      "failedLookups": [],
+      "reason": "",
+      "readFirst": {
+        "article": "Alan Turing",
+        "section": "Pattern formation and mathematical biology"
+      },
+      "hopped": true
+    },
+    {
+      "id": "n5",
+      "parent": "n1",
+      "depth": 1,
+      "question": "Tell me about Alan Turing and elaborate on the impact of his work. — about Career and research",
+      "status": "blocked",
+      "visits": 1,
+      "finding": "",
+      "evidence": [],
+      "observed": [
+        "e5"
+      ],
+      "failedLookups": [
+        {
+          "query": "Alan Turing",
+          "error": "Already read."
+        }
+      ],
+      "reason": "Nothing read states the answer, and no further lookup or question is allowed here.",
+      "readFirst": {
+        "article": "Alan Turing",
+        "section": "Career and research"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "ok": true,
+      "tool": "wiki",
+      "kind": "wiki",
+      "query": "Alan Turing",
+      "title": "Alan Turing",
+      "article": "Alan Turing",
+      "section": 0,
+      "headings": [
+        "Family",
+        "School",
+        "Christopher Morcom",
+        "University and work on computability",
+        "Career and research",
+        "Cryptanalysis",
+        "Bombe",
+        "Action This Day",
+        "Hut 8 and the naval Enigma",
+        "Turingery",
+        "Delilah",
+        "Early computers and the Turing test",
+        "Pattern formation and mathematical biology",
+        "Ratio Club and other cybernetics contacts",
+        "Treasure",
+        "Engagement",
+        "Chess",
+        "Homosexuality and indecency conviction",
+        "\"Pryce's Buoy\"",
+        "Death",
+        "Doubts on suicide thesis",
+        "Government apology and pardon",
+        "Books"
+      ],
+      "text": "Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist. He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science.\nBorn in London, Turing was raised in southern England. He graduated from King's College, Cambridge, and in 1938, earned a doctorate degree from Princeton University. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence. He led Hut 8, the section responsible for German naval cryptanalysis. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\nAfter the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s. Despite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act.\nIn 1952, Turing was prosecuted for homosexual acts. He accepted hormone treatment, a procedure commonly referred to as chemical castration, as an alternative to prison. Turing died on 7 June 1954, aged 41, from cyanide poisoning. An inquest determined his death as suicide, but the evidence is also consistent with accidental poisoning. Following a campaign in 2009, British prime minister Gordon Brown made an official public apology for \"the appalling way [Turing] was treated\". Queen Elizabeth II granted a pardon in 2013. The term \"Alan Turing law\" is used informally to refer to a 2017 law in the UK that retroactively pardoned men cautioned or convicted under historical legislation that outlawed homosexual acts.\nTuring left an extensive legacy in mathematics and computing which has become widely recognised with statues and many things named after him, including an annual award for computing innovation. His portrait appears on the Bank of England £50 note, first released on 23 June 2021 to coincide with his birthday. The audience vote in a 2019 BBC series named Turing the greatest scientist of the 20th century.\nThe cognitive scientist Douglas Hofstadter writes:\n\nAtheist, homosexual, eccentric, marathon-running mathematician, A. M. Turing was in large part responsible not only for the concept of computers, incisive theorems about their powers, and a clear vision of the possibility of computer minds, but also for the cracking of German ciphers during the Second World War. It is fair to say we owe much to Alan Turing for the fact that we are not under Nazi rule today.",
+      "exact": true,
+      "alternatives": [
+        "Turing Award",
+        "Alan Turing: The Enigma",
+        "Alan Turing law",
+        "Alan Turing Institute"
+      ],
+      "revision": "1375527246",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246",
+      "requests": [
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Alan%20Turing&srlimit=5&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 2246,
+          "elapsedMs": 0
+        },
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 65112,
+          "elapsedMs": 0
+        }
+      ],
+      "id": "e1",
+      "capturedAt": "2026-09-18T14:27:35.168Z",
+      "node": "n1"
+    },
+    {
+      "ok": true,
+      "tool": "wiki",
+      "kind": "wiki",
+      "query": "Alan Turing",
+      "title": "Alan Turing § University and work on computability",
+      "article": "Alan Turing",
+      "section": 4,
+      "sections": 24,
+      "text": "In 1929 Turing and his friend Christopher Morcom applied for scholarships at Trinity College, Cambridge. Morcom, who was successful, had various advantages over Turing – he was nearly a year older, and both his father and brother had studied at Trinity. However, he died three months after the offer was made. Turing, on the other hand, was unsuccessful, but sat the King's College, Cambridge Scholarship Examination in Mathematics in 1930. King's reserved most of its places for Etonians (there was a historic link with Eton as a feeder institution), making the exam very competitive for candidates from other schools. However, its examiners had a slightly different slant to those in other colleges. Hodges describes the King's examiners as looking for \"a spark of originality\" and notes that the papers were \"notorious for their unorthodox questions\". \nTuring was awarded an exhibition (a lower-value scholarship) worth £80 per annum (equivalent to about £4,300 as of 2023). His undergraduate studies at Cambridge were from February 1931 to November 1934. He studied \"Schedule B\" of the Mathematical Tripos course. He was awarded first-class honours in mathematics. His dissertation, On the Gaussian error function, written during his senior year and delivered in November 1934 proved a version of the central limit theorem. It was finally accepted on 16 March 1935. By spring of that same year, Turing started his master's course (Part III)—which he completed in 1937—and, at the same time, he published his first paper, a one-page article called Equivalence of left and right almost periodicity (sent on 23 April), featured in the tenth volume of the Journal of the London Mathematical Society. Later that year, Turing was elected a Fellow of King's College on the strength of his dissertation where he served as a lecturer. However, unknown to Turing, the version of the theorem he proved in his paper had already been proven by Jarl Waldemar Lindeberg in 1922. Despite this, the committee found Turing's methods original and so regarded the work worthy of consideration for the fellowship. Abram Besicovitch's report for the committee went so far as to say that if Turing's work had been published before Lindeberg's, it would have been \"an important event in the mathematical literature of that year\".\nBetween the springs of 1935 and 1936, at the same time as Alonzo Church, Turing worked on the decidability of problems, starting from Gödel's incompleteness theorems. In mid-April 1936, Turing sent Max Newman the first draft typescript of his investigations. That same month, Church published his An Unsolvable Problem of Elementary Number Theory, with similar conclusions to Turing's then-yet unpublished work. Finally, on 28 May of that year, he finished and delivered his 36-page paper for publication called \"On Computable Numbers, with an Application to the Entscheidungsproblem\". It was published in the Proceedings of the London Mathematical Society journal in two parts, the first on 30 November and the second on 23 December. In this paper, Turing proved results on the limits of computation, introducing the formal and simple hypothetical devices that became known as Turing machines. The Entscheidungsproblem (decision problem) was originally posed by German mathematician David Hilbert in 1928, and consists of seeking a computational procedure for proving or disproving theorems in the logical calculus employed by Hilbert. Turing argued that his \"computing machine\" would be capable of performing any conceivable mathematical computation if it were representable by finitary means (as an algorithm). He went on to prove that there was no solution to the decision problem by first showing that some variants of the halting problem for Turing machines are undecidable: in parcitular, it is not possible to decide algorithmically whether a Turing machine will produce an infinite output. This paper has been called \"easily the most influential math paper in history\".\n\nAlthough T",
+      "exact": true,
+      "revision": "1375527246",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246#University_and_work_on_computability",
+      "requests": [
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 65112,
+          "elapsedMs": 0
+        }
+      ],
+      "id": "e2",
+      "capturedAt": "2026-09-18T14:27:45.964Z",
+      "node": "n2"
+    },
+    {
+      "ok": true,
+      "tool": "wiki",
+      "kind": "wiki",
+      "query": "Alan Turing",
+      "title": "Alan Turing § Early computers and the Turing test",
+      "article": "Alan Turing",
+      "section": 12,
+      "sections": 24,
+      "text": "Between 1945 and 1947, Turing lived in Hampton, London, while he worked on the design of the ACE (Automatic Computing Engine) at the National Physical Laboratory (NPL). He presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. Von Neumann's incomplete First Draft of a Report on the EDVAC had predated Turing's paper, but it was much less detailed and, according to John R. Womersley, Superintendent of the NPL Mathematics Division, it \"contains a number of ideas which are Dr. Turing's own\".\nAlthough ACE was a feasible design, the effect of the Official Secrets Act surrounding the wartime work at Bletchley Park made it impossible for Turing to explain the basis of his analysis of how a computer installation involving human operators would work. This led to delays in starting the project and he became disillusioned. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. While he was at Cambridge, the Pilot ACE was being built in his absence. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15. The full version of Turing's ACE was not built until after his death.\nAccording to the memoirs of the German computer pioneer Heinz Billing from the Max Planck Institute for Physics, published by Genscher, Düsseldorf, there was a meeting between Turing and Konrad Zuse. It took place in Göttingen in 1947. The interrogation had the form of a colloquium. Participants were Womersley, Turing, Porter from England and a few German researchers like Zuse, Walther, and Billing (for more details see Herbert Bruderer, Konrad Zuse und die Schweiz).\n\nIn 1948, Turing was appointed reader in the Mathematics Department at the University of Manchester. He lived at \"Copper Folly\", 43 Adlington Road, in Wilmslow. A year later, he became deputy director of the Computing Machine Laboratory, where he worked on software for one of the earliest stored-program computers—the Manchester Mark 1. Turing wrote the first version of the Programmer's Manual for this machine, was elected to membership of the Manchester Literary and Philosophical Society, and was recruited by Ferranti as a consultant in the development of their commercialised machine, the Ferranti Mark 1. He continued to be paid consultancy fees by Ferranti until his death. During this time, he continued to do more abstract work in mathematics, and in \"Computing Machinery and Intelligence\", Turing addressed the problem of artificial intelligence, and proposed an experiment that became known as the Turing test, an attempt to define a standard for a machine to be called \"intelligent\". The idea was that a computer could be said to \"think\" if a human interrogator could not tell it apart, through conversation, from a human being. In the paper, Turing suggested that rather than building a program to simulate the adult mind, it would be better to produce a simpler one to simulate a child's mind and then to subject it to a course of education. A reversed form of the Turing test is widely used on the Internet; the CAPTCHA test is intended to determine whether the user is a human or a computer.\nIn 1948, Turing, working with his former undergraduate colleague, D.G. Champernowne, began writing a chess program for a computer that did not yet exist. By 1950, the program was completed and dubbed the Turochamp. In 1952, he tried to implement it on a Ferranti Mark 1, but lacking enough power, the computer was unable to execute the program. Instead, Turing \"ran\" the program by flipping through the pages of the algorithm and carrying out its instructions on a chessboard, taking about half an hour per move. The game was recorded. According to Garry Kasparov, Turing's program \"played a recognizable game of chess\". The program lost to Turing's colleague",
+      "exact": true,
+      "revision": "1375527246",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246#Early_computers_and_the_Turing_test",
+      "requests": [
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 65112,
+          "elapsedMs": 0
+        }
+      ],
+      "id": "e3",
+      "capturedAt": "2026-09-18T14:27:54.427Z",
+      "node": "n3"
+    },
+    {
+      "ok": true,
+      "tool": "wiki",
+      "kind": "wiki",
+      "query": "Alan Turing",
+      "title": "Alan Turing § Pattern formation and mathematical biology",
+      "article": "Alan Turing",
+      "section": 13,
+      "sections": 24,
+      "text": "When Turing was 39 years old in 1951, he turned to mathematical biology, finally publishing his masterpiece \"The Chemical Basis of Morphogenesis\" in January 1952. He was interested in morphogenesis, the development of patterns and shapes in biological organisms. He suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". He used systems of partial differential equations to model catalytic chemical reactions. For example, if a catalyst A is required for a certain chemical reaction to take place, and if the reaction produced more of the catalyst A, then we say that the reaction is autocatalytic, and there is positive feedback that can be modelled by nonlinear differential equations. Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A. If A and B then diffused through the container at different rates, then you could have some regions where A dominated and some where B did. To calculate the extent of this, Turing would have needed a powerful computer, but these were not so freely available in 1951, so he had to use linear approximations to solve the equations by hand. These calculations gave the right qualitative results, and produced, for example, a uniform mixture that oddly enough had regularly spaced fixed red spots. The Russian biochemist Boris Belousov had performed experiments with similar results, but could not get his papers published because of the contemporary prejudice that any such thing violated the second law of thermodynamics. Belousov was not aware of Turing's paper in the Philosophical Transactions of the Royal Society.\nAlthough published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology. Some of this work aimed to understand plant phyllotaxy, specifically how plant primordia form in a ring around the apical meristem during plant growth and development, forming Fibonacci series. One of the early applications of Turing's paper was the work by James Murray explaining spots and stripes on the fur of cats, large and small. Further research in the area suggests that Turing's work can partially explain the growth of \"feathers, hair follicles, the branching pattern of lungs, and even the left-right asymmetry that puts the heart on the left side of the chest\". In 2012, Sheth, et al. found that in mice, removal of Hox genes causes an increase in the number of digits without an increase in the overall size of the limb, suggesting that Hox genes control digit formation by tuning the wavelength of a Turing-type mechanism. Later papers were not available until Collected Works of A. M. Turing was published in 1992.\nA study conducted in 2023 confirmed Turing's mathematical model hypothesis. Presented by the American Physical Society, the experiment involved growing chia seeds in even layers within trays, later adjusting the available moisture. Researchers experimentally tweaked the factors which appear in the Turing equations, and, as a result, patterns resembling those seen in natural environments emerged. This is believed to be the first time that experiments with living vegetation have verified Turing's mathematical insight.",
+      "exact": true,
+      "revision": "1375527246",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246#Pattern_formation_and_mathematical_biology",
+      "requests": [
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 65112,
+          "elapsedMs": 0
+        }
+      ],
+      "id": "e4",
+      "capturedAt": "2026-09-18T14:28:01.076Z",
+      "node": "n4"
+    },
+    {
+      "ok": true,
+      "tool": "wiki",
+      "kind": "wiki",
+      "query": "Alan Turing",
+      "title": "Alan Turing § Career and research",
+      "article": "Alan Turing",
+      "section": 5,
+      "sections": 24,
+      "text": "When Turing returned to Cambridge, he attended lectures given in 1939 by Ludwig Wittgenstein about the foundations of mathematics. The lectures have been reconstructed verbatim, including interjections from Turing and other students, from students' notes. Turing and Wittgenstein argued and disagreed, with Turing defending formalism and Wittgenstein propounding his view that mathematics does not discover any absolute truths, but rather invents them.",
+      "exact": true,
+      "revision": "1375527246",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246#Career_and_research",
+      "requests": [
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 65112,
+          "elapsedMs": 0
+        }
+      ],
+      "id": "e5",
+      "capturedAt": "2026-09-18T14:28:08.775Z",
+      "node": "n5"
+    }
+  ],
+  "trace": [
+    {
+      "seq": 1,
+      "time": "2026-09-18T14:27:33.544Z",
+      "event": "node_started",
+      "node": "n1",
+      "visit": 1
+    },
+    {
+      "seq": 2,
+      "time": "2026-09-18T14:27:33.545Z",
+      "event": "tool_result",
+      "node": "n1",
+      "query": "Tell me about Alan Turing and elaborate on impact of his work",
+      "searchOnly": true,
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "search",
+        "query": "Tell me about Alan Turing and elaborate on impact of his work",
+        "title": "Alan Turing",
+        "alternatives": [
+          "Ridley Scott",
+          "List of atheists in science and technology",
+          "List of Jewish atheists and agnostics",
+          "J. R. R. Tolkien"
+        ],
+        "hits": [
+          "Alan Turing",
+          "Ridley Scott",
+          "List of atheists in science and technology",
+          "List of Jewish atheists and agnostics",
+          "J. R. R. Tolkien"
+        ],
+        "snippets": [
+          "Jan (2013). Alan Turing: His Work and Impact. New York: Elsevier. ISBN 978-0-12-386980-7. Copeland, B. Jack, ed. (2005). Alan Turing's Automatic Computing",
+          "scientist Alan Turing and the philosopher John Searle as presenting relevant models of testing artificial intelligence known as the Turing test and the Chinese",
+          "creator of the Linux kernel. Alan Turing (1912–1954): English mathematician, computer scientist, and theoretical biologist who provided a formalization of the",
+          "Medal for his work on distributions William James Sidis – American mathematician, cosmologist, inventor, linguist, historian and child prodigy Alan Sokal",
+          "twentieth-century's single most important author of fantasy\". His work has had a massive impact on Western pop culture, and remains extremely influential. In a 1951"
+        ],
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Tell%20me%20about%20Alan%20Turing%20and%20elaborate%20on%20impact%20of%20his%20work&srlimit=5&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 2681,
+            "elapsedMs": 1
+          }
+        ]
+      }
+    },
+    {
+      "seq": 3,
+      "time": "2026-09-18T14:27:33.545Z",
+      "event": "tool_result",
+      "node": "n1",
+      "query": "Tell me about Alan Turing and elaborate on the impact of his work.",
+      "searchOnly": true,
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "search",
+        "query": "Tell me about Alan Turing and elaborate on the impact of his work.",
+        "title": "Alan Turing",
+        "alternatives": [
+          "List of atheists in science and technology",
+          "Ridley Scott",
+          "List of Jewish atheists and agnostics",
+          "Noam Chomsky"
+        ],
+        "hits": [
+          "Alan Turing",
+          "List of atheists in science and technology",
+          "Ridley Scott",
+          "List of Jewish atheists and agnostics",
+          "Noam Chomsky"
+        ],
+        "snippets": [
+          "mathematician Alan Turing on why the story of his complicated life and lasting legacy deserves to be told afresh. The Sunday Post, 21 March 2021. \"TURING, Ethel",
+          "kernel. Alan Turing (1912–1954): English mathematician, computer scientist, and theoretical biologist who provided a formalization of the concepts of algorithm",
+          "scientist Alan Turing and the philosopher John Searle as presenting relevant models of testing artificial intelligence known as the Turing test and the Chinese",
+          "Medal for his work on distributions William James Sidis – American mathematician, cosmologist, inventor, linguist, historian and child prodigy Alan Sokal",
+          "his work in linguistics, since the 1960s, Chomsky has been an influential voice on the American Left as a consistent critic of the foreign policy of the"
+        ],
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Tell%20me%20about%20Alan%20Turing%20and%20elaborate%20on%20the%20impact%20of%20his%20work.&srlimit=5&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 2901,
+            "elapsedMs": 0
+          }
+        ]
+      }
+    },
+    {
+      "seq": 4,
+      "time": "2026-09-18T14:27:33.545Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "article",
+      "variant": "snippets",
+      "status": "Choosing an article",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a question and Wikipedia articles a search returned, each with a line from it. Pick the title of the article most likely to answer the question. If none of them is about the question's subject, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Tell me about Alan Turing and elaborate on the impact of his work.\n\nArticles:\n- Alan Turing — Jan (2013). Alan Turing: His Work and Impact. New York: Elsevier. ISBN 978-0-12-386980-7. Copeland, B. Jack, ed. (2005). Alan Turing's Automatic Computing\n- Ridley Scott — scientist Alan Turing and the philosopher John Searle as presenting relevant models of testing artificial intelligence known as the Turing test and the Chinese\n- List of atheists in science and technology — creator of the Linux kernel. Alan Turing (1912–1954): English mathematician, computer scientist, and theoretical biologist who provided a formalization of the\n- List of Jewish atheists and agnostics — Medal for his work on distributions William James Sidis – American mathematician, cosmologist, inventor, linguist, historian and child prodigy Alan Sokal\n- J. R. R. Tolkien — twentieth-century's single most important author of fantasy\". His work has had a massive impact on Western pop culture, and remains extremely influential. In a \n- Noam Chomsky — his work in linguistics, since the 1960s, Chomsky has been an influential voice on the American Left as a consistent critic of the foreign policy of the\n\nReply {\"article\": \"<title>\"} or {\"article\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 5,
+      "time": "2026-09-18T14:27:35.167Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "article",
+      "variant": "snippets",
+      "status": "Choosing an article",
+      "raw": "<think>\n\n</think>\n\n{\"article\": \"Alan Turing\"}",
+      "tokens": 382,
+      "latencyMs": 1622,
+      "simulated": false
+    },
+    {
+      "seq": 6,
+      "time": "2026-09-18T14:27:35.167Z",
+      "event": "article_chosen",
+      "node": "n1",
+      "query": "Tell me about Alan Turing and elaborate on impact of his work | Tell me about Alan Turing and elaborate on the impact of his work.",
+      "titles": [
+        "Alan Turing",
+        "Ridley Scott",
+        "List of atheists in science and technology",
+        "List of Jewish atheists and agnostics",
+        "J. R. R. Tolkien",
+        "Noam Chomsky"
+      ],
+      "article": "Alan Turing"
+    },
+    {
+      "seq": 7,
+      "time": "2026-09-18T14:27:35.167Z",
+      "event": "tool_proposed",
+      "node": "n1",
+      "query": "Alan Turing",
+      "tool": "wiki"
+    },
+    {
+      "seq": 8,
+      "time": "2026-09-18T14:27:35.168Z",
+      "event": "tool_result",
+      "node": "n1",
+      "query": "Alan Turing",
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "wiki",
+        "query": "Alan Turing",
+        "title": "Alan Turing",
+        "article": "Alan Turing",
+        "section": 0,
+        "headings": [
+          "Family",
+          "School",
+          "Christopher Morcom",
+          "University and work on computability",
+          "Career and research",
+          "Cryptanalysis",
+          "Bombe",
+          "Action This Day",
+          "Hut 8 and the naval Enigma",
+          "Turingery",
+          "Delilah",
+          "Early computers and the Turing test",
+          "Pattern formation and mathematical biology",
+          "Ratio Club and other cybernetics contacts",
+          "Treasure",
+          "Engagement",
+          "Chess",
+          "Homosexuality and indecency conviction",
+          "\"Pryce's Buoy\"",
+          "Death",
+          "Doubts on suicide thesis",
+          "Government apology and pardon",
+          "Books"
+        ],
+        "text": "Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist. He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science.\nBorn in London, Turing was raised in southern England. He graduated from King's College, Cambridge, and in 1938, earned a doctorate degree from Princeton University. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence. He led Hut 8, the section responsible for German naval cryptanalysis. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\nAfter the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s. Despite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act.\nIn 1952, Turing was prosecuted for homosexual acts. He accepted hormone treatment, a procedure commonly referred to as chemical castration, as an alternative to prison. Turing died on 7 June 1954, aged 41, from cyanide poisoning. An inquest determined his death as suicide, but the evidence is also consistent with accidental poisoning. Following a campaign in 2009, British prime minister Gordon Brown made an official public apology for \"the appalling way [Turing] was treated\". Queen Elizabeth II granted a pardon in 2013. The term \"Alan Turing law\" is used informally to refer to a 2017 law in the UK that retroactively pardoned men cautioned or convicted under historical legislation that outlawed homosexual acts.\nTuring left an extensive legacy in mathematics and computing which has become widely recognised with statues and many things named after him, including an annual award for computing innovation. His portrait appears on the Bank of England £50 note, first released on 23 June 2021 to coincide with his birthday. The audience vote in a 2019 BBC series named Turing the greatest scientist of the 20th century.\nThe cognitive scientist Douglas Hofstadter writes:\n\nAtheist, homosexual, eccentric, marathon-running mathematician, A. M. Turing was in large part responsible not only for the concept of computers, incisive theorems about their powers, and a clear vision of the possibility of computer minds, but also for the cracking of German ciphers during the Second World War. It is fair to say we owe much to Alan Turing for the fact that we are not under Nazi rule today.",
+        "exact": true,
+        "alternatives": [
+          "Turing Award",
+          "Alan Turing: The Enigma",
+          "Alan Turing law",
+          "Alan Turing Institute"
+        ],
+        "revision": "1375527246",
+        "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246",
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Alan%20Turing&srlimit=5&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 2246,
+            "elapsedMs": 0
+          },
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 65112,
+            "elapsedMs": 0
+          }
+        ]
+      }
+    },
+    {
+      "seq": 9,
+      "time": "2026-09-18T14:27:35.168Z",
+      "event": "evidence_captured",
+      "node": "n1",
+      "evidence": "e1",
+      "kind": "wiki"
+    },
+    {
+      "seq": 10,
+      "time": "2026-09-18T14:27:35.169Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work.\n\n1. Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist.\n2. He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer.\n3. Turing is widely considered to be the father of theoretical computer science.\n4. Born in London, Turing was raised in southern England.\n5. He graduated from King's College, Cambridge, and in 1938, earned a doctorate degree from Princeton University.\n6. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence.\n7. He led Hut 8, the section responsible for German naval cryptanalysis.\n8. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine.\n9. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n10. After the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer.\n11. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology.\n12. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 11,
+      "time": "2026-09-18T14:27:37.102Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"2\"}",
+      "tokens": 520,
+      "latencyMs": 1931,
+      "simulated": false
+    },
+    {
+      "seq": 12,
+      "time": "2026-09-18T14:27:37.102Z",
+      "event": "sentence_picked",
+      "node": "n1",
+      "pick": "2",
+      "shown": 12,
+      "gathered": 0
+    },
+    {
+      "seq": 13,
+      "time": "2026-09-18T14:27:37.102Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work.\n\n1. Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist.\n2. Turing is widely considered to be the father of theoretical computer science.\n3. Born in London, Turing was raised in southern England.\n4. He graduated from King's College, Cambridge, and in 1938, earned a doctorate degree from Princeton University.\n5. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence.\n6. He led Hut 8, the section responsible for German naval cryptanalysis.\n7. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine.\n8. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n9. After the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer.\n10. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology.\n11. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s.\n12. Despite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 14,
+      "time": "2026-09-18T14:27:38.955Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"8\"}",
+      "tokens": 505,
+      "latencyMs": 1853,
+      "simulated": false
+    },
+    {
+      "seq": 15,
+      "time": "2026-09-18T14:27:38.955Z",
+      "event": "sentence_picked",
+      "node": "n1",
+      "pick": "8",
+      "shown": 12,
+      "gathered": 1
+    },
+    {
+      "seq": 16,
+      "time": "2026-09-18T14:27:38.955Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work.\n\n1. Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist.\n2. Turing is widely considered to be the father of theoretical computer science.\n3. Born in London, Turing was raised in southern England.\n4. He graduated from King's College, Cambridge, and in 1938, earned a doctorate degree from Princeton University.\n5. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence.\n6. He led Hut 8, the section responsible for German naval cryptanalysis.\n7. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine.\n8. After the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer.\n9. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology.\n10. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s.\n11. Despite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act.\n12. In 1952, Turing was prosecuted for homosexual acts.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 17,
+      "time": "2026-09-18T14:27:40.753Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"2\"}",
+      "tokens": 491,
+      "latencyMs": 1797,
+      "simulated": false
+    },
+    {
+      "seq": 18,
+      "time": "2026-09-18T14:27:40.753Z",
+      "event": "sentence_picked",
+      "node": "n1",
+      "pick": "2",
+      "shown": 12,
+      "gathered": 2
+    },
+    {
+      "seq": 19,
+      "time": "2026-09-18T14:27:40.753Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "section",
+      "variant": "brief",
+      "status": "Choosing sections",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and the section headings of a Wikipedia article. Pick the heading of the section most worth reading for the brief. If none of the remaining sections would add anything the brief asks for, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work.\nArticle: Alan Turing\n\nSections:\n- Family\n- School\n- Christopher Morcom\n- University and work on computability\n- Career and research\n- Cryptanalysis\n- Bombe\n- Action This Day\n- Hut 8 and the naval Enigma\n- Turingery\n- Delilah\n- Early computers and the Turing test\n- Pattern formation and mathematical biology\n- Ratio Club and other cybernetics contacts\n- Treasure\n- Engagement\n- Chess\n- Homosexuality and indecency conviction\n- \"Pryce's Buoy\"\n- Death\n- Doubts on suicide thesis\n- Government apology and pardon\n- Books\n\nReply {\"section\": \"<heading>\"} or {\"section\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 20,
+      "time": "2026-09-18T14:27:41.839Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "section",
+      "variant": "brief",
+      "status": "Choosing sections",
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"University and work on computability\"}",
+      "tokens": 248,
+      "latencyMs": 1085,
+      "simulated": false
+    },
+    {
+      "seq": 21,
+      "time": "2026-09-18T14:27:41.839Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "section",
+      "variant": "brief",
+      "status": "Choosing sections",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and the section headings of a Wikipedia article. Pick the heading of the section most worth reading for the brief, other than those already chosen. If none of the remaining sections would add anything the brief asks for, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work.\nArticle: Alan Turing\nAlready chosen: University and work on computability\n\nSections:\n- Family\n- School\n- Christopher Morcom\n- Career and research\n- Cryptanalysis\n- Bombe\n- Action This Day\n- Hut 8 and the naval Enigma\n- Turingery\n- Delilah\n- Early computers and the Turing test\n- Pattern formation and mathematical biology\n- Ratio Club and other cybernetics contacts\n- Treasure\n- Engagement\n- Chess\n- Homosexuality and indecency conviction\n- \"Pryce's Buoy\"\n- Death\n- Doubts on suicide thesis\n- Government apology and pardon\n- Books\n\nReply {\"section\": \"<heading>\"} or {\"section\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 22,
+      "time": "2026-09-18T14:27:42.925Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "section",
+      "variant": "brief",
+      "status": "Choosing sections",
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Early computers and the Turing test\"}",
+      "tokens": 256,
+      "latencyMs": 1086,
+      "simulated": false
+    },
+    {
+      "seq": 23,
+      "time": "2026-09-18T14:27:42.925Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "section",
+      "variant": "brief",
+      "status": "Choosing sections",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and the section headings of a Wikipedia article. Pick the heading of the section most worth reading for the brief, other than those already chosen. If none of the remaining sections would add anything the brief asks for, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work.\nArticle: Alan Turing\nAlready chosen: University and work on computability, Early computers and the Turing test\n\nSections:\n- Family\n- School\n- Christopher Morcom\n- Career and research\n- Cryptanalysis\n- Bombe\n- Action This Day\n- Hut 8 and the naval Enigma\n- Turingery\n- Delilah\n- Pattern formation and mathematical biology\n- Ratio Club and other cybernetics contacts\n- Treasure\n- Engagement\n- Chess\n- Homosexuality and indecency conviction\n- \"Pryce's Buoy\"\n- Death\n- Doubts on suicide thesis\n- Government apology and pardon\n- Books\n\nReply {\"section\": \"<heading>\"} or {\"section\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 24,
+      "time": "2026-09-18T14:27:43.978Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "section",
+      "variant": "brief",
+      "status": "Choosing sections",
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Pattern formation and mathematical biology\"}",
+      "tokens": 254,
+      "latencyMs": 1052,
+      "simulated": false
+    },
+    {
+      "seq": 25,
+      "time": "2026-09-18T14:27:43.978Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "section",
+      "variant": "brief",
+      "status": "Choosing sections",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and the section headings of a Wikipedia article. Pick the heading of the section most worth reading for the brief, other than those already chosen. If none of the remaining sections would add anything the brief asks for, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work.\nArticle: Alan Turing\nAlready chosen: University and work on computability, Early computers and the Turing test, Pattern formation and mathematical biology\n\nSections:\n- Family\n- School\n- Christopher Morcom\n- Career and research\n- Cryptanalysis\n- Bombe\n- Action This Day\n- Hut 8 and the naval Enigma\n- Turingery\n- Delilah\n- Ratio Club and other cybernetics contacts\n- Treasure\n- Engagement\n- Chess\n- Homosexuality and indecency conviction\n- \"Pryce's Buoy\"\n- Death\n- Doubts on suicide thesis\n- Government apology and pardon\n- Books\n\nReply {\"section\": \"<heading>\"} or {\"section\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 26,
+      "time": "2026-09-18T14:27:44.965Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "section",
+      "variant": "brief",
+      "status": "Choosing sections",
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Career and research\"}",
+      "tokens": 251,
+      "latencyMs": 986,
+      "simulated": false
+    },
+    {
+      "seq": 27,
+      "time": "2026-09-18T14:27:44.965Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "section",
+      "variant": "brief",
+      "status": "Choosing sections",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and the section headings of a Wikipedia article. Pick the heading of the section most worth reading for the brief, other than those already chosen. If none of the remaining sections would add anything the brief asks for, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work.\nArticle: Alan Turing\nAlready chosen: University and work on computability, Early computers and the Turing test, Pattern formation and mathematical biology, Career and research\n\nSections:\n- Family\n- School\n- Christopher Morcom\n- Cryptanalysis\n- Bombe\n- Action This Day\n- Hut 8 and the naval Enigma\n- Turingery\n- Delilah\n- Ratio Club and other cybernetics contacts\n- Treasure\n- Engagement\n- Chess\n- Homosexuality and indecency conviction\n- \"Pryce's Buoy\"\n- Death\n- Doubts on suicide thesis\n- Government apology and pardon\n- Books\n\nReply {\"section\": \"<heading>\"} or {\"section\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 28,
+      "time": "2026-09-18T14:27:45.907Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "section",
+      "variant": "brief",
+      "status": "Choosing sections",
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"none\"}",
+      "tokens": 248,
+      "latencyMs": 942,
+      "simulated": false
+    },
+    {
+      "seq": 29,
+      "time": "2026-09-18T14:27:45.907Z",
+      "event": "sections_chosen",
+      "node": "n1",
+      "article": "Alan Turing",
+      "sections": [
+        "University and work on computability",
+        "Early computers and the Turing test",
+        "Pattern formation and mathematical biology",
+        "Career and research"
+      ]
+    },
+    {
+      "seq": 30,
+      "time": "2026-09-18T14:27:45.907Z",
+      "event": "node_decompose",
+      "node": "n1",
+      "result": {
+        "action": "decompose",
+        "harness": true,
+        "questions": [
+          "Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability",
+          "Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test",
+          "Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology",
+          "Tell me about Alan Turing and elaborate on the impact of his work. — about Career and research"
+        ]
+      }
+    },
+    {
+      "seq": 31,
+      "time": "2026-09-18T14:27:45.961Z",
+      "event": "node_started",
+      "node": "n2",
+      "visit": 1
+    },
+    {
+      "seq": 32,
+      "time": "2026-09-18T14:27:45.961Z",
+      "event": "tool_proposed",
+      "node": "n2",
+      "query": "Alan Turing / University and work on computability",
+      "tool": "wiki",
+      "readOn": {
+        "article": "Alan Turing",
+        "section": "University and work on computability"
+      }
+    },
+    {
+      "seq": 33,
+      "time": "2026-09-18T14:27:45.964Z",
+      "event": "tool_result",
+      "node": "n2",
+      "query": "Alan Turing / University and work on computability",
+      "readOn": {
+        "article": "Alan Turing",
+        "section": "University and work on computability"
+      },
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "wiki",
+        "query": "Alan Turing",
+        "title": "Alan Turing § University and work on computability",
+        "article": "Alan Turing",
+        "section": 4,
+        "sections": 24,
+        "text": "In 1929 Turing and his friend Christopher Morcom applied for scholarships at Trinity College, Cambridge. Morcom, who was successful, had various advantages over Turing – he was nearly a year older, and both his father and brother had studied at Trinity. However, he died three months after the offer was made. Turing, on the other hand, was unsuccessful, but sat the King's College, Cambridge Scholarship Examination in Mathematics in 1930. King's reserved most of its places for Etonians (there was a historic link with Eton as a feeder institution), making the exam very competitive for candidates from other schools. However, its examiners had a slightly different slant to those in other colleges. Hodges describes the King's examiners as looking for \"a spark of originality\" and notes that the papers were \"notorious for their unorthodox questions\". \nTuring was awarded an exhibition (a lower-value scholarship) worth £80 per annum (equivalent to about £4,300 as of 2023). His undergraduate studies at Cambridge were from February 1931 to November 1934. He studied \"Schedule B\" of the Mathematical Tripos course. He was awarded first-class honours in mathematics. His dissertation, On the Gaussian error function, written during his senior year and delivered in November 1934 proved a version of the central limit theorem. It was finally accepted on 16 March 1935. By spring of that same year, Turing started his master's course (Part III)—which he completed in 1937—and, at the same time, he published his first paper, a one-page article called Equivalence of left and right almost periodicity (sent on 23 April), featured in the tenth volume of the Journal of the London Mathematical Society. Later that year, Turing was elected a Fellow of King's College on the strength of his dissertation where he served as a lecturer. However, unknown to Turing, the version of the theorem he proved in his paper had already been proven by Jarl Waldemar Lindeberg in 1922. Despite this, the committee found Turing's methods original and so regarded the work worthy of consideration for the fellowship. Abram Besicovitch's report for the committee went so far as to say that if Turing's work had been published before Lindeberg's, it would have been \"an important event in the mathematical literature of that year\".\nBetween the springs of 1935 and 1936, at the same time as Alonzo Church, Turing worked on the decidability of problems, starting from Gödel's incompleteness theorems. In mid-April 1936, Turing sent Max Newman the first draft typescript of his investigations. That same month, Church published his An Unsolvable Problem of Elementary Number Theory, with similar conclusions to Turing's then-yet unpublished work. Finally, on 28 May of that year, he finished and delivered his 36-page paper for publication called \"On Computable Numbers, with an Application to the Entscheidungsproblem\". It was published in the Proceedings of the London Mathematical Society journal in two parts, the first on 30 November and the second on 23 December. In this paper, Turing proved results on the limits of computation, introducing the formal and simple hypothetical devices that became known as Turing machines. The Entscheidungsproblem (decision problem) was originally posed by German mathematician David Hilbert in 1928, and consists of seeking a computational procedure for proving or disproving theorems in the logical calculus employed by Hilbert. Turing argued that his \"computing machine\" would be capable of performing any conceivable mathematical computation if it were representable by finitary means (as an algorithm). He went on to prove that there was no solution to the decision problem by first showing that some variants of the halting problem for Turing machines are undecidable: in parcitular, it is not possible to decide algorithmically whether a Turing machine will produce an infinite output. This paper has been called \"easily the most influential math paper in history\".\n\nAlthough T",
+        "exact": true,
+        "revision": "1375527246",
+        "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246#University_and_work_on_computability",
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 65112,
+            "elapsedMs": 0
+          }
+        ]
+      }
+    },
+    {
+      "seq": 34,
+      "time": "2026-09-18T14:27:45.964Z",
+      "event": "evidence_captured",
+      "node": "n2",
+      "evidence": "e2",
+      "kind": "wiki"
+    },
+    {
+      "seq": 35,
+      "time": "2026-09-18T14:27:45.964Z",
+      "event": "model_input",
+      "node": "n2",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability\n\n1. In 1929 Turing and his friend Christopher Morcom applied for scholarships at Trinity College, Cambridge.\n2. Morcom, who was successful, had various advantages over Turing – he was nearly a year older, and both his father and brother had studied at Trinity.\n3. However, he died three months after the offer was made.\n4. Turing, on the other hand, was unsuccessful, but sat the King's College, Cambridge Scholarship Examination in Mathematics in 1930.\n5. King's reserved most of its places for Etonians (there was a historic link with Eton as a feeder institution), making the exam very competitive for candidates from other schools.\n6. However, its examiners had a slightly different slant to those in other colleges.\n7. Hodges describes the King's examiners as looking for \"a spark of originality\" and notes that the papers were \"notorious for their unorthodox questions\".\n8. Turing was awarded an exhibition (a lower-value scholarship) worth £80 per annum (equivalent to about £4,300 as of 2023).\n9. His undergraduate studies at Cambridge were from February 1931 to November 1934.\n10. He studied \"Schedule B\" of the Mathematical Tripos course.\n11. He was awarded first-class honours in mathematics.\n12. His dissertation, On the Gaussian error function, written during his senior year and delivered in November 1934 proved a version of the central limit theorem.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 36,
+      "time": "2026-09-18T14:27:47.702Z",
+      "event": "model_output",
+      "node": "n2",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"12\"}",
+      "tokens": 467,
+      "latencyMs": 1736,
+      "simulated": false
+    },
+    {
+      "seq": 37,
+      "time": "2026-09-18T14:27:47.702Z",
+      "event": "sentence_picked",
+      "node": "n2",
+      "pick": "12",
+      "shown": 12,
+      "gathered": 0
+    },
+    {
+      "seq": 38,
+      "time": "2026-09-18T14:27:47.702Z",
+      "event": "model_input",
+      "node": "n2",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability\n\n1. In 1929 Turing and his friend Christopher Morcom applied for scholarships at Trinity College, Cambridge.\n2. Morcom, who was successful, had various advantages over Turing – he was nearly a year older, and both his father and brother had studied at Trinity.\n3. However, he died three months after the offer was made.\n4. Turing, on the other hand, was unsuccessful, but sat the King's College, Cambridge Scholarship Examination in Mathematics in 1930.\n5. King's reserved most of its places for Etonians (there was a historic link with Eton as a feeder institution), making the exam very competitive for candidates from other schools.\n6. However, its examiners had a slightly different slant to those in other colleges.\n7. Hodges describes the King's examiners as looking for \"a spark of originality\" and notes that the papers were \"notorious for their unorthodox questions\".\n8. Turing was awarded an exhibition (a lower-value scholarship) worth £80 per annum (equivalent to about £4,300 as of 2023).\n9. His undergraduate studies at Cambridge were from February 1931 to November 1934.\n10. He studied \"Schedule B\" of the Mathematical Tripos course.\n11. He was awarded first-class honours in mathematics.\n12. It was finally accepted on 16 March 1935.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 39,
+      "time": "2026-09-18T14:27:49.400Z",
+      "event": "model_output",
+      "node": "n2",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"11\"}",
+      "tokens": 450,
+      "latencyMs": 1697,
+      "simulated": false
+    },
+    {
+      "seq": 40,
+      "time": "2026-09-18T14:27:49.400Z",
+      "event": "sentence_picked",
+      "node": "n2",
+      "pick": "11",
+      "shown": 12,
+      "gathered": 1
+    },
+    {
+      "seq": 41,
+      "time": "2026-09-18T14:27:49.400Z",
+      "event": "model_input",
+      "node": "n2",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability\n\n1. In 1929 Turing and his friend Christopher Morcom applied for scholarships at Trinity College, Cambridge.\n2. Morcom, who was successful, had various advantages over Turing – he was nearly a year older, and both his father and brother had studied at Trinity.\n3. However, he died three months after the offer was made.\n4. Turing, on the other hand, was unsuccessful, but sat the King's College, Cambridge Scholarship Examination in Mathematics in 1930.\n5. King's reserved most of its places for Etonians (there was a historic link with Eton as a feeder institution), making the exam very competitive for candidates from other schools.\n6. However, its examiners had a slightly different slant to those in other colleges.\n7. Hodges describes the King's examiners as looking for \"a spark of originality\" and notes that the papers were \"notorious for their unorthodox questions\".\n8. Turing was awarded an exhibition (a lower-value scholarship) worth £80 per annum (equivalent to about £4,300 as of 2023).\n9. His undergraduate studies at Cambridge were from February 1931 to November 1934.\n10. He studied \"Schedule B\" of the Mathematical Tripos course.\n11. It was finally accepted on 16 March 1935.\n12. By spring of that same year, Turing started his master's course (Part III)—which he completed in 1937—and, at the same time, he published his first paper, a one-page article called Equivalence of left and right almost periodicity (sent on 23 April), featured in the tenth volume of the Journal of the London Mathematical Society.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 42,
+      "time": "2026-09-18T14:27:51.451Z",
+      "event": "model_output",
+      "node": "n2",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"none\"}",
+      "tokens": 514,
+      "latencyMs": 2050,
+      "simulated": false
+    },
+    {
+      "seq": 43,
+      "time": "2026-09-18T14:27:51.451Z",
+      "event": "sentence_picked",
+      "node": "n2",
+      "pick": "none",
+      "shown": 12,
+      "gathered": 2
+    },
+    {
+      "seq": 44,
+      "time": "2026-09-18T14:27:51.451Z",
+      "event": "model_input",
+      "node": "n2",
+      "ask": "missing",
+      "variant": "hop",
+      "status": "Choosing where to hop",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and sentences kept for it. Name the one person, machine, place, work or event in the sentences that is most worth reading about next for the brief, as the title of its Wikipedia article (1 to 4 words). Reply with JSON: {\"search\": \"<title>\"}. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability\n\n1. His dissertation, On the Gaussian error function, written during his senior year and delivered in November 1934 proved a version of the central limit theorem.\n2. He was awarded first-class honours in mathematics."
+        }
+      ]
+    },
+    {
+      "seq": 45,
+      "time": "2026-09-18T14:27:54.362Z",
+      "event": "model_output",
+      "node": "n2",
+      "ask": "missing",
+      "variant": "hop",
+      "status": "Choosing where to hop",
+      "raw": "<think>\n\n</think>\n\n{\"search\": \"Alan Turing\"}",
+      "tokens": 161,
+      "latencyMs": 2911,
+      "simulated": false
+    },
+    {
+      "seq": 46,
+      "time": "2026-09-18T14:27:54.363Z",
+      "event": "hop_chosen",
+      "node": "n2",
+      "search": "Alan Turing",
+      "known": true
+    },
+    {
+      "seq": 47,
+      "time": "2026-09-18T14:27:54.370Z",
+      "event": "node_resolved",
+      "node": "n2",
+      "result": {
+        "action": "resolved",
+        "finding": "He was awarded first-class honours in mathematics. His dissertation, On the Gaussian error function, written during his senior year and delivered in November 1934 proved a version of the central limit theorem.",
+        "evidence": [
+          "e2"
+        ]
+      }
+    },
+    {
+      "seq": 48,
+      "time": "2026-09-18T14:27:54.424Z",
+      "event": "node_started",
+      "node": "n3",
+      "visit": 1
+    },
+    {
+      "seq": 49,
+      "time": "2026-09-18T14:27:54.424Z",
+      "event": "tool_proposed",
+      "node": "n3",
+      "query": "Alan Turing / Early computers and the Turing test",
+      "tool": "wiki",
+      "readOn": {
+        "article": "Alan Turing",
+        "section": "Early computers and the Turing test"
+      }
+    },
+    {
+      "seq": 50,
+      "time": "2026-09-18T14:27:54.427Z",
+      "event": "tool_result",
+      "node": "n3",
+      "query": "Alan Turing / Early computers and the Turing test",
+      "readOn": {
+        "article": "Alan Turing",
+        "section": "Early computers and the Turing test"
+      },
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "wiki",
+        "query": "Alan Turing",
+        "title": "Alan Turing § Early computers and the Turing test",
+        "article": "Alan Turing",
+        "section": 12,
+        "sections": 24,
+        "text": "Between 1945 and 1947, Turing lived in Hampton, London, while he worked on the design of the ACE (Automatic Computing Engine) at the National Physical Laboratory (NPL). He presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. Von Neumann's incomplete First Draft of a Report on the EDVAC had predated Turing's paper, but it was much less detailed and, according to John R. Womersley, Superintendent of the NPL Mathematics Division, it \"contains a number of ideas which are Dr. Turing's own\".\nAlthough ACE was a feasible design, the effect of the Official Secrets Act surrounding the wartime work at Bletchley Park made it impossible for Turing to explain the basis of his analysis of how a computer installation involving human operators would work. This led to delays in starting the project and he became disillusioned. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. While he was at Cambridge, the Pilot ACE was being built in his absence. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15. The full version of Turing's ACE was not built until after his death.\nAccording to the memoirs of the German computer pioneer Heinz Billing from the Max Planck Institute for Physics, published by Genscher, Düsseldorf, there was a meeting between Turing and Konrad Zuse. It took place in Göttingen in 1947. The interrogation had the form of a colloquium. Participants were Womersley, Turing, Porter from England and a few German researchers like Zuse, Walther, and Billing (for more details see Herbert Bruderer, Konrad Zuse und die Schweiz).\n\nIn 1948, Turing was appointed reader in the Mathematics Department at the University of Manchester. He lived at \"Copper Folly\", 43 Adlington Road, in Wilmslow. A year later, he became deputy director of the Computing Machine Laboratory, where he worked on software for one of the earliest stored-program computers—the Manchester Mark 1. Turing wrote the first version of the Programmer's Manual for this machine, was elected to membership of the Manchester Literary and Philosophical Society, and was recruited by Ferranti as a consultant in the development of their commercialised machine, the Ferranti Mark 1. He continued to be paid consultancy fees by Ferranti until his death. During this time, he continued to do more abstract work in mathematics, and in \"Computing Machinery and Intelligence\", Turing addressed the problem of artificial intelligence, and proposed an experiment that became known as the Turing test, an attempt to define a standard for a machine to be called \"intelligent\". The idea was that a computer could be said to \"think\" if a human interrogator could not tell it apart, through conversation, from a human being. In the paper, Turing suggested that rather than building a program to simulate the adult mind, it would be better to produce a simpler one to simulate a child's mind and then to subject it to a course of education. A reversed form of the Turing test is widely used on the Internet; the CAPTCHA test is intended to determine whether the user is a human or a computer.\nIn 1948, Turing, working with his former undergraduate colleague, D.G. Champernowne, began writing a chess program for a computer that did not yet exist. By 1950, the program was completed and dubbed the Turochamp. In 1952, he tried to implement it on a Ferranti Mark 1, but lacking enough power, the computer was unable to execute the program. Instead, Turing \"ran\" the program by flipping through the pages of the algorithm and carrying out its instructions on a chessboard, taking about half an hour per move. The game was recorded. According to Garry Kasparov, Turing's program \"played a recognizable game of chess\". The program lost to Turing's colleague",
+        "exact": true,
+        "revision": "1375527246",
+        "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246#Early_computers_and_the_Turing_test",
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 65112,
+            "elapsedMs": 0
+          }
+        ]
+      }
+    },
+    {
+      "seq": 51,
+      "time": "2026-09-18T14:27:54.427Z",
+      "event": "evidence_captured",
+      "node": "n3",
+      "evidence": "e3",
+      "kind": "wiki"
+    },
+    {
+      "seq": 52,
+      "time": "2026-09-18T14:27:54.428Z",
+      "event": "model_input",
+      "node": "n3",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test\n\n1. Between 1945 and 1947, Turing lived in Hampton, London, while he worked on the design of the ACE (Automatic Computing Engine) at the National Physical Laboratory (NPL).\n2. He presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer.\n3. Von Neumann's incomplete First Draft of a Report on the EDVAC had predated Turing's paper, but it was much less detailed and, according to John R.\n4. Womersley, Superintendent of the NPL Mathematics Division, it \"contains a number of ideas which are Dr. Turing's own\".\n5. Although ACE was a feasible design, the effect of the Official Secrets Act surrounding the wartime work at Bletchley Park made it impossible for Turing to explain the basis of his analysis of how a computer installation involving human operators would work.\n6. This led to delays in starting the project and he became disillusioned.\n7. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime.\n8. While he was at Cambridge, the Pilot ACE was being built in his absence.\n9. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.\n10. The full version of Turing's ACE was not built until after his death.\n11. According to the memoirs of the German computer pioneer Heinz Billing from the Max Planck Institute for Physics, published by Genscher, Düsseldorf, there was a meeting between Turing and Konrad Zuse.\n12. It took place in Göttingen in 1947.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 53,
+      "time": "2026-09-18T14:27:56.393Z",
+      "event": "model_output",
+      "node": "n3",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"2\"}",
+      "tokens": 536,
+      "latencyMs": 1964,
+      "simulated": false
+    },
+    {
+      "seq": 54,
+      "time": "2026-09-18T14:27:56.393Z",
+      "event": "sentence_picked",
+      "node": "n3",
+      "pick": "2",
+      "shown": 12,
+      "gathered": 0
+    },
+    {
+      "seq": 55,
+      "time": "2026-09-18T14:27:56.393Z",
+      "event": "model_input",
+      "node": "n3",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test\n\n1. Between 1945 and 1947, Turing lived in Hampton, London, while he worked on the design of the ACE (Automatic Computing Engine) at the National Physical Laboratory (NPL).\n2. Von Neumann's incomplete First Draft of a Report on the EDVAC had predated Turing's paper, but it was much less detailed and, according to John R.\n3. Womersley, Superintendent of the NPL Mathematics Division, it \"contains a number of ideas which are Dr. Turing's own\".\n4. Although ACE was a feasible design, the effect of the Official Secrets Act surrounding the wartime work at Bletchley Park made it impossible for Turing to explain the basis of his analysis of how a computer installation involving human operators would work.\n5. This led to delays in starting the project and he became disillusioned.\n6. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime.\n7. While he was at Cambridge, the Pilot ACE was being built in his absence.\n8. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.\n9. The full version of Turing's ACE was not built until after his death.\n10. According to the memoirs of the German computer pioneer Heinz Billing from the Max Planck Institute for Physics, published by Genscher, Düsseldorf, there was a meeting between Turing and Konrad Zuse.\n11. It took place in Göttingen in 1947.\n12. The interrogation had the form of a colloquium.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 56,
+      "time": "2026-09-18T14:27:58.325Z",
+      "event": "model_output",
+      "node": "n3",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"8\"}",
+      "tokens": 520,
+      "latencyMs": 1932,
+      "simulated": false
+    },
+    {
+      "seq": 57,
+      "time": "2026-09-18T14:27:58.325Z",
+      "event": "sentence_picked",
+      "node": "n3",
+      "pick": "8",
+      "shown": 12,
+      "gathered": 1
+    },
+    {
+      "seq": 58,
+      "time": "2026-09-18T14:27:58.325Z",
+      "event": "model_input",
+      "node": "n3",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test\n\n1. Between 1945 and 1947, Turing lived in Hampton, London, while he worked on the design of the ACE (Automatic Computing Engine) at the National Physical Laboratory (NPL).\n2. Von Neumann's incomplete First Draft of a Report on the EDVAC had predated Turing's paper, but it was much less detailed and, according to John R.\n3. Womersley, Superintendent of the NPL Mathematics Division, it \"contains a number of ideas which are Dr. Turing's own\".\n4. Although ACE was a feasible design, the effect of the Official Secrets Act surrounding the wartime work at Bletchley Park made it impossible for Turing to explain the basis of his analysis of how a computer installation involving human operators would work.\n5. This led to delays in starting the project and he became disillusioned.\n6. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime.\n7. While he was at Cambridge, the Pilot ACE was being built in his absence.\n8. The full version of Turing's ACE was not built until after his death.\n9. According to the memoirs of the German computer pioneer Heinz Billing from the Max Planck Institute for Physics, published by Genscher, Düsseldorf, there was a meeting between Turing and Konrad Zuse.\n10. It took place in Göttingen in 1947.\n11. The interrogation had the form of a colloquium.\n12. Participants were Womersley, Turing, Porter from England and a few German researchers like Zuse, Walther, and Billing (for more details see Herbert Bruderer, Konrad Zuse und die Schweiz).\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 59,
+      "time": "2026-09-18T14:28:00.132Z",
+      "event": "model_output",
+      "node": "n3",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"6\"}",
+      "tokens": 518,
+      "latencyMs": 1806,
+      "simulated": false
+    },
+    {
+      "seq": 60,
+      "time": "2026-09-18T14:28:00.132Z",
+      "event": "sentence_picked",
+      "node": "n3",
+      "pick": "6",
+      "shown": 12,
+      "gathered": 2
+    },
+    {
+      "seq": 61,
+      "time": "2026-09-18T14:28:00.132Z",
+      "event": "model_input",
+      "node": "n3",
+      "ask": "missing",
+      "variant": "hop",
+      "status": "Choosing where to hop",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and sentences kept for it. Name the one person, machine, place, work or event in the sentences that is most worth reading about next for the brief, as the title of its Wikipedia article (1 to 4 words). Reply with JSON: {\"search\": \"<title>\"}. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test\n\n1. He presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer.\n2. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.\n3. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime."
+        }
+      ]
+    },
+    {
+      "seq": 62,
+      "time": "2026-09-18T14:28:01.020Z",
+      "event": "model_output",
+      "node": "n3",
+      "ask": "missing",
+      "variant": "hop",
+      "status": "Choosing where to hop",
+      "raw": "<think>\n\n</think>\n\n{\"search\": \"Alan Turing\"}",
+      "tokens": 229,
+      "latencyMs": 887,
+      "simulated": false
+    },
+    {
+      "seq": 63,
+      "time": "2026-09-18T14:28:01.020Z",
+      "event": "hop_chosen",
+      "node": "n3",
+      "search": "Alan Turing",
+      "known": true
+    },
+    {
+      "seq": 64,
+      "time": "2026-09-18T14:28:01.020Z",
+      "event": "node_resolved",
+      "node": "n3",
+      "result": {
+        "action": "resolved",
+        "finding": "He presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.",
+        "evidence": [
+          "e3"
+        ]
+      }
+    },
+    {
+      "seq": 65,
+      "time": "2026-09-18T14:28:01.074Z",
+      "event": "node_started",
+      "node": "n4",
+      "visit": 1
+    },
+    {
+      "seq": 66,
+      "time": "2026-09-18T14:28:01.074Z",
+      "event": "tool_proposed",
+      "node": "n4",
+      "query": "Alan Turing / Pattern formation and mathematical biology",
+      "tool": "wiki",
+      "readOn": {
+        "article": "Alan Turing",
+        "section": "Pattern formation and mathematical biology"
+      }
+    },
+    {
+      "seq": 67,
+      "time": "2026-09-18T14:28:01.076Z",
+      "event": "tool_result",
+      "node": "n4",
+      "query": "Alan Turing / Pattern formation and mathematical biology",
+      "readOn": {
+        "article": "Alan Turing",
+        "section": "Pattern formation and mathematical biology"
+      },
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "wiki",
+        "query": "Alan Turing",
+        "title": "Alan Turing § Pattern formation and mathematical biology",
+        "article": "Alan Turing",
+        "section": 13,
+        "sections": 24,
+        "text": "When Turing was 39 years old in 1951, he turned to mathematical biology, finally publishing his masterpiece \"The Chemical Basis of Morphogenesis\" in January 1952. He was interested in morphogenesis, the development of patterns and shapes in biological organisms. He suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". He used systems of partial differential equations to model catalytic chemical reactions. For example, if a catalyst A is required for a certain chemical reaction to take place, and if the reaction produced more of the catalyst A, then we say that the reaction is autocatalytic, and there is positive feedback that can be modelled by nonlinear differential equations. Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A. If A and B then diffused through the container at different rates, then you could have some regions where A dominated and some where B did. To calculate the extent of this, Turing would have needed a powerful computer, but these were not so freely available in 1951, so he had to use linear approximations to solve the equations by hand. These calculations gave the right qualitative results, and produced, for example, a uniform mixture that oddly enough had regularly spaced fixed red spots. The Russian biochemist Boris Belousov had performed experiments with similar results, but could not get his papers published because of the contemporary prejudice that any such thing violated the second law of thermodynamics. Belousov was not aware of Turing's paper in the Philosophical Transactions of the Royal Society.\nAlthough published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology. Some of this work aimed to understand plant phyllotaxy, specifically how plant primordia form in a ring around the apical meristem during plant growth and development, forming Fibonacci series. One of the early applications of Turing's paper was the work by James Murray explaining spots and stripes on the fur of cats, large and small. Further research in the area suggests that Turing's work can partially explain the growth of \"feathers, hair follicles, the branching pattern of lungs, and even the left-right asymmetry that puts the heart on the left side of the chest\". In 2012, Sheth, et al. found that in mice, removal of Hox genes causes an increase in the number of digits without an increase in the overall size of the limb, suggesting that Hox genes control digit formation by tuning the wavelength of a Turing-type mechanism. Later papers were not available until Collected Works of A. M. Turing was published in 1992.\nA study conducted in 2023 confirmed Turing's mathematical model hypothesis. Presented by the American Physical Society, the experiment involved growing chia seeds in even layers within trays, later adjusting the available moisture. Researchers experimentally tweaked the factors which appear in the Turing equations, and, as a result, patterns resembling those seen in natural environments emerged. This is believed to be the first time that experiments with living vegetation have verified Turing's mathematical insight.",
+        "exact": true,
+        "revision": "1375527246",
+        "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246#Pattern_formation_and_mathematical_biology",
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 65112,
+            "elapsedMs": 0
+          }
+        ]
+      }
+    },
+    {
+      "seq": 68,
+      "time": "2026-09-18T14:28:01.076Z",
+      "event": "evidence_captured",
+      "node": "n4",
+      "evidence": "e4",
+      "kind": "wiki"
+    },
+    {
+      "seq": 69,
+      "time": "2026-09-18T14:28:01.077Z",
+      "event": "model_input",
+      "node": "n4",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology\n\n1. When Turing was 39 years old in 1951, he turned to mathematical biology, finally publishing his masterpiece \"The Chemical Basis of Morphogenesis\" in January 1952.\n2. He was interested in morphogenesis, the development of patterns and shapes in biological organisms.\n3. He suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\".\n4. He used systems of partial differential equations to model catalytic chemical reactions.\n5. For example, if a catalyst A is required for a certain chemical reaction to take place, and if the reaction produced more of the catalyst A, then we say that the reaction is autocatalytic, and there is positive feedback that can be modelled by nonlinear differential equations.\n6. Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A.\n7. If A and B then diffused through the container at different rates, then you could have some regions where A dominated and some where B did.\n8. To calculate the extent of this, Turing would have needed a powerful computer, but these were not so freely available in 1951, so he had to use linear approximations to solve the equations by hand.\n9. These calculations gave the right qualitative results, and produced, for example, a uniform mixture that oddly enough had regularly spaced fixed red spots.\n10. The Russian biochemist Boris Belousov had performed experiments with similar results, but could not get his papers published because of the contemporary prejudice that any such thing violated the second law of thermodynamics.\n11. Belousov was not aware of Turing's paper in the Philosophical Transactions of the Royal Society.\n12. Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 70,
+      "time": "2026-09-18T14:28:03.150Z",
+      "event": "model_output",
+      "node": "n4",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"3\"}",
+      "tokens": 558,
+      "latencyMs": 2072,
+      "simulated": false
+    },
+    {
+      "seq": 71,
+      "time": "2026-09-18T14:28:03.150Z",
+      "event": "sentence_picked",
+      "node": "n4",
+      "pick": "3",
+      "shown": 12,
+      "gathered": 0
+    },
+    {
+      "seq": 72,
+      "time": "2026-09-18T14:28:03.150Z",
+      "event": "model_input",
+      "node": "n4",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology\n\n1. When Turing was 39 years old in 1951, he turned to mathematical biology, finally publishing his masterpiece \"The Chemical Basis of Morphogenesis\" in January 1952.\n2. He was interested in morphogenesis, the development of patterns and shapes in biological organisms.\n3. He used systems of partial differential equations to model catalytic chemical reactions.\n4. For example, if a catalyst A is required for a certain chemical reaction to take place, and if the reaction produced more of the catalyst A, then we say that the reaction is autocatalytic, and there is positive feedback that can be modelled by nonlinear differential equations.\n5. Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A.\n6. If A and B then diffused through the container at different rates, then you could have some regions where A dominated and some where B did.\n7. To calculate the extent of this, Turing would have needed a powerful computer, but these were not so freely available in 1951, so he had to use linear approximations to solve the equations by hand.\n8. These calculations gave the right qualitative results, and produced, for example, a uniform mixture that oddly enough had regularly spaced fixed red spots.\n9. The Russian biochemist Boris Belousov had performed experiments with similar results, but could not get his papers published because of the contemporary prejudice that any such thing violated the second law of thermodynamics.\n10. Belousov was not aware of Turing's paper in the Philosophical Transactions of the Royal Society.\n11. Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.\n12. Some of this work aimed to understand plant phyllotaxy, specifically how plant primordia form in a ring around the apical meristem during plant growth and development, forming Fibonacci series.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 73,
+      "time": "2026-09-18T14:28:05.399Z",
+      "event": "model_output",
+      "node": "n4",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"5\"}",
+      "tokens": 561,
+      "latencyMs": 2248,
+      "simulated": false
+    },
+    {
+      "seq": 74,
+      "time": "2026-09-18T14:28:05.399Z",
+      "event": "sentence_picked",
+      "node": "n4",
+      "pick": "5",
+      "shown": 12,
+      "gathered": 1
+    },
+    {
+      "seq": 75,
+      "time": "2026-09-18T14:28:05.399Z",
+      "event": "model_input",
+      "node": "n4",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology\n\n1. When Turing was 39 years old in 1951, he turned to mathematical biology, finally publishing his masterpiece \"The Chemical Basis of Morphogenesis\" in January 1952.\n2. He was interested in morphogenesis, the development of patterns and shapes in biological organisms.\n3. He used systems of partial differential equations to model catalytic chemical reactions.\n4. For example, if a catalyst A is required for a certain chemical reaction to take place, and if the reaction produced more of the catalyst A, then we say that the reaction is autocatalytic, and there is positive feedback that can be modelled by nonlinear differential equations.\n5. If A and B then diffused through the container at different rates, then you could have some regions where A dominated and some where B did.\n6. To calculate the extent of this, Turing would have needed a powerful computer, but these were not so freely available in 1951, so he had to use linear approximations to solve the equations by hand.\n7. These calculations gave the right qualitative results, and produced, for example, a uniform mixture that oddly enough had regularly spaced fixed red spots.\n8. The Russian biochemist Boris Belousov had performed experiments with similar results, but could not get his papers published because of the contemporary prejudice that any such thing violated the second law of thermodynamics.\n9. Belousov was not aware of Turing's paper in the Philosophical Transactions of the Royal Society.\n10. Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.\n11. Some of this work aimed to understand plant phyllotaxy, specifically how plant primordia form in a ring around the apical meristem during plant growth and development, forming Fibonacci series.\n12. One of the early applications of Turing's paper was the work by James Murray explaining spots and stripes on the fur of cats, large and small.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 76,
+      "time": "2026-09-18T14:28:07.756Z",
+      "event": "model_output",
+      "node": "n4",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"10\"}",
+      "tokens": 560,
+      "latencyMs": 2357,
+      "simulated": false
+    },
+    {
+      "seq": 77,
+      "time": "2026-09-18T14:28:07.756Z",
+      "event": "sentence_picked",
+      "node": "n4",
+      "pick": "10",
+      "shown": 12,
+      "gathered": 2
+    },
+    {
+      "seq": 78,
+      "time": "2026-09-18T14:28:07.757Z",
+      "event": "model_input",
+      "node": "n4",
+      "ask": "missing",
+      "variant": "hop",
+      "status": "Choosing where to hop",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and sentences kept for it. Name the one person, machine, place, work or event in the sentences that is most worth reading about next for the brief, as the title of its Wikipedia article (1 to 4 words). Reply with JSON: {\"search\": \"<title>\"}. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology\n\n1. He suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\".\n2. Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A.\n3. Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology."
+        }
+      ]
+    },
+    {
+      "seq": 79,
+      "time": "2026-09-18T14:28:08.719Z",
+      "event": "model_output",
+      "node": "n4",
+      "ask": "missing",
+      "variant": "hop",
+      "status": "Choosing where to hop",
+      "raw": "<think>\n\n</think>\n\n{\"search\": \"Alan Turing\"}",
+      "tokens": 220,
+      "latencyMs": 961,
+      "simulated": false
+    },
+    {
+      "seq": 80,
+      "time": "2026-09-18T14:28:08.719Z",
+      "event": "hop_chosen",
+      "node": "n4",
+      "search": "Alan Turing",
+      "known": true
+    },
+    {
+      "seq": 81,
+      "time": "2026-09-18T14:28:08.719Z",
+      "event": "node_resolved",
+      "node": "n4",
+      "result": {
+        "action": "resolved",
+        "finding": "He suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A. Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.",
+        "evidence": [
+          "e4"
+        ]
+      }
+    },
+    {
+      "seq": 82,
+      "time": "2026-09-18T14:28:08.773Z",
+      "event": "node_started",
+      "node": "n5",
+      "visit": 1
+    },
+    {
+      "seq": 83,
+      "time": "2026-09-18T14:28:08.773Z",
+      "event": "tool_proposed",
+      "node": "n5",
+      "query": "Alan Turing / Career and research",
+      "tool": "wiki",
+      "readOn": {
+        "article": "Alan Turing",
+        "section": "Career and research"
+      }
+    },
+    {
+      "seq": 84,
+      "time": "2026-09-18T14:28:08.775Z",
+      "event": "tool_result",
+      "node": "n5",
+      "query": "Alan Turing / Career and research",
+      "readOn": {
+        "article": "Alan Turing",
+        "section": "Career and research"
+      },
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "wiki",
+        "query": "Alan Turing",
+        "title": "Alan Turing § Career and research",
+        "article": "Alan Turing",
+        "section": 5,
+        "sections": 24,
+        "text": "When Turing returned to Cambridge, he attended lectures given in 1939 by Ludwig Wittgenstein about the foundations of mathematics. The lectures have been reconstructed verbatim, including interjections from Turing and other students, from students' notes. Turing and Wittgenstein argued and disagreed, with Turing defending formalism and Wittgenstein propounding his view that mathematics does not discover any absolute truths, but rather invents them.",
+        "exact": true,
+        "revision": "1375527246",
+        "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246#Career_and_research",
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 65112,
+            "elapsedMs": 0
+          }
+        ]
+      }
+    },
+    {
+      "seq": 85,
+      "time": "2026-09-18T14:28:08.775Z",
+      "event": "evidence_captured",
+      "node": "n5",
+      "evidence": "e5",
+      "kind": "wiki"
+    },
+    {
+      "seq": 86,
+      "time": "2026-09-18T14:28:08.776Z",
+      "event": "model_input",
+      "node": "n5",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and numbered sentences from an encyclopedia. Pick the one sentence that says the most important thing for the brief: a fact, event, achievement or consequence. Pass over sentences that are vague, repeat what has been said, or are about something else. If nothing is worth keeping, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about Career and research\n\n1. When Turing returned to Cambridge, he attended lectures given in 1939 by Ludwig Wittgenstein about the foundations of mathematics.\n2. The lectures have been reconstructed verbatim, including interjections from Turing and other students, from students' notes.\n3. Turing and Wittgenstein argued and disagreed, with Turing defending formalism and Wittgenstein propounding his view that mathematics does not discover any absolute truths, but rather invents them.\n\nWhich sentence is most worth keeping for the brief? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 87,
+      "time": "2026-09-18T14:28:09.765Z",
+      "event": "model_output",
+      "node": "n5",
+      "ask": "sentence",
+      "variant": "brief",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"none\"}",
+      "tokens": 235,
+      "latencyMs": 989,
+      "simulated": false
+    },
+    {
+      "seq": 88,
+      "time": "2026-09-18T14:28:09.765Z",
+      "event": "sentence_picked",
+      "node": "n5",
+      "pick": "none",
+      "shown": 3,
+      "gathered": 0
+    },
+    {
+      "seq": 89,
+      "time": "2026-09-18T14:28:09.765Z",
+      "event": "model_input",
+      "node": "n5",
+      "ask": "missing",
+      "variant": "hop",
+      "status": "Deciding what to look up",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a brief and sentences kept for it. Name the one person, machine, place, work or event in the sentences that is most worth reading about next for the brief, as the title of its Wikipedia article (1 to 4 words). Reply with JSON: {\"search\": \"<title>\"}. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Brief: Tell me about Alan Turing and elaborate on the impact of his work. — about Career and research\n\n1. When Turing returned to Cambridge, he attended lectures given in 1939 by Ludwig Wittgenstein about the foundations of mathematics.\n2. The lectures have been reconstructed verbatim, including interjections from Turing and other students, from students' notes.\n3. Turing and Wittgenstein argued and disagreed, with Turing defending formalism and Wittgenstein propounding his view that mathematics does not discover any absolute truths, but rather invents them."
+        }
+      ]
+    },
+    {
+      "seq": 90,
+      "time": "2026-09-18T14:28:10.693Z",
+      "event": "model_output",
+      "node": "n5",
+      "ask": "missing",
+      "variant": "hop",
+      "status": "Deciding what to look up",
+      "raw": "<think>\n\n</think>\n\n{\"search\": \"Alan Turing\"}",
+      "tokens": 204,
+      "latencyMs": 927,
+      "simulated": false
+    },
+    {
+      "seq": 91,
+      "time": "2026-09-18T14:28:10.693Z",
+      "event": "lookup_failed",
+      "node": "n5",
+      "query": "Alan Turing",
+      "error": "Already read."
+    },
+    {
+      "seq": 92,
+      "time": "2026-09-18T14:28:10.694Z",
+      "event": "node_blocked",
+      "node": "n5",
+      "result": {
+        "action": "blocked",
+        "reason": "Nothing read states the answer, and no further lookup or question is allowed here."
+      }
+    },
+    {
+      "seq": 93,
+      "time": "2026-09-18T14:28:10.747Z",
+      "event": "node_started",
+      "node": "n1",
+      "visit": 2
+    },
+    {
+      "seq": 94,
+      "time": "2026-09-18T14:28:10.747Z",
+      "event": "node_resolved",
+      "node": "n1",
+      "result": {
+        "action": "resolved",
+        "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n\nHe was awarded first-class honours in mathematics. His dissertation, On the Gaussian error function, written during his senior year and delivered in November 1934 proved a version of the central limit theorem.\n\nHe presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.\n\nHe suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A. Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.",
+        "evidence": [
+          "e1",
+          "e2",
+          "e3",
+          "e4"
+        ]
+      }
+    }
+  ],
+  "visits": 6,
+  "modelCalls": 23,
+  "tokens": 8888,
+  "lookups": 5,
+  "stopReason": null,
+  "model": "Qwen3-4B-q4f16_1-MLC",
+  "runtime": "@mlc-ai/web-llm@0.2.84",
+  "sampling": {
+    "temperature": 0.2,
+    "seed": 1
+  },
+  "schema": "walk-9/asks-3",
+  "exportedAt": "2026-09-18T14:28:11.767Z"
+}

@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { contentWords, isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-9"; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
+export const WALK_VERSION = "walk-10"; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -221,7 +221,7 @@ export async function runWalk(run, options) {
   };
 
   const visible = () => [...new Set([...node.observed, ...children(run, node.id).filter((child) => child.status === "resolved").flatMap((child) => child.evidence)])];
-  const lookup = async (query, readOn = null, { chosen = false } = {}) => {
+  const lookup = async (query, readOn = null, { chosen = false, fresh = false } = {}) => {
     trace(run, "tool_proposed", { node: node.id, query, tool: "wiki", ...(readOn ? { readOn } : {}) });
     if (!(await approve(query, signal))) {
       signal?.throwIfAborted();
@@ -252,7 +252,8 @@ export async function runWalk(run, options) {
         trace(run, "tool_result", { node: node.id, query: chosen, result: outcome });
       }
     }
-    if (outcome.ok && node.observed.some((id) => run.evidence.find((record) => record.id === id)?.title === outcome.title)) {
+    // Already read by this node — or, for a hop (fresh), by any node.
+    if (outcome.ok && (fresh ? run.evidence : node.observed.map((id) => run.evidence.find((record) => record.id === id))).some((record) => record?.title === outcome.title)) {
       outcome = { ok: false, error: { kind: "no_match", message: `Already read: “${outcome.title}”.` } };
     }
     if (outcome.ok) {
@@ -327,10 +328,13 @@ export async function runWalk(run, options) {
       const found = children(run, node.id).filter((child) => child.status === "resolved" && child.finding);
       const kept = node.kept ?? [];
       if (found.length || kept.some((entry) => entry.evidence.length)) {
-        const parts = [...(kept.length ? [kept.map((entry) => entry.text).join(" ")] : []), ...found.map((child) => child.finding)];
+        // A sentence the profile already has is dropped from later paragraphs.
+        const seenText = new Set();
+        const fresh = (text) => splitSentences(text).filter((sentence) => !seenText.has(sentence) && seenText.add(sentence)).join(" ");
+        const parts = [...(kept.length ? [fresh(kept.map((entry) => entry.text).join(" "))] : []), ...found.map((child) => fresh(child.finding))].filter(Boolean);
         const cap = run.limits.maxFindingChars ?? 6000;
         while (parts.length > 1 && parts.join(node.fanned ? "\n\n" : " ").length > cap) parts.pop();
-        applyResult(run, node.id, { action: "resolved", finding: parts.join(node.fanned ? "\n\n" : " "), evidence: [...new Set([...kept.flatMap((entry) => entry.evidence), ...found.flatMap((child) => child.evidence)])] }, visible());
+        applyResult(run, node.id, { action: "resolved", harness: true, finding: parts.join(node.fanned ? "\n\n" : " "), evidence: [...new Set([...kept.flatMap((entry) => entry.evidence), ...found.flatMap((child) => child.evidence)])] }, visible());
         onUpdate(node.id, "Findings gathered");
       } else {
         applyResult(run, node.id, { action: "blocked", reason: "Neither part of the question could be answered." }, visible());
@@ -359,7 +363,7 @@ export async function runWalk(run, options) {
     // excerpt by excerpt — not the order the model picked it.
     const inOrder = (picked) => [...picked].sort((a, b) => a.evidence[0] === b.evidence[0] ? (a.at ?? 0) - (b.at ?? 0) : run.evidence.findIndex((record) => record.id === a.evidence[0]) - run.evidence.findIndex((record) => record.id === b.evidence[0]));
     const resolveWith = () => {
-      applyResult(run, node.id, { action: "resolved", finding: inOrder(gathered).map((candidate) => candidate.text).join(" "), evidence: [...new Set(inOrder(gathered).flatMap((candidate) => candidate.evidence))] }, visible());
+      applyResult(run, node.id, { action: "resolved", harness: true, finding: inOrder(gathered).map((candidate) => candidate.text).join(" "), evidence: [...new Set(inOrder(gathered).flatMap((candidate) => candidate.evidence))] }, visible());
       onUpdate(node.id, "Finding recorded");
       return true;
     };
@@ -380,6 +384,7 @@ export async function runWalk(run, options) {
         chosen.push(pick);
         remaining = remaining.filter((heading) => heading !== pick);
       }
+      chosen.sort((a, b) => unread.headings.indexOf(a) - unread.headings.indexOf(b));
       trace(run, "sections_chosen", { node: node.id, article: unread.article, sections: chosen });
       if (!chosen.length) return false;
       node.kept = inOrder(gathered).map((candidate) => ({ text: candidate.text, evidence: [...candidate.evidence] }));
@@ -396,10 +401,12 @@ export async function runWalk(run, options) {
       if (!brief || !gathered.length || lookups >= run.limits.maxLookups || node.hopped || !node.readFirst) return false;
       node.hopped = true;
       const search = await answer("missing", { question: node.question, sentences: gathered.map((candidate) => candidate.text) }, "Choosing where to hop");
-      const known = node.observed.some((id) => normalise(run.evidence.find((record) => record.id === id)?.article) === normalise(search));
+      // Known anywhere in the run: a child's hop to "Turing test" once read
+      // the Alan Turing lead again, which the root had read (8B, walk-9).
+      const known = run.evidence.some((record) => normalise(record.article) === normalise(search) || normalise(record.title) === normalise(search));
       trace(run, "hop_chosen", { node: node.id, search, known });
       if (known) return false;
-      return (await lookup(search)) === "captured";
+      return (await lookup(search, null, { fresh: true })) === "captured";
     };
     const readOn = async () => {
       const unread = unreadSections(run, node)[0];
@@ -464,7 +471,7 @@ export async function runWalk(run, options) {
       // what they found: the answer to a decomposed question is its parts.
       const found = children(run, node.id).filter((child) => child.status === "resolved" && child.finding);
       if (found.length) {
-        applyResult(run, node.id, { action: "resolved", finding: found.map((child) => child.finding).join(" "), evidence: [...new Set(found.flatMap((child) => child.evidence))] }, visible());
+        applyResult(run, node.id, { action: "resolved", harness: true, finding: found.map((child) => child.finding).join(" "), evidence: [...new Set(found.flatMap((child) => child.evidence))] }, visible());
         onUpdate(node.id, "Findings gathered");
         return true;
       }

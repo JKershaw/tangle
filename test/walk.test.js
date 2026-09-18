@@ -274,14 +274,15 @@ test("a brief reads the lead, hands one child per chosen section, each child may
   assert.equal(isBrief("Explain why the Dead Sea is shrinking?"), true);
   const run = createRun("Tell me about Alan Turing and elaborate on the impact of his work.", "live", { maxSentences: 2, maxLookups: 2 });
   // Root: two lead picks, then the sections: War, Legacy, none.
-  const { ask, seen } = scripted([["sentence", "1"], ["sentence", "1"], ["section", "War"], ["section", "Legacy"], ["section", "none"]]);
+  const { ask, seen } = scripted([["sentence", "1"], ["sentence", "1"], ["section", "Legacy"], ["section", "War"], ["section", "none"]]);
   assert.equal(await runWalk(run, { ask, wiki, ...PLAIN }), true);
   const root = run.nodes[0];
   assert.equal(root.status, "waiting");
   assert.equal(seen[0].user.split("\n")[0], "Brief: Tell me about Alan Turing and elaborate on the impact of his work.", "the brief wording");
   assert.deepEqual(seen[2].options, ["War", "Legacy", "none"]);
-  assert.deepEqual(seen[3].options, ["Legacy", "none"], "a chosen section is not offered again");
-  assert.match(seen[3].user, /Already chosen: War/);
+  assert.deepEqual(seen[3].options, ["War", "none"], "a chosen section is not offered again");
+  assert.match(seen[3].user, /Already chosen: Legacy/);
+  // Chosen Legacy then War; the children follow the article's order.
   assert.deepEqual(run.nodes.slice(1).map((node) => [node.question, node.readFirst]), [
     ["Tell me about Alan Turing and elaborate on the impact of his work. — about War", { article: "Alan Turing", section: "War" }],
     ["Tell me about Alan Turing and elaborate on the impact of his work. — about Legacy", { article: "Alan Turing", section: "Legacy" }],
@@ -300,10 +301,12 @@ test("a brief reads the lead, hands one child per chosen section, each child may
   assert.deepEqual(child.seen[3].options, ["1", "none"], "of the hop's three sentences only the one naming Turing is offered");
   assert.match(child.seen[3].user, /1\. The initial design was produced by Turing/);
   assert.equal(run.nodes.length, 3, "a child never fans out, even after a hop to an article with sections");
-  // Child 2 keeps one sentence and its hop names its own article, so nothing is read.
-  const second = scripted([["sentence", "2"], ["sentence", "none"], ["search", "Alan Turing"]]);
+  // Child 2 keeps one sentence; its hop names the Bombe, which child 1 already read, so nothing is read.
+  const second = scripted([["sentence", "2"], ["sentence", "none"], ["search", "Bombe"]]);
   assert.equal(await runWalk(run, { ask: second.ask, wiki, ...PLAIN }), true);
   assert.equal(run.nodes[2].finding, "The Turing Award is given annually for contributions to computer science.");
+  assert.ok(run.trace.some((event) => event.event === "hop_chosen" && event.node === "n3" && event.known === true), "known anywhere in the run");
+  assert.equal(run.lookups, 4, "lead, War, Bombe, Legacy — no second read of the Bombe");
   // Root: the profile, no pick.
   const last = scripted([]);
   assert.equal(await runWalk(run, { ask: last.ask, wiki, ...PLAIN }), true);
