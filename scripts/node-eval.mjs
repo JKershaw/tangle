@@ -2,9 +2,12 @@
 // The node evals: one ask, many variants, many models, hand-authored cases.
 //   node scripts/node-eval.mjs sentence --models Qwen3-0.6B-q4f16_1-MLC,Qwen3-1.7B-q4f16_1-MLC [--variants json,list] [--only <regex>] [--repeat 1]
 //   node scripts/node-eval.mjs section --models openrouter:deepseek/deepseek-chat-v3-0324
+//   node scripts/node-eval.mjs sentence --models endpoint:qwen3:8b [--endpoint http://127.0.0.1:11434/v1]
 // Cases live in evals/node/<ask>.json; asks and variants in src/asks.js. Page
 // models run in the built page (docs/index.html as served on --url); models
-// prefixed openrouter: run over OpenRouter (OPENROUTER_API_KEY). The result is
+// prefixed openrouter: run over OpenRouter (OPENROUTER_API_KEY); models
+// prefixed endpoint: run over an OpenAI-compatible server (src/endpoint.js;
+// Ollama by default), the same call the page model gets. The result is
 // a table of pass rates by model and variant, saved as JSON under
 // evals/results/ with every raw output, and one row per model×variant in
 // evals/node/results.md.
@@ -13,6 +16,8 @@ import { ASKS, ASK_VERSION, askAnswer, askCalls } from "../src/asks.js";
 import { isParaphrase } from "../src/text.js";
 import { cachedArticle, sectionSentences } from "./node-case.mjs";
 import { askOpenRouter, openRouterModel } from "./openrouter.mjs";
+import { DEFAULT_ENDPOINT, createEndpointAdapter } from "../src/endpoint.js";
+import { SAMPLING } from "../src/webllm.js";
 import { DEFAULT_URL, loadModel, machineInfo, openLab, pageInfo, parseArgs, shortModel, stamp } from "./lab.mjs";
 
 const args = parseArgs(process.argv.slice(2));
@@ -119,10 +124,23 @@ async function runModel(model, send) {
   }
 }
 
+const endpointModel = (id) => (id.startsWith("endpoint:") ? id.slice("endpoint:".length) : null);
 for (const model of models) {
   const remote = openRouterModel(model);
   if (remote) {
     await runModel(model, (call) => askOpenRouter(remote, call));
+    continue;
+  }
+  const served = endpointModel(model);
+  if (served) {
+    const adapter = createEndpointAdapter({ url: args.endpoint || DEFAULT_ENDPOINT });
+    await adapter.load(served);
+    log(`${stamp()} ${served} served by ${adapter.url}`);
+    await runModel(model, async (call) => {
+      const started = performance.now();
+      const output = await adapter.generate(call.messages, { schema: call.schema, maxTokens: call.maxTokens, seed: SAMPLING.seed, temperature: SAMPLING.temperature });
+      return { ...output, latencyMs: Math.round(performance.now() - started) };
+    });
     continue;
   }
   const { browser, page, versions } = await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note: log });

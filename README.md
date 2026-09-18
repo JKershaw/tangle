@@ -52,13 +52,17 @@ src/episode.js     one visit (the episode runner) and the system prompt
 src/simulation.js  the scripted water-cycle scenarios and fixture evidence
 src/wiki.js        the Wikipedia tool (HTTPS en.wikipedia.org only, timeout, byte cap)
 src/webllm.js      device, storage and cache probes; the WebLLM engine adapter; model list
+src/endpoint.js    the second model adapter: an OpenAI-compatible endpoint (Ollama, LM Studio), for Node
+src/scripted.js    a scripted first-choice model, for the runtime parity test
 src/map.js         the graph map (layout, pan, zoom)
 src/main.js        UI wiring
 src/page.html      page template; the bundle is inlined at build time
 build.js           esbuild bundle + inline -> docs/index.html (one self-contained file, ~6 MB)
 test/              node --test suites, including one that drives the built page
-scripts/           lab.mjs drives the built page; live-run.mjs records one run; eval.mjs runs the
-                   eval suites; grade.js holds the graders; summarise.js reads an export
+scripts/           lab.mjs drives the built page; node-lab.mjs runs the walk in Node with no browser;
+                   recording.mjs is the Wikipedia recording; live-run.mjs and run.mjs record one run
+                   (page, Node); eval.mjs runs the eval suites in either runtime; grade.js holds the
+                   graders; summarise.js reads an export
 evals/             micro-eval cases, benchmark seeds with rubrics, the Wikipedia recording, results
 experiments/       exported runs and notes, committed next to the code that produced them
 docs/index.html    the built page, served by GitHub Pages
@@ -101,6 +105,16 @@ Live mode opens a headed Chrome (WebGPU is not available headless) and keeps mod
 Each run writes `<out>.json` (the export — everything the model saw and said), `<out>.png` (the finished map) and `<out>.md` (driver log, summary, and space for observations). Commit all three. The summariser flags what deserves a second look: repeated questions, lookups that found nothing, findings that cite only their children's sources, generations cut off mid-way.
 
 Models available in the page, all Qwen3 at 4-bit: 0.6B (~0.4 GB download, runs on a recent phone), 1.7B (~1 GB), 4B (~2.5 GB) and 8B (~5 GB, ~5.7 GB of GPU memory). Same family, quantisation and chat template, so size is the only thing that changes between runs.
+
+The same walk runs in Node with no browser against any OpenAI-compatible server (Ollama, LM Studio, llama.cpp), which is how the ladder reaches 14B and 32B:
+
+```
+node scripts/run.mjs --seed "Why is the Dead Sea shrinking?" --model qwen3:8b   --out experiments/2026-09-19-qwen3-8b-dead-sea-node          # --endpoint http://127.0.0.1:11434/v1 by default
+
+node scripts/eval.mjs runs --endpoint http://127.0.0.1:11434/v1 --model qwen3:14b --mode tangle
+```
+
+The page stays the lab and the single file; Node is an adapter behind the same two seams (the model, Wikipedia). A parity test (`test/parity.test.js`) runs the same seeds, recording and scripted picks in both and asserts the same graph. The weights differ by quantisation between the page (MLC q4f16) and a server (GGUF or MLX 4-bit), so a Node row is its own column, not a rerun of the page's.
 
 ## Where it stands
 

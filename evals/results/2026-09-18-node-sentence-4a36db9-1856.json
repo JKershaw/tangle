@@ -1,0 +1,2386 @@
+{
+  "ask": "sentence",
+  "asks": "asks-4",
+  "commit": "4a36db9",
+  "page": null,
+  "date": "2026-09-18T18:56:36.274Z",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "models": [
+    "endpoint:qwen3:1.7b",
+    "endpoint:qwen3:4b",
+    "endpoint:qwen3:8b"
+  ],
+  "variants": [
+    "list",
+    "check"
+  ],
+  "repeat": 1,
+  "cases": [
+    "dead-sea-lead-why-none",
+    "dead-sea-lead-tributary",
+    "dead-sea-lead-how-salty",
+    "dead-sea-lead-area",
+    "dead-sea-receding-why",
+    "dead-sea-receding-rate",
+    "dead-sea-extraction-who",
+    "dead-sea-salinity-none",
+    "water-cycle-drives",
+    "water-cycle-ocean-share",
+    "water-cycle-ocean-share-long",
+    "rayleigh-blue",
+    "evaporation-sun",
+    "evaporation-humidity",
+    "coral-leading-cause",
+    "coral-cause-none",
+    "lba-theories",
+    "lba-when",
+    "photosynthesis-none",
+    "diffuse-sky-processes",
+    "aral-for-dead-sea-none",
+    "aral-for-dead-sea-short-none",
+    "aral-for-aral"
+  ],
+  "rows": [
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "passed": 19,
+      "total": 23,
+      "medianMs": 1247,
+      "calls": 23,
+      "failed": [
+        "dead-sea-lead-why-none",
+        "coral-cause-none",
+        "aral-for-dead-sea-none",
+        "aral-for-dead-sea-short-none"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "passed": 20,
+      "total": 23,
+      "medianMs": 643,
+      "calls": 44,
+      "failed": [
+        "dead-sea-lead-tributary",
+        "dead-sea-extraction-who",
+        "evaporation-humidity"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "passed": 21,
+      "total": 23,
+      "medianMs": 1521,
+      "calls": 23,
+      "failed": [
+        "dead-sea-lead-why-none",
+        "dead-sea-salinity-none"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "passed": 19,
+      "total": 23,
+      "medianMs": 1290,
+      "calls": 42,
+      "failed": [
+        "dead-sea-lead-why-none",
+        "dead-sea-receding-rate",
+        "dead-sea-extraction-who",
+        "evaporation-humidity"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "passed": 22,
+      "total": 23,
+      "medianMs": 2282,
+      "calls": 23,
+      "failed": [
+        "dead-sea-lead-why-none"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "passed": 23,
+      "total": 23,
+      "medianMs": 2050,
+      "calls": 41,
+      "failed": []
+    }
+  ],
+  "results": [
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "dead-sea-lead-why-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "11",
+      "pass": false,
+      "error": null,
+      "latencyMs": 3546,
+      "tokens": 625,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"11\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "dead-sea-lead-tributary",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1514,
+      "tokens": 425,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"2\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "dead-sea-lead-how-salty",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1247,
+      "tokens": 321,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"3\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "dead-sea-lead-area",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1198,
+      "tokens": 306,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"5\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "dead-sea-receding-why",
+      "rep": 0,
+      "size": "9 sentences",
+      "answer": "7",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1298,
+      "tokens": 612,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"7\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "dead-sea-receding-rate",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 560,
+      "tokens": 373,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"4\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "dead-sea-extraction-who",
+      "rep": 0,
+      "size": "4 sentences",
+      "answer": "1",
+      "pass": true,
+      "error": null,
+      "latencyMs": 660,
+      "tokens": 240,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"1\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "dead-sea-salinity-none",
+      "rep": 0,
+      "size": "7 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1466,
+      "tokens": 362,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "water-cycle-drives",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "8",
+      "pass": true,
+      "error": null,
+      "latencyMs": 495,
+      "tokens": 333,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"8\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "water-cycle-ocean-share",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 399,
+      "tokens": 244,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"3\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "water-cycle-ocean-share-long",
+      "rep": 0,
+      "size": "23 sentences",
+      "answer": "7",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2079,
+      "tokens": 668,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"7\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "rayleigh-blue",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1250,
+      "tokens": 331,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"2\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "evaporation-sun",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "6",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1035,
+      "tokens": 242,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"6\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "evaporation-humidity",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 735,
+      "tokens": 306,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"2\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "coral-leading-cause",
+      "rep": 0,
+      "size": "10 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 563,
+      "tokens": 372,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"4\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "coral-cause-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "1",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1154,
+      "tokens": 248,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"1\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "lba-theories",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1256,
+      "tokens": 321,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"4\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "lba-when",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "1",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1505,
+      "tokens": 348,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"1\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "photosynthesis-none",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1282,
+      "tokens": 305,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "diffuse-sky-processes",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1263,
+      "tokens": 309,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"5\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "aral-for-dead-sea-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "5",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1360,
+      "tokens": 560,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"5\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "aral-for-dead-sea-short-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "2",
+      "pass": false,
+      "error": null,
+      "latencyMs": 578,
+      "tokens": 306,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"2\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "list",
+      "case": "aral-for-aral",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 848,
+      "tokens": 561,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"5\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "dead-sea-lead-why-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 643,
+      "tokens": 749,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"11\"}",
+        "{\"answers\": \"no\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "dead-sea-lead-tributary",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 557,
+      "tokens": 526,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"2\"}",
+        "{\"answers\": \"no\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "dead-sea-lead-how-salty",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 263,
+      "tokens": 463,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"3\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "dead-sea-lead-area",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 253,
+      "tokens": 440,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"5\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "dead-sea-receding-why",
+      "rep": 0,
+      "size": "9 sentences",
+      "answer": "7",
+      "pass": true,
+      "error": null,
+      "latencyMs": 310,
+      "tokens": 769,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"7\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "dead-sea-receding-rate",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 328,
+      "tokens": 523,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"4\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "dead-sea-extraction-who",
+      "rep": 0,
+      "size": "4 sentences",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 278,
+      "tokens": 365,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"1\"}",
+        "{\"answers\": \"no\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "dead-sea-salinity-none",
+      "rep": 0,
+      "size": "7 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 980,
+      "tokens": 362,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "water-cycle-drives",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "8",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1903,
+      "tokens": 421,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"8\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "water-cycle-ocean-share",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 590,
+      "tokens": 344,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"3\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "water-cycle-ocean-share-long",
+      "rep": 0,
+      "size": "23 sentences",
+      "answer": "7",
+      "pass": true,
+      "error": null,
+      "latencyMs": 430,
+      "tokens": 768,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"7\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "rayleigh-blue",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2176,
+      "tokens": 459,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"2\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "evaporation-sun",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "6",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1974,
+      "tokens": 346,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"6\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "evaporation-humidity",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 985,
+      "tokens": 410,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"2\"}",
+        "{\"answers\": \"no\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "coral-leading-cause",
+      "rep": 0,
+      "size": "10 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 460,
+      "tokens": 462,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"4\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "coral-cause-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 902,
+      "tokens": 356,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"1\"}",
+        "{\"answers\": \"no\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "lba-theories",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1157,
+      "tokens": 439,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"4\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "lba-when",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "1",
+      "pass": true,
+      "error": null,
+      "latencyMs": 495,
+      "tokens": 452,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"1\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "photosynthesis-none",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 184,
+      "tokens": 305,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "diffuse-sky-processes",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1246,
+      "tokens": 424,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"5\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "aral-for-dead-sea-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2039,
+      "tokens": 690,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"5\"}",
+        "{\"answers\": \"no\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "aral-for-dead-sea-short-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1176,
+      "tokens": 436,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"2\"}",
+        "{\"answers\": \"no\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "check",
+      "case": "aral-for-aral",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 694,
+      "tokens": 692,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"5\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "dead-sea-lead-why-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "11",
+      "pass": false,
+      "error": null,
+      "latencyMs": 5226,
+      "tokens": 623,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"11\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "dead-sea-lead-tributary",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1891,
+      "tokens": 423,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"2\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "dead-sea-lead-how-salty",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1561,
+      "tokens": 319,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"3\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "dead-sea-lead-area",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1361,
+      "tokens": 304,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"5\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "dead-sea-receding-why",
+      "rep": 0,
+      "size": "9 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2156,
+      "tokens": 610,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"2\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "dead-sea-receding-rate",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1014,
+      "tokens": 371,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"4\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "dead-sea-extraction-who",
+      "rep": 0,
+      "size": "4 sentences",
+      "answer": "1",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1192,
+      "tokens": 238,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"1\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "dead-sea-salinity-none",
+      "rep": 0,
+      "size": "7 sentences",
+      "answer": "2",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1696,
+      "tokens": 360,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"2\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "water-cycle-drives",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "8",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1521,
+      "tokens": 331,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"8\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "water-cycle-ocean-share",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1212,
+      "tokens": 242,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"3\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "water-cycle-ocean-share-long",
+      "rep": 0,
+      "size": "23 sentences",
+      "answer": "7",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2776,
+      "tokens": 666,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"7\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "rayleigh-blue",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1559,
+      "tokens": 329,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"2\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "evaporation-sun",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "6",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1194,
+      "tokens": 240,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"6\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "evaporation-humidity",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1358,
+      "tokens": 304,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"2\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "coral-leading-cause",
+      "rep": 0,
+      "size": "10 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1690,
+      "tokens": 370,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"4\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "coral-cause-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1193,
+      "tokens": 246,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"none\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "lba-theories",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1477,
+      "tokens": 319,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"4\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "lba-when",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "1",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1527,
+      "tokens": 346,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"1\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "photosynthesis-none",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1392,
+      "tokens": 303,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"none\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "diffuse-sky-processes",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1410,
+      "tokens": 307,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"5\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "aral-for-dead-sea-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2347,
+      "tokens": 558,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"none\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "aral-for-dead-sea-short-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1443,
+      "tokens": 304,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"none\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "list",
+      "case": "aral-for-aral",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2305,
+      "tokens": 559,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"5\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "dead-sea-lead-why-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "11",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1543,
+      "tokens": 745,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"11\"\n}",
+        "{\n  \"answers\": \"yes\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "dead-sea-lead-tributary",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1357,
+      "tokens": 524,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"2\"\n}",
+        "{\n  \"answers\": \"yes\"\n  }"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "dead-sea-lead-how-salty",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1375,
+      "tokens": 459,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"3\"\n}",
+        "{\n  \"answers\": \"yes\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "dead-sea-lead-area",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1437,
+      "tokens": 438,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"5\"\n}",
+        "{\n  \"answers\": \"yes\"\n  }"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "dead-sea-receding-why",
+      "rep": 0,
+      "size": "9 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1385,
+      "tokens": 726,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"2\"\n}",
+        "{\n  \"answers\": \"yes\"\n  }"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "dead-sea-receding-rate",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1421,
+      "tokens": 520,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"4\"\n}",
+        "{\n  \"answers\": \"no\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "dead-sea-extraction-who",
+      "rep": 0,
+      "size": "4 sentences",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1378,
+      "tokens": 361,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"1\"\n}",
+        "{\n  \"answers\": \"no\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "dead-sea-salinity-none",
+      "rep": 0,
+      "size": "7 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1396,
+      "tokens": 460,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"2\"\n}",
+        "{\n  \"answers\": \"no\"\n  }"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "water-cycle-drives",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "8",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1096,
+      "tokens": 414,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"8\"\n}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "water-cycle-ocean-share",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1322,
+      "tokens": 341,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"3\"\n}",
+        "{\n  \"answers\": \"yes\"\n  }"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "water-cycle-ocean-share-long",
+      "rep": 0,
+      "size": "23 sentences",
+      "answer": "7",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1067,
+      "tokens": 765,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"7\"\n}",
+        "{\n  \"answers\": \"yes\"\n  }"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "rayleigh-blue",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1522,
+      "tokens": 457,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"2\"\n}",
+        "{\n  \"answers\": \"yes\"\n  }"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "evaporation-sun",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "6",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1084,
+      "tokens": 339,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"6\"\n}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "evaporation-humidity",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1354,
+      "tokens": 408,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"2\"\n}",
+        "{\n  \"answers\": \"no\"\n  }"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "coral-leading-cause",
+      "rep": 0,
+      "size": "10 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1106,
+      "tokens": 455,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"4\"\n}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "coral-cause-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 524,
+      "tokens": 246,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"none\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "lba-theories",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1290,
+      "tokens": 435,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"4\"\n}",
+        "{\n  \"answers\": \"yes\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "lba-when",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "1",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1099,
+      "tokens": 445,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"1\"\n}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "photosynthesis-none",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 509,
+      "tokens": 303,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"none\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "diffuse-sky-processes",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1234,
+      "tokens": 420,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"5\"\n}",
+        "{\n  \"answers\": \"yes\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "aral-for-dead-sea-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 533,
+      "tokens": 558,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"none\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "aral-for-dead-sea-short-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 505,
+      "tokens": 304,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"sentence\": \"none\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "check",
+      "case": "aral-for-aral",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1218,
+      "tokens": 685,
+      "calls": 2,
+      "outputs": [
+        "{\n  \"sentence\": \"5\"\n}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "dead-sea-lead-why-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "11",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1012,
+      "tokens": 625,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"11\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "dead-sea-lead-tributary",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3969,
+      "tokens": 425,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"2\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "dead-sea-lead-how-salty",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2530,
+      "tokens": 321,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"3\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "dead-sea-lead-area",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1909,
+      "tokens": 306,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"5\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "dead-sea-receding-why",
+      "rep": 0,
+      "size": "9 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1003,
+      "tokens": 612,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"2\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "dead-sea-receding-rate",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2352,
+      "tokens": 373,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"4\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "dead-sea-extraction-who",
+      "rep": 0,
+      "size": "4 sentences",
+      "answer": "1",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1888,
+      "tokens": 240,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"1\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "dead-sea-salinity-none",
+      "rep": 0,
+      "size": "7 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2084,
+      "tokens": 362,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "water-cycle-drives",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "8",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3596,
+      "tokens": 333,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"8\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "water-cycle-ocean-share",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1651,
+      "tokens": 244,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"3\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "water-cycle-ocean-share-long",
+      "rep": 0,
+      "size": "23 sentences",
+      "answer": "7",
+      "pass": true,
+      "error": null,
+      "latencyMs": 4606,
+      "tokens": 668,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"7\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "rayleigh-blue",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2221,
+      "tokens": 331,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"2\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "evaporation-sun",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "6",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2782,
+      "tokens": 242,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"6\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "evaporation-humidity",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2742,
+      "tokens": 306,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"2\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "coral-leading-cause",
+      "rep": 0,
+      "size": "10 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2016,
+      "tokens": 372,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"4\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "coral-cause-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2055,
+      "tokens": 248,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "lba-theories",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2692,
+      "tokens": 321,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"4\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "lba-when",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "1",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2282,
+      "tokens": 348,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"1\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "photosynthesis-none",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2128,
+      "tokens": 305,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "diffuse-sky-processes",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2171,
+      "tokens": 309,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"5\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "aral-for-dead-sea-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3357,
+      "tokens": 560,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "aral-for-dead-sea-short-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3754,
+      "tokens": 306,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "list",
+      "case": "aral-for-aral",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2377,
+      "tokens": 561,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"5\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "dead-sea-lead-why-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2926,
+      "tokens": 749,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"11\"}",
+        "{\"answers\": \"no\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "dead-sea-lead-tributary",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2601,
+      "tokens": 526,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"2\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "dead-sea-lead-how-salty",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3474,
+      "tokens": 463,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"3\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "dead-sea-lead-area",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1737,
+      "tokens": 440,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"5\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "dead-sea-receding-why",
+      "rep": 0,
+      "size": "9 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2624,
+      "tokens": 728,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"2\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "dead-sea-receding-rate",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2732,
+      "tokens": 523,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"4\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "dead-sea-extraction-who",
+      "rep": 0,
+      "size": "4 sentences",
+      "answer": "1",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1726,
+      "tokens": 365,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"1\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "dead-sea-salinity-none",
+      "rep": 0,
+      "size": "7 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 527,
+      "tokens": 362,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "water-cycle-drives",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "8",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1983,
+      "tokens": 421,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"8\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "water-cycle-ocean-share",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "3",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1727,
+      "tokens": 344,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"3\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "water-cycle-ocean-share-long",
+      "rep": 0,
+      "size": "23 sentences",
+      "answer": "7",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1437,
+      "tokens": 768,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"7\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "rayleigh-blue",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2050,
+      "tokens": 459,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"2\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "evaporation-sun",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "6",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2321,
+      "tokens": 346,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"6\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "evaporation-humidity",
+      "rep": 0,
+      "size": "8 sentences",
+      "answer": "2",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2554,
+      "tokens": 410,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"2\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "coral-leading-cause",
+      "rep": 0,
+      "size": "10 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3913,
+      "tokens": 462,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"4\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "coral-cause-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1487,
+      "tokens": 248,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "lba-theories",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "4",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2284,
+      "tokens": 439,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"4\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "lba-when",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "1",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2453,
+      "tokens": 452,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"1\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "photosynthesis-none",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1624,
+      "tokens": 305,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "diffuse-sky-processes",
+      "rep": 0,
+      "size": "6 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3888,
+      "tokens": 424,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"5\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "aral-for-dead-sea-none",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 955,
+      "tokens": 560,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "aral-for-dead-sea-short-none",
+      "rep": 0,
+      "size": "5 sentences",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 575,
+      "tokens": 306,
+      "calls": 1,
+      "outputs": [
+        "{\"sentence\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "check",
+      "case": "aral-for-aral",
+      "rep": 0,
+      "size": "12 sentences",
+      "answer": "5",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1642,
+      "tokens": 692,
+      "calls": 2,
+      "outputs": [
+        "{\"sentence\": \"5\"}",
+        "{\"answers\": \"yes\"}"
+      ]
+    }
+  ]
+}

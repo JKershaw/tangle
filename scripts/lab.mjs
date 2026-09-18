@@ -3,6 +3,7 @@
 // a graph to its end, exports it, and loads or saves the Wikipedia recording.
 // scripts/live-run.mjs and scripts/eval.mjs are thin wrappers over this.
 import { execSync } from "node:child_process";
+import { mkdirSync } from "node:fs";
 import { join } from "node:path";
 import os from "node:os";
 import { readRecording, writeEntry } from "./recording.mjs";
@@ -32,7 +33,8 @@ export function parseArgs(argv) {
 
 export const stamp = () => new Date().toISOString();
 export const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-export const shortModel = (id) => String(id).replace(/-q4f16_1-MLC$/, "").toLowerCase();
+// "Qwen3-8B-q4f16_1-MLC" → qwen3-8b; an endpoint's "endpoint:qwen3:8b" → "qwen3:8b · node".
+export const shortModel = (id) => (String(id).startsWith("endpoint:") ? `${String(id).slice("endpoint:".length)} · node` : String(id).replace(/-q4f16_1-MLC$/, "").toLowerCase());
 
 export function commitInfo() {
   try {

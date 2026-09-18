@@ -1,0 +1,643 @@
+{
+  "ask": "article",
+  "asks": "asks-4",
+  "commit": "4a36db9",
+  "page": null,
+  "date": "2026-09-18T18:57:32.358Z",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "models": [
+    "endpoint:qwen3:1.7b",
+    "endpoint:qwen3:4b",
+    "endpoint:qwen3:8b"
+  ],
+  "variants": [
+    "snippets"
+  ],
+  "repeat": 1,
+  "cases": [
+    "dead-sea-stripped",
+    "dead-sea-raw-none",
+    "sky-colour",
+    "sky-raw",
+    "sky-studios-none",
+    "aral-shrink",
+    "lba",
+    "bees",
+    "coral",
+    "water-cycle",
+    "aral-split",
+    "weapon-none"
+  ],
+  "rows": [
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "passed": 10,
+      "total": 12,
+      "medianMs": 541,
+      "calls": 12,
+      "failed": [
+        "coral",
+        "water-cycle"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "passed": 11,
+      "total": 12,
+      "medianMs": 1535,
+      "calls": 12,
+      "failed": [
+        "sky-studios-none"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "passed": 12,
+      "total": 12,
+      "medianMs": 2020,
+      "calls": 12,
+      "failed": []
+    }
+  ],
+  "results": [
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Dead Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2679,
+      "tokens": 353,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Dead Sea\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "List of drying lakes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 768,
+      "tokens": 333,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"List of drying lakes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Rayleigh scattering",
+      "pass": true,
+      "error": null,
+      "latencyMs": 541,
+      "tokens": 340,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Rayleigh scattering\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Diffuse sky radiation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 655,
+      "tokens": 380,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Diffuse sky radiation\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Blue",
+      "pass": true,
+      "error": null,
+      "latencyMs": 501,
+      "tokens": 307,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Blue\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 417,
+      "tokens": 351,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 296,
+      "tokens": 307,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Late Bronze Age collapse\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Colony collapse disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 293,
+      "tokens": 328,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Colony collapse disorder\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Coral reef fish",
+      "pass": false,
+      "error": null,
+      "latencyMs": 291,
+      "tokens": 314,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Coral reef fish\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Biogeochemical cycle",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1170,
+      "tokens": 308,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Biogeochemical cycle\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 570,
+      "tokens": 341,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:1.7b",
+      "variant": "snippets",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 464,
+      "tokens": 324,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Dead Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3045,
+      "tokens": 351,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"Dead Sea\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "List of drying lakes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1535,
+      "tokens": 331,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"List of drying lakes\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Rayleigh scattering",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1608,
+      "tokens": 338,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"Rayleigh scattering\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Diffuse sky radiation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1787,
+      "tokens": 378,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"Diffuse sky radiation\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Pale Blue Dot",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1527,
+      "tokens": 307,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"Pale Blue Dot\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1584,
+      "tokens": 349,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"Aral Sea\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1423,
+      "tokens": 305,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"Late Bronze Age collapse\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Colony collapse disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1459,
+      "tokens": 326,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"Colony collapse disorder\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1510,
+      "tokens": 312,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"Coral bleaching\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Water cycle",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1461,
+      "tokens": 303,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"Water cycle\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1584,
+      "tokens": 339,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"Aral Sea\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:4b",
+      "variant": "snippets",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1361,
+      "tokens": 322,
+      "calls": 1,
+      "outputs": [
+        "{\n  \"article\": \"none\"\n}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Dead Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2801,
+      "tokens": 353,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Dead Sea\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "List of drying lakes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1953,
+      "tokens": 333,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"List of drying lakes\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Rayleigh scattering",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1456,
+      "tokens": 340,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Rayleigh scattering\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Diffuse sky radiation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3736,
+      "tokens": 380,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Diffuse sky radiation\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Blue",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1375,
+      "tokens": 307,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Blue\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 446,
+      "tokens": 351,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 4313,
+      "tokens": 307,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Late Bronze Age collapse\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Colony collapse disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2614,
+      "tokens": 328,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Colony collapse disorder\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1932,
+      "tokens": 314,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Water cycle",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2020,
+      "tokens": 305,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Water cycle\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3028,
+      "tokens": 341,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "endpoint:qwen3:8b",
+      "variant": "snippets",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1622,
+      "tokens": 324,
+      "calls": 1,
+      "outputs": [
+        "{\"article\": \"none\"}"
+      ]
+    }
+  ]
+}

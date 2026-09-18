@@ -96,3 +96,15 @@ One row per model and ask variant; the JSON named in the row holds every raw out
 | 2026-09-18 | 7279d41 | article | snippets | qwen3-4b | 9/12 | 1254 | 12 | dead-sea-stripped, sky-studios-none, coral |
 | 2026-09-18 | 7279d41 | article | list | qwen3-8b | 10/12 | 994 | 12 | dead-sea-raw-none, sky-raw |
 | 2026-09-18 | 7279d41 | article | snippets | qwen3-8b | 12/12 | 2030 | 12 | — |
+| 2026-09-18 | 4a36db9 | sentence | list | qwen3:1.7b · node | 19/23 | 1247 | 23 | dead-sea-lead-why-none, coral-cause-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
+| 2026-09-18 | 4a36db9 | sentence | check | qwen3:1.7b · node | 20/23 | 643 | 44 | dead-sea-lead-tributary, dead-sea-extraction-who, evaporation-humidity |
+| 2026-09-18 | 4a36db9 | sentence | list | qwen3:4b · node | 21/23 | 1521 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none |
+| 2026-09-18 | 4a36db9 | sentence | check | qwen3:4b · node | 19/23 | 1290 | 42 | dead-sea-lead-why-none, dead-sea-receding-rate, dead-sea-extraction-who, evaporation-humidity |
+| 2026-09-18 | 4a36db9 | sentence | list | qwen3:8b · node | 22/23 | 2282 | 23 | dead-sea-lead-why-none |
+| 2026-09-18 | 4a36db9 | sentence | check | qwen3:8b · node | 23/23 | 2050 | 41 | — |
+| 2026-09-18 | 4a36db9 | article | snippets | qwen3:1.7b · node | 10/12 | 541 | 12 | coral, water-cycle |
+| 2026-09-18 | 4a36db9 | article | snippets | qwen3:4b · node | 11/12 | 1535 | 12 | sky-studios-none |
+| 2026-09-18 | 4a36db9 | article | snippets | qwen3:8b · node | 12/12 | 2020 | 12 | — |
+| 2026-09-18 | 4a36db9 | section | list | qwen3:1.7b · node | 15/15 | 387 | 15 | — |
+| 2026-09-18 | 4a36db9 | section | list | qwen3:4b · node | 14/15 | 1090 | 15 | dead-sea-shrinking |
+| 2026-09-18 | 4a36db9 | section | list | qwen3:8b · node | 14/15 | 2022 | 15 | water-cycle-energy |
