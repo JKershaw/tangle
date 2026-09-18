@@ -71,6 +71,11 @@ export const ASKS = Object.freeze({
       json: single(sentenceCall(SENTENCE_SYSTEM.json, (input) => JSON.stringify({ question: input.question, sentences: Object.fromEntries(input.sentences.map((sentence, index) => [String(index + 1), sentence])) })), readSentence),
       list: single(sentenceCall(SENTENCE_SYSTEM.list, (input) => `Question: ${input.question}\n\n${numbered(input.sentences)}\n\nWhich sentence answers the question? Reply {"sentence": "<number>"} or {"sentence": "none"}.`), readSentence),
       strict: single(sentenceCall(SENTENCE_SYSTEM.strict, (input) => `Question: ${input.question}\n\n${numbered(input.sentences)}\n\nReply {"sentence": "<number>"} or {"sentence": "none"}.`), readSentence),
+      // The source named: 1.7B picked an Aral Sea sentence as the answer to a
+      // Dead Sea question when the sentences came unlabelled
+      // (experiments/2026-09-18-qwen3-1.7b-dead-sea-walk-1). Input may carry
+      // { titles: [string] } parallel to sentences.
+      titled: single(sentenceCall(SENTENCE_SYSTEM.list + ` Each sentence is labelled with the Wikipedia article it comes from; a sentence about a different subject does not answer the question.`, (input) => `Question: ${input.question}\n\n${input.sentences.map((sentence, index) => `${index + 1}. [${input.titles?.[index] ?? "source"}] ${sentence}`).join("\n")}\n\nWhich sentence answers the question? Reply {"sentence": "<number>"} or {"sentence": "none"}.`), readSentence),
       // "none" as an ordinary numbered choice: 1.7B found the answering
       // sentence in every positive case but picked one anyway when nothing
       // answered (evals/node/results.md, f571e0b). A pick from a list may be

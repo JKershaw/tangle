@@ -34,7 +34,7 @@ export function buildInput(ask, spec) {
     const sentences = all.slice(spec.source.from - 1, spec.source.to);
     if (sentences.length !== spec.source.to - spec.source.from + 1) throw new Error(`${spec.id}: section has ${all.length} sentences, not ${spec.source.to}`);
     if (spec.expect.contains && !sentences[Number(spec.expect.sentence) - 1]?.includes(spec.expect.contains)) throw new Error(`${spec.id}: sentence ${spec.expect.sentence} does not contain "${spec.expect.contains}" — has the splitter changed?`);
-    return { question: spec.question, sentences };
+    return { question: spec.question, sentences, titles: sentences.map(() => spec.source.article) };
   }
   if (ask === "section") {
     const sections = cachedArticle(spec.article).sections.map((section) => section.heading).filter(Boolean);

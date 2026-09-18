@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createRun, nextRunnable } from "../src/graph.js";
-import { candidates, isRepeat, runWalk, unreadSections } from "../src/walk.js";
+import { candidates, isRepeat, runWalk, searchTerm, unreadSections } from "../src/walk.js";
 
 // A scripted model: answers come off a queue, keyed by the field the schema
 // asks for, so a test states exactly what the model says at each ask.
@@ -30,7 +30,15 @@ function wikiFixture(query, { readOn } = {}) {
   return { ok: false, error: { kind: "no_match", message: `nothing for ${query}` } };
 }
 
-test("the first lookup is the question itself; a picked sentence becomes the finding verbatim, cited", async () => {
+test("the first lookup is the question minus its question words", () => {
+  assert.equal(searchTerm("Why is the Dead Sea shrinking?"), "Dead Sea shrinking");
+  assert.equal(searchTerm("Why does the water cycle keep going?"), "water cycle");
+  assert.equal(searchTerm("Why did the Late Bronze Age collapse happen?"), "Late Bronze Age collapse");
+  assert.equal(searchTerm("Why do honey bee colonies collapse?"), "honey bee colonies collapse");
+  assert.equal(searchTerm("What is it?"), "What is it", "a question of only question words is sent as is");
+});
+
+test("the first lookup needs no model call; a picked sentence becomes the finding verbatim, cited", async () => {
   const run = createRun("What is the Dead Sea's main tributary?", "live");
   const { ask, seen } = scripted([["sentence", "2"]]);
   assert.equal(await runWalk(run, { ask, wiki: wikiFixture }), true);
@@ -42,8 +50,14 @@ test("the first lookup is the question itself; a picked sentence becomes the fin
   assert.equal(run.modelCalls, 1);
   assert.deepEqual(seen[0].options, ["1", "2", "3", "none"]);
   assert.match(seen[0].user, /2\. Its main tributary is the Jordan River\./);
+  // The titled variant would label each sentence with its article.
+  const titled = createRun("What is the Dead Sea's main tributary?", "live");
+  const labelled = scripted([["sentence", "2"]]);
+  await runWalk(titled, { ask: labelled.ask, wiki: wikiFixture, variants: { sentence: "titled" } });
+  assert.match(labelled.seen[0].user, /2\. \[Dead Sea\] Its main tributary/);
   assert.match(run.promptVersion, /^walk-1\/asks-\d+\/sentence:list/);
   assert.ok(run.trace.some((event) => event.event === "sentence_picked" && event.pick === "2"));
+  assert.equal(run.trace.find((event) => event.event === "tool_proposed").query, "Dead Sea's main tributary");
 });
 
 test("when the lead does not answer, the walk reads a chosen section and picks from it", async () => {
@@ -74,7 +88,7 @@ test("with lookups exhausted the walk hands down one question; the parent later 
   assert.equal(run.nodes[1].status, "resolved");
   assert.equal(run.nodes[1].finding, "Its main tributary is the Jordan River.");
   assert.deepEqual(run.nodes[1].evidence, ["e3"], "the child reads its own copy of the lead");
-  assert.equal(run.nodes[1].failedLookups[0].query, "What diverts water from the Jordan River?");
+  assert.equal(run.nodes[1].failedLookups[0].query, "diverts water from Jordan River");
   // The parent runs again and sees the child's finding first, then its own excerpt.
   assert.equal(nextRunnable(run).id, "n1");
   const pool = candidates(run, run.nodes[0]);

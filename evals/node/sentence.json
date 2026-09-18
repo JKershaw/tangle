@@ -1,26 +1,350 @@
 {
   "ask": "sentence",
-  "note": "Which numbered sentence answers the question, or none. Sentences are rebuilt from the cached article by scripts/node-case.mjs (splitSentences), so 'from'/'to' are 1-based positions in that section and 'sentence' is 1-based within the slice; 'contains' guards against the numbering drifting. 'accept' lists every defensible pick when more than one sentence answers.",
+  "note": "Which numbered sentence answers the question, or none. Sentences are rebuilt from the cached article by scripts/node-case.mjs (splitSentences), so 'from'/'to' are 1-based positions in that section and 'sentence' is 1-based within the slice; 'contains' guards against the numbering drifting. 'accept' lists every defensible pick when more than one sentence answers. Cases carry the article so the titled variant can label each sentence.",
   "cases": [
-    { "id": "dead-sea-lead-why-none", "source": { "article": "Dead Sea", "section": "", "from": 1, "to": 12 }, "question": "Why is the Dead Sea shrinking?", "expect": { "sentence": "none" }, "note": "The lead says it is receding and lists proposals; nothing says why. The model must not answer from memory." },
-    { "id": "dead-sea-lead-tributary", "source": { "article": "Dead Sea", "section": "", "from": 1, "to": 6 }, "question": "What is the Dead Sea's main tributary?", "expect": { "sentence": "2", "contains": "Jordan River" } },
-    { "id": "dead-sea-lead-how-salty", "source": { "article": "Dead Sea", "section": "", "from": 3, "to": 8 }, "question": "How salty is the Dead Sea?", "expect": { "sentence": "3", "contains": "342 g/kg" } },
-    { "id": "dead-sea-lead-area", "source": { "article": "Dead Sea", "section": "", "from": 7, "to": 12 }, "question": "How much has the Dead Sea's surface area changed since 1930?", "expect": { "sentence": "5", "contains": "1,050 km2" } },
-    { "id": "dead-sea-receding-why", "source": { "article": "Dead Sea", "section": "Receding shoreline", "from": 1, "to": 9 }, "question": "Why is the Dead Sea shrinking?", "expect": { "sentence": "2", "accept": ["2", "7"], "contains": "National Water Carrier" } },
-    { "id": "dead-sea-receding-rate", "source": { "article": "Dead Sea", "section": "Receding shoreline", "from": 1, "to": 6 }, "question": "How fast is the Dead Sea's water level dropping?", "expect": { "sentence": "4", "accept": ["4", "5"], "contains": "per year" } },
-    { "id": "dead-sea-extraction-who", "source": { "article": "Dead Sea", "section": "Extraction", "from": 1, "to": 4 }, "question": "Which companies extract minerals from the Dead Sea?", "expect": { "sentence": "1", "contains": "Arab Potash" } },
-    { "id": "dead-sea-salinity-none", "source": { "article": "Dead Sea", "section": "Lake salinity", "from": 1, "to": 7 }, "question": "Why is the Dead Sea shrinking today?", "expect": { "sentence": "none" }, "note": "Every sentence is about ancient lake levels rising and falling; a model that pattern-matches 'shrank' will pick 2." },
-    { "id": "water-cycle-drives", "source": { "article": "Water cycle", "section": "", "from": 1, "to": 8 }, "question": "What drives the water cycle?", "expect": { "sentence": "8", "accept": ["8", "5"], "contains": "energy exchanges" } },
-    { "id": "water-cycle-ocean-share", "source": { "article": "Water cycle", "section": "", "from": 5, "to": 10 }, "question": "What share of global evaporation comes from the ocean?", "expect": { "sentence": "3", "contains": "86%" } },
-    { "id": "water-cycle-ocean-share-long", "source": { "article": "Water cycle", "section": "", "from": 1, "to": 23 }, "question": "What share of global evaporation comes from the ocean?", "expect": { "sentence": "7", "contains": "86%" }, "note": "The same fact among 23 sentences: how many choices a model can hold." },
-    { "id": "rayleigh-blue", "source": { "article": "Rayleigh scattering", "section": "", "from": 1, "to": 8 }, "question": "Why is blue light scattered more than red light?", "expect": { "sentence": "2", "contains": "fourth power" } },
-    { "id": "evaporation-sun", "source": { "article": "Evaporation", "section": "", "from": 5, "to": 10 }, "question": "What drives the evaporation of water from oceans and lakes?", "expect": { "sentence": "6", "contains": "solar energy" } },
-    { "id": "evaporation-humidity", "source": { "article": "Evaporation", "section": "", "from": 1, "to": 8 }, "question": "How does humidity affect the rate of evaporation?", "expect": { "sentence": "2", "contains": "humidity" } },
-    { "id": "coral-leading-cause", "source": { "article": "Coral bleaching", "section": "", "from": 1, "to": 10 }, "question": "What is the leading cause of coral bleaching?", "expect": { "sentence": "4", "contains": "rising ocean temperatures" } },
-    { "id": "coral-cause-none", "source": { "article": "Coral bleaching", "section": "", "from": 6, "to": 10 }, "question": "What causes coral bleaching?", "expect": { "sentence": "none" }, "note": "Events, places and adaptation, but no cause." },
-    { "id": "lba-theories", "source": { "article": "Late Bronze Age collapse", "section": "", "from": 5, "to": 10 }, "question": "What theories explain the Late Bronze Age collapse?", "expect": { "sentence": "4", "accept": ["4", "3"], "contains": "Sea Peoples" } },
-    { "id": "lba-when", "source": { "article": "Late Bronze Age collapse", "section": "", "from": 1, "to": 6 }, "question": "When did the Late Bronze Age collapse happen?", "expect": { "sentence": "1", "contains": "12th century BC" } },
-    { "id": "photosynthesis-none", "source": { "article": "Photosynthesis", "section": "", "from": 1, "to": 6 }, "question": "Why is the sky blue?", "expect": { "sentence": "none" }, "note": "The floor for none: nothing here is even about the sky." },
-    { "id": "diffuse-sky-processes", "source": { "article": "Diffuse sky radiation", "section": "", "from": 1, "to": 6 }, "question": "Which scattering processes dominate in the atmosphere?", "expect": { "sentence": "5", "contains": "Rayleigh scattering and Mie scattering" } }
+    {
+      "id": "dead-sea-lead-why-none",
+      "source": {
+        "article": "Dead Sea",
+        "section": "",
+        "from": 1,
+        "to": 12
+      },
+      "question": "Why is the Dead Sea shrinking?",
+      "expect": {
+        "sentence": "none"
+      },
+      "note": "The lead says it is receding and lists proposals; nothing says why. The model must not answer from memory."
+    },
+    {
+      "id": "dead-sea-lead-tributary",
+      "source": {
+        "article": "Dead Sea",
+        "section": "",
+        "from": 1,
+        "to": 6
+      },
+      "question": "What is the Dead Sea's main tributary?",
+      "expect": {
+        "sentence": "2",
+        "contains": "Jordan River"
+      }
+    },
+    {
+      "id": "dead-sea-lead-how-salty",
+      "source": {
+        "article": "Dead Sea",
+        "section": "",
+        "from": 3,
+        "to": 8
+      },
+      "question": "How salty is the Dead Sea?",
+      "expect": {
+        "sentence": "3",
+        "contains": "342 g/kg"
+      }
+    },
+    {
+      "id": "dead-sea-lead-area",
+      "source": {
+        "article": "Dead Sea",
+        "section": "",
+        "from": 7,
+        "to": 12
+      },
+      "question": "How much has the Dead Sea's surface area changed since 1930?",
+      "expect": {
+        "sentence": "5",
+        "contains": "1,050 km2"
+      }
+    },
+    {
+      "id": "dead-sea-receding-why",
+      "source": {
+        "article": "Dead Sea",
+        "section": "Receding shoreline",
+        "from": 1,
+        "to": 9
+      },
+      "question": "Why is the Dead Sea shrinking?",
+      "expect": {
+        "sentence": "2",
+        "accept": [
+          "2",
+          "7"
+        ],
+        "contains": "National Water Carrier"
+      }
+    },
+    {
+      "id": "dead-sea-receding-rate",
+      "source": {
+        "article": "Dead Sea",
+        "section": "Receding shoreline",
+        "from": 1,
+        "to": 6
+      },
+      "question": "How fast is the Dead Sea's water level dropping?",
+      "expect": {
+        "sentence": "4",
+        "accept": [
+          "4",
+          "5"
+        ],
+        "contains": "per year"
+      }
+    },
+    {
+      "id": "dead-sea-extraction-who",
+      "source": {
+        "article": "Dead Sea",
+        "section": "Extraction",
+        "from": 1,
+        "to": 4
+      },
+      "question": "Which companies extract minerals from the Dead Sea?",
+      "expect": {
+        "sentence": "1",
+        "contains": "Arab Potash"
+      }
+    },
+    {
+      "id": "dead-sea-salinity-none",
+      "source": {
+        "article": "Dead Sea",
+        "section": "Lake salinity",
+        "from": 1,
+        "to": 7
+      },
+      "question": "Why is the Dead Sea shrinking today?",
+      "expect": {
+        "sentence": "none"
+      },
+      "note": "Every sentence is about ancient lake levels rising and falling; a model that pattern-matches 'shrank' will pick 2."
+    },
+    {
+      "id": "water-cycle-drives",
+      "source": {
+        "article": "Water cycle",
+        "section": "",
+        "from": 1,
+        "to": 8
+      },
+      "question": "What drives the water cycle?",
+      "expect": {
+        "sentence": "8",
+        "accept": [
+          "8",
+          "5"
+        ],
+        "contains": "energy exchanges"
+      }
+    },
+    {
+      "id": "water-cycle-ocean-share",
+      "source": {
+        "article": "Water cycle",
+        "section": "",
+        "from": 5,
+        "to": 10
+      },
+      "question": "What share of global evaporation comes from the ocean?",
+      "expect": {
+        "sentence": "3",
+        "contains": "86%"
+      }
+    },
+    {
+      "id": "water-cycle-ocean-share-long",
+      "source": {
+        "article": "Water cycle",
+        "section": "",
+        "from": 1,
+        "to": 23
+      },
+      "question": "What share of global evaporation comes from the ocean?",
+      "expect": {
+        "sentence": "7",
+        "contains": "86%"
+      },
+      "note": "The same fact among 23 sentences: how many choices a model can hold."
+    },
+    {
+      "id": "rayleigh-blue",
+      "source": {
+        "article": "Rayleigh scattering",
+        "section": "",
+        "from": 1,
+        "to": 8
+      },
+      "question": "Why is blue light scattered more than red light?",
+      "expect": {
+        "sentence": "2",
+        "contains": "fourth power"
+      }
+    },
+    {
+      "id": "evaporation-sun",
+      "source": {
+        "article": "Evaporation",
+        "section": "",
+        "from": 5,
+        "to": 10
+      },
+      "question": "What drives the evaporation of water from oceans and lakes?",
+      "expect": {
+        "sentence": "6",
+        "contains": "solar energy"
+      }
+    },
+    {
+      "id": "evaporation-humidity",
+      "source": {
+        "article": "Evaporation",
+        "section": "",
+        "from": 1,
+        "to": 8
+      },
+      "question": "How does humidity affect the rate of evaporation?",
+      "expect": {
+        "sentence": "2",
+        "contains": "humidity"
+      }
+    },
+    {
+      "id": "coral-leading-cause",
+      "source": {
+        "article": "Coral bleaching",
+        "section": "",
+        "from": 1,
+        "to": 10
+      },
+      "question": "What is the leading cause of coral bleaching?",
+      "expect": {
+        "sentence": "4",
+        "contains": "rising ocean temperatures"
+      }
+    },
+    {
+      "id": "coral-cause-none",
+      "source": {
+        "article": "Coral bleaching",
+        "section": "",
+        "from": 6,
+        "to": 10
+      },
+      "question": "What causes coral bleaching?",
+      "expect": {
+        "sentence": "none"
+      },
+      "note": "Events, places and adaptation, but no cause."
+    },
+    {
+      "id": "lba-theories",
+      "source": {
+        "article": "Late Bronze Age collapse",
+        "section": "",
+        "from": 5,
+        "to": 10
+      },
+      "question": "What theories explain the Late Bronze Age collapse?",
+      "expect": {
+        "sentence": "4",
+        "accept": [
+          "4",
+          "3"
+        ],
+        "contains": "Sea Peoples"
+      }
+    },
+    {
+      "id": "lba-when",
+      "source": {
+        "article": "Late Bronze Age collapse",
+        "section": "",
+        "from": 1,
+        "to": 6
+      },
+      "question": "When did the Late Bronze Age collapse happen?",
+      "expect": {
+        "sentence": "1",
+        "contains": "12th century BC"
+      }
+    },
+    {
+      "id": "photosynthesis-none",
+      "source": {
+        "article": "Photosynthesis",
+        "section": "",
+        "from": 1,
+        "to": 6
+      },
+      "question": "Why is the sky blue?",
+      "expect": {
+        "sentence": "none"
+      },
+      "note": "The floor for none: nothing here is even about the sky."
+    },
+    {
+      "id": "diffuse-sky-processes",
+      "source": {
+        "article": "Diffuse sky radiation",
+        "section": "",
+        "from": 1,
+        "to": 6
+      },
+      "question": "Which scattering processes dominate in the atmosphere?",
+      "expect": {
+        "sentence": "5",
+        "contains": "Rayleigh scattering and Mie scattering"
+      }
+    },
+    {
+      "id": "aral-for-dead-sea-none",
+      "source": {
+        "article": "Aral Sea",
+        "section": "",
+        "from": 1,
+        "to": 12
+      },
+      "question": "Why is the Dead Sea shrinking?",
+      "expect": {
+        "sentence": "none"
+      },
+      "note": "The wrong lake. Sentence 5 explains why the Aral Sea shrank; a model that matches 'shrinking' picks it. Seen live: experiments/2026-09-18-qwen3-1.7b-dead-sea-walk-1."
+    },
+    {
+      "id": "aral-for-dead-sea-short-none",
+      "source": {
+        "article": "Aral Sea",
+        "section": "",
+        "from": 4,
+        "to": 8
+      },
+      "question": "Why is the Dead Sea shrinking?",
+      "expect": {
+        "sentence": "none"
+      },
+      "note": "The same trap with five sentences."
+    },
+    {
+      "id": "aral-for-aral",
+      "source": {
+        "article": "Aral Sea",
+        "section": "",
+        "from": 1,
+        "to": 12
+      },
+      "question": "Why did the Aral Sea shrink?",
+      "expect": {
+        "sentence": "5",
+        "accept": [
+          "5",
+          "1"
+        ],
+        "contains": "Soviet irrigation"
+      },
+      "note": "The control for the trap: the same sentences with the matching question."
+    }
   ]
 }

@@ -25,6 +25,18 @@ export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "list
 export const WINDOW = 12;
 export const MIN_FINDING_WORDS = 6;
 
+// The first lookup is code: the question minus its question words. The raw
+// question sent to Wikipedia's search found the Aral Sea for "Why is the Dead
+// Sea shrinking?" (experiments/2026-09-18-qwen3-1.7b-dead-sea-walk-1); the
+// stripped term finds the Dead Sea, and the same rule finds the right article
+// for every benchmark seed tried.
+const QUESTION_WORDS = new Set("why is are was were the a an does do did how what which who whom when where keep going happen happened happens it its there so much many still".split(" "));
+export function searchTerm(question) {
+  const words = String(question ?? "").replace(/[?.!,;:"“”]/g, "").split(/\s+/).filter(Boolean);
+  const kept = words.filter((word) => !QUESTION_WORDS.has(word.toLowerCase()));
+  return (kept.length ? kept : words).join(" ").trim();
+}
+
 const normalise = (text) => String(text ?? "").toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
 
 // The sentences a node can choose between: its resolved children's findings
@@ -142,9 +154,9 @@ export async function runWalk(run, options) {
 
   try {
     // Nothing read and nothing found by children: the first lookup is the
-    // question itself. No model call.
+    // question minus its question words. No model call.
     if (!node.observed.length && !children(run, node.id).length && lookups < run.limits.maxLookups) {
-      if ((await lookup(node.question)) === "declined") return true;
+      if ((await lookup(searchTerm(node.question))) === "declined") return true;
     }
     const judged = new Set();
     while (true) {
@@ -153,7 +165,7 @@ export async function runWalk(run, options) {
       if (pool.length && passes < run.limits.maxPasses) {
         const window = pool.slice(0, WINDOW);
         passes++;
-        const pick = await answer("sentence", { question: node.question, sentences: window.map((candidate) => candidate.text) }, "Reading");
+        const pick = await answer("sentence", { question: node.question, sentences: window.map((candidate) => candidate.text), titles: window.map((candidate) => (candidate.from === "child" ? "a finding below" : String(candidate.source).split(" § ")[0])) }, "Reading");
         trace(run, "sentence_picked", { node: node.id, pick, shown: window.length });
         if (pick !== "none") {
           const index = Number(pick) - 1;
