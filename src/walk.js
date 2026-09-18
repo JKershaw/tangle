@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { contentWords, isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-11"; // walk-11: a hop child reads the part of its article that names the brief's subject, and a brief's root keeps twice the sentences; a brief's child hands the things its kept sentences name (the article's links that occur in them, else capitalised phrases) to children of its own, the model picking which from a list ranked by how often the run has met each; a sentence kept anywhere is never offered again; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
+export const WALK_VERSION = "walk-12"; // walk-12: a hop child may hand down hops of its own (one level), a reserve keeps room for every open node's hops, and a name is offered only if its article says something about the subject; // walk-11: a hop child reads the part of its article that names the brief's subject, and a brief's root keeps twice the sentences; a brief's child hands the things its kept sentences name (the article's links that occur in them, else capitalised phrases) to children of its own, the model picking which from a list ranked by how often the run has met each; a sentence kept anywhere is never offered again; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -539,11 +539,37 @@ export async function runWalk(run, options) {
       // nodes met is what the profile most needs.
       const met = (name) => run.evidence.filter((record) => occurs(name, record.text)).length;
       const counts = new Map(names.map((name) => [name, met(name)]));
-      return names.sort((a, b) => counts.get(b) - counts.get(a)).slice(0, NAMES_SHOWN);
+      names.sort((a, b) => counts.get(b) - counts.get(a));
+      // Offered only if its article says something about the subject: code
+      // reads the part that would be read (cached, no evidence captured), so
+      // Astronomy, Universe and Star — named by every excerpt, ranked first,
+      // chosen, and empty of the subject (8B, walk-11) — are not on the list.
+      const about = briefSubject(subject) ?? subject;
+      const offered = [];
+      for (const name of names.slice(0, NAMES_SHOWN + 4)) {
+        if (offered.length >= NAMES_SHOWN) break;
+        let found = null;
+        try {
+          found = await wiki(name, { signal, readOn: { article: name, section: 0, about } });
+        } catch (error) {
+          if (signal?.aborted || error?.name === "AbortError") throw error;
+        }
+        signal?.throwIfAborted();
+        const says = Boolean(found?.ok) && !read.has(normalise(found.title)) && !read.has(normalise(found.article));
+        trace(run, "hop_checked", { node: node.id, name, about, says, ...(found?.ok ? { title: found.title } : { error: found?.error?.message ?? null }) });
+        if (says) offered.push(name);
+      }
+      return offered;
     };
     const hopOut = async () => {
-      if (!brief || node.hopTo || node.hopped || !gathered.length || node.depth >= run.limits.maxDepth) return false;
-      const budget = Math.min(run.limits.maxHops ?? 2, run.limits.maxNodes - run.nodes.length);
+      if (!brief || node.hopped || !gathered.length || node.depth >= run.limits.maxDepth) return false;
+      // A hop child may hand down hops of its own, once: the Bombe's child
+      // reads Bletchley Park for what it says about Turing. A hop's hop is a
+      // leaf, so the first section's subtree cannot swallow the budget.
+      if (node.hopTo && run.nodes.find((candidate) => candidate.id === node.parent)?.hopTo) return false;
+      // Every node still open is owed room for its own hops.
+      const open = run.nodes.filter((candidate) => candidate.status === "open" && candidate.id !== node.id).length;
+      const budget = Math.min(run.limits.maxHops ?? 2, run.limits.maxNodes - run.nodes.length - open * (run.limits.maxHops ?? 2));
       if (budget <= 0) return false;
       node.hopped = true;
       const offered = await namesFor();

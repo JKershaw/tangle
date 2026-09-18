@@ -282,12 +282,14 @@ test("a brief reads the lead, hands one child per chosen section; a child hands 
   const WAR = "During the Second World War, Turing worked for the Government Code and Cypher School at Bletchley Park. He devised techniques for speeding the breaking of German ciphers, including improvements to the bombe.";
   const LEGACY = "Turing has been honoured in various ways in Manchester, the city where he worked. The Turing Award is given annually for contributions to computer science, and a bombe is displayed at Bletchley Park.";
   const BOMBE = "The bombe was an electro-mechanical device used by British cryptologists to help decipher Enigma. The initial design was produced by Turing at Bletchley Park. Each bombe weighed about a ton and stood over six feet tall.";
-  const LINKS = { "Alan Turing": ["Bombe", "Bletchley Park", "Enigma machine", "Government Code and Cypher School", "Manchester", "Turing Award"], Bombe: ["Enigma machine", "Alan Turing", "Bletchley Park"] };
+  const LINKS = { "Alan Turing": ["Bombe", "Bletchley Park", "Enigma machine", "Government Code and Cypher School", "Manchester", "Turing Award"], Bombe: ["Enigma machine", "Alan Turing", "Bletchley Park"], "Bletchley Park": ["Milton Keynes", "Government Code and Cypher School"] };
+  const PARK = "Bletchley Park is an English country house and estate in Milton Keynes. During the Second World War it housed the Government Code and Cypher School, where Turing worked. It is now a museum open to the public every day.";
+  const ABOUT = { Bombe: BOMBE, "Bletchley Park": PARK, "Turing Award": "The Turing Award is an annual prize given by the ACM, named after Alan Turing." };
   const reads = [];
   const wiki = async (query, { readOn, links } = {}) => {
     if (links) return { ok: true, kind: "links", title: query, links: LINKS[query] ?? [] };
     if (readOn) reads.push(`${readOn.article} / ${readOn.section}${readOn.about ? ` about ${readOn.about}` : ""}`);
-    if (readOn?.article === "Bombe") return { ok: true, kind: "wiki", title: "Bombe", article: "Bombe", section: 0, text: BOMBE, url: "u" };
+    if (readOn?.about) return ABOUT[readOn.article] ? { ok: true, kind: "wiki", title: readOn.article, article: readOn.article, section: 0, about: readOn.about, text: ABOUT[readOn.article], url: "u" } : { ok: false, error: { kind: "no_match", message: `"${readOn.article}" never mentions ${readOn.about}.` } };
     if (readOn) return { ok: true, kind: "wiki", title: `Alan Turing § ${readOn.section}`, article: "Alan Turing", section: readOn.section === "War" ? 1 : 2, text: readOn.section === "War" ? WAR : LEGACY, url: "u" };
     if (/bombe/i.test(query)) return { ok: true, kind: "wiki", title: "Bombe", article: "Bombe", section: 0, headings: ["Design", "Use"], text: BOMBE, url: "u" };
     if (/turing/i.test(query)) return { ok: true, kind: "wiki", title: "Alan Turing", article: "Alan Turing", section: 0, headings: ["War", "Legacy"], text: TURING, url: "u" };
@@ -324,40 +326,58 @@ test("a brief reads the lead, hands one child per chosen section; a child hands 
   assert.match(child.seen[2].user, /^Brief: /);
   assert.match(child.seen[2].user, /Kept:\n1\. He devised techniques/);
   assert.equal(child.seen.length, 3, "nothing left to offer, so no second ask");
+  assert.ok(run.trace.some((event) => event.event === "hop_checked" && event.name === "Bombe" && event.says === true), "code read the Bombe for what it says about Turing before offering it");
   assert.deepEqual(run.trace.find((event) => event.event === "hops_chosen" && event.node === "n2"), { ...run.trace.find((event) => event.event === "hops_chosen" && event.node === "n2"), offered: ["Bombe"], chosen: ["Bombe"] });
   assert.deepEqual([run.nodes[3].question, run.nodes[3].hopTo, run.nodes[3].depth], ["Tell me about Alan Turing and elaborate on the impact of his work. — about Bombe", "Bombe", 2], "the brief with a new focus, not the section's");
-  // The Bombe child reads that article; only its sentences naming the subject are offered; it keeps one and does not hop on.
-  const hop = scripted([["sentence", "1"], ["sentence", "none"]]);
-  assert.equal(await runWalk(run, { ask: hop.ask, wiki, ...PLAIN }), true);
-  assert.deepEqual(reads.at(-1), "Bombe / 0 about Alan Turing", "a linked name is an article title: read directly for what it says about the subject, no search");
+  // The Bombe child reads that article for what it says about Turing; only such sentences are offered; it keeps one, and is offered Bletchley Park (named in it, and its article names Turing) as a hop of its own.
+  const hop = scripted([["sentence", "1"], ["search", "Bletchley Park"]]);
+  assert.equal(await runWalk(run, { ask: hop.ask, wiki, ...PLAIN }), true, run.nodes[3].reason);
+  assert.ok(reads.includes("Bombe / 0 about Alan Turing"), "a linked name is an article title: read directly for what it says about the subject, no search");
   assert.deepEqual(hop.seen[0].options, ["1", "none"], "of the Bombe's three sentences only the one naming Turing is offered");
   assert.match(hop.seen[0].user, /1\. The initial design was produced by Turing/);
-  assert.equal(run.nodes[3].status, "resolved");
-  assert.equal(run.nodes[3].finding, "The initial design was produced by Turing at Bletchley Park.");
-  assert.equal(run.nodes.length, 4, "a hop child never hands down children of its own");
-  // Child 1 again: its paragraph is what it kept, then what its child found.
+  assert.deepEqual(hop.seen[1].options, ["Bletchley Park", "none"], "one sentence on subject, so no second pick; then the names");
+  assert.equal(run.nodes[3].status, "waiting");
+  assert.deepEqual([run.nodes[4].hopTo, run.nodes[4].depth], ["Bletchley Park", 3]);
+  // A hop's hop is a leaf: it keeps what names Turing and is offered nothing.
+  const leaf = scripted([["sentence", "1"]]);
+  assert.equal(await runWalk(run, { ask: leaf.ask, wiki, ...PLAIN }), true, run.nodes[4].reason);
+  assert.equal(leaf.seen.length, 1, "no names asked of a hop's hop");
+  assert.equal(run.nodes[4].finding, "During the Second World War it housed the Government Code and Cypher School, where Turing worked.");
+  assert.equal(run.nodes.length, 5);
+  // The Bombe child gathers its sentence and its child's; child 1 gathers its sentence and the Bombe's paragraphs.
+  assert.equal(await runWalk(run, { ask: scripted([]).ask, wiki, ...PLAIN }), true);
+  assert.equal(run.nodes[3].finding, "The initial design was produced by Turing at Bletchley Park.\n\nDuring the Second World War it housed the Government Code and Cypher School, where Turing worked.");
   assert.equal(await runWalk(run, { ask: scripted([]).ask, wiki, ...PLAIN }), true);
   assert.equal(run.nodes[1].status, "resolved");
-  assert.equal(run.nodes[1].finding, "He devised techniques for speeding the breaking of German ciphers, including improvements to the bombe.\n\nThe initial design was produced by Turing at Bletchley Park.");
-  // Child 2 keeps one sentence naming the Bombe (opened already, so not offered), Bletchley Park and the Turing Award; Bletchley Park is ranked first because three excerpts in the run name it.
+  assert.equal(run.nodes[1].finding, "He devised techniques for speeding the breaking of German ciphers, including improvements to the bombe.\n\nThe initial design was produced by Turing at Bletchley Park.\n\nDuring the Second World War it housed the Government Code and Cypher School, where Turing worked.");
+  // Child 2 keeps one sentence naming the Bombe and Bletchley Park (both opened already, so not offered) and the Turing Award, whose article names Turing.
   const second = scripted([["sentence", "2"], ["sentence", "none"], ["search", "none"]]);
   assert.equal(await runWalk(run, { ask: second.ask, wiki, ...PLAIN }), true);
-  assert.deepEqual(second.seen[2].options, ["Bletchley Park", "Turing Award", "none"]);
+  assert.deepEqual(second.seen[2].options, ["Turing Award", "none"]);
   assert.equal(run.nodes[2].finding, "The Turing Award is given annually for contributions to computer science, and a bombe is displayed at Bletchley Park.");
-  assert.equal(run.lookups, 4, "lead, War, Bombe, Legacy — the links are not lookups");
+  assert.equal(run.lookups, 5, "lead, War, Bombe, Bletchley Park, Legacy — neither the links nor code's checks are lookups");
   // Root: the profile, no pick.
   const last = scripted([]);
   assert.equal(await runWalk(run, { ask: last.ask, wiki, ...PLAIN }), true);
   assert.equal(root.status, "resolved");
   assert.equal(root.finding, `${TURING.split(". ").slice(0, 2).join(". ")}.\n\n${run.nodes[1].finding}\n\n${run.nodes[2].finding}`);
-  assert.deepEqual(root.evidence, ["e1", "e2", "e3", "e4"]);
+  assert.deepEqual(root.evidence, ["e1", "e2", "e3", "e4", "e5"]);
   assert.equal(last.seen.length, 0);
+  // With no room left for every open node's hops, none are offered.
+  const tight = createRun("Tell me about Alan Turing and elaborate on the impact of his work.", "live", { maxSentences: 2, maxLookups: 2, maxNodes: 5 });
+  await runWalk(tight, { ask: scripted([["sentence", "1"], ["sentence", "1"], ["sentence", "none"], ["section", "Legacy"], ["section", "War"], ["section", "none"]]).ask, wiki, ...PLAIN });
+  const starved = scripted([["sentence", "2"], ["sentence", "none"]]);
+  assert.equal(await runWalk(tight, { ask: starved.ask, wiki, ...PLAIN }), true);
+  assert.equal(starved.seen.length, 2, "three nodes of five, one sibling still open and owed two hops: no room, no names asked");
+  assert.equal(tight.nodes[1].status, "resolved");
 });
 
-test("without an article's links the names are capitalised phrases; a hop child that finds nothing blocks; a sentence kept anywhere is never offered again", async () => {
+test("without an article's links the names are capitalised phrases, still checked against the subject; a sentence kept anywhere is never offered again", async () => {
   const TURING = "Alan Turing was an English mathematician. He worked at Bletchley Park during the war.";
+  const GCCS = "The Government Code and Cypher School was a British signals intelligence agency. Alan Turing joined the school there in September 1939.";
   const wiki = async (query, { readOn, links } = {}) => {
     if (links) return { ok: false, error: { kind: "unreachable", message: "no links here" } };
+    if (readOn?.about) return readOn.article === "Government Code" ? { ok: true, kind: "wiki", title: "Government Code and Cypher School", article: "Government Code and Cypher School", section: 0, about: readOn.about, text: GCCS, url: "u" } : { ok: false, error: { kind: "no_match", message: `"${readOn.article}" never mentions ${readOn.about}.` } };
     if (readOn && readOn.article !== "Alan Turing") return { ok: false, error: { kind: "no_match", message: `no article ${readOn.article}` } };
     if (readOn) return { ok: true, kind: "wiki", title: `Alan Turing § ${readOn.section}`, article: "Alan Turing", section: 1, text: "He worked at Bletchley Park during the war. The Government Code and Cypher School was based there.", url: "u" };
     if (/turing/i.test(query)) return { ok: true, kind: "wiki", title: "Alan Turing", article: "Alan Turing", section: 0, headings: ["War"], text: TURING, url: "u" };
@@ -371,19 +391,20 @@ test("without an article's links the names are capitalised phrases; a hop child 
   const run = createRun("Tell me about Alan Turing.", "live", { maxSentences: 1, maxLookups: 2 });
   // Root keeps the Bletchley Park sentence and hands down War; the child reads the section, where that sentence is repeated: it is not offered again.
   assert.equal(await runWalk(run, { ask: scripted([["sentence", "2"], ["sentence", "none"], ["section", "War"], ["section", "none"]]).ask, wiki, ...PLAIN }), true);
-  const child = scripted([["sentence", "1"], ["search", "Government Code"], ["search", "none"]]);
+  const child = scripted([["sentence", "1"], ["search", "Government Code"]]);
   assert.equal(await runWalk(run, { ask: child.ask, wiki, ...PLAIN }), true, run.nodes.at(-1)?.reason);
   assert.deepEqual(child.seen[0].options, ["1", "none"], "the sentence the root kept is not offered to the child");
   assert.match(child.seen[0].user, /1\. The Government Code and Cypher School was based there/);
-  assert.deepEqual(child.seen[1].options, ["Government Code", "Cypher School", "none"], "capitalised phrases when the links are unavailable; Bletchley Park was not in the kept sentence");
+  assert.deepEqual(child.seen[1].options, ["Government Code", "none"], "capitalised phrases when the links are unavailable, and only those whose article names the subject: Cypher School's does not, Bletchley Park was not in the kept sentence");
+  assert.deepEqual(run.trace.filter((event) => event.event === "hop_checked").map((event) => [event.name, event.says]), [["Government Code", true], ["Cypher School", false]]);
   assert.equal(run.nodes[2].hopTo, "Government Code");
-  // The hop child finds nothing for its name and blocks; the parent resolves with what it kept.
+  // The hop child reads what its article says about Turing and keeps it; the parent's paragraph is its sentence and its child's.
+  const grand = scripted([["sentence", "1"]]);
+  assert.equal(await runWalk(run, { ask: grand.ask, wiki, ...PLAIN }), true, run.nodes[2].reason);
+  assert.equal(run.nodes[2].finding, "Alan Turing joined the school there in September 1939.");
+  assert.equal(run.lookups, 3, "lead, War, Government Code — code's checks are not lookups");
   assert.equal(await runWalk(run, { ask: scripted([]).ask, wiki, ...PLAIN }), true);
-  assert.equal(run.nodes[2].status, "blocked");
-  assert.match(run.nodes[2].reason, /Nothing could be read about Government Code/);
-  assert.equal(run.lookups, 4, "lead, War, the direct read and the search for Government Code");
-  assert.equal(await runWalk(run, { ask: scripted([]).ask, wiki, ...PLAIN }), true);
-  assert.equal(run.nodes[1].finding, "The Government Code and Cypher School was based there.");
+  assert.equal(run.nodes[1].finding, "The Government Code and Cypher School was based there.\n\nAlan Turing joined the school there in September 1939.");
   // At the depth limit, or under flat limits, no hops are offered.
   const shallow = createRun("Tell me about Alan Turing.", "live", { maxSentences: 1, maxLookups: 2, maxDepth: 1 });
   await runWalk(shallow, { ask: scripted([["sentence", "2"], ["sentence", "none"], ["section", "War"], ["section", "none"]]).ask, wiki, ...PLAIN });
