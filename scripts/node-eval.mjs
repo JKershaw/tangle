@@ -41,7 +41,7 @@ export function buildInput(ask, spec) {
     for (const heading of spec.expect.accept) if (!sections.includes(heading)) throw new Error(`${spec.id}: "${heading}" is not a heading of ${spec.article}`);
     return { question: spec.question, article: spec.article, sections: [...new Set(sections)] };
   }
-  if (ask === "missing") {
+  if (ask === "missing" || ask === "question") {
     const sentences = spec.source ? sectionSentences(spec.source.article, spec.source.section).slice(spec.source.from - 1, spec.source.to) : [];
     return { question: spec.question, sentences };
   }
@@ -56,6 +56,11 @@ export function grade(ask, spec, answer) {
   }
   if (ask === "section") return spec.expect.accept.includes(answer);
   if (ask === "missing") return new RegExp(spec.expect.mentions, "i").test(String(answer));
+  if (ask === "question") {
+    const text = String(answer).trim();
+    const same = (a, b) => a.toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim() === b.toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
+    return (text.match(/\?/g) || []).length === 1 && !same(text, spec.question) && new RegExp(spec.expect.mentions, "i").test(text);
+  }
   return false;
 }
 

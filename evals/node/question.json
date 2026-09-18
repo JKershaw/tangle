@@ -1,0 +1,12 @@
+{
+  "ask": "question",
+  "note": "The decomposition: one smaller question a child could answer, asked when what was read does not answer. Graded by code the way the walk grades it — it must be a single question, must not repeat the parent question, and must mention one of the pipe-separated alternatives (a subject the parent's answer turns on).",
+  "cases": [
+    { "id": "dead-sea-after-lead", "question": "Why is the Dead Sea shrinking?", "source": { "article": "Dead Sea", "section": "", "from": 1, "to": 12 }, "expect": { "mentions": "Jordan|tributar|inflow|water|evaporat|reced|shrink|level|divert" } },
+    { "id": "dead-sea-cold", "question": "Why is the Dead Sea shrinking?", "expect": { "mentions": "Dead Sea|water|inflow|evaporat|Jordan|reced|shrink|level" } },
+    { "id": "water-cycle-after-lead", "question": "Why does the water cycle keep going?", "source": { "article": "Water cycle", "section": "", "from": 1, "to": 8 }, "expect": { "mentions": "energy|sun|solar|heat|evaporat|drive" } },
+    { "id": "lba-after-lead", "question": "Why did the Late Bronze Age collapse happen?", "source": { "article": "Late Bronze Age collapse", "section": "", "from": 1, "to": 6 }, "expect": { "mentions": "cause|theor|Sea Peoples|drought|climate|invasion|why|collapse" } },
+    { "id": "coral-after-tail", "question": "Why do coral reefs bleach?", "source": { "article": "Coral bleaching", "section": "", "from": 6, "to": 10 }, "expect": { "mentions": "cause|temperature|warm|algae|stress|bleach|coral" } },
+    { "id": "bees-cold", "question": "Why do honey bee colonies collapse?", "expect": { "mentions": "bee|colony|colonies|mite|pesticide|disease|cause" } }
+  ]
+}
