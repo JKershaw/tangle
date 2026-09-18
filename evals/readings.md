@@ -2,6 +2,25 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-18 · walk-11: children from what a node read
+
+Milestone 2 of the roadmap: the graph should grow from what its nodes read, not from templates. In walk-11 a brief's child, having kept its sentences, is shown the things they name — the article's own links that occur in those sentences (a new Wikipedia request per article, cached like the rest), ranked by how many excerpts in the run name each, minus anything read or opened anywhere — and picks up to two, or none. Each pick is a child: the same brief with that focus, which reads the part of that article that names the brief's subject and keeps only sentences that do. A sentence kept anywhere in the run is never offered again. Rows in [results.md](results.md) at bc2e15a (first cut) and 71ee567.
+
+| model | walk-10 | walk-11 first cut | walk-11 (hops read the part about the subject) | one node | memory |
+|---|---|---|---|---|---|
+| 1.7B | 21 · ¶28 · hops 5/12/24 | 22 · ¶36 · 5/12/12 | **26** · ¶42 · 14/17/17 · 45 nodes · 119 s | 15 | 15 |
+| 4B | 17 · ¶19 · 4/8/14 | 17 · ¶23 · 5/18/19 | **22** · ¶31 · 13/23/24 · 44 nodes · 194 s | 16 | 10 |
+| 8B | 22 · ¶24 · 8/15/19 | 20 · ¶44 · 17/42/42 | **26** · ¶49 · 22/41/42 · 70 nodes · 464 s | 13 | 20 |
+
+Topics of 35; hops cited / read / chosen; nodes summed over the four briefs.
+
+- **The pick beats the name.** walk-10's free-text hop was the weakest ask (4B named the subject itself in two of three). Offered the article's links that occur in what it kept, every size picks things worth a child: the *Bombe*, *Cryptanalysis of the Enigma*, the *Bendix G-15* and Harry Huskey, *The Chemical Basis of Morphogenesis* and Turing patterns, *Chemical castration*; for Hubble the *Hubble constant* and the Hubble tension, *Black hole*, *Eris*, *MACS 2129-1*. The profiles are two to three times longer and draw on eleven articles instead of six.
+- **What a hop reads decides whether it is worth anything.** In the first cut a hop child read its article's lead and kept only sentences naming the subject; seven of ten leads had none (*Gordon Brown*, *Stored-program computer*, *Astronomy*), so half the children blocked and the topic count did not move. Reading the part of the article that names the subject instead — the lead if it does, else the first section that does, code's choice — took hops cited from 17 to 22 of 42 at 8B and from 5 to 14 of 17 at 1.7B, and topics from 20 to 26. The hop is only as good as the sentence it lands on.
+- **Junk in a list is a code fault, not a model fault.** The first list offered "Turing (disambiguation)", "February", "German", "Section", "Thousands", "Murray"; 8B picked "Hubble (film)" over *Astronomy*. Links only when the article has them (the capitalised-phrase fallback ran beside them), never a disambiguation page, a month or a nationality. Generic links remain (*Astronomy*, *Universe*, *Star*, *Proceedings*) and are chosen and found empty; the frontier ranking puts them first because every excerpt names them. That is the next filter to find.
+- **The root's lead is the profile's summary, and three picks lost it.** The Hubble lead holds the launch, the flawed mirror and the servicing missions; the root kept none of them and the sections chosen were all discoveries, as the brief asked. A brief's root now keeps six sentences, which also lifts the one-node control from 8 to 13–16: the control is a fairer one for it.
+- **1.7B is level with 8B on topics at a quarter of the time**, with fewer, better hops (14 cited of 17 chosen; 8B chose 42 and cited 22). 8B fills every hop slot; 1.7B says none more often. The topic rubric does not reward the extra paragraphs, and reading them, 8B's are mostly on-subject and specific. A judge for that is the reference model's job (roadmap, milestone 7).
+- **The graph still stops short of its budget.** Hop children are leaves, so a profile is at most 1 + 6 + 12 nodes; the exit condition for milestone 2 is a forty-node profile. Letting a hop child hand down children of its own, with a reserve so late sections are not starved, is the next step. Also seen: a kept sentence in a hop child that names the brief's subject word but not its subject ("Las Cumbres Observatory's telescope" for the Hubble Space Telescope); "Career and research" chosen and blocked at every size.
+
 ## 2026-09-18 · four briefs, three columns: the profile benchmark
 
 The brief became a benchmark: four subjects from four fields, each with a topic list checked against the live article (`evals/seeds-profile.json`, 35 topics), and a grader for the profile's shape. Three columns — the walk, the walk on one node, the model alone with a profile prompt — at every size, all at walk-10 (rows in [results.md](results.md), `seeds-profile`).

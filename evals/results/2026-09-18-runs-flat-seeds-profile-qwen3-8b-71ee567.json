@@ -1,0 +1,451 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-8B-q4f16_1-MLC",
+  "commit": "71ee567",
+  "head": "41367aa",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T16:27:19.693Z",
+  "loadSeconds": 10,
+  "prompt": "walk-11/asks-4",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-11",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 5,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 79.2
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 5.78,
+      "mean": 4.2
+    },
+    "load": {
+      "min": 11.55,
+      "max": 15.4,
+      "mean": 13.5
+    },
+    "memoryFreePercent": {
+      "min": 67,
+      "max": 85,
+      "mean": 71.6
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "flat",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "maxNodes": 1,
+    "maxVisits": 3,
+    "maxDepth": 0,
+    "maxLookups": 6,
+    "maxPasses": 8
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 13,
+  "factsSupported": 13,
+  "factsRead": 30,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 6,
+        "lookups": 1,
+        "tokens": 2955
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements. After the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 1015,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 20,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "entries": 651,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-flat-turing.json",
+      "summary": "live run · seed: Tell me about Alan Turing and elaborate on the impact of his work.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:27:30.271Z · exported 2026-09-18T16:27:50.236Z\nnodes 1 · visits 1 · model calls 6 · lookups 1 · evidence 1 · tokens 2955\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. → He was highly influential in the development of theoretical computer science, providing a \n\nmodel latency ms: median 2938 · max 3356 · n 6\nnothing flagged"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 6,
+        "lookups": 1,
+        "tokens": 3294
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The Silk Road derives its name from the highly lucrative trade of silk textiles that were primarily produced in China. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece. Aside from generating substantial wealth for emerging mercantile classes, the proliferation of goods such as paper and gunpowder greatly affected the trajectory of political history in several theatres in Eurasia and beyond.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 965,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 20,
+      "wiki": {
+        "hits": 8,
+        "misses": 0,
+        "entries": 651,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-flat-silk-road.json",
+      "summary": "live run · seed: Tell me about the Silk Road and elaborate on its influence.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:27:50.245Z · exported 2026-09-18T16:28:09.958Z\nnodes 1 · visits 1 · model calls 6 · lookups 1 · evidence 1 · tokens 3294\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about the Silk Road and elaborate on its influence. → The Silk Road was a network of Asian trade routes active from the second century BCE until\n\nmodel latency ms: median 3211 · max 3371 · n 6\nnothing flagged"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mirror": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 6,
+        "lookups": 1,
+        "tokens": 3108
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe. Hubble was launched on STS-31 in 1990, but its main mirror had been ground incorrectly, resulting in spherical aberration that compromised the telescope's capabilities.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 5,
+        "chars": 715,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 20,
+      "wiki": {
+        "hits": 12,
+        "misses": 0,
+        "entries": 651,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-flat-hubble.json",
+      "summary": "live run · seed: Tell me about the Hubble Space Telescope and what it has discovered.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:28:09.965Z · exported 2026-09-18T16:28:29.681Z\nnodes 1 · visits 1 · model calls 6 · lookups 1 · evidence 1 · tokens 3108\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. → The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low\n\nmodel latency ms: median 3140 · max 3375 · n 6\nnothing flagged"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 2093
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 695,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 14,
+      "wiki": {
+        "hits": 16,
+        "misses": 0,
+        "entries": 651,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-flat-great-barrier-reef.json",
+      "summary": "live run · seed: Describe the Great Barrier Reef and the threats it faces.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:28:29.685Z · exported 2026-09-18T16:28:43.396Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 2093\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Describe the Great Barrier Reef and the threats it faces. → It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Ot\n\nmodel latency ms: median 3381 · max 3450 · n 4\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-18T16:27:19.692Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-11\",\"asks\":\"asks-4\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T16:27:19.814Z loading: Checking this device before downloading…",
+    "2026-09-18T16:27:29.820Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-8B-q4f16_1-MLC: Ready. Inference runs on this device. (10 s)",
+    "machine at start: gpu 95% · vram 0.03 GiB · load 11.55 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T16:27:29.916Z 4 seeds from evals/seeds-profile.json · mode flat · limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8} · prompt walk-11/asks-4 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit 71ee567",
+    "wiki recording: 651 responses loaded",
+    "2026-09-18T16:27:50.069Z run stopped: Root resolved",
+    "turing: resolved · topics 3/8 · supported 3/8 · read 7/8 · ¶1 · 6 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 1 lookups, 2955 tokens · 20 s · wiki 4 hits 0 misses",
+    "2026-09-18T16:28:09.799Z run stopped: Root resolved",
+    "silk-road: resolved · topics 2/9 · supported 2/9 · read 7/9 · ¶1 · 6 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 1 lookups, 3294 tokens · 20 s · wiki 8 hits 0 misses",
+    "2026-09-18T16:28:29.518Z run stopped: Root resolved",
+    "hubble: resolved · topics 3/8 · supported 3/8 · read 7/8 · ¶1 · 5 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 1 lookups, 3108 tokens · 20 s · wiki 12 hits 0 misses",
+    "2026-09-18T16:28:43.231Z run stopped: Root resolved",
+    "great-barrier-reef: resolved · topics 5/10 · supported 5/10 · read 9/10 · ¶1 · 3 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 1 lookups, 2093 tokens · 14 s · wiki 16 hits 0 misses",
+    "machine during the suite: gpu 79.2% mean, 99% peak · vram up to 5.78 GiB · load up to 15.4 · no throttling in 5 samples"
+  ]
+}
