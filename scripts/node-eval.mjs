@@ -69,6 +69,7 @@ if (args.check) {
 const commit = pageInfo();
 const date = new Date().toISOString().slice(0, 10);
 const results = [];
+let pageVersions = null;
 const log = (line) => console.log(`${stamp()} ${line}`);
 log(`${ask} · ${cases.length} cases · variants ${variants.join(", ")} · models ${models.join(", ")} · asks ${ASK_VERSION} · page ${commit}`);
 
@@ -77,28 +78,30 @@ async function runModel(model, send) {
     let passed = 0;
     for (const { spec, input } of inputs) {
       for (let rep = 0; rep < repeat; rep++) {
-        const calls = askCalls(ask, variant, input);
+        const definition = ASKS[ask].variants[variant];
         const outputs = [];
         let latencyMs = 0;
         let tokens = 0;
         let error = null;
+        let answer = null;
+        let calls = [];
+        const measured = async (call) => {
+          calls.push(call);
+          const output = await send(call);
+          outputs.push(output.text);
+          latencyMs += output.latencyMs ?? 0;
+          tokens += output.tokens ?? 0;
+          return output;
+        };
         try {
-          for (const call of calls) {
-            const output = await send(call);
-            outputs.push(output.text);
-            latencyMs += output.latencyMs ?? 0;
-            tokens += output.tokens ?? 0;
+          if (definition.run) {
+            answer = (await definition.run(measured, input)).answer;
+          } else {
+            for (const call of askCalls(ask, variant, input)) await measured(call);
+            answer = askAnswer(ask, variant, outputs, input);
           }
         } catch (caught) {
           error = String(caught?.message ?? caught);
-        }
-        let answer = null;
-        if (!error) {
-          try {
-            answer = askAnswer(ask, variant, outputs, input);
-          } catch (caught) {
-            error = `unparsable: ${String(caught?.message ?? caught)}`;
-          }
         }
         const pass = !error && grade(ask, spec, answer);
         if (pass) passed++;
@@ -116,7 +119,8 @@ for (const model of models) {
     await runModel(model, (call) => askOpenRouter(remote, call));
     continue;
   }
-  const { browser, page } = await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note: log });
+  const { browser, page, versions } = await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note: log });
+  pageVersions ??= versions;
   try {
     await loadModel(page, model, { loadTimeoutMs: Number(args["load-timeout"] ?? 20) * 60000, note: log });
     await runModel(model, (call) => page.evaluate((call) => window.__tangle.ask(call), call));
@@ -139,7 +143,7 @@ for (const model of models) {
 }
 const out = args.out || `evals/results/${date}-node-${ask}-${commit.replace(/ .*/, "")}`;
 mkdirSync("evals/results", { recursive: true });
-writeFileSync(`${out}.json`, JSON.stringify({ ask, asks: ASK_VERSION, commit, date: new Date().toISOString(), machine: machineInfo(), models, variants, repeat, cases: cases.map((spec) => spec.id), rows, results }, null, 2));
+writeFileSync(`${out}.json`, JSON.stringify({ ask, asks: ASK_VERSION, commit, page: pageVersions, date: new Date().toISOString(), machine: machineInfo(), models, variants, repeat, cases: cases.map((spec) => spec.id), rows, results }, null, 2));
 if (!existsSync(TABLE)) writeFileSync(TABLE, HEADER);
 for (const row of rows) appendFileSync(TABLE, `| ${date} | ${commit} | ${ask} | ${row.variant} | ${shortModel(row.model)} | ${row.passed}/${row.total} | ${row.medianMs} | ${row.calls} | ${row.failed.join(", ") || "—"} |\n`);
 console.log("");

@@ -81,9 +81,15 @@ export async function openLab({ url = DEFAULT_URL, headless = false, profile = D
   page.on("console", (message) => {
     if (message.type() === "error") note(`console error: ${message.text().slice(0, 300)}`);
   });
-  await page.goto(url);
+  // The persistent profile keeps an HTTP cache, and Chrome served a stale build
+  // of the page from it once (2026-09-18: a run on a prompt two builds old).
+  // A fresh query string defeats the cache; the page's own versions are noted
+  // so a record never has to trust the filesystem for what was served.
+  await page.goto(url + (url.includes("?") ? "&" : "?") + "v=" + Date.now());
+  const versions = await page.evaluate(() => window.__tangle?.versions?.() ?? null).catch(() => null);
   note(`${stamp()} opened ${url} in ${version()} (${os.platform()} ${os.arch()}, ${os.cpus()[0]?.model ?? "unknown cpu"})`);
-  return { browser, page, version };
+  if (versions) note(`page versions: ${JSON.stringify(versions)}`);
+  return { browser, page, version, versions };
 }
 
 // Switch to live mode, probe the device and load the model, noting progress
