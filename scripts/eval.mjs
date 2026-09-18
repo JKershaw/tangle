@@ -46,7 +46,13 @@ try {
   record.loadSeconds = await loadModel(page, model, { loadTimeoutMs: Number(args["load-timeout"] ?? 20) * 60000, note });
   const versions = await page.evaluate(() => window.__tangle.versions?.() ?? null);
   if (versions) ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION } = versions);
-  Object.assign(record, { prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION });
+  // Live runs are the walk unless a run's limits say otherwise: label rows
+  // with the walk and its ask variants rather than the one-prompt visit.
+  if (versions?.walk && suiteName === "runs") {
+    PROMPT_VERSION = `${versions.walk}/${versions.asks}`;
+    RESPONSE_SCHEMA_VERSION = Object.entries(versions.variants ?? {}).map(([ask, variant]) => `${ask}:${variant}`).join(",");
+  }
+  Object.assign(record, { prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION, page: versions });
   note(`machine at start: ${formatSample(sample())}`);
   const health = startSampling(15000);
   const machineNote = () => {
