@@ -100,6 +100,8 @@ Profiles (`evals/seeds-profile.json`, four briefs, 35 topics; `--seeds evals/see
 | 2026-09-18 | 0f58764 (walk-12) | 4B | **23/35** · hops 34/51/51 · ¶50 · 73 nodes · 321 s | 16/35 (71ee567) | 10/35 |
 | 2026-09-18 | 0f58764 (walk-12) | 8B | **27/35** · hops 47/66/66 · ¶62 · 94 nodes · 635 s | 13/35 (71ee567) | 20/35 |
 | 2026-09-18 | 27f36a8 (walk-12, Node · Ollama q4_K_M) | 8B | 25/35 · hops 43/62/62 · ¶69 · 317 s | — | — |
+| 2026-09-18 | 27f36a8 (walk-12, Node · Ollama q4_K_M) | 14B | 27/35 · hops 41/53/54 · ¶67 · 535 s | — | — |
+| 2026-09-18 | 3cecdec (walk-12, Node · Ollama q4_K_M) | 32B | **30/35** · hops 45/56/56 · ¶69 · 1213 s | — | — |
 
 Overflow briefs (`evals/seeds-overflow.json`: the Antikythera mechanism and how it was decoded, the Rosetta mission and what it found, the Aral Sea and its restoration; 30 topics spread over many sections and linked articles, on subjects the models know less well). Topics of 30.
 
@@ -110,6 +112,8 @@ Overflow briefs (`evals/seeds-overflow.json`: the Antikythera mechanism and how 
 | 2026-09-18 | 0f58764 (walk-12) | 4B | **25/30** · hops 16/25/25 · ¶34 · 44 nodes · 228 s | 18/30 | 12/30 |
 | 2026-09-18 | 0f58764 (walk-12) | 8B | **27/30** · hops 18/27/27 · ¶37 · 48 nodes · 372 s | 16/30 | 17/30 |
 | 2026-09-18 | 27f36a8 (walk-12, Node · Ollama q4_K_M) | 8B | 24/30 · hops 17/25/25 · ¶35 · 147 s | — | — |
+| 2026-09-18 | 27f36a8 (walk-12, Node · Ollama q4_K_M) | 14B | 24/30 · hops 17/24/24 · ¶38 · 291 s | — | — |
+| 2026-09-18 | 3cecdec (walk-12, Node · Ollama q4_K_M) | 32B | 26/30 · hops 17/22/22 · ¶37 · 717 s | — | — |
 
 The graph beats both controls at every size on both brief sets, and on the overflow briefs the gap to memory is 19 topics at 1.7B. Reading in [evals/readings.md](evals/readings.md).
 
@@ -124,8 +128,10 @@ The bridge (ROADMAP milestone 4): the same walk in Node against an OpenAI-compat
 | 2026-09-18 | b71a368 | Ollama | 8B | 12/23 | 61 · 16 · 96 | 18/23 |
 | 2026-09-18 | b71a368 | Ollama | 14B | 16/23 | 96 · 28 · 372 | **21/23** |
 | 2026-09-18 | 27f36a8 | Ollama | 32B | **17/23** | 73 · 18 · 358 | 19/23 |
-| 2026-09-18 | b71a368 | LM Studio (MLX) | 4B | 16/23 · Dead Sea lost to a schema error, fixed at 27f36a8 | 52 · 13 · 104 | — |
-| 2026-09-18 | 4ea1f89 | LM Studio (MLX) | 30B-A3B (2507) | 16/23 · the same error | 50 · 15 · 239 | — |
+| 2026-09-18 | b71a368 | LM Studio (MLX) | 4B | 16/23 · Dead Sea lost to a schema error, fixed at 27f36a8; rerun 16/23 with the Dead Sea resolved at 0 | 52 · 13 · 104 | — |
+| 2026-09-18 | 4ea1f89 | LM Studio (MLX) | 30B-A3B (2507) | 16/23 · the same error; rerun below | 50 · 15 · 239 | — |
+
+On the briefs the ladder does move: profiles 25 / 27 / **30** of 35 and overflow 24 / 24 / 26 of 30 at 8B / 14B / 32B in Node (rows in the profile and overflow tables above; the page's 8B: 27 and 27). 32B's four profiles are the best row on that set, in twenty minutes.
 
 Parity (`test/parity.test.js`): the same three seeds, recording and scripted picks give the identical graph in the page and in Node (1, 3 and 28 nodes). The node evals through Ollama are level with or above the page per ask (sentence list 19 / 21 / 22 of 23 at 1.7B / 4B / 8B, check 20 / 19 / 23, article snippets 10 / 11 / 12, section list 15 / 14 / 14; rows in [evals/node/results.md](evals/node/results.md)). Reading in [evals/readings.md](evals/readings.md).
 
@@ -173,6 +179,8 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 ## Log
 
 ### 2026-09-18 · night, later · the bridge
+
+- An observer's reading of b0aa02a, verified: 1.7B's Rosetta profile carries a paragraph on Juno's measurements of Jupiter and a sentence about a "rosetta orbit", both cited, both off the brief; the on-subject test passed any sentence sharing one lower-case word with "Rosetta mission". walk-13 (namesSubject in text.js) requires one of the subject's capitalised words with its capitals. Also verified and fixed: the first search went to Wikipedia before approval. Recorded as open: the graph's token budget on the overflow briefs is 56k against 10k for one node at 1.7B, and a control with an equal budget does not exist yet; the topic rubric cannot penalise a cited paragraph that is off the brief, which is the judge's job.
 
 - Milestone 4 built (4a36db9 → 27f36a8): `src/endpoint.js`, a second model adapter over an OpenAI-compatible endpoint behind the WebLLM adapter's surface; `wikiDriver` in wiki.js, the one Wikipedia driver both runtimes call; `scripts/recording.mjs`, the recording as a fetch; `scripts/node-lab.mjs` and `scripts/run.mjs`, the walk in Node with no browser; `eval.mjs --endpoint` and `node-eval.mjs --models endpoint:<id>`. The page is unchanged but for a scripted-model hook for the parity test.
 - Parity: three seeds, one recording, one scripted model, the identical graph in both runtimes, down to the trace. The recording gained the 67 responses the scripted model reads.

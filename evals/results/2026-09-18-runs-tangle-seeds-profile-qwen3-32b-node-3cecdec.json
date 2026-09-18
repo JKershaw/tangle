@@ -1,0 +1,447 @@
+{
+  "suite": "runs",
+  "model": "qwen3:32b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "3cecdec",
+  "head": "3cecdec",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-18T19:45:34.757Z",
+  "loadSeconds": 0,
+  "prompt": "walk-12/asks-4",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-12",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 81,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 97.8
+    },
+    "vramGiB": {
+      "min": 9.71,
+      "max": 20.94,
+      "mean": 20.8
+    },
+    "load": {
+      "min": 8.26,
+      "max": 20.57,
+      "mean": 13.8
+    },
+    "memoryFreePercent": {
+      "min": 11,
+      "max": 50,
+      "mean": 13.9
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 30,
+  "factsSupported": 30,
+  "factsRead": 34,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "turing-test": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "morphogenesis": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "conviction": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "apology": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "manchester": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 8,
+      "factsSupported": 8,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 24,
+        "visits": 35,
+        "modelCalls": 79,
+        "lookups": 24,
+        "tokens": 25373
+      },
+      "statuses": {
+        "resolved": 22,
+        "blocked": 2
+      },
+      "finding": "Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist. He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n\nHe was awarded first-class honours in mathematics.\n\nDuring the Second World War, Turing was a leading participant in the breaking of German ciphers at Bletchley Park. Turing's approach was more general, using crib-based decryption for which he produced the functional specification of the bombe (an improvement on the Polish Bomba). By using statistical techniques to optimise the trial of different possibilities in the code breaking process, Turing made an innovative contribution to the subject.\n\nThe initial design of the British bombe was produced in 1939 at the UK Government Code and Cypher School (GC&CS) at Bletchley Park by Alan Turing, with an important refinement devised in 1940 by Gordon Welchman.\n\nThe GC&CS team of codebreakers included John Tiltman, Dilwyn Knox, Alan Turing, Margaret Rock, Mavis Lever, Harry Golombek, Gordon Welchman, Hugh Alexander, Donald Michie, Bill Tutte and Stuart Milner-Barry.\n\nPolish cryptanalysts had developed the bomba, an electromechanical device for finding the Enigma settings used by German operators; Turing improved the Polish design.\n\nWhen a captured German revealed under interrogation that Enigma operators had been instructed to encode numbers by spelling them out, Alan Turing reviewed decrypted messages and determined that the number \"eins\" (\"one\") was the most common string in the plaintext (Benford's law).\n\nHe presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.\n\nThe concept of the stored-program computer can be traced back to the 1936 theoretical concept of a universal Turing machine.\n\nIn computer science, a universal Turing machine (UTM) is a Turing machine capable of computing any computable sequence, as described by Alan Turing in his seminal paper \"On Computable Numbers, with an Application to the Entscheidungsproblem\". Common sense might say that a universal machine is impossible, but Turing proves that it is possible. Turing introduced the idea of such a machine in 1936–1937.\n\nWhen Turing was 39 years old in 1951, he turned to mathematical biology, finally publishing his masterpiece \"The Chemical Basis of Morphogenesis\" in January 1952. He suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.\n\nAn important idea that was first proposed by Alan Turing is that a state that is stable in the local system can become unstable in the presence of diffusion.\n\nSome of the earliest ideas and mathematical descriptions on how physical processes and constraints affect biological growth, and hence natural patterns such as the spirals of phyllotaxis, were written by D'Arcy Wentworth Thompson in his 1917 book On Growth and Form and Alan Turing in his The Chemical Basis of Morphogenesis (1952). Where Thompson explained animal body shapes as being created by varying rates of growth in different directions, for instance to create the spiral shell of a snail, Turing correctly predicted a mechanism of morphogenesis, the diffusion of two different chemical signals, one activating and one deactivating growth, to set up patterns of development, decades before the formation of such patterns was observed.\n\n\"The Chemical Basis of Morphogenesis\" is an article that the English mathematician Alan Turing wrote in 1952. Such patterns have come to be known as Turing patterns. For example, it has been postulated that the protein VEGFC can form Turing patterns to govern the formation of lymphatic vessels in the zebrafish embryo.\n\nThe Ratio Club was a London dining club for researchers (mostly biologists) with interests in cybernetics (which encompassed neuroscience, artificial intelligence and computing), \"undoubtedly the most intellectually powerful grouping of British scientists interested in cybernetics\" according to Phil Husbands and Owen Holland. He accepted, giving his introductory talk at the 21 April 1950 meeting. He gave later talks based on both his \"Computing Machinery and Intelligence\" and \"Chemical Basis of Morphogenesis\" papers.\n\n\"Computing Machinery and Intelligence\" is a paper written by Alan Turing on the topic of artificial intelligence. The paper, published in 1950 in Mind, was the first to introduce his concept of what is now known as the Turing test to the general public. Turing's paper considers the question \"Can machines think?\"\n\nThe Turing test was designed by Alan Turing to assess a machine's ability to exhibit intelligent behaviour equivalent to that of a human by imitating interactive dialogue. The test was introduced as the imitation game by Turing in his 1950 paper \"Computing Machinery and Intelligence\" while working at the University of Manchester. Since Turing introduced his test, it has been highly influential in the philosophy of artificial intelligence, resulting in substantial discussion and controversy, as well as criticism from philosophers like John Searle, who argue against the test's ability to detect consciousness.\n\nDuring the investigation, he acknowledged a sexual relationship with Murray. Homosexual acts were criminal offences in the United Kingdom at that time, and both men were charged with \"gross indecency\" under Section 11 of the Criminal Law Amendment Act 1885. His probation would be conditional on his agreement to undergo organotherapy or 'chemical castration' in the Manchester Royal Infirmary, a process which induces hormonal physical changes with the aim of reducing libido.\n\nFollowing the Royal Pardon of Alan Turing, who was convicted of gross indecency under this Act for homosexual acts with another man, the government announced in 2016 its intention to expand this retroactive exoneration to other men convicted of similar historical offences, through enacting what has been described as an \"Alan Turing law\".\n\nIn the United Kingdom, computer scientist Alan Turing, famous for his contributions to mathematics and computer science, pleaded guilty in 1952 to a charge of gross indecency for engaging in homosexual acts and accepted chemical castration as a term of his probation, thus avoiding imprisonment.\n\nWhere homosexuality has been criminalised or treated as a mental illness, chemical castration has been used on gay men, as in the case of Alan Turing.",
+      "profile": {
+        "paragraphs": 21,
+        "sentences": 45,
+        "chars": 7854,
+        "duplicates": 0,
+        "articles": 18,
+        "sections": 24,
+        "hopsChosen": 17,
+        "hopsRead": 17,
+        "hopsCited": 15,
+        "blocked": 2
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 331,
+      "wiki": {
+        "hits": 71,
+        "misses": 10,
+        "added": 10,
+        "entries": 1252
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-32b-node-tangle-turing.json",
+      "summary": "live run · seed: Tell me about Alan Turing and elaborate on the impact of his work.\nmodel qwen3:32b · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T19:45:34.930Z · exported 2026-09-18T19:51:05.850Z\nnodes 24 · visits 35 · model calls 79 · lookups 24 · evidence 24 · tokens 25373\nstatuses {\"resolved\":22,\"blocked\":2} · outcome: root resolved\n\nn1 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. → Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer\n  n2 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability → He was awarded first-class honours in mathematics.\n  n3 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Cryptanalysis → During the Second World War, Turing was a leading participant in the breaking of German ci\n    n8 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Bombe → The initial design of the British bombe was produced in 1939 at the UK Government Code and\n      n10 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Bletchley Park → The GC&CS team of codebreakers included John Tiltman, Dilwyn Knox, Alan Turing, Margaret R\n      n11 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Gordon Welchman → Polish cryptanalysts had developed the bomba, an electromechanical device for finding the \n    n9 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Crib (cryptanalysis) → When a captured German revealed under interrogation that Enigma operators had been instruc\n  n4 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test → He presented a paper on 19 February 1946, which was the first detailed design of a stored-\n    n12 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Stored-program computer → The concept of the stored-program computer can be traced back to the 1936 theoretical conc\n      n13 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Universal Turing machine → In computer science, a universal Turing machine (UTM) is a Turing machine capable of compu\n  n5 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology → When Turing was 39 years old in 1951, he turned to mathematical biology, finally publishin\n    n14 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Reaction–diffusion system → An important idea that was first proposed by Alan Turing is that a state that is stable in\n    n15 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Morphogenesis → Some of the earliest ideas and mathematical descriptions on how physical processes and con\n      n16 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about The Chemical Basis of Morphogenesis → \"The Chemical Basis of Morphogenesis\" is an article that the English mathematician Alan Tu\n      n17 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about On Growth and Form → On Growth and Form has inspired thinkers including the biologists Julian Huxley and Conrad\n  n6 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Ratio Club and other cybernetics contacts → The Ratio Club was a London dining club for researchers (mostly biologists) with interests\n    n18 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Ratio Club !! Nothing of what Ratio Club says about the subject was kept.\n    n19 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Computing Machinery and Intelligence → \"Computing Machinery and Intelligence\" is a paper written by Alan Turing on the topic of a\n      n20 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Turing test → The Turing test was designed by Alan Turing to assess a machine's ability to exhibit intel\n      n21 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Artificial intelligence !! Nothing of what Artificial intelligence says about the subject was kept.\n  n7 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Homosexuality and indecency conviction → During the investigation, he acknowledged a sexual relationship with Murray. Homosexual ac\n    n22 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Criminal Law Amendment Act 1885 → Following the Royal Pardon of Alan Turing, who was convicted of gross indecency under this\n    n23 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Chemical castration → In the United Kingdom, computer scientist Alan Turing, famous for his contributions to mat\n      n24 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Castration → Where homosexuality has been criminalised or treated as a mental illness, chemical castrat\n\nmodel latency ms: median 3450 · max 20225 · n 79\nworth a look:\n- n18 blocked: Nothing of what Ratio Club says about the subject was kept.\n- n21 blocked: Nothing of what Artificial intelligence says about the subject was kept."
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mongol": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 29,
+        "visits": 42,
+        "modelCalls": 91,
+        "lookups": 29,
+        "tokens": 26811
+      },
+      "statuses": {
+        "resolved": 25,
+        "blocked": 4
+      },
+      "finding": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The Silk Road derives its name from the highly lucrative trade of silk textiles that were primarily produced in China. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece. Aside from generating substantial wealth for emerging mercantile classes, the proliferation of goods such as paper and gunpowder greatly affected the trajectory of political history in several theatres in Eurasia and beyond.\n\nThe Silk Road consisted of several routes. As it extended westwards from the ancient commercial centres of China, the overland, intercontinental Silk Road divided into northern and southern routes bypassing the Taklamakan Desert and Lop Nur. Merchants along these routes were involved in \"relay trade\" in which goods changed \"hands many times before reaching their final destinations\".\n\nIt is crossed at its northern and at its southern edge by two branches of the Silk Road, by which travellers sought to avoid the arid wasteland.\n\nThe Maritime Silk Road or Maritime Silk Route is the maritime section of the historic Silk Road that connected Southeast Asia, East Asia, the Indian subcontinent, the Arabian Peninsula, eastern Africa, and Europe. The Maritime Silk Road was primarily established and operated by Austronesian sailors in Southeast Asia who sailed large long-distance ocean-going sewn-plank and lashed-lug trade ships. The term \"Maritime Silk Road\" is a modern name, acquired from its similarity to the overland Silk Road.\n\nThe Maritime Silk Road or Maritime Silk Route is an ancient maritime trade route in the Indian Ocean and the Western Pacific that connected Southeast Asia, East Asia, the Indian subcontinent, the Arabian Peninsula, eastern Africa, and Europe. The network followed the footsteps of older Austronesian jade maritime networks in Southeast Asia, as well as the maritime spice networks between Southeast Asia and South Asia, and the West Asian maritime networks in the Arabian Sea and beyond, coinciding with these ancient maritime trade roads by the current era. Despite the modern name, the Maritime Silk Road involved exchanges in a wide variety of goods over a very wide region, not just silk or Asian exports.\n\nThis route would later become known as the Maritime Silk Road, although that is a misnomer, since spices, rather than silk, were traded along this route.\n\nThe fragmentation of the Mongol Empire loosened the political, cultural, and economic unity of the Silk Road. After the fall of the Mongol Empire, the great political powers along the Silk Road became economically and culturally separated. Accompanying the crystallisation of regional states was the decline of nomad power, partly due to the devastation of the Black Death and partly due to the encroachment of sedentary civilisations equipped with gunpowder.\n\nWell-traveled and relatively well-maintained roads linked lands from the Mediterranean basin to China, greatly increasing overland trade and resulting in some dramatic stories of those who travelled through what would become known as the Silk Road. The fall of the Mongol Empire in the 14th century led to the collapse of the political, cultural, and economic unity along the Silk Road.\n\nThe Han Empire expanded into Central Asia and established trade through the Silk Road.\n\nAccording to Achtman, the dating of the plague suggests that it was not carried along the Silk Road, and its widespread appearance in that region probably postdates the European outbreak. Additionally, the Silk Road had already been heavily disrupted before the spread of the Black Death; Western and Middle Eastern traders found it difficult to trade on the Silk Road by 1325 and impossible by 1340, making its role in the spread of plague less likely. The theory of Chinese origin implicates the Silk Road, the disease possibly spreading alongside Mongol armies and traders, or possibly arriving via ship—however, this theory is still contested.\n\nRichard Foltz, Xinru Liu, and others have described how trading activities along the Silk Road over many centuries facilitated the transmission not just of goods but also ideas and culture, notably in the area of religions. Zoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across Eurasia through trade networks that were tied to specific religious communities and their institutions. Nomadic mobility played a key role in facilitating inter-regional contacts and cultural exchanges along the ancient Silk Roads.\n\nIt originated in the eastern Gangetic plain as a śramaṇa movement in the 5th century BCE, and gradually spread throughout much of Asia via the Silk Road.\n\nThe Silk Road became the main east–west trading route in the Asian hinterlands while the Straits of Malacca stood as a major sea route.\n\nThe Silk Road crossing Central Asia passed through Islamic states between China and Europe.\n\nThe transmission of Buddhism to China via the Silk Road began in the 1st century CE, according to a semi-legendary account of an ambassador sent to the West by the Chinese Emperor Ming (58–75). It is believed that under the control of the Kushans, Buddhism was spread to China and other parts of Asia from the middle of the first century to the middle of the third century. Extensive contacts started in the 2nd century, probably as a consequence of the expansion of the Kushan empire into the Chinese territory of the Tarim Basin, due to the missionary efforts of a great number of Buddhist monks to Chinese lands.\n\nThe rule of the Kushans linked the seagoing trade of the Indian Ocean with the commerce of the Silk Road through the long-civilized Indus Valley. The loose unity and comparative peace of such a vast expanse encouraged long-distance trade, brought Chinese silks to Rome, and created strings of flourishing urban centers.\n\nIn particular, the maritime part of the Silk Road leads through the Indian Ocean, on which a large part of the global container trade is carried out.\n\nThe Northern Silk Road on one route bypassed the Tarim Basin north of the Tian Shan mountains and traversed it on three oases-dependent routes: one north of the Taklamakan Desert, one south, and a middle one connecting both through the Lop Nur region.\n\nMany artistic influences were transmitted via the Silk Road, particularly through Central Asia, where Hellenistic, Iranian, Indian and Chinese influences could intermix. Greco-Buddhist art represents one of the most vivid examples of this interaction. These artistic influences can be seen in the development of Buddhism where, for instance, Buddha was first depicted as human in the Kushan period.\n\nHis views as to dates and the crucial period of Western influence came to be widely rejected, but then received considerable support by the discovery of the important deserted city site of Ai-Khanoum (Alexandria on the Oxus), which was excavated in the 1960s and 1970s, where quantities of clearly Greek-influenced art were found, datable to the 3rd and (mostly) 2nd centuries BC. Furthermore, he was responsible for spreading Mahayana Buddhism and Buddhist art throughout the Silk Road.\n\nOver time Indian Mahāyāna texts and philosophy reached Central Asia and China through trade routes like the Silk Road, later spreading throughout East Asia. Central Asian Mahāyāna scholars were very important in the Silk Road Transmission of Buddhism.\n\nThe Silk Road trade routes crossed through Central Asia, leading to the rise of prosperous trade cities.",
+      "profile": {
+        "paragraphs": 22,
+        "sentences": 47,
+        "chars": 7977,
+        "duplicates": 0,
+        "articles": 23,
+        "sections": 29,
+        "hopsChosen": 22,
+        "hopsRead": 22,
+        "hopsCited": 18,
+        "blocked": 4
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 354,
+      "wiki": {
+        "hits": 170,
+        "misses": 12,
+        "added": 12,
+        "entries": 1254
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-32b-node-tangle-silk-road.json",
+      "summary": "live run · seed: Tell me about the Silk Road and elaborate on its influence.\nmodel qwen3:32b · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T19:51:05.869Z · exported 2026-09-18T19:56:59.997Z\nnodes 29 · visits 42 · model calls 91 · lookups 29 · evidence 29 · tokens 26811\nstatuses {\"resolved\":25,\"blocked\":4} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Silk Road and elaborate on its influence. → The Silk Road was a network of Asian trade routes active from the second century BCE until\n  n2 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Routes → The Silk Road consisted of several routes. As it extended westwards from the ancient comme\n    n8 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Trade !! Nothing of what Trade says about the subject was kept.\n    n9 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Taklamakan Desert → It is crossed at its northern and at its southern edge by two branches of the Silk Road, b\n  n3 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Maritime route → The Maritime Silk Road or Maritime Silk Route is the maritime section of the historic Silk\n    n10 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Maritime Silk Road → The Maritime Silk Road or Maritime Silk Route is an ancient maritime trade route in the In\n      n11 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Trade route → This route would later become known as the Maritime Silk Road, although that is a misnomer\n      n12 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Jade → From the Kingdom of Khotan, on the southern leg of the Silk Road, yearly tribute payments \n  n4 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Decline (15th century–present) → The fragmentation of the Mongol Empire loosened the political, cultural, and economic unit\n    n13 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Mongol Empire → Well-traveled and relatively well-maintained roads linked lands from the Mediterranean bas\n      n15 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Empire → The Han Empire expanded into Central Asia and established trade through the Silk Road.\n    n14 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Black Death → According to Achtman, the dating of the plague suggests that it was not carried along the \n  n5 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Expansion of religions → Richard Foltz, Xinru Liu, and others have described how trading activities along the Silk \n    n16 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Buddhism → It originated in the eastern Gangetic plain as a śramaṇa movement in the 5th century BCE, \n      n18 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Asia → The Silk Road became the main east–west trading route in the Asian hinterlands while the S\n      n19 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Gangetic plain !! Nothing of what Gangetic plain says about the subject was kept.\n    n17 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Islam → The Silk Road crossing Central Asia passed through Islamic states between China and Europe\n  n6 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Transmission of Buddhism → The transmission of Buddhism to China via the Silk Road began in the 1st century CE, accor\n    n20 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Kushan Empire → The rule of the Kushans linked the seagoing trade of the Indian Ocean with the commerce of\n      n22 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Rome !! Nothing of what Rome says about the subject was kept.\n      n23 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Indian Ocean → In particular, the maritime part of the Silk Road leads through the Indian Ocean, on which\n    n21 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Tarim Basin → The Northern Silk Road on one route bypassed the Tarim Basin north of the Tian Shan mounta\n      n24 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Northern Silk Road → The Northern Silk Road is a historic inland trade route in Northwest China and Central Asi\n      n25 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Tian Shan → The strain of Y. pestis which caused the bubonic plague now know as the Black Death may ha\n  n7 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Expansion of the arts → Many artistic influences were transmitted via the Silk Road, particularly through Central \n    n26 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Greco-Buddhist art → His views as to dates and the crucial period of Western influence came to be widely reject\n      n28 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Ai-Khanoum !! Nothing of what Ai-Khanoum says about the subject was kept.\n      n29 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Mahayana → Over time Indian Mahāyāna texts and philosophy reached Central Asia and China through trad\n    n27 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Central Asia → The Silk Road trade routes crossed through Central Asia, leading to the rise of prosperous\n\nmodel latency ms: median 3266 · max 12177 · n 91\nworth a look:\n- n8 blocked: Nothing of what Trade says about the subject was kept.\n- n19 blocked: Nothing of what Gangetic plain says about the subject was kept.\n- n22 blocked: Nothing of what Rome says about the subject was kept.\n- n28 blocked: Nothing of what Ai-Khanoum says about the subject was kept."
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mirror": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "servicing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "webb": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "edwin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 7,
+      "factsSupported": 7,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 19,
+        "visits": 27,
+        "modelCalls": 68,
+        "lookups": 19,
+        "tokens": 23629
+      },
+      "statuses": {
+        "resolved": 17,
+        "blocked": 2
+      },
+      "finding": "The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, renowned as a vital research tool and as a public relations boon for astronomy. Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe. Hubble was launched on STS-31 in 1990, but its main mirror had been ground incorrectly, resulting in spherical aberration that compromised the telescope's capabilities.\n\nAnalysis of the flawed images revealed that the primary mirror had been polished to the wrong shape. Although it was believed to be one of the most precisely figured optical mirrors ever made, smooth to about 10 nanometers, the outer perimeter was too flat by about 2200 nanometers (about 1⁄450 mm or 1⁄11000 inch). This difference was catastrophic, introducing severe spherical aberration, a flaw in which light reflecting off the edge of a mirror focuses on a different point from the light reflecting off its center.\n\nAlthough the Hubble observatory is nearing the end of its life, there are still major projects scheduled for it.\n\nThe panels identified three such projects: 1) a study of the nearby intergalactic medium using quasar absorption lines to determine the properties of the intergalactic medium and the gaseous content of galaxies and groups of galaxies; 2) a medium deep survey using the Wide Field Camera to take data whenever one of the other instruments was being used and 3) a project to determine the Hubble constant within ten percent by reducing the errors, both external and internal, in the calibration of the distance scale.\n\nHubble (also known as Hubble 3D, IMAX: Hubble, or IMAX: Hubble 3D) is a 2010 American documentary film about Space Shuttle missions to repair and upgrade the Hubble Space Telescope.\n\nAmong its primary mission targets was to measure distances to Cepheid variable stars more accurately than ever before, and thus constrain the value of the Hubble constant, the measure of the rate at which the universe is expanding, which is also related to its age. The estimated age of the universe is now 13.7 billion years. Astronomers from the High-z Supernova Search Team and the Supernova Cosmology Project used ground-based telescopes and HST to observe distant supernovae and uncovered evidence that, far from decelerating under the influence of gravity, the expansion of the universe is instead accelerating.\n\nIn the \"late\" camp is the higher value of 74.03±1.42 (km/s)/Mpc determined by the Hubble Space Telescope and confirmed by the James Webb Space Telescope in 2023.\n\nIt is the largest telescope in space, and is equipped with high-resolution and high-sensitivity instruments, allowing it to view objects too old, distant, or faint for the Hubble Space Telescope.\n\nIn 1924, Edwin Hubble established the distance to classical Cepheid variables in the Andromeda Galaxy, until then known as the \"Andromeda Nebula\" and showed that those variables were not members of the Milky Way. Hubble's finding settled the question raised in the \"Great Debate\" of whether the Milky Way represented the entire Universe or was merely one of many galaxies in the Universe. They discovered that the Universe is expanding, confirming the theories of Georges Lemaître.\n\nHubble proved that many objects previously thought to be clouds of dust and gas and classified as \"nebulae\" were actually galaxies beyond the Milky Way. The Hubble law implies that the universe is expanding. Hubble's name is most widely recognized for the Hubble Space Telescope, which was named in his honor, with a model prominently displayed in his hometown of Marshfield, Missouri.\n\nIn 2025, NASA published a huge mosaic made by the Hubble Space Telescope, assembled from approximately 600 separate overlapping fields of view taken over 10 years of Hubble observation.\n\nOther discoveries made with Hubble data include proto-planetary disks (proplyds) in the Orion Nebula; evidence for the presence of extrasolar planets around Sun-like stars; and the optical counterparts of the still-mysterious gamma-ray bursts. MACS 2129-1 subverted expectations about galaxies in which new star formation had ceased, a significant result for understanding the formation of elliptical galaxies. In 2022 Hubble detected the light of the farthest individual star ever seen to date.\n\nThe Orion 1 space astrophysical observatory was installed in the orbital station Salyut 1. It was operated in June 1971 by crew member Viktor Patsayev, who thus became the first man to operate a telescope outside the Earth's atmosphere.\n\nMACS 2129-1 is an early universe so-called 'dead' disk galaxy discovered in 2017 by the Hubble Space Telescope from NASA.\n\nIts science programs focus on Earth observation through the Earth Observing System, heliophysics research, Solar System exploration with robotic missions such as New Horizons and the Perseverance rover, and astrophysics investigations using space-based observatories including the James Webb Space Telescope and the Hubble Space Telescope.\n\nThe Hubble Deep Field, an extremely long exposure of a relatively empty part of the sky, provided evidence that there are about 125 billion (1.25×1011) galaxies in the observable universe. A 2016 study published in The Astrophysical Journal, led by Christopher Conselice of the University of Nottingham, analyzed many sources of data to estimate that the observable universe (up to z=8) contained at least two trillion (2×1012) galaxies, a factor of 10 more than are directly observed in Hubble images.\n\nMany objective measures show the positive impact of Hubble data on astronomy. As of 2025, over 22,000 papers based on Hubble data have been published in peer-reviewed journals, and countless more have appeared in conference proceedings. Looking at papers several years after their publication, about one-third of all astronomy papers have no citations, while only two percent of papers based on Hubble data have no citations.",
+      "profile": {
+        "paragraphs": 17,
+        "sentences": 36,
+        "chars": 6383,
+        "duplicates": 0,
+        "articles": 13,
+        "sections": 19,
+        "hopsChosen": 12,
+        "hopsRead": 12,
+        "hopsCited": 10,
+        "blocked": 2
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 337,
+      "wiki": {
+        "hits": 223,
+        "misses": 18,
+        "added": 18,
+        "entries": 1260
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-32b-node-tangle-hubble.json",
+      "summary": "live run · seed: Tell me about the Hubble Space Telescope and what it has discovered.\nmodel qwen3:32b · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T19:57:00.045Z · exported 2026-09-18T20:02:36.941Z\nnodes 19 · visits 27 · model calls 68 · lookups 19 · evidence 19 · tokens 23629\nstatuses {\"resolved\":17,\"blocked\":2} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. → The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low\n  n2 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Flawed mirror → Analysis of the flawed images revealed that the primary mirror had been polished to the wr\n    n8 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Mirror !! Nothing of what Mirror says about the subject was kept.\n  n3 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Major projects → Although the Hubble observatory is nearing the end of its life, there are still major proj\n  n4 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Key projects → The panels identified three such projects: 1) a study of the nearby intergalactic medium u\n    n9 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Hubble (film) → Hubble (also known as Hubble 3D, IMAX: Hubble, or IMAX: Hubble 3D) is a 2010 American docu\n    n10 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Intergalactic medium !! Nothing of what Intergalactic medium says about the subject was kept.\n  n5 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Age and expansion of the universe → Among its primary mission targets was to measure distances to Cepheid variable stars more \n    n11 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Hubble constant → In the \"late\" camp is the higher value of 74.03±1.42 (km/s)/Mpc determined by the Hubble S\n      n13 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about James Webb Space Telescope → It is the largest telescope in space, and is equipped with high-resolution and high-sensit\n    n12 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Cepheid variable → In 1924, Edwin Hubble established the distance to classical Cepheid variables in the Andro\n      n14 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Edwin Hubble → Hubble proved that many objects previously thought to be clouds of dust and gas and classi\n      n15 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Andromeda Galaxy → In 2025, NASA published a huge mosaic made by the Hubble Space Telescope, assembled from a\n  n6 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Other discoveries → Other discoveries made with Hubble data include proto-planetary disks (proplyds) in the Or\n    n16 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Orion (space telescope) → The Orion 1 space astrophysical observatory was installed in the orbital station Salyut 1.\n    n17 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about MACS 2129-1 → MACS 2129-1 is an early universe so-called 'dead' disk galaxy discovered in 2017 by the Hu\n      n18 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about NASA → Its science programs focus on Earth observation through the Earth Observing System, heliop\n      n19 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Galaxy → The Hubble Deep Field, an extremely long exposure of a relatively empty part of the sky, p\n  n7 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Impact on astronomy → Many objective measures show the positive impact of Hubble data on astronomy. As of 2025, \n\nmodel latency ms: median 4513 · max 11073 · n 68\nworth a look:\n- n8 blocked: Nothing of what Mirror says about the subject was kept.\n- n10 blocked: Nothing of what Intergalactic medium says about the subject was kept."
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "queensland": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 9,
+      "factsSupported": 9,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 12,
+        "visits": 17,
+        "modelCalls": 44,
+        "lookups": 12,
+        "tokens": 15115
+      },
+      "statuses": {
+        "resolved": 9,
+        "blocked": 3
+      },
+      "finding": "The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres (1,400 mi) over an area of approximately 344,400 square kilometres (133,000 mi2). The Great Barrier Reef can be seen from outer space and is the world's biggest single structure made by living organisms. It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified. A March 2016 report stated that coral bleaching was more widespread than previously thought, seriously affecting the northern parts of the reef as a result of warming ocean temperatures.\n\nThe Great Barrier Reef's development history is complex; after Queensland drifted into tropical waters, it was largely influenced by reef growth and decline as sea level changed.\n\nThe Great Barrier Reef supports an extraordinary diversity of life, including many vulnerable or endangered species, some of which may be endemic to the reef system.\n\nClimate change, pollution, crown-of-thorns starfish and fishing are the primary threats to the health of this reef system. According to a 2012 study by the National Academy of Sciences, since 1985, the Great Barrier Reef has lost more than half of its corals with two-thirds of the loss occurring from 1998 due to the factors listed before. In 2022, the northern and central parts of the reef had the highest amount of coral cover since monitoring began, but the cover in the southern part had decreased and bleaching events occurred more frequently.\n\nThe Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Barrier Reef to be climate change, causing ocean warming which increases coral bleaching. Mass coral bleaching events due to marine heatwaves occurred in the summers of 1998, 2002, 2006, 2016, 2017 and 2020, and coral bleaching is expected to become an annual occurrence. In 2020, a study found that the Great Barrier Reef has lost more than half of its corals since 1995 due to warmer seas driven by climate change.\n\nLarge-scale bleaching events can devastate entire reef ecosystems, affecting biodiversity and the livelihoods of coastal communities that depend on healthy reefs for food, tourism, and protection from storm surges. In 2016, bleaching of coral on the Great Barrier Reef killed 29 to 50 percent of the reef's coral. Natural corals adapted against bleaching and human assistance with reef building may help prevent further damage.\n\nIn March 2015, the Australian and Queensland's governments formed a plan for the protection and preservation of the reef's universal heritage until 2050. This 35-year plan, titled \"Reef 2050 Plan\" is a document proposing possible measures for the long-term management of the pollution, climate change and other issues that threaten the life-span and value of this global heritage. However, whereas the 2050 plan aims to incorporate protective measures such as improving water quality, reef restoration and killing predatory starfish, it does not incorporate additional measures to address what may be the root cause of the problem – climate change, which is caused by greenhouse gas emissions.\n\nA Deloitte report published by the Great Barrier Reef Marine Park Authority in March 2013 states that the Reef's 2,000 kilometres of coastline attracts tourism worth A$6.4 billion annually and employs more than 64,000 people. Approximately two million people visit the Great Barrier Reef each year. Although most of these visits are managed in partnership with the marine Tourism industry, there is a concern among the general public that tourism is harmful to the Great Barrier Reef.\n\nThe Great Barrier Reef Marine Park protects a large part of Australia's Great Barrier Reef from damaging activities. The Great Barrier Reef is the largest and best known coral reef ecosystem in the world. Its reefs, almost 3000 in total, represent about 10 per cent of all the coral reef areas in the world.",
+      "profile": {
+        "paragraphs": 9,
+        "sentences": 26,
+        "chars": 4568,
+        "duplicates": 0,
+        "articles": 6,
+        "sections": 12,
+        "hopsChosen": 5,
+        "hopsRead": 5,
+        "hopsCited": 2,
+        "blocked": 3
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 191,
+      "wiki": {
+        "hits": 255,
+        "misses": 18,
+        "added": 18,
+        "entries": 1260
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-32b-node-tangle-great-barrier-reef.json",
+      "summary": "live run · seed: Describe the Great Barrier Reef and the threats it faces.\nmodel qwen3:32b · prompt walk-12/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T20:02:36.954Z · exported 2026-09-18T20:05:48.273Z\nnodes 12 · visits 17 · model calls 44 · lookups 12 · evidence 12 · tokens 15115\nstatuses {\"resolved\":9,\"blocked\":3} · outcome: root resolved\n\nn1 [resolved v2] Describe the Great Barrier Reef and the threats it faces. → The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 in\n  n2 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Geology and geography → The Great Barrier Reef's development history is complex; after Queensland drifted into tro\n    n8 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Queensland !! Nothing of what Queensland says about the subject was kept.\n  n3 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Ecology → The Great Barrier Reef supports an extraordinary diversity of life, including many vulnera\n  n4 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Environmental threats → Climate change, pollution, crown-of-thorns starfish and fishing are the primary threats to\n    n9 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Coral !! Nothing of what Coral says about the subject was kept.\n    n10 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Crown-of-thorns starfish !! Nothing of what Crown-of-thorns starfish says about the subject was kept.\n  n5 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Climate change → The Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Ba\n    n11 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Coral bleaching → Large-scale bleaching events can devastate entire reef ecosystems, affecting biodiversity \n  n6 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Protection and preservation: Reef 2050 plan → In March 2015, the Australian and Queensland's governments formed a plan for the protectio\n  n7 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Tourism → A Deloitte report published by the Great Barrier Reef Marine Park Authority in March 2013 \n    n12 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Great Barrier Reef Marine Park → The Great Barrier Reef Marine Park protects a large part of Australia's Great Barrier Reef\n\nmodel latency ms: median 3862 · max 8548 · n 44\nworth a look:\n- n8 blocked: Nothing of what Queensland says about the subject was kept.\n- n9 blocked: Nothing of what Coral says about the subject was kept.\n- n10 blocked: Nothing of what Crown-of-thorns starfish says about the subject was kept."
+    }
+  ],
+  "notes": [
+    "2026-09-18T19:45:34.756Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:32b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "machine at start: gpu 99% · vram 9.71 GiB · load 15.73 · mem 50% free (normal) · no throttling recorded",
+    "2026-09-18T19:45:34.863Z 4 seeds from evals/seeds-profile.json · mode tangle · limits {} · prompt walk-12/asks-4 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit 3cecdec",
+    "wiki recording: 1242 responses loaded",
+    "2026-09-18T19:51:05.843Z run stopped: Root resolved",
+    "turing: resolved · topics 8/8 · supported 8/8 · read 8/8 · ¶21 · 45 sentences · read 18 articles, 24 sections · hops 15 cited / 17 read / 17 chosen · 2 blocked · 24 nodes, 79 calls, 24 lookups, 25373 tokens · 331 s · wiki 71 hits 10 misses",
+    "2026-09-18T19:56:59.993Z run stopped: Root resolved",
+    "silk-road: resolved · topics 6/9 · supported 6/9 · read 8/9 · ¶22 · 47 sentences · read 23 articles, 29 sections · hops 18 cited / 22 read / 22 chosen · 4 blocked · 29 nodes, 91 calls, 29 lookups, 26811 tokens · 354 s · wiki 170 hits 12 misses",
+    "2026-09-18T20:02:36.939Z run stopped: Root resolved",
+    "hubble: resolved · topics 7/8 · supported 7/8 · read 8/8 · ¶17 · 36 sentences · read 13 articles, 19 sections · hops 10 cited / 12 read / 12 chosen · 2 blocked · 19 nodes, 68 calls, 19 lookups, 23629 tokens · 337 s · wiki 223 hits 18 misses",
+    "2026-09-18T20:05:48.270Z run stopped: Root resolved",
+    "great-barrier-reef: resolved · topics 9/10 · supported 9/10 · read 10/10 · ¶9 · 26 sentences · read 6 articles, 12 sections · hops 2 cited / 5 read / 5 chosen · 3 blocked · 12 nodes, 44 calls, 12 lookups, 15115 tokens · 191 s · wiki 255 hits 18 misses",
+    "machine during the suite: gpu 97.8% mean, 99% peak · vram up to 20.94 GiB · load up to 20.57 · no throttling in 81 samples"
+  ]
+}

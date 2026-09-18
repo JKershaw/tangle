@@ -65,21 +65,23 @@ Either way, tap a node to see exactly what the model was shown and what it said.
 
 ## The frontier
 
-Where it stands as of 18 September 2026 (walk-12 and the bridge). Kept current as the numbers move.
+Where it stands as of 18 September 2026 (walk-13 and the bridge). Kept current as the numbers move.
 
 **Known to work.**
 - A pick from a numbered list is reliable from 1.7B up, and every finding is supported by construction. No run has stated a fact its evidence did not hold.
 - Profiles beat one node and memory at every size on every brief set tried (table above).
 - Splitting a two-subject question in code beats one node at every size on the seeds no single article answers. Model-written sub-questions drift and rarely help.
 - The same walk runs in Node with no browser against Ollama or LM Studio, and a parity test shows both runtimes grow the identical graph from the same seed, recording and picks. That extends the ladder to 14B and 32B, and Node is fast: the 1.7B suite in 12 seconds against a minute in the page.
+- A bigger picker helps on briefs and not on questions. In Node the four profiles reach 25 / 27 / 30 of 35 topics at 8B / 14B / 32B, the best row yet; the question seeds stay between 15 and 17 of 23 from 1.7B to 32B while memory climbs.
 
 **Known to fail.**
 - Memory beats reading on memorised questions, and size does not change that: through Ollama the question seeds score about the same from 1.7B to 14B while memory climbs.
 - 8B fills every hop slot and rejects a third of what it finds; 1.7B opens fewer hops and cites every one. Neither uses the forty-node budget. The topic rubric counts touches and cannot say whether a longer profile is better; a judge is missing.
 - 0.6B says none to every sentence under a brief. It is below the floor for profiles.
 - Section choice sets breadth: 4B stops after three sections, and a short parent heading is chosen and blocks. 14B says none more often than any smaller size, then asks a question, and a question child may re-read what its parent read.
+- A cited sentence can still be off the brief. A 1.7B Rosetta profile carried a paragraph about Jupiter's core because "mission" is a word of "Rosetta mission"; walk-13 requires the subject's own capitalised words. The topic rubric cannot see that fault, and the graph reads five times the tokens of one node; a judge and an equal-budget control are both missing.
 
-**Next.** The last rows of roadmap milestone 4 (32B, and the briefs at 14B and 32B), then milestone 5: read-only tools over files, with this repository as the first corpus. The milestones and their exit conditions are in [ROADMAP.md](ROADMAP.md).
+**Next.** Roadmap milestone 5: read-only tools over files, with this repository as the first corpus, which tests whether the gains transfer beyond Wikipedia's ready-made sections and links. The milestones and their exit conditions are in [ROADMAP.md](ROADMAP.md).
 
 Small models will decompose badly, repeat themselves, misread evidence and resolve too early. Keep the exports; that is the experiment.
 
