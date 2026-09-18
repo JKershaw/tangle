@@ -99,6 +99,7 @@ Profiles (`evals/seeds-profile.json`, four briefs, 35 topics; `--seeds evals/see
 | 2026-09-18 | 0f58764 (walk-12, hop paragraphs go first at the cap; short sections skipped) | 1.7B | **26/35** · hops 35/36/36 · ¶61 · 64 nodes · 168 s | 15/35 (71ee567) | 15/35 |
 | 2026-09-18 | 0f58764 (walk-12) | 4B | **23/35** · hops 34/51/51 · ¶50 · 73 nodes · 321 s | 16/35 (71ee567) | 10/35 |
 | 2026-09-18 | 0f58764 (walk-12) | 8B | **27/35** · hops 47/66/66 · ¶62 · 94 nodes · 635 s | 13/35 (71ee567) | 20/35 |
+| 2026-09-18 | 27f36a8 (walk-12, Node · Ollama q4_K_M) | 8B | 25/35 · hops 43/62/62 · ¶69 · 317 s | — | — |
 
 Overflow briefs (`evals/seeds-overflow.json`: the Antikythera mechanism and how it was decoded, the Rosetta mission and what it found, the Aral Sea and its restoration; 30 topics spread over many sections and linked articles, on subjects the models know less well). Topics of 30.
 
@@ -108,6 +109,7 @@ Overflow briefs (`evals/seeds-overflow.json`: the Antikythera mechanism and how 
 | 2026-09-18 | 0f58764 (walk-12) | 1.7B | **24/30** · hops 20/20/20 · ¶41 · 41 nodes · 138 s | 18/30 | 5/30 |
 | 2026-09-18 | 0f58764 (walk-12) | 4B | **25/30** · hops 16/25/25 · ¶34 · 44 nodes · 228 s | 18/30 | 12/30 |
 | 2026-09-18 | 0f58764 (walk-12) | 8B | **27/30** · hops 18/27/27 · ¶37 · 48 nodes · 372 s | 16/30 | 17/30 |
+| 2026-09-18 | 27f36a8 (walk-12, Node · Ollama q4_K_M) | 8B | 24/30 · hops 17/25/25 · ¶35 · 147 s | — | — |
 
 The graph beats both controls at every size on both brief sets, and on the overflow briefs the gap to memory is 19 topics at 1.7B. Reading in [evals/readings.md](evals/readings.md).
 
