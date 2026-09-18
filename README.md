@@ -65,6 +65,7 @@ docs/index.html    the built page, served by GitHub Pages
 BRIEF.md           the original design brief the project is built to
 PLAN.md            the eval-driven plan for pushing tiny models further; PROGRESS.md logs against it
 ROADMAP.md         the milestones from the pocket lab to a self-building agent, and what verifies each
+LEARNED.md         what two days of measured runs taught, and how far the idea can go
 ```
 
 The whole app is one HTML file. Open `docs/index.html` from disk and the simulation works offline; live mode wants an HTTPS or localhost origin so the browser will cache model weights.
@@ -105,7 +106,7 @@ Models available in the page, all Qwen3 at 4-bit: 0.6B (~0.4 GB download, runs o
 
 Live mode first ran on 17 September 2026. The first day's failures (all in `experiments/`, raw model output quoted, each pinned as a fixture in `test/fixtures/`) reshaped the harness: 0.6B wrote its own evidence, decomposed to the depth ceiling, and answered a Dead Sea question with a fully cited finding about the Aral Sea; 1.7B read a two-sentence lead 79 times. The one-prompt visit that asked the model for five decisions at once was measured and replaced (PLAN.md, *The turn*) by the walk: one decision per model call, the model only ever picking from things code prepared, and a finding that is the chosen sentence verbatim.
 
-Since then the project has a measuring stick. [PLAN.md](PLAN.md) sets out three layers of checking: unit tests, fixture replays of real model outputs, and evals that run the model. Node evals (`evals/node/`) re-run one ask at a time across the model ladder; a benchmark (`evals/seeds.json`, `evals/seeds-graph.json`, `evals/seeds-profile.json`) scores whole runs for facts stated, facts supported by a cited excerpt, and cost, against three controls: the same walk on one node, a one-node model that writes its own answer, and the model alone with no tools. Wikipedia is recorded and replayed so a harness change is the only variable. [PROGRESS.md](PROGRESS.md) holds the scoreboard, [evals/readings.md](evals/readings.md) says what each round meant, and [ROADMAP.md](ROADMAP.md) says what comes next.
+Since then the project has a measuring stick. [PLAN.md](PLAN.md) sets out three layers of checking: unit tests, fixture replays of real model outputs, and evals that run the model. Node evals (`evals/node/`) re-run one ask at a time across the model ladder; a benchmark (`evals/seeds.json`, `evals/seeds-graph.json`, `evals/seeds-profile.json`) scores whole runs for facts stated, facts supported by a cited excerpt, and cost, against three controls: the same walk on one node, a one-node model that writes its own answer, and the model alone with no tools. Wikipedia is recorded and replayed so a harness change is the only variable. [PROGRESS.md](PROGRESS.md) holds the scoreboard, [evals/readings.md](evals/readings.md) says what each round meant, [LEARNED.md](LEARNED.md) says what it all taught, and [ROADMAP.md](ROADMAP.md) says what comes next.
 
 ## The frontier
 

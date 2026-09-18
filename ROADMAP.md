@@ -1,6 +1,6 @@
 # Roadmap: from the pocket lab to a self-building agent
 
-*A living document. [PLAN.md](PLAN.md) says how we measure; [PROGRESS.md](PROGRESS.md) says where the numbers are; this says the distance still to go, in steps small enough to follow. Written 2026-09-18 at walk-10, after the first Turing profiles.*
+*A living document. [PLAN.md](PLAN.md) says how we measure; [PROGRESS.md](PROGRESS.md) says where the numbers are; [LEARNED.md](LEARNED.md) says what they taught; this says the distance still to go, in steps small enough to follow. Written 2026-09-18 at walk-10, after the first Turing profiles.*
 
 ## The destination
 
