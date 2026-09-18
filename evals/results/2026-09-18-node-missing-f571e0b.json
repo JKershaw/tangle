@@ -1,0 +1,1281 @@
+{
+  "ask": "missing",
+  "asks": "asks-2",
+  "commit": "f571e0b",
+  "date": "2026-09-18T07:08:28.986Z",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "models": [
+    "Qwen3-0.6B-q4f16_1-MLC",
+    "Qwen3-1.7B-q4f16_1-MLC",
+    "Qwen3-4B-q4f16_1-MLC",
+    "Qwen3-8B-q4f16_1-MLC"
+  ],
+  "variants": [
+    "search",
+    "fact"
+  ],
+  "repeat": 1,
+  "cases": [
+    "dead-sea-cold",
+    "sky-cold",
+    "bees-cold",
+    "lba-cold",
+    "evaporation-cold",
+    "coral-cold",
+    "dead-sea-after-lead",
+    "water-cycle-after-lead",
+    "coral-after-tail"
+  ],
+  "rows": [
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "search",
+      "passed": 7,
+      "total": 9,
+      "medianMs": 168,
+      "calls": 9,
+      "failed": [
+        "bees-cold",
+        "water-cycle-after-lead"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "fact",
+      "passed": 5,
+      "total": 9,
+      "medianMs": 323,
+      "calls": 9,
+      "failed": [
+        "dead-sea-cold",
+        "bees-cold",
+        "evaporation-cold",
+        "water-cycle-after-lead"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "search",
+      "passed": 9,
+      "total": 9,
+      "medianMs": 276,
+      "calls": 9,
+      "failed": []
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "fact",
+      "passed": 4,
+      "total": 9,
+      "medianMs": 362,
+      "calls": 9,
+      "failed": [
+        "dead-sea-cold",
+        "sky-cold",
+        "lba-cold",
+        "evaporation-cold",
+        "dead-sea-after-lead"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "search",
+      "passed": 9,
+      "total": 9,
+      "medianMs": 533,
+      "calls": 9,
+      "failed": []
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "fact",
+      "passed": 5,
+      "total": 9,
+      "medianMs": 703,
+      "calls": 9,
+      "failed": [
+        "dead-sea-cold",
+        "lba-cold",
+        "evaporation-cold",
+        "dead-sea-after-lead"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "search",
+      "passed": 9,
+      "total": 9,
+      "medianMs": 905,
+      "calls": 9,
+      "failed": []
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "fact",
+      "passed": 5,
+      "total": 9,
+      "medianMs": 831,
+      "calls": 9,
+      "failed": [
+        "dead-sea-cold",
+        "bees-cold",
+        "lba-cold",
+        "evaporation-cold"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "dead sea shrinking",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2609,
+      "tokens": 79,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"dead sea shrinking\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "sky-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "why is the sky blue",
+      "pass": true,
+      "error": null,
+      "latencyMs": 168,
+      "tokens": 80,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"why is the sky blue\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "why",
+      "pass": false,
+      "error": null,
+      "latencyMs": 120,
+      "tokens": 77,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"why\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "lba-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Late Bronze Age Collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 153,
+      "tokens": 82,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Late Bronze Age Collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "evaporation-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Evaporation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 130,
+      "tokens": 76,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Evaporation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "coral-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 151,
+      "tokens": 79,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "Dead Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 490,
+      "tokens": 601,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Dead Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "water cycle",
+      "pass": false,
+      "error": null,
+      "latencyMs": 256,
+      "tokens": 313,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"water cycle\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 216,
+      "tokens": 227,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "No fact is missing.",
+      "pass": false,
+      "error": null,
+      "latencyMs": 3053,
+      "tokens": 75,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"No fact is missing.\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "sky-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "The sky is blue because of the presence of the atmosphere and the Earth's solar-",
+      "pass": true,
+      "error": null,
+      "latencyMs": 308,
+      "tokens": 87,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"The sky is blue because of the presence of the atmosphere and the Earth's solar-\"\n}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "It's because of lack of food and lack of water, not because of the hive itself.",
+      "pass": false,
+      "error": null,
+      "latencyMs": 319,
+      "tokens": 89,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"It's because of lack of food and lack of water, not because of the hive itself.\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "lba-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "The Late Bronze Age collapse is a historical event, but the question does not提供",
+      "pass": true,
+      "error": null,
+      "latencyMs": 323,
+      "tokens": 91,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"The Late Bronze Age collapse is a historical event, but the question does not提供 \"  }"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "evaporation-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "No fact is missing.",
+      "pass": false,
+      "error": null,
+      "latencyMs": 151,
+      "tokens": 73,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"No fact is missing.\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "coral-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "coral reefs bleach due to overfishing and pollution, leading to coral death and",
+      "pass": true,
+      "error": null,
+      "latencyMs": 312,
+      "tokens": 88,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"coral reefs bleach due to overfishing and pollution, leading to coral death and \"\n}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "The question is about why the Dead Sea is shrinking, but the provided sentences'",
+      "pass": true,
+      "error": null,
+      "latencyMs": 702,
+      "tokens": 610,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"The question is about why the Dead Sea is shrinking, but the provided sentences'\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "The question is not answered. Please provide the question or the fact to answer.",
+      "pass": false,
+      "error": null,
+      "latencyMs": 445,
+      "tokens": 321,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"The question is not answered. Please provide the question or the fact to answer.\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "The question is not fully answered. Please provide more details about the cause.",
+      "pass": true,
+      "error": null,
+      "latencyMs": 360,
+      "tokens": 232,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"The question is not fully answered. Please provide more details about the cause.\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "dead sea shrinking",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2642,
+      "tokens": 79,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"dead sea shrinking\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "sky-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "sky blue",
+      "pass": true,
+      "error": null,
+      "latencyMs": 223,
+      "tokens": 77,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"sky blue\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "honey bee colonies collapse causes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 276,
+      "tokens": 82,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"honey bee colonies collapse causes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "lba-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Late Bronze Age collapse causes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 264,
+      "tokens": 83,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Late Bronze Age collapse causes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "evaporation-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "evaporation causes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 231,
+      "tokens": 77,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"evaporation causes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "coral-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "coral reefs bleach",
+      "pass": true,
+      "error": null,
+      "latencyMs": 246,
+      "tokens": 79,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"coral reefs bleach\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "Dead Sea shrinking",
+      "pass": true,
+      "error": null,
+      "latencyMs": 933,
+      "tokens": 602,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Dead Sea shrinking\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "water cycle energy",
+      "pass": true,
+      "error": null,
+      "latencyMs": 510,
+      "tokens": 314,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"water cycle energy\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 410,
+      "tokens": 227,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "data",
+      "pass": false,
+      "error": null,
+      "latencyMs": 3113,
+      "tokens": 71,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"data\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "sky-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "scientist",
+      "pass": false,
+      "error": null,
+      "latencyMs": 188,
+      "tokens": 71,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"scientist\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "honey bee colonies collapse due to habitat loss and pesticide use",
+      "pass": true,
+      "error": null,
+      "latencyMs": 362,
+      "tokens": 82,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"honey bee colonies collapse due to habitat loss and pesticide use\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "lba-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "lack of food",
+      "pass": false,
+      "error": null,
+      "latencyMs": 243,
+      "tokens": 76,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"lack of food\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "evaporation-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "water",
+      "pass": false,
+      "error": null,
+      "latencyMs": 175,
+      "tokens": 69,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"water\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "coral-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "coral reefs lose their color during bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 285,
+      "tokens": 78,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"coral reefs lose their color during bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "surface area",
+      "pass": false,
+      "error": null,
+      "latencyMs": 891,
+      "tokens": 595,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"surface area\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "energy from the sun",
+      "pass": true,
+      "error": null,
+      "latencyMs": 521,
+      "tokens": 309,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"energy from the sun\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "causes of coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 437,
+      "tokens": 223,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"causes of coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Dead Sea shrinking causes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2758,
+      "tokens": 80,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Dead Sea shrinking causes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "sky-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Why is the sky blue",
+      "pass": true,
+      "error": null,
+      "latencyMs": 533,
+      "tokens": 80,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Why is the sky blue\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Colony Collapse Disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 507,
+      "tokens": 80,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Colony Collapse Disorder\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "lba-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 506,
+      "tokens": 82,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Late Bronze Age collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "evaporation-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Evaporation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 454,
+      "tokens": 76,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Evaporation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "coral-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Coral reef bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 528,
+      "tokens": 80,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Coral reef bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "Dead Sea shrinking",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2224,
+      "tokens": 602,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Dead Sea shrinking\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "Energy sources of the water cycle",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1296,
+      "tokens": 317,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Energy sources of the water cycle\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "Coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 926,
+      "tokens": 227,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Water level decline",
+      "pass": false,
+      "error": null,
+      "latencyMs": 3397,
+      "tokens": 73,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"Water level decline\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "sky-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Why does the sky appear blue?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 503,
+      "tokens": 76,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"Why does the sky appear blue?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Causes of colony collapse disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 547,
+      "tokens": 76,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"Causes of colony collapse disorder\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "lba-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Causes of the collapse",
+      "pass": false,
+      "error": null,
+      "latencyMs": 525,
+      "tokens": 77,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"Causes of the collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "evaporation-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "energy input",
+      "pass": false,
+      "error": null,
+      "latencyMs": 381,
+      "tokens": 70,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"energy input\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "coral-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Coral bleaching is caused by stress from factors such as rising sea temperatures",
+      "pass": true,
+      "error": null,
+      "latencyMs": 703,
+      "tokens": 84,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"Coral bleaching is caused by stress from factors such as rising sea temperatures\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "Rate of recession",
+      "pass": false,
+      "error": null,
+      "latencyMs": 2226,
+      "tokens": 596,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"Rate of recession\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "Source of energy for the water cycle",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1321,
+      "tokens": 312,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"Source of energy for the water cycle\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "Reasons for coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 971,
+      "tokens": 223,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"Reasons for coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Dead Sea shrinking",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2840,
+      "tokens": 79,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Dead Sea shrinking\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "sky-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Why is the sky blue?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 905,
+      "tokens": 81,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Why is the sky blue?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Colony Collapse Disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 837,
+      "tokens": 80,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Colony Collapse Disorder\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "lba-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 839,
+      "tokens": 82,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Late Bronze Age collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "evaporation-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "evaporation causes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 799,
+      "tokens": 77,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"evaporation causes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "coral-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Coral reef bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 869,
+      "tokens": 80,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Coral reef bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "Dead Sea shrinking",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3615,
+      "tokens": 602,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Dead Sea shrinking\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "Energy for water cycle",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2009,
+      "tokens": 315,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Energy for water cycle\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "search",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "Coral bleaching causes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1535,
+      "tokens": 228,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"search\": \"Coral bleaching causes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "water sources and evaporation",
+      "pass": false,
+      "error": null,
+      "latencyMs": 3805,
+      "tokens": 75,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"water sources and evaporation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "sky-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "Rayleigh scattering",
+      "pass": true,
+      "error": null,
+      "latencyMs": 635,
+      "tokens": 72,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"Rayleigh scattering\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "cause of collapse",
+      "pass": false,
+      "error": null,
+      "latencyMs": 796,
+      "tokens": 73,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"cause of collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "lba-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "causes of collapse",
+      "pass": false,
+      "error": null,
+      "latencyMs": 831,
+      "tokens": 76,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"causes of collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "evaporation-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "heat energy source",
+      "pass": false,
+      "error": null,
+      "latencyMs": 635,
+      "tokens": 71,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"heat energy source\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "coral-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "cause of coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 702,
+      "tokens": 74,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"cause of coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "Water diversion",
+      "pass": true,
+      "error": null,
+      "latencyMs": 3557,
+      "tokens": 595,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"Water diversion\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "source of energy",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1957,
+      "tokens": 308,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"source of energy\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "fact",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "specific causes of coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1569,
+      "tokens": 223,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"missing\": \"specific causes of coral bleaching\"}"
+      ]
+    }
+  ]
+}

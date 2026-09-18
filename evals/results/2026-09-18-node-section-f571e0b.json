@@ -1,0 +1,2055 @@
+{
+  "ask": "section",
+  "asks": "asks-2",
+  "commit": "f571e0b",
+  "date": "2026-09-18T07:06:49.323Z",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "models": [
+    "Qwen3-0.6B-q4f16_1-MLC",
+    "Qwen3-1.7B-q4f16_1-MLC",
+    "Qwen3-4B-q4f16_1-MLC",
+    "Qwen3-8B-q4f16_1-MLC"
+  ],
+  "variants": [
+    "json",
+    "list"
+  ],
+  "repeat": 1,
+  "cases": [
+    "dead-sea-shrinking",
+    "dead-sea-salty",
+    "dead-sea-minerals",
+    "dead-sea-sinkholes",
+    "water-cycle-energy",
+    "water-cycle-climate",
+    "water-cycle-residence",
+    "lba-drought",
+    "lba-sea-peoples",
+    "ccd-mites",
+    "ccd-pesticides",
+    "coral-triggers",
+    "coral-acid",
+    "rayleigh-sky",
+    "evaporation-rate"
+  ],
+  "rows": [
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "passed": 8,
+      "total": 15,
+      "medianMs": 214,
+      "calls": 15,
+      "failed": [
+        "dead-sea-shrinking",
+        "dead-sea-salty",
+        "dead-sea-sinkholes",
+        "water-cycle-energy",
+        "water-cycle-residence",
+        "lba-sea-peoples",
+        "ccd-mites"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "passed": 12,
+      "total": 15,
+      "medianMs": 200,
+      "calls": 15,
+      "failed": [
+        "dead-sea-sinkholes",
+        "water-cycle-energy",
+        "lba-sea-peoples"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "passed": 14,
+      "total": 15,
+      "medianMs": 347,
+      "calls": 15,
+      "failed": [
+        "dead-sea-salty"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "passed": 14,
+      "total": 15,
+      "medianMs": 379,
+      "calls": 15,
+      "failed": [
+        "lba-sea-peoples"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "passed": 14,
+      "total": 15,
+      "medianMs": 761,
+      "calls": 15,
+      "failed": [
+        "water-cycle-energy"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "passed": 14,
+      "total": 15,
+      "medianMs": 856,
+      "calls": 15,
+      "failed": [
+        "water-cycle-energy"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "passed": 14,
+      "total": 15,
+      "medianMs": 1275,
+      "calls": 15,
+      "failed": [
+        "lba-sea-peoples"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "passed": 14,
+      "total": 15,
+      "medianMs": 1401,
+      "calls": 15,
+      "failed": [
+        "water-cycle-energy"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-shrinking",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Link to the Red Sea",
+      "pass": false,
+      "error": null,
+      "latencyMs": 484,
+      "tokens": 180,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Link to the Red Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-salty",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Link to the Red Sea",
+      "pass": false,
+      "error": null,
+      "latencyMs": 219,
+      "tokens": 183,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Link to the Red Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-minerals",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Extraction",
+      "pass": true,
+      "error": null,
+      "latencyMs": 177,
+      "tokens": 179,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Extraction\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-sinkholes",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Receding shoreline",
+      "pass": false,
+      "error": null,
+      "latencyMs": 198,
+      "tokens": 182,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-energy",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Water cycle intensification due to climate change",
+      "pass": false,
+      "error": null,
+      "latencyMs": 223,
+      "tokens": 130,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Water cycle intensification due to climate change\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-climate",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Water cycle intensification due to climate change",
+      "pass": true,
+      "error": null,
+      "latencyMs": 214,
+      "tokens": 130,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Water cycle intensification due to climate change\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-residence",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Slow loss over geologic time",
+      "pass": false,
+      "error": null,
+      "latencyMs": 193,
+      "tokens": 128,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Slow loss over geologic time\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "lba-drought",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Possible causes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 165,
+      "tokens": 139,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Possible causes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "lba-sea-peoples",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Background",
+      "pass": false,
+      "error": null,
+      "latencyMs": 147,
+      "tokens": 139,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Background\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "ccd-mites",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Evidence of risk to bees",
+      "pass": false,
+      "error": null,
+      "latencyMs": 254,
+      "tokens": 237,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Evidence of risk to bees\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "ccd-pesticides",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Pesticides",
+      "pass": true,
+      "error": null,
+      "latencyMs": 225,
+      "tokens": 234,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Pesticides\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "coral-triggers",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Process",
+      "pass": true,
+      "error": null,
+      "latencyMs": 188,
+      "tokens": 201,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Process\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "coral-acid",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Role of ocean acidification",
+      "pass": true,
+      "error": null,
+      "latencyMs": 222,
+      "tokens": 207,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Role of ocean acidification\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "rayleigh-sky",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Cause of the blue color of the sky",
+      "pass": true,
+      "error": null,
+      "latencyMs": 220,
+      "tokens": 126,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Cause of the blue color of the sky\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "evaporation-rate",
+      "rep": 0,
+      "size": "8 sections",
+      "answer": "Factors influencing the rate of evaporation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 210,
+      "tokens": 115,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Factors influencing the rate of evaporation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-shrinking",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Receding shoreline",
+      "pass": true,
+      "error": null,
+      "latencyMs": 199,
+      "tokens": 207,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-salty",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Lake salinity",
+      "pass": true,
+      "error": null,
+      "latencyMs": 200,
+      "tokens": 210,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Lake salinity\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-minerals",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Extraction",
+      "pass": true,
+      "error": null,
+      "latencyMs": 187,
+      "tokens": 208,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Extraction\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-sinkholes",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Formation theories",
+      "pass": false,
+      "error": null,
+      "latencyMs": 189,
+      "tokens": 209,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Formation theories\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-energy",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Water cycle intensification due to climate change",
+      "pass": false,
+      "error": null,
+      "latencyMs": 225,
+      "tokens": 149,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Water cycle intensification due to climate change\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-climate",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Water cycle intensification due to climate change",
+      "pass": true,
+      "error": null,
+      "latencyMs": 224,
+      "tokens": 149,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Water cycle intensification due to climate change\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-residence",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Residence times",
+      "pass": true,
+      "error": null,
+      "latencyMs": 169,
+      "tokens": 144,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Residence times\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba-drought",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Possible causes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 159,
+      "tokens": 160,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Possible causes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba-sea-peoples",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "The Levant",
+      "pass": false,
+      "error": null,
+      "latencyMs": 170,
+      "tokens": 162,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"The Levant\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "ccd-mites",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Varroa mites",
+      "pass": true,
+      "error": null,
+      "latencyMs": 262,
+      "tokens": 271,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Varroa mites\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "ccd-pesticides",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Pesticides",
+      "pass": true,
+      "error": null,
+      "latencyMs": 238,
+      "tokens": 268,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Pesticides\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral-triggers",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Common triggers",
+      "pass": true,
+      "error": null,
+      "latencyMs": 192,
+      "tokens": 228,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Common triggers\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral-acid",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Role of ocean acidification",
+      "pass": true,
+      "error": null,
+      "latencyMs": 227,
+      "tokens": 233,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Role of ocean acidification\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "rayleigh-sky",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Cause of the blue color of the sky",
+      "pass": true,
+      "error": null,
+      "latencyMs": 226,
+      "tokens": 147,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Cause of the blue color of the sky\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "evaporation-rate",
+      "rep": 0,
+      "size": "8 sections",
+      "answer": "Factors influencing the rate of evaporation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 203,
+      "tokens": 134,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Factors influencing the rate of evaporation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-shrinking",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Receding shoreline",
+      "pass": true,
+      "error": null,
+      "latencyMs": 602,
+      "tokens": 179,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-salty",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Salt deposits",
+      "pass": false,
+      "error": null,
+      "latencyMs": 343,
+      "tokens": 180,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Salt deposits\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-minerals",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Extraction",
+      "pass": true,
+      "error": null,
+      "latencyMs": 343,
+      "tokens": 179,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Extraction\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-sinkholes",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Sinkholes and their impact",
+      "pass": true,
+      "error": null,
+      "latencyMs": 385,
+      "tokens": 183,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Sinkholes and their impact\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-energy",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Overall process",
+      "pass": true,
+      "error": null,
+      "latencyMs": 269,
+      "tokens": 124,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Overall process\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-climate",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Water cycle intensification due to climate change",
+      "pass": true,
+      "error": null,
+      "latencyMs": 347,
+      "tokens": 130,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Water cycle intensification due to climate change\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-residence",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Residence times",
+      "pass": true,
+      "error": null,
+      "latencyMs": 275,
+      "tokens": 125,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Residence times\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "lba-drought",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Drought",
+      "pass": true,
+      "error": null,
+      "latencyMs": 301,
+      "tokens": 139,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Drought\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "lba-sea-peoples",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Migratory invasions",
+      "pass": true,
+      "error": null,
+      "latencyMs": 337,
+      "tokens": 143,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Migratory invasions\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "ccd-mites",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Varroa mites",
+      "pass": true,
+      "error": null,
+      "latencyMs": 467,
+      "tokens": 237,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Varroa mites\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "ccd-pesticides",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Pesticides",
+      "pass": true,
+      "error": null,
+      "latencyMs": 415,
+      "tokens": 234,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Pesticides\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "coral-triggers",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Common triggers",
+      "pass": true,
+      "error": null,
+      "latencyMs": 383,
+      "tokens": 202,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Common triggers\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "coral-acid",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Role of ocean acidification",
+      "pass": true,
+      "error": null,
+      "latencyMs": 414,
+      "tokens": 207,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Role of ocean acidification\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "rayleigh-sky",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Cause of the blue color of the sky",
+      "pass": true,
+      "error": null,
+      "latencyMs": 351,
+      "tokens": 126,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Cause of the blue color of the sky\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "evaporation-rate",
+      "rep": 0,
+      "size": "8 sections",
+      "answer": "Factors influencing the rate of evaporation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 334,
+      "tokens": 115,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Factors influencing the rate of evaporation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-shrinking",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Receding shoreline",
+      "pass": true,
+      "error": null,
+      "latencyMs": 387,
+      "tokens": 207,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-salty",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Lake salinity",
+      "pass": true,
+      "error": null,
+      "latencyMs": 388,
+      "tokens": 210,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Lake salinity\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-minerals",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Extraction",
+      "pass": true,
+      "error": null,
+      "latencyMs": 373,
+      "tokens": 208,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Extraction\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-sinkholes",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Sinkholes and their impact",
+      "pass": true,
+      "error": null,
+      "latencyMs": 420,
+      "tokens": 212,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Sinkholes and their impact\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-energy",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Overall process",
+      "pass": true,
+      "error": null,
+      "latencyMs": 293,
+      "tokens": 143,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Overall process\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-climate",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Water cycle intensification due to climate change",
+      "pass": true,
+      "error": null,
+      "latencyMs": 381,
+      "tokens": 149,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Water cycle intensification due to climate change\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-residence",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Residence times",
+      "pass": true,
+      "error": null,
+      "latencyMs": 309,
+      "tokens": 144,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Residence times\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba-drought",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Drought",
+      "pass": true,
+      "error": null,
+      "latencyMs": 298,
+      "tokens": 160,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Drought\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba-sea-peoples",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Warfare",
+      "pass": false,
+      "error": null,
+      "latencyMs": 298,
+      "tokens": 161,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Warfare\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "ccd-mites",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Varroa mites",
+      "pass": true,
+      "error": null,
+      "latencyMs": 496,
+      "tokens": 271,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Varroa mites\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "ccd-pesticides",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Pesticides",
+      "pass": true,
+      "error": null,
+      "latencyMs": 464,
+      "tokens": 268,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Pesticides\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral-triggers",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Common triggers",
+      "pass": true,
+      "error": null,
+      "latencyMs": 379,
+      "tokens": 228,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Common triggers\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral-acid",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Role of ocean acidification",
+      "pass": true,
+      "error": null,
+      "latencyMs": 436,
+      "tokens": 233,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Role of ocean acidification\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "rayleigh-sky",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Cause of the blue color of the sky",
+      "pass": true,
+      "error": null,
+      "latencyMs": 379,
+      "tokens": 147,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Cause of the blue color of the sky\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "evaporation-rate",
+      "rep": 0,
+      "size": "8 sections",
+      "answer": "Factors influencing the rate of evaporation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 333,
+      "tokens": 134,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Factors influencing the rate of evaporation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-shrinking",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Receding shoreline",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1077,
+      "tokens": 179,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-salty",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Lake salinity",
+      "pass": true,
+      "error": null,
+      "latencyMs": 787,
+      "tokens": 181,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Lake salinity\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-minerals",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Extraction",
+      "pass": true,
+      "error": null,
+      "latencyMs": 761,
+      "tokens": 179,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Extraction\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-sinkholes",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Sinkholes and their impact",
+      "pass": true,
+      "error": null,
+      "latencyMs": 842,
+      "tokens": 183,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Sinkholes and their impact\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-energy",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Biogeochemical cycling",
+      "pass": false,
+      "error": null,
+      "latencyMs": 645,
+      "tokens": 127,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Biogeochemical cycling\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-climate",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Water cycle intensification due to climate change",
+      "pass": true,
+      "error": null,
+      "latencyMs": 712,
+      "tokens": 130,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Water cycle intensification due to climate change\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-residence",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Residence times",
+      "pass": true,
+      "error": null,
+      "latencyMs": 579,
+      "tokens": 125,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Residence times\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "lba-drought",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Drought",
+      "pass": true,
+      "error": null,
+      "latencyMs": 666,
+      "tokens": 139,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Drought\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "lba-sea-peoples",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Migratory invasions",
+      "pass": true,
+      "error": null,
+      "latencyMs": 738,
+      "tokens": 143,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Migratory invasions\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "ccd-mites",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Varroa mites",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1039,
+      "tokens": 237,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Varroa mites\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "ccd-pesticides",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Pesticides",
+      "pass": true,
+      "error": null,
+      "latencyMs": 964,
+      "tokens": 234,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Pesticides\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "coral-triggers",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Common triggers",
+      "pass": true,
+      "error": null,
+      "latencyMs": 865,
+      "tokens": 202,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Common triggers\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "coral-acid",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Role of ocean acidification",
+      "pass": true,
+      "error": null,
+      "latencyMs": 947,
+      "tokens": 207,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Role of ocean acidification\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "rayleigh-sky",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Cause of the blue color of the sky",
+      "pass": true,
+      "error": null,
+      "latencyMs": 713,
+      "tokens": 126,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Cause of the blue color of the sky\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "evaporation-rate",
+      "rep": 0,
+      "size": "8 sections",
+      "answer": "Factors influencing the rate of evaporation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 676,
+      "tokens": 115,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Factors influencing the rate of evaporation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-shrinking",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Receding shoreline",
+      "pass": true,
+      "error": null,
+      "latencyMs": 908,
+      "tokens": 208,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-salty",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Lake salinity",
+      "pass": true,
+      "error": null,
+      "latencyMs": 881,
+      "tokens": 210,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Lake salinity\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-minerals",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Extraction",
+      "pass": true,
+      "error": null,
+      "latencyMs": 856,
+      "tokens": 208,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Extraction\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-sinkholes",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Sinkholes and their impact",
+      "pass": true,
+      "error": null,
+      "latencyMs": 938,
+      "tokens": 212,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Sinkholes and their impact\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-energy",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Biogeochemical cycling",
+      "pass": false,
+      "error": null,
+      "latencyMs": 739,
+      "tokens": 146,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Biogeochemical cycling\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-climate",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Water cycle intensification due to climate change",
+      "pass": true,
+      "error": null,
+      "latencyMs": 818,
+      "tokens": 149,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Water cycle intensification due to climate change\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-residence",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Residence times",
+      "pass": true,
+      "error": null,
+      "latencyMs": 687,
+      "tokens": 144,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Residence times\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba-drought",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Drought",
+      "pass": true,
+      "error": null,
+      "latencyMs": 683,
+      "tokens": 160,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Drought\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba-sea-peoples",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Migratory invasions",
+      "pass": true,
+      "error": null,
+      "latencyMs": 763,
+      "tokens": 164,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Migratory invasions\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "ccd-mites",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Varroa mites",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1148,
+      "tokens": 271,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Varroa mites\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "ccd-pesticides",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Neonicotinoids",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1149,
+      "tokens": 270,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Neonicotinoids\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral-triggers",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Common triggers",
+      "pass": true,
+      "error": null,
+      "latencyMs": 879,
+      "tokens": 228,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Common triggers\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral-acid",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Role of ocean acidification",
+      "pass": true,
+      "error": null,
+      "latencyMs": 964,
+      "tokens": 233,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Role of ocean acidification\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "rayleigh-sky",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Cause of the blue color of the sky",
+      "pass": true,
+      "error": null,
+      "latencyMs": 838,
+      "tokens": 147,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Cause of the blue color of the sky\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "evaporation-rate",
+      "rep": 0,
+      "size": "8 sections",
+      "answer": "Factors influencing the rate of evaporation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 690,
+      "tokens": 134,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Factors influencing the rate of evaporation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-shrinking",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Receding shoreline",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1642,
+      "tokens": 179,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-salty",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Lake salinity",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1314,
+      "tokens": 181,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Lake salinity\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-minerals",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Extraction",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1275,
+      "tokens": 179,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Extraction\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "dead-sea-sinkholes",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Sinkholes and their impact",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1387,
+      "tokens": 183,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Sinkholes and their impact\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-energy",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Overall process",
+      "pass": true,
+      "error": null,
+      "latencyMs": 929,
+      "tokens": 124,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Overall process\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-climate",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Water cycle intensification due to climate change",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1134,
+      "tokens": 130,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Water cycle intensification due to climate change\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "water-cycle-residence",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Residence times",
+      "pass": true,
+      "error": null,
+      "latencyMs": 951,
+      "tokens": 125,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Residence times\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "lba-drought",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Drought",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1078,
+      "tokens": 139,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Drought\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "lba-sea-peoples",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Egypt",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1040,
+      "tokens": 139,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Egypt\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "ccd-mites",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Varroa mites",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1713,
+      "tokens": 237,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Varroa mites\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "ccd-pesticides",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Neonicotinoids",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1693,
+      "tokens": 236,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Neonicotinoids\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "coral-triggers",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Common triggers",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1417,
+      "tokens": 202,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Common triggers\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "coral-acid",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Role of ocean acidification",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1497,
+      "tokens": 207,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Role of ocean acidification\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "rayleigh-sky",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Cause of the blue color of the sky",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1134,
+      "tokens": 126,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Cause of the blue color of the sky\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "json",
+      "case": "evaporation-rate",
+      "rep": 0,
+      "size": "8 sections",
+      "answer": "Factors influencing the rate of evaporation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1083,
+      "tokens": 115,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Factors influencing the rate of evaporation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-shrinking",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Receding shoreline",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1460,
+      "tokens": 208,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-salty",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Lake salinity",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1425,
+      "tokens": 210,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Lake salinity\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-minerals",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Extraction",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1401,
+      "tokens": 208,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Extraction\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-sinkholes",
+      "rep": 0,
+      "size": "27 sections",
+      "answer": "Sinkholes and their impact",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1499,
+      "tokens": 212,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Sinkholes and their impact\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-energy",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Biogeochemical cycling",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1175,
+      "tokens": 146,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Biogeochemical cycling\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-climate",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Water cycle intensification due to climate change",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1284,
+      "tokens": 149,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Water cycle intensification due to climate change\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle-residence",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Residence times",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1105,
+      "tokens": 144,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Residence times\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba-drought",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Drought",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1089,
+      "tokens": 160,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Drought\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba-sea-peoples",
+      "rep": 0,
+      "size": "18 sections",
+      "answer": "Migratory invasions",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1213,
+      "tokens": 164,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Migratory invasions\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "ccd-mites",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Varroa mites",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1887,
+      "tokens": 271,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Varroa mites\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "ccd-pesticides",
+      "rep": 0,
+      "size": "32 sections",
+      "answer": "Neonicotinoids",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1868,
+      "tokens": 270,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Neonicotinoids\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral-triggers",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Common triggers",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1434,
+      "tokens": 228,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Common triggers\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral-acid",
+      "rep": 0,
+      "size": "28 sections",
+      "answer": "Role of ocean acidification",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1584,
+      "tokens": 233,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Role of ocean acidification\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "rayleigh-sky",
+      "rep": 0,
+      "size": "9 sections",
+      "answer": "Cause of the blue color of the sky",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1327,
+      "tokens": 147,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Cause of the blue color of the sky\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "evaporation-rate",
+      "rep": 0,
+      "size": "8 sections",
+      "answer": "Factors influencing the rate of evaporation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1125,
+      "tokens": 134,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"section\": \"Factors influencing the rate of evaporation\"}"
+      ]
+    }
+  ]
+}

@@ -19,7 +19,7 @@ import { applyResult, captureEvidence, children, nextRunnable, recordFailedLooku
 export const WALK_VERSION = "walk-1";
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
-export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "json", missing: "search", question: "one" });
+export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "list", missing: "search", question: "one" });
 // How many sentences one pick sees. Beyond this, the walk asks again over the
 // next window; a visit's passes bound how far it reads.
 export const WINDOW = 12;
