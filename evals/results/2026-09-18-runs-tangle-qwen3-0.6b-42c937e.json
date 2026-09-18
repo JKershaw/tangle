@@ -1,0 +1,441 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-0.6B-q4f16_1-MLC",
+  "commit": "42c937e",
+  "head": "658da1e",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T07:53:47.255Z",
+  "loadSeconds": 5,
+  "prompt": "walk-4/asks-2",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:list",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-4",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "list"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 77,
+      "mean": 38.5
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 1.68,
+      "mean": 0.9
+    },
+    "load": {
+      "min": 17.69,
+      "max": 18.41,
+      "mean": 18.1
+    },
+    "memoryFreePercent": {
+      "min": 80,
+      "max": 85,
+      "mean": 82.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "limits": "default",
+  "seeds": 7,
+  "resolved": 0,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 311
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 13,
+      "wiki": {
+        "hits": 2,
+        "misses": 0,
+        "entries": 173,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-dead-sea.json",
+      "summary": "live run · seed: Why is the Dead Sea shrinking?\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:53:52.534Z · exported 2026-09-18T07:54:05.362Z\nnodes 1 · visits 1 · model calls 3 · lookups 1 · evidence 0 · tokens 311\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked 2 failed lookups] Why is the Dead Sea shrinking? !! Nothing could be read for this question.\n\nmodel latency ms: median 2349 · max 7234 · n 3\nworth a look:\n- n1 lookup found nothing: “Dead Sea shrinking” (None of the articles found for “Dead Sea shrinking” is about the question: Dead Sea, Aral Sea, Mediterranean–Dead Sea Canal, Red Sea–Dead Sea Water Conveyance, Kaydak Inlet.)\n- n1 lookup found nothing: “dead sea shrinking” (Already tried.)\n- n1 blocked: Nothing could be read for this question."
+    },
+    {
+      "id": "water-cycle",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "evaporation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 2,
+        "tokens": 444
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 4,
+        "misses": 2,
+        "entries": 175,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-water-cycle.json",
+      "summary": "live run · seed: Why does the water cycle keep going?\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:54:05.365Z · exported 2026-09-18T07:54:06.954Z\nnodes 1 · visits 1 · model calls 4 · lookups 2 · evidence 0 · tokens 444\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked 2 failed lookups] Why does the water cycle keep going? !! Nothing could be read for this question.\n\nmodel latency ms: median 182 · max 209 · n 4\nworth a look:\n- n1 lookup found nothing: “water cycle” (None of the articles found for “water cycle” is about the question: Water cycle, Deep water cycle, Effects of climate change on the water cycle, Biogeochemical cycle, Water.)\n- n1 lookup found nothing: “Why the Water Cycle Keeps Going” (None of the articles found for “Why the Water Cycle Keeps Going” is about the question: Elsewhere (Blatty novel), Pop pop boat, Water tower, Big Brother 28 (American season), Tide.)\n- n1 blocked: Nothing could be read for this question."
+    },
+    {
+      "id": "bronze-age",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sea-peoples": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 322
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 6,
+        "misses": 2,
+        "entries": 175,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-bronze-age.json",
+      "summary": "live run · seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:54:06.957Z · exported 2026-09-18T07:54:08.553Z\nnodes 1 · visits 1 · model calls 3 · lookups 1 · evidence 0 · tokens 322\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked 2 failed lookups] Why did the Late Bronze Age collapse happen? !! Nothing could be read for this question.\n\nmodel latency ms: median 162 · max 199 · n 3\nworth a look:\n- n1 lookup found nothing: “Late Bronze Age collapse” (None of the articles found for “Late Bronze Age collapse” is about the question: Late Bronze Age collapse, Bronze Age, History of the ancient Levant, 1177 B.C.: The Year Civilization Collapsed, Ancient Near East.)\n- n1 lookup found nothing: “Late Bronze Age Collapse” (Already tried.)\n- n1 blocked: Nothing could be read for this question."
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "mites": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "pesticides": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "pathogens": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "stressors": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 2,
+        "tokens": 422
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 8,
+        "misses": 4,
+        "entries": 177,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-colony-collapse.json",
+      "summary": "live run · seed: Why do honey bee colonies collapse?\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:54:08.556Z · exported 2026-09-18T07:54:10.152Z\nnodes 1 · visits 1 · model calls 4 · lookups 2 · evidence 0 · tokens 422\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked 2 failed lookups] Why do honey bee colonies collapse? !! Nothing could be read for this question.\n\nmodel latency ms: median 178 · max 204 · n 4\nworth a look:\n- n1 lookup found nothing: “honey bee colonies collapse” (None of the articles found for “honey bee colonies collapse” is about the question: Colony collapse disorder, Western honey bee, Bee, Africanized bee, Honey bee.)\n- n1 lookup found nothing: “why” (None of the articles found for “why” is about the question: Why, This Is Why, Why Me? Why Not., Why Not, Why Lady Why.)\n- n1 blocked: Nothing could be read for this question."
+    },
+    {
+      "id": "coral",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "temperature": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "algae": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 2,
+        "tokens": 444
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "kind": "single-lead",
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 11,
+        "misses": 5,
+        "entries": 178,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-coral.json",
+      "summary": "live run · seed: Why do coral reefs bleach?\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:54:10.156Z · exported 2026-09-18T07:54:11.746Z\nnodes 1 · visits 1 · model calls 4 · lookups 2 · evidence 0 · tokens 444\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked 2 failed lookups] Why do coral reefs bleach? !! Nothing could be read for this question.\n\nmodel latency ms: median 188 · max 191 · n 4\nworth a look:\n- n1 lookup found nothing: “coral reefs bleach” (None of the articles found for “coral reefs bleach” is about the question: Coral bleaching, 2023–2025 global coral bleaching event, Coral island, Great Barrier Reef, Coral reef.)\n- n1 lookup found nothing: “coral bleaching” (None of the articles found for “coral bleaching” is about the question: Coral bleaching, 2023–2025 global coral bleaching event, Fire coral, UV filter, Oval butterflyfish.)\n- n1 blocked: Nothing could be read for this question."
+    },
+    {
+      "id": "sky-blue",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "rayleigh": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 2,
+        "tokens": 425
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "kind": "single-lead, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 14,
+        "misses": 6,
+        "entries": 179,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-sky-blue.json",
+      "summary": "live run · seed: Why is the sky blue?\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:54:11.749Z · exported 2026-09-18T07:54:13.344Z\nnodes 1 · visits 1 · model calls 4 · lookups 2 · evidence 0 · tokens 425\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked 2 failed lookups] Why is the sky blue? !! Nothing could be read for this question.\n\nmodel latency ms: median 175 · max 203 · n 4\nworth a look:\n- n1 lookup found nothing: “sky blue” (None of the articles found for “sky blue” is about the question: Sky blue, Sky Blue Sky, Blue Sky Blue, Blue Sky Studios, Mr. Blue Sky.)\n- n1 lookup found nothing: “why is the sky blue” (None of the articles found for “why is the sky blue” is about the question: Diffuse sky radiation, Sky blue, Blue moon, Ask the StoryBots, Blue.)\n- n1 blocked: Nothing could be read for this question."
+    },
+    {
+      "id": "aral",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "irrigation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "soviet": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 317
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 16,
+        "misses": 6,
+        "entries": 179,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-0.6b-tangle-aral.json",
+      "summary": "live run · seed: Why did the Aral Sea shrink?\nmodel Qwen3-0.6B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:54:13.347Z · exported 2026-09-18T07:54:14.941Z\nnodes 1 · visits 1 · model calls 3 · lookups 1 · evidence 0 · tokens 317\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked 2 failed lookups] Why did the Aral Sea shrink? !! Nothing could be read for this question.\n\nmodel latency ms: median 168 · max 219 · n 3\nworth a look:\n- n1 lookup found nothing: “Aral Sea shrink” (None of the articles found for “Aral Sea shrink” is about the question: North Aral Sea, South Aral Sea, Aral Sea, International Fund for Saving the Aral Sea, Aral, Kazakhstan.)\n- n1 lookup found nothing: “Aral Sea Shrink” (Already tried.)\n- n1 blocked: Nothing could be read for this question."
+    }
+  ],
+  "notes": [
+    "2026-09-18T07:53:47.255Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-4\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"check\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"list\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T07:53:47.378Z loading: Checking this device before downloading…",
+    "2026-09-18T07:53:52.384Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-0.6B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 94% · vram 0.03 GiB · load 17.69 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T07:53:52.480Z 7 seeds · mode tangle · limits {} · prompt walk-4/asks-2 · grammar sentence:check,section:list,missing:search,question:one,article:list · commit 42c937e",
+    "wiki recording: 173 responses loaded",
+    "2026-09-18T07:54:05.306Z run stopped: No runnable nodes · root unresolved",
+    "dead-sea: No runnable nodes · root unresolved · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 3 calls, 1 lookups, 311 tokens · 13 s · wiki 2 hits 0 misses",
+    "2026-09-18T07:54:06.901Z run stopped: No runnable nodes · root unresolved",
+    "water-cycle: No runnable nodes · root unresolved · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 4 calls, 2 lookups, 444 tokens · 2 s · wiki 4 hits 2 misses",
+    "2026-09-18T07:54:08.503Z run stopped: No runnable nodes · root unresolved",
+    "bronze-age: No runnable nodes · root unresolved · facts 0/4 · supported 0/4 · read 0/4 · 1 nodes, 3 calls, 1 lookups, 322 tokens · 2 s · wiki 6 hits 2 misses",
+    "2026-09-18T07:54:10.099Z run stopped: No runnable nodes · root unresolved",
+    "colony-collapse: No runnable nodes · root unresolved · facts 0/4 · supported 0/4 · read 0/4 · 1 nodes, 4 calls, 2 lookups, 422 tokens · 2 s · wiki 8 hits 4 misses",
+    "2026-09-18T07:54:11.694Z run stopped: No runnable nodes · root unresolved",
+    "coral: No runnable nodes · root unresolved · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 4 calls, 2 lookups, 444 tokens · 2 s · wiki 11 hits 5 misses",
+    "2026-09-18T07:54:13.285Z run stopped: No runnable nodes · root unresolved",
+    "sky-blue: No runnable nodes · root unresolved · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 4 calls, 2 lookups, 425 tokens · 2 s · wiki 14 hits 6 misses",
+    "2026-09-18T07:54:14.889Z run stopped: No runnable nodes · root unresolved",
+    "aral: No runnable nodes · root unresolved · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 3 calls, 1 lookups, 317 tokens · 2 s · wiki 16 hits 6 misses",
+    "machine during the suite: gpu 38.5% mean, 77% peak · vram up to 1.68 GiB · load up to 18.41 · no throttling in 2 samples"
+  ]
+}

@@ -1,0 +1,1698 @@
+{
+  "ask": "article",
+  "asks": "asks-2",
+  "commit": "7279d41",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-6",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "date": "2026-09-18T08:10:27.767Z",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "models": [
+    "Qwen3-0.6B-q4f16_1-MLC",
+    "Qwen3-1.7B-q4f16_1-MLC",
+    "Qwen3-4B-q4f16_1-MLC",
+    "Qwen3-8B-q4f16_1-MLC"
+  ],
+  "variants": [
+    "list",
+    "snippets"
+  ],
+  "repeat": 1,
+  "cases": [
+    "dead-sea-stripped",
+    "dead-sea-raw-none",
+    "sky-colour",
+    "sky-raw",
+    "sky-studios-none",
+    "aral-shrink",
+    "lba",
+    "bees",
+    "coral",
+    "water-cycle",
+    "aral-split",
+    "weapon-none"
+  ],
+  "rows": [
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "passed": 3,
+      "total": 12,
+      "medianMs": 144,
+      "calls": 12,
+      "failed": [
+        "dead-sea-stripped",
+        "sky-colour",
+        "sky-raw",
+        "aral-shrink",
+        "lba",
+        "bees",
+        "coral",
+        "water-cycle",
+        "aral-split"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "passed": 3,
+      "total": 12,
+      "medianMs": 245,
+      "calls": 12,
+      "failed": [
+        "dead-sea-stripped",
+        "sky-colour",
+        "sky-raw",
+        "aral-shrink",
+        "lba",
+        "bees",
+        "coral",
+        "water-cycle",
+        "aral-split"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "passed": 10,
+      "total": 12,
+      "medianMs": 296,
+      "calls": 12,
+      "failed": [
+        "sky-raw",
+        "sky-studios-none"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "passed": 9,
+      "total": 12,
+      "medianMs": 539,
+      "calls": 12,
+      "failed": [
+        "sky-studios-none",
+        "coral",
+        "water-cycle"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "passed": 9,
+      "total": 12,
+      "medianMs": 619,
+      "calls": 12,
+      "failed": [
+        "dead-sea-stripped",
+        "sky-raw",
+        "sky-studios-none"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "passed": 9,
+      "total": 12,
+      "medianMs": 1254,
+      "calls": 12,
+      "failed": [
+        "dead-sea-stripped",
+        "sky-studios-none",
+        "coral"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "passed": 10,
+      "total": 12,
+      "medianMs": 994,
+      "calls": 12,
+      "failed": [
+        "dead-sea-raw-none",
+        "sky-raw"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "passed": 12,
+      "total": 12,
+      "medianMs": 2030,
+      "calls": 12,
+      "failed": []
+    }
+  ],
+  "results": [
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 409,
+      "tokens": 135,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 155,
+      "tokens": 129,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 150,
+      "tokens": 132,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 143,
+      "tokens": 124,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 143,
+      "tokens": 128,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 158,
+      "tokens": 135,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 143,
+      "tokens": 128,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 143,
+      "tokens": 128,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 142,
+      "tokens": 125,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 144,
+      "tokens": 129,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 142,
+      "tokens": 134,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 157,
+      "tokens": 135,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 279,
+      "tokens": 347,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 244,
+      "tokens": 325,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 268,
+      "tokens": 333,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 295,
+      "tokens": 372,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 240,
+      "tokens": 302,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 287,
+      "tokens": 344,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 244,
+      "tokens": 299,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 245,
+      "tokens": 320,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 241,
+      "tokens": 306,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 239,
+      "tokens": 299,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": false,
+      "error": null,
+      "latencyMs": 268,
+      "tokens": 334,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 242,
+      "tokens": 319,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Dead Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 519,
+      "tokens": 136,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Dead Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "List of drying lakes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 302,
+      "tokens": 132,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"List of drying lakes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Rayleigh scattering",
+      "pass": true,
+      "error": null,
+      "latencyMs": 287,
+      "tokens": 134,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Rayleigh scattering\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Sky blue",
+      "pass": false,
+      "error": null,
+      "latencyMs": 268,
+      "tokens": 125,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Sky blue\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Science",
+      "pass": false,
+      "error": null,
+      "latencyMs": 255,
+      "tokens": 128,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Science\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 314,
+      "tokens": 137,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 296,
+      "tokens": 131,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Late Bronze Age collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Colony collapse disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 299,
+      "tokens": 131,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Colony collapse disorder\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 304,
+      "tokens": 128,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Water cycle",
+      "pass": true,
+      "error": null,
+      "latencyMs": 268,
+      "tokens": 130,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Water cycle\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 283,
+      "tokens": 136,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 292,
+      "tokens": 135,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Dead Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 545,
+      "tokens": 348,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Dead Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "List of drying lakes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 532,
+      "tokens": 328,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"List of drying lakes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Rayleigh scattering",
+      "pass": true,
+      "error": null,
+      "latencyMs": 558,
+      "tokens": 335,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Rayleigh scattering\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Diffuse sky radiation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 631,
+      "tokens": 375,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Diffuse sky radiation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Blue Sky Studios",
+      "pass": false,
+      "error": null,
+      "latencyMs": 508,
+      "tokens": 304,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Blue Sky Studios\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 563,
+      "tokens": 346,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 526,
+      "tokens": 302,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Late Bronze Age collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Colony collapse disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 528,
+      "tokens": 323,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Colony collapse disorder\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Coral reef fish",
+      "pass": false,
+      "error": null,
+      "latencyMs": 523,
+      "tokens": 309,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Coral reef fish\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Biogeochemical cycle",
+      "pass": false,
+      "error": null,
+      "latencyMs": 539,
+      "tokens": 303,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Biogeochemical cycle\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 557,
+      "tokens": 336,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 489,
+      "tokens": 319,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Red Sea–Dead Sea Water Conveyance",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1094,
+      "tokens": 143,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Red Sea–Dead Sea Water Conveyance\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "List of drying lakes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 631,
+      "tokens": 132,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"List of drying lakes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Rayleigh scattering",
+      "pass": true,
+      "error": null,
+      "latencyMs": 599,
+      "tokens": 134,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Rayleigh scattering\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Sky blue",
+      "pass": false,
+      "error": null,
+      "latencyMs": 560,
+      "tokens": 125,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Sky blue\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Science",
+      "pass": false,
+      "error": null,
+      "latencyMs": 541,
+      "tokens": 128,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Science\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 687,
+      "tokens": 137,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 619,
+      "tokens": 131,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Late Bronze Age collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Colony collapse disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 619,
+      "tokens": 131,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Colony collapse disorder\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 613,
+      "tokens": 128,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Water cycle",
+      "pass": true,
+      "error": null,
+      "latencyMs": 567,
+      "tokens": 130,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Water cycle\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 596,
+      "tokens": 136,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 633,
+      "tokens": 135,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Red Sea–Dead Sea Water Conveyance",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1466,
+      "tokens": 355,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Red Sea–Dead Sea Water Conveyance\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "List of drying lakes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1254,
+      "tokens": 328,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"List of drying lakes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Rayleigh scattering",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1274,
+      "tokens": 335,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Rayleigh scattering\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Diffuse sky radiation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1406,
+      "tokens": 375,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Diffuse sky radiation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Pale Blue Dot",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1186,
+      "tokens": 304,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Pale Blue Dot\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1286,
+      "tokens": 346,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1214,
+      "tokens": 302,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Late Bronze Age collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Colony collapse disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1249,
+      "tokens": 323,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Colony collapse disorder\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Coral reef",
+      "pass": false,
+      "error": null,
+      "latencyMs": 1206,
+      "tokens": 308,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Coral reef\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Water cycle",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1156,
+      "tokens": 300,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Water cycle\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1275,
+      "tokens": 336,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1159,
+      "tokens": 319,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Dead Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1360,
+      "tokens": 136,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Dead Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": false,
+      "error": null,
+      "latencyMs": 969,
+      "tokens": 131,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Rayleigh scattering",
+      "pass": true,
+      "error": null,
+      "latencyMs": 974,
+      "tokens": 134,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Rayleigh scattering\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Sky blue",
+      "pass": false,
+      "error": null,
+      "latencyMs": 924,
+      "tokens": 125,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Sky blue\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Blue",
+      "pass": true,
+      "error": null,
+      "latencyMs": 894,
+      "tokens": 128,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Blue\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1112,
+      "tokens": 137,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1002,
+      "tokens": 131,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Late Bronze Age collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Colony collapse disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 999,
+      "tokens": 131,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Colony collapse disorder\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 994,
+      "tokens": 128,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Water cycle",
+      "pass": true,
+      "error": null,
+      "latencyMs": 930,
+      "tokens": 130,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Water cycle\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 970,
+      "tokens": 136,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "list",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1032,
+      "tokens": 135,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "dead-sea-stripped",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Dead Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2095,
+      "tokens": 348,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Dead Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "dead-sea-raw-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "List of drying lakes",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2030,
+      "tokens": 328,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"List of drying lakes\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-colour",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Rayleigh scattering",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2111,
+      "tokens": 335,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Rayleigh scattering\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-raw",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Diffuse sky radiation",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2377,
+      "tokens": 375,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Diffuse sky radiation\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "sky-studios-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Blue",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1866,
+      "tokens": 302,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Blue\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "aral-shrink",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2128,
+      "tokens": 346,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "lba",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Late Bronze Age collapse",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1977,
+      "tokens": 302,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Late Bronze Age collapse\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "bees",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Colony collapse disorder",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2024,
+      "tokens": 323,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Colony collapse disorder\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "coral",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Coral bleaching",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1999,
+      "tokens": 309,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Coral bleaching\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "water-cycle",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Water cycle",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1898,
+      "tokens": 300,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Water cycle\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "aral-split",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "Aral Sea",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2116,
+      "tokens": 336,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"Aral Sea\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "snippets",
+      "case": "weapon-none",
+      "rep": 0,
+      "size": "5 hits",
+      "answer": "none",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1905,
+      "tokens": 319,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"article\": \"none\"}"
+      ]
+    }
+  ]
+}

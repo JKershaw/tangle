@@ -1,0 +1,444 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "42c937e",
+  "head": "658da1e",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T07:49:46.627Z",
+  "loadSeconds": 5,
+  "prompt": "walk-4/asks-2",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:list",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-4",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "list"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 10,
+    "gpuPercent": {
+      "min": 0,
+      "max": 97,
+      "mean": 85.6
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 2.29,
+      "mean": 1.7
+    },
+    "load": {
+      "min": 13.4,
+      "max": 20.25,
+      "mean": 17.3
+    },
+    "memoryFreePercent": {
+      "min": 78,
+      "max": 85,
+      "mean": 79.8
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "limits": "default",
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 9,
+  "factsSupported": 9,
+  "factsRead": 20,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 10,
+        "lookups": 2,
+        "tokens": 3080
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. As of 2021, the surface of the Sea has shrunk by about 33 percent since the 1960s, which is partly attributed to the much-reduced flow of the Jordan River since the construction of the National Water Carrier project, and the amount of water from the rains reaching the Dead Sea has diminished even further since flash floods started pouring into the sinkholes left by its shrinkage.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 3,
+        "misses": 0,
+        "entries": 158,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-dead-sea.json",
+      "summary": "live run · seed: Why is the Dead Sea shrinking?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:49:51.916Z · exported 2026-09-18T07:49:59.757Z\nnodes 1 · visits 1 · model calls 10 · lookups 2 · evidence 2 · tokens 3080\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is the Dead Sea shrinking? → The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming w\n\nmodel latency ms: median 500 · max 968 · n 10\nnothing flagged"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "evaporation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 5,
+        "visits": 9,
+        "modelCalls": 62,
+        "lookups": 15,
+        "tokens": 23683
+      },
+      "statuses": {
+        "resolved": 2,
+        "blocked": 3
+      },
+      "finding": "The ocean plays a key role in the water cycle as it is the source of 86% of global evaporation.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 58,
+      "wiki": {
+        "hits": 21,
+        "misses": 7,
+        "entries": 165,
+        "added": 7
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-water-cycle.json",
+      "summary": "live run · seed: Why does the water cycle keep going?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:49:59.765Z · exported 2026-09-18T07:50:57.431Z\nnodes 5 · visits 9 · model calls 62 · lookups 15 · evidence 14 · tokens 23683\nstatuses {\"resolved\":2,\"blocked\":3} · outcome: root resolved\n\nn1 [resolved v4] Why does the water cycle keep going? → The ocean plays a key role in the water cycle as it is the source of 86% of global evapora\n  n2 [blocked] What causes the phase changes of water in the water cycle? !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n3 [blocked v2] What is the source of the water that is not directly part of the cycle? !! Nothing read states the answer, and no further lookup or question is allowed here.\n    n4 [blocked 1 failed lookup] What is the name of the cycle that describes the exchange of water between the mantle and the surface? !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n5 [resolved] What is the role of the ocean in the water cycle? → The ocean plays a key role in the water cycle as it is the source of 86% of global evapora\n\nmodel latency ms: median 393 · max 9875 · n 62\nworth a look:\n- n4 lookup found nothing: “name of cycle that describes exchange of water between mantle and surface” (None of the articles found for “name of cycle that describes exchange of water between mantle and surface” is about the question: Biogeochemical cycle, Water, Hydrogen isotope biogeochemistry, Oceanic carbon cycle, Squid.)\n- n2 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n3 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n4 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n1 resolved citing only its children's sources"
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sea-peoples": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 3,
+        "visits": 5,
+        "modelCalls": 27,
+        "lookups": 7,
+        "tokens": 8845
+      },
+      "statuses": {
+        "resolved": 2,
+        "blocked": 1
+      },
+      "finding": "These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea Peoples, economic disruptions due to increased ironworking, and changes in military technology and strategy that brought the decline of chariot warfare.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 17,
+      "wiki": {
+        "hits": 31,
+        "misses": 7,
+        "entries": 165,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-bronze-age.json",
+      "summary": "live run · seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:50:57.455Z · exported 2026-09-18T07:51:14.050Z\nnodes 3 · visits 5 · model calls 27 · lookups 7 · evidence 7 · tokens 8845\nstatuses {\"resolved\":2,\"blocked\":1} · outcome: root resolved\n\nn1 [resolved v3] Why did the Late Bronze Age collapse happen? → These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea \n  n2 [blocked] What specific factors contributed to the collapse of the Late Bronze Age society? !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n3 [resolved] What factors contributed to the societal and environmental changes during the Late Bronze Age collapse? → These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea \n\nmodel latency ms: median 317 · max 2899 · n 27\nworth a look:\n- n2 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n1 resolved citing only its children's sources"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pesticides": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pathogens": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "stressors": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 2,
+        "visits": 3,
+        "modelCalls": 15,
+        "lookups": 3,
+        "tokens": 4324
+      },
+      "statuses": {
+        "resolved": 2
+      },
+      "finding": "Suggested causes include pesticides, infections with various pathogens (especially those transmitted by Varroa and Acarapis mites), malnutrition, genetic factors, immunodeficiencies, loss of habitat, or changing beekeeping practices; combinations of these factors have also been cited.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 36,
+        "misses": 7,
+        "entries": 165,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-colony-collapse.json",
+      "summary": "live run · seed: Why do honey bee colonies collapse?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:51:14.068Z · exported 2026-09-18T07:51:24.666Z\nnodes 2 · visits 3 · model calls 15 · lookups 3 · evidence 3 · tokens 4324\nstatuses {\"resolved\":2} · outcome: root resolved\n\nn1 [resolved v2] Why do honey bee colonies collapse? → Suggested causes include pesticides, infections with various pathogens (especially those t\n  n2 [resolved] What is the role of beekeeping practices in the development of colony collapse disorder? → Suggested causes include pesticides, infections with various pathogens (especially those t\n\nmodel latency ms: median 327 · max 1981 · n 15\nworth a look:\n- n1 resolved citing only its children's sources"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "temperature": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "algae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 5,
+        "lookups": 1,
+        "tokens": 1012
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Coral bleaching is the process where corals become white due to loss of symbiotic algae and photosynthetic pigments.",
+      "kind": "single-lead",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 38,
+        "misses": 7,
+        "entries": 165,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-coral.json",
+      "summary": "live run · seed: Why do coral reefs bleach?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:51:24.674Z · exported 2026-09-18T07:51:29.244Z\nnodes 1 · visits 1 · model calls 5 · lookups 1 · evidence 1 · tokens 1012\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do coral reefs bleach? → Coral bleaching is the process where corals become white due to loss of symbiotic algae an\n\nmodel latency ms: median 367 · max 575 · n 5\nnothing flagged"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 3,
+        "visits": 5,
+        "modelCalls": 21,
+        "lookups": 5,
+        "tokens": 4550
+      },
+      "statuses": {
+        "resolved": 3
+      },
+      "finding": "They serve as permanent and transparent forums for the dissemination, scrutiny, and discussion of research.",
+      "kind": "single-lead, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 14,
+      "wiki": {
+        "hits": 44,
+        "misses": 13,
+        "entries": 171,
+        "added": 6
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-sky-blue.json",
+      "summary": "live run · seed: Why is the sky blue?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:51:29.248Z · exported 2026-09-18T07:51:42.844Z\nnodes 3 · visits 5 · model calls 21 · lookups 5 · evidence 5 · tokens 4550\nstatuses {\"resolved\":3} · outcome: root resolved\n\nn1 [resolved v2] Why is the sky blue? → They serve as permanent and transparent forums for the dissemination, scrutiny, and discus\n  n2 [resolved v2] What is the scientific reason for the sky appearing blue? → They serve as permanent and transparent forums for the dissemination, scrutiny, and discus\n    n3 [resolved] What is the role of scientific journals in the scientific community? → They serve as permanent and transparent forums for the dissemination, scrutiny, and discus\n\nmodel latency ms: median 324 · max 1463 · n 21\nworth a look:\n- n1 resolved citing only its children's sources\n- n2 resolved citing only its children's sources"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "irrigation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "soviet": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 3,
+        "visits": 5,
+        "modelCalls": 43,
+        "lookups": 8,
+        "tokens": 16305
+      },
+      "statuses": {
+        "resolved": 2,
+        "blocked": 1
+      },
+      "finding": "The ecosystems of the Aral Sea and the river deltas feeding into it have been nearly destroyed, largely because of the salinity being dramatically higher than ocean water.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 32,
+      "wiki": {
+        "hits": 55,
+        "misses": 15,
+        "entries": 173,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-aral.json",
+      "summary": "live run · seed: Why did the Aral Sea shrink?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-4/asks-2/sentence:check,section:list,missing:search,question:one,article:list · created 2026-09-18T07:51:42.857Z · exported 2026-09-18T07:52:14.463Z\nnodes 3 · visits 5 · model calls 43 · lookups 8 · evidence 8 · tokens 16305\nstatuses {\"resolved\":2,\"blocked\":1} · outcome: root resolved\n\nn1 [resolved v3] Why did the Aral Sea shrink? → The ecosystems of the Aral Sea and the river deltas feeding into it have been nearly destr\n  n2 [blocked] What is the primary cause of the pollution in the Aral Sea and its surrounding areas? !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n3 [resolved] What is the impact of agricultural practices on the Aral Sea? → The ecosystems of the Aral Sea and the river deltas feeding into it have been nearly destr\n\nmodel latency ms: median 437 · max 6240 · n 43\nworth a look:\n- n2 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n1 resolved citing only its children's sources"
+    }
+  ],
+  "notes": [
+    "2026-09-18T07:49:46.627Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-4\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"check\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"list\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T07:49:46.752Z loading: Checking this device before downloading…",
+    "2026-09-18T07:49:51.756Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 94% · vram 0.03 GiB · load 19.89 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T07:49:51.847Z 7 seeds · mode tangle · limits {} · prompt walk-4/asks-2 · grammar sentence:check,section:list,missing:search,question:one,article:list · commit 42c937e",
+    "wiki recording: 158 responses loaded",
+    "2026-09-18T07:49:59.710Z run stopped: Root resolved",
+    "dead-sea: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 10 calls, 2 lookups, 3080 tokens · 8 s · wiki 3 hits 0 misses",
+    "2026-09-18T07:50:57.376Z run stopped: Root resolved",
+    "water-cycle: resolved · facts 1/3 · supported 1/3 · read 3/3 · 5 nodes, 62 calls, 15 lookups, 23683 tokens · 58 s · wiki 21 hits 7 misses",
+    "2026-09-18T07:51:13.999Z run stopped: Root resolved",
+    "bronze-age: resolved · facts 2/4 · supported 2/4 · read 4/4 · 3 nodes, 27 calls, 7 lookups, 8845 tokens · 17 s · wiki 31 hits 7 misses",
+    "2026-09-18T07:51:24.615Z run stopped: Root resolved",
+    "colony-collapse: resolved · facts 4/4 · supported 4/4 · read 4/4 · 2 nodes, 15 calls, 3 lookups, 4324 tokens · 11 s · wiki 36 hits 7 misses",
+    "2026-09-18T07:51:29.211Z run stopped: Root resolved",
+    "coral: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 5 calls, 1 lookups, 1012 tokens · 5 s · wiki 38 hits 7 misses",
+    "2026-09-18T07:51:42.794Z run stopped: Root resolved",
+    "sky-blue: resolved · facts 0/3 · supported 0/3 · read 0/3 · 3 nodes, 21 calls, 5 lookups, 4550 tokens · 14 s · wiki 44 hits 13 misses",
+    "2026-09-18T07:52:14.411Z run stopped: Root resolved",
+    "aral: resolved · facts 0/3 · supported 0/3 · read 3/3 · 3 nodes, 43 calls, 8 lookups, 16305 tokens · 32 s · wiki 55 hits 15 misses",
+    "machine during the suite: gpu 85.6% mean, 97% peak · vram up to 2.29 GiB · load up to 20.25 · no throttling in 10 samples"
+  ]
+}

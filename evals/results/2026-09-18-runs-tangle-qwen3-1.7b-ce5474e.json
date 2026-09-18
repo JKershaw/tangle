@@ -1,0 +1,443 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "ce5474e",
+  "head": "1518286",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T07:41:43.938Z",
+  "loadSeconds": 5,
+  "prompt": "walk-3/asks-2",
+  "schema": "sentence:check,section:list,missing:search,question:one",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-3",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 14,
+    "gpuPercent": {
+      "min": 0,
+      "max": 97,
+      "mean": 88.8
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 2.3,
+      "mean": 1.8
+    },
+    "load": {
+      "min": 15.09,
+      "max": 19.73,
+      "mean": 17.1
+    },
+    "memoryFreePercent": {
+      "min": 78,
+      "max": 85,
+      "mean": 79.3
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "limits": "default",
+  "seeds": 7,
+  "resolved": 6,
+  "factsPresent": 8,
+  "factsSupported": 8,
+  "factsRead": 20,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 9,
+        "lookups": 2,
+        "tokens": 2944
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. As of 2021, the surface of the Sea has shrunk by about 33 percent since the 1960s, which is partly attributed to the much-reduced flow of the Jordan River since the construction of the National Water Carrier project, and the amount of water from the rains reaching the Dead Sea has diminished even further since flash floods started pouring into the sinkholes left by its shrinkage.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 3,
+        "misses": 0,
+        "entries": 153,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-dead-sea.json",
+      "summary": "live run · seed: Why is the Dead Sea shrinking?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-3/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:41:49.261Z · exported 2026-09-18T07:41:57.126Z\nnodes 1 · visits 1 · model calls 9 · lookups 2 · evidence 2 · tokens 2944\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is the Dead Sea shrinking? → The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming w\n\nmodel latency ms: median 407 · max 1154 · n 9\nnothing flagged"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": false,
+      "outcome": "No runnable nodes · root unresolved",
+      "facts": {
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "evaporation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 2,
+        "visits": 3,
+        "modelCalls": 24,
+        "lookups": 4,
+        "tokens": 10696
+      },
+      "statuses": {
+        "blocked": 2
+      },
+      "finding": null,
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 28,
+      "wiki": {
+        "hits": 9,
+        "misses": 0,
+        "entries": 153,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-water-cycle.json",
+      "summary": "live run · seed: Why does the water cycle keep going?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-3/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:41:57.134Z · exported 2026-09-18T07:42:25.245Z\nnodes 2 · visits 3 · model calls 24 · lookups 4 · evidence 4 · tokens 10696\nstatuses {\"blocked\":2} · outcome: root unresolved\n\nn1 [blocked v2] Why does the water cycle keep going? !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n2 [blocked] What causes the phase changes of water in the water cycle? !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 609 · max 9879 · n 24\nworth a look:\n- n1 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n2 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sea-peoples": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 4,
+        "visits": 7,
+        "modelCalls": 47,
+        "lookups": 9,
+        "tokens": 17006
+      },
+      "statuses": {
+        "resolved": 2,
+        "blocked": 2
+      },
+      "finding": "These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea Peoples, economic disruptions due to increased ironworking, and changes in military technology and strategy that brought the decline of chariot warfare.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 32,
+      "wiki": {
+        "hits": 20,
+        "misses": 2,
+        "entries": 155,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-bronze-age.json",
+      "summary": "live run · seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-3/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:42:25.257Z · exported 2026-09-18T07:42:56.855Z\nnodes 4 · visits 7 · model calls 47 · lookups 9 · evidence 9 · tokens 17006\nstatuses {\"resolved\":2,\"blocked\":2} · outcome: root resolved\n\nn1 [resolved v4] Why did the Late Bronze Age collapse happen? → These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea \n  n2 [blocked] What specific factors contributed to the collapse of the Late Bronze Age society? !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n3 [blocked] What factors contributed to the societal collapse during the Late Bronze Age? !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n4 [resolved] What factors contributed to the societal and environmental changes during the Late Bronze Age collapse? → These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea \n\nmodel latency ms: median 316 · max 2905 · n 47\nworth a look:\n- n2 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n3 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n1 resolved citing only its children's sources"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pesticides": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pathogens": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "stressors": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 2,
+        "visits": 3,
+        "modelCalls": 19,
+        "lookups": 3,
+        "tokens": 5601
+      },
+      "statuses": {
+        "resolved": 2
+      },
+      "finding": "Suggested causes include pesticides, infections with various pathogens (especially those transmitted by Varroa and Acarapis mites), malnutrition, genetic factors, immunodeficiencies, loss of habitat, or changing beekeeping practices; combinations of these factors have also been cited.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 25,
+        "misses": 2,
+        "entries": 155,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-colony-collapse.json",
+      "summary": "live run · seed: Why do honey bee colonies collapse?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-3/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:42:56.875Z · exported 2026-09-18T07:43:07.465Z\nnodes 2 · visits 3 · model calls 19 · lookups 3 · evidence 3 · tokens 5601\nstatuses {\"resolved\":2} · outcome: root resolved\n\nn1 [resolved v2] Why do honey bee colonies collapse? → Suggested causes include pesticides, infections with various pathogens (especially those t\n  n2 [resolved] What is the role of beekeeping practices in the development of colony collapse disorder? → Suggested causes include pesticides, infections with various pathogens (especially those t\n\nmodel latency ms: median 330 · max 1982 · n 19\nworth a look:\n- n1 resolved citing only its children's sources"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "temperature": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "algae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 874
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Coral bleaching is the process where corals become white due to loss of symbiotic algae and photosynthetic pigments.",
+      "kind": "single-lead",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 27,
+        "misses": 2,
+        "entries": 155,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-coral.json",
+      "summary": "live run · seed: Why do coral reefs bleach?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-3/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:43:07.479Z · exported 2026-09-18T07:43:12.054Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 874\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do coral reefs bleach? → Coral bleaching is the process where corals become white due to loss of symbiotic algae an\n\nmodel latency ms: median 526 · max 583 · n 4\nnothing flagged"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 8,
+        "visits": 15,
+        "modelCalls": 86,
+        "lookups": 19,
+        "tokens": 32723
+      },
+      "statuses": {
+        "resolved": 5,
+        "blocked": 3
+      },
+      "finding": "Crucially, experimental and theoretical results must be reproduced by others within the scientific community.",
+      "kind": "single-lead, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 59,
+      "wiki": {
+        "hits": 54,
+        "misses": 2,
+        "entries": 155,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-sky-blue.json",
+      "summary": "live run · seed: Why is the sky blue?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-3/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:43:12.057Z · exported 2026-09-18T07:44:10.673Z\nnodes 8 · visits 15 · model calls 86 · lookups 19 · evidence 19 · tokens 32723\nstatuses {\"resolved\":5,\"blocked\":3} · outcome: root resolved\n\nn1 [resolved v2] Why is the sky blue? → Crucially, experimental and theoretical results must be reproduced by others within the sc\n  n2 [resolved v3] What is the scientific reason for the sky appearing blue? → Crucially, experimental and theoretical results must be reproduced by others within the sc\n    n3 [blocked v2] What is the role of the in-house rendering software in Blue Sky Studios? !! Nothing read states the answer, and no further lookup or question is allowed here.\n      n4 [blocked] What is the name of the in-house rendering software used by Blue Sky Studios? !! Nothing read states the answer, and no further lookup or question is allowed here.\n    n5 [resolved v2] What is the scientific principle behind the blue sky? → Crucially, experimental and theoretical results must be reproduced by others within the sc\n      n6 [resolved v2] What is the role of replication in the scientific method? → Crucially, experimental and theoretical results must be reproduced by others within the sc\n        n7 [resolved v2] What is the role of reproducibility in the scientific method? → Crucially, experimental and theoretical results must be reproduced by others within the sc\n          n8 [blocked] What is the relationship between reproducibility and the scientific method? !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 551 · max 3678 · n 86\nworth a look:\n- n3 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n4 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n8 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n1 resolved citing only its children's sources\n- n2 resolved citing only its children's sources\n- n5 resolved citing only its children's sources\n- n6 resolved citing only its children's sources"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "irrigation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "soviet": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 6,
+        "visits": 11,
+        "modelCalls": 80,
+        "lookups": 14,
+        "tokens": 31273
+      },
+      "statuses": {
+        "resolved": 3,
+        "blocked": 3
+      },
+      "finding": "In 1987, the lake split into two separate bodies of water: the North Aral Sea (the Lesser Sea, or Small Aral Sea) and the South Aral Sea (the Greater Sea, or Large Aral Sea).",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 59,
+      "wiki": {
+        "hits": 71,
+        "misses": 5,
+        "entries": 158,
+        "added": 3
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-aral.json",
+      "summary": "live run · seed: Why did the Aral Sea shrink?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-3/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:44:10.715Z · exported 2026-09-18T07:45:09.334Z\nnodes 6 · visits 11 · model calls 80 · lookups 14 · evidence 14 · tokens 31273\nstatuses {\"resolved\":3,\"blocked\":3} · outcome: root resolved\n\nn1 [resolved v2] Why did the Aral Sea shrink? → In 1987, the lake split into two separate bodies of water: the North Aral Sea (the Lesser \n  n2 [resolved v3] What caused the split between the North Aral Sea and the South Aral Sea? → In 1987, the lake split into two separate bodies of water: the North Aral Sea (the Lesser \n    n3 [blocked] What is the name of the dam completed in 2005 to save and replenish the North Aral Sea? !! Nothing read states the answer, and no further lookup or question is allowed here.\n    n4 [resolved v3] What factors contributed to the splitting of the Aral Sea into two separate bodies of water? → In 1987, the lake split into two separate bodies of water: the North Aral Sea (the Lesser \n      n5 [blocked] What is the primary cause of the Aral Sea's splitting into two separate bodies of water? !! Nothing read states the answer, and no further lookup or question is allowed here.\n      n6 [blocked] What factors contributed to the splitting of the Aral Sea into two separate bodies of water, other than the diversion of rivers for irrigation? !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 442 · max 5359 · n 80\nworth a look:\n- n3 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n5 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n6 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n1 resolved citing only its children's sources\n- n2 resolved citing only its children's sources"
+    }
+  ],
+  "notes": [
+    "2026-09-18T07:41:43.937Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-3\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"check\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T07:41:44.081Z loading: Checking this device before downloading…",
+    "2026-09-18T07:41:49.089Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 95% · vram 0.03 GiB · load 19.73 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T07:41:49.194Z 7 seeds · mode tangle · limits {} · prompt walk-3/asks-2 · grammar sentence:check,section:list,missing:search,question:one · commit ce5474e",
+    "wiki recording: 153 responses loaded",
+    "2026-09-18T07:41:57.076Z run stopped: Root resolved",
+    "dead-sea: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 9 calls, 2 lookups, 2944 tokens · 8 s · wiki 3 hits 0 misses",
+    "2026-09-18T07:42:25.196Z run stopped: No runnable nodes · root unresolved",
+    "water-cycle: No runnable nodes · root unresolved · facts 0/3 · supported 0/3 · read 3/3 · 2 nodes, 24 calls, 4 lookups, 10696 tokens · 28 s · wiki 9 hits 0 misses",
+    "2026-09-18T07:42:56.816Z run stopped: Root resolved",
+    "bronze-age: resolved · facts 2/4 · supported 2/4 · read 4/4 · 4 nodes, 47 calls, 9 lookups, 17006 tokens · 32 s · wiki 20 hits 2 misses",
+    "2026-09-18T07:43:07.418Z run stopped: Root resolved",
+    "colony-collapse: resolved · facts 4/4 · supported 4/4 · read 4/4 · 2 nodes, 19 calls, 3 lookups, 5601 tokens · 11 s · wiki 25 hits 2 misses",
+    "2026-09-18T07:43:12.022Z run stopped: Root resolved",
+    "coral: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 4 calls, 1 lookups, 874 tokens · 5 s · wiki 27 hits 2 misses",
+    "2026-09-18T07:44:10.623Z run stopped: Root resolved",
+    "sky-blue: resolved · facts 0/3 · supported 0/3 · read 0/3 · 8 nodes, 86 calls, 19 lookups, 32723 tokens · 59 s · wiki 54 hits 2 misses",
+    "2026-09-18T07:45:09.282Z run stopped: Root resolved",
+    "aral: resolved · facts 0/3 · supported 0/3 · read 3/3 · 6 nodes, 80 calls, 14 lookups, 31273 tokens · 59 s · wiki 71 hits 5 misses",
+    "machine during the suite: gpu 88.8% mean, 97% peak · vram up to 2.3 GiB · load up to 19.73 · no throttling in 14 samples"
+  ]
+}

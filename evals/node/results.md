@@ -88,3 +88,11 @@ One row per model and ask variant; the JSON named in the row holds every raw out
 | 2026-09-18 | 42c937e | article | list | qwen3-1.7b | 10/12 | 298 | 12 | sky-raw, sky-studios-none |
 | 2026-09-18 | 42c937e | article | list | qwen3-4b | 9/12 | 618 | 12 | dead-sea-stripped, sky-raw, sky-studios-none |
 | 2026-09-18 | 42c937e | article | list | qwen3-8b | 10/12 | 997 | 12 | dead-sea-raw-none, sky-raw |
+| 2026-09-18 | 7279d41 | article | list | qwen3-0.6b | 3/12 | 144 | 12 | dead-sea-stripped, sky-colour, sky-raw, aral-shrink, lba, bees, coral, water-cycle, aral-split |
+| 2026-09-18 | 7279d41 | article | snippets | qwen3-0.6b | 3/12 | 245 | 12 | dead-sea-stripped, sky-colour, sky-raw, aral-shrink, lba, bees, coral, water-cycle, aral-split |
+| 2026-09-18 | 7279d41 | article | list | qwen3-1.7b | 10/12 | 296 | 12 | sky-raw, sky-studios-none |
+| 2026-09-18 | 7279d41 | article | snippets | qwen3-1.7b | 9/12 | 539 | 12 | sky-studios-none, coral, water-cycle |
+| 2026-09-18 | 7279d41 | article | list | qwen3-4b | 9/12 | 619 | 12 | dead-sea-stripped, sky-raw, sky-studios-none |
+| 2026-09-18 | 7279d41 | article | snippets | qwen3-4b | 9/12 | 1254 | 12 | dead-sea-stripped, sky-studios-none, coral |
+| 2026-09-18 | 7279d41 | article | list | qwen3-8b | 10/12 | 994 | 12 | dead-sea-raw-none, sky-raw |
+| 2026-09-18 | 7279d41 | article | snippets | qwen3-8b | 12/12 | 2030 | 12 | — |

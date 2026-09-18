@@ -1,0 +1,442 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-8B-q4f16_1-MLC",
+  "commit": "7279d41",
+  "head": "08d29dc",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T08:12:36.614Z",
+  "loadSeconds": 10,
+  "prompt": "walk-6/asks-2",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-6",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 7,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 84
+    },
+    "vramGiB": {
+      "min": 0.04,
+      "max": 5.87,
+      "mean": 4.7
+    },
+    "load": {
+      "min": 18.08,
+      "max": 22.45,
+      "mean": 19.4
+    },
+    "memoryFreePercent": {
+      "min": 67,
+      "max": 85,
+      "mean": 70.4
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "limits": "default",
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 16,
+  "factsSupported": 16,
+  "factsRead": 21,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 10,
+        "lookups": 2,
+        "tokens": 3539
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. As of 2021, the surface of the Sea has shrunk by about 33 percent since the 1960s, which is partly attributed to the much-reduced flow of the Jordan River since the construction of the National Water Carrier project, and the amount of water from the rains reaching the Dead Sea has diminished even further since flash floods started pouring into the sinkholes left by its shrinkage. The EcoPeace Middle East, a joint Israeli-Palestinian-Jordanian environmental group, has estimated that the annual flow into the Dead Sea from the Jordan is as of 2021 less than 100,000,000 cubic metres (3.5×109 cu ft) of water, compared with former flows of between 1,200,000,000 cubic metres (4.2×1010 cu ft) and 1,300,000,000 cubic metres (4.6×1010 cu ft).",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 26,
+      "wiki": {
+        "hits": 5,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-dead-sea.json",
+      "summary": "live run · seed: Why is the Dead Sea shrinking?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T08:12:46.989Z · exported 2026-09-18T08:13:12.895Z\nnodes 1 · visits 1 · model calls 10 · lookups 2 · evidence 2 · tokens 3539\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is the Dead Sea shrinking? → The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming w\n\nmodel latency ms: median 2805 · max 4776 · n 10\nnothing flagged"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "sun": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "evaporation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 8,
+        "lookups": 2,
+        "tokens": 2500
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The water cycle is powered by the energy emitted from the sun.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 17,
+      "wiki": {
+        "hits": 10,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-water-cycle.json",
+      "summary": "live run · seed: Why does the water cycle keep going?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T08:13:12.904Z · exported 2026-09-18T08:13:29.517Z\nnodes 1 · visits 1 · model calls 8 · lookups 2 · evidence 2 · tokens 2500\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why does the water cycle keep going? → The water cycle is powered by the energy emitted from the sun.\n\nmodel latency ms: median 2450 · max 3291 · n 8\nnothing flagged"
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sea-peoples": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1540
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea Peoples, economic disruptions due to increased ironworking, and changes in military technology and strategy that brought the decline of chariot warfare.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 14,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-bronze-age.json",
+      "summary": "live run · seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T08:13:29.523Z · exported 2026-09-18T08:13:40.136Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1540\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did the Late Bronze Age collapse happen? → These include climate change, volcanic eruptions, droughts, disease, invasions by the Sea \n\nmodel latency ms: median 2992 · max 3188 · n 4\nnothing flagged"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pesticides": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pathogens": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "stressors": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 5,
+        "lookups": 1,
+        "tokens": 1457
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Suggested causes include pesticides, infections with various pathogens (especially those transmitted by Varroa and Acarapis mites), malnutrition, genetic factors, immunodeficiencies, loss of habitat, or changing beekeeping practices; combinations of these factors have also been cited.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 18,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-colony-collapse.json",
+      "summary": "live run · seed: Why do honey bee colonies collapse?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T08:13:40.140Z · exported 2026-09-18T08:13:50.738Z\nnodes 1 · visits 1 · model calls 5 · lookups 1 · evidence 1 · tokens 1457\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do honey bee colonies collapse? → Suggested causes include pesticides, infections with various pathogens (especially those t\n\nmodel latency ms: median 1445 · max 3418 · n 5\nnothing flagged"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "algae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 1,
+        "tokens": 1672
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The leading cause of coral bleaching is rising ocean temperatures due to climate change. Coral bleaching is the process where corals become white due to loss of symbiotic algae and photosynthetic pigments.",
+      "kind": "single-lead",
+      "retriesUsed": 0,
+      "wallSeconds": 14,
+      "wiki": {
+        "hits": 22,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-coral.json",
+      "summary": "live run · seed: Why do coral reefs bleach?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T08:13:50.742Z · exported 2026-09-18T08:14:04.352Z\nnodes 1 · visits 1 · model calls 7 · lookups 1 · evidence 1 · tokens 1672\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do coral reefs bleach? → The leading cause of coral bleaching is rising ocean temperatures due to climate change. C\n\nmodel latency ms: median 1919 · max 2418 · n 7\nnothing flagged"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "wavelength": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "scattering": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 8,
+        "lookups": 2,
+        "tokens": 2049
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "For the example of the Sun at zenith, in broad daylight, the sky is blue due to Rayleigh scattering, which also involves the diatomic gases N2 and O2.",
+      "kind": "single-lead, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 14,
+      "wiki": {
+        "hits": 27,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-sky-blue.json",
+      "summary": "live run · seed: Why is the sky blue?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T08:14:04.357Z · exported 2026-09-18T08:14:17.958Z\nnodes 1 · visits 1 · model calls 8 · lookups 2 · evidence 2 · tokens 2049\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is the sky blue? → For the example of the Sun at zenith, in broad daylight, the sky is blue due to Rayleigh s\n\nmodel latency ms: median 1449 · max 3086 · n 8\nnothing flagged"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rivers": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "soviet": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 1685
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 31,
+        "misses": 0,
+        "entries": 238,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-aral.json",
+      "summary": "live run · seed: Why did the Aral Sea shrink?\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-6/asks-2/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T08:14:17.963Z · exported 2026-09-18T08:14:28.572Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1685\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why did the Aral Sea shrink? → Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), th\n\nmodel latency ms: median 3115 · max 3328 · n 4\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-18T08:12:36.613Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-6\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T08:12:36.782Z loading: Checking this device before downloading…",
+    "2026-09-18T08:12:46.791Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-8B-q4f16_1-MLC: Ready. Inference runs on this device. (10 s)",
+    "machine at start: gpu 97% · vram 0.04 GiB · load 22.45 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T08:12:46.882Z 7 seeds · mode tangle · limits {} · prompt walk-6/asks-2 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit 7279d41",
+    "wiki recording: 238 responses loaded",
+    "2026-09-18T08:13:12.834Z run stopped: Root resolved",
+    "dead-sea: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 10 calls, 2 lookups, 3539 tokens · 26 s · wiki 5 hits 0 misses",
+    "2026-09-18T08:13:29.458Z run stopped: Root resolved",
+    "water-cycle: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 8 calls, 2 lookups, 2500 tokens · 17 s · wiki 10 hits 0 misses",
+    "2026-09-18T08:13:40.072Z run stopped: Root resolved",
+    "bronze-age: resolved · facts 2/4 · supported 2/4 · read 2/4 · 1 nodes, 4 calls, 1 lookups, 1540 tokens · 11 s · wiki 14 hits 0 misses",
+    "2026-09-18T08:13:50.681Z run stopped: Root resolved",
+    "colony-collapse: resolved · facts 4/4 · supported 4/4 · read 4/4 · 1 nodes, 5 calls, 1 lookups, 1457 tokens · 11 s · wiki 18 hits 0 misses",
+    "2026-09-18T08:14:04.294Z run stopped: Root resolved",
+    "coral: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 7 calls, 1 lookups, 1672 tokens · 14 s · wiki 22 hits 0 misses",
+    "2026-09-18T08:14:17.900Z run stopped: Root resolved",
+    "sky-blue: resolved · facts 2/3 · supported 2/3 · read 3/3 · 1 nodes, 8 calls, 2 lookups, 2049 tokens · 14 s · wiki 27 hits 0 misses",
+    "2026-09-18T08:14:28.513Z run stopped: Root resolved",
+    "aral: resolved · facts 3/3 · supported 3/3 · read 3/3 · 1 nodes, 4 calls, 1 lookups, 1685 tokens · 11 s · wiki 31 hits 0 misses",
+    "machine during the suite: gpu 84% mean, 98% peak · vram up to 5.87 GiB · load up to 22.45 · no throttling in 7 samples"
+  ]
+}
