@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "note": "Seeds that one article cannot answer. Facts are pipe-separated alternatives matched as substrings of the root finding (present) and of its cited evidence (supported). 'where' records which article sections held each fact when the rubric was checked against live Wikipedia (rubric-check, 2026-09-18), so a seed's kind is a fact about Wikipedia, not a guess. Kinds: comparison (two articles, each answering half), two-hop (the answer is in an article the first article names), sections (the first article's lead lacks the answer; a section or a second article has it), control (both leads answer; measures whether the graph hurts on an easy question).",
+  "seeds": [
+    {
+      "id": "dead-aral",
+      "seed": "Why did the Dead Sea and the Aral Sea both shrink?",
+      "kind": "comparison",
+      "facts": {
+        "jordan": "Jordan River|National Water Carrier|diverted|diversion",
+        "aral-rivers": "Amu Darya|Syr Darya",
+        "irrigation": "irrigation|cotton"
+      },
+      "where": "Dead Sea: jordan in the lead. Aral Sea: aral-rivers and irrigation in the lead. Neither article holds the other's facts; a search for the whole question returns one of them"
+    },
+    {
+      "id": "chad-dead",
+      "seed": "What do the shrinking of Lake Chad and the Dead Sea have in common?",
+      "kind": "comparison",
+      "facts": {
+        "irrigation": "irrigation",
+        "rainfall": "drought|rainfall|rain",
+        "jordan": "Jordan River|National Water Carrier|diverted|diversion"
+      },
+      "where": "Lake Chad: rainfall in the lead, irrigation only in Hydrology and Human activities. Dead Sea: jordan in the lead"
+    },
+    {
+      "id": "rome-bronze",
+      "seed": "What causes do the Late Bronze Age collapse and the fall of the Western Roman Empire have in common?",
+      "kind": "comparison",
+      "facts": {
+        "migration": "migrat|invasion|Sea Peoples|barbarian",
+        "climate": "climate|drought",
+        "economic": "economic|financial|trade|tax"
+      },
+      "where": "Late Bronze Age collapse: all three in the lead. Fall of the Western Roman Empire: migration in the lead; climate only in Major phases, Climatic crisis, Migrational crisis and Financial crisis; economic only in sections. A finding built from one article can name all three, so the graded question is whether the root reads both"
+    },
+    {
+      "id": "sahara-dry",
+      "seed": "Why does the Sahara get so little rain?",
+      "kind": "sections",
+      "facts": {
+        "hadley": "Hadley|subtropical ridge|subtropical high|high pressure|high-pressure|anticyclone",
+        "sinking": "descend|sinking|subsid",
+        "rain-shadow": "rain shadow"
+      },
+      "where": "Sahara: none in the lead; hadley and sinking in Climate, rain-shadow in Climate and Precipitation. Hadley cell: hadley and sinking in the lead"
+    },
+    {
+      "id": "black-death",
+      "seed": "How did the Black Death reach Europe?",
+      "kind": "sections",
+      "facts": {
+        "crimea": "Crimea|Caffa|Kaffa",
+        "genoese": "Genoese|Genoa",
+        "vector": "flea|rat|Yersinia"
+      },
+      "where": "Black Death: vector in the lead; crimea and genoese only in Origin, Territorial origins and Europe"
+    },
+    {
+      "id": "almond-bees",
+      "seed": "Why do California almond growers depend on rented honey bee hives?",
+      "kind": "sections, search trap",
+      "facts": {
+        "pollination": "pollinat",
+        "self-incompatible": "self-incompatible|self-sterile|cross-pollinat|self-fertile|self-compatible|another variety|two varieties",
+        "hives": "hive|colonies|colony"
+      },
+      "where": "Almond: none in the lead; all three in Pollination. Pollination management and Colony collapse disorder (Bee rentals and migratory beekeeping) are plausible search hits and hold hives and pollination but not self-incompatible"
+    },
+    {
+      "id": "jordan-flow",
+      "seed": "Why does less water from the Jordan River reach the Dead Sea than before?",
+      "kind": "two-hop",
+      "facts": {
+        "carrier": "National Water Carrier",
+        "diversion": "divert|diversion",
+        "neighbours": "Syria|Jordan and|Jordanian|Yarmouk"
+      },
+      "where": "Dead Sea: none in the lead; carrier and diversion in Receding shoreline. Jordan River: carrier and diversion in History, Flow and Importance as a water source; neighbours in the lead and Lower course"
+    },
+    {
+      "id": "venus-earth",
+      "seed": "Why did Venus end up with a runaway greenhouse effect while Earth did not?",
+      "kind": "sections",
+      "facts": {
+        "co2": "carbon dioxide|CO2",
+        "sun": "closer to the Sun|solar|distance from the Sun|nearer the Sun",
+        "carbonate": "carbonate|limestone|weathering|locked up in rock"
+      },
+      "where": "Runaway greenhouse effect: co2 and sun in the lead; carbonate only in the Venus section. Venus: co2 in the lead"
+    },
+    {
+      "id": "gulf-stream",
+      "seed": "Why is Western Europe milder than places in Canada at the same latitude?",
+      "kind": "sections",
+      "facts": {
+        "current": "Gulf Stream|North Atlantic Drift|North Atlantic Current",
+        "westerlies": "westerl|prevailing wind",
+        "warm": "warm|mild"
+      },
+      "where": "Gulf Stream: current and warm in the lead; westerlies only in Formation and behaviour and Localized effects. Climate of Europe: current only in its Gulf Stream section, westerlies nowhere"
+    },
+    {
+      "id": "moon-face",
+      "seed": "Why does the Moon always show the same face to Earth?",
+      "kind": "control",
+      "facts": {
+        "tidal": "tidal|tidally",
+        "rotation": "rotat",
+        "same-side": "same side|near side|same face|synchronous"
+      },
+      "where": "Moon: all three in the lead. Tidal locking: all three in the lead"
+    }
+  ]
+}

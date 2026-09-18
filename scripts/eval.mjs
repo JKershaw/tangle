@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 // Run an eval suite against a model in the built page (PLAN.md):
 //   node scripts/eval.mjs visits --model Qwen3-1.7B-q4f16_1-MLC [--only <regex>] [--out evals/results/<name>]
-//   node scripts/eval.mjs runs --model <id> --mode tangle|flat [--only <regex>] [--run-timeout <minutes>]
+//   node scripts/eval.mjs runs --model <id> --mode tangle|flat|composing [--seeds <path>] [--repeat N] [--only <regex>] [--run-timeout <minutes>]
+// Modes: tangle is the walk with default limits; flat is the walk on one node
+// (no children, more lookups); composing is the old one-prompt visit on one
+// node, where the model writes its own finding. --repeat runs the suite N
+// times, one row and one JSON each, so a one-fact gap can be told from noise.
 // Options shared with live-run.mjs: --url, --profile, --chromium, --load-timeout.
 // visits: every case in evals/visits.json through one model call, graded.
 // runs: every seed in evals/seeds.json as a whole graph (tangle limits or the
@@ -18,10 +22,17 @@ import { DEFAULT_MODEL, DEFAULT_URL, commitInfo, exportRun, loadModel, loadWikiC
 const args = parseArgs(process.argv.slice(2));
 const suiteName = args._[0];
 if (!["visits", "runs"].includes(suiteName)) {
-  console.error("usage: node scripts/eval.mjs visits|runs --model <id> [--mode tangle|flat] [--only <regex>] [--out <path>]");
+  console.error("usage: node scripts/eval.mjs visits|runs --model <id> [--mode tangle|flat|composing] [--seeds <path>] [--repeat N] [--only <regex>] [--out <path>]");
   process.exit(2);
 }
 const mode = args.mode || "tangle";
+if (!["tangle", "flat", "composing"].includes(mode)) {
+  console.error(`unknown mode ${mode}`);
+  process.exit(2);
+}
+const repeats = Math.max(1, Number(args.repeat ?? 1));
+const seedsPath = args.seeds || "evals/seeds.json";
+const seedSet = seedsPath.replace(/^.*\//, "").replace(/\.json$/, "");
 const WIKI_CACHE = "evals/wiki-cache";
 const TABLE = "evals/results.md";
 const HEADER = "# Eval results\n\nOne row per suite run; the JSON next to each holds every graded output. Newest last.\n\n| date | commit | suite | model | prompt · grammar | passed | detail | latency |\n|---|---|---|---|---|---|---|---|\n";
@@ -30,7 +41,7 @@ const model = args.model || DEFAULT_MODEL;
 const commit = pageInfo();
 const head = commitInfo();
 const date = new Date().toISOString().slice(0, 10);
-const out = args.out || `evals/results/${date}-${suiteName}${suiteName === "runs" ? "-" + mode : ""}-${shortModel(model)}-${commit.replace(/ .*/, "")}`;
+const out = args.out || `evals/results/${date}-${suiteName}${suiteName === "runs" ? "-" + mode : ""}${seedSet !== "seeds" ? "-" + seedSet : ""}-${shortModel(model)}-${commit.replace(/ .*/, "")}${repeats > 1 ? "-" + new Date().toISOString().slice(11, 16).replace(":", "") : ""}`;
 const only = args.only ? new RegExp(args.only) : null;
 const { notes, note } = makeNotes();
 const { browser, page, version } = await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note });
@@ -48,7 +59,7 @@ try {
   if (versions) ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION } = versions);
   // Live runs are the walk unless a run's limits say otherwise: label rows
   // with the walk and its ask variants rather than the one-prompt visit.
-  if (versions?.walk && suiteName === "runs") {
+  if (versions?.walk && suiteName === "runs" && mode !== "composing") {
     PROMPT_VERSION = `${versions.walk}/${versions.asks}`;
     RESPONSE_SCHEMA_VERSION = Object.entries(versions.variants ?? {}).map(([ask, variant]) => `${ask}:${variant}`).join(",");
   }
@@ -63,32 +74,37 @@ try {
   };
   mkdirSync(dirname(out), { recursive: true });
   if (suiteName === "runs") {
-    const seeds = JSON.parse(readFileSync(new URL("../evals/seeds.json", import.meta.url), "utf8")).seeds.filter((seed) => !only || only.test(seed.id));
-    const limits = mode === "flat" ? FLAT_LIMITS : {};
-    note(`${stamp()} ${seeds.length} seeds · mode ${mode} · limits ${JSON.stringify(limits)} · prompt ${PROMPT_VERSION} · grammar ${RESPONSE_SCHEMA_VERSION} · commit ${commit}`);
+    const seeds = JSON.parse(readFileSync(seedsPath, "utf8")).seeds.filter((seed) => !only || only.test(seed.id));
+    const limits = mode === "flat" ? FLAT_LIMITS : mode === "composing" ? { ...FLAT_LIMITS, walk: false } : {};
+    note(`${stamp()} ${seeds.length} seeds from ${seedsPath} · mode ${mode} · limits ${JSON.stringify(limits)} · prompt ${PROMPT_VERSION} · grammar ${RESPONSE_SCHEMA_VERSION} · commit ${commit}${repeats > 1 ? ` · ${repeats} repeats` : ""}`);
     note(`wiki recording: ${await loadWikiCache(page, WIKI_CACHE)} responses loaded`);
+    for (let repeat = 1; repeat <= repeats; repeat++) {
+    const results = [];
+    const suffix = repeats > 1 ? `-r${repeat}` : "";
+    if (repeats > 1) note(`${stamp()} repeat ${repeat} of ${repeats}`);
     for (const seed of seeds) {
       await page.evaluate(([seed, limits]) => window.__tangle.newLive(seed, limits), [seed.seed, limits]);
       const { outcome, retriesUsed, wallSeconds } = await runToEnd(page, { retries: Number(args.retries ?? 2), runTimeoutMs: Number(args["run-timeout"] ?? 45) * 60000, note });
       const saved = await saveWikiCache(page, WIKI_CACHE);
       const exported = await exportRun(page);
-      const exportPath = `evals/results/runs/${date}-${shortModel(model)}-${mode}-${seed.id}.json`;
+      const exportPath = `evals/results/runs/${date}-${shortModel(model)}-${mode}-${seed.id}${suffix}.json`;
       mkdirSync(dirname(exportPath), { recursive: true });
       writeFileSync(exportPath, JSON.stringify(exported));
       const grade = { ...gradeRun(seed, exported), kind: seed.kind, outcome, retriesUsed, wallSeconds, wiki: saved, export: exportPath, summary: summarise(exported) };
       results.push(grade);
       note(`${formatRunGrade(grade)} · ${wallSeconds} s · wiki ${saved.hits} hits ${saved.misses} misses`);
     }
-    const rolled = machineNote();
+    const rolled = repeat === repeats ? machineNote() : null;
     const sum = (key) => results.reduce((total, grade) => total + grade[key], 0);
-    Object.assign(record, { mode, limits: mode === "flat" ? FLAT_LIMITS : "default", seeds: results.length, resolved: results.filter((grade) => grade.resolved).length, factsPresent: sum("factsPresent"), factsSupported: sum("factsSupported"), factsRead: sum("factsRead"), factsTotal: sum("factsTotal"), results, notes });
-    writeFileSync(`${out}.json`, JSON.stringify(record, null, 2) + "\n");
+    const repeatRecord = { ...record, mode, seedSet: seedsPath, repeat, repeats, limits: mode === "tangle" ? "default" : limits, seeds: results.length, resolved: results.filter((grade) => grade.resolved).length, factsPresent: sum("factsPresent"), factsSupported: sum("factsSupported"), factsRead: sum("factsRead"), factsTotal: sum("factsTotal"), results, notes: [...notes] };
+    writeFileSync(`${out}${suffix}.json`, JSON.stringify(repeatRecord, null, 2) + "\n");
     const calls = results.reduce((total, grade) => total + grade.cost.modelCalls, 0);
     const lookups = results.reduce((total, grade) => total + grade.cost.lookups, 0);
     const seconds = results.reduce((total, grade) => total + grade.wallSeconds, 0);
     const perSeed = results.map((grade) => `${grade.id} ${grade.resolved ? "✓" : "✗"} ${grade.factsSupported}/${grade.factsPresent}/${grade.factsTotal}${grade.distractors.length ? "!" : ""}`).join(", ");
-    appendRow([`runs · ${mode}`, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${record.resolved}/${record.seeds} resolved** · facts ${record.factsPresent}/${record.factsTotal} · supported ${record.factsSupported}/${record.factsTotal}`, `${perSeed} (supported/present/total) · ${calls} calls · ${lookups} lookups`, `${seconds} s${rolled?.throttledSamples ? ` · throttled to ${rolled.worstSpeedLimit}%` : ""}`]);
-    console.log("\n" + results.map(formatRunGrade).join("\n") + `\n\nwrote ${out}.json and a row in ${TABLE}`);
+    appendRow([`runs · ${mode}${seedSet !== "seeds" ? ` · ${seedSet}` : ""}${repeats > 1 ? ` · r${repeat}/${repeats}` : ""}`, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${repeatRecord.resolved}/${repeatRecord.seeds} resolved** · facts ${repeatRecord.factsPresent}/${repeatRecord.factsTotal} · supported ${repeatRecord.factsSupported}/${repeatRecord.factsTotal}`, `${perSeed} (supported/present/total) · ${calls} calls · ${lookups} lookups`, `${seconds} s${rolled?.throttledSamples ? ` · throttled to ${rolled.worstSpeedLimit}%` : ""}`]);
+    console.log("\n" + results.map(formatRunGrade).join("\n") + `\n\nwrote ${out}${suffix}.json and a row in ${TABLE}`);
+    }
     process.exitCode = 0;
     await browser.close();
     process.exit(0);
