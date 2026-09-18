@@ -68,3 +68,7 @@ One row per model and ask variant; the JSON named in the row holds every raw out
 | 2026-09-18 | 3106cb9 | sentence | titled | qwen3-8b | 19/23 | 2315 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
 | 2026-09-18 | 3106cb9 | sentence | zero | qwen3-8b | 19/23 | 1963 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
 | 2026-09-18 | 3106cb9 | sentence | check | qwen3-8b | 23/23 | 2884 | 44 | — |
+| 2026-09-18 | ee83f51 | question | one | qwen3-0.6b | 5/6 | 439 | 6 | water-cycle-after-lead |
+| 2026-09-18 | ee83f51 | question | one | qwen3-1.7b | 4/6 | 646 | 6 | dead-sea-after-lead, lba-after-lead |
+| 2026-09-18 | ee83f51 | question | one | qwen3-4b | 6/6 | 1517 | 6 | — |
+| 2026-09-18 | ee83f51 | question | one | qwen3-8b | 6/6 | 2381 | 6 | — |

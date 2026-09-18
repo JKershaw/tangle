@@ -1,0 +1,468 @@
+{
+  "ask": "question",
+  "asks": "asks-2",
+  "commit": "ee83f51",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-1",
+    "asks": "asks-2",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "date": "2026-09-18T07:26:21.124Z",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "models": [
+    "Qwen3-0.6B-q4f16_1-MLC",
+    "Qwen3-1.7B-q4f16_1-MLC",
+    "Qwen3-4B-q4f16_1-MLC",
+    "Qwen3-8B-q4f16_1-MLC"
+  ],
+  "variants": [
+    "one"
+  ],
+  "repeat": 1,
+  "cases": [
+    "dead-sea-after-lead",
+    "dead-sea-cold",
+    "water-cycle-after-lead",
+    "lba-after-lead",
+    "coral-after-tail",
+    "bees-cold"
+  ],
+  "rows": [
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "one",
+      "passed": 5,
+      "total": 6,
+      "medianMs": 439,
+      "calls": 6,
+      "failed": [
+        "water-cycle-after-lead"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "one",
+      "passed": 4,
+      "total": 6,
+      "medianMs": 646,
+      "calls": 6,
+      "failed": [
+        "dead-sea-after-lead",
+        "lba-after-lead"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "one",
+      "passed": 6,
+      "total": 6,
+      "medianMs": 1517,
+      "calls": 6,
+      "failed": []
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "one",
+      "passed": 6,
+      "total": 6,
+      "medianMs": 2381,
+      "calls": 6,
+      "failed": []
+    }
+  ],
+  "results": [
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "What is the reason behind the Dead Sea's shrinking?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 7639,
+      "tokens": 623,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What is the reason behind the Dead Sea's shrinking?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "What causes the Dead Sea to shrink?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 201,
+      "tokens": 97,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What causes the Dead Sea to shrink?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "What factors determine the water cycle's continuous movement and distribution of water on Earth?",
+      "pass": false,
+      "error": null,
+      "latencyMs": 439,
+      "tokens": 339,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What factors determine the water cycle's continuous movement and distribution of water on Earth?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "lba-after-lead",
+      "rep": 0,
+      "size": "6 sentences read",
+      "answer": "What caused the Late Bronze Age collapse and its impact on different regions of the Mediterranean and Near East?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 516,
+      "tokens": 356,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What caused the Late Bronze Age collapse and its impact on different regions of the Mediterranean and Near East?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "What factors contribute to coral reef bleaching and its effects?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 331,
+      "tokens": 248,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What factors contribute to coral reef bleaching and its effects?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-0.6B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "What causes honey bee colonies to collapse?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 198,
+      "tokens": 97,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What causes honey bee colonies to collapse?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "What is the primary cause of the Dead Sea's recession?",
+      "pass": false,
+      "error": null,
+      "latencyMs": 7712,
+      "tokens": 624,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What is the primary cause of the Dead Sea's recession?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "What is the source of the water that is being removed from the Dead Sea?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 426,
+      "tokens": 105,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What is the source of the water that is being removed from the Dead Sea?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "What causes the energy exchanges that drive the water cycle?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 646,
+      "tokens": 334,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What causes the energy exchanges that drive the water cycle?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "lba-after-lead",
+      "rep": 0,
+      "size": "6 sentences read",
+      "answer": "What factors contributed to the transformation of Bronze Age societies into village cultures?",
+      "pass": false,
+      "error": null,
+      "latencyMs": 741,
+      "tokens": 350,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What factors contributed to the transformation of Bronze Age societies into village cultures?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "What causes coral reefs to bleach?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 482,
+      "tokens": 243,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What causes coral reefs to bleach?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-1.7B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "What factors contribute to the decline of honey bee populations?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 363,
+      "tokens": 100,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What factors contribute to the decline of honey bee populations?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "What is the primary cause of the Dead Sea's shrinking?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 8016,
+      "tokens": 624,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What is the primary cause of the Dead Sea's shrinking?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "What is the main cause of the water level decline in the Dead Sea?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 789,
+      "tokens": 104,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What is the main cause of the water level decline in the Dead Sea?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "What is the source of the energy that drives the water cycle?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1517,
+      "tokens": 336,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What is the source of the energy that drives the water cycle?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "lba-after-lead",
+      "rep": 0,
+      "size": "6 sentences read",
+      "answer": "What were the primary causes leading to the collapse of the Late Bronze Age civilizations?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1668,
+      "tokens": 352,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What were the primary causes leading to the collapse of the Late Bronze Age civilizations?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "What is the primary cause of coral bleaching?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1146,
+      "tokens": 246,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What is the primary cause of coral bleaching?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "What factors contribute to the collapse of honey bee colonies?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 686,
+      "tokens": 100,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What factors contribute to the collapse of honey bee colonies?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "dead-sea-after-lead",
+      "rep": 0,
+      "size": "12 sentences read",
+      "answer": "What factors are contributing to the Dead Sea's shrinking?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 8200,
+      "tokens": 623,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What factors are contributing to the Dead Sea's shrinking?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "dead-sea-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "What factors are contributing to the Dead Sea's water level decrease?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1161,
+      "tokens": 102,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What factors are contributing to the Dead Sea's water level decrease?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "water-cycle-after-lead",
+      "rep": 0,
+      "size": "8 sentences read",
+      "answer": "What is the primary source of energy that drives the water cycle?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2381,
+      "tokens": 336,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What is the primary source of energy that drives the water cycle?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "lba-after-lead",
+      "rep": 0,
+      "size": "6 sentences read",
+      "answer": "What were the main causes of the Late Bronze Age collapse?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 2470,
+      "tokens": 348,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What were the main causes of the Late Bronze Age collapse?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "coral-after-tail",
+      "rep": 0,
+      "size": "5 sentences read",
+      "answer": "What causes coral reefs to bleach?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1777,
+      "tokens": 243,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What causes coral reefs to bleach?\"}"
+      ]
+    },
+    {
+      "model": "Qwen3-8B-q4f16_1-MLC",
+      "variant": "one",
+      "case": "bees-cold",
+      "rep": 0,
+      "size": "0 sentences read",
+      "answer": "What factors contribute to the decline of honey bee populations?",
+      "pass": true,
+      "error": null,
+      "latencyMs": 1100,
+      "tokens": 100,
+      "calls": 1,
+      "outputs": [
+        "<think>\n\n</think>\n\n{\"question\": \"What factors contribute to the decline of honey bee populations?\"}"
+      ]
+    }
+  ]
+}

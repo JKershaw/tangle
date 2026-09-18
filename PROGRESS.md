@@ -23,6 +23,8 @@ Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · c
 | 2026-09-17 | 79e918e | 4B | tangle | 7/7 | 14/23 | 14/23 | 19/23 | 8k | 115 |
 | 2026-09-17 | 79e918e | 8B | flat | 7/7 | **19/23** | 19/23 | 23/23 | 30k | 334 |
 | 2026-09-17 | 79e918e | 8B | tangle | 7/7 | 18/23 | 18/23 | 23/23 | 15k | 218 |
+| 2026-09-18 | ee83f51 (walk-1) | 1.7B | flat | 2/7 | 2/23 | 2/23 | 18/23 | 21k | 49 |
+| 2026-09-18 | ee83f51 (walk-1) | 1.7B | tangle | 6/7 | **7/23** | **7/23** | 20/23 | 261k | 515 |
 
 **Read as a verdict on that build, not on the approach.** Decomposition only fires at 1.7B; every other model resolves at the root, so those tangle rows are not a test of it. Where it does fire it costs twenty times the tokens to deliver a quarter of the facts, while reading more of the rubric than any other row — because the scheduler froze the root on six of seven seeds, and because a visit asked the model for five decisions at once. Full table and reading in [evals/results.md](evals/results.md). The plan turned on this result: see *The turn* in [PLAN.md](PLAN.md).
 
@@ -60,6 +62,14 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-18 · morning, continued
+
+- First live walk on 1.7B answered "Why is the Dead Sea shrinking?" with the wrong lake: Wikipedia's search ranked the Aral Sea first for the raw question, and the pick took the sentence that explains a shrinking sea. Labelling sentences with their article did not help at any size; a yes-or-no on the picked sentence alone does (8B 23/23). The first search term is now the question minus its question words (a63c8e4, ee83f51).
+- Second live walk: the National Water Carrier sentence, five calls, five seconds (experiments/2026-09-18-qwen3-1.7b-dead-sea-walk-2).
+- The walk's first benchmark on 1.7B: tangle 7/23 facts, all supported, against 2/23 for its flat control and 8/23 (7 supported) for the old composing flat prompt. Reading in [evals/readings.md](evals/readings.md). Three seeds lost to drift (child questions about "the text"), junk gathered upward, and one-sentence findings.
+- The question ask mostly rephrases its parent at every size; a paraphrase that keeps every content word is now refused by code (walk-2), and questions about the text (walk-3). Findings gather up to three checked sentences. Rerunning.
+- Also learned: Chrome's persistent profile served a two-builds-old page from its HTTP cache. The driver now busts the cache and records the page's own versions.
 
 ### 2026-09-18 · morning
 

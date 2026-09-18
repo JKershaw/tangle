@@ -1,0 +1,429 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "ee83f51",
+  "head": "ee83f51",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T07:26:37.657Z",
+  "loadSeconds": 5,
+  "prompt": "tangle-pocket-10",
+  "schema": "per-action-7",
+  "machineHealth": {
+    "samples": 35,
+    "gpuPercent": {
+      "min": 0,
+      "max": 96,
+      "mean": 92.3
+    },
+    "vramGiB": {
+      "min": 0.04,
+      "max": 2.36,
+      "mean": 2.2
+    },
+    "load": {
+      "min": 14.18,
+      "max": 24.32,
+      "mean": 19.2
+    },
+    "memoryFreePercent": {
+      "min": 77,
+      "max": 84,
+      "mean": 77.6
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "limits": "default",
+  "seeds": 7,
+  "resolved": 6,
+  "factsPresent": 7,
+  "factsSupported": 7,
+  "factsRead": 20,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 5,
+        "lookups": 2,
+        "tokens": 1676
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 3,
+        "misses": 0,
+        "entries": 80,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-dead-sea.json",
+      "summary": "live run · seed: Why is the Dead Sea shrinking?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-1/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:26:42.905Z · exported 2026-09-18T07:26:47.745Z\nnodes 1 · visits 1 · model calls 5 · lookups 2 · evidence 2 · tokens 1676\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why is the Dead Sea shrinking? → The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming w\n\nmodel latency ms: median 405 · max 1169 · n 5\nnothing flagged"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "sun": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "evaporation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 3,
+        "visits": 5,
+        "modelCalls": 38,
+        "lookups": 6,
+        "tokens": 12778
+      },
+      "statuses": {
+        "resolved": 3
+      },
+      "finding": "The water cycle is powered by the energy emitted from the sun.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 31,
+      "wiki": {
+        "hits": 10,
+        "misses": 2,
+        "entries": 82,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-water-cycle.json",
+      "summary": "live run · seed: Why does the water cycle keep going?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-1/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:26:47.756Z · exported 2026-09-18T07:27:18.911Z\nnodes 3 · visits 5 · model calls 38 · lookups 6 · evidence 6 · tokens 12778\nstatuses {\"resolved\":3} · outcome: root resolved\n\nn1 [resolved v2] Why does the water cycle keep going? → The water cycle is powered by the energy emitted from the sun.\n  n2 [resolved v2] What causes the phase changes of water in the water cycle? → The water cycle is powered by the energy emitted from the sun.\n    n3 [resolved] What is the role of the sun in the water cycle? → The water cycle is powered by the energy emitted from the sun.\n\nmodel latency ms: median 534 · max 9990 · n 38\nworth a look:\n- n1 resolved citing only its children's sources\n- n2 resolved citing only its children's sources"
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sea-peoples": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 11,
+        "visits": 21,
+        "modelCalls": 129,
+        "lookups": 27,
+        "tokens": 46961
+      },
+      "statuses": {
+        "resolved": 6,
+        "blocked": 5
+      },
+      "finding": "Consumers can reduce spoilage by planning their food shopping, avoiding potentially wasteful spontaneous purchases, and storing foods properly (and also preventing a too large buildup of perishable stock).",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 89,
+      "wiki": {
+        "hits": 34,
+        "misses": 16,
+        "entries": 96,
+        "added": 14
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-bronze-age.json",
+      "summary": "live run · seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-1/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:27:18.926Z · exported 2026-09-18T07:28:47.566Z\nnodes 11 · visits 21 · model calls 129 · lookups 27 · evidence 27 · tokens 46961\nstatuses {\"resolved\":6,\"blocked\":5} · outcome: root resolved\n\nn1 [resolved v2] Why did the Late Bronze Age collapse happen? → Consumers can reduce spoilage by planning their food shopping, avoiding potentially wastef\n  n2 [resolved v2] What specific factors contributed to the collapse of the Late Bronze Age society? → Consumers can reduce spoilage by planning their food shopping, avoiding potentially wastef\n    n3 [resolved v2] What specific societal or structural factors are highlighted in the sentences as contributing to the collapse? → Consumers can reduce spoilage by planning their food shopping, avoiding potentially wastef\n      n4 [resolved v2] What specific societal or structural factors are related to waste management in the country? → Consumers can reduce spoilage by planning their food shopping, avoiding potentially wastef\n        n5 [resolved v3] What specific policies or systems are in place to address food waste at different stages of the food system? → Consumers can reduce spoilage by planning their food shopping, avoiding potentially wastef\n          n6 [blocked v4] What specific strategies or interventions are being implemented to reduce food waste at different stages of the food system? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n7 [blocked] What specific interventions are being implemented to reduce food waste at the retail and consumer levels? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n8 [blocked] What specific interventions or strategies are being implemented to reduce food waste at the consumer level? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n9 [blocked] What are the specific technologies or policies mentioned in the text that help reduce food waste? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n10 [resolved v2] What specific strategies are being implemented to reduce food waste at the consumer level? → Consumers can reduce spoilage by planning their food shopping, avoiding potentially wastef\n            n11 [blocked] What specific actions are being taken at the consumer level to reduce food waste? !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 473 · max 2827 · n 129\nworth a look:\n- n6 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n7 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n8 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n9 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n11 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n1 resolved citing only its children's sources\n- n2 resolved citing only its children's sources\n- n3 resolved citing only its children's sources\n- n4 resolved citing only its children's sources\n- n5 resolved citing only its children's sources"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pesticides": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pathogens": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "stressors": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 2,
+        "visits": 3,
+        "modelCalls": 18,
+        "lookups": 3,
+        "tokens": 5419
+      },
+      "statuses": {
+        "resolved": 2
+      },
+      "finding": "Suggested causes include pesticides, infections with various pathogens (especially those transmitted by Varroa and Acarapis mites), malnutrition, genetic factors, immunodeficiencies, loss of habitat, or changing beekeeping practices; combinations of these factors have also been cited.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 37,
+        "misses": 18,
+        "entries": 98,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-colony-collapse.json",
+      "summary": "live run · seed: Why do honey bee colonies collapse?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-1/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:28:47.616Z · exported 2026-09-18T07:28:58.166Z\nnodes 2 · visits 3 · model calls 18 · lookups 3 · evidence 3 · tokens 5419\nstatuses {\"resolved\":2} · outcome: root resolved\n\nn1 [resolved v2] Why do honey bee colonies collapse? → Suggested causes include pesticides, infections with various pathogens (especially those t\n  n2 [resolved] What is the role of beekeeping practices in the development of colony collapse disorder? → Suggested causes include pesticides, infections with various pathogens (especially those t\n\nmodel latency ms: median 368 · max 1982 · n 18\nworth a look:\n- n1 resolved citing only its children's sources"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "temperature": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "algae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 453
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Coral bleaching is the process where corals become white due to loss of symbiotic algae and photosynthetic pigments.",
+      "kind": "single-lead",
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 38,
+        "misses": 19,
+        "entries": 99,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-coral.json",
+      "summary": "live run · seed: Why do coral reefs bleach?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-1/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:28:58.174Z · exported 2026-09-18T07:28:59.740Z\nnodes 1 · visits 1 · model calls 2 · lookups 1 · evidence 1 · tokens 453\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Why do coral reefs bleach? → Coral bleaching is the process where corals become white due to loss of symbiotic algae an\n\nmodel latency ms: median 605 · max 605 · n 2\nnothing flagged"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 10,
+        "visits": 19,
+        "modelCalls": 118,
+        "lookups": 23,
+        "tokens": 46933
+      },
+      "statuses": {
+        "resolved": 5,
+        "blocked": 5
+      },
+      "finding": "Crucially, experimental and theoretical results must be reproduced by others within the scientific community.",
+      "kind": "single-lead, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 89,
+      "wiki": {
+        "hits": 58,
+        "misses": 32,
+        "entries": 112,
+        "added": 13
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-sky-blue.json",
+      "summary": "live run · seed: Why is the sky blue?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-1/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:28:59.743Z · exported 2026-09-18T07:30:28.378Z\nnodes 10 · visits 19 · model calls 118 · lookups 23 · evidence 23 · tokens 46933\nstatuses {\"resolved\":5,\"blocked\":5} · outcome: root resolved\n\nn1 [resolved v2] Why is the sky blue? → Crucially, experimental and theoretical results must be reproduced by others within the sc\n  n2 [resolved v3] What is the scientific reason for the sky appearing blue? → Crucially, experimental and theoretical results must be reproduced by others within the sc\n    n3 [blocked v3] What is the role of the in-house rendering software in Blue Sky Studios? !! Nothing read states the answer, and no further lookup or question is allowed here.\n      n4 [blocked] What is the name of the in-house rendering software used by Blue Sky Studios? !! Nothing read states the answer, and no further lookup or question is allowed here.\n      n5 [blocked v2] What is the role of in-house rendering software in the context of Blue Sky Studios? !! Nothing read states the answer, and no further lookup or question is allowed here.\n        n6 [blocked] What is the role of custom software like Take Over GL Face Skins in machinima? !! Nothing read states the answer, and no further lookup or question is allowed here.\n    n7 [resolved v2] What is the scientific principle behind the blue sky? → Crucially, experimental and theoretical results must be reproduced by others within the sc\n      n8 [resolved v2] What is the role of replication in the scientific method? → Crucially, experimental and theoretical results must be reproduced by others within the sc\n        n9 [resolved v2] What is the role of reproducibility in the scientific method? → Crucially, experimental and theoretical results must be reproduced by others within the sc\n          n10 [blocked] What is the relationship between reproducibility and the scientific method? !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 576 · max 3683 · n 118\nworth a look:\n- n3 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n4 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n5 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n6 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n10 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n1 resolved citing only its children's sources\n- n2 resolved citing only its children's sources\n- n7 resolved citing only its children's sources\n- n8 resolved citing only its children's sources"
+    },
+    {
+      "id": "aral",
+      "resolved": false,
+      "outcome": "Visit safety limit · root unresolved",
+      "facts": {
+        "irrigation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "soviet": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 32,
+        "visits": 60,
+        "modelCalls": 427,
+        "lookups": 100,
+        "tokens": 146664
+      },
+      "statuses": {
+        "waiting": 3,
+        "blocked": 29
+      },
+      "finding": null,
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 288,
+      "wiki": {
+        "hits": 151,
+        "misses": 73,
+        "entries": 153,
+        "added": 41
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-tangle-aral.json",
+      "summary": "live run · seed: Why did the Aral Sea shrink?\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-1/asks-2/sentence:check,section:list,missing:search,question:one · created 2026-09-18T07:30:28.443Z · exported 2026-09-18T07:35:16.713Z\nnodes 32 · visits 60 · model calls 427 · lookups 100 · evidence 99 · tokens 146664\nstatuses {\"waiting\":3,\"blocked\":29} · outcome: Visit safety limit · root unresolved\n\nn1 [waiting] Why did the Aral Sea shrink?\n  n2 [waiting] What caused the split between the North Aral Sea and the South Aral Sea?\n    n3 [waiting v3] What is the name of the dam completed in 2005 to save and replenish the North Aral Sea?\n      n4 [blocked] What is the name of the dam that was completed in 2005 to save and replenish the North Aral Sea? !! Nothing read states the answer, and no further lookup or question is allowed here.\n      n5 [blocked v4 2 failed lookups] What is the name of the dam project completed in 2005 to save and replenish the North Aral Sea? !! Nothing read states the answer, and no further lookup or question is allowed here.\n        n6 [blocked v2] What is the name of the supply channel mentioned in the text? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n7 [blocked v4] What is the name of the weapon described in the text? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n8 [blocked] What is the name of the weapon that is specifically mentioned as being wielded by Wotan? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n9 [blocked] What is the name of the weapon that is described in the text as being used in the poem Völuspá? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n10 [blocked] What is the name of the sword described in the text? !! Nothing read states the answer, and no further lookup or question is allowed here.\n        n11 [blocked v2] What is the name of the dam project completed in 2005 that saved and replenished the North Aral Sea? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n12 [blocked] What is the name of the dam project that saved and replenished the North Aral Sea? !! Nothing read states the answer, and no further lookup or question is allowed here.\n        n13 [blocked v3 1 failed lookup] What is the name of the dam project that was completed in 2005 to save and replenish the North Aral Sea? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n14 [blocked] What is the name of the dam that was completed in 2005 to save and replenish the North Aral Sea? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n15 [blocked v2] What is the name of the dam project that was completed in 2005 and saved the North Aral Sea? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n16 [blocked] What is the name of the dam that was completed in 2005 and is responsible for saving the North Aral Sea? !! Nothing read states the answer, and no further lookup or question is allowed here.\n      n17 [blocked v4 2 failed lookups] What is the name of the lake that the North Aral Sea is being restored to? !! Nothing read states the answer, and no further lookup or question is allowed here.\n        n18 [blocked v4 2 failed lookups] What is the name of the city that would regain its maritime space? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n19 [blocked v2] What is the name of the lake that was restored by the government of Kazakhstan in 2005? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n20 [blocked] What is the name of the organization that oversees the restoration of the lake? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n21 [blocked v3 1 failed lookup] What is the name of the lake that would return to its pre-1970 level? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n22 [blocked] What is the name of the specific bay that would return to its pre-1970 level? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n23 [blocked] What is the name of the lake that would return to its pre-1970 level after the dike project? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n24 [blocked] What is the name of the city that would regain its maritime space through the construction of the second dam? !! Nothing read states the answer, and no further lookup or question is allowed here.\n        n25 [blocked v3] What is the name of the lake that was fed by the Syr Darya River? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n26 [blocked] What is the name of the lake that the Syr Darya meets after crossing the Kazakhstan–Uzbekistan border? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n27 [blocked v2] What is the name of the city where Alexander placed a garrison? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n28 [blocked] What is the name of the city that Alexander is associated with in the context of these settlements? !! Nothing read states the answer, and no further lookup or question is allowed here.\n        n29 [blocked v3] What is the name of the lake that is fed by the Syr Darya River? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n30 [blocked] What is the name of the lake that the Syr Darya meets after crossing the Kazakhstan–Uzbekistan border? !! Nothing read states the answer, and no further lookup or question is allowed here.\n          n31 [blocked v2] What is the name of the city where Alexander placed a garrison? !! Nothing read states the answer, and no further lookup or question is allowed here.\n            n32 [blocked] What is the name of the city that Alexander is associated with in the context of these settlements? !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 373 · max 3754 · n 427\nworth a look:\n- repeated question (n4, n14): what is the name of the dam that was completed in 2005 to save and replenish the north aral sea?\n- repeated question (n26, n30): what is the name of the lake that the syr darya meets after crossing the kazakhstan–uzbekistan border?\n- repeated question (n27, n31): what is the name of the city where alexander placed a garrison?\n- repeated question (n28, n32): what is the name of the city that alexander is associated with in the context of these settlements?\n- n5 lookup found nothing: “North Aral Sea dam project” (Already read: “North Aral Sea”.)\n- n5 lookup found nothing: “North Aral Sea dam project” (Already tried.)\n- n13 lookup found nothing: “North Aral Sea” (Already read.)\n- n17 lookup found nothing: “North Aral Sea” (Already read.)\n- n17 lookup found nothing: “North Aral Sea” (Already read.)\n- n18 lookup found nothing: “North Aral Sea” (Already read.)\n- n18 lookup found nothing: “North Aral Sea” (Already read.)\n- n21 lookup found nothing: “North Aral Sea” (Already read.)\n- n4 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n5 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n6 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n7 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n8 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n9 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n10 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n11 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n12 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n13 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n14 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n15 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n16 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n17 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n18 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n19 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n20 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n21 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n22 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n23 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n24 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n25 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n26 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n27 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n28 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n29 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n30 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n31 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n32 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
+    }
+  ],
+  "notes": [
+    "2026-09-18T07:26:37.656Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-1\",\"asks\":\"asks-2\",\"variants\":{\"sentence\":\"check\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T07:26:37.780Z loading: Checking this device before downloading…",
+    "2026-09-18T07:26:42.785Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 94% · vram 0.04 GiB · load 24.32 · mem 84% free (normal) · no throttling recorded",
+    "2026-09-18T07:26:42.882Z 7 seeds · mode tangle · limits {} · prompt tangle-pocket-10 · grammar per-action-7 · commit ee83f51",
+    "wiki recording: 80 responses loaded",
+    "2026-09-18T07:26:47.711Z run stopped: Root resolved",
+    "dead-sea: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 5 calls, 2 lookups, 1676 tokens · 5 s · wiki 3 hits 0 misses",
+    "2026-09-18T07:27:18.892Z run stopped: Root resolved",
+    "water-cycle: resolved · facts 1/3 · supported 1/3 · read 3/3 · 3 nodes, 38 calls, 6 lookups, 12778 tokens · 31 s · wiki 10 hits 2 misses",
+    "2026-09-18T07:28:47.521Z run stopped: Root resolved",
+    "bronze-age: resolved · facts 0/4 · supported 0/4 · read 4/4 · 11 nodes, 129 calls, 27 lookups, 46961 tokens · 89 s · wiki 34 hits 16 misses",
+    "2026-09-18T07:28:58.145Z run stopped: Root resolved",
+    "colony-collapse: resolved · facts 4/4 · supported 4/4 · read 4/4 · 2 nodes, 18 calls, 3 lookups, 5419 tokens · 11 s · wiki 37 hits 18 misses",
+    "2026-09-18T07:28:59.704Z run stopped: Root resolved",
+    "coral: resolved · facts 1/3 · supported 1/3 · read 3/3 · 1 nodes, 2 calls, 1 lookups, 453 tokens · 2 s · wiki 38 hits 19 misses",
+    "2026-09-18T07:30:28.332Z run stopped: Root resolved",
+    "sky-blue: resolved · facts 0/3 · supported 0/3 · read 0/3 · 10 nodes, 118 calls, 23 lookups, 46933 tokens · 89 s · wiki 58 hits 32 misses",
+    "2026-09-18T07:35:16.654Z run stopped: Visit safety limit · root unresolved",
+    "aral: Visit safety limit · root unresolved · facts 0/3 · supported 0/3 · read 3/3 · 32 nodes, 427 calls, 100 lookups, 146664 tokens · 288 s · wiki 151 hits 73 misses",
+    "machine during the suite: gpu 92.3% mean, 96% peak · vram up to 2.36 GiB · load up to 24.32 · no throttling in 35 samples"
+  ]
+}
