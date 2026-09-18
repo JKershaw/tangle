@@ -1,0 +1,451 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-4B-q4f16_1-MLC",
+  "commit": "bc2e15a",
+  "head": "bc2e15a (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T16:12:00.705Z",
+  "loadSeconds": 5,
+  "prompt": "walk-11/asks-4",
+  "schema": "sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-11",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 3,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 65.3
+    },
+    "vramGiB": {
+      "min": 0.05,
+      "max": 3.63,
+      "mean": 2.4
+    },
+    "load": {
+      "min": 18.69,
+      "max": 20.15,
+      "mean": 19.6
+    },
+    "memoryFreePercent": {
+      "min": 74,
+      "max": 86,
+      "mean": 78
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "flat",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "maxNodes": 1,
+    "maxVisits": 3,
+    "maxDepth": 0,
+    "maxLookups": 6,
+    "maxPasses": 8
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 9,
+  "factsSupported": 9,
+  "factsRead": 30,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 1516
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 475,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "entries": 634,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-turing.json",
+      "summary": "live run · seed: Tell me about Alan Turing and elaborate on the impact of his work.\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:12:06.259Z · exported 2026-09-18T16:12:14.209Z\nnodes 1 · visits 1 · model calls 3 · lookups 1 · evidence 1 · tokens 1516\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. → He was highly influential in the development of theoretical computer science, providing a \n\nmodel latency ms: median 1790 · max 2113 · n 3\nnothing flagged"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 1616
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 508,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 8,
+        "misses": 0,
+        "entries": 634,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-silk-road.json",
+      "summary": "live run · seed: Tell me about the Silk Road and elaborate on its influence.\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:12:14.216Z · exported 2026-09-18T16:12:21.920Z\nnodes 1 · visits 1 · model calls 3 · lookups 1 · evidence 1 · tokens 1616\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about the Silk Road and elaborate on its influence. → Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating econom\n\nmodel latency ms: median 1943 · max 1955 · n 3\nnothing flagged"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 1572
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 409,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 12,
+        "misses": 0,
+        "entries": 634,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-hubble.json",
+      "summary": "live run · seed: Tell me about the Hubble Space Telescope and what it has discovered.\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:12:21.926Z · exported 2026-09-18T16:12:29.617Z\nnodes 1 · visits 1 · model calls 3 · lookups 1 · evidence 1 · tokens 1572\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. → Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely\n\nmodel latency ms: median 1912 · max 1917 · n 3\nnothing flagged"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 1569
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres (1,400 mi) over an area of approximately 344,400 square kilometres (133,000 mi2). Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 847,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 16,
+        "misses": 0,
+        "entries": 634,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-flat-great-barrier-reef.json",
+      "summary": "live run · seed: Describe the Great Barrier Reef and the threats it faces.\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:12:29.621Z · exported 2026-09-18T16:12:37.327Z\nnodes 1 · visits 1 · model calls 3 · lookups 1 · evidence 1 · tokens 1569\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Describe the Great Barrier Reef and the threats it faces. → The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 in\n\nmodel latency ms: median 1908 · max 2115 · n 3\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-18T16:12:00.705Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-11\",\"asks\":\"asks-4\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T16:12:00.829Z loading: Checking this device before downloading…",
+    "2026-09-18T16:12:05.837Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-4B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 98% · vram 0.03 GiB · load 18.69 · mem 86% free (normal) · no throttling recorded",
+    "2026-09-18T16:12:05.934Z 4 seeds from evals/seeds-profile.json · mode flat · limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8} · prompt walk-11/asks-4 · grammar sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit bc2e15a",
+    "wiki recording: 634 responses loaded",
+    "2026-09-18T16:12:14.042Z run stopped: Root resolved",
+    "turing: resolved · topics 1/8 · supported 1/8 · read 7/8 · ¶1 · 3 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 1 lookups, 1516 tokens · 8 s · wiki 4 hits 0 misses",
+    "2026-09-18T16:12:21.758Z run stopped: Root resolved",
+    "silk-road: resolved · topics 2/9 · supported 2/9 · read 7/9 · ¶1 · 3 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 1 lookups, 1616 tokens · 8 s · wiki 8 hits 0 misses",
+    "2026-09-18T16:12:29.464Z run stopped: Root resolved",
+    "hubble: resolved · topics 1/8 · supported 1/8 · read 7/8 · ¶1 · 3 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 1 lookups, 1572 tokens · 8 s · wiki 12 hits 0 misses",
+    "2026-09-18T16:12:37.165Z run stopped: Root resolved",
+    "great-barrier-reef: resolved · topics 5/10 · supported 5/10 · read 9/10 · ¶1 · 3 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 1 lookups, 1569 tokens · 8 s · wiki 16 hits 0 misses",
+    "machine during the suite: gpu 65.3% mean, 98% peak · vram up to 3.63 GiB · load up to 20.15 · no throttling in 3 samples"
+  ]
+}

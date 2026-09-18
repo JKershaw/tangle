@@ -286,7 +286,7 @@ test("a brief reads the lead, hands one child per chosen section; a child hands 
   const reads = [];
   const wiki = async (query, { readOn, links } = {}) => {
     if (links) return { ok: true, kind: "links", title: query, links: LINKS[query] ?? [] };
-    if (readOn) reads.push(`${readOn.article} / ${readOn.section}`);
+    if (readOn) reads.push(`${readOn.article} / ${readOn.section}${readOn.about ? ` about ${readOn.about}` : ""}`);
     if (readOn?.article === "Bombe") return { ok: true, kind: "wiki", title: "Bombe", article: "Bombe", section: 0, text: BOMBE, url: "u" };
     if (readOn) return { ok: true, kind: "wiki", title: `Alan Turing § ${readOn.section}`, article: "Alan Turing", section: readOn.section === "War" ? 1 : 2, text: readOn.section === "War" ? WAR : LEGACY, url: "u" };
     if (/bombe/i.test(query)) return { ok: true, kind: "wiki", title: "Bombe", article: "Bombe", section: 0, headings: ["Design", "Use"], text: BOMBE, url: "u" };
@@ -297,15 +297,15 @@ test("a brief reads the lead, hands one child per chosen section; a child hands 
   assert.equal(isBrief("Why is the Dead Sea shrinking?"), false);
   assert.equal(isBrief("Explain why the Dead Sea is shrinking?"), true);
   const run = createRun("Tell me about Alan Turing and elaborate on the impact of his work.", "live", { maxSentences: 2, maxLookups: 2 });
-  // Root: two lead picks, then the sections: Legacy, War, none.
-  const { ask, seen } = scripted([["sentence", "1"], ["sentence", "1"], ["section", "Legacy"], ["section", "War"], ["section", "none"]]);
+  // Root: two lead picks and a none (a brief's root may keep twice maxSentences), then the sections: Legacy, War, none.
+  const { ask, seen } = scripted([["sentence", "1"], ["sentence", "1"], ["sentence", "none"], ["section", "Legacy"], ["section", "War"], ["section", "none"]]);
   assert.equal(await runWalk(run, { ask, wiki, ...PLAIN }), true);
   const root = run.nodes[0];
   assert.equal(root.status, "waiting");
   assert.equal(seen[0].user.split("\n")[0], "Brief: Tell me about Alan Turing and elaborate on the impact of his work.", "the brief wording");
-  assert.deepEqual(seen[2].options, ["War", "Legacy", "none"]);
-  assert.deepEqual(seen[3].options, ["War", "none"], "a chosen section is not offered again");
-  assert.match(seen[3].user, /Already chosen: Legacy/);
+  assert.deepEqual(seen[3].options, ["War", "Legacy", "none"]);
+  assert.deepEqual(seen[4].options, ["War", "none"], "a chosen section is not offered again");
+  assert.match(seen[4].user, /Already chosen: Legacy/);
   // Chosen Legacy then War; the children follow the article's order.
   assert.deepEqual(run.nodes.slice(1).map((node) => [node.question, node.readFirst]), [
     ["Tell me about Alan Turing and elaborate on the impact of his work. — about War", { article: "Alan Turing", section: "War" }],
@@ -329,7 +329,7 @@ test("a brief reads the lead, hands one child per chosen section; a child hands 
   // The Bombe child reads that article; only its sentences naming the subject are offered; it keeps one and does not hop on.
   const hop = scripted([["sentence", "1"], ["sentence", "none"]]);
   assert.equal(await runWalk(run, { ask: hop.ask, wiki, ...PLAIN }), true);
-  assert.deepEqual(reads.at(-1), "Bombe / 0", "a linked name is an article title: read directly, no search");
+  assert.deepEqual(reads.at(-1), "Bombe / 0 about Alan Turing", "a linked name is an article title: read directly for what it says about the subject, no search");
   assert.deepEqual(hop.seen[0].options, ["1", "none"], "of the Bombe's three sentences only the one naming Turing is offered");
   assert.match(hop.seen[0].user, /1\. The initial design was produced by Turing/);
   assert.equal(run.nodes[3].status, "resolved");
@@ -370,7 +370,7 @@ test("without an article's links the names are capitalised phrases; a hop child 
   assert.equal(occurs("Bomb", "the bombe"), false, "whole words only");
   const run = createRun("Tell me about Alan Turing.", "live", { maxSentences: 1, maxLookups: 2 });
   // Root keeps the Bletchley Park sentence and hands down War; the child reads the section, where that sentence is repeated: it is not offered again.
-  assert.equal(await runWalk(run, { ask: scripted([["sentence", "2"], ["section", "War"], ["section", "none"]]).ask, wiki, ...PLAIN }), true);
+  assert.equal(await runWalk(run, { ask: scripted([["sentence", "2"], ["sentence", "none"], ["section", "War"], ["section", "none"]]).ask, wiki, ...PLAIN }), true);
   const child = scripted([["sentence", "1"], ["search", "Government Code"], ["search", "none"]]);
   assert.equal(await runWalk(run, { ask: child.ask, wiki, ...PLAIN }), true, run.nodes.at(-1)?.reason);
   assert.deepEqual(child.seen[0].options, ["1", "none"], "the sentence the root kept is not offered to the child");
@@ -386,7 +386,7 @@ test("without an article's links the names are capitalised phrases; a hop child 
   assert.equal(run.nodes[1].finding, "The Government Code and Cypher School was based there.");
   // At the depth limit, or under flat limits, no hops are offered.
   const shallow = createRun("Tell me about Alan Turing.", "live", { maxSentences: 1, maxLookups: 2, maxDepth: 1 });
-  await runWalk(shallow, { ask: scripted([["sentence", "2"], ["section", "War"], ["section", "none"]]).ask, wiki, ...PLAIN });
+  await runWalk(shallow, { ask: scripted([["sentence", "2"], ["sentence", "none"], ["section", "War"], ["section", "none"]]).ask, wiki, ...PLAIN });
   const leaf = scripted([["sentence", "1"]]);
   await runWalk(shallow, { ask: leaf.ask, wiki, ...PLAIN });
   assert.equal(shallow.nodes[1].status, "resolved");

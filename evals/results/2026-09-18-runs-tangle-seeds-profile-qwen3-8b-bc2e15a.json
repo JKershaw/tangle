@@ -1,0 +1,449 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-8B-q4f16_1-MLC",
+  "commit": "bc2e15a",
+  "head": "bc2e15a",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T15:59:21.539Z",
+  "loadSeconds": 10,
+  "prompt": "walk-11/asks-4",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-11",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 28,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 94.6
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 5.93,
+      "mean": 5.2
+    },
+    "load": {
+      "min": 11.37,
+      "max": 19.04,
+      "mean": 15.8
+    },
+    "memoryFreePercent": {
+      "min": 67,
+      "max": 85,
+      "mean": 69.1
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 20,
+  "factsSupported": 20,
+  "factsRead": 34,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "morphogenesis": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "conviction": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 17,
+        "visits": 23,
+        "modelCalls": 42,
+        "lookups": 17,
+        "tokens": 15582
+      },
+      "statuses": {
+        "resolved": 9,
+        "blocked": 8
+      },
+      "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n\nDuring the Second World War, Turing was a leading participant in the breaking of German ciphers at Bletchley Park. Turing's approach was more general, using crib-based decryption for which he produced the functional specification of the bombe (an improvement on the Polish Bomba). Specifying the bombe was the first of five major cryptanalytical advances that Turing made during the war.\n\nThe initial design of the British bombe was produced in 1939 at the UK Government Code and Cypher School (GC&CS) at Bletchley Park by Alan Turing, with an important refinement devised in 1940 by Gordon Welchman. The first bombe, code-named Victory, was installed in March 1940 while the second version, Agnus Dei or Agnes, incorporating Welchman's new design, was working by August 1940.\n\nHe presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.\n\nIt was the production version of the Pilot ACE, itself a cut-down version of Alan Turing's ACE.\n\nWhen Turing was 39 years old in 1951, he turned to mathematical biology, finally publishing his masterpiece \"The Chemical Basis of Morphogenesis\" in January 1952. He suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.\n\nSuch patterns have been dubbed \"Turing patterns\".\n\nDuring the investigation, he acknowledged a sexual relationship with Murray. Homosexual acts were criminal offences in the United Kingdom at that time, and both men were charged with \"gross indecency\" under Section 11 of the Criminal Law Amendment Act 1885. His probation would be conditional on his agreement to undergo organotherapy or 'chemical castration' in the Manchester Royal Infirmary, a process which induces hormonal physical changes with the aim of reducing libido.\n\nThe prime minister, Gordon Brown, acknowledged the petition, releasing a statement on 10 September 2009 apologising and describing the treatment of Turing as \"appalling\": Thousands of people have come together to demand justice for Alan Turing and recognition of the appalling way he was treated. So on behalf of the British government, and all those who live freely thanks to Alan's work I am very proud to say: we're sorry, you deserved so much better. Alan Turing was driven to a terrible despair and early death by the nation he'd done so much to save.",
+      "profile": {
+        "paragraphs": 9,
+        "sentences": 22,
+        "chars": 3515,
+        "duplicates": 0,
+        "articles": 11,
+        "sections": 17,
+        "hopsChosen": 10,
+        "hopsRead": 10,
+        "hopsCited": 3,
+        "blocked": 8
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 101,
+      "wiki": {
+        "hits": 17,
+        "misses": 4,
+        "entries": 598,
+        "added": 4
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-turing.json",
+      "summary": "live run · seed: Tell me about Alan Turing and elaborate on the impact of his work.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T15:59:32.058Z · exported 2026-09-18T16:01:13.223Z\nnodes 17 · visits 23 · model calls 42 · lookups 17 · evidence 17 · tokens 15582\nstatuses {\"resolved\":9,\"blocked\":8} · outcome: root resolved\n\nn1 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. → He was highly influential in the development of theoretical computer science, providing a \n  n2 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Career and research !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n3 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Cryptanalysis → During the Second World War, Turing was a leading participant in the breaking of German ci\n    n8 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Bombe → The initial design of the British bombe was produced in 1939 at the UK Government Code and\n    n9 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Bletchley Park !! Nothing read about Bletchley Park names the subject of the brief.\n  n4 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test → He presented a paper on 19 February 1946, which was the first detailed design of a stored-\n    n10 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Stored-program computer !! Nothing read about Stored-program computer names the subject of the brief.\n    n11 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about English Electric DEUCE → It was the production version of the Pilot ACE, itself a cut-down version of Alan Turing's\n  n5 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology → When Turing was 39 years old in 1951, he turned to mathematical biology, finally publishin\n    n12 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Reaction–diffusion system → Such patterns have been dubbed \"Turing patterns\".\n    n13 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Mathematical biology !! Nothing read about Mathematical biology names the subject of the brief.\n  n6 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Homosexuality and indecency conviction → During the investigation, he acknowledged a sexual relationship with Murray. Homosexual ac\n    n14 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Gross indecency !! Nothing read about Gross indecency names the subject of the brief.\n    n15 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Chemical castration !! Nothing read about Chemical castration names the subject of the brief.\n  n7 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Government apology and pardon → The prime minister, Gordon Brown, acknowledged the petition, releasing a statement on 10 S\n    n16 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Alan Turing (sculpture) !! Nothing read about Alan Turing (sculpture) names the subject of the brief.\n    n17 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Gordon Brown !! Nothing read about Gordon Brown names the subject of the brief.\n\nmodel latency ms: median 1823 · max 4320 · n 42\nworth a look:\n- n2 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n9 blocked: Nothing read about Bletchley Park names the subject of the brief.\n- n10 blocked: Nothing read about Stored-program computer names the subject of the brief.\n- n13 blocked: Nothing read about Mathematical biology names the subject of the brief.\n- n14 blocked: Nothing read about Gross indecency names the subject of the brief.\n- n15 blocked: Nothing read about Chemical castration names the subject of the brief.\n- n16 blocked: Nothing read about Alan Turing (sculpture) names the subject of the brief.\n- n17 blocked: Nothing read about Gordon Brown names the subject of the brief."
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mongol": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 19,
+        "visits": 26,
+        "modelCalls": 47,
+        "lookups": 19,
+        "tokens": 14933
+      },
+      "statuses": {
+        "resolved": 12,
+        "blocked": 7
+      },
+      "finding": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. Aside from generating substantial wealth for emerging mercantile classes, the proliferation of goods such as paper and gunpowder greatly affected the trajectory of political history in several theatres in Eurasia and beyond.\n\nThe Silk Road derives its name from the lucrative trade in silk, first developed in China, and a major reason for the connection of trade routes into an extensive transcontinental network. The use of the term 'Silk Road' is not without its detractors. For instance, Warwick Ball contends that the maritime spice trade with India and Arabia was far more consequential for the economy of the Roman Empire than the silk trade with China, which at sea was conducted mostly through India and on land was handled by numerous intermediaries such as the Sogdians.\n\nDue to the Empire's extent and endurance, its institutions and culture had a lasting influence on the development of language, religion, art, architecture, literature, philosophy, law, and forms of government across its territories.\n\nThe fragmentation of the Mongol Empire loosened the political, cultural, and economic unity of the Silk Road. Accompanying the crystallisation of regional states was the decline of nomad power, partly due to the devastation of the Black Death and partly due to the encroachment of sedentary civilisations equipped with gunpowder. The silk trade continued to flourish until it was disrupted by the collapse of the Safavid Empire in the 1720s.\n\nGunpowder has been widely used as a propellant in firearms, artillery, rocketry, and pyrotechnics, including use as a blasting agent for explosives in quarrying, mining, building pipelines, tunnels, and roads.\n\nRichard Foltz, Xinru Liu, and others have described how trading activities along the Silk Road over many centuries facilitated the transmission not just of goods but also ideas and culture, notably in the area of religions. Zoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across Eurasia through trade networks that were tied to specific religious communities and their institutions. The spread of religions and cultural traditions along the Silk Roads, according to Jerry H.\n\nIt originated in the eastern Gangetic plain as a śramaṇa movement in the 5th century BCE, and gradually spread throughout much of Asia via the Silk Road.\n\nThe transmission of Christianity was primarily known as Nestorianism on the Silk Road. In 781, an inscribed stele shows Nestorian Christian missionaries arriving on the Silk Road. Christianity had spread both east and west, simultaneously bringing Syriac language and evolving the forms of worship.\n\nThe transmission of Buddhism to China via the Silk Road began in the 1st century CE, according to a semi-legendary account of an ambassador sent to the West by the Chinese Emperor Ming (58–75). The Buddhist movement was the first large-scale missionary movement in the history of world religions. It is believed that under the control of the Kushans, Buddhism was spread to China and other parts of Asia from the middle of the first century to the middle of the third century.\n\nThe Silk Road became the main east–west trading route in the Asian hinterlands while the Straits of Malacca stood as a major sea route.\n\nMany artistic influences were transmitted via the Silk Road, particularly through Central Asia, where Hellenistic, Iranian, Indian and Chinese influences could intermix. These artistic influences can be seen in the development of Buddhism where, for instance, Buddha was first depicted as human in the Kushan period. The mixture of Greek and Indian elements can be found in later Buddhist art in China and throughout countries on the Silk Road.\n\nThe Silk Road trade routes crossed through Central Asia, leading to the rise of prosperous trade cities.",
+      "profile": {
+        "paragraphs": 12,
+        "sentences": 26,
+        "chars": 4097,
+        "duplicates": 0,
+        "articles": 13,
+        "sections": 19,
+        "hopsChosen": 12,
+        "hopsRead": 12,
+        "hopsCited": 5,
+        "blocked": 7
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 101,
+      "wiki": {
+        "hits": 34,
+        "misses": 10,
+        "entries": 604,
+        "added": 6
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-silk-road.json",
+      "summary": "live run · seed: Tell me about the Silk Road and elaborate on its influence.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:01:13.258Z · exported 2026-09-18T16:02:54.002Z\nnodes 19 · visits 26 · model calls 47 · lookups 19 · evidence 19 · tokens 14933\nstatuses {\"resolved\":12,\"blocked\":7} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Silk Road and elaborate on its influence. → The Silk Road was a network of Asian trade routes active from the second century BCE until\n  n2 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Name and contested significance → The Silk Road derives its name from the lucrative trade in silk, first developed in China,\n    n8 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Warwick Ball !! Nothing read about Warwick Ball names the subject of the brief.\n    n9 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Roman Empire → Due to the Empire's extent and endurance, its institutions and culture had a lasting influ\n  n3 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Decline (15th century–present) → The fragmentation of the Mongol Empire loosened the political, cultural, and economic unit\n    n10 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Black Death !! Nothing read about Black Death names the subject of the brief.\n    n11 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Gunpowder → Gunpowder has been widely used as a propellant in firearms, artillery, rocketry, and pyrot\n  n4 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Expansion of religions → Richard Foltz, Xinru Liu, and others have described how trading activities along the Silk \n    n12 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Buddhism → It originated in the eastern Gangetic plain as a śramaṇa movement in the 5th century BCE, \n    n13 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Islam !! Nothing read about Islam names the subject of the brief.\n  n5 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Transmission of Christianity → The transmission of Christianity was primarily known as Nestorianism on the Silk Road. In \n    n14 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Nestorianism !! Nothing read about Nestorianism names the subject of the brief.\n    n15 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Christianity !! Nothing read about Christianity names the subject of the brief.\n  n6 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Transmission of Buddhism → The transmission of Buddhism to China via the Silk Road began in the 1st century CE, accor\n    n16 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Asia → The Silk Road became the main east–west trading route in the Asian hinterlands while the S\n    n17 [blocked] Tell me about the Silk Road and elaborate on its influence. — about China !! Nothing read about China names the subject of the brief.\n  n7 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Expansion of the arts → Many artistic influences were transmitted via the Silk Road, particularly through Central \n    n18 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Buddha !! Nothing read about Buddha names the subject of the brief.\n    n19 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Central Asia → The Silk Road trade routes crossed through Central Asia, leading to the rise of prosperous\n\nmodel latency ms: median 1847 · max 3986 · n 47\nworth a look:\n- n8 blocked: Nothing read about Warwick Ball names the subject of the brief.\n- n10 blocked: Nothing read about Black Death names the subject of the brief.\n- n13 blocked: Nothing read about Islam names the subject of the brief.\n- n14 blocked: Nothing read about Nestorianism names the subject of the brief.\n- n15 blocked: Nothing read about Christianity names the subject of the brief.\n- n17 blocked: Nothing read about China names the subject of the brief.\n- n18 blocked: Nothing read about Buddha names the subject of the brief."
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 17,
+        "visits": 24,
+        "modelCalls": 52,
+        "lookups": 17,
+        "tokens": 17752
+      },
+      "statuses": {
+        "resolved": 13,
+        "blocked": 4
+      },
+      "finding": "Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe.\n\nHubble has helped resolve some long-standing problems in astronomy, while also raising new questions.\n\nAmong its primary mission targets was to measure distances to Cepheid variable stars more accurately than ever before, and thus constrain the value of the Hubble constant, the measure of the rate at which the universe is expanding, which is also related to its age. The estimated age of the universe is now 13.7 billion years. Astronomers from the High-z Supernova Search Team and the Supernova Cosmology Project used ground-based telescopes and HST to observe distant supernovae and uncovered evidence that, far from decelerating under the influence of gravity, the expansion of the universe is instead accelerating.\n\nHe estimated a value for this ratio, which—after Hubble confirmed cosmic expansion and determined a more precise value for it two years later—became known as the Hubble constant. Hubble's law is considered the first observational basis for the expansion of the universe, and is one of the pieces of evidence most often cited in support of the Big Bang model. It is described by the equation v = H0D, with H0 the constant of proportionality—the Hubble constant—between the \"proper distance\" D to a galaxy (which can change over time, unlike the comoving distance) and its speed of separation v, i.e. the derivative of proper distance with respect to the cosmic time coordinate.\n\nFrom studying the effects of gravity on both matter and light, it has been discovered that the universe contains much more matter than is accounted for by visible objects; stars, galaxies, nebulae and interstellar gas.\n\nThe high-resolution spectra and images provided by the HST have been especially well-suited to establishing the prevalence of black holes in the center of nearby galaxies. While it had been hypothesized in the early 1960s that black holes would be found at the centers of some galaxies, and astronomers in the 1980s identified a number of good black hole candidates, work conducted with Hubble shows that black holes are probably common to the centers of all galaxies. The Hubble programs further established that the masses of the nuclear black holes and properties of the galaxies are closely related.\n\nIn March 2015, researchers announced that measurements of aurorae around Ganymede, one of Jupiter's moons, revealed that it has a subsurface ocean. HST has also been used to study objects in the outer reaches of the Solar System, including the dwarf planets Pluto, Eris, and Sedna. In April 2022 NASA announced that astronomers were able to use images from HST to determine the size of the nucleus of comet C/2014 UN271 (Bernardinelli–Bernstein), which is the largest icy comet nucleus ever seen by astronomers.\n\nGanymede's discovery is credited to Simon Marius and Galileo Galilei, who both observed it in 1610, as the third of the Galilean moons, the first group of objects discovered orbiting another planet. The Voyager probes, Voyager 1 and Voyager 2, refined measurements of its size, while Galileo discovered its underground ocean and magnetic field.\n\nEris was discovered in January 2005 by a Palomar Observatory–based team led by Mike Brown and verified later that year. This, along with the prospect of other objects of similar size being discovered in the future, motivated the International Astronomical Union (IAU) to define the term planet for the first time.\n\nMACS 2129-1 subverted expectations about galaxies in which new star formation had ceased, a significant result for understanding the formation of elliptical galaxies. In 2022 Hubble detected the light of the farthest individual star ever seen to date. The star, WHL0137-LS (nicknamed Earendel), existed within the first billion years after the Big Bang.\n\nMACS 2129-1 is an early universe so-called 'dead' disk galaxy discovered in 2017 by the Hubble Space Telescope from NASA.\n\nThe earliest empirical observation of an expanding universe is known as Hubble's law, published in work by physicist Edwin Hubble in 1929, which discerned that galaxies are moving away from Earth at a rate that accelerates proportionally with distance. Independent of Friedmann's work, and independent of Hubble's observations, in 1931 physicist Georges Lemaître proposed that the universe emerged from a \"primeval atom\", introducing the modern notion of the Big Bang. In 1964, the CMB was accidentally discovered.\n\nMany objective measures show the positive impact of Hubble data on astronomy. As of 2025, over 22,000 papers based on Hubble data have been published in peer-reviewed journals, and countless more have appeared in conference proceedings. Looking at papers several years after their publication, about one-third of all astronomy papers have no citations, while only two percent of papers based on Hubble data have no citations.",
+      "profile": {
+        "paragraphs": 13,
+        "sentences": 31,
+        "chars": 5229,
+        "duplicates": 0,
+        "articles": 11,
+        "sections": 17,
+        "hopsChosen": 10,
+        "hopsRead": 10,
+        "hopsCited": 6,
+        "blocked": 4
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 122,
+      "wiki": {
+        "hits": 44,
+        "misses": 21,
+        "entries": 615,
+        "added": 11
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-hubble.json",
+      "summary": "live run · seed: Tell me about the Hubble Space Telescope and what it has discovered.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:02:54.036Z · exported 2026-09-18T16:04:55.819Z\nnodes 17 · visits 24 · model calls 52 · lookups 17 · evidence 17 · tokens 17752\nstatuses {\"resolved\":13,\"blocked\":4} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. → Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely\n  n2 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Important discoveries → Hubble has helped resolve some long-standing problems in astronomy, while also raising new\n    n8 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Hubble (film) !! Nothing read about Hubble (film) names the subject of the brief.\n    n9 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Astronomy !! Nothing read about Astronomy names the subject of the brief.\n  n3 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Age and expansion of the universe → Among its primary mission targets was to measure distances to Cepheid variable stars more \n    n10 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Hubble constant → He estimated a value for this ratio, which—after Hubble confirmed cosmic expansion and det\n    n11 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Universe → From studying the effects of gravity on both matter and light, it has been discovered that\n  n4 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Black holes → The high-resolution spectra and images provided by the HST have been especially well-suite\n    n12 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Black hole !! Nothing read about Black hole names the subject of the brief.\n  n5 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Solar System discoveries → In March 2015, researchers announced that measurements of aurorae around Ganymede, one of \n    n13 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Ganymede (moon) → Ganymede's discovery is credited to Simon Marius and Galileo Galilei, who both observed it\n    n14 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Eris (dwarf planet) → Eris was discovered in January 2005 by a Palomar Observatory–based team led by Mike Brown \n  n6 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Other discoveries → MACS 2129-1 subverted expectations about galaxies in which new star formation had ceased, \n    n15 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about MACS 2129-1 → MACS 2129-1 is an early universe so-called 'dead' disk galaxy discovered in 2017 by the Hu\n    n16 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Big Bang → The earliest empirical observation of an expanding universe is known as Hubble's law, publ\n  n7 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Impact on astronomy → Many objective measures show the positive impact of Hubble data on astronomy. As of 2025, \n    n17 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Proceedings !! Nothing read about Proceedings names the subject of the brief.\n\nmodel latency ms: median 1896 · max 4112 · n 52\nworth a look:\n- n8 blocked: Nothing read about Hubble (film) names the subject of the brief.\n- n9 blocked: Nothing read about Astronomy names the subject of the brief.\n- n12 blocked: Nothing read about Black hole names the subject of the brief.\n- n17 blocked: Nothing read about Proceedings names the subject of the brief."
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 7,
+      "factsSupported": 7,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 17,
+        "visits": 24,
+        "modelCalls": 45,
+        "lookups": 17,
+        "tokens": 12416
+      },
+      "statuses": {
+        "resolved": 10,
+        "blocked": 7
+      },
+      "finding": "It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified.\n\nClimate change, pollution, crown-of-thorns starfish and fishing are the primary threats to the health of this reef system. According to a 2012 study by the National Academy of Sciences, since 1985, the Great Barrier Reef has lost more than half of its corals with two-thirds of the loss occurring from 1998 due to the factors listed before. In 2022, the northern and central parts of the reef had the highest amount of coral cover since monitoring began, but the cover in the southern part had decreased and bleaching events occurred more frequently.\n\nCorals are major contributors to the physical structure of the coral reefs that develop in tropical and subtropical waters, such as the Great Barrier Reef off the coast of Australia.\n\nThe Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Barrier Reef to be climate change, causing ocean warming which increases coral bleaching. Mass coral bleaching events due to marine heatwaves occurred in the summers of 1998, 2002, 2006, 2016, 2017 and 2020, and coral bleaching is expected to become an annual occurrence. In 2020, a study found that the Great Barrier Reef has lost more than half of its corals since 1995 due to warmer seas driven by climate change.\n\nLarge-scale bleaching events can devastate entire reef ecosystems, affecting biodiversity and the livelihoods of coastal communities that depend on healthy reefs for food, tourism, and protection from storm surges. In 2016, bleaching of coral on the Great Barrier Reef killed 29 to 50 percent of the reef's coral.\n\nYet, the ocean faces many environmental threats, such as marine pollution, overfishing, and the effects of climate change.\n\nA threat for the Great Barrier Reef is the rising levels of ocean acidification. This reduces the amount of aragonite, a key mineral for coral to grow, in the water. The Great Barrier Reef is predicted to lose aragonite at a rate of about 0.1 per decade this century.\n\nAnother key threat faced by the Great Barrier Reef is pollution and declining water quality. Over 90% of this pollution comes from farm runoff. Farming practices damage the reef due to overgrazing, increased run-off of agricultural sediments, nutrients and chemicals including fertilisers, herbicides and pesticides representing a major health risk for the coral and biodiversity of the reefs.\n\nFarming fertiliser runoff release nitrogen, phosphorus, and potassium into the oceanic ecosystem, and these limiting nutrients cause massive algal growth which eventually leads to a reduction in oxygen available for other creatures in a process called eutrophication. Fertilizers also increase the amount of phytoplankton available for the crown-of-thorns starfish larvae to consume. A study showed that a doubling of the chlorophyll in the water leads to a tenfold increase in the crown-of-thorns starfish larvae's survival rate.\n\nSediment runoff from farming carries chemicals into the reef environment also reduces the amount of light available to the corals decreasing their ability to extract energy from their environment.",
+      "profile": {
+        "paragraphs": 10,
+        "sentences": 23,
+        "chars": 3770,
+        "duplicates": 0,
+        "articles": 11,
+        "sections": 17,
+        "hopsChosen": 10,
+        "hopsRead": 10,
+        "hopsCited": 3,
+        "blocked": 7
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 86,
+      "wiki": {
+        "hits": 59,
+        "misses": 27,
+        "entries": 621,
+        "added": 6
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-8b-tangle-great-barrier-reef.json",
+      "summary": "live run · seed: Describe the Great Barrier Reef and the threats it faces.\nmodel Qwen3-8B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:04:55.850Z · exported 2026-09-18T16:06:21.877Z\nnodes 17 · visits 24 · model calls 45 · lookups 17 · evidence 17 · tokens 12416\nstatuses {\"resolved\":10,\"blocked\":7} · outcome: root resolved\n\nn1 [resolved v2] Describe the Great Barrier Reef and the threats it faces. → It supports a wide diversity of life and was selected as a World Heritage Site in 1981. Ot\n  n2 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Environmental threats → Climate change, pollution, crown-of-thorns starfish and fishing are the primary threats to\n    n8 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Coral → Corals are major contributors to the physical structure of the coral reefs that develop in\n    n9 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Climate change !! Nothing read about Climate change names the subject of the brief.\n  n3 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Climate change → The Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Ba\n    n10 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Coral bleaching → Large-scale bleaching events can devastate entire reef ecosystems, affecting biodiversity \n    n11 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Ocean → Yet, the ocean faces many environmental threats, such as marine pollution, overfishing, an\n  n4 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Ocean Acidification → A threat for the Great Barrier Reef is the rising levels of ocean acidification. This redu\n    n12 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Ocean acidification !! Nothing read about Ocean acidification names the subject of the brief.\n  n5 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Pollution → Another key threat faced by the Great Barrier Reef is pollution and declining water qualit\n    n13 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Biodiversity !! Nothing read about Biodiversity names the subject of the brief.\n    n14 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Overgrazing !! Nothing read about Overgrazing names the subject of the brief.\n  n6 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Eutrophication → Farming fertiliser runoff release nitrogen, phosphorus, and potassium into the oceanic eco\n    n15 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Eutrophication !! Nothing read about Eutrophication names the subject of the brief.\n    n16 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Crown-of-thorns starfish !! Nothing read about Crown-of-thorns starfish names the subject of the brief.\n  n7 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Sediment runoff → Sediment runoff from farming carries chemicals into the reef environment also reduces the \n    n17 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Sediment !! Nothing read about Sediment names the subject of the brief.\n\nmodel latency ms: median 1618 · max 3461 · n 45\nworth a look:\n- repeated question (n3, n9): describe the great barrier reef and the threats it faces. — about climate change\n- repeated question (n4, n12): describe the great barrier reef and the threats it faces. — about ocean acidification\n- repeated question (n6, n15): describe the great barrier reef and the threats it faces. — about eutrophication\n- n12 re-asks its parent's question verbatim\n- n15 re-asks its parent's question verbatim\n- n9 blocked: Nothing read about Climate change names the subject of the brief.\n- n12 blocked: Nothing read about Ocean acidification names the subject of the brief.\n- n13 blocked: Nothing read about Biodiversity names the subject of the brief.\n- n14 blocked: Nothing read about Overgrazing names the subject of the brief.\n- n15 blocked: Nothing read about Eutrophication names the subject of the brief.\n- n16 blocked: Nothing read about Crown-of-thorns starfish names the subject of the brief.\n- n17 blocked: Nothing read about Sediment names the subject of the brief."
+    }
+  ],
+  "notes": [
+    "2026-09-18T15:59:21.538Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-11\",\"asks\":\"asks-4\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T15:59:21.673Z loading: Checking this device before downloading…",
+    "2026-09-18T15:59:31.690Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-8B-q4f16_1-MLC: Ready. Inference runs on this device. (10 s)",
+    "machine at start: gpu 97% · vram 0.03 GiB · load 15.38 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T15:59:31.791Z 4 seeds from evals/seeds-profile.json · mode tangle · limits {} · prompt walk-11/asks-4 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit bc2e15a",
+    "wiki recording: 594 responses loaded",
+    "2026-09-18T16:01:13.080Z run stopped: Root resolved",
+    "turing: resolved · topics 6/8 · supported 6/8 · read 8/8 · ¶9 · 22 sentences · read 11 articles, 17 sections · hops 3 cited / 10 read / 10 chosen · 8 blocked · 17 nodes, 42 calls, 17 lookups, 15582 tokens · 101 s · wiki 17 hits 4 misses",
+    "2026-09-18T16:02:53.856Z run stopped: Root resolved",
+    "silk-road: resolved · topics 5/9 · supported 5/9 · read 9/9 · ¶12 · 26 sentences · read 13 articles, 19 sections · hops 5 cited / 12 read / 12 chosen · 7 blocked · 19 nodes, 47 calls, 19 lookups, 14933 tokens · 101 s · wiki 34 hits 10 misses",
+    "2026-09-18T16:04:55.664Z run stopped: Root resolved",
+    "hubble: resolved · topics 2/8 · supported 2/8 · read 7/8 · ¶13 · 31 sentences · read 11 articles, 17 sections · hops 6 cited / 10 read / 10 chosen · 4 blocked · 17 nodes, 52 calls, 17 lookups, 17752 tokens · 122 s · wiki 44 hits 21 misses",
+    "2026-09-18T16:06:21.722Z run stopped: Root resolved",
+    "great-barrier-reef: resolved · topics 7/10 · supported 7/10 · read 10/10 · ¶10 · 23 sentences · read 11 articles, 17 sections · hops 3 cited / 10 read / 10 chosen · 7 blocked · 17 nodes, 45 calls, 17 lookups, 12416 tokens · 86 s · wiki 59 hits 27 misses",
+    "machine during the suite: gpu 94.6% mean, 99% peak · vram up to 5.93 GiB · load up to 19.04 · no throttling in 28 samples"
+  ]
+}

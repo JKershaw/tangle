@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { extractUrl, fetchWikipedia, lookupWikipedia, readWikipediaSection, searchUrl, splitSections, stripHtml, summaryUrl } from "../src/wiki.js";
+import { aboutWords, extractUrl, fetchWikipedia, fetchWikipediaLinks, linksUrl, lookupWikipedia, readWikipediaAbout, readWikipediaSection, searchUrl, splitSections, stripHtml, summaryUrl } from "../src/wiki.js";
 
 const jsonResponse = (value, status = 200) => new Response(JSON.stringify(value), { status, headers: { "content-type": "application/json" } });
 
@@ -113,4 +113,30 @@ test("a section can be read by heading, case-insensitively, and an unknown headi
   const unknown = await readWikipediaSection("Dead Sea", "Economy", { fetchImpl });
   assert.equal(unknown.ok, false);
   assert.match(unknown.error.message, /has no section "Economy"\. Its sections: Geography, Receding shoreline\./);
+});
+
+test("reading an article for what it says about something returns the lead if it names the phrase, else the first section that does, else nothing", async () => {
+  const extract = "The bombe was an electro-mechanical device used to help decipher Enigma.\n\n== Design ==\nThe initial design was produced by Alan Turing at Bletchley Park.\n\n== Use ==\nBombes were run around the clock.";
+  const { fetchImpl } = fakeFetch([["prop=extracts", () => jsonResponse({ query: { pages: { 1: { title: "Bombe", extract, revisions: [{ revid: 7 }] } } } })]]);
+  const design = await readWikipediaAbout("Bombe", "Alan Turing", { fetchImpl });
+  assert.equal(design.ok, true);
+  assert.deepEqual([design.title, design.section, design.about, design.text], ["Bombe § Design", 1, "Alan Turing", "The initial design was produced by Alan Turing at Bletchley Park."]);
+  const enigma = await readWikipediaAbout("Bombe", "Enigma machine", { fetchImpl });
+  assert.deepEqual([enigma.section, enigma.title], [0, "Bombe"], "the lead names Enigma, one of the phrase's words");
+  const never = await readWikipediaAbout("Bombe", "Hubble Space Telescope", { fetchImpl });
+  assert.equal(never.ok, false);
+  assert.match(never.error.message, /"Bombe" never mentions Hubble Space Telescope/);
+  assert.deepEqual(aboutWords("Hubble Space Telescope"), ["Hubble", "Telescope"], "generic words such as Space do not count");
+  assert.deepEqual(aboutWords("Great Barrier Reef"), ["Barrier", "Reef"]);
+  assert.deepEqual(aboutWords("Sea"), ["Sea"], "a phrase of only short or generic words is used as it is");
+});
+
+test("an article's links come from the parse API, main namespace, existing pages only", async () => {
+  const { fetchImpl, calls } = fakeFetch([["action=parse", () => jsonResponse({ parse: { title: "Alan Turing", links: [{ ns: 0, exists: "", "*": "Bombe" }, { ns: 0, "*": "Nowhere" }, { ns: 14, exists: "", "*": "Category:People" }, { ns: 0, exists: "", "*": "Bombe" }] } })]]);
+  const result = await fetchWikipediaLinks("Alan Turing", { fetchImpl });
+  assert.equal(calls[0].url, linksUrl("Alan Turing"));
+  assert.deepEqual([result.ok, result.kind, result.title, result.links], [true, "links", "Alan Turing", ["Bombe"]]);
+  const bad = await fetchWikipediaLinks("Alan Turing", { fetchImpl: async () => new Response("{}", { status: 200 }) });
+  assert.equal(bad.ok, false);
+  assert.match(bad.error.message, /no links/);
 });

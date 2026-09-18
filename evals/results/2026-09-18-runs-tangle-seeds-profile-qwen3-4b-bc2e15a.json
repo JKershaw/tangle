@@ -1,0 +1,449 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-4B-q4f16_1-MLC",
+  "commit": "bc2e15a",
+  "head": "bc2e15a",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T16:06:22.965Z",
+  "loadSeconds": 5,
+  "prompt": "walk-11/asks-4",
+  "schema": "sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-11",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 12,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 89.3
+    },
+    "vramGiB": {
+      "min": 0.04,
+      "max": 3.72,
+      "mean": 3.3
+    },
+    "load": {
+      "min": 11.4,
+      "max": 19.59,
+      "mean": 16.1
+    },
+    "memoryFreePercent": {
+      "min": 74,
+      "max": 86,
+      "mean": 75.1
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 17,
+  "factsSupported": 17,
+  "factsRead": 33,
+  "factsTotal": 35,
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "ace": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "morphogenesis": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 9,
+        "visits": 12,
+        "modelCalls": 25,
+        "lookups": 9,
+        "tokens": 9347
+      },
+      "statuses": {
+        "resolved": 4,
+        "blocked": 5
+      },
+      "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n\nHe was awarded first-class honours in mathematics. His dissertation, On the Gaussian error function, written during his senior year and delivered in November 1934 proved a version of the central limit theorem.\n\nHe presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.\n\nHe suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A. Although published before the structure and role of DNA was understood, Turing's work on morphogenesis remains relevant today and is considered a seminal piece of work in mathematical biology.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 11,
+        "chars": 1693,
+        "duplicates": 0,
+        "articles": 5,
+        "sections": 9,
+        "hopsChosen": 4,
+        "hopsRead": 4,
+        "hopsCited": 0,
+        "blocked": 5
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 38,
+      "wiki": {
+        "hits": 13,
+        "misses": 0,
+        "entries": 621,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-tangle-turing.json",
+      "summary": "live run · seed: Tell me about Alan Turing and elaborate on the impact of his work.\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:06:28.495Z · exported 2026-09-18T16:07:06.460Z\nnodes 9 · visits 12 · model calls 25 · lookups 9 · evidence 9 · tokens 9347\nstatuses {\"resolved\":4,\"blocked\":5} · outcome: root resolved\n\nn1 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. → He was highly influential in the development of theoretical computer science, providing a \n  n2 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability → He was awarded first-class honours in mathematics. His dissertation, On the Gaussian error\n  n3 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Career and research !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n4 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test → He presented a paper on 19 February 1946, which was the first detailed design of a stored-\n    n6 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Stored-program computer !! Nothing read about Stored-program computer names the subject of the brief.\n    n7 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Bendix G-15 !! Nothing read about Bendix G-15 names the subject of the brief.\n  n5 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology → He suggested that a system of chemicals reacting with each other and diffusing across spac\n    n8 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Reaction–diffusion system !! Nothing read about Reaction–diffusion system names the subject of the brief.\n    n9 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Morphogenesis !! Nothing read about Morphogenesis names the subject of the brief.\n\nmodel latency ms: median 1207 · max 2126 · n 25\nworth a look:\n- n3 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n6 blocked: Nothing read about Stored-program computer names the subject of the brief.\n- n7 blocked: Nothing read about Bendix G-15 names the subject of the brief.\n- n8 blocked: Nothing read about Reaction–diffusion system names the subject of the brief.\n- n9 blocked: Nothing read about Morphogenesis names the subject of the brief."
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 18,
+        "visits": 25,
+        "modelCalls": 48,
+        "lookups": 19,
+        "tokens": 16393
+      },
+      "statuses": {
+        "resolved": 11,
+        "blocked": 7
+      },
+      "finding": "Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece.\n\nThe Maritime Silk Road or Maritime Silk Route is the maritime section of the historic Silk Road that connected Southeast Asia, East Asia, the Indian subcontinent, the Arabian Peninsula, eastern Africa, and Europe. The term \"Maritime Silk Road\" is a modern name, acquired from its similarity to the overland Silk Road.\n\nThe Maritime Silk Road or Maritime Silk Route is an ancient maritime trade route in the Indian Ocean and the Western Pacific that connected Southeast Asia, East Asia, the Indian subcontinent, the Arabian Peninsula, eastern Africa, and Europe. The Maritime Silk Road was primarily established and operated by Austronesian sailors in Southeast Asia who sailed large long-distance ocean-going sewn-plank and lashed-lug trade ships. Despite the modern name, the Maritime Silk Road involved exchanges in a wide variety of goods over a very wide region, not just silk or Asian exports.\n\nThe Mongol expansion throughout the Asian continent from around 1207 to 1360 helped bring political stability and re-established the Silk Road (via Karakorum and Khanbaliq). The Mongols developed overland and maritime routes throughout the Eurasian continent, Black Sea and the Mediterranean in the west, and the Indian Ocean in the south. In the second half of the thirteenth century Mongol-sponsored business partnerships flourished in the Indian Ocean connecting Mongol Middle East and Mongol China The Mongol diplomat Rabban Bar Sauma visited the courts of Europe in 1287–88 and provided a detailed written report to the Mongols.\n\nZoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across Eurasia through trade networks that were tied to specific religious communities and their institutions. The spread of religions and cultural traditions along the Silk Roads, according to Jerry H. Nomadic mobility played a key role in facilitating inter-regional contacts and cultural exchanges along the ancient Silk Roads.\n\nIt originated in the eastern Gangetic plain as a śramaṇa movement in the 5th century BCE, and gradually spread throughout much of Asia via the Silk Road.\n\nThe transmission of Christianity was primarily known as Nestorianism on the Silk Road. In 781, an inscribed stele shows Nestorian Christian missionaries arriving on the Silk Road.\n\nThe transmission of Buddhism to China via the Silk Road began in the 1st century CE, according to a semi-legendary account of an ambassador sent to the West by the Chinese Emperor Ming (58–75). It is believed that under the control of the Kushans, Buddhism was spread to China and other parts of Asia from the middle of the first century to the middle of the third century. Extensive contacts started in the 2nd century, probably as a consequence of the expansion of the Kushan empire into the Chinese territory of the Tarim Basin, due to the missionary efforts of a great number of Buddhist monks to Chinese lands.\n\nA direct road from Gandhara to China remained under Kushan control for more than a century, encouraged travel across the Karakoram, and facilitated the spread of Mahayana Buddhism to China.\n\nMany artistic influences were transmitted via the Silk Road, particularly through Central Asia, where Hellenistic, Iranian, Indian and Chinese influences could intermix. These artistic influences can be seen in the development of Buddhism where, for instance, Buddha was first depicted as human in the Kushan period. The mixture of Greek and Indian elements can be found in later Buddhist art in China and throughout countries on the Silk Road.\n\nThe Silk Road became the main east–west trading route in the Asian hinterlands while the Straits of Malacca stood as a major sea route.",
+      "profile": {
+        "paragraphs": 11,
+        "sentences": 25,
+        "chars": 4185,
+        "duplicates": 0,
+        "articles": 11,
+        "sections": 17,
+        "hopsChosen": 11,
+        "hopsRead": 10,
+        "hopsCited": 4,
+        "blocked": 7
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 68,
+      "wiki": {
+        "hits": 32,
+        "misses": 5,
+        "entries": 626,
+        "added": 5
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-tangle-silk-road.json",
+      "summary": "live run · seed: Tell me about the Silk Road and elaborate on its influence.\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:07:06.480Z · exported 2026-09-18T16:08:14.208Z\nnodes 18 · visits 25 · model calls 48 · lookups 19 · evidence 17 · tokens 16393\nstatuses {\"resolved\":11,\"blocked\":7} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Silk Road and elaborate on its influence. → Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating econom\n  n2 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Maritime route → The Maritime Silk Road or Maritime Silk Route is the maritime section of the historic Silk\n    n8 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Maritime Silk Road → The Maritime Silk Road or Maritime Silk Route is an ancient maritime trade route in the In\n  n3 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Mongol Empire (13th–14th centuries) → The Mongol expansion throughout the Asian continent from around 1207 to 1360 helped bring \n    n9 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Karakorum (palace) !! Nothing read about Karakorum (palace) names the subject of the brief.\n    n10 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Rabban Bar Sauma !! Nothing read about Rabban Bar Sauma names the subject of the brief.\n  n4 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Expansion of religions → Zoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across \n    n11 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Buddhism → It originated in the eastern Gangetic plain as a śramaṇa movement in the 5th century BCE, \n    n12 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Islam !! Nothing read about Islam names the subject of the brief.\n  n5 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Transmission of Christianity → The transmission of Christianity was primarily known as Nestorianism on the Silk Road. In \n    n13 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Nestorianism !! Nothing read about Nestorianism names the subject of the brief.\n    n14 [blocked 2 failed lookups] Tell me about the Silk Road and elaborate on its influence. — about Nestorian !! Nothing could be read about Nestorian.\n  n6 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Transmission of Buddhism → The transmission of Buddhism to China via the Silk Road began in the 1st century CE, accor\n    n15 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Kushan Empire → A direct road from Gandhara to China remained under Kushan control for more than a century\n    n16 [blocked] Tell me about the Silk Road and elaborate on its influence. — about China !! Nothing read about China names the subject of the brief.\n  n7 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Expansion of the arts → Many artistic influences were transmitted via the Silk Road, particularly through Central \n    n17 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Hellenistic !! Nothing read about Hellenistic names the subject of the brief.\n    n18 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Asia → The Silk Road became the main east–west trading route in the Asian hinterlands while the S\n\nmodel latency ms: median 1134 · max 2545 · n 48\nworth a look:\n- n14 lookup found nothing: “Nestorian” (Already read: “Nestorianism”.)\n- n14 lookup found nothing: “Nestorian” (Already read: “Nestorianism”.)\n- n9 blocked: Nothing read about Karakorum (palace) names the subject of the brief.\n- n10 blocked: Nothing read about Rabban Bar Sauma names the subject of the brief.\n- n12 blocked: Nothing read about Islam names the subject of the brief.\n- n13 blocked: Nothing read about Nestorianism names the subject of the brief.\n- n14 blocked: Nothing could be read about Nestorian.\n- n16 blocked: Nothing read about China names the subject of the brief.\n- n17 blocked: Nothing read about Hellenistic names the subject of the brief."
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 8,
+        "visits": 11,
+        "modelCalls": 18,
+        "lookups": 8,
+        "tokens": 5821
+      },
+      "statuses": {
+        "resolved": 4,
+        "blocked": 4
+      },
+      "finding": "Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe.\n\nAlthough the Hubble observatory is nearing the end of its life, there are still major projects scheduled for it. One example is the current (2022) ULLYSES project (Ultraviolet Legacy Library of Young Stars as Essential Standards) which will last for three years to observe a set of high- and low-mass young stars and will shed light on star formation and composition. Another is the OPAL project (Outer Planet Atmospheres Legacy), which is focused on understanding the evolution and dynamics of the atmosphere of the outer planets (such as Jupiter and Uranus) by making baseline observations over an extended period.\n\nHubble has helped resolve some long-standing problems in astronomy, while also raising new questions.\n\nHubble (also known as Hubble 3D, IMAX: Hubble, or IMAX: Hubble 3D) is a 2010 American documentary film about Space Shuttle missions to repair and upgrade the Hubble Space Telescope.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 8,
+        "chars": 1313,
+        "duplicates": 0,
+        "articles": 5,
+        "sections": 8,
+        "hopsChosen": 4,
+        "hopsRead": 4,
+        "hopsCited": 1,
+        "blocked": 4
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 26,
+      "wiki": {
+        "hits": 42,
+        "misses": 7,
+        "entries": 628,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-tangle-hubble.json",
+      "summary": "live run · seed: Tell me about the Hubble Space Telescope and what it has discovered.\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:08:14.243Z · exported 2026-09-18T16:08:39.967Z\nnodes 8 · visits 11 · model calls 18 · lookups 8 · evidence 8 · tokens 5821\nstatuses {\"resolved\":4,\"blocked\":4} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. → Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely\n  n2 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Major projects → Although the Hubble observatory is nearing the end of its life, there are still major proj\n    n5 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Ultraviolet !! Nothing read about Ultraviolet names the subject of the brief.\n    n6 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Jupiter !! Nothing read about Jupiter names the subject of the brief.\n  n3 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Key projects !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n4 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Important discoveries → Hubble has helped resolve some long-standing problems in astronomy, while also raising new\n    n7 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Hubble (film) → Hubble (also known as Hubble 3D, IMAX: Hubble, or IMAX: Hubble 3D) is a 2010 American docu\n    n8 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Astronomy !! Nothing read about Astronomy names the subject of the brief.\n\nmodel latency ms: median 1168 · max 1919 · n 18\nworth a look:\n- n3 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n5 blocked: Nothing read about Ultraviolet names the subject of the brief.\n- n6 blocked: Nothing read about Jupiter names the subject of the brief.\n- n8 blocked: Nothing read about Astronomy names the subject of the brief."
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 7,
+      "factsSupported": 7,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 9,
+        "visits": 13,
+        "modelCalls": 27,
+        "lookups": 9,
+        "tokens": 8410
+      },
+      "statuses": {
+        "resolved": 6,
+        "blocked": 3
+      },
+      "finding": "The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres (1,400 mi) over an area of approximately 344,400 square kilometres (133,000 mi2). Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified.\n\nThe Great Barrier Reef supports an extraordinary diversity of life, including many vulnerable or endangered species, some of which may be endemic to the reef system.\n\nClimate change, pollution, crown-of-thorns starfish and fishing are the primary threats to the health of this reef system. According to a 2012 study by the National Academy of Sciences, since 1985, the Great Barrier Reef has lost more than half of its corals with two-thirds of the loss occurring from 1998 due to the factors listed before. In 2022, the northern and central parts of the reef had the highest amount of coral cover since monitoring began, but the cover in the southern part had decreased and bleaching events occurred more frequently.\n\nThe Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Barrier Reef to be climate change, causing ocean warming which increases coral bleaching. Mass coral bleaching events due to marine heatwaves occurred in the summers of 1998, 2002, 2006, 2016, 2017 and 2020, and coral bleaching is expected to become an annual occurrence. In 2020, a study found that the Great Barrier Reef has lost more than half of its corals since 1995 due to warmer seas driven by climate change.\n\nThe Great Barrier Reef Marine Park protects a large part of Australia's Great Barrier Reef from damaging activities. The Great Barrier Reef is the largest and best known coral reef ecosystem in the world. Its reefs, almost 3000 in total, represent about 10 per cent of all the coral reef areas in the world.\n\nCorals are major contributors to the physical structure of the coral reefs that develop in tropical and subtropical waters, such as the Great Barrier Reef off the coast of Australia.",
+      "profile": {
+        "paragraphs": 6,
+        "sentences": 14,
+        "chars": 2565,
+        "duplicates": 0,
+        "articles": 6,
+        "sections": 9,
+        "hopsChosen": 5,
+        "hopsRead": 5,
+        "hopsCited": 2,
+        "blocked": 3
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 35,
+      "wiki": {
+        "hits": 53,
+        "misses": 9,
+        "entries": 630,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-4b-tangle-great-barrier-reef.json",
+      "summary": "live run · seed: Describe the Great Barrier Reef and the threats it faces.\nmodel Qwen3-4B-q4f16_1-MLC · prompt walk-11/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T16:08:39.978Z · exported 2026-09-18T16:09:14.704Z\nnodes 9 · visits 13 · model calls 27 · lookups 9 · evidence 9 · tokens 8410\nstatuses {\"resolved\":6,\"blocked\":3} · outcome: root resolved\n\nn1 [resolved v2] Describe the Great Barrier Reef and the threats it faces. → The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 in\n  n2 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Ecology → The Great Barrier Reef supports an extraordinary diversity of life, including many vulnera\n    n5 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Endangered species !! Nothing read about Endangered species names the subject of the brief.\n  n3 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Environmental threats → Climate change, pollution, crown-of-thorns starfish and fishing are the primary threats to\n    n6 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Climate change !! Nothing read about Climate change names the subject of the brief.\n    n7 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Crown-of-thorns starfish !! Nothing read about Crown-of-thorns starfish names the subject of the brief.\n  n4 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Climate change → The Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Ba\n    n8 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Great Barrier Reef Marine Park → The Great Barrier Reef Marine Park protects a large part of Australia's Great Barrier Reef\n    n9 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Coral → Corals are major contributors to the physical structure of the coral reefs that develop in\n\nmodel latency ms: median 1039 · max 2105 · n 27\nworth a look:\n- repeated question (n4, n6): describe the great barrier reef and the threats it faces. — about climate change\n- n5 blocked: Nothing read about Endangered species names the subject of the brief.\n- n6 blocked: Nothing read about Climate change names the subject of the brief.\n- n7 blocked: Nothing read about Crown-of-thorns starfish names the subject of the brief."
+    }
+  ],
+  "notes": [
+    "2026-09-18T16:06:22.965Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-11\",\"asks\":\"asks-4\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T16:06:23.089Z loading: Checking this device before downloading…",
+    "2026-09-18T16:06:28.097Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-4B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 96% · vram 0.04 GiB · load 18.92 · mem 86% free (normal) · no throttling recorded",
+    "2026-09-18T16:06:28.193Z 4 seeds from evals/seeds-profile.json · mode tangle · limits {} · prompt walk-11/asks-4 · grammar sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit bc2e15a",
+    "wiki recording: 621 responses loaded",
+    "2026-09-18T16:07:06.303Z run stopped: Root resolved",
+    "turing: resolved · topics 3/8 · supported 3/8 · read 8/8 · ¶4 · 11 sentences · read 5 articles, 9 sections · hops 0 cited / 4 read / 4 chosen · 5 blocked · 9 nodes, 25 calls, 9 lookups, 9347 tokens · 38 s · wiki 13 hits 0 misses",
+    "2026-09-18T16:08:14.059Z run stopped: Root resolved",
+    "silk-road: resolved · topics 5/9 · supported 5/9 · read 8/9 · ¶11 · 25 sentences · read 11 articles, 17 sections · hops 4 cited / 10 read / 11 chosen · 7 blocked · 18 nodes, 48 calls, 19 lookups, 16393 tokens · 68 s · wiki 32 hits 5 misses",
+    "2026-09-18T16:08:39.804Z run stopped: Root resolved",
+    "hubble: resolved · topics 2/8 · supported 2/8 · read 7/8 · ¶4 · 8 sentences · read 5 articles, 8 sections · hops 1 cited / 4 read / 4 chosen · 4 blocked · 8 nodes, 18 calls, 8 lookups, 5821 tokens · 26 s · wiki 42 hits 7 misses",
+    "2026-09-18T16:09:14.544Z run stopped: Root resolved",
+    "great-barrier-reef: resolved · topics 7/10 · supported 7/10 · read 10/10 · ¶6 · 14 sentences · read 6 articles, 9 sections · hops 2 cited / 5 read / 5 chosen · 3 blocked · 9 nodes, 27 calls, 9 lookups, 8410 tokens · 35 s · wiki 53 hits 9 misses",
+    "machine during the suite: gpu 89.3% mean, 98% peak · vram up to 3.72 GiB · load up to 19.59 · no throttling in 12 samples"
+  ]
+}
