@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { contentWords, isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-5"; // walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
+export const WALK_VERSION = "walk-6"; // walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -25,7 +25,15 @@ export const WALK_VERSION = "walk-5"; // walk-2: paraphrases refused; walk-3: qu
 // subject (every size picked the Aral Sea's reason for a Dead Sea question,
 // even labelled); the check catches it from 1.7B up, trading a few false
 // "none"s — which cost a lookup — for false findings, which cost the run.
-export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "list", missing: "search", question: "one", article: "list", confirm: "yesno" });
+export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "list", missing: "search", question: "one", article: "snippets", confirm: "yesno" });
+// Variants by model size, from the node evals (evals/node/results.md): the
+// pick-then-check sentence ask has no false negatives at 8B (23/23) and few
+// at 4B (21/23), but at 1.7B it refuses true answers, so 1.7B and below take
+// the plain pick and confirm only foreign-source picks (CHECK_FOREIGN).
+export function variantsFor(modelId = "") {
+  const big = /-(4|8|14|32)B-/i.test(String(modelId));
+  return { ...DEFAULT_VARIANTS, ...(big ? { sentence: "check" } : {}) };
+}
 // When the picked sentence comes from an article that shares no content
 // word with the question (the Aral Sea for a Dead Sea question), the pick is
 // confirmed with one yes-or-no on that sentence alone. When the source is
@@ -207,6 +215,7 @@ export async function runWalk(run, options) {
     const terms = [...new Set([searchTerm(node.question), String(node.question).trim()])];
     if (variants.article === "off" || !wiki.length || terms.length < 2) return lookup(terms[0]);
     const titles = [];
+    const snippets = [];
     for (const term of terms) {
       let found = null;
       try {
@@ -216,10 +225,14 @@ export async function runWalk(run, options) {
       }
       signal?.throwIfAborted();
       trace(run, "tool_result", { node: node.id, query: term, searchOnly: true, result: found });
-      for (const title of found?.hits ?? []) if (!titles.includes(title)) titles.push(title);
+      (found?.hits ?? []).forEach((title, index) => {
+        if (titles.includes(title)) return;
+        titles.push(title);
+        snippets.push(found.snippets?.[index] ?? "");
+      });
     }
     if (!titles.length) return lookup(terms[0]);
-    let chosen = await answer("article", { question: node.question, titles: titles.slice(0, 8) }, "Choosing an article");
+    let chosen = await answer("article", { question: node.question, titles: titles.slice(0, 8), snippets: snippets.slice(0, 8) }, "Choosing an article");
     // "none" is honoured only when no title is about the question's subject:
     // 0.6B says none to everything (evals/node/results.md), and a title that
     // shares a content word with the question is worth a read regardless.

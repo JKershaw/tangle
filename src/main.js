@@ -5,7 +5,7 @@ import * as webllm from "@mlc-ai/web-llm";
 import { clone, createRun, nextRunnable, outcomeLabel, trace, validateImport, buildContext, VERSION } from "./graph.js";
 import { PROMPT_VERSION, buildMessages, runEpisode } from "./episode.js";
 import { ASK_VERSION } from "./asks.js";
-import { DEFAULT_VARIANTS, WALK_VERSION, runWalk } from "./walk.js";
+import { DEFAULT_VARIANTS, WALK_VERSION, runWalk, variantsFor } from "./walk.js";
 import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
 import { lookupWikipedia, readWikipediaSection } from "./wiki.js";
 import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, createSectionChooser, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
@@ -287,7 +287,7 @@ function driversFor(run) {
     return { ...simulationDrivers(run.preset), pace: (signal) => pace(320, signal) };
   }
   const ask = (call, { signal } = {}) => adapter.generate(call.messages, { signal, schema: call.schema, maxTokens: call.maxTokens, seed: SAMPLING.seed, temperature: SAMPLING.temperature });
-  return { ask, generate: createLiveGenerator(adapter), chooseSection: createSectionChooser(adapter), wiki: liveWiki, approve: approveLookup, pace: null };
+  return { ask, variants: variantsFor(loadedModel), generate: createLiveGenerator(adapter), chooseSection: createSectionChooser(adapter), wiki: liveWiki, approve: approveLookup, pace: null };
 }
 const runnerFor = (run) => (run.mode === "live" && run.limits.walk !== false ? runWalk : runEpisode);
 
@@ -548,7 +548,7 @@ window.__tangle = {
   runnable: () => !!nextRunnable(current()),
   outcome: () => outcomeLabel(current()),
   loadedModel: () => loadedModel,
-  versions: () => ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION, walk: WALK_VERSION, asks: ASK_VERSION, variants: { ...DEFAULT_VARIANTS }, runtime: RUNTIME, page: VERSION }),
+  versions: () => ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION, walk: WALK_VERSION, asks: ASK_VERSION, variants: loadedModel ? variantsFor(loadedModel) : { ...DEFAULT_VARIANTS }, runtime: RUNTIME, page: VERSION }),
   newLive: (seed, limits = {}) => {
     if (locked()) throw new Error("Busy.");
     mode = "live";

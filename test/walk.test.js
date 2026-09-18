@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createRun, nextRunnable } from "../src/graph.js";
-import { candidates, isForeign, isRepeat, runWalk, searchTerm, unreadSections } from "../src/walk.js";
+import { candidates, isForeign, isRepeat, runWalk, searchTerm, unreadSections, variantsFor } from "../src/walk.js";
 
 // A scripted model: answers come off a queue, keyed by the field the schema
 // asks for, so a test states exactly what the model says at each ask.
@@ -269,7 +269,7 @@ test("the first lookup searches both terms and picks from every title found; a f
   const wiki = async (query, options = {}) => {
     if (options.searchOnly) {
       searches.push(query);
-      return { ok: true, kind: "search", hits: query === "Dead Sea shrinking" ? ["Dead Sea", "Aral Sea"] : ["Aral Sea", "List of drying lakes"] };
+      return query === "Dead Sea shrinking" ? { ok: true, kind: "search", hits: ["Dead Sea", "Aral Sea"], snippets: ["is a salt lake", "was a lake"] } : { ok: true, kind: "search", hits: ["Aral Sea", "List of drying lakes"], snippets: ["was a lake", "lakes that are drying"] };
     }
     if (query === "Aral Sea") return { ok: true, kind: "wiki", title: "Aral Sea", article: "Aral Sea", section: 0, headings: [], text: "The Aral Sea was a lake in Central Asia. It began shrinking in the 1960s after its rivers were diverted for irrigation.", url: "u" };
     return wikiFixture(query, options);
@@ -279,6 +279,7 @@ test("the first lookup searches both terms and picks from every title found; a f
   assert.equal(await runWalk(run, { ask, wiki }), true);
   assert.deepEqual(searches, ["Dead Sea shrinking", "Why is the Dead Sea shrinking?"]);
   assert.deepEqual(seen[0].options, ["Dead Sea", "Aral Sea", "List of drying lakes", "none"], "the union of both searches, in order");
+  assert.match(seen[0].user, /- Aral Sea — was a lake/, "each title carries its search snippet");
   assert.equal(seen[2].field, "answers", "a pick from an article foreign to the question is confirmed");
   assert.match(seen[2].user, /Sentence: It began shrinking/);
   assert.notEqual(run.nodes[0].status, "resolved", "the confirmation said no");
@@ -311,4 +312,12 @@ test("an article pick of none is honoured only when no title shares a content wo
   const none = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1, maxDepth: 0, ...ONE });
   await runWalk(none, { ask: scripted([["article", "none"]]).ask, wiki: foreign });
   assert.equal(none.evidence.length, 0, "none stands when every title is foreign");
+});
+
+test("variants by model size: the sentence pick is checked at 4B and above, plain below", () => {
+  assert.equal(variantsFor("Qwen3-8B-q4f16_1-MLC").sentence, "check");
+  assert.equal(variantsFor("Qwen3-4B-q4f16_1-MLC").sentence, "check");
+  assert.equal(variantsFor("Qwen3-1.7B-q4f16_1-MLC").sentence, "list");
+  assert.equal(variantsFor("Qwen3-0.6B-q4f16_1-MLC").sentence, "list");
+  assert.equal(variantsFor("Qwen3-1.7B-q4f16_1-MLC").article, "snippets");
 });

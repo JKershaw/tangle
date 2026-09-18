@@ -171,6 +171,17 @@ export const ASKS = Object.freeze({
         schema: enumSchema("article", [...input.titles, "none"]),
         maxTokens: 80,
       }), (parsed) => String(parsed.article)),
+      // With the search snippet after each title: 1.7B and 8B both chose
+      // "Sky blue" (the colour) over "Diffuse sky radiation" from titles
+      // alone (walk-5 benchmark). Input may carry { snippets: [string] }.
+      snippets: single((input) => ({
+        messages: [
+          { role: "system", content: `You are given a question and Wikipedia articles a search returned, each with a line from it. Pick the title of the article most likely to answer the question. If none of them is about the question's subject, pick none. Reply with JSON only.` + NO_THINK },
+          { role: "user", content: `Question: ${input.question}\n\nArticles:\n${input.titles.map((title, index) => `- ${title}${input.snippets?.[index] ? ` — ${String(input.snippets[index]).slice(0, 160)}` : ""}`).join("\n")}\n\nReply {"article": "<title>"} or {"article": "none"}.` },
+        ],
+        schema: enumSchema("article", [...input.titles, "none"]),
+        maxTokens: 80,
+      }), (parsed) => String(parsed.article)),
     },
   },
 

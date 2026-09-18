@@ -37,7 +37,7 @@ export function buildInput(ask, spec) {
     if (spec.expect.contains && !sentences[Number(spec.expect.sentence) - 1]?.includes(spec.expect.contains)) throw new Error(`${spec.id}: sentence ${spec.expect.sentence} does not contain "${spec.expect.contains}" — has the splitter changed?`);
     return { question: spec.question, sentences, titles: sentences.map(() => spec.source.article) };
   }
-  if (ask === "article") return { question: spec.question, titles: [...spec.titles] };
+  if (ask === "article") return { question: spec.question, titles: [...spec.titles], snippets: [...(spec.snippets ?? [])] };
   if (ask === "section") {
     const sections = cachedArticle(spec.article).sections.map((section) => section.heading).filter(Boolean);
     for (const heading of spec.expect.accept) if (!sections.includes(heading)) throw new Error(`${spec.id}: "${heading}" is not a heading of ${spec.article}`);

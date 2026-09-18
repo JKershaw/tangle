@@ -84,3 +84,7 @@ One row per model and ask variant; the JSON named in the row holds every raw out
 | 2026-09-18 | ce5474e | question | one | qwen3-8b | 3/6 | 2396 | 6 | dead-sea-after-lead, lba-after-lead, coral-after-tail |
 | 2026-09-18 | ce5474e | question | part | qwen3-8b | 0/6 | 2387 | 6 | dead-sea-after-lead, dead-sea-cold, water-cycle-after-lead, lba-after-lead, coral-after-tail, bees-cold |
 | 2026-09-18 | ce5474e | question | first | qwen3-8b | 5/6 | 2476 | 6 | coral-after-tail |
+| 2026-09-18 | 42c937e | article | list | qwen3-0.6b | 3/12 | 146 | 12 | dead-sea-stripped, sky-colour, sky-raw, aral-shrink, lba, bees, coral, water-cycle, aral-split |
+| 2026-09-18 | 42c937e | article | list | qwen3-1.7b | 10/12 | 298 | 12 | sky-raw, sky-studios-none |
+| 2026-09-18 | 42c937e | article | list | qwen3-4b | 9/12 | 618 | 12 | dead-sea-stripped, sky-raw, sky-studios-none |
+| 2026-09-18 | 42c937e | article | list | qwen3-8b | 10/12 | 997 | 12 | dead-sea-raw-none, sky-raw |

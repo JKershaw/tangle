@@ -1,6 +1,6 @@
 {
   "ask": "article",
-  "note": "Which of the five titles a Wikipedia search returned is the article to read, or none. Hits are copied from real searches in evals/wiki-cache (the query is noted); 'accept' lists every defensible pick.",
+  "note": "Which of the five titles a Wikipedia search returned is the article to read, or none. Hits are copied from real searches in evals/wiki-cache (the query is noted); 'accept' lists every defensible pick. 'snippets' are the search snippets for each title, from the same cached search, for the snippets variant.",
   "cases": [
     {
       "id": "dead-sea-stripped",
@@ -17,7 +17,14 @@
         "accept": [
           "Dead Sea"
         ]
-      }
+      },
+      "snippets": [
+        "was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of",
+        "The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had",
+        "Depression-Site Power Station at the Dead Sea Spencer, Richard (10 October 2009). \"Jordan to refill shrinking Dead Sea with salt water\". The Telegraph. ISSN 0307-1235",
+        "construction in 2021—costing $1.1 billion. The water level in the Dead Sea is shrinking at a rate of more than one metre per year, and its surface area",
+        "of blue or of brown predominated according to the seasons. With shrinking Caspian Sea level in the 2020s as a result of global warming and increased evaporation"
+      ]
     },
     {
       "id": "dead-sea-raw-none",
@@ -36,7 +43,14 @@
           "List of drying lakes"
         ]
       },
-      "note": "The wrong lake first. The list of drying lakes is a defensible second choice."
+      "note": "The wrong lake first. The list of drying lakes is a defensible second choice.",
+      "snippets": [
+        "The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had",
+        "\"Shrinking Lake Chapala\". Earth Observatory. NASA. September 14, 2003. \"Dead Sea\". Encyclopedia Britannica. Retrieved 2021-11-28. \"The Dead Sea Is Dying",
+        "The Red Sea crisis is an ongoing armed conflict and maritime crisis instigated by the Houthis, an armed group in Yemen. The Houthis began launching missiles",
+        "Bishop on the Apple TV comedy drama series Shrinking. He was a late regular on Happy Days, Dynasty and The Love Boat and is known for playing the villainous",
+        "The Caspian Sea is the world's largest inland body of water, also described as the world's largest lake and usually referred to as a full-fledged sea"
+      ]
     },
     {
       "id": "sky-colour",
@@ -55,7 +69,14 @@
           "Rayleigh scattering"
         ]
       },
-      "note": "'Sky blue' is the colour; the answer is in the other two."
+      "note": "'Sky blue' is the colour; the answer is in the other two.",
+      "snippets": [
+        "2023-09-17. \"Pale Sky Blue color – #BDF6FE – The Official Register of Color Names\". color-register.org. Retrieved 2024-01-28. \"Soft Sky Blue color – #C1F1FF –",
+        "maintaining blue color in the evening sky. There is essentially no direct sunlight under an overcast sky, so all light is then diffuse sky radiation. The",
+        "water and closed at both ends with a transparent window. The light sky blue color is caused by weak absorption in the red part of the visible spectrum",
+        "blueness of the sky, he could not explain the preference for blue light, nor could atmospheric dust explain the intensity of the sky's color. In 1871, Lord",
+        "Kazuhito Yamashita entitled Wind, Water, Sky and bearing the titles Wind Color Vector, Water Color Scalar and Sky Color Tensor. The sheet music for these pieces"
+      ]
     },
     {
       "id": "sky-raw",
@@ -72,7 +93,14 @@
         "accept": [
           "Diffuse sky radiation"
         ]
-      }
+      },
+      "snippets": [
+        "(2005). Sky in a Bottle. The MIT Press. ISBN 978-0-262-16234-0. Dr. C. V. Raman lecture: Why is the sky blue? Why is the sky blue? Blue Sky and Rayleigh",
+        "Sky blue refers to a collection of shades comparable to that of a clear daytime sky. Typically it is a shade of cyan or light teal, though some iterations",
+        "Philip (May 1997). \"Why is the sky blue?\". math.ucr.edu. Retrieved November 4, 2015. ... may cause the moon to have a blue tinge since the red light has been",
+        "questions like \"Why is the sky blue?\" or \"Why do I need to brush my teeth?\" They deliver their answer in the end of each episode in the form of a music video",
+        "a09_037.pub2. ISBN 978-3-527-30673-2. \"Why is the sky Blue?\". University of California at Riverside. Archived from the original on 2 November 2015. Glenn"
+      ]
     },
     {
       "id": "sky-studios-none",
@@ -91,7 +119,14 @@
           "Blue"
         ]
       },
-      "note": "Seen live: the walk read Blue Sky Studios for three visits."
+      "note": "Seen live: the walk read Blue Sky Studios for three visits.",
+      "snippets": [
+        "Blue Sky Studios, Inc. was an American visual effects and computer animation studio, which was based in Greenwich, Connecticut. It was founded on February",
+        "sky and the deep sea appear blue because of an optical effect known as Rayleigh scattering. An optical effect called the Tyndall effect explains blue",
+        "original on April 16, 2012. Blue, Jen A. (August 31, 2013). \"It's not scientifically possible. You are not scientifically possible! (Feeling Pinkie Keen)\"",
+        "scientific theories and laws that explain and predict events in the natural world. Blue skies research, also called blue sky science, is scientific research",
+        "such as blue light is scattered to a greater extent than longer wavelength light such as red light, which is the reason why the sky appears blue from Earth"
+      ]
     },
     {
       "id": "aral-shrink",
@@ -108,7 +143,14 @@
         "accept": [
           "Aral Sea"
         ]
-      }
+      },
+      "snippets": [
+        "Aral Sea (Kazakh: Soltüstık Aral teñızı) is the portion of the former Aral Sea that is fed by the Syr Darya River. It split from the South Aral Sea in",
+        "agriculture. In 2003, the South Aral Sea itself split into eastern and western basins, the Eastern Sea and the West Aral Sea, connected by a narrow channel",
+        "The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely",
+        "of Kazakhstan called on regional leaders to unite in stopping the Aral Sea's shrinking. On 4 January 1993 the Nazarbayev, President Askar Akayev of Kyrgyzstan",
+        "the administrative center of Aral District. Aral was formerly a fishing port and harbour city on the banks of the Aral Sea, and was a major supplier of"
+      ]
     },
     {
       "id": "lba",
@@ -125,7 +167,14 @@
         "accept": [
           "Late Bronze Age collapse"
         ]
-      }
+      },
+      "snippets": [
+        "The Late Bronze Age collapse was a period of societal collapse in the Mediterranean basin during the late 13th to early 12th century BC. It is thought",
+        "The Bronze Age is an archaeological and anthropological term defining a phase in the development of material culture among ancient societies in Asia, the",
+        "Bronze Age (also Northern Bronze Age, or Scandinavian Bronze Age) is a period of Scandinavian prehistory from c. 2000/1750–500 BC. The Nordic Bronze Age",
+        "Bronze Age swords were a type of weapon prominent during the Bronze Age. They were replaced by iron swords during the early part of the 1st millennium",
+        "European Bronze Age is characterized by bronze artifacts and the use of bronze implements. The regional Bronze Age succeeds the Neolithic and Copper Age and"
+      ]
     },
     {
       "id": "bees",
@@ -142,7 +191,14 @@
         "accept": [
           "Colony collapse disorder"
         ]
-      }
+      },
+      "snippets": [
+        "Africanized bee, also known as the Africanized honey bee (AHB) and colloquially as the \"killer bee\", is a hybrid of the western honey bee (Apis mellifera)",
+        "with a drastic rise in reports of disappearances of western honey bee (Apis mellifera) colonies in North America. Beekeepers in most European countries had",
+        "A honey bee (also spelled honeybee) is a eusocial flying insect from the genus Apis of the largest bee family, Apidae. Honey bees are known for their",
+        "The western honey bee (Apis mellifera) is the most common of the 7–12 species of honey bees worldwide. The genus name Apis is Latin for 'bee', and mellifera",
+        "Swarming is a honey bee colony's natural means of reproduction. In the process of swarming, a single colony splits into two or more distinct colonies. Swarming"
+      ]
     },
     {
       "id": "coral",
@@ -159,7 +215,14 @@
         "accept": [
           "Coral bleaching"
         ]
-      }
+      },
+      "snippets": [
+        "A coral reef is an underwater ecosystem characterized by reef-building corals. Reefs are formed of colonies of coral polyps held together by calcium carbonate",
+        "predicts that a significant portion of coral reefs may go extinct without further intervention. CORAL operates at reef regions in Hawai'i (Hawai‘i Island",
+        "Lakshadweep islands. All of these reefs are Fringing reefs, except Lakshadweep which are Atolls. There are Patchy corals present along the inter-tidal areas",
+        "Coral reef fish are marine fish which live amongst or in close relation to coral reefs. Coral reefs form complex ecosystems with a high amount of biodiversity",
+        "of coral bleaching. After the loss of more than 90% of corals due to bleaching in 1998 around 50% of the reefs recovered and roughly 40% of the reefs experienced"
+      ]
     },
     {
       "id": "water-cycle",
@@ -176,7 +239,14 @@
         "accept": [
           "Water cycle"
         ]
-      }
+      },
+      "snippets": [
+        "The water cycle (or hydrologic cycle or hydrological cycle) is a biogeochemical cycle that involves the continuous change in form of water on, above and",
+        "The Solar cycle, also known as the solar magnetic activity cycle, sunspot cycle, or Schwabe cycle, is a periodic 11-year change in the Sun's activity measured",
+        "the saltwater of seas or oceans or the brackish water of coastal estuaries. These biogeochemical cycles are the pathways chemical substances and elements",
+        "used ionically to drive the Calvin cycle. The reverse of water splitting is the basis of the hydrogen fuel cell. Water splitting using solar radiation has",
+        "biogeochemical cycles include the carbon cycle, the nitrogen cycle and the water cycle. In each cycle, the chemical element or molecule is transformed and cycled by"
+      ]
     },
     {
       "id": "aral-split",
@@ -193,7 +263,14 @@
         "accept": [
           "Aral Sea"
         ]
-      }
+      },
+      "snippets": [
+        "The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had",
+        "The Caribbean Sea is a sea of the North Atlantic Ocean in the tropics of the Western Hemisphere, located south of the Gulf of Mexico and southwest of the",
+        "in the south, through the Bab-el-Mandeb Strait and the Gulf of Aden. To the north of the Red Sea lies the Sinai Peninsula, the Gulf of Aqaba, and the Gulf",
+        "today the Amu Darya does not reach the Aral Sea, and its mouth is in a dried-up area, of what was once the Aral Sea. In its upper course, the river forms",
+        "Peninsula and the North and Central European Plain regions. It is the world's largest brackish water basin. The sea stretches from 53°N to 66°N latitude and from"
+      ]
     },
     {
       "id": "weapon-none",
@@ -210,7 +287,14 @@
         "accept": [
           "none"
         ]
-      }
+      },
+      "snippets": [
+        "various named weapons wielded by specific characters. The oldest references sometimes offer nothing except a name for the weapon, but some of them include",
+        "šar₂-ur₃), which means \"smasher of thousands\" is the weapon and symbol of the god Ninurta. Sumerian mythic sources describe it as an enchanted talking mace",
+        "cataphracts (Grivpanvar). A shift in the terminology used to describe Sarmatian weapons indicates the kontos was developed in the early to mid-1st century",
+        "The weapon is known almost entirely from the manuscript; no archaeological find matches the proportions of a cheiroballistra as described in the text. The",
+        "the 1952 text. The events in the novel take place approximately seven years after the events described in The Weapon Shops of Isher (1951) even though"
+      ]
     }
   ]
 }
