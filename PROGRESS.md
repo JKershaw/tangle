@@ -113,6 +113,19 @@ The graph beats both controls at every size on both brief sets, and on the overf
 
 walk-12 at 0f58764: with hop paragraphs going before sections at the cap (now 8,000) and short headings skipped, the profile ladder is 27 / 23 / 26 at 8B / 4B / 1.7B, above every earlier row at every size. walk-12 (14ddbc1): a hop child hands down hops of its own, with a reserve for every open node, and a name is offered only if code finds its article says something about the subject: every hop chosen at 1.7B is now cited (25 of 25), and the 8B profiles reach 25 nodes and 19 articles — but topics fell (26 → 24) because the 6,000-character cap dropped the last three sections of the Turing profile, conviction and apology among them, in favour of hops under the first three. Fixed at 0f58764 (hop paragraphs go before sections; cap 8,000; short headings not handed down); rerunning. walk-11 (71ee567): a brief's child hands the things its kept sentences name — the article's links that occur in them — to children of its own, each reading the part of its article that names the brief's subject. Topics 26 / 22 / 26 against walk-10's 22 / 17 / 21, from two to three times the paragraphs and eleven articles per profile at 8B; the one-node control rises to 13–16 because a brief's root now keeps six lead sentences. Node counts 44–70 over four briefs (the budget is 40 each). The first table where the graph beats both the one-node control and memory at every size from 1.7B up was walk-10's, below. The Hubble brief scored 1 and 2 of 8 at every size because the search for the whole brief never returned the telescope's article and 8B read *Edwin Hubble* instead; fixed in code at 120c0fc (a brief searches for its subject, and a hit whose title is the search term is read without asking). Reading in [evals/readings.md](evals/readings.md).
 
+The bridge (ROADMAP milestone 4): the same walk in Node against an OpenAI-compatible server, `scripts/eval.mjs runs --endpoint <url>`. Base seeds (23 facts), tangle unless marked. The weights are the same Qwen3 family at a different quantisation (Ollama GGUF q4_K_M, LM Studio MLX 4-bit), so each row is its own column, not a rerun of the page's; the page's walk-7 rows for the same seeds are 10 / 17 / 16 at 1.7B / 4B / 8B, and its memory rows 14 / 19 / 20.
+
+| date | commit | server | model | tangle (facts) | calls · lookups · seconds | memory (closed) |
+|---|---|---|---|---|---|---|
+| 2026-09-18 | b71a368 (walk-12) | Ollama | 1.7B | 15/23 | 43 · 15 · **12** | — |
+| 2026-09-18 | b71a368 | Ollama | 4B | 12/23 | 69 · 22 · 75 | — |
+| 2026-09-18 | b71a368 | Ollama | 8B | 12/23 | 61 · 16 · 96 | 18/23 |
+| 2026-09-18 | b71a368 | Ollama | 14B | **16/23** | 96 · 28 · 372 | **21/23** |
+| 2026-09-18 | b71a368 | LM Studio (MLX) | 4B | 16/23 · Dead Sea lost to a schema error, fixed at 27f36a8 | 52 · 13 · 104 | — |
+| 2026-09-18 | 4ea1f89 | LM Studio (MLX) | 30B-A3B (2507) | 16/23 · the same error | 50 · 15 · 239 | — |
+
+Parity (`test/parity.test.js`): the same three seeds, recording and scripted picks give the identical graph in the page and in Node (1, 3 and 28 nodes). The node evals through Ollama are level with or above the page per ask (sentence list 19 / 21 / 22 of 23 at 1.7B / 4B / 8B, check 20 / 19 / 23, article snippets 10 / 11 / 12, section list 15 / 14 / 14; rows in [evals/node/results.md](evals/node/results.md)). Reading in [evals/readings.md](evals/readings.md).
+
 Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<ask>.json`, by ask variant. Full rows in [evals/node/results.md](evals/node/results.md).
 
 | date | commit | ask (cases) | variant | 0.6B | 1.7B | 4B | 8B | reference |
@@ -155,6 +168,13 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-18 · night, later · the bridge
+
+- Milestone 4 built (4a36db9 → 27f36a8): `src/endpoint.js`, a second model adapter over an OpenAI-compatible endpoint behind the WebLLM adapter's surface; `wikiDriver` in wiki.js, the one Wikipedia driver both runtimes call; `scripts/recording.mjs`, the recording as a fetch; `scripts/node-lab.mjs` and `scripts/run.mjs`, the walk in Node with no browser; `eval.mjs --endpoint` and `node-eval.mjs --models endpoint:<id>`. The page is unchanged but for a scripted-model hook for the parity test.
+- Parity: three seeds, one recording, one scripted model, the identical graph in both runtimes, down to the trace. The recording gained the 67 responses the scripted model reads.
+- The ladder past the page (table above): Ollama at 1.7B–14B and LM Studio at 4B and 30B-A3B on the base seeds, with memory at 8B and 14B; 32B and the page's own reruns at walk-12 in progress. Node is fast: the 1.7B suite in 12 s.
+- Faults found by the bridge, all code's: Ollama's OpenAI route needs `reasoning_effort: "none"` or Qwen3 thinks its token cap away; LM Studio refuses an enum with a repeated item (the Dead Sea's headings), now a set; lab.mjs lost an import in the refactor that no test covered, which cost one round of page reruns. Seen in 14B's traces and recorded, not fixed: a question child re-reads the article and section its parent read.
 
 ### 2026-09-18 · late night · the overflow briefs
 

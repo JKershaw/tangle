@@ -50,7 +50,7 @@ One HTML file. Questions: the walk reads, picks a sentence, reads on, splits two
 - **Entry:** milestone 2 (3 can run alongside). Next, as of 2026-09-18.
 - **Work:** one model adapter interface with two implementations: WebLLM in the page (exists) and an OpenAI-compatible HTTP endpoint in Node (Ollama, llama.cpp, later OpenRouter). One Wikipedia adapter with a Node implementation (fetch with a User-Agent, the same recording format). `scripts/run.mjs` runs the walk in Node with no browser. The page stays the lab and the single file.
 - **Verified by:** a parity test: the same seed, the same recording, the same scripted picks give an identical graph in both runtimes. Then the base seeds through Ollama with the same Qwen3 weights, expected near the page's rows (quantisation differs), recorded as its own column.
-- **Exit:** the benchmark runs in Node end to end and the local ladder extends to Qwen3 14B and 32B.
+- **Exit:** the benchmark runs in Node end to end and the local ladder extends to Qwen3 14B and 32B. **In progress 2026-09-18 (4a36db9 → 27f36a8):** the parity test passes on three graph shapes; the benchmark and the node evals run in Node against Ollama and LM Studio; 14B rows exist (16 of 23 on the base seeds, 21 from memory); 32B is running. Reading in [evals/readings.md](evals/readings.md).
 
 ### 5. Read-only hands
 

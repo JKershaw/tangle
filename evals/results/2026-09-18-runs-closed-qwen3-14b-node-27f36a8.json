@@ -1,0 +1,459 @@
+{
+  "suite": "runs",
+  "model": "qwen3:14b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "27f36a8",
+  "head": "27f36a8",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-18T19:04:43.150Z",
+  "loadSeconds": 0,
+  "prompt": "closed-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-12",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 4,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 73.3
+    },
+    "vramGiB": {
+      "min": 9.3,
+      "max": 16.94,
+      "mean": 11.2
+    },
+    "load": {
+      "min": 13.38,
+      "max": 17.16,
+      "mean": 15.8
+    },
+    "memoryFreePercent": {
+      "min": 25,
+      "max": 37,
+      "mean": 28
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 21,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "kind": "multi-section",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "mineral-extraction": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 135
+      },
+      "statuses": {},
+      "finding": "The Dead Sea is shrinking primarily due to the over-extraction of water from the Jordan River, which is its main source of inflow. Additionally, the construction of the Dead Sea Works and other industrial facilities has led to the diversion of water for mineral extraction, further reducing the water levels. Climate change and reduced rainfall in the region have also contributed to the declining water levels.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 411,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 12,
+      "latencyMs": 11980,
+      "raw": "{ \"answer\": \"The Dead Sea is shrinking primarily due to the over-extraction of water from the Jordan River, which is its main source of inflow. Additionally, the construction of the Dead Sea Works and other industrial facilities has led to the diversion of water for mineral extraction, further reducing the water levels. Climate change and reduced rainfall in the region have also contributed to the declining water levels.\" }"
+    },
+    {
+      "id": "water-cycle",
+      "kind": "single-article",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "sun": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "evaporation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "condensation-precipitation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 131
+      },
+      "statuses": {},
+      "finding": "The water cycle keeps going because of the continuous processes of evaporation, condensation, precipitation, and collection, driven by the sun's energy. Solar heat causes water to evaporate from oceans, lakes, and plants, forming clouds through condensation. When these clouds become heavy, water falls as precipitation, replenishing water sources and continuing the cycle.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 373,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 5,
+      "latencyMs": 4633,
+      "raw": "{ \"answer\": \"The water cycle keeps going because of the continuous processes of evaporation, condensation, precipitation, and collection, driven by the sun's energy. Solar heat causes water to evaporate from oceans, lakes, and plants, forming clouds through condensation. When these clouds become heavy, water falls as precipitation, replenishing water sources and continuing the cycle.\" }"
+    },
+    {
+      "id": "bronze-age",
+      "kind": "multi-section",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "climate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "sea-peoples": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 153
+      },
+      "statuses": {},
+      "finding": "The Late Bronze Age collapse, which occurred around 1200 BCE, was caused by a combination of factors including invasions by the Sea Peoples, internal political instability, economic decline, and environmental changes such as drought. Major civilizations like the Hittite Empire, Mycenaean Greece, and the New Kingdom of Egypt were affected, with the collapse leading to the end of the Bronze Age and the beginning of the Iron Age.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 2,
+        "chars": 430,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 6,
+      "latencyMs": 6173,
+      "raw": "{ \"answer\": \"The Late Bronze Age collapse, which occurred around 1200 BCE, was caused by a combination of factors including invasions by the Sea Peoples, internal political instability, economic decline, and environmental changes such as drought. Major civilizations like the Hittite Empire, Mycenaean Greece, and the New Kingdom of Egypt were affected, with the collapse leading to the end of the Bronze Age and the beginning of the Iron Age.\"}"
+    },
+    {
+      "id": "colony-collapse",
+      "kind": "multi-section",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "pesticides": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "pathogens": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "stressors": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 4,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 154
+      },
+      "statuses": {},
+      "finding": "Honey bee colonies can collapse due to a combination of factors including pesticide exposure, particularly neonicotinoids, which impair their navigation and foraging abilities. Habitat loss and reduced floral diversity limit food sources, while diseases such as Varroa mites and viruses weaken the colony. These stressors, often interacting, lead to colony collapse disorder (CCD), where the majority of worker bees disappear, leaving behind the queen, brood, and a few nurse bees.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 481,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 6,
+      "latencyMs": 6389,
+      "raw": "{\"answer\": \"Honey bee colonies can collapse due to a combination of factors including pesticide exposure, particularly neonicotinoids, which impair their navigation and foraging abilities. Habitat loss and reduced floral diversity limit food sources, while diseases such as Varroa mites and viruses weaken the colony. These stressors, often interacting, lead to colony collapse disorder (CCD), where the majority of worker bees disappear, leaving behind the queen, brood, and a few nurse bees.\"}"
+    },
+    {
+      "id": "coral",
+      "kind": "single-lead",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "algae": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 143
+      },
+      "statuses": {},
+      "finding": "Coral reefs bleach primarily due to increased water temperatures, which cause corals to expel the symbiotic algae (zooxanthellae) living in their tissues, leading to the loss of color and vital energy sources. This phenomenon is often linked to climate change and occurs in regions such as the Great Barrier Reef and the Coral Triangle. Other contributing factors include pollution, overfishing, and ocean acidification.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 420,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 6,
+      "latencyMs": 5746,
+      "raw": "{ \"answer\": \"Coral reefs bleach primarily due to increased water temperatures, which cause corals to expel the symbiotic algae (zooxanthellae) living in their tissues, leading to the loss of color and vital energy sources. This phenomenon is often linked to climate change and occurs in regions such as the Great Barrier Reef and the Coral Triangle. Other contributing factors include pollution, overfishing, and ocean acidification.\" }"
+    },
+    {
+      "id": "sky-blue",
+      "kind": "single-lead, search trap",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "rayleigh": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 147
+      },
+      "statuses": {},
+      "finding": "The sky appears blue due to a process called Rayleigh scattering, where shorter wavelengths of visible light (such as blue and violet) are scattered more by the molecules and small particles in the Earth's atmosphere than longer wavelengths (such as red and yellow). Although violet light is scattered even more than blue, our eyes are more sensitive to blue, and the sun emits more blue light than violet, making the sky appear predominantly blue during the day.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 2,
+        "chars": 463,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 6,
+      "latencyMs": 6063,
+      "raw": "{ \"answer\": \"The sky appears blue due to a process called Rayleigh scattering, where shorter wavelengths of visible light (such as blue and violet) are scattered more by the molecules and small particles in the Earth's atmosphere than longer wavelengths (such as red and yellow). Although violet light is scattered even more than blue, our eyes are more sensitive to blue, and the sun emits more blue light than violet, making the sky appear predominantly blue during the day.\" }"
+    },
+    {
+      "id": "aral",
+      "kind": "single-article",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "soviet": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 142
+      },
+      "statuses": {},
+      "finding": "The Aral Sea shrank primarily due to the diversion of its main tributaries, the Amu Darya and Syr Darya rivers, for irrigation projects in the 1960s under the Soviet Union's plan to expand cotton production in Central Asia. This led to a significant reduction in the inflow of water to the sea, causing it to shrink dramatically over the following decades.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 2,
+        "chars": 356,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 6,
+      "latencyMs": 5759,
+      "raw": "{ \"answer\": \"The Aral Sea shrank primarily due to the diversion of its main tributaries, the Amu Darya and Syr Darya rivers, for irrigation projects in the 1960s under the Soviet Union's plan to expand cotton production in Central Asia. This led to a significant reduction in the inflow of water to the sea, causing it to shrink dramatically over the following decades.\" }"
+    }
+  ],
+  "notes": [
+    "2026-09-18T19:04:43.149Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:14b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "machine at start: gpu 98% · vram 16.94 GiB · load 17.16 · mem 37% free (normal) · no throttling recorded",
+    "2026-09-18T19:04:43.277Z 7 seeds from evals/seeds.json · mode closed · limits {\"closed\":true} · prompt closed-1 · grammar answer:string · commit 27f36a8",
+    "wiki recording: 1175 responses loaded",
+    "dead-sea: resolved · facts 2/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 135 tokens · 12 s",
+    "water-cycle: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 131 tokens · 5 s",
+    "bronze-age: resolved · facts 3/4 · supported 0/4 · read 0/4 · 0 nodes, 1 calls, 0 lookups, 153 tokens · 6 s",
+    "colony-collapse: resolved · facts 4/4 · supported 0/4 · read 0/4 · 0 nodes, 1 calls, 0 lookups, 154 tokens · 6 s",
+    "coral: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 143 tokens · 6 s",
+    "sky-blue: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 147 tokens · 6 s",
+    "aral: resolved · facts 3/3 · supported 0/3 · read 0/3 · 0 nodes, 1 calls, 0 lookups, 142 tokens · 6 s",
+    "machine during the suite: gpu 73.3% mean, 98% peak · vram up to 16.94 GiB · load up to 17.16 · no throttling in 4 samples"
+  ]
+}
