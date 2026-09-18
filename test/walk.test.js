@@ -577,7 +577,7 @@ test("under a brief a short section is not handed to a child, and an over-long p
   assert.equal(await runWalk(run, { ask: root.ask, wiki, ...PLAIN }), true, run.nodes[0].reason);
   assert.deepEqual(root.seen[1].options, ["Cryptanalysis", "Legacy", "none"], "the 450-character heading is not offered");
   // The cap: a parent with three children whose findings carry hop paragraphs.
-  const capped = createRun("Tell me about Alan Turing.", "live", { maxFindingChars: 260 });
+  const capped = createRun("Tell me about Alan Turing.", "live", { maxFindingChars: 200 });
   const parent = capped.nodes[0];
   parent.status = "waiting";
   parent.fanned = true;
@@ -587,5 +587,5 @@ test("under a brief a short section is not handed to a child, and an over-long p
   capped.nodes.push(child("n2", "First section sentence about Turing here.\n\nA hop paragraph under the first section that is long enough to matter."), child("n3", "Second section sentence about Turing here.\n\nA hop paragraph under the second one."), child("n4", "Third section sentence about Turing here."));
   assert.equal(await runWalk(capped, { ask: scripted([]).ask, wiki, ...PLAIN }), true, parent.reason);
   assert.equal(parent.finding, "Alan Turing was an English mathematician and computer scientist.\n\nFirst section sentence about Turing here.\n\nSecond section sentence about Turing here.\n\nThird section sentence about Turing here.", "both hop paragraphs went, no section did");
-  assert.ok(parent.finding.length <= 260);
+  assert.ok(parent.finding.length <= 200);
 });
