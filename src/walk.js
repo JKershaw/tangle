@@ -19,7 +19,12 @@ import { applyResult, captureEvidence, children, nextRunnable, recordFailedLooku
 export const WALK_VERSION = "walk-1";
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
-export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "list", missing: "search", question: "one" });
+// sentence: a pick from the numbered list, then one yes-or-no on the chosen
+// sentence alone. The plain pick cannot tell a sentence about the wrong
+// subject (every size picked the Aral Sea's reason for a Dead Sea question,
+// even labelled); the check catches it from 1.7B up, trading a few false
+// "none"s — which cost a lookup — for false findings, which cost the run.
+export const DEFAULT_VARIANTS = Object.freeze({ sentence: "check", section: "list", missing: "search", question: "one" });
 // How many sentences one pick sees. Beyond this, the walk asks again over the
 // next window; a visit's passes bound how far it reads.
 export const WINDOW = 12;

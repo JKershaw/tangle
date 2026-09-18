@@ -5,6 +5,10 @@ import { candidates, isRepeat, runWalk, searchTerm, unreadSections } from "../sr
 
 // A scripted model: answers come off a queue, keyed by the field the schema
 // asks for, so a test states exactly what the model says at each ask.
+// The sequencing tests use the plain pick so each scripted answer is one ask;
+// the default (pick, then one yes-or-no) has its own test below.
+const PLAIN = { variants: { sentence: "list" } };
+
 function scripted(queue) {
   const seen = [];
   const ask = async (call) => {
@@ -41,7 +45,7 @@ test("the first lookup is the question minus its question words", () => {
 test("the first lookup needs no model call; a picked sentence becomes the finding verbatim, cited", async () => {
   const run = createRun("What is the Dead Sea's main tributary?", "live");
   const { ask, seen } = scripted([["sentence", "2"]]);
-  assert.equal(await runWalk(run, { ask, wiki: wikiFixture }), true);
+  assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
   const root = run.nodes[0];
   assert.equal(root.status, "resolved");
   assert.equal(root.finding, "Its main tributary is the Jordan River.");
@@ -63,7 +67,7 @@ test("the first lookup needs no model call; a picked sentence becomes the findin
 test("when the lead does not answer, the walk reads a chosen section and picks from it", async () => {
   const run = createRun("Why is the Dead Sea shrinking?", "live");
   const { ask, seen } = scripted([["sentence", "none"], ["section", "Receding shoreline"], ["sentence", "2"]]);
-  assert.equal(await runWalk(run, { ask, wiki: wikiFixture }), true);
+  assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
   const root = run.nodes[0];
   assert.equal(root.status, "resolved");
   assert.match(root.finding, /^It has been shrinking since the 1960s/);
@@ -76,7 +80,7 @@ test("when the lead does not answer, the walk reads a chosen section and picks f
 test("with lookups exhausted the walk hands down one question; the parent later chooses among its children's findings", async () => {
   const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 2 });
   const { ask } = scripted([["sentence", "none"], ["section", "Geography"], ["sentence", "none"], ["question", "What diverts water from the Jordan River?"]]);
-  assert.equal(await runWalk(run, { ask, wiki: wikiFixture }), true);
+  assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
   assert.equal(run.nodes[0].status, "waiting");
   assert.equal(run.nodes.length, 2);
   assert.equal(run.nodes[1].question, "What diverts water from the Jordan River?");
@@ -84,7 +88,7 @@ test("with lookups exhausted the walk hands down one question; the parent later 
   // for, reads that, and picks.
   const child = scripted([["search", "Dead Sea"], ["sentence", "2"]]);
   assert.equal(nextRunnable(run).id, "n2");
-  assert.equal(await runWalk(run, { ask: child.ask, wiki: wikiFixture }), true);
+  assert.equal(await runWalk(run, { ask: child.ask, wiki: wikiFixture, ...PLAIN }), true);
   assert.equal(run.nodes[1].status, "resolved");
   assert.equal(run.nodes[1].finding, "Its main tributary is the Jordan River.");
   assert.deepEqual(run.nodes[1].evidence, ["e3"], "the child reads its own copy of the lead");
@@ -96,7 +100,7 @@ test("with lookups exhausted the walk hands down one question; the parent later 
   assert.deepEqual(pool[0].evidence, ["e3"]);
   assert.equal(pool.length, 1 + 2 + 3, "the child's finding, then Geography's two sentences, then the lead's three");
   const parent = scripted([["sentence", "1"]]);
-  assert.equal(await runWalk(run, { ask: parent.ask, wiki: wikiFixture }), true);
+  assert.equal(await runWalk(run, { ask: parent.ask, wiki: wikiFixture, ...PLAIN }), true);
   assert.equal(run.nodes[0].status, "resolved");
   assert.equal(run.nodes[0].finding, run.nodes[1].finding);
   assert.deepEqual(run.nodes[0].evidence, ["e3"]);
@@ -104,13 +108,13 @@ test("with lookups exhausted the walk hands down one question; the parent later 
 
 test("a parent that finds none of its children's sentences answers alone still resolves with what they found", async () => {
   const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1 });
-  await runWalk(run, { ask: scripted([["sentence", "none"], ["question", "What feeds the Dead Sea?"]]).ask, wiki: wikiFixture });
-  await runWalk(run, { ask: scripted([["sentence", "2"]]).ask, wiki: wikiFixture });
+  await runWalk(run, { ask: scripted([["sentence", "none"], ["question", "What feeds the Dead Sea?"]]).ask, wiki: wikiFixture, ...PLAIN });
+  await runWalk(run, { ask: scripted([["sentence", "2"]]).ask, wiki: wikiFixture, ...PLAIN });
   assert.equal(run.nodes[1].finding, "Its main tributary is the Jordan River.");
   // The parent has judged its own lead already this visit? No: each visit
   // judges afresh. It sees the child's finding and its own three sentences.
   const parent = scripted([["sentence", "none"]]);
-  assert.equal(await runWalk(run, { ask: parent.ask, wiki: wikiFixture }), true);
+  assert.equal(await runWalk(run, { ask: parent.ask, wiki: wikiFixture, ...PLAIN }), true);
   assert.equal(run.nodes[0].status, "resolved");
   assert.equal(run.nodes[0].finding, "Its main tributary is the Jordan River.");
   assert.ok(run.trace.some((event) => event.event === "node_resolved" && event.node === "n1"));
@@ -119,7 +123,7 @@ test("a parent that finds none of its children's sentences answers alone still r
 test("a repeated question is refused by code and the node blocks", async () => {
   const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1 });
   const { ask } = scripted([["sentence", "none"], ["question", "Why is the Dead Sea shrinking?"]]);
-  assert.equal(await runWalk(run, { ask, wiki: wikiFixture }), true);
+  assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
   assert.equal(run.nodes[0].status, "blocked");
   assert.equal(run.nodes.length, 1);
   assert.ok(run.trace.some((event) => event.event === "question_rejected"));
@@ -132,7 +136,7 @@ test("flat limits: no children, the walk searches for what is missing and reads 
   // The lead answers nothing; both sections get read; a search finds nothing;
   // the same search again is refused by code and the node blocks.
   const { ask, seen } = scripted([["sentence", "none"], ["section", "Receding shoreline"], ["sentence", "none"], ["section", "Geography"], ["sentence", "none"], ["search", "Jordan River"], ["search", "jordan river"]]);
-  assert.equal(await runWalk(run, { ask, wiki: wikiFixture }), true);
+  assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
   assert.equal(run.nodes[0].status, "blocked");
   assert.equal(run.nodes.length, 1, "no question ask at depth 0");
   assert.equal(run.lookups, 4);
@@ -143,7 +147,7 @@ test("flat limits: no children, the walk searches for what is missing and reads 
 
 test("a bad pick pauses the visit as an error and a cancellation leaves the node open", async () => {
   const run = createRun("What is the Dead Sea's main tributary?", "live");
-  assert.equal(await runWalk(run, { ask: scripted([["sentence", "9"]]).ask, wiki: wikiFixture }), false);
+  assert.equal(await runWalk(run, { ask: scripted([["sentence", "9"]]).ask, wiki: wikiFixture, ...PLAIN }), false);
   assert.equal(run.nodes[0].status, "error");
   assert.match(run.nodes[0].reason, /picked sentence 9/);
   const fresh = createRun("What is the Dead Sea's main tributary?", "live");
@@ -154,4 +158,26 @@ test("a bad pick pauses the visit as an error and a cancellation leaves the node
   };
   assert.equal(await runWalk(fresh, { ask, wiki: wikiFixture, signal: controller.signal }), false);
   assert.equal(fresh.nodes[0].status, "open");
+});
+
+test("by default a pick is checked with one yes-or-no on that sentence; a no is treated as none", async () => {
+  const run = createRun("What is the Dead Sea's main tributary?", "live");
+  const { ask, seen } = scripted([["sentence", "2"], ["answers", "yes"]]);
+  assert.equal(await runWalk(run, { ask, wiki: wikiFixture }), true);
+  assert.equal(run.nodes[0].finding, "Its main tributary is the Jordan River.");
+  assert.match(seen[1].user, /^Question: What is the Dead Sea's main tributary\?\nSentence: Its main tributary is the Jordan River\.$/);
+  assert.match(run.promptVersion, /sentence:check/);
+  assert.equal(run.modelCalls, 2);
+
+  // The wrong lake: the check says no, so the walk reads on instead of resolving.
+  const wrong = createRun("What is the Dead Sea's main tributary?", "live", { maxLookups: 1, maxDepth: 0 });
+  const doubted = scripted([["sentence", "2"], ["answers", "no"], ["section", "Geography"]]);
+  assert.equal(await runWalk(wrong, { ask: doubted.ask, wiki: wikiFixture }), true);
+  assert.notEqual(wrong.nodes[0].status, "resolved");
+  assert.ok(wrong.trace.some((event) => event.event === "sentence_picked" && event.pick === "none"));
+
+  // An out-of-range pick is rejected before any check.
+  const bad = createRun("What is the Dead Sea's main tributary?", "live");
+  assert.equal(await runWalk(bad, { ask: scripted([["sentence", "9"]]).ask, wiki: wikiFixture }), false);
+  assert.match(bad.nodes[0].reason, /picked sentence 9/);
 });

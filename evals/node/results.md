@@ -52,3 +52,19 @@ One row per model and ask variant; the JSON named in the row holds every raw out
 | 2026-09-18 | f571e0b | missing | fact | qwen3-4b | 5/9 | 703 | 9 | dead-sea-cold, lba-cold, evaporation-cold, dead-sea-after-lead |
 | 2026-09-18 | f571e0b | missing | search | qwen3-8b | 9/9 | 905 | 9 | — |
 | 2026-09-18 | f571e0b | missing | fact | qwen3-8b | 5/9 | 831 | 9 | dead-sea-cold, bees-cold, lba-cold, evaporation-cold |
+| 2026-09-18 | 3106cb9 | sentence | list | qwen3-0.6b | 11/23 | 251 | 23 | dead-sea-lead-why-none, dead-sea-lead-how-salty, dead-sea-lead-area, dead-sea-receding-rate, dead-sea-extraction-who, rayleigh-blue, coral-leading-cause, lba-theories, lba-when, photosynthesis-none, diffuse-sky-processes, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | titled | qwen3-0.6b | 6/23 | 298 | 23 | dead-sea-lead-tributary, dead-sea-lead-how-salty, dead-sea-lead-area, dead-sea-receding-why, dead-sea-receding-rate, dead-sea-extraction-who, water-cycle-drives, water-cycle-ocean-share, water-cycle-ocean-share-long, rayleigh-blue, evaporation-sun, evaporation-humidity, coral-leading-cause, lba-theories, lba-when, diffuse-sky-processes, aral-for-aral |
+| 2026-09-18 | 3106cb9 | sentence | zero | qwen3-0.6b | 14/23 | 255 | 23 | dead-sea-lead-why-none, dead-sea-extraction-who, dead-sea-salinity-none, water-cycle-drives, rayleigh-blue, photosynthesis-none, diffuse-sky-processes, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | check | qwen3-0.6b | 11/23 | 365 | 38 | dead-sea-lead-why-none, dead-sea-lead-how-salty, dead-sea-lead-area, dead-sea-receding-rate, dead-sea-extraction-who, rayleigh-blue, coral-leading-cause, lba-theories, lba-when, photosynthesis-none, diffuse-sky-processes, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | list | qwen3-1.7b | 18/23 | 489 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, coral-cause-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | titled | qwen3-1.7b | 18/23 | 582 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, coral-cause-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | zero | qwen3-1.7b | 18/23 | 482 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, coral-cause-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | check | qwen3-1.7b | 17/23 | 729 | 45 | dead-sea-lead-tributary, dead-sea-extraction-who, dead-sea-salinity-none, water-cycle-drives, lba-theories, aral-for-aral |
+| 2026-09-18 | 3106cb9 | sentence | list | qwen3-4b | 20/23 | 1164 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, aral-for-dead-sea-none |
+| 2026-09-18 | 3106cb9 | sentence | titled | qwen3-4b | 19/23 | 1326 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | zero | qwen3-4b | 18/23 | 1240 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, coral-cause-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | check | qwen3-4b | 21/23 | 1669 | 43 | dead-sea-extraction-who, evaporation-humidity |
+| 2026-09-18 | 3106cb9 | sentence | list | qwen3-8b | 19/23 | 1997 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | titled | qwen3-8b | 19/23 | 2315 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | zero | qwen3-8b | 19/23 | 1963 | 23 | dead-sea-lead-why-none, dead-sea-salinity-none, aral-for-dead-sea-none, aral-for-dead-sea-short-none |
+| 2026-09-18 | 3106cb9 | sentence | check | qwen3-8b | 23/23 | 2884 | 44 | — |

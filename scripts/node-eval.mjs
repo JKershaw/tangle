@@ -146,7 +146,7 @@ for (const model of models) {
     rows.push({ model, variant, passed, total: mine.length, medianMs: latencies[Math.floor(latencies.length / 2)] ?? 0, calls: mine.reduce((sum, result) => sum + result.calls, 0), failed });
   }
 }
-const out = args.out || `evals/results/${date}-node-${ask}-${commit.replace(/ .*/, "")}`;
+const out = args.out || `evals/results/${date}-node-${ask}-${commit.replace(/ .*/, "")}-${new Date().toISOString().slice(11, 16).replace(":", "")}`;
 mkdirSync("evals/results", { recursive: true });
 writeFileSync(`${out}.json`, JSON.stringify({ ask, asks: ASK_VERSION, commit, page: pageVersions, date: new Date().toISOString(), machine: machineInfo(), models, variants, repeat, cases: cases.map((spec) => spec.id), rows, results }, null, 2));
 if (!existsSync(TABLE)) writeFileSync(TABLE, HEADER);

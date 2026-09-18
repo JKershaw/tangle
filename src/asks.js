@@ -104,6 +104,7 @@ export const ASKS = Object.freeze({
           const pick = String(parseJson(outputs[0].text).sentence);
           if (pick === "none") return { answer: "none", outputs };
           const sentence = input.sentences[Number(pick) - 1];
+          if (sentence === undefined) return { answer: pick, outputs }; // out of range: the caller rejects it
           const second = {
             messages: [
               { role: "system", content: `Does the sentence state the answer to the question? Reply with JSON: {"answers": "yes"} or {"answers": "no"}.` + NO_THINK },
