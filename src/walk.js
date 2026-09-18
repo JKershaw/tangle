@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-1";
+export const WALK_VERSION = "walk-2"; // walk-2: a paraphrase of an ancestor or sibling question is refused as a repeat
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen

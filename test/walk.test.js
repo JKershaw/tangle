@@ -59,7 +59,7 @@ test("the first lookup needs no model call; a picked sentence becomes the findin
   const labelled = scripted([["sentence", "2"]]);
   await runWalk(titled, { ask: labelled.ask, wiki: wikiFixture, variants: { sentence: "titled" } });
   assert.match(labelled.seen[0].user, /2\. \[Dead Sea\] Its main tributary/);
-  assert.match(run.promptVersion, /^walk-1\/asks-\d+\/sentence:list/);
+  assert.match(run.promptVersion, /^walk-\d+\/asks-\d+\/sentence:list/);
   assert.ok(run.trace.some((event) => event.event === "sentence_picked" && event.pick === "2"));
   assert.equal(run.trace.find((event) => event.event === "tool_proposed").query, "Dead Sea's main tributary");
 });
