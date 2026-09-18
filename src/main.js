@@ -7,7 +7,7 @@ import { PROMPT_VERSION, buildMessages, runEpisode } from "./episode.js";
 import { ASK_VERSION } from "./asks.js";
 import { DEFAULT_VARIANTS, WALK_VERSION, runWalk, variantsFor } from "./walk.js";
 import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
-import { lookupWikipedia, readWikipediaSection } from "./wiki.js";
+import { fetchWikipediaLinks, lookupWikipedia, readWikipediaSection } from "./wiki.js";
 import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, createSectionChooser, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
 import { GraphMap } from "./map.js";
 
@@ -265,9 +265,9 @@ async function cachedFetch(url, init) {
   return response;
 }
 
-async function liveWiki(query, { signal, readOn, searchOnly = false }) {
+async function liveWiki(query, { signal, readOn, searchOnly = false, links = false }) {
   const options = { signal, fetchImpl: cachedFetch, searchOnly };
-  const result = readOn ? await readWikipediaSection(readOn.article, readOn.section, options) : await lookupWikipedia(query, options);
+  const result = links ? await fetchWikipediaLinks(query, options) : readOn ? await readWikipediaSection(readOn.article, readOn.section, options) : await lookupWikipedia(query, options);
   if (!result.ok && result.error?.kind === "unreachable") {
     return {
       ...result,

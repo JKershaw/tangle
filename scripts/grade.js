@@ -221,7 +221,7 @@ export function profileOf(run) {
   const byId = new Map(run.nodes.map((node) => [node.id, node]));
   const hopRecords = run.evidence.filter((record) => {
     const node = byId.get(record.node);
-    return node?.readFirst && record.article !== node.readFirst.article;
+    return Boolean(node?.hopTo) || (node?.readFirst && record.article !== node.readFirst.article);
   });
   const cited = new Set(root.evidence ?? []);
   return {
@@ -231,7 +231,9 @@ export function profileOf(run) {
     duplicates,
     articles: new Set(run.evidence.map((record) => record.article ?? record.title)).size,
     sections: new Set(run.evidence.map((record) => record.title)).size,
-    hopsChosen: (run.trace ?? []).filter((event) => event.event === "hop_chosen").length,
+    // walk-10 traced one hop_chosen per child's free-text hop; walk-11 traces
+    // hops_chosen with the names offered and chosen.
+    hopsChosen: (run.trace ?? []).reduce((total, event) => total + (event.event === "hop_chosen" ? 1 : event.event === "hops_chosen" ? (event.chosen ?? []).length : 0), 0),
     hopsRead: hopRecords.length,
     hopsCited: hopRecords.filter((record) => cited.has(record.id)).length,
     blocked: run.nodes.filter((node) => node.status === "blocked").length,

@@ -212,6 +212,28 @@ export async function lookupWikipedia(query, options = {}) {
   };
 }
 
+// The articles an article links to: what its editors decided the text names.
+// The walk offers those that occur in a kept sentence as places to hop to
+// (walk.js, hopOut). One request per article, cached like the rest.
+export const LINKS_MAX_BYTES = 262144;
+export const linksUrl = (title) => `https://${WIKI_HOST}/w/api.php?action=parse&page=${titlePath(title)}&prop=links&redirects=1&format=json&origin=*`;
+export async function fetchWikipediaLinks(title, options = {}) {
+  const requests = [];
+  const failure = (kind, message) => ({ ok: false, tool: "wiki", kind: "links", query: title, error: { kind, message }, requests });
+  const response = await fetchWikipedia(linksUrl(title), { maxBytes: LINKS_MAX_BYTES, ...options });
+  requests.push(requestRecord(response));
+  if (!response.ok) return failure("unreachable", response.error.message);
+  let parsed;
+  try {
+    parsed = JSON.parse(response.body)?.parse;
+  } catch {
+    parsed = null;
+  }
+  if (!parsed || !Array.isArray(parsed.links)) return failure("bad_response", `Wikipedia's parse API returned no links for "${title}" (HTTP ${response.status}).`);
+  const links = [...new Set(parsed.links.filter((link) => link.ns === 0 && "exists" in link).map((link) => String(link["*"])))];
+  return { ok: true, tool: "wiki", kind: "links", query: title, title: String(parsed.title ?? title), links, requests };
+}
+
 // Read one section of an article, by index (0 = lead) or by heading.
 export async function readWikipediaSection(title, which, options = {}) {
   const requests = [];

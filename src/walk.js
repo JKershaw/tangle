@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { contentWords, isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-10"; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
+export const WALK_VERSION = "walk-11"; // walk-11: a brief's child hands the things its kept sentences name (the article's links that occur in them, else capitalised phrases) to children of its own, the model picking which from a list ranked by how often the run has met each; a sentence kept anywhere is never offered again; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -50,7 +50,9 @@ export const CHECK_FOREIGN = true;
 // its sentences and may hop once to an article named from them, and the
 // root's finding is the kept sentences and the children's findings in order.
 export const BRIEF = /^(tell|describe|explain|write|give|summari[sz]e|elaborate|outline|profile|discuss)\b/i;
-export const BRIEF_VARIANTS = Object.freeze({ sentence: "brief", section: "brief", missing: "hop" });
+export const BRIEF_VARIANTS = Object.freeze({ sentence: "brief", section: "brief", missing: "names" });
+// How many named things one hop pick sees.
+export const NAMES_SHOWN = 8;
 export function isBrief(question) {
   const text = String(question ?? "").trim();
   const base = text.includes(FOCUS) ? text.slice(0, text.indexOf(FOCUS)) : text;
@@ -112,6 +114,54 @@ export function focusOf(question) {
 
 const normalise = (text) => String(text ?? "").toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
 
+// The things a sentence names, by code: capitalised phrases of one to five
+// words that are not the brief's subject and do not merely start the
+// sentence ("During", "He"). The fallback when an article's links are not
+// to be had; a link that occurs in the sentence is the better candidate,
+// since it is what the article's editors decided the words refer to.
+const NAME_IN_TEXT = new RegExp(`(?:^|[\\s(“"'])(${NAME})`, "g");
+const LEADING_WORD = /^(?:During|After|Before|In|On|At|With|When|While|Since|Following|Under|By|For|From|He|She|It|They|This|That|These|Those|Although|Because|Despite|Throughout|Its|His|Her|Their|Among|Between|Over|Through|Until|Upon|Within|As|An|A|The)\b\s*(?:the\s+)?/;
+export function namesIn(sentences, subject = "") {
+  const wanted = contentWords(subject);
+  const out = [];
+  for (const sentence of sentences) {
+    for (const match of String(sentence).matchAll(NAME_IN_TEXT)) {
+      // A sentence's first word is capitalised whatever it is: "During the
+      // Second World War" names the war, "He devised" names nothing.
+      const name = (match.index === 0 ? match[1].replace(LEADING_WORD, "") : match[1]).replace(/^the /i, "").trim();
+      if (!name) continue;
+      const words = name.split(" ");
+      if (words.length === 1 && (match.index === 0 || name.length < 4)) continue;
+      const have = [...contentWords(name)];
+      if (!have.length || have.every((word) => wanted.has(word))) continue;
+      if (!out.some((known) => normalise(known) === normalise(name))) out.push(name);
+    }
+  }
+  return out;
+}
+// Does a title occur in the text, as whole words, ignoring case and any
+// disambiguation in parentheses ("Mercury (planet)" occurs as "Mercury")?
+const escapeRe = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+export function occurs(title, text) {
+  const shown = String(title).replace(/\s*\([^)]*\)\s*$/, "").trim();
+  if (shown.length < 3) return false;
+  return new RegExp(`(?:^|[^\\p{L}\\p{N}])${escapeRe(shown)}(?=$|[^\\p{L}\\p{N}])`, "iu").test(String(text));
+}
+// Per run: the links of each article read (null when unavailable), and the
+// names any node has already opened a child for. Kept outside the run so an
+// export stays what the model saw and said.
+const frontierByRun = new WeakMap();
+const frontierOf = (run) => {
+  if (!frontierByRun.has(run)) frontierByRun.set(run, { links: new Map(), opened: new Set() });
+  return frontierByRun.get(run);
+};
+// Sentences kept by any node, so a profile never offers one twice.
+const keptByRun = new WeakMap();
+const keptOf = (run) => {
+  if (!keptByRun.has(run)) keptByRun.set(run, new Set());
+  return keptByRun.get(run);
+};
+
 // The sentences a node can choose between: its resolved children's findings
 // (each already a cited sentence), then the excerpts it has observed, newest
 // first. Every candidate carries the evidence it rests on.
@@ -120,7 +170,7 @@ export function candidates(run, node) {
   // Under a brief, a hop's article is about something else (the bombe, chess);
   // only its sentences that name the brief's subject are offered, so a hop to
   // "Chess" cannot fill a Turing profile with chess.
-  const subject = node.hopped ? contentWords(String(node.question).split(FOCUS)[0]) : null;
+  const subject = node.hopTo ? contentWords(String(node.question).split(FOCUS)[0]) : null;
   const onSubject = (record, text) => !subject || record.node !== node.id || node.readFirst?.article === record.article || [...contentWords(text)].some((word) => subject.has(word));
   for (const child of children(run, node.id)) {
     if (child.status === "resolved" && child.finding) out.push({ text: child.finding, evidence: [...child.evidence], from: "child", source: child.id });
@@ -275,6 +325,7 @@ export async function runWalk(run, options) {
   const readSentences = () => candidates(run, node).slice(0, WINDOW).map((candidate) => candidate.text);
   const firstLookup = async () => {
     if (node.readFirst) return lookup(`${node.readFirst.article} / ${node.readFirst.section}`, { ...node.readFirst });
+    if (node.hopTo) return lookup(node.hopTo, null, { fresh: true });
     const { focus } = focusOf(node.question);
     const terms = [...new Set([searchTerm(node.question), focus ? focus.replace(/^the /, "") : String(node.question).trim()])];
     if (variants.article === "off" || !wiki.length || terms.length < 2) return lookup(terms[0]);
@@ -333,7 +384,7 @@ export async function runWalk(run, options) {
       if (found.length || kept.some((entry) => entry.evidence.length)) {
         // A sentence the profile already has is dropped from later paragraphs.
         const seenText = new Set();
-        const fresh = (text) => splitSentences(text).filter((sentence) => !seenText.has(sentence) && seenText.add(sentence)).join(" ");
+        const fresh = (text) => String(text).split(/\n\n+/).map((paragraph) => splitSentences(paragraph).filter((sentence) => !seenText.has(sentence) && seenText.add(sentence)).join(" ")).filter(Boolean).join("\n\n");
         const parts = [...(kept.length ? [fresh(kept.map((entry) => entry.text).join(" "))] : []), ...found.map((child) => fresh(child.finding))].filter(Boolean);
         const cap = run.limits.maxFindingChars ?? 6000;
         while (parts.length > 1 && parts.join(node.fanned ? "\n\n" : " ").length > cap) parts.pop();
@@ -352,6 +403,12 @@ export async function runWalk(run, options) {
     // from every title both found.
     if (!node.observed.length && !children(run, node.id).length && lookups < run.limits.maxLookups) {
       if ((await firstLookup()) === "declined") return true;
+      // A hop child exists to read one article; with none read it is done.
+      if (node.hopTo && !node.observed.length) {
+        applyResult(run, node.id, { action: "blocked", reason: `Nothing could be read about ${node.hopTo}.` }, visible());
+        onUpdate(node.id, "Blocked");
+        return true;
+      }
     }
     if (!judgedByNode.has(node)) judgedByNode.set(node, new Set());
     const judged = judgedByNode.get(node);
@@ -359,9 +416,8 @@ export async function runWalk(run, options) {
     // text, verbatim, in the order found. After a pick the walk asks again
     // over what remains until it says none or maxSentences is reached.
     const gathered = [];
-    // How many sentences this visit may keep: maxSentences, and as many
-    // again after a brief's hop, so the hop's article is not read for nothing.
-    const room = () => (run.limits.maxSentences ?? 1) * (node.hopped ? 2 : 1);
+    // How many sentences this visit may keep.
+    const room = () => run.limits.maxSentences ?? 1;
     // The finding reads in source order — the order the article says it,
     // excerpt by excerpt — not the order the model picked it.
     const inOrder = (picked) => [...picked].sort((a, b) => a.evidence[0] === b.evidence[0] ? (a.at ?? 0) - (b.at ?? 0) : run.evidence.findIndex((record) => record.id === a.evidence[0]) - run.evidence.findIndex((record) => record.id === b.evidence[0]));
@@ -397,19 +453,77 @@ export async function runWalk(run, options) {
       onUpdate(node.id, `Reading ${chosen.length} section${chosen.length === 1 ? "" : "s"} below`);
       return "fanned";
     };
-    // A brief's child, having kept what its section says, may hop once: it
-    // names the one thing in its kept sentences most worth reading about,
-    // and reads that article's lead.
-    const hop = async () => {
-      if (!brief || !gathered.length || lookups >= run.limits.maxLookups || node.hopped || !node.readFirst) return false;
+    // A brief's node, having kept its sentences, may hand the things they
+    // name to children of its own: code lists the article's links that
+    // occur in the kept sentences (or, without links, their capitalised
+    // phrases), ranked by how often the run has met each, minus anything
+    // read or opened anywhere in the run; the model picks which are worth
+    // an article each, up to maxHops, or none. A child made this way reads
+    // that article and keeps only sentences that name the brief's subject.
+    const namesFor = async () => {
+      const frontier = frontierOf(run);
+      const subject = focusOf(node.question).base;
+      const kept = inOrder(gathered);
+      const articles = [...new Set(kept.map((candidate) => run.evidence.find((record) => record.id === candidate.evidence[0])?.article).filter(Boolean))];
+      for (const article of articles) {
+        if (frontier.links.has(article)) continue;
+        let found = null;
+        try {
+          found = await wiki(article, { signal, links: true });
+        } catch (error) {
+          if (signal?.aborted || error?.name === "AbortError") throw error;
+        }
+        signal?.throwIfAborted();
+        trace(run, "tool_result", { node: node.id, query: article, links: true, result: found?.ok ? { ok: true, kind: "links", title: found.title, links: found.links.length } : found ?? null });
+        frontier.links.set(article, found?.ok && Array.isArray(found.links) ? found.links : null);
+      }
+      const wanted = contentWords(subject);
+      const read = new Set(run.evidence.flatMap((record) => [normalise(record.article), normalise(record.title)]));
+      const unseen = (name) => !read.has(normalise(name)) && !frontier.opened.has(normalise(name)) && ![...contentWords(name)].every((word) => wanted.has(word));
+      const names = [];
+      const add = (name) => {
+        if (unseen(name) && !names.some((known) => normalise(known) === normalise(name) || occurs(known, name) || occurs(name, known))) names.push(name);
+      };
+      for (const candidate of kept) {
+        const article = run.evidence.find((record) => record.id === candidate.evidence[0])?.article;
+        for (const link of frontier.links.get(article) ?? []) if (occurs(link, candidate.text)) add(link);
+      }
+      for (const name of namesIn(kept.map((candidate) => candidate.text), subject)) add(name);
+      // Ranked by how many excerpts in the run name each: what several
+      // nodes met is what the profile most needs.
+      const met = (name) => run.evidence.filter((record) => occurs(name, record.text)).length;
+      const counts = new Map(names.map((name) => [name, met(name)]));
+      return names.sort((a, b) => counts.get(b) - counts.get(a)).slice(0, NAMES_SHOWN);
+    };
+    const hopOut = async () => {
+      if (!brief || node.hopTo || node.hopped || !gathered.length || node.depth >= run.limits.maxDepth) return false;
+      const budget = Math.min(run.limits.maxHops ?? 2, run.limits.maxNodes - run.nodes.length);
+      if (budget <= 0) return false;
       node.hopped = true;
-      const search = await answer("missing", { question: node.question, sentences: gathered.map((candidate) => candidate.text), subject: node.readFirst?.article ?? null }, "Choosing where to hop");
-      // Known anywhere in the run: a child's hop to "Turing test" once read
-      // the Alan Turing lead again, which the root had read (8B, walk-9).
-      const known = run.evidence.some((record) => normalise(record.article) === normalise(search) || normalise(record.title) === normalise(search));
-      trace(run, "hop_chosen", { node: node.id, search, known });
-      if (known) return false;
-      return (await lookup(search, null, { fresh: true })) === "captured";
+      const offered = await namesFor();
+      if (!offered.length) {
+        trace(run, "hops_chosen", { node: node.id, offered, chosen: [] });
+        return false;
+      }
+      const chosen = [];
+      let remaining = [...offered];
+      while (chosen.length < budget && remaining.length) {
+        const pick = await answer("missing", { question: node.question, sentences: inOrder(gathered).map((candidate) => candidate.text), names: remaining, chosen }, "Choosing where to hop");
+        if (pick === "none" || !remaining.includes(pick)) break;
+        chosen.push(pick);
+        remaining = remaining.filter((name) => name !== pick);
+      }
+      trace(run, "hops_chosen", { node: node.id, offered, chosen });
+      if (!chosen.length) return false;
+      const frontier = frontierOf(run);
+      for (const name of chosen) frontier.opened.add(normalise(name));
+      node.kept = inOrder(gathered).map((candidate) => ({ text: candidate.text, evidence: [...candidate.evidence] }));
+      node.fanned = true;
+      const base = focusOf(node.question).base.trim();
+      applyResult(run, node.id, { action: "decompose", harness: true, questions: chosen.map((name) => `${base}${FOCUS}${name}`) }, visible());
+      run.nodes.slice(-chosen.length).forEach((child, index) => { child.hopTo = chosen[index]; });
+      onUpdate(node.id, `Reading about ${chosen.length} more thing${chosen.length === 1 ? "" : "s"} below`);
+      return "fanned";
     };
     const readOn = async () => {
       const unread = unreadSections(run, node)[0];
@@ -417,8 +531,10 @@ export async function runWalk(run, options) {
       // number; the sections are handed down regardless.
       // Only the brief's root fans out: a child that hopped to "Chess" once
       // fanned that article's sections into grandchildren (1.7B, walk-8).
-      if (brief && unread && node.depth === 0 && node.depth < run.limits.maxDepth && !children(run, node.id).length) return fanOut(unread);
-      if (!unread && brief) return hop();
+      if (brief) {
+        if (unread && node.depth === 0 && node.depth < run.limits.maxDepth && !children(run, node.id).length && (await fanOut(unread))) return "fanned";
+        return hopOut();
+      }
       if (gathered.length >= room() || lookups >= run.limits.maxLookups || passes >= run.limits.maxPasses) return false;
       if (!unread) return false;
       const section = await answer("section", { question: node.question, article: unread.article, sections: unread.headings }, "Reading on");
@@ -427,7 +543,8 @@ export async function runWalk(run, options) {
     };
     while (true) {
       signal?.throwIfAborted();
-      const pool = candidates(run, node).filter((candidate) => !judged.has(candidate.text));
+      const keptAnywhere = keptOf(run);
+      const pool = candidates(run, node).filter((candidate) => !judged.has(candidate.text) && !keptAnywhere.has(normalise(candidate.text)));
       if (pool.length && passes < run.limits.maxPasses && gathered.length < room()) {
         const window = pool.slice(0, WINDOW);
         passes++;
@@ -452,6 +569,7 @@ export async function runWalk(run, options) {
           if (!gathered.length && chosen.text.split(/\s+/).length < MIN_FINDING_WORDS && index > 0 && window[index - 1].evidence[0] === chosen.evidence[0]) gathered.push(window[index - 1]);
           gathered.push(chosen);
           judged.add(chosen.text);
+          keptAnywhere.add(normalise(chosen.text));
           continue;
         }
         if (gathered.length) {
@@ -486,14 +604,17 @@ export async function runWalk(run, options) {
           if ((await lookup(`${unread.article} / ${section}`, { article: unread.article, section })) === "declined") return true;
           continue;
         }
-        const search = await answer("missing", { question: node.question, sentences: readSentences() }, "Deciding what to look up");
-        const tried = (node.failedLookups ?? []).some((entry) => normalise(entry.query) === normalise(search));
-        const known = node.observed.some((id) => normalise(run.evidence.find((record) => record.id === id)?.article) === normalise(search));
+        // Under a brief the walk never names a search term: what to read
+        // next is a pick from what was kept (hopOut), and a node that kept
+        // nothing has nothing to pick from.
+        const search = brief ? null : await answer("missing", { question: node.question, sentences: readSentences() }, "Deciding what to look up");
+        const tried = search === null || (node.failedLookups ?? []).some((entry) => normalise(entry.query) === normalise(search));
+        const known = search !== null && node.observed.some((id) => normalise(run.evidence.find((record) => record.id === id)?.article) === normalise(search));
         if (!tried && !known) {
           if ((await lookup(search)) === "declined") return true;
           continue;
         }
-        recordFailedLookup(run, node.id, search, { kind: "no_match", message: known ? "Already read." : "Already tried." });
+        if (search !== null) recordFailedLookup(run, node.id, search, { kind: "no_match", message: known ? "Already read." : "Already tried." });
         lookups = run.limits.maxLookups; // nothing new to read here
       }
       // Under a brief the graph's shape is code's (sections, hops); a

@@ -31,6 +31,9 @@ export const DEFAULT_LIMITS = Object.freeze({
   maxFindingChars: 6000,
   // How many sections of an article a brief may hand to children.
   maxSections: 6,
+  // How many things named in what a brief's child kept it may hand to
+  // children of its own (one article read each).
+  maxHops: 2,
 });
 export const SETTLED = Object.freeze(["resolved", "blocked"]);
 export const ACTIONS = Object.freeze(["wiki", "decompose", "resolved", "blocked"]);

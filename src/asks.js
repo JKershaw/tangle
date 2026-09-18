@@ -10,7 +10,7 @@
 // maxTokens }) and combines the raw outputs into one answer. Schemas stay tiny
 // and few: web-llm compiles a grammar per distinct schema (see webllm.js).
 
-export const ASK_VERSION = "asks-3";
+export const ASK_VERSION = "asks-4"; // asks-4: missing/names, a pick from the things the kept sentences name
 export const NO_THINK = " /no_think";
 
 // Sentences are what the model picks between, so they are made by code, the
@@ -281,6 +281,18 @@ export const ASKS = Object.freeze({
         schema: stringSchema("search", 60),
         maxTokens: 40,
       }), (parsed) => String(parsed.search).trim()),
+      // For a brief, a pick instead of a name: the things the kept sentences
+      // name (the article's links that occur in them, or capitalised phrases)
+      // are listed by code and the model says which is most worth reading
+      // about next, or none. Input { question, sentences, names, chosen? }.
+      names: single((input) => ({
+        messages: [
+          { role: "system", content: `You are given a brief, sentences kept for it, and the things those sentences name. Pick the one most worth reading about next for the brief${input.chosen?.length ? ", other than those already chosen" : ""}. If none of them would add anything the brief asks for, pick none. Reply with JSON only.` + NO_THINK },
+          { role: "user", content: `Brief: ${input.question}\n\nKept:\n${numbered(input.sentences)}${input.chosen?.length ? `\n\nAlready chosen: ${input.chosen.join(", ")}` : ""}\n\nNamed:\n${(input.names ?? []).map((name) => `- ${name}`).join("\n")}\n\nReply {"search": "<name>"} or {"search": "none"}.` },
+        ],
+        schema: enumSchema("search", [...(input.names ?? []), "none"]),
+        maxTokens: 60,
+      }), (parsed) => String(parsed.search)),
       fact: single((input) => ({
         messages: [
           { role: "system", content: `The sentences do not answer the question. In a few words, what fact is missing? Reply with JSON: {"missing": "<few words>"}.` + NO_THINK },
