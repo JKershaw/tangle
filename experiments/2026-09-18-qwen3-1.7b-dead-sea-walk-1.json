@@ -1,0 +1,271 @@
+{
+  "format": "tangle-pocket-1",
+  "version": "0.2.0",
+  "promptVersion": "walk-1/asks-2/sentence:list,section:list,missing:search,question:one",
+  "created": "2026-09-18T07:11:57.108Z",
+  "mode": "live",
+  "seed": "Why is the Dead Sea shrinking?",
+  "limits": {
+    "maxNodes": 40,
+    "maxVisits": 60,
+    "maxDepth": 6,
+    "maxLookups": 2,
+    "maxPasses": 4,
+    "revisitSettled": true,
+    "walk": true
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "parent": null,
+      "depth": 0,
+      "question": "Why is the Dead Sea shrinking?",
+      "status": "resolved",
+      "visits": 1,
+      "finding": "Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects.",
+      "evidence": [
+        "e1"
+      ],
+      "observed": [
+        "e1"
+      ],
+      "failedLookups": [],
+      "reason": ""
+    }
+  ],
+  "evidence": [
+    {
+      "ok": true,
+      "tool": "wiki",
+      "kind": "wiki",
+      "query": "Why is the Dead Sea shrinking?",
+      "title": "Aral Sea",
+      "article": "Aral Sea",
+      "section": 0,
+      "headings": [
+        "Formation",
+        "Native fish",
+        "Introduced fish",
+        "Invertebrates",
+        "History",
+        "Naval",
+        "Irrigation canals",
+        "Impact on environment, economy, and public health",
+        "Biology",
+        "Vulnerable populations",
+        "Proposed environmental solutions",
+        "Restoration strategies",
+        "ASBP-1",
+        "ASBP: Phase Two",
+        "ASBP: Phase Three",
+        "Aral Sea Basin Programme – 2",
+        "Aral Sea Basin Programme – 3",
+        "ASBP-3: Direction One",
+        "ASBP-3: Direction Two",
+        "ASBP-3: Direction Three",
+        "ASBP-3: Direction Four",
+        "Technology",
+        "North Aral Sea restoration work",
+        "Future of South Aral Sea",
+        "Institutional bodies",
+        "Vozrozhdeniya Island",
+        "Oil and gas exploration"
+      ],
+      "text": "The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely dried up into desert by 2007. It was in the Aktobe and Kyzylorda regions of Kazakhstan and the Karakalpakstan autonomous region of Uzbekistan. The name roughly translates from Mongolic and Turkic languages to \"Sea of Islands\", a reference to the large number of islands (over 1,100) that once dotted its waters. The Aral Sea drainage basin encompasses Uzbekistan and parts of Afghanistan, Iran, Kazakhstan, Kyrgyzstan, Tajikistan, and Turkmenistan.\nFormerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects. By 2007, it had declined to 10% of its original size, splitting into four lakes: the North Aral Sea, the eastern and western basins of the once far larger South Aral Sea, and the smaller intermediate Barsakelmes Lake. By 2009, the southeastern lake had disappeared and the southwestern lake had retreated to a thin strip at the western edge of the former southern sea. In subsequent years occasional water flows have led to the southeastern lake sometimes being replenished to a small degree. Satellite images by NASA in August 2014 revealed that for the first time in modern history the eastern basin of the Aral Sea had completely dried up. The eastern basin is now called the Aralkum Desert.\nIn a Kazakhstani effort to save and replenish the North Aral Sea, the Dike Kokaral dam was completed in 2005. By 2008, the water level had risen 12 m (39 ft) above that of 2003, to 42 m (138 ft). As of 2013, salinity dropped, and fish were again present in sufficient numbers for some fishing to be viable.\nAfter the visit to Muynak in 2011, United Nations secretary general Ban Ki-moon called the shrinking of the Aral Sea \"one of the planet's worst environmental disasters\". The region's once-prosperous fishing industry has been devastated, bringing unemployment and economic hardship. The water from the diverted Syr Darya river is used to irrigate about two million hectares (5,000,000 acres) of farmland in the Ferghana Valley.  The Aral Sea region is heavily polluted, with consequent serious public health problems. UNESCO has added historical documents concerning the Aral Sea to its Memory of the World Register as a resource to study the environmental tragedy.",
+      "exact": true,
+      "alternatives": [
+        "List of drying lakes",
+        "Red Sea crisis",
+        "Ted McGinley",
+        "Caspian Sea"
+      ],
+      "revision": "1375412439",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375412439",
+      "requests": [
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Why%20is%20the%20Dead%20Sea%20shrinking%3F&srlimit=5&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 2498,
+          "elapsedMs": 399
+        },
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Aral_Sea&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 41980,
+          "elapsedMs": 1
+        }
+      ],
+      "id": "e1",
+      "capturedAt": "2026-09-18T07:11:57.595Z",
+      "node": "n1"
+    }
+  ],
+  "trace": [
+    {
+      "seq": 1,
+      "time": "2026-09-18T07:11:57.194Z",
+      "event": "node_started",
+      "node": "n1",
+      "visit": 1
+    },
+    {
+      "seq": 2,
+      "time": "2026-09-18T07:11:57.195Z",
+      "event": "tool_proposed",
+      "node": "n1",
+      "query": "Why is the Dead Sea shrinking?",
+      "tool": "wiki"
+    },
+    {
+      "seq": 3,
+      "time": "2026-09-18T07:11:57.595Z",
+      "event": "tool_result",
+      "node": "n1",
+      "query": "Why is the Dead Sea shrinking?",
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "wiki",
+        "query": "Why is the Dead Sea shrinking?",
+        "title": "Aral Sea",
+        "article": "Aral Sea",
+        "section": 0,
+        "headings": [
+          "Formation",
+          "Native fish",
+          "Introduced fish",
+          "Invertebrates",
+          "History",
+          "Naval",
+          "Irrigation canals",
+          "Impact on environment, economy, and public health",
+          "Biology",
+          "Vulnerable populations",
+          "Proposed environmental solutions",
+          "Restoration strategies",
+          "ASBP-1",
+          "ASBP: Phase Two",
+          "ASBP: Phase Three",
+          "Aral Sea Basin Programme – 2",
+          "Aral Sea Basin Programme – 3",
+          "ASBP-3: Direction One",
+          "ASBP-3: Direction Two",
+          "ASBP-3: Direction Three",
+          "ASBP-3: Direction Four",
+          "Technology",
+          "North Aral Sea restoration work",
+          "Future of South Aral Sea",
+          "Institutional bodies",
+          "Vozrozhdeniya Island",
+          "Oil and gas exploration"
+        ],
+        "text": "The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely dried up into desert by 2007. It was in the Aktobe and Kyzylorda regions of Kazakhstan and the Karakalpakstan autonomous region of Uzbekistan. The name roughly translates from Mongolic and Turkic languages to \"Sea of Islands\", a reference to the large number of islands (over 1,100) that once dotted its waters. The Aral Sea drainage basin encompasses Uzbekistan and parts of Afghanistan, Iran, Kazakhstan, Kyrgyzstan, Tajikistan, and Turkmenistan.\nFormerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects. By 2007, it had declined to 10% of its original size, splitting into four lakes: the North Aral Sea, the eastern and western basins of the once far larger South Aral Sea, and the smaller intermediate Barsakelmes Lake. By 2009, the southeastern lake had disappeared and the southwestern lake had retreated to a thin strip at the western edge of the former southern sea. In subsequent years occasional water flows have led to the southeastern lake sometimes being replenished to a small degree. Satellite images by NASA in August 2014 revealed that for the first time in modern history the eastern basin of the Aral Sea had completely dried up. The eastern basin is now called the Aralkum Desert.\nIn a Kazakhstani effort to save and replenish the North Aral Sea, the Dike Kokaral dam was completed in 2005. By 2008, the water level had risen 12 m (39 ft) above that of 2003, to 42 m (138 ft). As of 2013, salinity dropped, and fish were again present in sufficient numbers for some fishing to be viable.\nAfter the visit to Muynak in 2011, United Nations secretary general Ban Ki-moon called the shrinking of the Aral Sea \"one of the planet's worst environmental disasters\". The region's once-prosperous fishing industry has been devastated, bringing unemployment and economic hardship. The water from the diverted Syr Darya river is used to irrigate about two million hectares (5,000,000 acres) of farmland in the Ferghana Valley.  The Aral Sea region is heavily polluted, with consequent serious public health problems. UNESCO has added historical documents concerning the Aral Sea to its Memory of the World Register as a resource to study the environmental tragedy.",
+        "exact": true,
+        "alternatives": [
+          "List of drying lakes",
+          "Red Sea crisis",
+          "Ted McGinley",
+          "Caspian Sea"
+        ],
+        "revision": "1375412439",
+        "url": "https://en.wikipedia.org/w/index.php?oldid=1375412439",
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Why%20is%20the%20Dead%20Sea%20shrinking%3F&srlimit=5&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 2498,
+            "elapsedMs": 399
+          },
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Aral_Sea&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 41980,
+            "elapsedMs": 1
+          }
+        ]
+      }
+    },
+    {
+      "seq": 4,
+      "time": "2026-09-18T07:11:57.595Z",
+      "event": "evidence_captured",
+      "node": "n1",
+      "evidence": "e1",
+      "kind": "wiki"
+    },
+    {
+      "seq": 5,
+      "time": "2026-09-18T07:11:57.597Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "list",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a question and numbered sentences. Pick the one sentence that answers the question. If none of them answers it, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Why is the Dead Sea shrinking?\n\n1. The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely dried up into desert by 2007.\n2. It was in the Aktobe and Kyzylorda regions of Kazakhstan and the Karakalpakstan autonomous region of Uzbekistan.\n3. The name roughly translates from Mongolic and Turkic languages to \"Sea of Islands\", a reference to the large number of islands (over 1,100) that once dotted its waters.\n4. The Aral Sea drainage basin encompasses Uzbekistan and parts of Afghanistan, Iran, Kazakhstan, Kyrgyzstan, Tajikistan, and Turkmenistan.\n5. Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects.\n6. By 2007, it had declined to 10% of its original size, splitting into four lakes: the North Aral Sea, the eastern and western basins of the once far larger South Aral Sea, and the smaller intermediate Barsakelmes Lake.\n7. By 2009, the southeastern lake had disappeared and the southwestern lake had retreated to a thin strip at the western edge of the former southern sea.\n8. In subsequent years occasional water flows have led to the southeastern lake sometimes being replenished to a small degree.\n9. Satellite images by NASA in August 2014 revealed that for the first time in modern history the eastern basin of the Aral Sea had completely dried up.\n10. The eastern basin is now called the Aralkum Desert.\n11. In a Kazakhstani effort to save and replenish the North Aral Sea, the Dike Kokaral dam was completed in 2005.\n12. By 2008, the water level had risen 12 m (39 ft) above that of 2003, to 42 m (138 ft).\n\nWhich sentence answers the question? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 6,
+      "time": "2026-09-18T07:11:58.671Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "list",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"5\"}",
+      "tokens": 555,
+      "latencyMs": 1072,
+      "simulated": false
+    },
+    {
+      "seq": 7,
+      "time": "2026-09-18T07:11:58.671Z",
+      "event": "sentence_picked",
+      "node": "n1",
+      "pick": "5",
+      "shown": 12
+    },
+    {
+      "seq": 8,
+      "time": "2026-09-18T07:11:58.671Z",
+      "event": "node_resolved",
+      "node": "n1",
+      "result": {
+        "action": "resolved",
+        "finding": "Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects.",
+        "evidence": [
+          "e1"
+        ]
+      }
+    }
+  ],
+  "visits": 1,
+  "modelCalls": 1,
+  "tokens": 555,
+  "lookups": 1,
+  "stopReason": null,
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "runtime": "@mlc-ai/web-llm@0.2.84",
+  "sampling": {
+    "temperature": 0.2,
+    "seed": 1
+  },
+  "schema": "walk-1/asks-2",
+  "exportedAt": "2026-09-18T07:11:58.722Z"
+}

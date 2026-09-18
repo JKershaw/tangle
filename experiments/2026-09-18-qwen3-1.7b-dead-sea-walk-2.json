@@ -1,0 +1,504 @@
+{
+  "format": "tangle-pocket-1",
+  "version": "0.2.0",
+  "promptVersion": "walk-1/asks-2/sentence:check,section:list,missing:search,question:one",
+  "created": "2026-09-18T07:26:27.161Z",
+  "mode": "live",
+  "seed": "Why is the Dead Sea shrinking?",
+  "limits": {
+    "maxNodes": 40,
+    "maxVisits": 60,
+    "maxDepth": 6,
+    "maxLookups": 2,
+    "maxPasses": 4,
+    "revisitSettled": true,
+    "walk": true
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "parent": null,
+      "depth": 0,
+      "question": "Why is the Dead Sea shrinking?",
+      "status": "resolved",
+      "visits": 1,
+      "finding": "The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964.",
+      "evidence": [
+        "e2"
+      ],
+      "observed": [
+        "e1",
+        "e2"
+      ],
+      "failedLookups": [],
+      "reason": ""
+    }
+  ],
+  "evidence": [
+    {
+      "ok": true,
+      "tool": "wiki",
+      "kind": "wiki",
+      "query": "Dead Sea shrinking",
+      "title": "Dead Sea",
+      "article": "Dead Sea",
+      "section": 0,
+      "headings": [
+        "Names",
+        "Geography",
+        "Formation theories",
+        "Sedom Lagoon",
+        "Salt deposits",
+        "Lake formation",
+        "Lake salinity",
+        "Salt mounts formation",
+        "Climate",
+        "Chemistry",
+        "Putative therapies",
+        "Life forms",
+        "Human settlement",
+        "Biblical period",
+        "Hellenistic and Roman period",
+        "Byzantine period",
+        "Medieval period",
+        "Modern times",
+        "British Mandate period",
+        "Israel",
+        "Jordan",
+        "Palestine (West Bank)",
+        "British Mandate period",
+        "Israel",
+        "Jordan",
+        "West Bank",
+        "Extraction",
+        "Receding shoreline",
+        "Sinkholes and their impact",
+        "Link to the Red Sea"
+      ],
+      "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's saltiest bodies of water, 9.6 times as salty as the ocean—and has a density of 1.24 kg/litre, which makes swimming similar to floating. This salinity makes for a harsh environment in which plants and animals cannot flourish, hence its name. The Dead Sea's main, northern basin is 50 kilometres (31 mi) long and 15 kilometres (9 mi) wide at its widest point.\nThe Dead Sea has attracted visitors from around the Mediterranean basin for thousands of years. It was one of the world's first health resorts, and it has been the supplier of a wide variety of products, from asphalt for Egyptian mummification to potash for fertilisers. Today, tourists visit the sea on its Israeli, Jordanian and West Bank coastlines.\nThe Dead Sea is receding at a swift rate; its surface area today is 605 km2 (234 sq mi), having been 1,050 km2 (410 sq mi) in 1930. Multiple canal and pipeline proposals, such as the scrapped Red Sea–Dead Sea Water Conveyance project, have been made to reduce its recession.",
+      "exact": true,
+      "alternatives": [
+        "Aral Sea",
+        "Mediterranean–Dead Sea Canal",
+        "Red Sea–Dead Sea Water Conveyance",
+        "Kaydak Inlet"
+      ],
+      "revision": "1375131266",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375131266",
+      "requests": [
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Dead%20Sea%20shrinking&srlimit=5&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 2224,
+          "elapsedMs": 0
+        },
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Dead_Sea&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 39333,
+          "elapsedMs": 0
+        }
+      ],
+      "id": "e1",
+      "capturedAt": "2026-09-18T07:26:27.254Z",
+      "node": "n1"
+    },
+    {
+      "ok": true,
+      "tool": "wiki",
+      "kind": "wiki",
+      "query": "Dead Sea",
+      "title": "Dead Sea § Receding shoreline",
+      "article": "Dead Sea",
+      "section": 28,
+      "sections": 31,
+      "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea level, a drop of more than 1 m (3 ft) per year. As the water level decreases, the characteristics of the Sea and surrounding region may substantially change.\nAs of 2021, the surface of the Sea has shrunk by about 33 percent since the 1960s, which is partly attributed to the much-reduced flow of the Jordan River since the construction of the National Water Carrier project, and the amount of water from the rains reaching the Dead Sea has diminished even further since flash floods started pouring into the sinkholes left by its shrinkage. The EcoPeace Middle East, a joint Israeli-Palestinian-Jordanian environmental group, has estimated that the annual flow into the Dead Sea from the Jordan is as of 2021 less than 100,000,000 cubic metres (3.5×109 cu ft) of water, compared with former flows of between 1,200,000,000 cubic metres (4.2×1010 cu ft) and 1,300,000,000 cubic metres (4.6×1010 cu ft).\n\nSources: Israel Oceanographic and Limnological Research, Haaretz, Jordan Valley Authority.",
+      "exact": true,
+      "revision": "1375131266",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375131266#Receding_shoreline",
+      "requests": [
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Dead_Sea&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 39333,
+          "elapsedMs": 0
+        }
+      ],
+      "id": "e2",
+      "capturedAt": "2026-09-18T07:26:29.091Z",
+      "node": "n1"
+    }
+  ],
+  "trace": [
+    {
+      "seq": 1,
+      "time": "2026-09-18T07:26:27.253Z",
+      "event": "node_started",
+      "node": "n1",
+      "visit": 1
+    },
+    {
+      "seq": 2,
+      "time": "2026-09-18T07:26:27.253Z",
+      "event": "tool_proposed",
+      "node": "n1",
+      "query": "Dead Sea shrinking",
+      "tool": "wiki"
+    },
+    {
+      "seq": 3,
+      "time": "2026-09-18T07:26:27.254Z",
+      "event": "tool_result",
+      "node": "n1",
+      "query": "Dead Sea shrinking",
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "wiki",
+        "query": "Dead Sea shrinking",
+        "title": "Dead Sea",
+        "article": "Dead Sea",
+        "section": 0,
+        "headings": [
+          "Names",
+          "Geography",
+          "Formation theories",
+          "Sedom Lagoon",
+          "Salt deposits",
+          "Lake formation",
+          "Lake salinity",
+          "Salt mounts formation",
+          "Climate",
+          "Chemistry",
+          "Putative therapies",
+          "Life forms",
+          "Human settlement",
+          "Biblical period",
+          "Hellenistic and Roman period",
+          "Byzantine period",
+          "Medieval period",
+          "Modern times",
+          "British Mandate period",
+          "Israel",
+          "Jordan",
+          "Palestine (West Bank)",
+          "British Mandate period",
+          "Israel",
+          "Jordan",
+          "West Bank",
+          "Extraction",
+          "Receding shoreline",
+          "Sinkholes and their impact",
+          "Link to the Red Sea"
+        ],
+        "text": "The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\nAs of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's saltiest bodies of water, 9.6 times as salty as the ocean—and has a density of 1.24 kg/litre, which makes swimming similar to floating. This salinity makes for a harsh environment in which plants and animals cannot flourish, hence its name. The Dead Sea's main, northern basin is 50 kilometres (31 mi) long and 15 kilometres (9 mi) wide at its widest point.\nThe Dead Sea has attracted visitors from around the Mediterranean basin for thousands of years. It was one of the world's first health resorts, and it has been the supplier of a wide variety of products, from asphalt for Egyptian mummification to potash for fertilisers. Today, tourists visit the sea on its Israeli, Jordanian and West Bank coastlines.\nThe Dead Sea is receding at a swift rate; its surface area today is 605 km2 (234 sq mi), having been 1,050 km2 (410 sq mi) in 1930. Multiple canal and pipeline proposals, such as the scrapped Red Sea–Dead Sea Water Conveyance project, have been made to reduce its recession.",
+        "exact": true,
+        "alternatives": [
+          "Aral Sea",
+          "Mediterranean–Dead Sea Canal",
+          "Red Sea–Dead Sea Water Conveyance",
+          "Kaydak Inlet"
+        ],
+        "revision": "1375131266",
+        "url": "https://en.wikipedia.org/w/index.php?oldid=1375131266",
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Dead%20Sea%20shrinking&srlimit=5&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 2224,
+            "elapsedMs": 0
+          },
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Dead_Sea&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 39333,
+            "elapsedMs": 0
+          }
+        ]
+      }
+    },
+    {
+      "seq": 4,
+      "time": "2026-09-18T07:26:27.254Z",
+      "event": "evidence_captured",
+      "node": "n1",
+      "evidence": "e1",
+      "kind": "wiki"
+    },
+    {
+      "seq": 5,
+      "time": "2026-09-18T07:26:27.255Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a question and numbered sentences. Pick the one sentence that answers the question. If none of them answers it, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Why is the Dead Sea shrinking?\n\n1. The Dead Sea (Arabic: اَلْبَحْر الْمَيِّت, romanized: al-Baḥr al-Mayyit; or اَلْبَحْر الْمَيْت, al-Baḥr al-Mayt; Hebrew: יַם הַמֶּלַח, romanized: Yam hamMelaḥ), also known by other names, is a landlocked salt lake bordered by Jordan to the east, the West Bank to the west and Israel to the southwest.\n2. It lies in the endorheic basin of the Jordan Rift Valley, and its main tributary is the Jordan River.\n3. As of 2025, the lake's surface is 439.78 metres (1,443 ft) below sea level, making its shores the lowest land-based elevation on Earth.\n4. It is 304 m (997 ft) deep, which makes it the deepest hypersaline lake in the world.\n5. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's saltiest bodies of water, 9.6 times as salty as the ocean—and has a density of 1.24 kg/litre, which makes swimming similar to floating.\n6. This salinity makes for a harsh environment in which plants and animals cannot flourish, hence its name.\n7. The Dead Sea's main, northern basin is 50 kilometres (31 mi) long and 15 kilometres (9 mi) wide at its widest point.\n8. The Dead Sea has attracted visitors from around the Mediterranean basin for thousands of years.\n9. It was one of the world's first health resorts, and it has been the supplier of a wide variety of products, from asphalt for Egyptian mummification to potash for fertilisers.\n10. Today, tourists visit the sea on its Israeli, Jordanian and West Bank coastlines.\n11. The Dead Sea is receding at a swift rate; its surface area today is 605 km2 (234 sq mi), having been 1,050 km2 (410 sq mi) in 1930.\n12. Multiple canal and pipeline proposals, such as the scrapped Red Sea–Dead Sea Water Conveyance project, have been made to reduce its recession.\n\nWhich sentence answers the question? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 6,
+      "time": "2026-09-18T07:26:28.431Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"11\"}",
+      "tokens": 620,
+      "latencyMs": 1163,
+      "simulated": false
+    },
+    {
+      "seq": 7,
+      "time": "2026-09-18T07:26:28.431Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Does the sentence state the answer to the question? Reply with JSON: {\"answers\": \"yes\"} or {\"answers\": \"no\"}. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Why is the Dead Sea shrinking?\nSentence: The Dead Sea is receding at a swift rate; its surface area today is 605 km2 (234 sq mi), having been 1,050 km2 (410 sq mi) in 1930."
+        }
+      ]
+    },
+    {
+      "seq": 8,
+      "time": "2026-09-18T07:26:28.684Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"answers\": \"no\"}",
+      "tokens": 119,
+      "latencyMs": 252,
+      "simulated": false
+    },
+    {
+      "seq": 9,
+      "time": "2026-09-18T07:26:28.684Z",
+      "event": "sentence_picked",
+      "node": "n1",
+      "pick": "none",
+      "shown": 12
+    },
+    {
+      "seq": 10,
+      "time": "2026-09-18T07:26:28.684Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "section",
+      "variant": "list",
+      "status": "Choosing a section",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a question and the section headings of a Wikipedia article. Pick the heading of the section most likely to contain the answer. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Why is the Dead Sea shrinking?\nArticle: Dead Sea\n\nSections:\n- Names\n- Geography\n- Formation theories\n- Sedom Lagoon\n- Salt deposits\n- Lake formation\n- Lake salinity\n- Salt mounts formation\n- Climate\n- Chemistry\n- Putative therapies\n- Life forms\n- Human settlement\n- Biblical period\n- Hellenistic and Roman period\n- Byzantine period\n- Medieval period\n- Modern times\n- British Mandate period\n- Israel\n- Jordan\n- Palestine (West Bank)\n- British Mandate period\n- Israel\n- Jordan\n- West Bank\n- Extraction\n- Receding shoreline\n- Sinkholes and their impact\n- Link to the Red Sea\n\nReply {\"section\": \"<heading>\"}."
+        }
+      ]
+    },
+    {
+      "seq": 11,
+      "time": "2026-09-18T07:26:29.090Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "section",
+      "variant": "list",
+      "status": "Choosing a section",
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Receding shoreline\"}",
+      "tokens": 219,
+      "latencyMs": 406,
+      "simulated": false
+    },
+    {
+      "seq": 12,
+      "time": "2026-09-18T07:26:29.090Z",
+      "event": "section_chosen",
+      "node": "n1",
+      "article": "Dead Sea",
+      "section": "Receding shoreline"
+    },
+    {
+      "seq": 13,
+      "time": "2026-09-18T07:26:29.090Z",
+      "event": "tool_proposed",
+      "node": "n1",
+      "query": "Dead Sea / Receding shoreline",
+      "tool": "wiki",
+      "readOn": {
+        "article": "Dead Sea",
+        "section": "Receding shoreline"
+      }
+    },
+    {
+      "seq": 14,
+      "time": "2026-09-18T07:26:29.091Z",
+      "event": "tool_result",
+      "node": "n1",
+      "query": "Dead Sea / Receding shoreline",
+      "readOn": {
+        "article": "Dead Sea",
+        "section": "Receding shoreline"
+      },
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "wiki",
+        "query": "Dead Sea",
+        "title": "Dead Sea § Receding shoreline",
+        "article": "Dead Sea",
+        "section": 28,
+        "sections": 31,
+        "text": "Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.  By 2025 it reached a height of 439 m (1,440 ft) below sea level, a drop of more than 1 m (3 ft) per year. As the water level decreases, the characteristics of the Sea and surrounding region may substantially change.\nAs of 2021, the surface of the Sea has shrunk by about 33 percent since the 1960s, which is partly attributed to the much-reduced flow of the Jordan River since the construction of the National Water Carrier project, and the amount of water from the rains reaching the Dead Sea has diminished even further since flash floods started pouring into the sinkholes left by its shrinkage. The EcoPeace Middle East, a joint Israeli-Palestinian-Jordanian environmental group, has estimated that the annual flow into the Dead Sea from the Jordan is as of 2021 less than 100,000,000 cubic metres (3.5×109 cu ft) of water, compared with former flows of between 1,200,000,000 cubic metres (4.2×1010 cu ft) and 1,300,000,000 cubic metres (4.6×1010 cu ft).\n\nSources: Israel Oceanographic and Limnological Research, Haaretz, Jordan Valley Authority.",
+        "exact": true,
+        "revision": "1375131266",
+        "url": "https://en.wikipedia.org/w/index.php?oldid=1375131266#Receding_shoreline",
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Dead_Sea&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 39333,
+            "elapsedMs": 0
+          }
+        ]
+      }
+    },
+    {
+      "seq": 15,
+      "time": "2026-09-18T07:26:29.091Z",
+      "event": "evidence_captured",
+      "node": "n1",
+      "evidence": "e2",
+      "kind": "wiki"
+    },
+    {
+      "seq": 16,
+      "time": "2026-09-18T07:26:29.092Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a question and numbered sentences. Pick the one sentence that answers the question. If none of them answers it, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Why is the Dead Sea shrinking?\n\n1. Since 1930, when its surface was 1,050 km2 (410 sq mi) and its level was 390 m (1,280 ft) below sea level, the Dead Sea has been monitored continuously.\n2. The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964.\n3. The southern end is fed by a canal maintained by the Dead Sea Works, a company that converts the sea's raw materials.\n4. From a water surface of 395 m (1,296 ft) below sea level in 1970 it fell 22 to 418 m (72 to 1,371 ft) below sea level in 2006, reaching a drop rate of 1 m (3 ft) per year.\n5. By 2025 it reached a height of 439 m (1,440 ft) below sea level, a drop of more than 1 m (3 ft) per year.\n6. As the water level decreases, the characteristics of the Sea and surrounding region may substantially change.\n7. As of 2021, the surface of the Sea has shrunk by about 33 percent since the 1960s, which is partly attributed to the much-reduced flow of the Jordan River since the construction of the National Water Carrier project, and the amount of water from the rains reaching the Dead Sea has diminished even further since flash floods started pouring into the sinkholes left by its shrinkage.\n8. The EcoPeace Middle East, a joint Israeli-Palestinian-Jordanian environmental group, has estimated that the annual flow into the Dead Sea from the Jordan is as of 2021 less than 100,000,000 cubic metres (3.5×109 cu ft) of water, compared with former flows of between 1,200,000,000 cubic metres (4.2×1010 cu ft) and 1,300,000,000 cubic metres (4.6×1010 cu ft).\n9. Sources: Israel Oceanographic and Limnological Research, Haaretz, Jordan Valley Authority.\n\nWhich sentence answers the question? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 17,
+      "time": "2026-09-18T07:26:29.997Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"2\"}",
+      "tokens": 607,
+      "latencyMs": 903,
+      "simulated": false
+    },
+    {
+      "seq": 18,
+      "time": "2026-09-18T07:26:29.997Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Does the sentence state the answer to the question? Reply with JSON: {\"answers\": \"yes\"} or {\"answers\": \"no\"}. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Why is the Dead Sea shrinking?\nSentence: The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964."
+        }
+      ]
+    },
+    {
+      "seq": 19,
+      "time": "2026-09-18T07:26:30.241Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"answers\": \"yes\"}",
+      "tokens": 111,
+      "latencyMs": 243,
+      "simulated": false
+    },
+    {
+      "seq": 20,
+      "time": "2026-09-18T07:26:30.241Z",
+      "event": "sentence_picked",
+      "node": "n1",
+      "pick": "2",
+      "shown": 9
+    },
+    {
+      "seq": 21,
+      "time": "2026-09-18T07:26:30.241Z",
+      "event": "node_resolved",
+      "node": "n1",
+      "result": {
+        "action": "resolved",
+        "finding": "The Dead Sea has been rapidly shrinking since the 1960s because of diversion of incoming water from the Jordan River to the north as part of the National Water Carrier scheme, completed in 1964.",
+        "evidence": [
+          "e2"
+        ]
+      }
+    }
+  ],
+  "visits": 1,
+  "modelCalls": 5,
+  "tokens": 1676,
+  "lookups": 2,
+  "stopReason": null,
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "runtime": "@mlc-ai/web-llm@0.2.84",
+  "sampling": {
+    "temperature": 0.2,
+    "seed": 1
+  },
+  "schema": "walk-1/asks-2",
+  "exportedAt": "2026-09-18T07:26:32.083Z"
+}
