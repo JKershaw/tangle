@@ -262,10 +262,10 @@ test("a brief reads the lead, hands one child per chosen section, each child may
   const TURING = "Alan Turing was an English mathematician and computer scientist. He was highly influential in the development of theoretical computer science. Turing is widely considered to be the father of theoretical computer science.";
   const WAR = "During the Second World War, Turing worked for the Government Code and Cypher School at Bletchley Park. He devised techniques for speeding the breaking of German ciphers, including improvements to the bombe.";
   const LEGACY = "Turing has been honoured in various ways in Manchester, the city where he worked. The Turing Award is given annually for contributions to computer science.";
-  const BOMBE = "The bombe was an electro-mechanical device used by British cryptologists to help decipher Enigma. The initial design was produced by Turing at Bletchley Park.";
+  const BOMBE = "The bombe was an electro-mechanical device used by British cryptologists to help decipher Enigma. The initial design was produced by Turing at Bletchley Park. Each bombe weighed about a ton and stood over six feet tall.";
   const wiki = async (query, { readOn } = {}) => {
     if (readOn) return { ok: true, kind: "wiki", title: `Alan Turing § ${readOn.section}`, article: "Alan Turing", section: readOn.section === "War" ? 1 : 2, text: readOn.section === "War" ? WAR : LEGACY, url: "u" };
-    if (/bombe/i.test(query)) return { ok: true, kind: "wiki", title: "Bombe", article: "Bombe", section: 0, headings: [], text: BOMBE, url: "u" };
+    if (/bombe/i.test(query)) return { ok: true, kind: "wiki", title: "Bombe", article: "Bombe", section: 0, headings: ["Design", "Use"], text: BOMBE, url: "u" };
     if (/turing/i.test(query)) return { ok: true, kind: "wiki", title: "Alan Turing", article: "Alan Turing", section: 0, headings: ["War", "Legacy"], text: TURING, url: "u" };
     return { ok: false, error: { kind: "no_match", message: `nothing for ${query}` } };
   };
@@ -289,7 +289,7 @@ test("a brief reads the lead, hands one child per chosen section, each child may
   assert.equal(root.kept.length, 2);
   // Child 1 reads its section first, keeps one sentence, hops to the bombe and keeps one more.
   // After the hop the child may keep as many sentences again, so it is asked once more and says none.
-  const child = scripted([["sentence", "2"], ["sentence", "none"], ["search", "Bombe"], ["sentence", "2"], ["sentence", "none"]]);
+  const child = scripted([["sentence", "2"], ["sentence", "none"], ["search", "Bombe"], ["sentence", "1"], ["sentence", "none"]]);
   assert.equal(await runWalk(run, { ask: child.ask, wiki, ...PLAIN }), true);
   assert.equal(run.nodes[1].status, "resolved");
   assert.equal(run.nodes[1].finding, "He devised techniques for speeding the breaking of German ciphers, including improvements to the bombe. The initial design was produced by Turing at Bletchley Park.");
@@ -297,6 +297,9 @@ test("a brief reads the lead, hands one child per chosen section, each child may
   assert.ok(run.trace.some((event) => event.event === "hop_chosen" && event.search === "Bombe"));
   assert.equal(child.seen[2].field, "search");
   assert.match(child.seen[2].user, /^Brief: /);
+  assert.deepEqual(child.seen[3].options, ["1", "none"], "of the hop's three sentences only the one naming Turing is offered");
+  assert.match(child.seen[3].user, /1\. The initial design was produced by Turing/);
+  assert.equal(run.nodes.length, 3, "a child never fans out, even after a hop to an article with sections");
   // Child 2 keeps one sentence and its hop names its own article, so nothing is read.
   const second = scripted([["sentence", "2"], ["sentence", "none"], ["search", "Alan Turing"]]);
   assert.equal(await runWalk(run, { ask: second.ask, wiki, ...PLAIN }), true);

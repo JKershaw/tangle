@@ -133,7 +133,7 @@ const requestRecord = ({ body, ...rest }) => rest;
 export const EXTRACT_MAX_BYTES = 262144;
 export const extractUrl = (title) =>
   `https://${WIKI_HOST}/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=${titlePath(title)}&format=json&origin=*`;
-const SKIPPED_SECTIONS = new Set(["See also", "References", "External links", "Further reading", "Notes", "Bibliography", "Gallery", "Sources", "Citations"]);
+const SKIPPED_SECTIONS = new Set(["See also", "References", "External links", "Further reading", "Notes", "Bibliography", "Gallery", "Sources", "Citations", "Articles", "Publications", "Selected publications", "Selected works", "Works cited", "Footnotes"]);
 
 // Headings with no text of their own (parents of subsections) are dropped.
 export function splitSections(extract) {
