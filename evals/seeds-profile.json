@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "note": "Briefs, not questions: each asks for a profile of one subject, and the walk answers a brief by reading the subject's article, fanning its sections out to children and letting each child hop once (walk-8 onwards). 'facts' are topics a good profile touches, pipe-separated alternatives matched as substrings of the root finding (present), of its cited evidence (supported) and of anything read (read). They are checked against live Wikipedia (rubric-check, 2026-09-18) and 'where' says which sections hold each, so a topic that only a section or a hop holds is known to be one. Kind 'brief' also makes the runner grade the profile's shape (paragraphs, sentences, articles and sections read, hops cited) and give the closed-book column a profile prompt. Four fields on purpose: a person, a trade route, an instrument, a living system.",
+  "seeds": [
+    {
+      "id": "turing",
+      "seed": "Tell me about Alan Turing and elaborate on the impact of his work.",
+      "kind": "brief",
+      "article": "Alan Turing",
+      "facts": {
+        "turing-machine": "Turing machine",
+        "enigma": "Enigma|Bletchley|bombe",
+        "ace": "Automatic Computing Engine|stored-program|Pilot ACE",
+        "turing-test": "Turing test|Computing Machinery and Intelligence",
+        "morphogenesis": "morphogenesis|mathematical biology|pattern formation",
+        "conviction": "gross indecency|chemical castration|homosexual",
+        "apology": "apology|pardon|Turing law",
+        "manchester": "Manchester"
+      },
+      "where": "Alan Turing (24 sections): every topic is in the lead except turing-test (Early computers and the Turing test; Ratio Club). conviction and apology also in their own sections. 'Turing Award' is in no section of the article, so it is not a topic."
+    },
+    {
+      "id": "silk-road",
+      "seed": "Tell me about the Silk Road and elaborate on its influence.",
+      "kind": "brief",
+      "article": "Silk Road",
+      "facts": {
+        "han": "Han dynasty|Zhang Qian",
+        "silk": "silk",
+        "buddhism": "Buddhism|Buddhist",
+        "plague": "plague|Black Death",
+        "mongol": "Mongol",
+        "marco-polo": "Marco Polo",
+        "richthofen": "Richthofen",
+        "maritime": "maritime|sea route",
+        "belt-and-road": "Belt and Road"
+      },
+      "where": "Silk Road (22 sections): all in the lead except richthofen (Name and contested significance only). buddhism also in Transmission of Buddhism; plague in Mongol Empire and Decline; belt-and-road in the lead only."
+    },
+    {
+      "id": "hubble",
+      "seed": "Tell me about the Hubble Space Telescope and what it has discovered.",
+      "kind": "brief",
+      "article": "Hubble Space Telescope",
+      "facts": {
+        "launch": "1990|Space Shuttle Discovery",
+        "mirror": "spherical aberration|flawed mirror|flaw in",
+        "servicing": "servicing mission|Space Shuttle|astronaut",
+        "expansion": "Hubble constant|expansion|dark energy",
+        "deep-field": "Deep Field",
+        "webb": "James Webb",
+        "edwin": "Edwin Hubble",
+        "esa": "European Space Agency|ESA"
+      },
+      "where": "Hubble Space Telescope (52 sections): all in the lead except deep-field (Frontier Fields program; Proposal process; Extending visible wavelength images). mirror also in Flawed mirror, Origin of the problem, Design of a solution; expansion in Age and expansion of the universe. 'exoplanet' is only in Successors, so it is not a topic."
+    },
+    {
+      "id": "great-barrier-reef",
+      "seed": "Describe the Great Barrier Reef and the threats it faces.",
+      "kind": "brief",
+      "article": "Great Barrier Reef",
+      "facts": {
+        "size": "2,300|344,400|largest",
+        "bleaching": "bleaching",
+        "climate": "climate change|warming",
+        "starfish": "crown-of-thorns|crown of thorns",
+        "runoff": "runoff|agricultur|pollution|sediment",
+        "heritage": "World Heritage|1981",
+        "queensland": "Queensland",
+        "marine-park": "Marine Park",
+        "fishing": "fishing|overfishing",
+        "cyclone": "cyclone"
+      },
+      "where": "Great Barrier Reef (25 sections): all in the lead except cyclone (Environmental threats; Dugong hunting). Threats each have a section: Climate change, Pollution, Sediment runoff, Crown of thorns, Overfishing, Shipping."
+    }
+  ]
+}

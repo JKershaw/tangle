@@ -16,7 +16,7 @@
 // exports go to evals/results/runs/ (not committed).
 import { existsSync, mkdirSync, readFileSync, writeFileSync, appendFileSync } from "node:fs";
 import { dirname } from "node:path";
-import { FLAT_LIMITS, formatGrades, formatRunGrade, gradeCase, gradeRun, summariseGrades } from "./grade.js";
+import { FLAT_LIMITS, formatGrades, formatRunGrade, gradeCase, gradeRun, profileOf, summariseGrades } from "./grade.js";
 import { summarise } from "./summarise.js";
 import { mentions } from "./text.js";
 import { formatSample, sample, startSampling } from "./machine.js";
@@ -38,8 +38,15 @@ const repeats = Math.max(1, Number(args.repeat ?? 1));
 // a short JSON string so the same grammar path and token cap apply.
 const CLOSED_VERSION = "closed-1";
 const CLOSED_SYSTEM = "Answer the question in two or three sentences from what you know. Name the specific causes, places, processes or people involved.";
-const closedCall = (question) => ({ messages: [{ role: "system", content: CLOSED_SYSTEM }, { role: "user", content: question }], schema: { type: "object", properties: { answer: { type: "string", maxLength: 900 } }, required: ["answer"], additionalProperties: false }, maxTokens: 320 });
+// A brief gets room for a profile: the same characters the graph may gather.
+const CLOSED_PROFILE_VERSION = "closed-profile-1";
+const CLOSED_PROFILE_SYSTEM = "Write a short profile answering the brief from what you know, in several short paragraphs. Name the specific works, events, places, people and consequences involved.";
+const closedCall = (seed) =>
+  seed.kind === "brief"
+    ? { messages: [{ role: "system", content: CLOSED_PROFILE_SYSTEM }, { role: "user", content: seed.seed }], schema: { type: "object", properties: { answer: { type: "string", maxLength: 6000 } }, required: ["answer"], additionalProperties: false }, maxTokens: 1500 }
+    : { messages: [{ role: "system", content: CLOSED_SYSTEM }, { role: "user", content: seed.seed }], schema: { type: "object", properties: { answer: { type: "string", maxLength: 900 } }, required: ["answer"], additionalProperties: false }, maxTokens: 320 };
 const seedsPath = args.seeds || "evals/seeds.json";
+const allSeeds = suiteName === "runs" ? JSON.parse(readFileSync(seedsPath, "utf8")).seeds : [];
 const seedSet = seedsPath.replace(/^.*\//, "").replace(/\.json$/, "");
 const WIKI_CACHE = "evals/wiki-cache";
 const TABLE = "evals/results.md";
@@ -68,7 +75,7 @@ try {
   // Live runs are the walk unless a run's limits say otherwise: label rows
   // with the walk and its ask variants rather than the one-prompt visit.
   if (mode === "closed") {
-    PROMPT_VERSION = CLOSED_VERSION;
+    PROMPT_VERSION = allSeeds.some((seed) => seed.kind === "brief") ? CLOSED_PROFILE_VERSION : CLOSED_VERSION;
     RESPONSE_SCHEMA_VERSION = "answer:string";
   } else if (versions?.walk && suiteName === "runs" && mode !== "composing") {
     PROMPT_VERSION = `${versions.walk}/${versions.asks}`;
@@ -85,7 +92,7 @@ try {
   };
   mkdirSync(dirname(out), { recursive: true });
   if (suiteName === "runs") {
-    const seeds = JSON.parse(readFileSync(seedsPath, "utf8")).seeds.filter((seed) => !only || only.test(seed.id));
+    const seeds = allSeeds.filter((seed) => !only || only.test(seed.id));
     const limits = mode === "flat" ? FLAT_LIMITS : mode === "composing" ? { ...FLAT_LIMITS, walk: false } : mode === "closed" ? { closed: true } : {};
     note(`${stamp()} ${seeds.length} seeds from ${seedsPath} · mode ${mode} · limits ${JSON.stringify(limits)} · prompt ${PROMPT_VERSION} · grammar ${RESPONSE_SCHEMA_VERSION} · commit ${commit}${repeats > 1 ? ` · ${repeats} repeats` : ""}`);
     note(`wiki recording: ${await loadWikiCache(page, WIKI_CACHE)} responses loaded`);
@@ -98,7 +105,7 @@ try {
         const started = Date.now();
         let output;
         try {
-          output = await page.evaluate((call) => window.__tangle.ask(call), closedCall(seed.seed));
+          output = await page.evaluate((call) => window.__tangle.ask(call), closedCall(seed));
         } catch (error) {
           output = { text: "", error: String(error?.message || error) };
         }
@@ -110,7 +117,8 @@ try {
         }
         const facts = {};
         for (const [name, alternatives] of Object.entries(seed.facts)) facts[name] = { present: mentions(text, alternatives), supported: false, read: false };
-        const grade = { id: seed.id, resolved: Boolean(text.trim()), outcome: text.trim() ? "answered" : "no answer", facts, factsTotal: Object.keys(facts).length, factsPresent: Object.values(facts).filter((fact) => fact.present).length, factsSupported: 0, factsRead: 0, distractors: (seed.distractors ?? []).filter((entry) => mentions(text, entry)), cost: { nodes: 0, visits: 0, modelCalls: 1, lookups: 0, tokens: output.tokens ?? 0 }, statuses: {}, finding: text, kind: seed.kind, wallSeconds: Math.round((Date.now() - started) / 1000), latencyMs: output.latencyMs ?? null, raw: output.text ?? "", ...(output.error ? { driverError: output.error } : {}) };
+        const profile = profileOf({ nodes: [{ id: "n1", status: "resolved", finding: text, evidence: [] }], evidence: [], trace: [] });
+        const grade = { id: seed.id, kind: seed.kind ?? null, resolved: Boolean(text.trim()), outcome: text.trim() ? "answered" : "no answer", facts, factsTotal: Object.keys(facts).length, factsPresent: Object.values(facts).filter((fact) => fact.present).length, factsSupported: 0, factsRead: 0, distractors: (seed.distractors ?? []).filter((entry) => mentions(text, entry)), cost: { nodes: 0, visits: 0, modelCalls: 1, lookups: 0, tokens: output.tokens ?? 0 }, statuses: {}, finding: text, profile, wallSeconds: Math.round((Date.now() - started) / 1000), latencyMs: output.latencyMs ?? null, raw: output.text ?? "", ...(output.error ? { driverError: output.error } : {}) };
         results.push(grade);
         note(`${formatRunGrade(grade)} · ${grade.wallSeconds} s`);
         continue;
@@ -133,8 +141,9 @@ try {
     const calls = results.reduce((total, grade) => total + grade.cost.modelCalls, 0);
     const lookups = results.reduce((total, grade) => total + grade.cost.lookups, 0);
     const seconds = results.reduce((total, grade) => total + grade.wallSeconds, 0);
-    const perSeed = results.map((grade) => `${grade.id} ${grade.resolved ? "✓" : "✗"} ${grade.factsSupported}/${grade.factsPresent}/${grade.factsTotal}${grade.distractors.length ? "!" : ""}`).join(", ");
-    appendRow([`runs · ${mode}${seedSet !== "seeds" ? ` · ${seedSet}` : ""}${repeats > 1 ? ` · r${repeat}/${repeats}` : ""}`, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${repeatRecord.resolved}/${repeatRecord.seeds} resolved** · facts ${repeatRecord.factsPresent}/${repeatRecord.factsTotal} · supported ${repeatRecord.factsSupported}/${repeatRecord.factsTotal}`, `${perSeed} (supported/present/total) · ${calls} calls · ${lookups} lookups`, `${seconds} s${rolled?.throttledSamples ? ` · throttled to ${rolled.worstSpeedLimit}%` : ""}`]);
+    const perSeed = results.map((grade) => `${grade.id} ${grade.resolved ? "✓" : "✗"} ${grade.factsSupported}/${grade.factsPresent}/${grade.factsTotal}${grade.distractors.length ? "!" : ""}${grade.kind === "brief" && grade.profile ? ` ¶${grade.profile.paragraphs} h${grade.profile.hopsCited}/${grade.profile.hopsRead}/${grade.profile.hopsChosen}` : ""}`).join(", ");
+    const briefs = results.some((grade) => grade.kind === "brief");
+    appendRow([`runs · ${mode}${seedSet !== "seeds" ? ` · ${seedSet}` : ""}${repeats > 1 ? ` · r${repeat}/${repeats}` : ""}`, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${repeatRecord.resolved}/${repeatRecord.seeds} resolved** · facts ${repeatRecord.factsPresent}/${repeatRecord.factsTotal} · supported ${repeatRecord.factsSupported}/${repeatRecord.factsTotal}`, `${perSeed} (supported/present/total${briefs ? " topics; ¶ paragraphs; hops cited/read/chosen" : ""}) · ${calls} calls · ${lookups} lookups`, `${seconds} s${rolled?.throttledSamples ? ` · throttled to ${rolled.worstSpeedLimit}%` : ""}`]);
     console.log("\n" + results.map(formatRunGrade).join("\n") + `\n\nwrote ${out}${suffix}.json and a row in ${TABLE}`);
     }
     process.exitCode = 0;

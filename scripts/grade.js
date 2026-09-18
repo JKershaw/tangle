@@ -4,6 +4,7 @@
 // feeds them recorded fixtures so the graders themselves are pinned.
 import { captureEvidence, createRun, parseModelOutput, validateResult } from "../src/graph.js";
 import { responseSchema } from "../src/webllm.js";
+import { splitSentences } from "../src/asks.js";
 import { mentions, missingWords, normalise } from "./text.js";
 
 export const ABSENT_WORDS_THRESHOLD = 4;
@@ -200,6 +201,45 @@ export function formatGrades(grades) {
 // and whether any excerpt in the run contains it at all (read but unsaid).
 export const FLAT_LIMITS = Object.freeze({ maxNodes: 1, maxVisits: 3, maxDepth: 0, maxLookups: 6, maxPasses: 8 });
 
+// The shape of a profile (a brief's answer): how much was written, how much
+// was read to write it, and whether the hops to other articles ended up in
+// it. Counted for every run; only a brief's row shows it. hopsChosen is how
+// often a child named somewhere to hop, hopsRead how many of those articles
+// were captured, hopsCited how many the root's finding rests on.
+export function profileOf(run) {
+  const root = run.nodes[0];
+  const finding = root.status === "resolved" ? String(root.finding ?? "") : "";
+  const paragraphs = finding.split(/\n\s*\n/).filter((paragraph) => paragraph.trim()).length;
+  const sentences = splitSentences(finding);
+  const seen = new Set();
+  let duplicates = 0;
+  for (const sentence of sentences) {
+    const key = normalise(sentence);
+    if (seen.has(key)) duplicates++;
+    else seen.add(key);
+  }
+  const byId = new Map(run.nodes.map((node) => [node.id, node]));
+  const hopRecords = run.evidence.filter((record) => {
+    const node = byId.get(record.node);
+    return node?.readFirst && record.article !== node.readFirst.article;
+  });
+  const cited = new Set(root.evidence ?? []);
+  return {
+    paragraphs,
+    sentences: sentences.length,
+    chars: finding.length,
+    duplicates,
+    articles: new Set(run.evidence.map((record) => record.article ?? record.title)).size,
+    sections: new Set(run.evidence.map((record) => record.title)).size,
+    hopsChosen: (run.trace ?? []).filter((event) => event.event === "hop_chosen").length,
+    hopsRead: hopRecords.length,
+    hopsCited: hopRecords.filter((record) => cited.has(record.id)).length,
+    blocked: run.nodes.filter((node) => node.status === "blocked").length,
+  };
+}
+
+export const formatProfile = (profile) => `¶${profile.paragraphs} · ${profile.sentences} sentences${profile.duplicates ? ` (${profile.duplicates} repeated)` : ""} · read ${profile.articles} articles, ${profile.sections} sections · hops ${profile.hopsCited} cited / ${profile.hopsRead} read / ${profile.hopsChosen} chosen${profile.blocked ? ` · ${profile.blocked} blocked` : ""}`;
+
 export function gradeRun(seed, run) {
   const root = run.nodes[0];
   const cited = (root.evidence ?? []).map((id) => run.evidence.find((record) => record.id === id)).filter(Boolean);
@@ -218,6 +258,7 @@ export function gradeRun(seed, run) {
   for (const node of run.nodes) statuses[node.status] = (statuses[node.status] || 0) + 1;
   return {
     id: seed.id,
+    kind: seed.kind ?? null,
     resolved: root.status === "resolved",
     outcome: root.status === "resolved" ? "root resolved" : run.stopReason || `root ${root.status}`,
     facts,
@@ -229,8 +270,9 @@ export function gradeRun(seed, run) {
     cost: { nodes: run.nodes.length, visits: run.visits, modelCalls: run.modelCalls, lookups: run.lookups, tokens: run.tokens },
     statuses,
     finding: root.finding || null,
+    profile: profileOf(run),
   };
 }
 
 export const formatRunGrade = (grade) =>
-  `${grade.id}: ${grade.resolved ? "resolved" : grade.outcome} · facts ${grade.factsPresent}/${grade.factsTotal} · supported ${grade.factsSupported}/${grade.factsTotal} · read ${grade.factsRead}/${grade.factsTotal}${grade.distractors.length ? ` · distractor in ${grade.distractors.join(", ")}` : ""} · ${grade.cost.nodes} nodes, ${grade.cost.modelCalls} calls, ${grade.cost.lookups} lookups, ${grade.cost.tokens} tokens`;
+  `${grade.id}: ${grade.resolved ? "resolved" : grade.outcome} · ${grade.kind === "brief" ? "topics" : "facts"} ${grade.factsPresent}/${grade.factsTotal} · supported ${grade.factsSupported}/${grade.factsTotal} · read ${grade.factsRead}/${grade.factsTotal}${grade.distractors.length ? ` · distractor in ${grade.distractors.join(", ")}` : ""}${grade.kind === "brief" && grade.profile ? ` · ${formatProfile(grade.profile)}` : ""} · ${grade.cost.nodes} nodes, ${grade.cost.modelCalls} calls, ${grade.cost.lookups} lookups, ${grade.cost.tokens} tokens`;
