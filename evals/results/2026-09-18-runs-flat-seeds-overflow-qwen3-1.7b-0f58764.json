@@ -1,0 +1,378 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "0f58764",
+  "head": "cc75661",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T17:30:24.326Z",
+  "loadSeconds": 5,
+  "prompt": "walk-12/asks-4",
+  "schema": "sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-12",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 96,
+      "mean": 48
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.03,
+      "mean": 0
+    },
+    "load": {
+      "min": 10.97,
+      "max": 12.67,
+      "mean": 11.8
+    },
+    "memoryFreePercent": {
+      "min": 85,
+      "max": 85,
+      "mean": 85
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "flat",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "maxNodes": 1,
+    "maxVisits": 3,
+    "maxDepth": 0,
+    "maxLookups": 6,
+    "maxPasses": 8
+  },
+  "seeds": 3,
+  "resolved": 3,
+  "factsPresent": 18,
+  "factsSupported": 18,
+  "factsRead": 22,
+  "factsTotal": 30,
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "wreck": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "imaging": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "olympiad": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 6,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 6,
+        "lookups": 1,
+        "tokens": 3717
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "These scans suggest that the mechanism had 35 meshing bronze gears, 30 of which are still visible, enabling it to follow the movements of the Moon and the Sun through the zodiac, to predict eclipses and to model the irregular orbit of the Moon, where the Moon's speed is higher in its perigee than in its apogee. This motion was studied in the 2nd century BC by astronomer Hipparchus of Rhodes, and he may have been consulted in the machine's construction. There is speculation that a portion of the mechanism is missing and it calculated the positions of the five classical planets. The inscriptions were further deciphered in 2016, revealing numbers connected with the synodic cycles of Venus and Saturn. The instrument is believed to have been designed and constructed by Hellenistic scientists and been variously dated to about 87 BC, between 150 and 100 BC, or 205 BC. It must have been constructed before the shipwreck, which has been dated by multiple lines of evidence to approximately 70–60 BC.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 1003,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "entries": 1069,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-antikythera.json",
+      "summary": "live run · seed: Tell me about the Antikythera mechanism and how it was decoded.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-12/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T17:30:30.089Z · exported 2026-09-18T17:30:38.208Z\nnodes 1 · visits 1 · model calls 6 · lookups 1 · evidence 1 · tokens 3717\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about the Antikythera mechanism and how it was decoded. → These scans suggest that the mechanism had 35 meshing bronze gears, 30 of which are still \n\nmodel latency ms: median 932 · max 1206 · n 6\nnothing flagged"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "philae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "comet": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "arrival": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "water": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "end": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 7,
+      "factsSupported": 7,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 7,
+        "lookups": 1,
+        "tokens": 3076
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "67P/Churyumov–Gerasimenko (abbreviated 67P or 67P/C–G and nicknamed \"Chury\") is a Jupiter-family comet. It most recently came to perihelion (closest approach to the Sun) on 2 November 2021, and will next come to perihelion on 9 April 2028. Churyumov–Gerasimenko was the destination of the European Space Agency's Rosetta mission, launched on 2 March 2004. Rosetta rendezvoused with Churyumov–Gerasimenko on 6 August 2014 and entered orbit on 10 September 2014. Rosetta's lander, Philae, landed on the comet's surface on 12 November 2014, becoming the first spacecraft to land on a comet nucleus. On 30 September 2016, the Rosetta spacecraft ended its mission by landing on the comet in its Maʽat region.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 703,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 8,
+        "misses": 0,
+        "entries": 1069,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-rosetta.json",
+      "summary": "live run · seed: Tell me about the Rosetta mission and what it found at comet 67P.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-12/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T17:30:38.218Z · exported 2026-09-18T17:30:46.112Z\nnodes 1 · visits 1 · model calls 7 · lookups 1 · evidence 1 · tokens 3076\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about the Rosetta mission and what it found at comet 67P. → 67P/Churyumov–Gerasimenko (abbreviated 67P or 67P/C–G and nicknamed \"Chury\") is a Jupiter-\n\nmodel latency ms: median 681 · max 868 · n 7\nnothing flagged"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "dam": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "north-aral": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "kazakhstan": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "uzbekistan": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cotton": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "salinity": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "desert": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 8,
+      "factsSupported": 8,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 6,
+        "lookups": 1,
+        "tokens": 3474
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely dried up into desert by 2007. Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects. Satellite images by NASA in August 2014 revealed that for the first time in modern history the eastern basin of the Aral Sea had completely dried up. In a Kazakhstani effort to save and replenish the North Aral Sea, the Dike Kokaral dam was completed in 2005. After the visit to Muynak in 2011, United Nations secretary general Ban Ki-moon called the shrinking of the Aral Sea \"one of the planet's worst environmental disasters\". The region's once-prosperous fishing industry has been devastated, bringing unemployment and economic hardship.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 933,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 12,
+        "misses": 0,
+        "entries": 1069,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-18-qwen3-1.7b-flat-aral-restoration.json",
+      "summary": "live run · seed: Tell me about the Aral Sea and the efforts to restore it.\nmodel Qwen3-1.7B-q4f16_1-MLC · prompt walk-12/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-18T17:30:46.118Z · exported 2026-09-18T17:30:54.010Z\nnodes 1 · visits 1 · model calls 6 · lookups 1 · evidence 1 · tokens 3474\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me about the Aral Sea and the efforts to restore it. → The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekist\n\nmodel latency ms: median 882 · max 937 · n 6\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-18T17:30:24.325Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-12\",\"asks\":\"asks-4\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T17:30:24.461Z loading: Checking this device before downloading…",
+    "2026-09-18T17:30:29.465Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 90% · vram 0.03 GiB · load 10.97 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T17:30:29.556Z 3 seeds from evals/seeds-overflow.json · mode flat · limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8} · prompt walk-12/asks-4 · grammar sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit 0f58764",
+    "wiki recording: 1069 responses loaded",
+    "2026-09-18T17:30:37.870Z run stopped: Root resolved",
+    "antikythera: resolved · topics 3/10 · supported 3/10 · read 6/10 · ¶1 · 6 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 1 lookups, 3717 tokens · 8 s · wiki 4 hits 0 misses",
+    "2026-09-18T17:30:45.770Z run stopped: Root resolved",
+    "rosetta: resolved · topics 7/10 · supported 7/10 · read 7/10 · ¶1 · 6 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 7 calls, 1 lookups, 3076 tokens · 8 s · wiki 8 hits 0 misses",
+    "2026-09-18T17:30:53.665Z run stopped: Root resolved",
+    "aral-restoration: resolved · topics 8/10 · supported 8/10 · read 9/10 · ¶1 · 6 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 1 lookups, 3474 tokens · 8 s · wiki 12 hits 0 misses",
+    "machine during the suite: gpu 48% mean, 96% peak · vram up to 0.03 GiB · load up to 12.67 · no throttling in 2 samples"
+  ]
+}

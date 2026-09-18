@@ -1,0 +1,344 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-1.7B-q4f16_1-MLC",
+  "commit": "0f58764",
+  "head": "cc75661",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T16:57:42.743Z",
+  "loadSeconds": 5,
+  "prompt": "closed-profile-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-12",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 76,
+      "mean": 38
+    },
+    "vramGiB": {
+      "min": 0.02,
+      "max": 2.2,
+      "mean": 1.1
+    },
+    "load": {
+      "min": 24.53,
+      "max": 25.34,
+      "mean": 24.9
+    },
+    "memoryFreePercent": {
+      "min": 78,
+      "max": 85,
+      "mean": 81.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 3,
+  "resolved": 3,
+  "factsPresent": 5,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 30,
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "wreck": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "imaging": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "olympiad": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 302
+      },
+      "statuses": {},
+      "finding": "The Antikythera mechanism is an ancient Greek device, dating back to around 120–150 BCE, that functions as an early analog computer. It was discovered in a shipwreck in the Antikythera caves, Greece, and is considered one of the most important artifacts of the Hellenistic period. The mechanism consists of a complex system of interlocking gears, which was used to predict the movements of the sun, moon, and planets, as well as to calculate the positions of the Greek calendar. It was used by astronomers and priests to determine the best times for religious and agricultural activities. The mechanism was deciphered in the 19th century by a group of scholars, including the British engineer and mathematician, William Stourton Jones, who identified the gear ratios and the function of each component. The discovery of the Antikythera mechanism and its decipherment has significantly advanced our understanding of ancient technology and the development of early mechanical systems. It also highlights the sophisticated knowledge of astronomy and engineering that existed in ancient Greece.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 7,
+        "chars": 1090,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 11,
+      "latencyMs": 10956,
+      "raw": "<think>\n\n</think>\n\n{  \n\n\n\n\n\n\"answer\" \n\n  \n\n :\n\n\n\n  \"The Antikythera mechanism is an ancient Greek device, dating back to around 120–150 BCE, that functions as an early analog computer. It was discovered in a shipwreck in the Antikythera caves, Greece, and is considered one of the most important artifacts of the Hellenistic period. The mechanism consists of a complex system of interlocking gears, which was used to predict the movements of the sun, moon, and planets, as well as to calculate the positions of the Greek calendar. It was used by astronomers and priests to determine the best times for religious and agricultural activities. The mechanism was deciphered in the 19th century by a group of scholars, including the British engineer and mathematician, William Stourton Jones, who identified the gear ratios and the function of each component. The discovery of the Antikythera mechanism and its decipherment has significantly advanced our understanding of ancient technology and the development of early mechanical systems. It also highlights the sophisticated knowledge of astronomy and engineering that existed in ancient Greece.\" \n\n  }"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "philae": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "comet": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "arrival": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "water": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "end": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 261
+      },
+      "statuses": {},
+      "finding": "The Rosetta mission, launched by Europe in 2007, was the first spacecraft to reach a comet and orbit it. It studied Comet 67P/Churyumov-Gerasimenko, the brightest and most studied comet in the solar system. Rosetta's main objectives were to understand the formation and evolution of comets, their composition, and the conditions of the early solar system. At Comet 67P, Rosetta found water ice and organic compounds, confirming that comets are a key reservoir of volatiles and prebiotic materials. The mission also revealed a complex, dynamic surface with jets, ice volcanoes, and a possible subsurface ocean. Rosetta's data helped confirm that comets are among the most primitive objects in the solar system, offering insights into the planet-forming material and the early solar system. The mission's success marked a major milestone in space exploration and comet science.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 7,
+        "chars": 875,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 3,
+      "latencyMs": 3034,
+      "raw": "<think>\n\n</think>\n\n{ \"answer\": \"The Rosetta mission, launched by Europe in 2007, was the first spacecraft to reach a comet and orbit it. It studied Comet 67P/Churyumov-Gerasimenko, the brightest and most studied comet in the solar system. Rosetta's main objectives were to understand the formation and evolution of comets, their composition, and the conditions of the early solar system. At Comet 67P, Rosetta found water ice and organic compounds, confirming that comets are a key reservoir of volatiles and prebiotic materials. The mission also revealed a complex, dynamic surface with jets, ice volcanoes, and a possible subsurface ocean. Rosetta's data helped confirm that comets are among the most primitive objects in the solar system, offering insights into the planet-forming material and the early solar system. The mission's success marked a major milestone in space exploration and comet science.\" }"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "dam": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "kazakhstan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cotton": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "salinity": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "desert": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 274
+      },
+      "statuses": {},
+      "finding": "The Aral Sea, located in Central Asia, is one of the world's largest inland seas. It was formed by the construction of the As-Shyr and Kyzylkum reservoirs in the 1960s. However, the massive draining of the Aral Sea led to the creation of two large lakes, the Namt and the Kyzylkum, and caused severe environmental and social consequences, including the spread of waterborne diseases and the displacement of local communities. Efforts to restore the Aral Sea have been ongoing since the 1990s, with the construction of the Kyzylkum and Namt reservoirs, and the implementation of water management systems. These efforts have aimed to reduce salinity, improve water quality, and restore the ecological balance of the region. Despite these efforts, the Aral Sea remains a significant environmental challenge, and its restoration is a complex and long-term process.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 860,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 3,
+      "latencyMs": 3291,
+      "raw": "<think>\n\n</think>\n\n{  \n\n\n\n\n\n\"answer\" \n\n  \n\n :\n\n\n\n  \"The Aral Sea, located in Central Asia, is one of the world's largest inland seas. It was formed by the construction of the As-Shyr and Kyzylkum reservoirs in the 1960s. However, the massive draining of the Aral Sea led to the creation of two large lakes, the Namt and the Kyzylkum, and caused severe environmental and social consequences, including the spread of waterborne diseases and the displacement of local communities. Efforts to restore the Aral Sea have been ongoing since the 1990s, with the construction of the Kyzylkum and Namt reservoirs, and the implementation of water management systems. These efforts have aimed to reduce salinity, improve water quality, and restore the ecological balance of the region. Despite these efforts, the Aral Sea remains a significant environmental challenge, and its restoration is a complex and long-term process.\" \n\n  }"
+    }
+  ],
+  "notes": [
+    "2026-09-18T16:57:42.743Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-12\",\"asks\":\"asks-4\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T16:57:42.877Z loading: Checking this device before downloading…",
+    "2026-09-18T16:57:47.881Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-1.7B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 86% · vram 0.02 GiB · load 24.53 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T16:57:47.974Z 3 seeds from evals/seeds-overflow.json · mode closed · limits {\"closed\":true} · prompt closed-profile-1 · grammar answer:string · commit 0f58764",
+    "wiki recording: 845 responses loaded",
+    "antikythera: resolved · topics 1/10 · supported 0/10 · read 0/10 · ¶1 · 7 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 302 tokens · 11 s",
+    "rosetta: resolved · topics 3/10 · supported 0/10 · read 0/10 · ¶1 · 7 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 261 tokens · 3 s",
+    "aral-restoration: resolved · topics 1/10 · supported 0/10 · read 0/10 · ¶1 · 6 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 274 tokens · 3 s",
+    "machine during the suite: gpu 38% mean, 76% peak · vram up to 2.2 GiB · load up to 25.34 · no throttling in 2 samples"
+  ]
+}

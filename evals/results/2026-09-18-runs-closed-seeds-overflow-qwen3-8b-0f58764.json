@@ -1,0 +1,344 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-8B-q4f16_1-MLC",
+  "commit": "0f58764",
+  "head": "0f58764",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T16:56:21.020Z",
+  "loadSeconds": 10,
+  "prompt": "closed-profile-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-12",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 3,
+    "gpuPercent": {
+      "min": 0,
+      "max": 91,
+      "mean": 60.3
+    },
+    "vramGiB": {
+      "min": 0.04,
+      "max": 5.68,
+      "mean": 3.8
+    },
+    "load": {
+      "min": 18.1,
+      "max": 19.97,
+      "mean": 19
+    },
+    "memoryFreePercent": {
+      "min": 67,
+      "max": 85,
+      "mean": 73
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 3,
+  "resolved": 3,
+  "factsPresent": 17,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 30,
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "wreck": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "price": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "imaging": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "olympiad": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 6,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 294
+      },
+      "statuses": {},
+      "finding": "The Antikythera mechanism, discovered in 1901 off the coast of Antikythera, Greece, is an ancient Greek analog computer used to predict astronomical positions and eclipses. It dates back to around 150–100 BCE and is considered one of the earliest known examples of complex mechanical engineering. The device, covered in a layer of corrosion, was initially misunderstood as a simple water pump or a decorative object. Its true purpose was revealed through decades of study, beginning with the work of scholars like Derek J. de Solla Price in the 1950s. Using X-ray imaging, Price identified over 30 gears, demonstrating the mechanism's ability to model celestial movements. Further research by Tony Freeth and others in the 2000s uncovered its use in tracking the Metonic cycle, lunar and solar eclipses, and possibly the Olympic Games. The decoding of the Antikythera mechanism has provided profound insights into ancient Greek astronomy, mathematics, and engineering, highlighting the advanced scientific knowledge of the Hellenistic period.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 7,
+        "chars": 1042,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 16,
+      "latencyMs": 15694,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The Antikythera mechanism, discovered in 1901 off the coast of Antikythera, Greece, is an ancient Greek analog computer used to predict astronomical positions and eclipses. It dates back to around 150–100 BCE and is considered one of the earliest known examples of complex mechanical engineering. The device, covered in a layer of corrosion, was initially misunderstood as a simple water pump or a decorative object. Its true purpose was revealed through decades of study, beginning with the work of scholars like Derek J. de Solla Price in the 1950s. Using X-ray imaging, Price identified over 30 gears, demonstrating the mechanism's ability to model celestial movements. Further research by Tony Freeth and others in the 2000s uncovered its use in tracking the Metonic cycle, lunar and solar eclipses, and possibly the Olympic Games. The decoding of the Antikythera mechanism has provided profound insights into ancient Greek astronomy, mathematics, and engineering, highlighting the advanced scientific knowledge of the Hellenistic period.\"\n}"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "philae": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "comet": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "launch": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "arrival": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "water": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "end": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 6,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 272
+      },
+      "statuses": {},
+      "finding": "The Rosetta mission, launched by the European Space Agency (ESA) in 2004, was a groundbreaking endeavor to study comet 67P/Churyumov–Gerasimenko. After a decade-long journey, Rosetta arrived at the comet in 2014, becoming the first spacecraft to orbit a comet and deploy a lander, Philae, which touched down on its surface. The mission revealed that comet 67P has a complex, porous structure with a surface covered in organic molecules, including amino acids, suggesting comets may have played a role in delivering the building blocks of life to Earth. Rosetta also discovered that the comet's nucleus is a rubble-pile made of different materials, and it released jets of gas and dust as it approached the Sun. The mission provided unprecedented insights into the composition and behavior of comets, enhancing our understanding of the early solar system and the potential role of comets in the origins of life.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 5,
+        "chars": 910,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 8,
+      "latencyMs": 8013,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The Rosetta mission, launched by the European Space Agency (ESA) in 2004, was a groundbreaking endeavor to study comet 67P/Churyumov–Gerasimenko. After a decade-long journey, Rosetta arrived at the comet in 2014, becoming the first spacecraft to orbit a comet and deploy a lander, Philae, which touched down on its surface. The mission revealed that comet 67P has a complex, porous structure with a surface covered in organic molecules, including amino acids, suggesting comets may have played a role in delivering the building blocks of life to Earth. Rosetta also discovered that the comet's nucleus is a rubble-pile made of different materials, and it released jets of gas and dust as it approached the Sun. The mission provided unprecedented insights into the composition and behavior of comets, enhancing our understanding of the early solar system and the potential role of comets in the origins of life.\"\n}"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "dam": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "kazakhstan": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "cotton": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "salinity": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "desert": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 5,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 329
+      },
+      "statuses": {},
+      "finding": "The Aral Sea, once the fourth-largest inland sea in the world, has drastically shrunk due to the diversion of its two main rivers, the Amu Darya and the Syr Darya, for irrigation projects in the Soviet Union. This led to the sea splitting into several smaller lakes and eventually disappearing, causing severe environmental and economic consequences for the region. In the 1960s, the Soviet government began massive irrigation projects to support cotton farming, which drastically reduced the rivers' flow into the Aral Sea. The ecological disaster included increased salinity, loss of biodiversity, and health crises from dust storms carrying toxic chemicals. In the 1990s, international attention turned to the crisis, and efforts to restore the Aral Sea began. One major project, the Southern Agricultural Corridor of the Aral Sea (SAC), aimed to build a new river system to replenish the northern part of the sea. Another initiative, the Kazakhstan-led Kazakh Sea Project, focused on restoring the northern Aral Sea. While these efforts have had some success, the southern part of the Aral Sea remains largely dry, and the region continues to face environmental challenges. The restoration efforts highlight the complex interplay between human activity, environmental impact, and international cooperation in addressing ecological disasters.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 9,
+        "chars": 1345,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 10,
+      "latencyMs": 10396,
+      "raw": "<think>\n\n</think>\n\n{\"answer\": \"The Aral Sea, once the fourth-largest inland sea in the world, has drastically shrunk due to the diversion of its two main rivers, the Amu Darya and the Syr Darya, for irrigation projects in the Soviet Union. This led to the sea splitting into several smaller lakes and eventually disappearing, causing severe environmental and economic consequences for the region. In the 1960s, the Soviet government began massive irrigation projects to support cotton farming, which drastically reduced the rivers' flow into the Aral Sea. The ecological disaster included increased salinity, loss of biodiversity, and health crises from dust storms carrying toxic chemicals. In the 1990s, international attention turned to the crisis, and efforts to restore the Aral Sea began. One major project, the Southern Agricultural Corridor of the Aral Sea (SAC), aimed to build a new river system to replenish the northern part of the sea. Another initiative, the Kazakhstan-led Kazakh Sea Project, focused on restoring the northern Aral Sea. While these efforts have had some success, the southern part of the Aral Sea remains largely dry, and the region continues to face environmental challenges. The restoration efforts highlight the complex interplay between human activity, environmental impact, and international cooperation in addressing ecological disasters.\"}"
+    }
+  ],
+  "notes": [
+    "2026-09-18T16:56:21.019Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-12\",\"asks\":\"asks-4\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T16:56:21.160Z loading: Checking this device before downloading…",
+    "2026-09-18T16:56:31.171Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-8B-q4f16_1-MLC: Ready. Inference runs on this device. (10 s)",
+    "machine at start: gpu 96% · vram 0.03 GiB · load 19 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T16:56:31.269Z 3 seeds from evals/seeds-overflow.json · mode closed · limits {\"closed\":true} · prompt closed-profile-1 · grammar answer:string · commit 0f58764",
+    "wiki recording: 845 responses loaded",
+    "antikythera: resolved · topics 6/10 · supported 0/10 · read 0/10 · ¶1 · 7 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 294 tokens · 16 s",
+    "rosetta: resolved · topics 6/10 · supported 0/10 · read 0/10 · ¶1 · 5 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 272 tokens · 8 s",
+    "aral-restoration: resolved · topics 5/10 · supported 0/10 · read 0/10 · ¶1 · 9 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 329 tokens · 10 s",
+    "machine during the suite: gpu 60.3% mean, 91% peak · vram up to 5.68 GiB · load up to 19.97 · no throttling in 3 samples"
+  ]
+}

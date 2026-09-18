@@ -1,0 +1,344 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-0.6B-q4f16_1-MLC",
+  "commit": "0f58764",
+  "head": "cc75661",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T16:58:06.703Z",
+  "loadSeconds": 5,
+  "prompt": "closed-profile-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-12",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 1,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.03,
+      "mean": 0
+    },
+    "load": {
+      "min": 24.9,
+      "max": 24.9,
+      "mean": 24.9
+    },
+    "memoryFreePercent": {
+      "min": 85,
+      "max": 85,
+      "mean": 85
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 3,
+  "resolved": 3,
+  "factsPresent": 2,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 30,
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "wreck": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "imaging": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "olympiad": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 271
+      },
+      "statuses": {},
+      "finding": "The Antikythera mechanism refers to a mysterious device, believed to be a device that was used in ancient times to predict and understand the cycles of nature, such as the movement of the Earth or the cycles of the solar system. This device is said to be a combination of mechanical and symbolic elements, possibly a device that was used in ancient times for both practical and spiritual purposes. The device is believed to be a combination of mechanical and symbolic elements, possibly a device that was used in ancient times for both practical and spiritual purposes. The device is said to be a combination of mechanical and symbolic elements, possibly a device that was used in ancient times for both practical and spiritual purposes. The device is believed to be a combination of mechanical and symbolic elements, possibly a device that was used in ancient times for both practical and spiritual purposes. The device is said to be a combination of mechanical and symbolic elements, possibly a device that was used in ancient times for both practical and spiritual purposes.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 1077,
+        "duplicates": 2,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 10,
+      "latencyMs": 9810,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Antikythera mechanism refers to a mysterious device, believed to be a device that was used in ancient times to predict and understand the cycles of nature, such as the movement of the Earth or the cycles of the solar system. This device is said to be a combination of mechanical and symbolic elements, possibly a device that was used in ancient times for both practical and spiritual purposes. The device is believed to be a combination of mechanical and symbolic elements, possibly a device that was used in ancient times for both practical and spiritual purposes. The device is said to be a combination of mechanical and symbolic elements, possibly a device that was used in ancient times for both practical and spiritual purposes. The device is believed to be a combination of mechanical and symbolic elements, possibly a device that was used in ancient times for both practical and spiritual purposes. The device is said to be a combination of mechanical and symbolic elements, possibly a device that was used in ancient times for both practical and spiritual purposes.\"  \n}"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "philae": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "comet": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "arrival": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "water": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "end": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 265
+      },
+      "statuses": {},
+      "finding": "The Rosetta mission was a European space agency program that studied the asteroid 25 Psyche, which was discovered by the Rosetta spacecraft in 2013. The mission's primary goal was to analyze the composition of the asteroid, including its surface and interior. At the time, the Rosetta spacecraft was orbiting the comet 67P, which is also known as 67P/Chiron, and it was the first to reach the surface of the comet in 2015. The comet 67P is a rare object, and its study has been a significant part of the Rosetta program. The mission's findings have been crucial in understanding the composition of the asteroid, including its potential to be a candidate for the search for extraterrestrial life. The consequences of the Rosetta mission include the discovery of the asteroid's composition, which has been a major contribution to the field of planetary science.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 859,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 2,
+      "latencyMs": 2389,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Rosetta mission was a European space agency program that studied the asteroid 25 Psyche, which was discovered by the Rosetta spacecraft in 2013. The mission's primary goal was to analyze the composition of the asteroid, including its surface and interior. At the time, the Rosetta spacecraft was orbiting the comet 67P, which is also known as 67P/Chiron, and it was the first to reach the surface of the comet in 2015. The comet 67P is a rare object, and its study has been a significant part of the Rosetta program. The mission's findings have been crucial in understanding the composition of the asteroid, including its potential to be a candidate for the search for extraterrestrial life. The consequences of the Rosetta mission include the discovery of the asteroid's composition, which has been a major contribution to the field of planetary science.\"  \n}"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "dam": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "kazakhstan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cotton": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "salinity": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "desert": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 166
+      },
+      "statuses": {},
+      "finding": "The Aral Sea was a vital water source for the Ural Mountains and its surrounding regions, but it was once a major source of water for the entire steppe. However, overuse and depletion led to its drying up, which had severe consequences. Efforts to restore the Aral Sea include the construction of new water channels and the implementation of sustainable water management practices. These efforts aim to revive the lake, restore its ecological balance, and ensure its availability for future generations.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 4,
+        "chars": 503,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 1,
+      "latencyMs": 1193,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Aral Sea was a vital water source for the Ural Mountains and its surrounding regions, but it was once a major source of water for the entire steppe. However, overuse and depletion led to its drying up, which had severe consequences. Efforts to restore the Aral Sea include the construction of new water channels and the implementation of sustainable water management practices. These efforts aim to revive the lake, restore its ecological balance, and ensure its availability for future generations.\"\n}"
+    }
+  ],
+  "notes": [
+    "2026-09-18T16:58:06.702Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-12\",\"asks\":\"asks-4\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T16:58:06.852Z loading: Checking this device before downloading…",
+    "2026-09-18T16:58:11.860Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-0.6B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 75% · vram 0.03 GiB · load 24.9 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T16:58:11.958Z 3 seeds from evals/seeds-overflow.json · mode closed · limits {\"closed\":true} · prompt closed-profile-1 · grammar answer:string · commit 0f58764",
+    "wiki recording: 845 responses loaded",
+    "antikythera: resolved · topics 0/10 · supported 0/10 · read 0/10 · ¶1 · 6 sentences (2 repeated) · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 271 tokens · 10 s",
+    "rosetta: resolved · topics 2/10 · supported 0/10 · read 0/10 · ¶1 · 6 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 265 tokens · 2 s",
+    "aral-restoration: resolved · topics 0/10 · supported 0/10 · read 0/10 · ¶1 · 4 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 166 tokens · 1 s",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 0.03 GiB · load up to 24.9 · no throttling in 1 samples"
+  ]
+}

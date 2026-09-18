@@ -2,6 +2,28 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-18 · walk-12 and the overflow briefs: the graph against both controls
+
+Two changes after walk-11 and one new seed set. A hop child may hand down one level of hops of its own, with a reserve so that every node still open keeps room for its hops; and a name is offered only after code has read what its article says about the brief's subject (`hop_checked` in the trace), so *Astronomy* and *Star* are never on the list. The first cut lost topics at 8B to the profile cap — 6,000 characters dropped the last three sections of the Turing profile, conviction and apology among them, under hops beneath the first three — so over the cap a profile now sheds hop paragraphs before it sheds a section, the cap is 8,000, and a heading whose own text is under 600 characters ("Career and research", blocked at every size since walk-8) is not offered. Rows at 14ddbc1 and 0f58764 in [results.md](results.md).
+
+| set | model | tangle (topics) | paragraphs · nodes · s | hops cited / read / chosen | one node | memory |
+|---|---|---|---|---|---|---|
+| profiles (35) | 1.7B | **26** | 61 · 64 · 168 | 35 / 36 / 36 | 15 | 15 |
+| profiles (35) | 4B | **23** | 50 · 73 · 321 | 34 / 51 / 51 | 16 | 10 |
+| profiles (35) | 8B | **27** | 62 · 94 · 635 | 47 / 66 / 66 | 13 | 20 |
+| overflow (30) | 1.7B | **24** | 41 · 41 · 138 | 20 / 20 / 20 | 18 | 5 |
+| overflow (30) | 4B | **25** | 34 · 44 · 228 | 16 / 25 / 25 | 18 | 12 |
+| overflow (30) | 8B | **27** | 37 · 48 · 372 | 18 / 27 / 27 | 16 | 17 |
+
+Nodes and seconds summed over the set's briefs. 0.6B: memory 2 of 30 on the overflow set; it keeps nothing under a brief.
+
+- **On both sets the graph beats one node and memory at every size from 1.7B up.** The overflow briefs were chosen where memory is weak — the Antikythera mechanism's decoders, what Rosetta found, who is restoring the Aral Sea — and there the gap is widest: 1.7B names 5 topics of 30 from memory and reads its way to 24. This is milestone 3's exit condition met: a task a person would ask, on which the shape of the work beats one context at every size.
+- **The recursion holds its subject.** With hops handing down hops, an 8B Turing profile is 28 nodes over 22 articles in 17 paragraphs, and every sentence names Turing: the bombe's design and *Victory*, the Polish bomba, Harry Huskey and the ACE, Turing patterns, the 1952 plea, the 2009 apology. The Aral Sea profile at 1.7B reaches the Kok-Aral Dam, the North Aral Sea and the World Bank from the lead's links. The on-subject filter, the run-wide read set and the kept set are what keep 94 nodes from drifting; the model never sees more than one window.
+- **The check before the offer is worth more than the pick after it.** At 1.7B every hop opened is cited (35 of 36; 20 of 20). At 8B a third of hops opened are found empty: the article says something about the subject, the child is offered those sentences, and 8B's checked pick says none to all of them. 8B also fills every hop slot where 1.7B says none. The two sizes make different mistakes: 1.7B under-reaches, 8B over-reaches and then rejects.
+- **The cap is a design decision, not a limit.** Which paragraphs a profile sheds when it is too long decides which topics it keeps; dropping from the end dropped the sections the article puts last, which for a biography are the end of the life. Hop paragraphs first, longest child first, is one reasonable rule; the story view should show what was shed.
+- **Where the topic rubric stops being useful.** The Aral Sea brief is 10 of 10 at every size because its lead names nearly every topic, and 4B's Turing profile is 4 of 8 at three builds running because its section picks skip the conviction and the apology, which no hop reaches. The rubric counts touches; it does not see that 8B's seventeen paragraphs are specific and in order. A judge is the reference model's job.
+- **Not claimed.** That one node *cannot* hold the text: under its budget the flat control reads three sentences of one article and stops, as it always has. The claim is that the graph reaches what one node does not, on every brief tried, at every size that can pick a sentence.
+
 ## 2026-09-18 · walk-11: children from what a node read
 
 Milestone 2 of the roadmap: the graph should grow from what its nodes read, not from templates. In walk-11 a brief's child, having kept its sentences, is shown the things they name — the article's own links that occur in those sentences (a new Wikipedia request per article, cached like the rest), ranked by how many excerpts in the run name each, minus anything read or opened anywhere — and picks up to two, or none. Each pick is a child: the same brief with that focus, which reads the part of that article that names the brief's subject and keeps only sentences that do. A sentence kept anywhere in the run is never offered again. Rows in [results.md](results.md) at bc2e15a (first cut) and 71ee567.

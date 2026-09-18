@@ -109,20 +109,21 @@ Since then the project has a measuring stick. [PLAN.md](PLAN.md) sets out three 
 
 ## The frontier
 
-What is known to work, what is known to fail, and what is being tried, as of walk-11 at 71ee567 (18 September 2026). Kept current as the numbers move.
+What is known to work, what is known to fail, and what is next, as of walk-12 at 0f58764 (18 September 2026). Kept current as the numbers move.
 
 **Works, measured.**
 - A node finds the sentence that answers a question in every node-eval case from 1.7B up; every walk finding is supported by construction, and no walk row has ever stated a fact its evidence did not hold. The one-node model that writes its own answer states more on easy seeds and invents on hard ones.
 - Decomposition pays only where code can see the join: a two-subject question split by code leads its one-node control at every size on the seeds no single article answers (16, 15, 14 against 12, 12, 12 of 30). Model-asked sub-questions drift and are refused as paraphrases far more often than they help.
-- A brief ("Tell me about Alan Turing and elaborate on the impact of his work") becomes a cited profile: the lead, one child per section the model chooses, and from each child up to two children of its own, opened on the things its kept sentences name and reading the part of that article that names the subject. Ten to thirteen paragraphs from eleven articles at 8B. On four briefs with 35 topics the graph touches 26 / 22 / 26 at 8B / 4B / 1.7B against 13–16 for one node and 20 / 10 / 15 for the model's memory: the first benchmark where the shape beats both controls at every size.
+- A brief ("Tell me about Alan Turing and elaborate on the impact of his work") becomes a cited profile: the lead, one child per section the model chooses, and under each up to two levels of children opened on the things the kept sentences name, each reading the part of that article that names the subject. Up to 28 nodes and 22 articles in 17 paragraphs at 8B, every sentence Wikipedia's and cited. On four profile briefs (35 topics) the graph touches 27 / 23 / 26 at 8B / 4B / 1.7B against 13–16 for one node and 20 / 10 / 15 for memory; on three briefs chosen where memory is weak (30 topics) it touches 27 / 25 / 24 against 16–18 and 17 / 12 / 5. The shape beats both controls at every size on every brief set tried.
 
 **Fails, measured.**
 - Memory beats reading. From 4B up the model alone names more rubric facts than any reading mode on the question seeds, because those questions are ones it has memorised. Seeds have to be chosen where the closed-book score is low, or they measure recall.
-- The graph still stops short of its budget: hop children are leaves, so a profile is at most nineteen nodes of forty, and a section's children are opened before the next section is read. Generic links (*Astronomy*, *Universe*, *Star*) rank first because every excerpt names them, get chosen, and their articles say nothing about the subject.
+- 8B fills every hop slot and rejects a third of what its hops find; 1.7B opens fewer and cites every one. Neither reaches the forty-node budget: the models choose fewer hops than the harness allows. The topic rubric counts touches and cannot see that a longer profile is better or worse; a judge is missing.
+- What a profile sheds when it is over its cap decides what it keeps. Hop paragraphs go before sections now; the earlier rule dropped a biography's last sections first.
 - 0.6B answers "none" to every sentence under a brief and blocks; it is below the floor for profiles. A free-text ask is the weakest kind at every size (the old hop named the subject itself at 4B); a pick from a code-made list is not.
 - Section choice sets breadth. 4B stops choosing after three sections; a short parent heading ("Career and research") is chosen and blocks.
 
-**Being tried (walk-12).** Hop children that hand down children of their own, with a reserve so late sections are not starved, towards a forty-node profile. A filter for generic links. Then a brief built to overflow one context window, in all four columns; then the bridge to Node and a local model server. The order and the exit conditions are in [ROADMAP.md](ROADMAP.md).
+**Next (roadmap milestone 4).** The bridge: the same walk in Node against an OpenAI-compatible endpoint, with a parity test against the page, so the ladder can extend to Qwen3 14B and 32B through Ollama. Then read-only tools over files, with this repository as the first corpus. The order and the exit conditions are in [ROADMAP.md](ROADMAP.md).
 
 Small models will decompose badly, repeat themselves, misread evidence and resolve too early. Keep the exports; that is the experiment.
 

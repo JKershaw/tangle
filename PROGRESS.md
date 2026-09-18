@@ -96,8 +96,22 @@ Profiles (`evals/seeds-profile.json`, four briefs, 35 topics; `--seeds evals/see
 | 2026-09-18 | 14ddbc1 (walk-12, hops hand down hops; names checked against the subject) | 1.7B | 25/35 · hops 25/25/25 · ¶45 · 53 nodes · 162 s | — | — |
 | 2026-09-18 | 14ddbc1 (walk-12) | 4B | 22/35 · hops 24/37/37 · ¶39 · 57 nodes · 252 s | — | — |
 | 2026-09-18 | 14ddbc1 (walk-12) | 8B | 24/35 · hops 46/61/61 · ¶53 · 89 nodes · 638 s · three sections lost to the 6,000-char cap | — | — |
+| 2026-09-18 | 0f58764 (walk-12, hop paragraphs go first at the cap; short sections skipped) | 1.7B | **26/35** · hops 35/36/36 · ¶61 · 64 nodes · 168 s | 15/35 (71ee567) | 15/35 |
+| 2026-09-18 | 0f58764 (walk-12) | 4B | **23/35** · hops 34/51/51 · ¶50 · 73 nodes · 321 s | 16/35 (71ee567) | 10/35 |
+| 2026-09-18 | 0f58764 (walk-12) | 8B | **27/35** · hops 47/66/66 · ¶62 · 94 nodes · 635 s | 13/35 (71ee567) | 20/35 |
 
-walk-12 (14ddbc1): a hop child hands down hops of its own, with a reserve for every open node, and a name is offered only if code finds its article says something about the subject: every hop chosen at 1.7B is now cited (25 of 25), and the 8B profiles reach 25 nodes and 19 articles — but topics fell (26 → 24) because the 6,000-character cap dropped the last three sections of the Turing profile, conviction and apology among them, in favour of hops under the first three. Fixed at 0f58764 (hop paragraphs go before sections; cap 8,000; short headings not handed down); rerunning. walk-11 (71ee567): a brief's child hands the things its kept sentences name — the article's links that occur in them — to children of its own, each reading the part of its article that names the brief's subject. Topics 26 / 22 / 26 against walk-10's 22 / 17 / 21, from two to three times the paragraphs and eleven articles per profile at 8B; the one-node control rises to 13–16 because a brief's root now keeps six lead sentences. Node counts 44–70 over four briefs (the budget is 40 each). The first table where the graph beats both the one-node control and memory at every size from 1.7B up was walk-10's, below. The Hubble brief scored 1 and 2 of 8 at every size because the search for the whole brief never returned the telescope's article and 8B read *Edwin Hubble* instead; fixed in code at 120c0fc (a brief searches for its subject, and a hit whose title is the search term is read without asking). Reading in [evals/readings.md](evals/readings.md).
+Overflow briefs (`evals/seeds-overflow.json`: the Antikythera mechanism and how it was decoded, the Rosetta mission and what it found, the Aral Sea and its restoration; 30 topics spread over many sections and linked articles, on subjects the models know less well). Topics of 30.
+
+| date | commit | model | tangle | flat (walk, one node) | closed (memory) |
+|---|---|---|---|---|---|
+| 2026-09-18 | 0f58764 (walk-12) | 0.6B | — | — | 2/30 |
+| 2026-09-18 | 0f58764 (walk-12) | 1.7B | **24/30** · hops 20/20/20 · ¶41 · 41 nodes · 138 s | 18/30 | 5/30 |
+| 2026-09-18 | 0f58764 (walk-12) | 4B | **25/30** · hops 16/25/25 · ¶34 · 44 nodes · 228 s | 18/30 | 12/30 |
+| 2026-09-18 | 0f58764 (walk-12) | 8B | **27/30** · hops 18/27/27 · ¶37 · 48 nodes · 372 s | 16/30 | 17/30 |
+
+The graph beats both controls at every size on both brief sets, and on the overflow briefs the gap to memory is 19 topics at 1.7B. Reading in [evals/readings.md](evals/readings.md).
+
+walk-12 at 0f58764: with hop paragraphs going before sections at the cap (now 8,000) and short headings skipped, the profile ladder is 27 / 23 / 26 at 8B / 4B / 1.7B, above every earlier row at every size. walk-12 (14ddbc1): a hop child hands down hops of its own, with a reserve for every open node, and a name is offered only if code finds its article says something about the subject: every hop chosen at 1.7B is now cited (25 of 25), and the 8B profiles reach 25 nodes and 19 articles — but topics fell (26 → 24) because the 6,000-character cap dropped the last three sections of the Turing profile, conviction and apology among them, in favour of hops under the first three. Fixed at 0f58764 (hop paragraphs go before sections; cap 8,000; short headings not handed down); rerunning. walk-11 (71ee567): a brief's child hands the things its kept sentences name — the article's links that occur in them — to children of its own, each reading the part of its article that names the brief's subject. Topics 26 / 22 / 26 against walk-10's 22 / 17 / 21, from two to three times the paragraphs and eleven articles per profile at 8B; the one-node control rises to 13–16 because a brief's root now keeps six lead sentences. Node counts 44–70 over four briefs (the budget is 40 each). The first table where the graph beats both the one-node control and memory at every size from 1.7B up was walk-10's, below. The Hubble brief scored 1 and 2 of 8 at every size because the search for the whole brief never returned the telescope's article and 8B read *Edwin Hubble* instead; fixed in code at 120c0fc (a brief searches for its subject, and a hit whose title is the search term is read without asking). Reading in [evals/readings.md](evals/readings.md).
 
 Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<ask>.json`, by ask variant. Full rows in [evals/node/results.md](evals/node/results.md).
 
@@ -141,6 +155,12 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-18 · late night · the overflow briefs
+
+- walk-12 at 0f58764 (table above): profiles 27 / 23 / 26 of 35 at 8B / 4B / 1.7B; 8B's Turing profile is 28 nodes and 22 articles in 17 paragraphs, all cited. Milestone 2 exited on its topic condition; the forty-node profile did not happen because the models choose fewer hops than the budget allows (most at 8B: 28), which is their call.
+- The overflow briefs, four columns: tangle 27 / 25 / 24 of 30 against one node 16 / 18 / 18 and memory 17 / 12 / 5 (0.6B 2). Every size beats both controls; 1.7B reads its way to 24 topics it could name 5 of from memory. Milestone 3 exited. Not claimed: that a single node *cannot* hold the text — it reads three sentences of one article under its budget and stops, as it always has; the claim is that the graph reaches what one node does not.
+- Seen and not yet fixed: 8B fills every hop slot and a third of its hops are found empty after the check (the model keeps nothing of what the article says); 1.7B says none more often and cites every hop it opens. 4B's Turing profile keeps losing the conviction and apology sections to its own section picks. The Aral Sea brief scores 10 of 10 at every size because its lead names nearly every topic.
 
 ### 2026-09-18 · night · the profile benchmark, and the frontier
 

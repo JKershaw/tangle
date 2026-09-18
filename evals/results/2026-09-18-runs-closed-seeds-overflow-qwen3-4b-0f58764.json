@@ -1,0 +1,344 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-4B-q4f16_1-MLC",
+  "commit": "0f58764",
+  "head": "b9ab76a",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-18T16:57:07.021Z",
+  "loadSeconds": 5,
+  "prompt": "closed-profile-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": "tangle-pocket-10",
+    "schema": "per-action-7",
+    "walk": "walk-12",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "@mlc-ai/web-llm@0.2.84",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 86,
+      "mean": 43
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 3.46,
+      "mean": 1.7
+    },
+    "load": {
+      "min": 18.25,
+      "max": 21.03,
+      "mean": 19.6
+    },
+    "memoryFreePercent": {
+      "min": 74,
+      "max": 85,
+      "mean": 79.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 3,
+  "resolved": 3,
+  "factsPresent": 12,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 30,
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "wreck": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "imaging": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "olympiad": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 326
+      },
+      "statuses": {},
+      "finding": "The Antikythera mechanism is an ancient Greek analog computer, discovered in a shipwreck off the coast of Antikythera, Greece, in 1901. It was found in a bronze box containing over 200 artifacts, including the mechanism itself, which dates back to around 150–100 BCE. The device was designed to model the movements of the sun, moon, and planets, as well as predict solar and lunar eclipses. Its complexity was initially underestimated, but modern analysis has revealed it to be an astonishing feat of ancient engineering. The mechanism consists of a series of interlocking gears, some of which are still functional, and it was likely used by astronomers to track celestial events. The decoding of the mechanism began in the 1950s when researchers realized its mechanical complexity, but it wasn't until the 1990s and 2000s, with the help of computer simulations and X-ray tomography, that its full function was understood. The discovery has reshaped our understanding of ancient technology and the sophistication of Greek science. It highlights the advanced mathematical and mechanical knowledge of the Hellenistic period and has inspired modern studies of ancient engineering and astronomy.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 8,
+        "chars": 1191,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 15,
+      "latencyMs": 14530,
+      "raw": "<think>\n\n</think>\n\n{  \n  \"answer\": \"The Antikythera mechanism is an ancient Greek analog computer, discovered in a shipwreck off the coast of Antikythera, Greece, in 1901. It was found in a bronze box containing over 200 artifacts, including the mechanism itself, which dates back to around 150–100 BCE. The device was designed to model the movements of the sun, moon, and planets, as well as predict solar and lunar eclipses. Its complexity was initially underestimated, but modern analysis has revealed it to be an astonishing feat of ancient engineering. The mechanism consists of a series of interlocking gears, some of which are still functional, and it was likely used by astronomers to track celestial events. The decoding of the mechanism began in the 1950s when researchers realized its mechanical complexity, but it wasn't until the 1990s and 2000s, with the help of computer simulations and X-ray tomography, that its full function was understood. The discovery has reshaped our understanding of ancient technology and the sophistication of Greek science. It highlights the advanced mathematical and mechanical knowledge of the Hellenistic period and has inspired modern studies of ancient engineering and astronomy.\"\n}"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "philae": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "comet": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "launch": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "arrival": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "water": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "end": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 6,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 401
+      },
+      "statuses": {},
+      "finding": "The Rosetta mission, launched by the European Space Agency (ESA) in 2004, was a historic space mission aimed at studying comet 67P/Churyumov–Gerasimenko. The mission included the Rosetta orbiter and the Philae lander, which was the first spacecraft to successfully land on a comet. Rosetta arrived at comet 67P in August 2015, marking a major milestone in comet exploration. The comet, located in the outer solar system, was found to have a nucleus composed of a mix of rock and ice, with a rough, irregular surface. Rosetta's instruments revealed that the comet is composed of approximately 50% rock and 50% ice, with a surface covered in dark, organic materials. The mission also discovered that the comet has a complex organic chemistry, including simple organic molecules like methane and formaldehyde, suggesting that comets may have played a role in delivering organic compounds to early Earth. Additionally, Rosetta found that the comet's surface is covered in a layer of dust and ice, with a porous structure that allows for the release of volatile materials. The mission's findings provided valuable insights into the composition and evolution of comets, and helped scientists better understand the origins of the solar system. The Rosetta mission concluded in 2016 when the lander Philae was deliberately crashed into the comet's surface to ensure its data would be transmitted back to Earth. The mission's success significantly advanced our understanding of cometary science and the potential role of comets in the formation of the solar system.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 10,
+        "chars": 1556,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 10,
+      "latencyMs": 9638,
+      "raw": "<think>\n\n</think>\n\n{  \n\"answer\": \"The Rosetta mission, launched by the European Space Agency (ESA) in 2004, was a historic space mission aimed at studying comet 67P/Churyumov–Gerasimenko. The mission included the Rosetta orbiter and the Philae lander, which was the first spacecraft to successfully land on a comet. Rosetta arrived at comet 67P in August 2015, marking a major milestone in comet exploration. The comet, located in the outer solar system, was found to have a nucleus composed of a mix of rock and ice, with a rough, irregular surface. Rosetta's instruments revealed that the comet is composed of approximately 50% rock and 50% ice, with a surface covered in dark, organic materials. The mission also discovered that the comet has a complex organic chemistry, including simple organic molecules like methane and formaldehyde, suggesting that comets may have played a role in delivering organic compounds to early Earth. Additionally, Rosetta found that the comet's surface is covered in a layer of dust and ice, with a porous structure that allows for the release of volatile materials. The mission's findings provided valuable insights into the composition and evolution of comets, and helped scientists better understand the origins of the solar system. The Rosetta mission concluded in 2016 when the lander Philae was deliberately crashed into the comet's surface to ensure its data would be transmitted back to Earth. The mission's success significantly advanced our understanding of cometary science and the potential role of comets in the formation of the solar system.\"  \n}"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "dam": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "kazakhstan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cotton": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "salinity": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "desert": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 181
+      },
+      "statuses": {},
+      "finding": "The Aral Sea, once the fourth-largest lake in the world, has shrunk dramatically since the 1960s due to the diversion of its major tributaries for irrigation in the Soviet Union's cotton industry. This ecological disaster led to the sea's division into two separate bodies—the North and South Aral Seas—resulting in the loss of biodiversity, the exposure of salt flats, and the collapse of local fisheries. The sea's shrinking also contributed to the rise of toxic dust storms, which devastated the surrounding environment and human health.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 540,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 3,
+      "latencyMs": 3283,
+      "raw": "<think>\n\n</think>\n\n{\n  \"answer\": \"The Aral Sea, once the fourth-largest lake in the world, has shrunk dramatically since the 1960s due to the diversion of its major tributaries for irrigation in the Soviet Union's cotton industry. This ecological disaster led to the sea's division into two separate bodies—the North and South Aral Seas—resulting in the loss of biodiversity, the exposure of salt flats, and the collapse of local fisheries. The sea's shrinking also contributed to the rise of toxic dust storms, which devastated the surrounding environment and human health.\"\n\n  }"
+    }
+  ],
+  "notes": [
+    "2026-09-18T16:57:07.020Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "page versions: {\"prompt\":\"tangle-pocket-10\",\"schema\":\"per-action-7\",\"walk\":\"walk-12\",\"asks\":\"asks-4\",\"variants\":{\"sentence\":\"list\",\"section\":\"list\",\"missing\":\"search\",\"question\":\"one\",\"article\":\"snippets\",\"confirm\":\"yesno\"},\"runtime\":\"@mlc-ai/web-llm@0.2.84\",\"page\":\"0.2.0\"}",
+    "device: WebGPU adapter found · secure context · cache: cache · storage headroom: 10.00 GiB",
+    "2026-09-18T16:57:07.152Z loading: Checking this device before downloading…",
+    "2026-09-18T16:57:12.157Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-4B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 90% · vram 0.09 GiB · load 18.25 · mem 85% free (normal) · no throttling recorded",
+    "2026-09-18T16:57:12.249Z 3 seeds from evals/seeds-overflow.json · mode closed · limits {\"closed\":true} · prompt closed-profile-1 · grammar answer:string · commit 0f58764",
+    "wiki recording: 845 responses loaded",
+    "antikythera: resolved · topics 3/10 · supported 0/10 · read 0/10 · ¶1 · 8 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 326 tokens · 15 s",
+    "rosetta: resolved · topics 6/10 · supported 0/10 · read 0/10 · ¶1 · 10 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 401 tokens · 10 s",
+    "aral-restoration: resolved · topics 3/10 · supported 0/10 · read 0/10 · ¶1 · 3 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 181 tokens · 3 s",
+    "machine during the suite: gpu 43% mean, 86% peak · vram up to 3.46 GiB · load up to 21.03 · no throttling in 2 samples"
+  ]
+}

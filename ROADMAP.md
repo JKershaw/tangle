@@ -36,18 +36,18 @@ One HTML file. Questions: the walk reads, picks a sentence, reads on, splits two
 - **Entry:** milestone 1's table. Begun 2026-09-18 (walk-11, ea39412 → 71ee567).
 - **Work:** the things a node's kept sentences name (linked titles first, capitalised phrases as fallback) become candidate children; the model picks which deserve a node, from a list code prepared, or none; each child is the same brief with a new focus and a budget. This generalises the hop, which is a child done inline and once. A run-wide *frontier* ranks candidates by how many nodes named them; a run-wide *kept* set means no sentence is picked twice; a parent may wait on named nodes, not only its children. Only depth and node budgets bound the graph, not templates.
 - **Verified by:** scripted tests on shape (which children, in what order, refused repeats); the profile table at every size; the base and graph seeds must not fall.
-- **Exit:** a forty-node profile at 1.7B in a few minutes whose paragraphs come from at least five articles, and a topic count above the walk-10 row at every size.
+- **Exit:** a forty-node profile at 1.7B in a few minutes whose paragraphs come from at least five articles, and a topic count above the walk-10 row at every size. **Exited 2026-09-18 (0f58764) on the topic condition:** 27 / 23 / 26 against walk-10's 22 / 17 / 21; profiles of up to 28 nodes and 22 articles at 8B, 23 nodes at 1.7B in about a minute. The forty-node profile did not happen: the models choose fewer hops than the budget allows, which is theirs to choose. A parent waiting on named nodes other than its children is not built; nothing has needed it yet.
 
 ### 3. The overflow brief
 
 - **Entry:** milestone 2.
 - **Work:** one or two briefs whose answer is spread over more text than one context window holds, such as tracing an idea through five articles, chosen where the closed-book score is low. Run in all four columns.
 - **Verified by:** the profile table. The composing and closed columns cannot reach the topics by construction; the tangle column has to.
-- **Exit:** the first row where the graph beats every single-node column at every size from 1.7B up, on a task a person would ask.
+- **Exit:** the first row where the graph beats every single-node column at every size from 1.7B up, on a task a person would ask. **Exited 2026-09-18 (0f58764):** `evals/seeds-overflow.json`, three briefs, 30 topics: tangle 27 / 25 / 24 at 8B / 4B / 1.7B against one node 16 / 18 / 18 and memory 17 / 12 / 5. Not shown: that one node physically cannot hold the text; shown: that it does not reach the topics under the same budget.
 
 ### 4. The bridge
 
-- **Entry:** milestone 2 (3 can run alongside).
+- **Entry:** milestone 2 (3 can run alongside). Next, as of 2026-09-18.
 - **Work:** one model adapter interface with two implementations: WebLLM in the page (exists) and an OpenAI-compatible HTTP endpoint in Node (Ollama, llama.cpp, later OpenRouter). One Wikipedia adapter with a Node implementation (fetch with a User-Agent, the same recording format). `scripts/run.mjs` runs the walk in Node with no browser. The page stays the lab and the single file.
 - **Verified by:** a parity test: the same seed, the same recording, the same scripted picks give an identical graph in both runtimes. Then the base seeds through Ollama with the same Qwen3 weights, expected near the page's rows (quantisation differs), recorded as its own column.
 - **Exit:** the benchmark runs in Node end to end and the local ladder extends to Qwen3 14B and 32B.
