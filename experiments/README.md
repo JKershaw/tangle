@@ -31,5 +31,7 @@ Machine: Apple M1 Max, Chrome 152, WebGPU. Seeds: "Why does the water cycle keep
 | `…-1.7b-dead-sea-5` | 1.7B · pocket-9 (neutral example) · forced pick | 32 resolved, 2 blocked, root waiting | the mechanism holds without the hint; two honest blocks freeze the root above 32 findings — the settled-children question, with a price tag |
 | `…-1.7b-dead-sea-walk-1` | 1.7B · **walk-1** (asks, code sequencing) | root "resolved" | the raw question as search term found the Aral Sea; the pick took the Aral Sea's reason. Wrong lake, every number green |
 | `…-1.7b-dead-sea-walk-2` | 1.7B · walk-1 · stripped search term · checked pick | root resolved | lead, no; *Receding shoreline*; the National Water Carrier sentence, verbatim. Five calls, five seconds |
+| `…-qwen3-8b-turing-walk-7` | 8B · walk-7 · the brief "Tell me about Alan Turing and elaborate on the impact of his work." | root resolved | one node, two reads (lead, *Career and research*), one sentence: the Turing-machine sentence. The baseline a profile mode has to beat |
+| `…-qwen3-4b-turing-walk-7` | 4B · walk-7 · the same brief | root resolved | one node, the lead only, three sentences (Turing machine, the ACE, "father of theoretical computer science"). Four calls |
 
 Prompt versions are in `src/episode.js`; the walk and its ask variants in `src/walk.js` and `src/asks.js`; grammar versions in `src/webllm.js`.

@@ -1,0 +1,707 @@
+{
+  "format": "tangle-pocket-1",
+  "version": "0.2.0",
+  "promptVersion": "walk-7/asks-2/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "created": "2026-09-18T14:02:45.243Z",
+  "mode": "live",
+  "seed": "Tell me about Alan Turing and elaborate on the impact of his work.",
+  "limits": {
+    "maxNodes": 40,
+    "maxVisits": 60,
+    "maxDepth": 6,
+    "maxLookups": 2,
+    "maxPasses": 6,
+    "revisitSettled": true,
+    "walk": true,
+    "maxSentences": 3
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "parent": null,
+      "depth": 0,
+      "question": "Tell me about Alan Turing and elaborate on the impact of his work.",
+      "status": "resolved",
+      "visits": 1,
+      "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer.",
+      "evidence": [
+        "e1"
+      ],
+      "observed": [
+        "e1",
+        "e2"
+      ],
+      "failedLookups": [],
+      "reason": ""
+    }
+  ],
+  "evidence": [
+    {
+      "ok": true,
+      "tool": "wiki",
+      "kind": "wiki",
+      "query": "Alan Turing",
+      "title": "Alan Turing",
+      "article": "Alan Turing",
+      "section": 0,
+      "headings": [
+        "Family",
+        "School",
+        "Christopher Morcom",
+        "University and work on computability",
+        "Career and research",
+        "Cryptanalysis",
+        "Bombe",
+        "Action This Day",
+        "Hut 8 and the naval Enigma",
+        "Turingery",
+        "Delilah",
+        "Early computers and the Turing test",
+        "Pattern formation and mathematical biology",
+        "Ratio Club and other cybernetics contacts",
+        "Treasure",
+        "Engagement",
+        "Chess",
+        "Homosexuality and indecency conviction",
+        "\"Pryce's Buoy\"",
+        "Death",
+        "Doubts on suicide thesis",
+        "Government apology and pardon",
+        "Articles",
+        "Books"
+      ],
+      "text": "Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist. He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science.\nBorn in London, Turing was raised in southern England. He graduated from King's College, Cambridge, and in 1938, earned a doctorate degree from Princeton University. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence. He led Hut 8, the section responsible for German naval cryptanalysis. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\nAfter the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s. Despite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act.\nIn 1952, Turing was prosecuted for homosexual acts. He accepted hormone treatment, a procedure commonly referred to as chemical castration, as an alternative to prison. Turing died on 7 June 1954, aged 41, from cyanide poisoning. An inquest determined his death as suicide, but the evidence is also consistent with accidental poisoning. Following a campaign in 2009, British prime minister Gordon Brown made an official public apology for \"the appalling way [Turing] was treated\". Queen Elizabeth II granted a pardon in 2013. The term \"Alan Turing law\" is used informally to refer to a 2017 law in the UK that retroactively pardoned men cautioned or convicted under historical legislation that outlawed homosexual acts.\nTuring left an extensive legacy in mathematics and computing which has become widely recognised with statues and many things named after him, including an annual award for computing innovation. His portrait appears on the Bank of England £50 note, first released on 23 June 2021 to coincide with his birthday. The audience vote in a 2019 BBC series named Turing the greatest scientist of the 20th century.\nThe cognitive scientist Douglas Hofstadter writes:\n\nAtheist, homosexual, eccentric, marathon-running mathematician, A. M. Turing was in large part responsible not only for the concept of computers, incisive theorems about their powers, and a clear vision of the possibility of computer minds, but also for the cracking of German ciphers during the Second World War. It is fair to say we owe much to Alan Turing for the fact that we are not under Nazi rule today.",
+      "exact": true,
+      "alternatives": [
+        "Turing Award",
+        "Alan Turing: The Enigma",
+        "Alan Turing law",
+        "Alan Turing Institute"
+      ],
+      "revision": "1375527246",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246",
+      "requests": [
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Alan%20Turing&srlimit=5&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 2246,
+          "elapsedMs": 296
+        },
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 65112,
+          "elapsedMs": 411
+        }
+      ],
+      "id": "e1",
+      "capturedAt": "2026-09-18T14:02:49.635Z",
+      "node": "n1"
+    },
+    {
+      "ok": true,
+      "tool": "wiki",
+      "kind": "wiki",
+      "query": "Alan Turing",
+      "title": "Alan Turing § Career and research",
+      "article": "Alan Turing",
+      "section": 5,
+      "sections": 25,
+      "text": "When Turing returned to Cambridge, he attended lectures given in 1939 by Ludwig Wittgenstein about the foundations of mathematics. The lectures have been reconstructed verbatim, including interjections from Turing and other students, from students' notes. Turing and Wittgenstein argued and disagreed, with Turing defending formalism and Wittgenstein propounding his view that mathematics does not discover any absolute truths, but rather invents them.",
+      "exact": true,
+      "revision": "1375527246",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246#Career_and_research",
+      "requests": [
+        {
+          "ok": true,
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+          "status": 200,
+          "truncated": false,
+          "bytes": 65112,
+          "elapsedMs": 1
+        }
+      ],
+      "id": "e2",
+      "capturedAt": "2026-09-18T14:02:58.752Z",
+      "node": "n1"
+    }
+  ],
+  "trace": [
+    {
+      "seq": 1,
+      "time": "2026-09-18T14:02:45.327Z",
+      "event": "node_started",
+      "node": "n1",
+      "visit": 1
+    },
+    {
+      "seq": 2,
+      "time": "2026-09-18T14:02:45.841Z",
+      "event": "tool_result",
+      "node": "n1",
+      "query": "Tell me about Alan Turing and elaborate on impact of his work",
+      "searchOnly": true,
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "search",
+        "query": "Tell me about Alan Turing and elaborate on impact of his work",
+        "title": "Alan Turing",
+        "alternatives": [
+          "Ridley Scott",
+          "List of atheists in science and technology",
+          "List of Jewish atheists and agnostics",
+          "J. R. R. Tolkien"
+        ],
+        "hits": [
+          "Alan Turing",
+          "Ridley Scott",
+          "List of atheists in science and technology",
+          "List of Jewish atheists and agnostics",
+          "J. R. R. Tolkien"
+        ],
+        "snippets": [
+          "Jan (2013). Alan Turing: His Work and Impact. New York: Elsevier. ISBN 978-0-12-386980-7. Copeland, B. Jack, ed. (2005). Alan Turing's Automatic Computing",
+          "scientist Alan Turing and the philosopher John Searle as presenting relevant models of testing artificial intelligence known as the Turing test and the Chinese",
+          "creator of the Linux kernel. Alan Turing (1912–1954): English mathematician, computer scientist, and theoretical biologist who provided a formalization of the",
+          "Medal for his work on distributions William James Sidis – American mathematician, cosmologist, inventor, linguist, historian and child prodigy Alan Sokal",
+          "twentieth-century's single most important author of fantasy\". His work has had a massive impact on Western pop culture, and remains extremely influential. In a 1951"
+        ],
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Tell%20me%20about%20Alan%20Turing%20and%20elaborate%20on%20impact%20of%20his%20work&srlimit=5&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 2681,
+            "elapsedMs": 512
+          }
+        ]
+      }
+    },
+    {
+      "seq": 3,
+      "time": "2026-09-18T14:02:46.278Z",
+      "event": "tool_result",
+      "node": "n1",
+      "query": "Tell me about Alan Turing and elaborate on the impact of his work.",
+      "searchOnly": true,
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "search",
+        "query": "Tell me about Alan Turing and elaborate on the impact of his work.",
+        "title": "Alan Turing",
+        "alternatives": [
+          "List of atheists in science and technology",
+          "Ridley Scott",
+          "List of Jewish atheists and agnostics",
+          "Noam Chomsky"
+        ],
+        "hits": [
+          "Alan Turing",
+          "List of atheists in science and technology",
+          "Ridley Scott",
+          "List of Jewish atheists and agnostics",
+          "Noam Chomsky"
+        ],
+        "snippets": [
+          "mathematician Alan Turing on why the story of his complicated life and lasting legacy deserves to be told afresh. The Sunday Post, 21 March 2021. \"TURING, Ethel",
+          "kernel. Alan Turing (1912–1954): English mathematician, computer scientist, and theoretical biologist who provided a formalization of the concepts of algorithm",
+          "scientist Alan Turing and the philosopher John Searle as presenting relevant models of testing artificial intelligence known as the Turing test and the Chinese",
+          "Medal for his work on distributions William James Sidis – American mathematician, cosmologist, inventor, linguist, historian and child prodigy Alan Sokal",
+          "his work in linguistics, since the 1960s, Chomsky has been an influential voice on the American Left as a consistent critic of the foreign policy of the"
+        ],
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Tell%20me%20about%20Alan%20Turing%20and%20elaborate%20on%20the%20impact%20of%20his%20work.&srlimit=5&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 2901,
+            "elapsedMs": 437
+          }
+        ]
+      }
+    },
+    {
+      "seq": 4,
+      "time": "2026-09-18T14:02:46.279Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "article",
+      "variant": "snippets",
+      "status": "Choosing an article",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a question and Wikipedia articles a search returned, each with a line from it. Pick the title of the article most likely to answer the question. If none of them is about the question's subject, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Tell me about Alan Turing and elaborate on the impact of his work.\n\nArticles:\n- Alan Turing — Jan (2013). Alan Turing: His Work and Impact. New York: Elsevier. ISBN 978-0-12-386980-7. Copeland, B. Jack, ed. (2005). Alan Turing's Automatic Computing\n- Ridley Scott — scientist Alan Turing and the philosopher John Searle as presenting relevant models of testing artificial intelligence known as the Turing test and the Chinese\n- List of atheists in science and technology — creator of the Linux kernel. Alan Turing (1912–1954): English mathematician, computer scientist, and theoretical biologist who provided a formalization of the\n- List of Jewish atheists and agnostics — Medal for his work on distributions William James Sidis – American mathematician, cosmologist, inventor, linguist, historian and child prodigy Alan Sokal\n- J. R. R. Tolkien — twentieth-century's single most important author of fantasy\". His work has had a massive impact on Western pop culture, and remains extremely influential. In a \n- Noam Chomsky — his work in linguistics, since the 1960s, Chomsky has been an influential voice on the American Left as a consistent critic of the foreign policy of the\n\nReply {\"article\": \"<title>\"} or {\"article\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 5,
+      "time": "2026-09-18T14:02:48.926Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "article",
+      "variant": "snippets",
+      "status": "Choosing an article",
+      "raw": "<think>\n\n</think>\n\n{\"article\": \"Alan Turing\"}",
+      "tokens": 382,
+      "latencyMs": 2646,
+      "simulated": false
+    },
+    {
+      "seq": 6,
+      "time": "2026-09-18T14:02:48.926Z",
+      "event": "article_chosen",
+      "node": "n1",
+      "query": "Tell me about Alan Turing and elaborate on impact of his work | Tell me about Alan Turing and elaborate on the impact of his work.",
+      "titles": [
+        "Alan Turing",
+        "Ridley Scott",
+        "List of atheists in science and technology",
+        "List of Jewish atheists and agnostics",
+        "J. R. R. Tolkien",
+        "Noam Chomsky"
+      ],
+      "article": "Alan Turing"
+    },
+    {
+      "seq": 7,
+      "time": "2026-09-18T14:02:48.926Z",
+      "event": "tool_proposed",
+      "node": "n1",
+      "query": "Alan Turing",
+      "tool": "wiki"
+    },
+    {
+      "seq": 8,
+      "time": "2026-09-18T14:02:49.635Z",
+      "event": "tool_result",
+      "node": "n1",
+      "query": "Alan Turing",
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "wiki",
+        "query": "Alan Turing",
+        "title": "Alan Turing",
+        "article": "Alan Turing",
+        "section": 0,
+        "headings": [
+          "Family",
+          "School",
+          "Christopher Morcom",
+          "University and work on computability",
+          "Career and research",
+          "Cryptanalysis",
+          "Bombe",
+          "Action This Day",
+          "Hut 8 and the naval Enigma",
+          "Turingery",
+          "Delilah",
+          "Early computers and the Turing test",
+          "Pattern formation and mathematical biology",
+          "Ratio Club and other cybernetics contacts",
+          "Treasure",
+          "Engagement",
+          "Chess",
+          "Homosexuality and indecency conviction",
+          "\"Pryce's Buoy\"",
+          "Death",
+          "Doubts on suicide thesis",
+          "Government apology and pardon",
+          "Articles",
+          "Books"
+        ],
+        "text": "Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist. He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science.\nBorn in London, Turing was raised in southern England. He graduated from King's College, Cambridge, and in 1938, earned a doctorate degree from Princeton University. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence. He led Hut 8, the section responsible for German naval cryptanalysis. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\nAfter the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s. Despite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act.\nIn 1952, Turing was prosecuted for homosexual acts. He accepted hormone treatment, a procedure commonly referred to as chemical castration, as an alternative to prison. Turing died on 7 June 1954, aged 41, from cyanide poisoning. An inquest determined his death as suicide, but the evidence is also consistent with accidental poisoning. Following a campaign in 2009, British prime minister Gordon Brown made an official public apology for \"the appalling way [Turing] was treated\". Queen Elizabeth II granted a pardon in 2013. The term \"Alan Turing law\" is used informally to refer to a 2017 law in the UK that retroactively pardoned men cautioned or convicted under historical legislation that outlawed homosexual acts.\nTuring left an extensive legacy in mathematics and computing which has become widely recognised with statues and many things named after him, including an annual award for computing innovation. His portrait appears on the Bank of England £50 note, first released on 23 June 2021 to coincide with his birthday. The audience vote in a 2019 BBC series named Turing the greatest scientist of the 20th century.\nThe cognitive scientist Douglas Hofstadter writes:\n\nAtheist, homosexual, eccentric, marathon-running mathematician, A. M. Turing was in large part responsible not only for the concept of computers, incisive theorems about their powers, and a clear vision of the possibility of computer minds, but also for the cracking of German ciphers during the Second World War. It is fair to say we owe much to Alan Turing for the fact that we are not under Nazi rule today.",
+        "exact": true,
+        "alternatives": [
+          "Turing Award",
+          "Alan Turing: The Enigma",
+          "Alan Turing law",
+          "Alan Turing Institute"
+        ],
+        "revision": "1375527246",
+        "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246",
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Alan%20Turing&srlimit=5&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 2246,
+            "elapsedMs": 296
+          },
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 65112,
+            "elapsedMs": 411
+          }
+        ]
+      }
+    },
+    {
+      "seq": 9,
+      "time": "2026-09-18T14:02:49.635Z",
+      "event": "evidence_captured",
+      "node": "n1",
+      "evidence": "e1",
+      "kind": "wiki"
+    },
+    {
+      "seq": 10,
+      "time": "2026-09-18T14:02:49.638Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a question and numbered sentences. Pick the one sentence that answers the question. If none of them answers it, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Tell me about Alan Turing and elaborate on the impact of his work.\n\n1. Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist.\n2. He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer.\n3. Turing is widely considered to be the father of theoretical computer science.\n4. Born in London, Turing was raised in southern England.\n5. He graduated from King's College, Cambridge, and in 1938, earned a doctorate degree from Princeton University.\n6. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence.\n7. He led Hut 8, the section responsible for German naval cryptanalysis.\n8. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine.\n9. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n10. After the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer.\n11. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology.\n12. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s.\n\nWhich sentence answers the question? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 11,
+      "time": "2026-09-18T14:02:52.618Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"2\"}",
+      "tokens": 481,
+      "latencyMs": 2977,
+      "simulated": false
+    },
+    {
+      "seq": 12,
+      "time": "2026-09-18T14:02:52.618Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Does the sentence state the answer to the question? Reply with JSON: {\"answers\": \"yes\"} or {\"answers\": \"no\"}. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Tell me about Alan Turing and elaborate on the impact of his work.\nSentence: He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer."
+        }
+      ]
+    },
+    {
+      "seq": 13,
+      "time": "2026-09-18T14:02:53.515Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading",
+      "raw": "<think>\n\n</think>\n\n{\"answers\": \"yes\"}",
+      "tokens": 113,
+      "latencyMs": 897,
+      "simulated": false
+    },
+    {
+      "seq": 14,
+      "time": "2026-09-18T14:02:53.516Z",
+      "event": "sentence_picked",
+      "node": "n1",
+      "pick": "2",
+      "shown": 12,
+      "gathered": 0
+    },
+    {
+      "seq": 15,
+      "time": "2026-09-18T14:02:53.516Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a question and numbered sentences. Pick the one sentence that answers the question. If none of them answers it, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Tell me about Alan Turing and elaborate on the impact of his work.\n\n1. Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist.\n2. Turing is widely considered to be the father of theoretical computer science.\n3. Born in London, Turing was raised in southern England.\n4. He graduated from King's College, Cambridge, and in 1938, earned a doctorate degree from Princeton University.\n5. During World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence.\n6. He led Hut 8, the section responsible for German naval cryptanalysis.\n7. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine.\n8. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n9. After the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer.\n10. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology.\n11. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s.\n12. Despite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act.\n\nWhich sentence answers the question? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 16,
+      "time": "2026-09-18T14:02:56.441Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"2\"}",
+      "tokens": 466,
+      "latencyMs": 2925,
+      "simulated": false
+    },
+    {
+      "seq": 17,
+      "time": "2026-09-18T14:02:56.441Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Does the sentence state the answer to the question? Reply with JSON: {\"answers\": \"yes\"} or {\"answers\": \"no\"}. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Tell me about Alan Turing and elaborate on the impact of his work.\nSentence: Turing is widely considered to be the father of theoretical computer science."
+        }
+      ]
+    },
+    {
+      "seq": 18,
+      "time": "2026-09-18T14:02:57.203Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"answers\": \"no\"}",
+      "tokens": 86,
+      "latencyMs": 761,
+      "simulated": false
+    },
+    {
+      "seq": 19,
+      "time": "2026-09-18T14:02:57.203Z",
+      "event": "sentence_picked",
+      "node": "n1",
+      "pick": "none",
+      "shown": 12,
+      "gathered": 1
+    },
+    {
+      "seq": 20,
+      "time": "2026-09-18T14:02:57.203Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "section",
+      "variant": "list",
+      "status": "Reading on",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a question and the section headings of a Wikipedia article. Pick the heading of the section most likely to contain the answer. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Tell me about Alan Turing and elaborate on the impact of his work.\nArticle: Alan Turing\n\nSections:\n- Family\n- School\n- Christopher Morcom\n- University and work on computability\n- Career and research\n- Cryptanalysis\n- Bombe\n- Action This Day\n- Hut 8 and the naval Enigma\n- Turingery\n- Delilah\n- Early computers and the Turing test\n- Pattern formation and mathematical biology\n- Ratio Club and other cybernetics contacts\n- Treasure\n- Engagement\n- Chess\n- Homosexuality and indecency conviction\n- \"Pryce's Buoy\"\n- Death\n- Doubts on suicide thesis\n- Government apology and pardon\n- Articles\n- Books\n\nReply {\"section\": \"<heading>\"}."
+        }
+      ]
+    },
+    {
+      "seq": 21,
+      "time": "2026-09-18T14:02:58.750Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "section",
+      "variant": "list",
+      "status": "Reading on",
+      "raw": "<think>\n\n</think>\n\n{\"section\": \"Career and research\"}",
+      "tokens": 223,
+      "latencyMs": 1547,
+      "simulated": false
+    },
+    {
+      "seq": 22,
+      "time": "2026-09-18T14:02:58.751Z",
+      "event": "section_chosen",
+      "node": "n1",
+      "article": "Alan Turing",
+      "section": "Career and research",
+      "readOn": true
+    },
+    {
+      "seq": 23,
+      "time": "2026-09-18T14:02:58.751Z",
+      "event": "tool_proposed",
+      "node": "n1",
+      "query": "Alan Turing / Career and research",
+      "tool": "wiki",
+      "readOn": {
+        "article": "Alan Turing",
+        "section": "Career and research"
+      }
+    },
+    {
+      "seq": 24,
+      "time": "2026-09-18T14:02:58.752Z",
+      "event": "tool_result",
+      "node": "n1",
+      "query": "Alan Turing / Career and research",
+      "readOn": {
+        "article": "Alan Turing",
+        "section": "Career and research"
+      },
+      "result": {
+        "ok": true,
+        "tool": "wiki",
+        "kind": "wiki",
+        "query": "Alan Turing",
+        "title": "Alan Turing § Career and research",
+        "article": "Alan Turing",
+        "section": 5,
+        "sections": 25,
+        "text": "When Turing returned to Cambridge, he attended lectures given in 1939 by Ludwig Wittgenstein about the foundations of mathematics. The lectures have been reconstructed verbatim, including interjections from Turing and other students, from students' notes. Turing and Wittgenstein argued and disagreed, with Turing defending formalism and Wittgenstein propounding his view that mathematics does not discover any absolute truths, but rather invents them.",
+        "exact": true,
+        "revision": "1375527246",
+        "url": "https://en.wikipedia.org/w/index.php?oldid=1375527246#Career_and_research",
+        "requests": [
+          {
+            "ok": true,
+            "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts|revisions&explaintext=1&redirects=1&rvprop=ids&titles=Alan_Turing&format=json&origin=*",
+            "status": 200,
+            "truncated": false,
+            "bytes": 65112,
+            "elapsedMs": 1
+          }
+        ]
+      }
+    },
+    {
+      "seq": 25,
+      "time": "2026-09-18T14:02:58.752Z",
+      "event": "evidence_captured",
+      "node": "n1",
+      "evidence": "e2",
+      "kind": "wiki"
+    },
+    {
+      "seq": 26,
+      "time": "2026-09-18T14:02:58.753Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are given a question and numbered sentences. Pick the one sentence that answers the question. If none of them answers it, pick none. Reply with JSON only. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Tell me about Alan Turing and elaborate on the impact of his work.\n\n1. When Turing returned to Cambridge, he attended lectures given in 1939 by Ludwig Wittgenstein about the foundations of mathematics.\n2. The lectures have been reconstructed verbatim, including interjections from Turing and other students, from students' notes.\n3. Turing and Wittgenstein argued and disagreed, with Turing defending formalism and Wittgenstein propounding his view that mathematics does not discover any absolute truths, but rather invents them.\n4. In 1952, Turing was prosecuted for homosexual acts.\n5. He accepted hormone treatment, a procedure commonly referred to as chemical castration, as an alternative to prison.\n6. Turing died on 7 June 1954, aged 41, from cyanide poisoning.\n7. An inquest determined his death as suicide, but the evidence is also consistent with accidental poisoning.\n8. Following a campaign in 2009, British prime minister Gordon Brown made an official public apology for \"the appalling way [Turing] was treated\".\n9. Queen Elizabeth II granted a pardon in 2013.\n10. The term \"Alan Turing law\" is used informally to refer to a 2017 law in the UK that retroactively pardoned men cautioned or convicted under historical legislation that outlawed homosexual acts.\n11. Turing left an extensive legacy in mathematics and computing which has become widely recognised with statues and many things named after him, including an annual award for computing innovation.\n12. His portrait appears on the Bank of England £50 note, first released on 23 June 2021 to coincide with his birthday.\n\nWhich sentence answers the question? Reply {\"sentence\": \"<number>\"} or {\"sentence\": \"none\"}."
+        }
+      ]
+    },
+    {
+      "seq": 27,
+      "time": "2026-09-18T14:03:01.664Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"sentence\": \"11\"}",
+      "tokens": 437,
+      "latencyMs": 2910,
+      "simulated": false
+    },
+    {
+      "seq": 28,
+      "time": "2026-09-18T14:03:01.664Z",
+      "event": "model_input",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading for more",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Does the sentence state the answer to the question? Reply with JSON: {\"answers\": \"yes\"} or {\"answers\": \"no\"}. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Question: Tell me about Alan Turing and elaborate on the impact of his work.\nSentence: Turing left an extensive legacy in mathematics and computing which has become widely recognised with statues and many things named after him, including an annual award for computing innovation."
+        }
+      ]
+    },
+    {
+      "seq": 29,
+      "time": "2026-09-18T14:03:02.591Z",
+      "event": "model_output",
+      "node": "n1",
+      "ask": "sentence",
+      "variant": "check",
+      "status": "Reading for more",
+      "raw": "<think>\n\n</think>\n\n{\"answers\": \"no\"}",
+      "tokens": 104,
+      "latencyMs": 926,
+      "simulated": false
+    },
+    {
+      "seq": 30,
+      "time": "2026-09-18T14:03:02.591Z",
+      "event": "sentence_picked",
+      "node": "n1",
+      "pick": "none",
+      "shown": 12,
+      "gathered": 1
+    },
+    {
+      "seq": 31,
+      "time": "2026-09-18T14:03:02.592Z",
+      "event": "node_resolved",
+      "node": "n1",
+      "result": {
+        "action": "resolved",
+        "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer.",
+        "evidence": [
+          "e1"
+        ]
+      }
+    }
+  ],
+  "visits": 1,
+  "modelCalls": 8,
+  "tokens": 2292,
+  "lookups": 2,
+  "stopReason": null,
+  "model": "Qwen3-8B-q4f16_1-MLC",
+  "runtime": "@mlc-ai/web-llm@0.2.84",
+  "sampling": {
+    "temperature": 0.2,
+    "seed": 1
+  },
+  "schema": "walk-7/asks-2",
+  "exportedAt": "2026-09-18T14:03:04.939Z"
+}
