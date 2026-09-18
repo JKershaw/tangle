@@ -275,7 +275,7 @@ export const ASKS = Object.freeze({
       // reading about next. A name to search, not a question.
       hop: single((input) => ({
         messages: [
-          { role: "system", content: `You are given a brief and sentences kept for it. Name the one person, machine, place, work or event in the sentences that is most worth reading about next for the brief, as the title of its Wikipedia article (1 to 4 words). Reply with JSON: {"search": "<title>"}.` + NO_THINK },
+          { role: "system", content: `You are given a brief and sentences kept for it. Name the one person, machine, place, work or event in the sentences that is most worth reading about next for the brief, as the title of its Wikipedia article (1 to 4 words)${input.subject ? `. Not ${input.subject} itself, which has been read` : ""}. Reply with JSON: {"search": "<title>"}.` + NO_THINK },
           { role: "user", content: `Brief: ${input.question}\n\n${input.sentences.length ? numbered(input.sentences) : "(nothing read yet)"}` },
         ],
         schema: stringSchema("search", 60),

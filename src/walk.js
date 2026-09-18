@@ -400,7 +400,7 @@ export async function runWalk(run, options) {
     const hop = async () => {
       if (!brief || !gathered.length || lookups >= run.limits.maxLookups || node.hopped || !node.readFirst) return false;
       node.hopped = true;
-      const search = await answer("missing", { question: node.question, sentences: gathered.map((candidate) => candidate.text) }, "Choosing where to hop");
+      const search = await answer("missing", { question: node.question, sentences: gathered.map((candidate) => candidate.text), subject: node.readFirst?.article ?? null }, "Choosing where to hop");
       // Known anywhere in the run: a child's hop to "Turing test" once read
       // the Alan Turing lead again, which the root had read (8B, walk-9).
       const known = run.evidence.some((record) => normalise(record.article) === normalise(search) || normalise(record.title) === normalise(search));

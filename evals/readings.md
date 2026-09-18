@@ -2,6 +2,25 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-18 · the Turing test: a brief instead of a question
+
+John's turn: stop asking the tiny agent questions it has memorised and give it a brief — "Tell me about Alan Turing and elaborate on the impact of his work." — and read what it writes. No rubric first; the faults become evals. Runs in `experiments/*turing*`.
+
+| build | 8B | 4B | 1.7B |
+|---|---|---|---|
+| walk-7 (a brief treated as a question) | one node, one sentence | one node, three lead sentences | — |
+| walk-8 (lead, chosen sections to children, one hop each) | 7 paragraphs, 14 nodes, 91 calls; one child chained seven model-asked questions into Prolog | 4 paragraphs | 25 nodes, error: a child hopped to *Chess* and fanned its sections into grandchildren |
+| walk-9 (root-only fan-out, no model questions, on-subject hops) | 6 paragraphs, 40 calls; a hop re-read the Alan Turing lead | 4 paragraphs | error: the profile cites eleven excerpts, the validator allowed eight |
+| walk-10 (hops never re-read, article order, deduped) | **6 paragraphs, 37 calls, 15k tokens** | 4 paragraphs, 23 calls | **7 paragraphs, 36 calls, 12k tokens** |
+
+- **The shape is code's, and it holds at every size.** The model makes three kinds of choice: which sentence to keep, which section is worth a child, and what to hop to. Code reads the lead, hands each chosen section to a child that reads it first, joins the findings in the article's order, and never lets a child fan out or ask a question. Under that shape 1.7B writes a seven-paragraph cited profile; under the question-shaped walk it wrote nothing past the lead.
+- **Every sentence is Wikipedia's, in Wikipedia's order, cited to its section.** That is the whole point against the closed-book column: a 4B model would write a fluent Turing essay from memory, and nothing in it could be checked. This one can be, sentence by sentence.
+- **The hop is the weakest ask.** Of fourteen hops across the three walk-10 runs, eight named "Alan Turing" (refused as known), two named "Turing" (refused by title), one *The Chemical Basis of Morphogenesis* (read, two sentences added), one *Reaction–diffusion system* (resolved to the same article), one *round-the-house chess* (read *Chess boxing*, one Turing sentence kept), one *Turing test* (lost to the article pick). The ask now says "not the subject itself"; a node eval for it is the next case to write.
+- **The section pick sets the profile's breadth.** 8B chooses six sections and stops at the cap; 4B chooses three and says none, so its profile has no war and no conviction. A floor, or a second round of picks once the first children resolve, is a code choice to test.
+- **Faults found and fixed by reading the profiles, all in code:** a bibliography chosen as a section (skipped now); "Career and research" chosen though it is a heading with a short introduction (blocked, dropped from the profile; could be filtered by length); pick order versus article order; duplicated lead sentences; the eight-citation cap.
+
+What to measure next, so the brief is a benchmark rather than a demo: paragraphs, distinct sections and articles read, hops that added a sentence, calls and tokens, and a topic list per subject (Bletchley, the bombe, the Turing machine, the ACE, the Turing test, morphogenesis, the conviction, the pardon, Manchester, early life) marked touched or not — reported, not passed or failed. Then three more subjects from other fields.
+
 ## 2026-09-18 · the vanilla column: what the model already knows
 
 John asked whether we can now stack the vanilla models against models-plus-Tangle. The missing column was the model alone: `--mode closed` asks the seed question with no tools, one call, and grades the answer on facts named. Nothing in that column is supported, by construction — there is no evidence — so it measures memory, and the other columns measure reading.

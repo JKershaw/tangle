@@ -122,6 +122,10 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 
 ## Log
 
+### 2026-09-18 · evening · the Turing test
+
+- John's turn: a brief instead of a question. "Tell me about Alan Turing and elaborate on the impact of his work." walk-7 gave one to three lead sentences. walk-8 (6be04a1) made a brief a profile: the root reads the lead, the model picks the sections worth reading (up to six), code makes one child per section, each child keeps its sentences and may hop once, and the root's finding is the paragraphs in order. walk-9 (57a4eb9) and walk-10 (29d44c2) fixed what the profiles showed: model-asked questions under a brief, children fanning out, hops re-reading the lead, pick order, duplicates, the eight-citation cap. At walk-10: 8B six cited paragraphs in 37 calls, 4B four, 1.7B seven in 36 calls and 12k tokens. Reading in [evals/readings.md](evals/readings.md); runs in experiments/.
+
 ### 2026-09-18 · afternoon
 
 - The vanilla column, on John's question: `--mode closed` (the model alone, one call, no tools). 4B names 19/23 and 21/30 from memory, 8B 20 and 18, above every reading mode; 1.7B 14 and 9; 0.6B 8 and 8. The walk beats memory only at 1.7B on the graph seeds (16 vs 9). The benchmark seeds are questions these models have memorised; the next seed set is to be chosen where 8B's closed-book score is low.

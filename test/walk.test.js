@@ -15,7 +15,7 @@ function scripted(queue) {
   const seen = [];
   const ask = async (call) => {
     const field = Object.keys(call.schema.properties)[0];
-    seen.push({ field, user: call.messages[1].content, options: call.schema.properties[field].enum ?? null });
+    seen.push({ field, system: call.messages[0].content, user: call.messages[1].content, options: call.schema.properties[field].enum ?? null });
     const next = queue.shift();
     assert.ok(next !== undefined, `the script ran out at ask #${seen.length} (${field})`);
     assert.equal(next[0], field, `ask #${seen.length} asked for ${field}, the script expected ${next[0]}`);
@@ -298,6 +298,7 @@ test("a brief reads the lead, hands one child per chosen section, each child may
   assert.ok(run.trace.some((event) => event.event === "hop_chosen" && event.search === "Bombe"));
   assert.equal(child.seen[2].field, "search");
   assert.match(child.seen[2].user, /^Brief: /);
+  assert.match(child.seen[2].system ?? "", /Not Alan Turing itself/);
   assert.deepEqual(child.seen[3].options, ["1", "none"], "of the hop's three sentences only the one naming Turing is offered");
   assert.match(child.seen[3].user, /1\. The initial design was produced by Turing/);
   assert.equal(run.nodes.length, 3, "a child never fans out, even after a hop to an article with sections");
