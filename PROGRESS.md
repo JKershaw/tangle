@@ -45,10 +45,21 @@ Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · c
 | 2026-09-18 | dca1958 (walk-6) ×3 identical | 4B | tangle | 7/7 | **16/23** | **16/23** | 19/23 | 13k | 65 |
 | 2026-09-18 | dca1958 (walk-6) ×3 identical | 4B | flat (walk, one node) | 7/7 | **16/23** | **16/23** | 19/23 | 13k | 65 |
 | 2026-09-18 | dca1958 (pocket-10 prompt) ×3 identical | 4B | composing (one node) | 7/7 | 13/23 | 13/23 | 19/23 | 8k | 65–100 |
+| 2026-09-18 | dca1958 (pocket-10 prompt) | 8B | composing (one node) | 7/7 | **18/23** | **18/23** | 23/23 | 37k | 480 |
 
 **The benchmark is deterministic** (temperature 0.2, fixed seed, Wikipedia replayed): three passes of nine rows did not differ by a fact, so a one-fact gap is one seed's gap and only more seeds widen a claim. **The right single-node control is pocket-10's composing prompt**, never benchmarked until 2026-09-18: 16/23 at 1.7B (the walk: 9) and 13/23 at 4B (the walk: 16). Reading in [evals/readings.md](evals/readings.md).
 
 **Read the 2026-09-17 rows as a verdict on that build, not on the approach.** Decomposition only fires at 1.7B; every other model resolves at the root, so those tangle rows are not a test of it. Where it does fire it costs twenty times the tokens to deliver a quarter of the facts, while reading more of the rubric than any other row — because the scheduler froze the root on six of seven seeds, and because a visit asked the model for five decisions at once. Full table and reading in [evals/results.md](evals/results.md). The plan turned on this result: see *The turn* in [PLAN.md](PLAN.md).
+
+Graph seeds (`evals/seeds-graph.json`, 10 seeds no single article answers, 30 facts; `--seeds evals/seeds-graph.json`):
+
+| date | commit | model | tangle | flat (walk, one node) | composing (one node) |
+|---|---|---|---|---|---|
+| 2026-09-18 | dca1958 (walk-6) | 1.7B | 12/30 (12 supported) | 12/30 (12) | 12/30 (11) |
+| 2026-09-18 | dca1958 (walk-6) | 4B | 10/30 (10) | 10/30 (10) | 14/30 (9) |
+| 2026-09-18 | dca1958 (walk-6) | 8B | 12/30 (12) | 11/30 (11) | **17/30** (16) |
+
+Every size reads one article and resolves with half an answer; the graph never splits the question, and where it adds children they drift. Reading in [evals/readings.md](evals/readings.md). walk-7 (5c51800) splits two-subject questions in code and reads on after a first answer; rerunning.
 
 Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<ask>.json`, by ask variant. Full rows in [evals/node/results.md](evals/node/results.md).
 
@@ -92,6 +103,11 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-18 · afternoon
+
+- Graph seeds at three sizes and three modes: the walk is 10–12/30 at every size, level with its own one-node control, because every size reads one article and resolves with half an answer; the composing node reaches 17/30 at 8B but starts stating facts its evidence does not hold (4B: 14 stated, 9 supported). 8B composing on the base seeds: 18/23.
+- walk-7 (5c51800): a question naming two subjects joined by and/or is split by code before anything is read, one child per subject; the parent's answer is their findings. After a first pick, while the finding has room and lookups remain, the node reads one more section and asks again. Both seed sets rerunning at 1.7B, 4B and 8B, tangle and flat.
 
 ### 2026-09-18 · midday
 

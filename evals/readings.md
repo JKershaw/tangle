@@ -2,6 +2,23 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-18 · the seeds no single article answers
+
+Ten seeds in `evals/seeds-graph.json`: three comparisons (the Dead Sea and the Aral Sea; Lake Chad and the Dead Sea; the Bronze Age collapse and the fall of Rome), one two-hop (why less Jordan water reaches the Dead Sea), five whose first article's lead lacks the answer (the Sahara's dryness, the Black Death's route, almond pollination, Venus against Earth, the Gulf Stream), and one control both leads answer (the Moon's face). Thirty facts, checked against live Wikipedia sections. Same page (walk-6, dca1958), three sizes, three modes, one pass each (the benchmark is deterministic, above).
+
+| model | tangle (walk) | flat (walk, one node) | composing (pocket-10, one node) |
+|---|---|---|---|
+| 1.7B | 12/30 (12 supported) · 88 s | 12/30 (12) · 59 s | 12/30 (**11**) · 244 s |
+| 4B | 10/30 (10) · 158 s | 10/30 (10) · 95 s | 14/30 (**9**) · 136 s |
+| 8B | 12/30 (12) · 333 s | 11/30 (11) · 239 s | **17/30** (**16**) · 522 s |
+
+- **No size gets past one article.** The walk resolves 8 of 10 seeds at 1.7B and 10 of 10 at 4B and 8B, most of them in one node, four calls and one lookup: it reads one article, picks the first sentence that reads like an answer, and stops. The Dead Sea and the Aral Sea "both shrink" is answered from the Aral Sea alone at every size; the Sahara from "Rain shadow"; the Black Death's route from a lead that says only how plague spreads. One fact a seed is the ceiling of that shape, and the table is that ceiling.
+- **The graph does not fire where it is needed, and drifts where it does.** Tangle and flat are level at every size: the children the question ask adds are not the halves of the question. 4B on Lake Chad and the Dead Sea went to "2010 Sahel famine" and then four nodes deep into global dimming; 8B on the Sahara asked three real sub-questions about the rain shadow and the subtropical ridge and every node's finding is the same junk sentence, gathered up the chain. 8B did once ask the right thing — "What were the primary causes of the shrinking of the Aral Sea?" — and the child read the Caspian Sea, and the check accepted a sentence about oil pollution as the Aral's cause.
+- **The composing node invents once the seeds get hard.** On the base seeds every composed fact was supported; here 4B states 14 and supports 9, 8B states 17 and supports 16, 1.7B 12 and 11. The walk states 34 facts across the three sizes and supports 34. The gap is small in facts and large in kind: the rubric only counts a keyword in a cited excerpt, so "unsupported" here means the model named a cause its evidence never mentioned.
+- **8B composing on the base seeds: 18/23** (all supported, 480 s), against the walk's 16 and pocket-9's 19. So the full base-seed control row is 1.7B 16, 4B 13, 8B 18.
+
+What the traces say to fix, in code: a question that names two subjects is two questions and code can see the join (walk-7 splits it, one child per subject, and the parent's answer is their findings, no pick); a first answer is not the whole answer while the article has unread sections and lookups remain (walk-7 reads on and asks again); and a check on a foreign source should see the source. The first two are in walk-7, running next.
+
 ## 2026-09-18 · repeats, and the control we never ran
 
 Three passes of each row, same page (walk-6, dca1958), same seeds, same Wikipedia recording. `tangle` is the walk with default limits; `flat` is the walk on one node with six lookups; `composing` is the old one-prompt visit on one node (pocket-10, the prompt written on the 17th after the first matrix and never benchmarked, because the walk started the next morning).
