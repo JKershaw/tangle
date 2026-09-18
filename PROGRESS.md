@@ -13,11 +13,18 @@ Micro-evals (`scripts/eval.mjs visits`): pass rate over the cases in `evals/visi
 
 Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · cost`. Tangle versus flat.
 
-| date | commit | model | mode | seed | resolved | facts stated | supported | facts read | cost |
+| date | commit | model | mode | resolved | facts | supported | read | tokens | seconds |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-09-17 | 9f8bc21 (pocket-9) | 1.7B | tangle | dead-sea | **no** | 0/3 | 0/3 | **3/3** | 40 nodes, 169 calls, 87 lookups, 138k tokens, 566 s |
+| 2026-09-17 | 79e918e (pocket-9) | 0.6B | flat | 3/7 | 0/23 | 0/23 | 9/23 | 13k | 69 |
+| 2026-09-17 | 79e918e | 0.6B | tangle | 5/7 | 5/23 | 5/23 | 16/23 | 16k | 110 |
+| 2026-09-17 | 79e918e | 1.7B | flat | 5/7 | **8/23** | 7/23 | 20/23 | 48k | 179 |
+| 2026-09-17 | 79e918e | 1.7B | tangle | 1/7 | **2/23** | 2/23 | **23/23** | 962k | 2489 |
+| 2026-09-17 | 79e918e | 4B | flat | 7/7 | 14/23 | 14/23 | 19/23 | 8k | 97 |
+| 2026-09-17 | 79e918e | 4B | tangle | 7/7 | 14/23 | 14/23 | 19/23 | 8k | 115 |
+| 2026-09-17 | 79e918e | 8B | flat | 7/7 | **19/23** | 19/23 | 23/23 | 30k | 334 |
+| 2026-09-17 | 79e918e | 8B | tangle | 7/7 | 18/23 | 18/23 | 23/23 | 15k | 218 |
 
-The rest of the matrix is running. That first row is the frozen root, priced: the graph read every fact the rubric asks for and delivered none of them, because the root never resolved.
+**The control has answered, and the answer is no — for now.** Decomposition only fires at 1.7B; every other model resolves at the root, so those tangle rows are not a test of it. Where it does fire it costs twenty times the tokens to deliver a quarter of the facts, while reading more of the rubric than any other row. Full table and reading in [evals/results.md](evals/results.md).
 
 ## Frontier
 

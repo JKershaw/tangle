@@ -1,0 +1,444 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-0.6B-q4f16_1-MLC",
+  "commit": "79e918e",
+  "head": "b038795",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-17T22:12:56.813Z",
+  "loadSeconds": 5,
+  "prompt": "tangle-pocket-9",
+  "schema": "per-action-6",
+  "machineHealth": {
+    "samples": 5,
+    "gpuPercent": {
+      "min": 0,
+      "max": 88,
+      "mean": 52.2
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 1.68,
+      "mean": 1
+    },
+    "load": {
+      "min": 14.5,
+      "max": 20.24,
+      "mean": 18.2
+    },
+    "memoryFreePercent": {
+      "min": 83,
+      "max": 88,
+      "mean": 85.2
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "flat",
+  "limits": {
+    "maxNodes": 1,
+    "maxVisits": 3,
+    "maxDepth": 0,
+    "maxLookups": 6,
+    "maxPasses": 8
+  },
+  "seeds": 7,
+  "resolved": 3,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 9,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1326
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Dead Sea is a hypersaline lake with a salinity of 34.2% (in 2011) and is 304 m (997 ft) deep, making it the deepest hypersaline lake in the world. It is 439.78 m (1,443 ft) below sea level, with a receding shoreline and sinkholes.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 39,
+      "wiki": {
+        "hits": 2,
+        "misses": 0,
+        "entries": 65,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-0.6b-flat-dead-sea.json",
+      "summary": "live run \u00b7 seed: Why is the Dead Sea shrinking?\nmodel Qwen3-0.6B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:13:02.065Z \u00b7 exported 2026-09-17T22:13:41.146Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 2 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 1326\nstatuses {\"resolved\":1} \u00b7 outcome: root resolved\n\nn1 [resolved] Why is the Dead Sea shrinking? \u2192 The Dead Sea is a hypersaline lake with a salinity of 34.2% (in 2011) and is 304 m (997 ft\n\nmodel latency ms: median 24339 \u00b7 max 24339 \u00b7 n 2\nnothing flagged"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": false,
+      "outcome": "Paused on error \u00b7 inspect or retry",
+      "facts": {
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "evaporation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 2345
+      },
+      "statuses": {
+        "error": 1
+      },
+      "finding": null,
+      "kind": "single-article",
+      "retriesUsed": 2,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "entries": 65,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-0.6b-flat-water-cycle.json",
+      "summary": "live run \u00b7 seed: Why does the water cycle keep going?\nmodel Qwen3-0.6B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:13:41.154Z \u00b7 exported 2026-09-17T22:13:45.933Z\nnodes 1 \u00b7 visits 3 \u00b7 model calls 4 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 2345\nstatuses {\"error\":1} \u00b7 outcome: Paused on error \u00b7 inspect or retry\n\nn1 [error v3] Why does the water cycle keep going? !! A finding must be a sentence, not a fragment.\n\nmodel latency ms: median 781 \u00b7 max 785 \u00b7 n 4\nworth a look:\n- n1 error: A finding must be a sentence, not a fragment."
+    },
+    {
+      "id": "bronze-age",
+      "resolved": false,
+      "outcome": "Paused on error \u00b7 inspect or retry",
+      "facts": {
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sea-peoples": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 2411
+      },
+      "statuses": {
+        "error": 1
+      },
+      "finding": null,
+      "kind": "multi-section",
+      "retriesUsed": 2,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 6,
+        "misses": 0,
+        "entries": 65,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-0.6b-flat-bronze-age.json",
+      "summary": "live run \u00b7 seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-0.6B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:13:45.939Z \u00b7 exported 2026-09-17T22:13:50.687Z\nnodes 1 \u00b7 visits 3 \u00b7 model calls 4 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 2411\nstatuses {\"error\":1} \u00b7 outcome: Paused on error \u00b7 inspect or retry\n\nn1 [error v3] Why did the Late Bronze Age collapse happen? !! A finding must be a sentence, not a fragment.\n\nmodel latency ms: median 794 \u00b7 max 810 \u00b7 n 4\nworth a look:\n- n1 error: A finding must be a sentence, not a fragment."
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": false,
+      "outcome": "Paused on error \u00b7 inspect or retry",
+      "facts": {
+        "mites": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "pesticides": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "pathogens": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "stressors": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 2568
+      },
+      "statuses": {
+        "error": 1
+      },
+      "finding": null,
+      "kind": "multi-section",
+      "retriesUsed": 2,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 8,
+        "misses": 0,
+        "entries": 65,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-0.6b-flat-colony-collapse.json",
+      "summary": "live run \u00b7 seed: Why do honey bee colonies collapse?\nmodel Qwen3-0.6B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:13:50.691Z \u00b7 exported 2026-09-17T22:13:55.422Z\nnodes 1 \u00b7 visits 3 \u00b7 model calls 4 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 2568\nstatuses {\"error\":1} \u00b7 outcome: Paused on error \u00b7 inspect or retry\n\nn1 [error v3] Why do honey bee colonies collapse? !! A finding must be a sentence, not a fragment.\n\nmodel latency ms: median 917 \u00b7 max 918 \u00b7 n 4\nworth a look:\n- n1 error: A finding must be a sentence, not a fragment."
+    },
+    {
+      "id": "coral",
+      "resolved": false,
+      "outcome": "No runnable nodes \u00b7 root unresolved",
+      "facts": {
+        "temperature": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "algae": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 5,
+        "lookups": 4,
+        "tokens": 2417
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "kind": "single-lead",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 11,
+        "misses": 1,
+        "entries": 66,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-0.6b-flat-coral.json",
+      "summary": "live run \u00b7 seed: Why do coral reefs bleach?\nmodel Qwen3-0.6B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:13:55.426Z \u00b7 exported 2026-09-17T22:13:59.975Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 5 \u00b7 lookups 4 \u00b7 evidence 0 \u00b7 tokens 2417\nstatuses {\"blocked\":1} \u00b7 outcome: root unresolved\n\nn1 [blocked 4 failed lookups] Why do coral reefs bleach? !! No Wikipedia article topic was found for 'Why do coral reefs bleach?', and the provided ex\n\nmodel latency ms: median 568 \u00b7 max 852 \u00b7 n 5\nworth a look:\n- n1 lookup found nothing: \u201ccoral_reeft_bleaching\u201d (No Wikipedia article matched \"coral_reeft_bleaching\".)\n- n1 lookup found nothing: \u201ccoral_reeft_bleaching\u201d (No Wikipedia article matched \"coral_reeft_bleaching\".)\n- n1 lookup found nothing: \u201ccoral_reeft_bleaching\u201d (No Wikipedia article matched \"coral_reeft_bleaching\".)\n- n1 lookup found nothing: \u201ccoral_reeft_bleaching\u201d (No Wikipedia article matched \"coral_reeft_bleaching\".)\n- n1 blocked: No Wikipedia article topic was found for 'Why do coral reefs bleach?', and the provided excerpts cannot answer the question."
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1087
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Sky blue refers to a shade of cyan or light teal, though some iterations are closer to light azure or light blue. The term is attested from 1681. A 1585 translation includes 'the tulbant [turban] of the merchant must be skie coloured.'",
+      "kind": "single-lead, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 11,
+        "misses": 3,
+        "entries": 68,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-0.6b-flat-sky-blue.json",
+      "summary": "live run \u00b7 seed: Why is the sky blue?\nmodel Qwen3-0.6B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:13:59.978Z \u00b7 exported 2026-09-17T22:14:04.558Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 2 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 1087\nstatuses {\"resolved\":1} \u00b7 outcome: root resolved\n\nn1 [resolved] Why is the sky blue? \u2192 Sky blue refers to a shade of cyan or light teal, though some iterations are closer to lig\n\nmodel latency ms: median 1651 \u00b7 max 1651 \u00b7 n 2\nnothing flagged"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "irrigation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "soviet": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1213
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Aral Sea was an endorheic salt lake...",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 13,
+        "misses": 3,
+        "entries": 68,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-0.6b-flat-aral.json",
+      "summary": "live run \u00b7 seed: Why did the Aral Sea shrink?\nmodel Qwen3-0.6B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:14:04.561Z \u00b7 exported 2026-09-17T22:14:09.125Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 2 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 1213\nstatuses {\"resolved\":1} \u00b7 outcome: root resolved\n\nn1 [resolved] Why did the Aral Sea shrink? \u2192 The Aral Sea was an endorheic salt lake...\n\nmodel latency ms: median 1042 \u00b7 max 1042 \u00b7 n 2\nnothing flagged"
+    }
+  ],
+  "notes": [
+    "2026-09-17T22:12:56.813Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "device: WebGPU adapter found \u00b7 secure context \u00b7 cache: cache \u00b7 storage headroom: 10.00 GiB",
+    "2026-09-17T22:12:56.938Z loading: Checking this device before downloading\u2026",
+    "2026-09-17T22:13:01.946Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-0.6B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 86% \u00b7 vram 0.03 GiB \u00b7 load 18.62 \u00b7 mem 88% free (normal) \u00b7 no throttling recorded",
+    "2026-09-17T22:13:02.044Z 7 seeds \u00b7 mode flat \u00b7 limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8} \u00b7 prompt ? \u00b7 grammar ? \u00b7 commit 79e918e",
+    "wiki recording: 65 responses loaded",
+    "2026-09-17T22:13:41.117Z run stopped: Root resolved",
+    "dead-sea: resolved \u00b7 facts 0/3 \u00b7 supported 0/3 \u00b7 read 2/3 \u00b7 1 nodes, 2 calls, 1 lookups, 1326 tokens \u00b7 39 s \u00b7 wiki 2 hits 0 misses",
+    "2026-09-17T22:13:42.700Z run stopped: Paused on error \u00b7 inspect or retry",
+    "retry 1: n1 A finding must be a sentence, not a fragment.",
+    "2026-09-17T22:13:44.301Z run stopped: Paused on error \u00b7 inspect or retry",
+    "retry 2: n1 A finding must be a sentence, not a fragment.",
+    "2026-09-17T22:13:45.906Z run stopped: Paused on error \u00b7 inspect or retry",
+    "water-cycle: Paused on error \u00b7 inspect or retry \u00b7 facts 0/3 \u00b7 supported 0/3 \u00b7 read 2/3 \u00b7 1 nodes, 4 calls, 1 lookups, 2345 tokens \u00b7 5 s \u00b7 wiki 4 hits 0 misses",
+    "2026-09-17T22:13:47.481Z run stopped: Paused on error \u00b7 inspect or retry",
+    "retry 1: n1 A finding must be a sentence, not a fragment.",
+    "2026-09-17T22:13:49.086Z run stopped: Paused on error \u00b7 inspect or retry",
+    "retry 2: n1 A finding must be a sentence, not a fragment.",
+    "2026-09-17T22:13:50.670Z run stopped: Paused on error \u00b7 inspect or retry",
+    "bronze-age: Paused on error \u00b7 inspect or retry \u00b7 facts 0/4 \u00b7 supported 0/4 \u00b7 read 2/4 \u00b7 1 nodes, 4 calls, 1 lookups, 2411 tokens \u00b7 5 s \u00b7 wiki 6 hits 0 misses",
+    "2026-09-17T22:13:52.227Z run stopped: Paused on error \u00b7 inspect or retry",
+    "retry 1: n1 A finding must be a sentence, not a fragment.",
+    "2026-09-17T22:13:53.817Z run stopped: Paused on error \u00b7 inspect or retry",
+    "retry 2: n1 A finding must be a sentence, not a fragment.",
+    "2026-09-17T22:13:55.398Z run stopped: Paused on error \u00b7 inspect or retry",
+    "colony-collapse: Paused on error \u00b7 inspect or retry \u00b7 facts 0/4 \u00b7 supported 0/4 \u00b7 read 0/4 \u00b7 1 nodes, 4 calls, 1 lookups, 2568 tokens \u00b7 5 s \u00b7 wiki 8 hits 0 misses",
+    "2026-09-17T22:13:59.959Z run stopped: No runnable nodes \u00b7 root unresolved",
+    "coral: No runnable nodes \u00b7 root unresolved \u00b7 facts 0/3 \u00b7 supported 0/3 \u00b7 read 0/3 \u00b7 1 nodes, 5 calls, 4 lookups, 2417 tokens \u00b7 5 s \u00b7 wiki 11 hits 1 misses",
+    "2026-09-17T22:14:04.525Z run stopped: Root resolved",
+    "sky-blue: resolved \u00b7 facts 0/3 \u00b7 supported 0/3 \u00b7 read 0/3 \u00b7 1 nodes, 2 calls, 1 lookups, 1087 tokens \u00b7 5 s \u00b7 wiki 11 hits 3 misses",
+    "2026-09-17T22:14:09.103Z run stopped: Root resolved",
+    "aral: resolved \u00b7 facts 0/3 \u00b7 supported 0/3 \u00b7 read 3/3 \u00b7 1 nodes, 2 calls, 1 lookups, 1213 tokens \u00b7 5 s \u00b7 wiki 13 hits 3 misses",
+    "machine during the suite: gpu 52.2% mean, 88% peak \u00b7 vram up to 1.68 GiB \u00b7 load up to 20.24 \u00b7 no throttling in 5 samples"
+  ],
+  "labelNote": "prompt, grammar and commit corrected by hand: the runner read them from the source tree (then on branch pocket-10) instead of the served build, which was pocket-9 / per-action-6 throughout"
+}

@@ -1,0 +1,426 @@
+{
+  "suite": "runs",
+  "model": "Qwen3-4B-q4f16_1-MLC",
+  "commit": "79e918e",
+  "head": "b038795",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "153.0.8010.50",
+  "date": "2026-09-17T22:14:10.096Z",
+  "loadSeconds": 5,
+  "prompt": "tangle-pocket-9",
+  "schema": "per-action-6",
+  "machineHealth": {
+    "samples": 8,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 70.6
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 3.52,
+      "mean": 1.3
+    },
+    "load": {
+      "min": 15.35,
+      "max": 20.13,
+      "mean": 18.2
+    },
+    "memoryFreePercent": {
+      "min": 77,
+      "max": 88,
+      "mean": 84.1
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "limits": "default",
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 14,
+  "factsSupported": 14,
+  "factsRead": 19,
+  "factsTotal": 23,
+  "results": [
+    {
+      "id": "dead-sea",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1323
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Dead Sea is shrinking due to the diversion of the Jordan River for water supply and the extraction of water for human use, which reduces the inflow of water into the lake. This has led to a decrease in the lake's volume and a receding shoreline. The Dead Sea's unique salinity and the lack of an outlet mean that any reduction in water volume leads to a significant decrease in the lake's size.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 61,
+      "wiki": {
+        "hits": 1,
+        "misses": 1,
+        "entries": 69,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-4b-tangle-dead-sea.json",
+      "summary": "live run \u00b7 seed: Why is the Dead Sea shrinking?\nmodel Qwen3-4B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:14:15.355Z \u00b7 exported 2026-09-17T22:15:16.323Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 2 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 1323\nstatuses {\"resolved\":1} \u00b7 outcome: root resolved\n\nn1 [resolved] Why is the Dead Sea shrinking? \u2192 The Dead Sea is shrinking due to the diversion of the Jordan River for water supply and th\n\nmodel latency ms: median 35100 \u00b7 max 35100 \u00b7 n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: shrink, diversion, supp, extraction, reduc, inflow \u2026"
+    },
+    {
+      "id": "water-cycle",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "evaporation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "condensation-precipitation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1112
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The water cycle continues because the total mass of water on Earth remains fairly constant, with water moving between reservoirs through processes like evaporation, transpiration, and condensation. The partitioning of water among reservoirs varies based on climatic factors, but the overall balance is maintained through these dynamic movements.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 3,
+        "misses": 1,
+        "entries": 69,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-4b-tangle-water-cycle.json",
+      "summary": "live run \u00b7 seed: Why does the water cycle keep going?\nmodel Qwen3-4B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:15:16.332Z \u00b7 exported 2026-09-17T22:15:23.892Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 2 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 1112\nstatuses {\"resolved\":1} \u00b7 outcome: root resolved\n\nn1 [resolved] Why does the water cycle keep going? \u2192 The water cycle continues because the total mass of water on Earth remains fairly constant\n\nmodel latency ms: median 4699 \u00b7 max 4699 \u00b7 n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: continu, mov, vari, factor, balance, maintain \u2026"
+    },
+    {
+      "id": "bronze-age",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sea-peoples": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1120
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Late Bronze Age collapse was a sudden, violent, and culturally disruptive period in the Mediterranean basin during the late 13th to early 12th century BC, leading to the decline of Bronze Age civilizations.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 5,
+        "misses": 1,
+        "entries": 69,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-4b-tangle-bronze-age.json",
+      "summary": "live run \u00b7 seed: Why did the Late Bronze Age collapse happen?\nmodel Qwen3-4B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:15:23.896Z \u00b7 exported 2026-09-17T22:15:31.464Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 2 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 1120\nstatuses {\"resolved\":1} \u00b7 outcome: root resolved\n\nn1 [resolved] Why did the Late Bronze Age collapse happen? \u2192 The Late Bronze Age collapse was a sudden, violent, and culturally disruptive period in th\n\nmodel latency ms: median 4179 \u00b7 max 4179 \u00b7 n 2\nnothing flagged"
+    },
+    {
+      "id": "colony-collapse",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pesticides": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "pathogens": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "stressors": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1215
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Honey bee colonies collapse due to a combination of factors including pesticide exposure, Varroa mites, viral infections, and climate change. These factors weaken the colony's ability to survive and thrive, leading to the disappearance of worker bees.",
+      "kind": "multi-section",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 5,
+        "misses": 3,
+        "entries": 71,
+        "added": 2
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-4b-tangle-colony-collapse.json",
+      "summary": "live run \u00b7 seed: Why do honey bee colonies collapse?\nmodel Qwen3-4B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:15:31.468Z \u00b7 exported 2026-09-17T22:15:42.053Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 2 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 1215\nstatuses {\"resolved\":1} \u00b7 outcome: root resolved\n\nn1 [resolved] Why do honey bee colonies collapse? \u2192 Honey bee colonies collapse due to a combination of factors including pesticide exposure, \n\nmodel latency ms: median 5112 \u00b7 max 5112 \u00b7 n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: pesticide, exposure, climate, change, weaken, colony' \u2026"
+    },
+    {
+      "id": "coral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "algae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1187
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Coral reefs bleach primarily due to stress from rising ocean temperatures caused by climate change. This stress leads to the loss of symbiotic algae, causing corals to turn white and become vulnerable to disease and death. The leading cause of coral bleaching is rising ocean temperatures due to climate change.",
+      "kind": "single-lead",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 6,
+        "misses": 4,
+        "entries": 72,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-4b-tangle-coral.json",
+      "summary": "live run \u00b7 seed: Why do coral reefs bleach?\nmodel Qwen3-4B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:15:42.060Z \u00b7 exported 2026-09-17T22:15:49.618Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 2 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 1187\nstatuses {\"resolved\":1} \u00b7 outcome: root resolved\n\nn1 [resolved] Why do coral reefs bleach? \u2192 Coral reefs bleach primarily due to stress from rising ocean temperatures caused by climat\n\nmodel latency ms: median 5197 \u00b7 max 5197 \u00b7 n 2\nnothing flagged"
+    },
+    {
+      "id": "sky-blue",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "wavelength": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "scattering": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1122
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The sky appears blue due to a process called Rayleigh scattering, where shorter wavelengths of light (blue and violet) are scattered more by the atmosphere. The diffuse sky radiation, as described in the evidence, is a result of this scattering process. The evidence supports that the sky's color is influenced by the scattering of sunlight by molecules and particulates in the atmosphere.",
+      "kind": "single-lead, search trap",
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 8,
+        "misses": 4,
+        "entries": 72,
+        "added": 0
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-4b-tangle-sky-blue.json",
+      "summary": "live run \u00b7 seed: Why is the sky blue?\nmodel Qwen3-4B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:15:49.622Z \u00b7 exported 2026-09-17T22:15:57.202Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 2 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 1122\nstatuses {\"resolved\":1} \u00b7 outcome: root resolved\n\nn1 [resolved] Why is the sky blue? \u2192 The sky appears blue due to a process called Rayleigh scattering, where shorter wavelength\n\nmodel latency ms: median 5128 \u00b7 max 5128 \u00b7 n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: appear, shorter, violet, describ, support, influenc"
+    },
+    {
+      "id": "aral",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rivers": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "soviet": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 2,
+        "lookups": 1,
+        "tokens": 1270
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Aral Sea shrunk primarily due to the diversion of water from the Amu Darya and Syr Darya rivers for irrigation, which led to the drying up of the sea. This process began in the 1960s and continued until the sea was largely dried up by 2007.",
+      "kind": "single-article",
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 9,
+        "misses": 5,
+        "entries": 73,
+        "added": 1
+      },
+      "export": "evals/results/runs/2026-09-17-qwen3-4b-tangle-aral.json",
+      "summary": "live run \u00b7 seed: Why did the Aral Sea shrink?\nmodel Qwen3-4B-q4f16_1-MLC \u00b7 prompt tangle-pocket-9 \u00b7 created 2026-09-17T22:15:57.206Z \u00b7 exported 2026-09-17T22:16:07.771Z\nnodes 1 \u00b7 visits 1 \u00b7 model calls 2 \u00b7 lookups 1 \u00b7 evidence 1 \u00b7 tokens 1270\nstatuses {\"resolved\":1} \u00b7 outcome: root resolved\n\nn1 [resolved] Why did the Aral Sea shrink? \u2192 The Aral Sea shrunk primarily due to the diversion of water from the Amu Darya and Syr Dar\n\nmodel latency ms: median 5922 \u00b7 max 5922 \u00b7 n 2\nworth a look:\n- n1 finding uses words absent from its cited excerpts: shrunk, diversion, dry, continu"
+    }
+  ],
+  "notes": [
+    "2026-09-17T22:14:10.095Z opened http://127.0.0.1:8765/ in 153.0.8010.50 (darwin arm64, Apple M1 Max)",
+    "device: WebGPU adapter found \u00b7 secure context \u00b7 cache: cache \u00b7 storage headroom: 10.00 GiB",
+    "2026-09-17T22:14:10.222Z loading: Checking this device before downloading\u2026",
+    "2026-09-17T22:14:15.226Z loading: Ready. Inference runs on this device.",
+    "model Qwen3-4B-q4f16_1-MLC: Ready. Inference runs on this device. (5 s)",
+    "machine at start: gpu 86% \u00b7 vram 0.19 GiB \u00b7 load 15.35 \u00b7 mem 88% free (normal) \u00b7 no throttling recorded",
+    "2026-09-17T22:14:15.322Z 7 seeds \u00b7 mode tangle \u00b7 limits {} \u00b7 prompt ? \u00b7 grammar ? \u00b7 commit 79e918e",
+    "wiki recording: 68 responses loaded",
+    "2026-09-17T22:15:16.295Z run stopped: Root resolved",
+    "dead-sea: resolved \u00b7 facts 1/3 \u00b7 supported 1/3 \u00b7 read 2/3 \u00b7 1 nodes, 2 calls, 1 lookups, 1323 tokens \u00b7 61 s \u00b7 wiki 1 hits 1 misses",
+    "2026-09-17T22:15:23.870Z run stopped: Root resolved",
+    "water-cycle: resolved \u00b7 facts 2/3 \u00b7 supported 2/3 \u00b7 read 2/3 \u00b7 1 nodes, 2 calls, 1 lookups, 1112 tokens \u00b7 8 s \u00b7 wiki 3 hits 1 misses",
+    "2026-09-17T22:15:31.441Z run stopped: Root resolved",
+    "bronze-age: resolved \u00b7 facts 0/4 \u00b7 supported 0/4 \u00b7 read 2/4 \u00b7 1 nodes, 2 calls, 1 lookups, 1120 tokens \u00b7 8 s \u00b7 wiki 5 hits 1 misses",
+    "2026-09-17T22:15:42.019Z run stopped: Root resolved",
+    "colony-collapse: resolved \u00b7 facts 3/4 \u00b7 supported 3/4 \u00b7 read 4/4 \u00b7 1 nodes, 2 calls, 1 lookups, 1215 tokens \u00b7 11 s \u00b7 wiki 5 hits 3 misses",
+    "2026-09-17T22:15:49.593Z run stopped: Root resolved",
+    "coral: resolved \u00b7 facts 3/3 \u00b7 supported 3/3 \u00b7 read 3/3 \u00b7 1 nodes, 2 calls, 1 lookups, 1187 tokens \u00b7 8 s \u00b7 wiki 6 hits 4 misses",
+    "2026-09-17T22:15:57.168Z run stopped: Root resolved",
+    "sky-blue: resolved \u00b7 facts 3/3 \u00b7 supported 3/3 \u00b7 read 3/3 \u00b7 1 nodes, 2 calls, 1 lookups, 1122 tokens \u00b7 8 s \u00b7 wiki 8 hits 4 misses",
+    "2026-09-17T22:16:07.745Z run stopped: Root resolved",
+    "aral: resolved \u00b7 facts 2/3 \u00b7 supported 2/3 \u00b7 read 3/3 \u00b7 1 nodes, 2 calls, 1 lookups, 1270 tokens \u00b7 11 s \u00b7 wiki 9 hits 5 misses",
+    "machine during the suite: gpu 70.6% mean, 98% peak \u00b7 vram up to 3.52 GiB \u00b7 load up to 20.13 \u00b7 no throttling in 8 samples"
+  ],
+  "labelNote": "prompt, grammar and commit corrected by hand: the runner read them from the source tree (then on branch pocket-10) instead of the served build, which was pocket-9 / per-action-6 throughout"
+}
