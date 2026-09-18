@@ -64,6 +64,7 @@ experiments/       exported runs and notes, committed next to the code that prod
 docs/index.html    the built page, served by GitHub Pages
 BRIEF.md           the original design brief the project is built to
 PLAN.md            the eval-driven plan for pushing tiny models further; PROGRESS.md logs against it
+ROADMAP.md         the milestones from the pocket lab to a self-building agent, and what verifies each
 ```
 
 The whole app is one HTML file. Open `docs/index.html` from disk and the simulation works offline; live mode wants an HTTPS or localhost origin so the browser will cache model weights.

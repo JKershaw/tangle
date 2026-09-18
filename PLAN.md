@@ -1,6 +1,6 @@
 # Plan: pushing tiny models with evals
 
-*A living document. It says what we are building and why; [PROGRESS.md](PROGRESS.md) says where it has got to. Both are updated as the work moves.*
+*A living document. It says what we are building and why; [PROGRESS.md](PROGRESS.md) says where it has got to; [ROADMAP.md](ROADMAP.md) says the milestones still ahead. All three are updated as the work moves.*
 
 ## The question
 
