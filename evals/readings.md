@@ -2,6 +2,23 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-18 · four briefs, three columns: the profile benchmark
+
+The brief became a benchmark: four subjects from four fields, each with a topic list checked against the live article (`evals/seeds-profile.json`, 35 topics), and a grader for the profile's shape. Three columns — the walk, the walk on one node, the model alone with a profile prompt — at every size, all at walk-10 (rows in [results.md](results.md), `seeds-profile`).
+
+| model | tangle (topics of 35) | one node | memory | tangle: paragraphs · hops cited / read / chosen |
+|---|---|---|---|---|
+| 0.6B | 0 (three roots blocked) | — | 7 | — |
+| 1.7B | **21** | 8 | 15 | 28 · 5 / 12 / 24 |
+| 4B | **17** | 8 | 10 | 19 · 4 / 8 / 14 |
+| 8B | **22** | 8 | 20 | 24 · 8 / 15 / 19 |
+
+- **The graph beats one node and memory at every size from 1.7B up.** On the question seeds memory won from 4B up; here the walk leads it at 1.7B (21 to 15), 4B (17 to 10) and 8B (22 to 20), and every one of its topics sits in a sentence read from Wikipedia and cited. The one-node walk is level at 8 at every size: three lead sentences, whatever the model. This is the first table where the shape of the work is doing what the thesis says it should.
+- **One column was reading the wrong article.** Hubble scored 1, 1 and 2 of 8. Wikipedia's search for the whole brief minus its question words ("Tell me about Hubble Space Telescope and has discovered") returned *Nancy Grace Roman Space Telescope*, *Edwin Hubble*, *STS-125* and never the telescope; 8B picked Edwin Hubble and wrote a cited profile of the astronomer. Code can see a brief's subject, so from 120c0fc a brief searches for it ("Hubble Space Telescope") and a hit whose title is the search term is read without an article ask at all.
+- **The free-text hop is where the sizes part.** 8B cited eight hops of nineteen chosen, 1.7B five of twenty-four, 4B four of fourteen — and 4B's Turing children named "Alan Turing" (refused as read) or "Turing Test" and then chose *Alan Turing* from the hits. The Silk Road profile at 8B read five hop articles and cited one. walk-11 replaces the name with a pick: the article's own links that occur in the kept sentences, ranked by how often the run has met each.
+- **0.6B keeps nothing under a brief.** It says none to every sentence of the lead and of two sections, then blocks with nothing read; the Great Barrier Reef root kept one sentence. The profile is out of its reach as the walk stands.
+- **What the grader shows that a score would not.** 4B's section pick stops at three or four, so its profiles are four paragraphs to 8B's six and 1.7B's seven; 1.7B reads more articles than 8B (four, seven, two, three) and cites fewer of them. Duplicates are zero everywhere since walk-10.
+
 ## 2026-09-18 · the Turing test: a brief instead of a question
 
 John's turn: stop asking the tiny agent questions it has memorised and give it a brief — "Tell me about Alan Turing and elaborate on the impact of his work." — and read what it writes. No rubric first; the faults become evals. Runs in `experiments/*turing*`.

@@ -79,6 +79,17 @@ Graph seeds (`evals/seeds-graph.json`, 10 seeds no single article answers, 30 fa
 
 At walk-6 every size read one article and resolved with half an answer. walk-7 (5c51800) splits a two-subject question in code, one child per subject, and reads on after a first answer: on the three comparison seeds the graph states 5, 6 and 6 facts against 1, 2 and 3 for one node, and leads its one-node control at every size on this set. The model-asked children are still the cost (8B: 828 s). Reading in [evals/readings.md](evals/readings.md).
 
+Profiles (`evals/seeds-profile.json`, four briefs, 35 topics; `--seeds evals/seeds-profile.json`). Topics touched of 35, then hops cited / read / chosen and paragraphs summed over the four profiles. Every tangle and flat topic is supported; nothing in the closed column is.
+
+| date | commit | model | tangle | flat (walk, one node) | closed (memory) |
+|---|---|---|---|---|---|
+| 2026-09-18 | ae3b04a (walk-10) | 0.6B | 0/35 · 3 of 4 roots blocked | — | 7/35 |
+| 2026-09-18 | ae3b04a (walk-10) | 1.7B | **21/35** · hops 5/12/24 · ¶28 · 286 s | 8/35 · ¶4 | 15/35 |
+| 2026-09-18 | ae3b04a (walk-10) | 4B | **17/35** · hops 4/8/14 · ¶19 · 227 s | 8/35 · ¶4 | 10/35 |
+| 2026-09-18 | ae3b04a (walk-10) | 8B | **22/35** · hops 8/15/19 · ¶24 · 480 s | 8/35 · ¶4 | 20/35 |
+
+The first table where the graph beats both the one-node control and memory at every size from 1.7B up. The Hubble brief scored 1 and 2 of 8 at every size because the search for the whole brief never returned the telescope's article and 8B read *Edwin Hubble* instead; fixed in code at 120c0fc (a brief searches for its subject, and a hit whose title is the search term is read without asking). Reading in [evals/readings.md](evals/readings.md).
+
 Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<ask>.json`, by ask variant. Full rows in [evals/node/results.md](evals/node/results.md).
 
 | date | commit | ask (cases) | variant | 0.6B | 1.7B | 4B | 8B | reference |
@@ -121,6 +132,12 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-18 · night · the profile benchmark, and the frontier
+
+- [ROADMAP.md](ROADMAP.md): the milestones from here to a self-building agent, each with an entry, the work, what verifies it and an exit; what a key buys and when. README gained a standing description of the frontier.
+- Milestone 1: `gradeProfile` (paragraphs, sentences, articles and sections read, hops chosen / read / cited, duplicates) and four briefs with topic lists checked against live Wikipedia (Turing, the Silk Road, the Hubble Space Telescope, the Great Barrier Reef). The walk-10 profile ladder (table above): tangle 22, 17, 21 of 35 topics at 8B, 4B, 1.7B against 8 for one node and 20, 10, 15 for memory. Faults read from the rows: the Hubble search found Edwin Hubble (fixed in code); 4B's free-text hop names the subject; 0.6B keeps nothing under a brief and blocks.
+- Milestone 2 begun, walk-11 (ea39412): a brief's child hands the things its kept sentences name to children of its own — the article's links that occur in those sentences (a new Wikipedia request, cached), else capitalised phrases — the model picking from a list ranked by how many excerpts in the run name each, minus anything read or opened anywhere; a hop child reads that article and keeps only sentences naming the brief's subject; a sentence kept anywhere is never offered again; profiles gather paragraph by paragraph. `limits.maxHops` (2). The walk-11 ladder is running.
 
 ### 2026-09-18 · evening · the Turing test
 
