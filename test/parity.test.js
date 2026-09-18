@@ -13,7 +13,9 @@ import { openNodeLab } from "../scripts/node-lab.mjs";
 
 const PAGE = new URL("../docs/index.html", import.meta.url);
 const RECORDING = new URL("../evals/wiki-cache", import.meta.url).pathname;
-const SEED = "Why is the Dead Sea shrinking?";
+// Three shapes: one node that reads and picks; a two-subject question split
+// by code and gathered; a brief with sections, hops and hops' hops.
+export const SEEDS = ["Why is the Dead Sea shrinking?", "Why did the Dead Sea and the Aral Sea both shrink?", "Tell me about Alan Turing and elaborate on the impact of his work."];
 
 test("the scripted first-choice model takes the first real option of an enum, yes for a yes-or-no, and none for a string", () => {
   const call = (property) => ({ schema: { type: "object", properties: { answer: property } } });
@@ -38,7 +40,7 @@ export function shape(run) {
   };
 }
 
-export async function nodeRun(seed = SEED, limits = {}) {
+export async function nodeRun(seed, limits = {}) {
   const lab = await openNodeLab({ ask: SCRIPTED.first, wikiCache: RECORDING, offline: true, note: () => {} });
   await lab.loadModel("scripted:first");
   lab.newLive(seed, limits);
@@ -46,14 +48,20 @@ export async function nodeRun(seed = SEED, limits = {}) {
   return { outcome, run: lab.exportRun() };
 }
 
-test("in Node, the first-choice model reads the recording to a resolved root without the network", async () => {
-  const { outcome, run } = await nodeRun();
-  assert.equal(outcome, "Root resolved");
-  assert.equal(run.model, "scripted:first");
-  assert.ok(run.evidence.length >= 1);
-  assert.ok(run.nodes[0].finding.length > 20);
-  assert.ok(run.nodes[0].evidence.every((id) => run.evidence.some((record) => record.id === id)));
-  assert.ok(run.trace.every((event) => event.event !== "lookup_failed" || !/Not in the recording/.test(event.error)), "every response the walk needed is in the recording");
+test("in Node, the first-choice model reads the recording to a resolved root without the network, in three graph shapes", async () => {
+  const shapes = [];
+  for (const seed of SEEDS) {
+    const { outcome, run } = await nodeRun(seed);
+    assert.equal(outcome, "Root resolved", seed);
+    assert.equal(run.model, "scripted:first");
+    assert.ok(run.nodes[0].finding.length > 20);
+    assert.ok(run.nodes[0].evidence.every((id) => run.evidence.some((record) => record.id === id)));
+    assert.ok(run.trace.every((event) => event.event !== "lookup_failed" || !/Not in the recording/.test(event.error)), `every response the walk needs for "${seed}" is in the recording`);
+    shapes.push(run.nodes.length);
+  }
+  assert.equal(shapes[0], 1, "one node reads and picks");
+  assert.equal(shapes[1], 3, "a two-subject question is split into two children");
+  assert.ok(shapes[2] >= 10, `a brief fans out into sections and hops (${shapes[2]} nodes)`);
 });
 
 async function launch() {
@@ -87,18 +95,20 @@ test("the page grows the identical graph from the same seed, recording and scrip
     const loaded = await page.evaluate((entries) => window.__tangle.wiki.load(entries), readRecording(RECORDING));
     assert.ok(loaded > 0);
     assert.equal(await page.evaluate(() => window.__tangle.script("first")), "scripted:first");
-    await page.evaluate((seed) => window.__tangle.newLive(seed, {}), SEED);
-    await page.check("#autoWiki");
-    await page.click("#run");
-    await page.waitForFunction(() => !window.__tangle.busy() && window.__tangle.outcome() !== "Ready", null, { timeout: 120000, polling: 500 });
-    assert.equal(await page.evaluate(() => window.__tangle.outcome()), "Root resolved");
-    const fromPage = await page.evaluate(() => JSON.parse(JSON.stringify(window.__tangle.current())));
-    assert.deepEqual(requests, [], "the recording answered every request");
-    assert.deepEqual(errors, []);
-
-    const { run: fromNode } = await nodeRun();
-    assert.equal(fromPage.model, "scripted:first");
-    assert.deepEqual(shape(fromPage), shape(fromNode));
+    for (const seed of SEEDS) {
+      await page.evaluate((seed) => window.__tangle.newLive(seed, {}), seed);
+      // Visible only once a live run exists; every lookup is approved.
+      await page.check("#autoWiki");
+      await page.click("#run");
+      await page.waitForFunction(() => !window.__tangle.busy() && window.__tangle.outcome() !== "Ready", null, { timeout: 120000, polling: 250 });
+      assert.equal(await page.evaluate(() => window.__tangle.outcome()), "Root resolved", seed);
+      const fromPage = await page.evaluate(() => JSON.parse(JSON.stringify(window.__tangle.current())));
+      assert.deepEqual(requests, [], "the recording answered every request");
+      assert.deepEqual(errors, []);
+      const { run: fromNode } = await nodeRun(seed);
+      assert.equal(fromPage.model, "scripted:first");
+      assert.deepEqual(shape(fromPage), shape(fromNode), seed);
+    }
   } finally {
     await browser.close();
   }

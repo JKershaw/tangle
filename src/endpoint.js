@@ -8,11 +8,14 @@
 import { GENERATION_TIMEOUT_MS, MAX_ACTION_TOKENS, SAMPLING } from "./webllm.js";
 
 export const DEFAULT_ENDPOINT = "http://127.0.0.1:11434/v1";
-// Qwen3 thinks before it answers unless told not to. Every ask ends with
-// /no_think (asks.js), the soft switch; these are the hard switch on the
-// servers that have one (Ollama reads `think`, llama.cpp and vLLM read
-// chat_template_kwargs). A server that does not know a field ignores it.
-export const NO_THINKING = Object.freeze({ think: false, chat_template_kwargs: { enable_thinking: false } });
+// Qwen3 thinks before it answers unless told not to, and the thinking is
+// billed against max_tokens: with the soft switch alone (/no_think at the
+// end of every ask, asks.js) Ollama 0.34 answered a 24-token sentence pick
+// with 24 tokens of reasoning and no content. On its OpenAI route Ollama
+// reads reasoning_effort ("none" stops it; `think` is ignored there);
+// llama.cpp and vLLM read chat_template_kwargs. A server that does not know
+// a field ignores it.
+export const NO_THINKING = Object.freeze({ reasoning_effort: "none", chat_template_kwargs: { enable_thinking: false } });
 
 export function requestBody(model, messages, { schema = null, maxTokens = MAX_ACTION_TOKENS, temperature = SAMPLING.temperature, seed = null, extra = NO_THINKING } = {}) {
   const body = { model, messages, stream: false, temperature, max_tokens: maxTokens, ...extra };
