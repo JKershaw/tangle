@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createRun, nextRunnable } from "../src/graph.js";
-import { candidates, isBrief, isForeign, isRepeat, namesIn, occurs, runWalk, searchTerm, splitSubjects, unreadSections, variantsFor } from "../src/walk.js";
+import { briefSubject, candidates, isBrief, isForeign, isRepeat, namesIn, occurs, runWalk, searchTerm, splitSubjects, unreadSections, variantsFor } from "../src/walk.js";
 
 // A scripted model: answers come off a queue, keyed by the field the schema
 // asks for, so a test states exactly what the model says at each ask.
@@ -35,6 +35,25 @@ function wikiFixture(query, { readOn } = {}) {
   if (/dead sea/i.test(query)) return { ok: true, kind: "wiki", title: "Dead Sea", article: "Dead Sea", section: 0, headings: ["Geography", "Receding shoreline"], text: LEAD, url: "u" };
   return { ok: false, error: { kind: "no_match", message: `nothing for ${query}` } };
 }
+
+test("a brief's search term is its subject, and a hit that is the search term itself is read without asking", async () => {
+  assert.equal(searchTerm("Tell me about the Hubble Space Telescope and what it has discovered."), "Hubble Space Telescope");
+  assert.equal(searchTerm("Tell me about Alan Turing and elaborate on the impact of his work."), "Alan Turing");
+  assert.equal(searchTerm("Describe the Great Barrier Reef and the threats it faces."), "Great Barrier Reef");
+  assert.equal(briefSubject("Tell me about coral bleaching."), null, "no capitalised subject");
+  assert.equal(searchTerm("Tell me about coral bleaching."), "Tell me about coral bleaching");
+  const hits = { "Hubble Space Telescope": ["Nancy Grace Roman Space Telescope", "Hubble Space Telescope", "Edwin Hubble"], "Tell me about the Hubble Space Telescope and what it has discovered.": ["Edwin Hubble", "Nancy Grace Roman Space Telescope"] };
+  const wiki = async (query, options = {}) => {
+    if (options.searchOnly) return { ok: true, kind: "search", hits: hits[query] ?? [], snippets: [] };
+    return { ok: true, kind: "wiki", title: query, article: query, section: 0, headings: [], text: `${query} is an orbiting observatory that has discovered much.`, url: "u" };
+  };
+  const run = createRun("Tell me about the Hubble Space Telescope and what it has discovered.", "live", { maxSentences: 1, maxDepth: 0 });
+  const { ask, seen } = scripted([["sentence", "1"]]);
+  assert.equal(await runWalk(run, { ask, wiki, variants: { sentence: "list" } }), true);
+  assert.equal(seen.length, 1, "no article ask: the exact title was read by code");
+  assert.equal(run.evidence[0].title, "Hubble Space Telescope");
+  assert.ok(run.trace.some((event) => event.event === "article_chosen" && event.byCode === true && event.article === "Hubble Space Telescope"));
+});
 
 test("the first lookup is the question minus its question words", () => {
   assert.equal(searchTerm("Why is the Dead Sea shrinking?"), "Dead Sea shrinking");

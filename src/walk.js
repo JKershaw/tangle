@@ -75,8 +75,27 @@ const judgedByNode = new WeakMap();
 const QUESTION_WORDS = new Set("why is are was were the a an does do did how what which who whom when where keep going happen happened happens it its there so much many still".split(" "));
 // Words that only join two subjects; dropped from a split child's search term.
 const JOIN_WORDS = new Set("and or both common share shared versus vs have in of do".split(" "));
+// A brief names its subject: "Tell me about the Hubble Space Telescope and
+// what it has discovered" is about the Hubble Space Telescope, and that is
+// the search term. Searching for the whole brief minus its question words
+// found Nancy Grace Roman and Edwin Hubble and never the telescope (8B,
+// walk-10, evals/results 2026-09-18). The first capitalised phrase that is
+// not the brief's opening word.
+export function briefSubject(question) {
+  const text = String(question ?? "").split(FOCUS)[0];
+  for (const match of text.matchAll(NAME_IN_TEXT)) {
+    // The brief's first word is its verb ("Describe the Great Barrier Reef").
+    const name = (match.index === 0 ? match[1].replace(/^\S+\s+(?:me\s+|us\s+)?(?:about\s+)?(?:the\s+)?/i, "") : match[1]).replace(/^the /i, "").trim();
+    if (name && !BRIEF.test(name)) return name;
+  }
+  return null;
+}
 export function searchTerm(question) {
   const { base, focus, others } = focusOf(question);
+  if (!focus && isBrief(base)) {
+    const subject = briefSubject(base);
+    if (subject) return subject;
+  }
   let text = String(base ?? "").replace(/[?.!,;:"“”]/g, "");
   for (const other of others) text = text.replace(other.replace(/[?.!,;:"“”]/g, ""), " ");
   const words = text.split(/\s+/).filter(Boolean);
@@ -347,6 +366,12 @@ export async function runWalk(run, options) {
       });
     }
     if (!titles.length) return lookup(terms[0]);
+    // A hit whose title is the search term itself is read without asking.
+    const exact = titles.find((title) => normalise(title) === normalise(terms[0]));
+    if (exact) {
+      trace(run, "article_chosen", { node: node.id, query: terms.join(" | "), titles, article: exact, byCode: true });
+      return lookup(exact, null, { chosen: true });
+    }
     let chosen = await answer("article", { question: node.question, titles: titles.slice(0, 8), snippets: snippets.slice(0, 8) }, "Choosing an article");
     // "none" is honoured only when no title is about the question's subject:
     // 0.6B says none to everything (evals/node/results.md), and a title that
