@@ -67,6 +67,22 @@ A 1.7B tangle run is two to eight minutes; 8B is fifteen to twenty-five. Six see
 - Every result records the commit, prompt version, grammar version, model, limits and machine. The driver already fills these in.
 - Determinism has one known hole: grammar compile is cached per distinct schema within a browser session, so the first run after a schema change is slow, not different.
 
+## The turn: one decision per call
+
+The first matrix (2026-09-17) said flat beats the tangle wherever the tangle engages. Read carefully, that was a verdict on the harness of that build, not on the approach: the scheduler froze the root on six of seven seeds, and every visit asked the model for five decisions at once — choose an action, name a section, cite by label, write a finding, write child questions — under one grammar. The micro-evals had already shown that no model on the ladder does that job reliably (8, 12, 11 and 20 of 24 up the ladder). Whole-run scores on top of an unreliable node measure noise.
+
+So the plan turns. Before any more whole runs, make a single node reliable, and do it by making each ask as small as it can be:
+
+- **The model only ever selects from things code prepared**, or names one short thing when there is nothing to select from. It never composes a finding: code splits the excerpts into numbered sentences and the model says which one answers, or none. The chosen sentence, verbatim and cited, *is* the finding.
+- **Code sequences the visit.** Which ask comes next, whether to look something up or hand it to a child, when to revisit a parent, what counts as a repeat: all decided by the harness from budgets and state. The model never chooses an action, so there is no action enum and no per-action grammar.
+- **If code can do it, the model does not.** The first lookup is the question text itself. Repeat detection is string comparison. The section list is an enum.
+
+The thesis is unchanged — a graph of small nodes against one long context — and the node's job just got smaller and checkable.
+
+The asks live in `src/asks.js`, each in several *variants* (phrasings and shapes of the same decision, down to one yes-or-no per sentence). `evals/node/<ask>.json` holds hand-authored cases with known answers, built from the cached articles so the model sees exactly what the harness would show. `scripts/node-eval.mjs` runs every case through every variant on every model and prints pass rate by model × variant. We keep the simplest variant the smallest model passes, and we learn concrete limits (how many sentences 0.6B can choose among before it guesses). A large cheap model over OpenRouter runs the same cases as the truth check: if it fails a case, the case or the ask is wrong; if it passes where 1.7B fails, that is a capacity gap.
+
+Borrowed from Harbour's prompt discipline: the ask is the only variable between rows; cases must not pre-solve the answer; test on a weak model and a strong one; repeat runs before believing a lift; read every result as a lower bound.
+
 ## What counts as progress
 
 A change is kept when it improves the micro-eval pass rate for its target class without lowering the rest, and does not lower the benchmark score for any model it was not aimed at. A change that helps 1.7B and costs 8B is recorded as a trade, not a win. The flat baseline sets the bar: a tangle score has to beat flat on the multi-section seeds to count as the approach working.
@@ -78,9 +94,11 @@ The brief's constraints still hold. The harness owns the graph, findings are not
 - [x] **1. Graders and cases.** `scripts/grade.js` with unit tests; `evals/visits.json` seeded from the fixtures and the experiment traces; a command to add a case from an export.
 - [x] **2. Page hooks.** `window.__tangle.visit(context)`, `pick(...)`, `newLive(seed, limits)`, and the Wikipedia record/replay cache. Built and tested through Playwright.
 - [x] **3. The eval runner.** `scripts/eval.mjs visits --model …` sharing the browser driver with `live-run.mjs`. First micro-eval scoreboard for all four models.
-- [ ] **4. Benchmark.** `evals/seeds.json` with rubrics checked against the live articles (done); `gradeRun` (done); `scripts/eval.mjs runs --model … --mode flat|tangle` (done). First matrix across all four models: running.
-- [ ] **5. Frontier as A/B.** Each open issue below becomes a flag, a fixture, an eval case and a benchmark delta.
-- [ ] **6. UI, shaped by results.** A linear story view of a run and a map that survives 40 nodes, defaulting to whatever model and limits the scoreboard says.
+- [x] **4. Benchmark.** `evals/seeds.json` with rubrics checked against the live articles; `gradeRun`; `scripts/eval.mjs runs --model … --mode flat|tangle`. First matrix across all four models: flat beat the tangle on that build (see the turn above).
+- [ ] **5. The node first.** `src/asks.js`, `evals/node/`, `scripts/node-eval.mjs`. Find, for each ask, the simplest variant 1.7B passes; record where 0.6B gives out; check the cases against a large model.
+- [ ] **6. The harness-driven visit.** Rewrite `runEpisode` as a fixed sequence of asks with code deciding transitions; the old five-decision prompt stays reachable for comparison. Fixtures and simulation follow.
+- [ ] **7. Benchmark again.** Same seeds, same flat control, the new node. Tangle has to beat flat on the multi-section seeds at a defensible token cost on at least one model size.
+- [ ] **8. UI, shaped by results.** A linear story view of a run and a map that survives 40 nodes, defaulting to whatever model and limits the scoreboard says.
 
 ## The frontier
 
@@ -88,7 +106,7 @@ Each is a hypothesis with the eval that would settle it.
 
 | issue | seen in | hypothesis | settled by |
 |---|---|---|---|
-| root frozen by honest blocks | 1.7B dead-sea-5: 32 findings under a waiting root | revisit a parent once children are *settled* (resolved or blocked), telling it which blocked | benchmark: resolved rate up, supported facts not down |
+| root frozen by honest blocks | 1.7B dead-sea-5: 32 findings under a waiting root | revisit a parent once children are *settled* (resolved or blocked) — **now the default** (7cb40c1) | benchmark: resolved rate up, supported facts not down |
 | one answer found forty times | 1.7B dead-sea-4: the same question ×12 | nodes cannot see siblings; showing sibling questions (not findings) stops repeats | benchmark cost down, facts flat; micro-eval `questions_differ` with siblings in context |
 | correct but unsupported findings | 4B dead-sea, both runs | the lead is cited because it is what was read; forcing one section read before `resolved` is allowed would ground it | benchmark supported-facts up on 4B |
 | memory over evidence (the Aral Sea) | 0.6B and 1.7B dead-sea | `finding_avoids` catches it; the fix may be a prompt line or unreachable at 0.6B | micro-eval pass rate per model |

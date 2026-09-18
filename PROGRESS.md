@@ -24,13 +24,19 @@ Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · c
 | 2026-09-17 | 79e918e | 8B | flat | 7/7 | **19/23** | 19/23 | 23/23 | 30k | 334 |
 | 2026-09-17 | 79e918e | 8B | tangle | 7/7 | 18/23 | 18/23 | 23/23 | 15k | 218 |
 
-**The control has answered, and the answer is no — for now.** Decomposition only fires at 1.7B; every other model resolves at the root, so those tangle rows are not a test of it. Where it does fire it costs twenty times the tokens to deliver a quarter of the facts, while reading more of the rubric than any other row. Full table and reading in [evals/results.md](evals/results.md).
+**Read as a verdict on that build, not on the approach.** Decomposition only fires at 1.7B; every other model resolves at the root, so those tangle rows are not a test of it. Where it does fire it costs twenty times the tokens to deliver a quarter of the facts, while reading more of the rubric than any other row — because the scheduler froze the root on six of seven seeds, and because a visit asked the model for five decisions at once. Full table and reading in [evals/results.md](evals/results.md). The plan turned on this result: see *The turn* in [PLAN.md](PLAN.md).
+
+Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<ask>.json`, by ask variant. Full rows in [evals/node/results.md](evals/node/results.md).
+
+| date | commit | ask | variant | 0.6B | 1.7B | 4B | 8B | reference |
+|---|---|---|---|---|---|---|---|---|
+| (running) | | sentence | json · list · strict · yesno | | | | | |
 
 ## Frontier
 
 | issue | fixture | micro-eval cases | benchmark delta | status |
 |---|---|---|---|---|
-| root frozen by honest blocks | — | (whole-run only) | pending first matrix | open, John's call on the revisit policy |
+| root frozen by honest blocks | — | simulation "A source is unavailable" | to measure on the new node | **closed 2026-09-18**: revisit once children are settled is the default (7cb40c1) |
 | one answer found forty times | — | `no-self-repeat-1.7b` | pending first matrix | open, John's call on refusing repeats |
 | does not resolve when the excerpts already answer | — | `resolve-when-supported-*` ×3, `synthesis-*` ×2 | — | 0.6B 0/5, 1.7B 0/5: it decomposes into a paraphrase of its own question instead. pocket-10 targets this |
 | does not read a section by name | — | `section-by-name-*` ×4 | — | 0.6B 0/4, 1.7B 0/4; the harness's forced pick covers it in whole runs. pocket-10 adds a rule |
@@ -43,6 +49,13 @@ Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · c
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-18 · morning
+
+- John's reading of the matrix: the "no" is about unreliable code and prompts, not the idea. Agreed. A node has never been shown to work on its own; whole-run scores on top of that measure noise.
+- Revisit-on-settled is the default (7cb40c1). The blocked simulation scenario now ends with the root resolved; the strict rule survives as `revisitSettled: false` and a test.
+- The turn (PLAN.md): one decision per model call, code sequences the visit, the model only selects from things code prepared. Harbour's prompt discipline borrowed for the method.
+- Built `src/asks.js` (sentence / section / missing asks, four sentence variants down to yes-or-no per sentence), `evals/node/` (20 sentence, 15 section, 9 missing cases from the cached articles), `scripts/node-eval.mjs` (model × variant table, OpenRouter reference models), `__tangle.ask` on the page (f571e0b). First sentence-pick run on 0.6B and 1.7B in progress.
 
 ### 2026-09-17 · night
 
