@@ -88,7 +88,8 @@ test("with lookups exhausted the walk hands down one question; the parent later 
   assert.equal(run.nodes[1].question, "What diverts water from the Jordan River?");
   // The child's own question finds no article, so it is asked what to search
   // for, reads that, and picks.
-  const child = scripted([["search", "Dead Sea"], ["sentence", "2"]]);
+  // ("Dead Sea" shares no content word with the child's question, so its pick is confirmed.)
+  const child = scripted([["search", "Dead Sea"], ["sentence", "2"], ["answers", "yes"]]);
   assert.equal(nextRunnable(run).id, "n2");
   assert.equal(await runWalk(run, { ask: child.ask, wiki: wikiFixture, ...PLAIN }), true);
   assert.equal(run.nodes[1].status, "resolved");
@@ -226,8 +227,10 @@ test("when a search returns several hits the model picks the article; none is a 
   assert.equal(run.evidence[0].title, "Aral Sea");
   assert.equal(run.lookups, 1, "the re-read is part of the same lookup");
 
+  // none is honoured when no title is about the question's subject.
+  const foreignHits = async (query, options = {}) => (options.searchOnly ? { ok: true, kind: "search", hits: ["Weapons of Norse mythology", "Kontos (weapon)"] } : { ok: true, kind: "wiki", title: "Weapons of Norse mythology", article: "Weapons of Norse mythology", section: 0, headings: [], text: "Norse myths name many weapons. Mjölnir is Thor's hammer.", url: "u", alternatives: ["Kontos (weapon)"] });
   const refused = createRun("Why did the Aral Sea shrink?", "live", { maxLookups: 1, maxDepth: 0, ...ONE });
-  await runWalk(refused, { ask: scripted([["article", "none"]]).ask, wiki: hits, variants: { sentence: "list" } });
+  await runWalk(refused, { ask: scripted([["article", "none"]]).ask, wiki: foreignHits, variants: { sentence: "list" } });
   assert.equal(refused.nodes[0].status, "blocked");
   assert.match(refused.nodes[0].failedLookups[0].error, /None of the articles/);
   assert.equal(refused.evidence.length, 0);
@@ -280,4 +283,22 @@ test("the first lookup searches both terms and picks from every title found; a f
   assert.equal(await runWalk(own, { ask: direct.ask, wiki }), true);
   assert.equal(own.nodes[0].status, "resolved");
   assert.equal(own.modelCalls, 2);
+});
+
+test("an article pick of none is honoured only when no title shares a content word with the question", async () => {
+  const wiki = async (query, options = {}) => {
+    if (options.searchOnly) return { ok: true, kind: "search", hits: ["Dead Sea", "Aral Sea"] };
+    return wikiFixture(query, options);
+  };
+  // 0.6B answered none to every article pick in the walk-4 benchmark and read nothing.
+  const run = createRun("Why is the Dead Sea shrinking?", "live", ONE);
+  const { ask } = scripted([["article", "none"], ["sentence", "3"]]);
+  assert.equal(await runWalk(run, { ask, wiki }), true);
+  assert.equal(run.nodes[0].status, "resolved");
+  assert.equal(run.evidence[0].title, "Dead Sea");
+  assert.ok(run.trace.some((event) => event.event === "article_chosen" && event.article === "none" && event.readInstead === "Dead Sea"));
+  const foreign = async (query, options = {}) => (options.searchOnly ? { ok: true, kind: "search", hits: ["Aral Sea", "Caspian Sea"] } : wikiFixture(query, options));
+  const none = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1, maxDepth: 0, ...ONE });
+  await runWalk(none, { ask: scripted([["article", "none"]]).ask, wiki: foreign });
+  assert.equal(none.evidence.length, 0, "none stands when every title is foreign");
 });

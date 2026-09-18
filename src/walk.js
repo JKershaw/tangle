@@ -175,8 +175,10 @@ export async function runWalk(run, options) {
     // walk reads that one instead. "none" is a failed lookup.
     if (!readOn && !chosen && outcome.ok && outcome.alternatives?.length && variants.article !== "off") {
       const titles = [outcome.title, ...outcome.alternatives];
-      const chosen = await answer("article", { question: node.question, titles }, "Choosing an article");
-      trace(run, "article_chosen", { node: node.id, query, titles, article: chosen });
+      let chosen = await answer("article", { question: node.question, titles }, "Choosing an article");
+      const fallback = chosen === "none" ? titles.find((title) => !isForeign(title, node.question)) ?? null : null;
+      trace(run, "article_chosen", { node: node.id, query, titles, article: chosen, ...(fallback ? { readInstead: fallback } : {}) });
+      if (fallback) chosen = fallback;
       if (chosen === "none") outcome = { ok: false, error: { kind: "no_match", message: `None of the articles found for “${query}” is about the question: ${titles.join(", ")}.` } };
       else if (chosen !== outcome.title) {
         outcome = await wiki(chosen, { signal });
@@ -213,8 +215,13 @@ export async function runWalk(run, options) {
       for (const title of found?.hits ?? []) if (!titles.includes(title)) titles.push(title);
     }
     if (!titles.length) return lookup(terms[0]);
-    const chosen = await answer("article", { question: node.question, titles: titles.slice(0, 8) }, "Choosing an article");
-    trace(run, "article_chosen", { node: node.id, query: terms.join(" | "), titles, article: chosen });
+    let chosen = await answer("article", { question: node.question, titles: titles.slice(0, 8) }, "Choosing an article");
+    // "none" is honoured only when no title is about the question's subject:
+    // 0.6B says none to everything (evals/node/results.md), and a title that
+    // shares a content word with the question is worth a read regardless.
+    const fallback = chosen === "none" ? titles.find((title) => !isForeign(title, node.question)) ?? null : null;
+    trace(run, "article_chosen", { node: node.id, query: terms.join(" | "), titles, article: chosen, ...(fallback ? { readInstead: fallback } : {}) });
+    if (fallback) chosen = fallback;
     if (chosen === "none") {
       lookups++;
       run.lookups++;
