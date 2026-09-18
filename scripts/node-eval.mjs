@@ -10,6 +10,7 @@
 // evals/node/results.md.
 import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { ASKS, ASK_VERSION, askAnswer, askCalls } from "../src/asks.js";
+import { isParaphrase } from "../src/text.js";
 import { cachedArticle, sectionSentences } from "./node-case.mjs";
 import { askOpenRouter, openRouterModel } from "./openrouter.mjs";
 import { DEFAULT_URL, loadModel, machineInfo, openLab, pageInfo, parseArgs, shortModel, stamp } from "./lab.mjs";
@@ -58,8 +59,7 @@ export function grade(ask, spec, answer) {
   if (ask === "missing") return new RegExp(spec.expect.mentions, "i").test(String(answer));
   if (ask === "question") {
     const text = String(answer).trim();
-    const same = (a, b) => a.toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim() === b.toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
-    return (text.match(/\?/g) || []).length === 1 && !same(text, spec.question) && new RegExp(spec.expect.mentions, "i").test(text);
+    return (text.match(/\?/g) || []).length === 1 && !isParaphrase(text, spec.question) && new RegExp(spec.expect.mentions, "i").test(text);
   }
   return false;
 }

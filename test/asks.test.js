@@ -62,3 +62,12 @@ test("parseJson tolerates text around the object and rejects garbage", () => {
   assert.deepEqual(parseJson('Sure: {"a": 1} done'), { a: 1 });
   assert.throws(() => parseJson("not json"));
 });
+
+test("isParaphrase: a child that keeps every content word of its parent is the parent again", async () => {
+  const { isParaphrase } = await import("../src/text.js");
+  assert.equal(isParaphrase("What causes the Dead Sea to shrink?", "Why is the Dead Sea shrinking?"), true);
+  assert.equal(isParaphrase("What is the reason behind the Dead Sea's shrinking?", "Why is the Dead Sea shrinking?"), true);
+  assert.equal(isParaphrase("What is the source of the water that is being removed from the Dead Sea?", "Why is the Dead Sea shrinking?"), false);
+  assert.equal(isParaphrase("What causes the energy exchanges that drive the water cycle?", "Why does the water cycle keep going?"), false);
+  assert.equal(isParaphrase("What causes coral reefs to bleach?", "Why do coral reefs bleach?"), true);
+});

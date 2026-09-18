@@ -128,6 +128,8 @@ test("a repeated question is refused by code and the node blocks", async () => {
   assert.equal(run.nodes.length, 1);
   assert.ok(run.trace.some((event) => event.event === "question_rejected"));
   assert.equal(isRepeat(run, run.nodes[0], "why is the dead sea SHRINKING"), true);
+  assert.equal(isRepeat(run, run.nodes[0], "What causes the Dead Sea to shrink?"), true, "a paraphrase keeping every content word is a repeat");
+  assert.equal(isRepeat(run, run.nodes[0], "What is the source of the water being removed from the Dead Sea?"), false, "a narrower question is not");
   assert.equal(isRepeat(run, run.nodes[0], "What feeds it?"), false);
 });
 

@@ -174,6 +174,24 @@ export const ASKS = Object.freeze({
         schema: stringSchema("question", 200),
         maxTokens: 64,
       }), (parsed) => String(parsed.question).trim()),
+      // Narrower phrasings: every size mostly rephrased the parent under "one"
+      // (evals/node/results.md, 2026-09-18).
+      part: single((input) => ({
+        messages: [
+          { role: "system", content: `The sentences do not answer the question. Ask about one part of it only: a single place, thing, event, cause or number that the answer would need. Do not ask the whole question again in other words. Reply with JSON: {"question": "<one short question>"}.` + NO_THINK },
+          { role: "user", content: `Question: ${input.question}\n\n${input.sentences.length ? numbered(input.sentences) : "(nothing read yet)"}` },
+        ],
+        schema: stringSchema("question", 200),
+        maxTokens: 64,
+      }), (parsed) => String(parsed.question).trim()),
+      first: single((input) => ({
+        messages: [
+          { role: "system", content: `To answer the question you would first need one fact that the sentences do not give. Ask for that fact as a short question about a specific thing. It must be a different, smaller question. Reply with JSON: {"question": "<one short question>"}.` + NO_THINK },
+          { role: "user", content: `Question: ${input.question}\n\n${input.sentences.length ? numbered(input.sentences) : "(nothing read yet)"}` },
+        ],
+        schema: stringSchema("question", 200),
+        maxTokens: 64,
+      }), (parsed) => String(parsed.question).trim()),
     },
   },
 

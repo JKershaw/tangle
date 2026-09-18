@@ -15,6 +15,7 @@
 
 import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
+import { isParaphrase } from "./text.js";
 
 export const WALK_VERSION = "walk-1";
 // Which variant of each ask the walk uses; the node evals choose these
@@ -73,13 +74,15 @@ export function unreadSections(run, node) {
   return out;
 }
 
+// A question is a repeat if it is any ancestor's or sibling's question again,
+// verbatim or as a paraphrase that keeps every content word.
 export function isRepeat(run, node, question) {
   const wanted = normalise(question);
   if (!wanted) return true;
   for (let current = node; current; current = run.nodes.find((candidate) => candidate.id === current.parent)) {
-    if (normalise(current.question) === wanted) return true;
+    if (normalise(current.question) === wanted || isParaphrase(question, current.question)) return true;
   }
-  return children(run, node.id).some((child) => normalise(child.question) === wanted);
+  return children(run, node.id).some((child) => normalise(child.question) === wanted || isParaphrase(question, child.question));
 }
 
 export async function runWalk(run, options) {
