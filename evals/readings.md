@@ -13,6 +13,16 @@ The walk (`src/walk.js`) replaced the one-prompt visit: code sequences the visit
 | walk-1 (ee83f51) | flat | 2/7 | 2/23 | 2/23 | 7 | 91 | 32 | 21k | 49 |
 | walk-1 (ee83f51) | tangle | 6/7 | **7/23** | **7/23** | 60 | 737 | 162 | 261k | 515 |
 | walk-3 (ce5474e) | tangle | 6/7 | **8/23** | **8/23** | 24 | 269 | 52 | 101k | 202 |
+| walk-4 (42c937e) | tangle | **7/7** | **9/23** | **9/23** | 16 | 183 | 41 | 62k | 145 |
+
+walk-4 across the ladder (tangle mode; the pocket-9 one-prompt rows are in the matrix below for comparison):
+
+| model | walk-4 facts | supported | seconds | pocket-9 flat | pocket-9 tangle |
+|---|---|---|---|---|---|
+| 0.6B | 0/23 | 0/23 | 60 | 0/23 | 5/23 |
+| 1.7B | **9/23** | 9/23 | 145 | 8/23 (7) | 2/23 |
+| 4B | 14/23 | 14/23 | 64 | 14/23 | 14/23 |
+| 8B | 14/23 | 14/23 | 150 | 19/23 | 18/23 |
 
 Three things changed at once, so read it as a floor, not a verdict.
 
@@ -20,6 +30,7 @@ Three things changed at once, so read it as a floor, not a verdict.
 - **Per seed it is either clean or lost.** Dead Sea: one node, five calls, two lookups, the National Water Carrier sentence, five seconds. Colony collapse: two nodes, all four facts, because one sentence lists the causes. Coral, water cycle: one fact each, the first answering sentence, and stop. Bronze Age, sky-blue, Aral: zero, for reasons the traces make plain.
 - **The walk's own failures, all fixable in code.** (1) A child question about the sentences it was shown — "What is the name of the weapon described in the text?" under the Aral Sea — takes the graph somewhere it never returns from; Bronze Age drifted into food waste, sky-blue into Blue Sky Studios. (2) Junk leaf findings are gathered up to the root as its answer. (3) One sentence per finding caps a why-question at one fact. (4) "Sky blue" as a search term finds the colour. walk-2 refuses paraphrases of an ancestor or sibling; walk-3 refuses questions about the text and gathers up to three sentences per finding; the benchmark reruns on it next.
 - **walk-3 (same day, second row):** refusing paraphrases and questions about the text, and gathering up to three checked sentences, took 1.7B to 8/23 — level with the old composing flat prompt, every fact supported, in 202 s — and the Aral runaway shrank from 32 nodes to 6. Bronze Age went from 0 to 2 facts. But the water cycle root blocked after showing the same lead windows twice across visits with the check saying no to the true sentence; sky-blue and Aral read the wrong article ("Sky blue" the colour, "North Aral Sea") for visits because the walk trusts Wikipedia's first hit; and the Dead Sea's second gathered sentence was filler the check let through. walk-4 picks the article from the five hits and remembers judged sentences across visits.
+- **walk-4 is the first legitimate win, at one size.** With the article picked from the search hits and judged sentences remembered, 1.7B resolves every seed and states 9 facts, all supported, faster than the old composing prompt stated 8 with one unsupported. 4B holds its old score at two-thirds the time. 8B falls below its old rows: a finding of at most three verbatim sentences states fewer facts than a composed paragraph, and on the sky seed 8B chose the colour article, drifted into a painter's biography through four "waiting" ancestors, and the question ask overflowed the context window. 0.6B is now below the frontier for the walk's first step: it answers "none" to every article pick.
 - **The question ask is the weak ask at every size** (evals/node/results.md): under three phrasings, 0.6B to 8B mostly rephrase the parent ("What is the main cause of the Dead Sea's shrinking?"), which the paraphrase rule now refuses; the narrower phrasings help 1.7B a little and hurt 4B. Real sub-questions do appear ("What is the source of the water being removed from the Dead Sea?"). Decomposition is where the thesis lives, and it is the ask a tiny model does worst; the graph currently earns its keep by reading on, not by asking well.
 - **The flat control under the walk is weak by construction**: one node, one sentence, no reading on after a "none". The fair control for "does decomposition help" remains the old composing flat prompt until the walk's flat mode reads on after an answer.
 

@@ -26,6 +26,10 @@ Benchmark (`scripts/eval.mjs runs`): per seed, `resolved · facts/supported · c
 | 2026-09-18 | ee83f51 (walk-1) | 1.7B | flat | 2/7 | 2/23 | 2/23 | 18/23 | 21k | 49 |
 | 2026-09-18 | ee83f51 (walk-1) | 1.7B | tangle | 6/7 | **7/23** | **7/23** | 20/23 | 261k | 515 |
 | 2026-09-18 | ce5474e (walk-3) | 1.7B | tangle | 6/7 | **8/23** | **8/23** | 20/23 | 101k | 202 |
+| 2026-09-18 | 42c937e (walk-4) | 0.6B | tangle | 0/7 | 0/23 | 0/23 | 0/23 | 3k | 60 |
+| 2026-09-18 | 42c937e (walk-4) | 1.7B | tangle | **7/7** | **9/23** | **9/23** | 20/23 | 62k | 145 |
+| 2026-09-18 | 42c937e (walk-4) | 4B | tangle | 7/7 | 14/23 | 14/23 | 19/23 | 9k | 64 |
+| 2026-09-18 | 42c937e (walk-4) | 8B | tangle | 6/7 | 14/23 | 14/23 | 18/23 | 30k | 150 |
 
 **Read as a verdict on that build, not on the approach.** Decomposition only fires at 1.7B; every other model resolves at the root, so those tangle rows are not a test of it. Where it does fire it costs twenty times the tokens to deliver a quarter of the facts, while reading more of the rubric than any other row — because the scheduler froze the root on six of seven seeds, and because a visit asked the model for five decisions at once. Full table and reading in [evals/results.md](evals/results.md). The plan turned on this result: see *The turn* in [PLAN.md](PLAN.md).
 
@@ -76,6 +80,7 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 - Second live walk: the National Water Carrier sentence, five calls, five seconds (experiments/2026-09-18-qwen3-1.7b-dead-sea-walk-2).
 - The walk's first benchmark on 1.7B: tangle 7/23 facts, all supported, against 2/23 for its flat control and 8/23 (7 supported) for the old composing flat prompt. Reading in [evals/readings.md](evals/readings.md). Three seeds lost to drift (child questions about "the text"), junk gathered upward, and one-sentence findings.
 - The question ask mostly rephrases its parent at every size; a paraphrase that keeps every content word is now refused by code (walk-2), and questions about the text (walk-3). Findings gather up to three checked sentences.
+- walk-4 ladder: 1.7B **9/23, every seed resolved, all supported, 145 s** — the first row where the tangle beats the fair control (the old composing flat prompt, 8/23 with 7 supported at 179 s). 4B 14/23 (level with its old rows at two-thirds the time). 8B 14/23, below its old 18–19: one-sentence findings cap what a big model can state, and the sky seed drifted from the wrong "Sky blue" article into a painter's biography until the question ask overflowed the context window. 0.6B 0/23: it answers "none" to every article pick, so it read nothing. walk-5 (5887c5d) searches both terms and picks the article from the union, honours "none" only when every title is foreign to the question, confirms a pick only when its source is foreign, and caps what the naming asks see. Ladder rerunning.
 - walk-3 on 1.7B: **8/23, all supported, 202 s** — level with the old composing flat prompt's count with every fact grounded, at a similar cost. Aral runaway gone (6 nodes). Water cycle blocked (same windows re-shown across visits, the check refusing the true sentence); sky-blue and Aral read the wrong first hit for visits. walk-4 (42c937e): the article is picked from the five hits, judged sentences are remembered, six passes. Running.
 - Also learned: Chrome's persistent profile served a two-builds-old page from its HTTP cache. The driver now busts the cache and records the page's own versions.
 
