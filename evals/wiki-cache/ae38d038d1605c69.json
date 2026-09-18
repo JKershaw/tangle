@@ -1,0 +1,1 @@
+{"url":"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=What%20atmospheric%20factors%20influence%20the%20specific%20shade%20of%20pure%20celeste%20in%20the%20sky%3F&srlimit=5&format=json&origin=*","status":200,"body":"{\"batchcomplete\":\"\",\"query\":{\"searchinfo\":{\"totalhits\":0},\"search\":[]}}","fetchedAt":"2026-09-18T08:04:35.931Z"}

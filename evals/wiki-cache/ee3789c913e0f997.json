@@ -1,0 +1,1 @@
+{"url":"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=specific%20elements%20of%20Tibetan%20and%20Himalayan%20culture%20influenced%20Elaine%20Hamilton%27s%20artistic%20style&srlimit=5&format=json&origin=*","status":200,"body":"{\"batchcomplete\":\"\",\"query\":{\"searchinfo\":{\"totalhits\":0},\"search\":[]}}","fetchedAt":"2026-09-18T07:58:49.297Z"}

@@ -1,0 +1,1 @@
+{"url":"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=specific%20atmospheric%20conditions%20contribute%20to%20appearance%20of%20pure%20celeste%20color%20in%20sky&srlimit=5&format=json&origin=*","status":200,"body":"{\"batchcomplete\":\"\",\"query\":{\"searchinfo\":{\"totalhits\":0},\"search\":[]}}","fetchedAt":"2026-09-18T08:04:28.843Z"}
