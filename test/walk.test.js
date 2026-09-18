@@ -412,6 +412,21 @@ test("the first lookup searches both terms and picks from every title found; a f
   assert.equal(own.modelCalls, 2);
 });
 
+test("an article pick of none is overridden by a title that is the query itself", async () => {
+  const wiki = async (query, options = {}) => {
+    if (options.searchOnly) return { ok: true, hits: [], snippets: [] };
+    if (/^bombe$/i.test(query)) return { ok: true, kind: "wiki", title: "Bombe", article: "Bombe", section: 0, headings: [], text: "The bombe was an electro-mechanical device used by British cryptologists to help decipher Enigma. The initial design was produced by Turing at Bletchley Park.", url: "u", alternatives: ["Baked Alaska", "Bombe glacée"] };
+    return wikiFixture(query, options);
+  };
+  const run = createRun("Tell me about Alan Turing and elaborate on the impact of his work.", "live", { maxLookups: 2, maxSentences: 1, maxDepth: 0 });
+  // A one-node brief (maxDepth 0): lead pick, then the hop is not offered (no readFirst); so drive the article pick directly through a lookup by search.
+  const { ask, seen } = scripted([["article", "Alan Turing"], ["sentence", "none"], ["search", "Bombe"], ["article", "none"], ["sentence", "2"]]);
+  const wikiSearch = async (query, options = {}) => (options.searchOnly ? { ok: true, hits: ["Alan Turing"], snippets: [""] } : /turing/i.test(query) && !/bombe/i.test(query) ? { ok: true, kind: "wiki", title: "Alan Turing", article: "Alan Turing", section: 0, headings: [], text: "Alan Turing was an English mathematician and computer scientist.", url: "u" } : wiki(query, options));
+  assert.equal(await runWalk(run, { ask, wiki: wikiSearch, variants: { sentence: "list" } }), true);
+  assert.ok(run.trace.some((event) => event.event === "article_chosen" && event.article === "none" && event.readInstead === "Bombe"), JSON.stringify(run.trace.filter((event) => event.event === "article_chosen")));
+  assert.equal(run.nodes[0].finding, "The initial design was produced by Turing at Bletchley Park.");
+});
+
 test("an article pick of none is honoured only when no title shares a content word with the question", async () => {
   const wiki = async (query, options = {}) => {
     if (options.searchOnly) return { ok: true, kind: "search", hits: ["Dead Sea", "Aral Sea"] };

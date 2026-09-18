@@ -242,7 +242,10 @@ export async function runWalk(run, options) {
     if (!readOn && !chosen && outcome.ok && outcome.alternatives?.length && variants.article !== "off") {
       const titles = [outcome.title, ...outcome.alternatives];
       let chosen = await answer("article", { question: node.question, titles }, "Choosing an article");
-      const fallback = chosen === "none" ? titles.find((title) => !isForeign(title, node.question)) ?? null : null;
+      // "none" is overridden by a title that is the query itself (a hop to
+      // "Bombe" offered Bombe, Baked Alaska and Bombe glacée; 8B said none)
+      // or that shares a content word with the question.
+      const fallback = chosen === "none" ? titles.find((title) => normalise(title) === normalise(query)) ?? titles.find((title) => !isForeign(title, node.question)) ?? null : null;
       trace(run, "article_chosen", { node: node.id, query, titles, article: chosen, ...(fallback ? { readInstead: fallback } : {}) });
       if (fallback) chosen = fallback;
       if (chosen === "none") outcome = { ok: false, error: { kind: "no_match", message: `None of the articles found for “${query}” is about the question: ${titles.join(", ")}.` } };
