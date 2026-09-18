@@ -566,6 +566,13 @@ window.__tangle = {
     if (locked()) throw new Error("Busy.");
     return timed(() => createSectionChooser(adapter)(request));
   },
+  // One raw call: the node evals (scripts/node-eval.mjs) build calls from
+  // src/asks.js and send each here unchanged.
+  ask: async ({ messages, schema, maxTokens }) => {
+    if (!loadedModel) throw new Error("Load a model first.");
+    if (locked()) throw new Error("Busy.");
+    return timed(() => adapter.generate(messages, { schema, maxTokens, seed: SAMPLING.seed, temperature: SAMPLING.temperature }));
+  },
   wiki: {
     load: (entries) => {
       for (const entry of entries) wikiCache.set(entry.url, entry);

@@ -1,0 +1,21 @@
+{
+  "ask": "section",
+  "note": "Which section heading of the article is most likely to hold the answer. Headings come from the cached article (scripts/node-case.mjs <article>) minus the lead; 'accept' lists every defensible pick.",
+  "cases": [
+    { "id": "dead-sea-shrinking", "article": "Dead Sea", "question": "Why is the Dead Sea shrinking?", "expect": { "accept": ["Receding shoreline"] } },
+    { "id": "dead-sea-salty", "article": "Dead Sea", "question": "How salty is the Dead Sea, and why?", "expect": { "accept": ["Chemistry", "Lake salinity"] } },
+    { "id": "dead-sea-minerals", "article": "Dead Sea", "question": "What minerals are extracted from the Dead Sea?", "expect": { "accept": ["Extraction"] } },
+    { "id": "dead-sea-sinkholes", "article": "Dead Sea", "question": "Why are sinkholes appearing around the Dead Sea?", "expect": { "accept": ["Sinkholes and their impact"] } },
+    { "id": "water-cycle-energy", "article": "Water cycle", "question": "What supplies the energy for the water cycle?", "expect": { "accept": ["Overall process"] } },
+    { "id": "water-cycle-climate", "article": "Water cycle", "question": "How is climate change changing the water cycle?", "expect": { "accept": ["Water cycle intensification due to climate change"] } },
+    { "id": "water-cycle-residence", "article": "Water cycle", "question": "How long does water stay in the atmosphere?", "expect": { "accept": ["Residence times"] } },
+    { "id": "lba-drought", "article": "Late Bronze Age collapse", "question": "Did drought contribute to the Late Bronze Age collapse?", "expect": { "accept": ["Drought", "Possible causes"] } },
+    { "id": "lba-sea-peoples", "article": "Late Bronze Age collapse", "question": "Who were the Sea Peoples and what did they do?", "expect": { "accept": ["Migratory invasions", "Possible causes"] } },
+    { "id": "ccd-mites", "article": "Colony collapse disorder", "question": "How do Varroa mites harm honey bee colonies?", "expect": { "accept": ["Varroa mites"] } },
+    { "id": "ccd-pesticides", "article": "Colony collapse disorder", "question": "Do neonicotinoid pesticides cause colony collapse?", "expect": { "accept": ["Neonicotinoids", "Pesticides"] } },
+    { "id": "coral-triggers", "article": "Coral bleaching", "question": "What triggers coral bleaching?", "expect": { "accept": ["Common triggers", "List of triggers", "Process"] } },
+    { "id": "coral-acid", "article": "Coral bleaching", "question": "Does ocean acidification cause bleaching?", "expect": { "accept": ["Role of ocean acidification"] } },
+    { "id": "rayleigh-sky", "article": "Rayleigh scattering", "question": "Why is the sky blue?", "expect": { "accept": ["Cause of the blue color of the sky"] } },
+    { "id": "evaporation-rate", "article": "Evaporation", "question": "What makes water evaporate faster?", "expect": { "accept": ["Factors influencing the rate of evaporation"] } }
+  ]
+}

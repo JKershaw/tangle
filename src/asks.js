@@ -1,0 +1,151 @@
+// The asks: the smallest questions the harness puts to a model, one decision
+// per call. A visit is sequenced by code (episode.js); the model only ever
+// picks from things code prepared, or names one short thing when there is
+// nothing to pick from. Each ask has variants — phrasings and shapes of the
+// same decision — so the node evals (scripts/node-eval.mjs, evals/node/) can
+// measure which is the simplest ask a small model answers reliably. The page
+// and the eval runner build calls from the same definitions.
+//
+// An ask variant turns an input into one or more calls ({ messages, schema,
+// maxTokens }) and combines the raw outputs into one answer. Schemas stay tiny
+// and few: web-llm compiles a grammar per distinct schema (see webllm.js).
+
+export const ASK_VERSION = "asks-1";
+export const NO_THINK = " /no_think";
+
+// Sentences are what the model picks between, so they are made by code, the
+// same way every time. Fragments shorter than minLength (initials, "c. 1200",
+// list bullets) are joined to their neighbour rather than shown as choices.
+export function splitSentences(text, { minLength = 25 } = {}) {
+  const clean = String(text ?? "").replace(/\s+/g, " ").trim();
+  if (!clean) return [];
+  const raw = clean.split(/(?<=[.!?]["”’)]?)\s+(?=["“(]?[A-Z0-9])/);
+  const sentences = [];
+  for (const part of raw) {
+    const piece = part.trim();
+    if (!piece) continue;
+    if (sentences.length && (piece.length < minLength || /(\b[A-Z]|\b(?:c|ca|e\.g|i\.e|vs|St|Mt|Dr|No)\.)$/.test(sentences.at(-1)))) sentences[sentences.length - 1] += " " + piece;
+    else sentences.push(piece);
+  }
+  return sentences;
+}
+
+const numbered = (sentences) => sentences.map((sentence, index) => `${index + 1}. ${sentence}`).join("\n");
+const labels = (count) => Array.from({ length: count }, (_, index) => String(index + 1));
+const enumSchema = (key, values) => Object.freeze({ type: "object", properties: { [key]: { enum: [...values] } }, required: [key], additionalProperties: false });
+const stringSchema = (key, maxLength) => Object.freeze({ type: "object", properties: { [key]: { type: "string", maxLength } }, required: [key], additionalProperties: false });
+
+export function parseJson(raw) {
+  const text = String(raw ?? "").trim();
+  const start = text.indexOf("{");
+  const end = text.lastIndexOf("}");
+  return JSON.parse(start >= 0 && end > start ? text.slice(start, end + 1) : text);
+}
+
+const single = (build, read) => ({
+  calls: (input) => [build(input)],
+  combine: (outputs, input) => read(parseJson(outputs[0]), input),
+});
+
+// ---- sentence: which sentence answers the question? ----
+// Input { question, sentences: [string] }. Answer: "1".."N" or "none".
+const SENTENCE_SYSTEM = {
+  json: `Which numbered sentence answers the question? Reply with JSON: {"sentence": "<number>"}, or {"sentence": "none"} if no sentence answers it.`,
+  list: `You are given a question and numbered sentences. Pick the one sentence that answers the question. If none of them answers it, pick none. Reply with JSON only.`,
+  strict: `Pick the sentence that states the answer to the question. Only pick a sentence if the answer is written in it; do not use anything you know. If no sentence states the answer, reply none. Reply with JSON only.`,
+};
+const sentenceCall = (system, user) => (input) => ({
+  messages: [
+    { role: "system", content: system + NO_THINK },
+    { role: "user", content: user(input) },
+  ],
+  schema: enumSchema("sentence", [...labels(input.sentences.length), "none"]),
+  maxTokens: 24,
+});
+const readSentence = (parsed) => String(parsed.sentence);
+
+export const ASKS = Object.freeze({
+  sentence: {
+    describe: (input) => `${input.sentences.length} sentences`,
+    variants: {
+      json: single(sentenceCall(SENTENCE_SYSTEM.json, (input) => JSON.stringify({ question: input.question, sentences: Object.fromEntries(input.sentences.map((sentence, index) => [String(index + 1), sentence])) })), readSentence),
+      list: single(sentenceCall(SENTENCE_SYSTEM.list, (input) => `Question: ${input.question}\n\n${numbered(input.sentences)}\n\nWhich sentence answers the question? Reply {"sentence": "<number>"} or {"sentence": "none"}.`), readSentence),
+      strict: single(sentenceCall(SENTENCE_SYSTEM.strict, (input) => `Question: ${input.question}\n\n${numbered(input.sentences)}\n\nReply {"sentence": "<number>"} or {"sentence": "none"}.`), readSentence),
+      // The floor: one yes-or-no per sentence. The answer is the set of yeses,
+      // rendered as "3" when exactly one, "none" when none, "2+5" when several.
+      yesno: {
+        calls: (input) => input.sentences.map((sentence) => ({
+          messages: [
+            { role: "system", content: `Does the sentence answer the question? Reply with JSON: {"answers": "yes"} or {"answers": "no"}.` + NO_THINK },
+            { role: "user", content: `Question: ${input.question}\nSentence: ${sentence}` },
+          ],
+          schema: enumSchema("answers", ["yes", "no"]),
+          maxTokens: 16,
+        })),
+        combine: (outputs) => {
+          const yes = outputs.map((raw, index) => (parseJson(raw).answers === "yes" ? String(index + 1) : null)).filter(Boolean);
+          return yes.length ? yes.join("+") : "none";
+        },
+      },
+    },
+  },
+
+  // ---- section: which section of the article is most likely to hold the answer? ----
+  // Input { question, article, sections: [string] }. Answer: one heading.
+  section: {
+    describe: (input) => `${input.sections.length} sections`,
+    variants: {
+      json: single((input) => ({
+        messages: [
+          { role: "system", content: `Pick the one section of the article most likely to answer the question. Reply with JSON: {"section": "<exact heading>"}.` + NO_THINK },
+          { role: "user", content: JSON.stringify({ question: input.question, article: input.article, sections: input.sections }) },
+        ],
+        schema: enumSchema("section", input.sections),
+        maxTokens: 80,
+      }), (parsed) => String(parsed.section)),
+      list: single((input) => ({
+        messages: [
+          { role: "system", content: `You are given a question and the section headings of a Wikipedia article. Pick the heading of the section most likely to contain the answer. Reply with JSON only.` + NO_THINK },
+          { role: "user", content: `Question: ${input.question}\nArticle: ${input.article}\n\nSections:\n${input.sections.map((heading) => `- ${heading}`).join("\n")}\n\nReply {"section": "<heading>"}.` },
+        ],
+        schema: enumSchema("section", input.sections),
+        maxTokens: 80,
+      }), (parsed) => String(parsed.section)),
+    },
+  },
+
+  // ---- missing: the one free-text ask. What would you look up next? ----
+  // Input { question, sentences: [string] } (sentences already read, possibly
+  // empty). Answer: a short search phrase.
+  missing: {
+    describe: (input) => `${input.sentences.length} sentences read`,
+    variants: {
+      search: single((input) => ({
+        messages: [
+          { role: "system", content: `The sentences do not answer the question. Name the Wikipedia article (1 to 4 words) most likely to answer it. Reply with JSON: {"search": "<words>"}.` + NO_THINK },
+          { role: "user", content: `Question: ${input.question}\n\n${input.sentences.length ? numbered(input.sentences) : "(nothing read yet)"}` },
+        ],
+        schema: stringSchema("search", 60),
+        maxTokens: 40,
+      }), (parsed) => String(parsed.search).trim()),
+      fact: single((input) => ({
+        messages: [
+          { role: "system", content: `The sentences do not answer the question. In a few words, what fact is missing? Reply with JSON: {"missing": "<few words>"}.` + NO_THINK },
+          { role: "user", content: `Question: ${input.question}\n\n${input.sentences.length ? numbered(input.sentences) : "(nothing read yet)"}` },
+        ],
+        schema: stringSchema("missing", 80),
+        maxTokens: 48,
+      }), (parsed) => String(parsed.missing).trim()),
+    },
+  },
+});
+
+export function askCalls(ask, variant, input) {
+  const definition = ASKS[ask]?.variants?.[variant];
+  if (!definition) throw new Error(`Unknown ask ${ask}/${variant}`);
+  return definition.calls(input);
+}
+
+export function askAnswer(ask, variant, outputs, input) {
+  return ASKS[ask].variants[variant].combine(outputs, input);
+}

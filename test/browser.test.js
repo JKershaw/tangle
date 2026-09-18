@@ -67,9 +67,11 @@ test("the built page runs the revisit simulation to a resolved root and exports 
     // Switching scenario starts a fresh graph (the confirm dialog is accepted above).
     await page.selectOption("#scenario", "blocked");
     await page.click("#run");
-    await page.waitForFunction(() => document.getElementById("status").textContent.startsWith("No runnable nodes"), null, { timeout: 60000 });
+    // One leaf blocks; its parent runs again with what it has and the root still resolves.
+    await page.waitForFunction(() => document.getElementById("status").textContent === "Root resolved", null, { timeout: 60000 });
     assert.equal(await page.locator(".graph-node").count(), 8);
     assert.equal(await page.locator('.graph-node[data-status="blocked"]').count(), 1);
+    assert.equal(await page.locator('.graph-node[data-status="resolved"]').count(), 7);
 
     assert.deepEqual(requests, [], "the simulation must make no network requests");
     assert.deepEqual(errors, []);
@@ -93,7 +95,7 @@ test("the driver hooks: a live run with custom limits, and Wikipedia served from
 
     // The flat baseline is a limits preset on a live run.
     const limits = await page.evaluate(() => window.__tangle.newLive("Why is the Dead Sea shrinking?", { maxDepth: 0, maxLookups: 6, maxPasses: 8 }));
-    assert.deepEqual(limits, { maxNodes: 40, maxVisits: 60, maxDepth: 0, maxLookups: 6, maxPasses: 8 });
+    assert.deepEqual(limits, { maxNodes: 40, maxVisits: 60, maxDepth: 0, maxLookups: 6, maxPasses: 8, revisitSettled: true });
     assert.deepEqual(await page.evaluate(() => [window.__tangle.current().mode, window.__tangle.current().seed]), ["live", "Why is the Dead Sea shrinking?"]);
     assert.equal(await page.locator("#liveMode").getAttribute("aria-pressed"), "true");
 
