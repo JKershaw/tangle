@@ -27,7 +27,7 @@ walk-4 across the ladder (tangle mode; the pocket-9 one-prompt rows are in the m
 
 walk-5 (both search terms, the article picked from the union, confirmation only for foreign sources): 0.6B 2/23 · 1.7B 9/23 in 35 s · 4B **16/23** · 8B 12/23, all supported.
 
-walk-6 (search snippets with the titles; the check by model size): 0.6B 2/23 · 1.7B 9/23 in 56 s · 4B 14/23 with the check · 8B **16/23** with the check, every seed resolved, 104 s. All supported.
+walk-6 (search snippets with the titles; the check by model size): 0.6B 2/23 · 1.7B 9/23 in 56 s · 4B 14/23 with the check, **16/23** without it (65 s) · 8B **16/23** with the check, every seed resolved, 104 s. All supported.
 
 | model | best walk row (all supported) | fair control: pocket-9 one-prompt flat (supported) |
 |---|---|---|
