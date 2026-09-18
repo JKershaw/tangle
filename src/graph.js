@@ -175,10 +175,10 @@ export function validateResult(run, node, result, visibleEvidenceIds) {
     assert(isText(result.query, 180), "Wikipedia query must be 1–180 characters.");
   }
   if (result.action === "decompose") {
-    assert(
-      Array.isArray(result.questions) && result.questions.length >= 1 && result.questions.length <= 3,
-      "Propose 1–3 questions.",
-    );
+    // The model may propose up to three; the walk's own splits (one child
+    // per subject, one per chosen section; result.harness) up to maxSections.
+    const most = result.harness === true ? Math.max(3, run.limits.maxSections ?? 3) : 3;
+    assert(Array.isArray(result.questions) && result.questions.length >= 1 && result.questions.length <= most, `Propose 1–${most} questions.`);
     assert(result.questions.every((question) => isText(question, 300)), "Each question must be 1–300 characters.");
     // One question per child: 1.7B once proposed "Why is the Dead Sea shrinking? Why is
     // the Dead Sea's surface level decreasing? What factors …" as a single child.

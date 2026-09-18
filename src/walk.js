@@ -311,7 +311,7 @@ export async function runWalk(run, options) {
       if (subjects.length && node.depth < run.limits.maxDepth && run.nodes.length + subjects.length <= run.limits.maxNodes) {
         node.split = subjects;
         trace(run, "question_split", { node: node.id, subjects });
-        applyResult(run, node.id, { action: "decompose", questions: subjects.map((subject) => `${String(node.question).trim()}${FOCUS}${subject}`) }, visible());
+        applyResult(run, node.id, { action: "decompose", harness: true, questions: subjects.map((subject) => `${String(node.question).trim()}${FOCUS}${subject}`) }, visible());
         onUpdate(node.id, "Split into one question per subject");
         return true;
       }
@@ -374,7 +374,7 @@ export async function runWalk(run, options) {
       if (!chosen.length) return false;
       node.kept = gathered.map((candidate) => ({ text: candidate.text, evidence: [...candidate.evidence] }));
       node.fanned = true;
-      applyResult(run, node.id, { action: "decompose", questions: chosen.map((heading) => `${String(node.question).trim()}${FOCUS}${heading}`) }, visible());
+      applyResult(run, node.id, { action: "decompose", harness: true, questions: chosen.map((heading) => `${String(node.question).trim()}${FOCUS}${heading}`) }, visible());
       for (const child of run.nodes.slice(-chosen.length)) child.readFirst = { article: unread.article, section: chosen[run.nodes.slice(-chosen.length).indexOf(child)] };
       onUpdate(node.id, `Reading ${chosen.length} section${chosen.length === 1 ? "" : "s"} below`);
       return "fanned";
