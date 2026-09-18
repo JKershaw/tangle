@@ -314,9 +314,9 @@ test("an article pick of none is honoured only when no title shares a content wo
   assert.equal(none.evidence.length, 0, "none stands when every title is foreign");
 });
 
-test("variants by model size: the sentence pick is checked at 4B and above, plain below", () => {
+test("variants by model size: the sentence pick is checked at 8B and above, plain below", () => {
   assert.equal(variantsFor("Qwen3-8B-q4f16_1-MLC").sentence, "check");
-  assert.equal(variantsFor("Qwen3-4B-q4f16_1-MLC").sentence, "check");
+  assert.equal(variantsFor("Qwen3-4B-q4f16_1-MLC").sentence, "list");
   assert.equal(variantsFor("Qwen3-1.7B-q4f16_1-MLC").sentence, "list");
   assert.equal(variantsFor("Qwen3-0.6B-q4f16_1-MLC").sentence, "list");
   assert.equal(variantsFor("Qwen3-1.7B-q4f16_1-MLC").article, "snippets");

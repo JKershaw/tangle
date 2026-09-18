@@ -26,12 +26,13 @@ export const WALK_VERSION = "walk-6"; // walk-6: search snippets shown with the 
 // even labelled); the check catches it from 1.7B up, trading a few false
 // "none"s — which cost a lookup — for false findings, which cost the run.
 export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "list", missing: "search", question: "one", article: "snippets", confirm: "yesno" });
-// Variants by model size, from the node evals (evals/node/results.md): the
-// pick-then-check sentence ask has no false negatives at 8B (23/23) and few
-// at 4B (21/23), but at 1.7B it refuses true answers, so 1.7B and below take
-// the plain pick and confirm only foreign-source picks (CHECK_FOREIGN).
+// Variants by model size. The pick-then-check sentence ask has no false
+// negatives at 8B (node evals 23/23; benchmark 12 → 16 facts) but costs 4B
+// two facts on the benchmark (16 → 14) and refuses true answers at 1.7B, so
+// only 8B and above check every pick; the rest take the plain pick and
+// confirm only foreign-source picks (CHECK_FOREIGN).
 export function variantsFor(modelId = "") {
-  const big = /-(4|8|14|32)B-/i.test(String(modelId));
+  const big = /-(8|14|32)B-/i.test(String(modelId));
   return { ...DEFAULT_VARIANTS, ...(big ? { sentence: "check" } : {}) };
 }
 // When the picked sentence comes from an article that shares no content
