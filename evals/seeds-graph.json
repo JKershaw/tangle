@@ -7,11 +7,11 @@
       "seed": "Why did the Dead Sea and the Aral Sea both shrink?",
       "kind": "comparison",
       "facts": {
-        "jordan": "Jordan River|National Water Carrier|diverted|diversion",
+        "jordan": "Jordan River|National Water Carrier|Jordan",
         "aral-rivers": "Amu Darya|Syr Darya",
         "irrigation": "irrigation|cotton"
       },
-      "where": "Dead Sea: jordan in the lead. Aral Sea: aral-rivers and irrigation in the lead. Neither article holds the other's facts; a search for the whole question returns one of them"
+      "where": "Dead Sea: jordan in the lead. Aral Sea: aral-rivers and irrigation in the lead. Neither article holds the other's facts; a search for the whole question returns one of them. (First rubric let 'diverted' count for jordan, which the Aral lead also says; tightened before the rows below)"
     },
     {
       "id": "chad-dead",
@@ -20,7 +20,7 @@
       "facts": {
         "irrigation": "irrigation",
         "rainfall": "drought|rainfall|rain",
-        "jordan": "Jordan River|National Water Carrier|diverted|diversion"
+        "jordan": "Jordan River|National Water Carrier|Jordan"
       },
       "where": "Lake Chad: rainfall in the lead, irrigation only in Hydrology and Human activities. Dead Sea: jordan in the lead"
     },
@@ -29,11 +29,11 @@
       "seed": "What causes do the Late Bronze Age collapse and the fall of the Western Roman Empire have in common?",
       "kind": "comparison",
       "facts": {
-        "migration": "migrat|invasion|Sea Peoples|barbarian",
-        "climate": "climate|drought",
-        "economic": "economic|financial|trade|tax"
+        "sea-peoples": "Sea Peoples|Bronze Age",
+        "barbarians": "barbarian|Germanic|Goth|Hun|Vandal|Visigoth",
+        "climate": "climate|drought"
       },
-      "where": "Late Bronze Age collapse: all three in the lead. Fall of the Western Roman Empire: migration in the lead; climate only in Major phases, Climatic crisis, Migrational crisis and Financial crisis; economic only in sections. A finding built from one article can name all three, so the graded question is whether the root reads both"
+      "where": "Late Bronze Age collapse: sea-peoples and climate in the lead, no barbarians. Fall of the Western Roman Empire: barbarians in the lead; climate only in Major phases, Climatic crisis, Migrational crisis and Financial crisis; no Sea Peoples. Full marks need both articles"
     },
     {
       "id": "sahara-dry",

@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { contentWords, isParaphrase } from "./text.js";
 
-export const WALK_VERSION = "walk-6"; // walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
+export const WALK_VERSION = "walk-7"; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -57,10 +57,43 @@ const judgedByNode = new WeakMap();
 // stripped term finds the Dead Sea, and the same rule finds the right article
 // for every benchmark seed tried.
 const QUESTION_WORDS = new Set("why is are was were the a an does do did how what which who whom when where keep going happen happened happens it its there so much many still".split(" "));
+// Words that only join two subjects; dropped from a split child's search term.
+const JOIN_WORDS = new Set("and or both common share shared versus vs have in of do".split(" "));
 export function searchTerm(question) {
-  const words = String(question ?? "").replace(/[?.!,;:"“”]/g, "").split(/\s+/).filter(Boolean);
-  const kept = words.filter((word) => !QUESTION_WORDS.has(word.toLowerCase()));
+  const { base, focus, others } = focusOf(question);
+  let text = String(base ?? "").replace(/[?.!,;:"“”]/g, "");
+  for (const other of others) text = text.replace(other.replace(/[?.!,;:"“”]/g, ""), " ");
+  const words = text.split(/\s+/).filter(Boolean);
+  const kept = words.filter((word) => !QUESTION_WORDS.has(word.toLowerCase()) && !(focus && JOIN_WORDS.has(word.toLowerCase())));
   return (kept.length ? kept : words).join(" ").trim();
+}
+
+// A question about two named things at once — "Why did the Dead Sea and the
+// Aral Sea both shrink?", "What do the shrinking of Lake Chad and the Dead Sea
+// have in common?" — is two questions, and a node that reads one article
+// answers half of it and stops (evals/seeds-graph.json, every size,
+// 2026-09-18). Code can see the join, so code splits it: one child per
+// subject, the parent's question with "— about <subject>" appended, and the
+// parent's answer is its children's findings. The model is not asked.
+const NAME = "(?:the |Lake |Mount |Cape )?[A-Z][\\w'’-]+(?:(?: of| the| de| du)? [A-Z][\\w'’-]+)*";
+const PAIR = new RegExp(`(${NAME}(?: [a-z]+){0,2})\\s+(?:and|or|versus|vs\\.?)\\s+((?:[a-z]+ ){0,4}${NAME})`);
+export const FOCUS = " — about ";
+export function splitSubjects(question) {
+  const text = String(question ?? "");
+  if (text.includes(FOCUS)) return [];
+  const match = text.match(PAIR);
+  if (!match) return [];
+  const subjects = [match[1], match[2]].map((subject) => subject.trim());
+  if (subjects.some((subject) => QUESTION_WORDS.has(subject.toLowerCase()) || text.startsWith(subject))) return [];
+  return subjects;
+}
+export function focusOf(question) {
+  const text = String(question ?? "");
+  const at = text.indexOf(FOCUS);
+  if (at < 0) return { base: text, focus: null, others: [] };
+  const base = text.slice(0, at);
+  const focus = text.slice(at + FOCUS.length).trim();
+  return { base, focus, others: splitSubjects(base).filter((subject) => subject !== focus) };
 }
 
 const normalise = (text) => String(text ?? "").toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
@@ -213,7 +246,8 @@ export async function runWalk(run, options) {
   // runs 2026-09-18, sky-blue).
   const readSentences = () => candidates(run, node).slice(0, WINDOW).map((candidate) => candidate.text);
   const firstLookup = async () => {
-    const terms = [...new Set([searchTerm(node.question), String(node.question).trim()])];
+    const { focus } = focusOf(node.question);
+    const terms = [...new Set([searchTerm(node.question), focus ? focus.replace(/^the /, "") : String(node.question).trim()])];
     if (variants.article === "off" || !wiki.length || terms.length < 2) return lookup(terms[0]);
     const titles = [];
     const snippets = [];
@@ -251,6 +285,30 @@ export async function runWalk(run, options) {
   };
 
   try {
+    // A question about two named subjects is split by code before anything
+    // is read; when its children have settled, the parent's answer is what
+    // they found, with no pick — each half is the answer to its half.
+    if (!node.observed.length && !children(run, node.id).length) {
+      const subjects = splitSubjects(node.question);
+      if (subjects.length && node.depth < run.limits.maxDepth && run.nodes.length + subjects.length <= run.limits.maxNodes) {
+        node.split = subjects;
+        trace(run, "question_split", { node: node.id, subjects });
+        applyResult(run, node.id, { action: "decompose", questions: subjects.map((subject) => `${String(node.question).trim()}${FOCUS}${subject}`) }, visible());
+        onUpdate(node.id, "Split into one question per subject");
+        return true;
+      }
+    }
+    if (node.split && children(run, node.id).length) {
+      const found = children(run, node.id).filter((child) => child.status === "resolved" && child.finding);
+      if (found.length) {
+        applyResult(run, node.id, { action: "resolved", finding: found.map((child) => child.finding).join(" "), evidence: [...new Set(found.flatMap((child) => child.evidence))] }, visible());
+        onUpdate(node.id, "Findings gathered");
+      } else {
+        applyResult(run, node.id, { action: "blocked", reason: "Neither part of the question could be answered." }, visible());
+        onUpdate(node.id, "Blocked");
+      }
+      return true;
+    }
     // Nothing read and nothing found by children: the first lookup searches
     // for the question minus its question words and for the question itself
     // — neither term is right every time ("sky blue" finds the colour; the
@@ -269,6 +327,18 @@ export async function runWalk(run, options) {
       applyResult(run, node.id, { action: "resolved", finding: gathered.map((candidate) => candidate.text).join(" "), evidence: [...new Set(gathered.flatMap((candidate) => candidate.evidence))] }, visible());
       onUpdate(node.id, "Finding recorded");
       return true;
+    };
+    // A first answer is rarely the whole answer to a why-question: the Dead
+    // Sea lead says it is receding, the section says why. While the finding
+    // has room, lookups remain and the article has unread sections, the walk
+    // reads one more (the model picks the heading) and asks again over it.
+    const readOn = async () => {
+      if (gathered.length >= (run.limits.maxSentences ?? 1) || lookups >= run.limits.maxLookups || passes >= run.limits.maxPasses) return false;
+      const unread = unreadSections(run, node)[0];
+      if (!unread) return false;
+      const section = await answer("section", { question: node.question, article: unread.article, sections: unread.headings }, "Reading on");
+      trace(run, "section_chosen", { node: node.id, article: unread.article, section, readOn: true });
+      return (await lookup(`${unread.article} / ${section}`, { article: unread.article, section })) === "captured";
     };
     while (true) {
       signal?.throwIfAborted();
@@ -297,11 +367,18 @@ export async function runWalk(run, options) {
           judged.add(chosen.text);
           continue;
         }
-        if (gathered.length) return resolveWith();
+        if (gathered.length) {
+          for (const candidate of window) judged.add(candidate.text);
+          if (await readOn()) continue;
+          return resolveWith();
+        }
         for (const candidate of window) judged.add(candidate.text);
         continue;
       }
-      if (gathered.length) return resolveWith();
+      if (gathered.length) {
+        if (await readOn()) continue;
+        return resolveWith();
+      }
       // Nothing left to judge. A parent whose children answered resolves with
       // what they found: the answer to a decomposed question is its parts.
       const found = children(run, node.id).filter((child) => child.status === "resolved" && child.finding);

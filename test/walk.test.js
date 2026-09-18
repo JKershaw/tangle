@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createRun, nextRunnable } from "../src/graph.js";
-import { candidates, isForeign, isRepeat, runWalk, searchTerm, unreadSections, variantsFor } from "../src/walk.js";
+import { candidates, isForeign, isRepeat, runWalk, searchTerm, splitSubjects, unreadSections, variantsFor } from "../src/walk.js";
 
 // A scripted model: answers come off a queue, keyed by the field the schema
 // asks for, so a test states exactly what the model says at each ask.
@@ -188,17 +188,74 @@ test("by default a pick is checked with one yes-or-no on that sentence; a no is 
 });
 
 test("a finding can gather several sentences: after a pick the walk asks again over what remains, up to maxSentences", async () => {
-  const run = createRun("What is the Dead Sea like?", "live");
+  const run = createRun("What is the Dead Sea like?", "live", { maxLookups: 1 });
   const { ask, seen } = scripted([["sentence", "1"], ["sentence", "2"], ["sentence", "none"]]);
   assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
   assert.equal(run.nodes[0].finding, "The Dead Sea is a salt lake bordered by Jordan and Israel. The Dead Sea is receding at a swift rate today.");
   assert.deepEqual(run.nodes[0].evidence, ["e1"]);
   assert.deepEqual(seen[1].options, ["1", "2", "none"], "the second pick no longer shows the chosen sentence");
   assert.match(seen[1].user, /1\. Its main tributary/);
-  const capped = createRun("What is the Dead Sea like?", "live", { maxSentences: 2 });
+  const capped = createRun("What is the Dead Sea like?", "live", { maxSentences: 2, maxLookups: 1 });
   await runWalk(capped, { ask: scripted([["sentence", "1"], ["sentence", "1"]]).ask, wiki: wikiFixture, ...PLAIN });
   assert.equal(capped.nodes[0].status, "resolved");
   assert.equal(capped.nodes[0].finding.split(". ").length, 2);
+});
+
+test("after a first answer the walk reads on into a chosen section while lookups remain, and gathers from it", async () => {
+  // The lead's "receding at a swift rate" is an answer to the shape of the
+  // question, not to why; with a lookup left the walk reads the section the
+  // model picks and asks again over it, and the finding has both.
+  const run = createRun("Why is the Dead Sea shrinking?", "live");
+  const { ask, seen } = scripted([["sentence", "3"], ["sentence", "none"], ["section", "Receding shoreline"], ["sentence", "2"], ["sentence", "none"]]);
+  assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
+  const root = run.nodes[0];
+  assert.equal(root.status, "resolved");
+  assert.equal(root.finding, "The Dead Sea is receding at a swift rate today. It has been shrinking since the 1960s because of diversion of the Jordan River by the National Water Carrier.");
+  assert.deepEqual(root.evidence, ["e1", "e2"]);
+  assert.equal(run.lookups, 2, "lead, then the section");
+  assert.equal(seen[2].field, "section");
+  assert.ok(run.trace.some((event) => event.event === "section_chosen" && event.readOn === true));
+  // With one sentence wanted, or no lookups left, or no unread section, it resolves at once.
+  const one = createRun("Why is the Dead Sea shrinking?", "live", ONE);
+  await runWalk(one, { ask: scripted([["sentence", "3"]]).ask, wiki: wikiFixture, ...PLAIN });
+  assert.equal(one.nodes[0].finding, "The Dead Sea is receding at a swift rate today.");
+  assert.equal(one.lookups, 1);
+});
+
+test("a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings", async () => {
+  const ARAL = "The Aral Sea was an endorheic lake between Kazakhstan and Uzbekistan. It began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects.";
+  const wiki = async (query, options = {}) => (/aral/i.test(query) ? { ok: true, kind: "wiki", title: "Aral Sea", article: "Aral Sea", section: 0, headings: [], text: ARAL, url: "u" } : wikiFixture(query, options));
+  const run = createRun("Why did the Dead Sea and the Aral Sea both shrink?", "live", { maxLookups: 1, ...ONE });
+  assert.equal(splitSubjects(run.nodes[0].question).length, 2);
+  assert.deepEqual(splitSubjects("Why is the Dead Sea shrinking?"), []);
+  assert.deepEqual(splitSubjects("What do the shrinking of Lake Chad and the Dead Sea have in common?"), ["Lake Chad", "the Dead Sea"]);
+  assert.equal(searchTerm("Why did the Dead Sea and the Aral Sea both shrink? — about the Aral Sea"), "Aral Sea shrink", "a child's search term drops the other subject and the joining words");
+  const { ask, seen } = scripted([["sentence", "3"], ["sentence", "2"]]);
+  // Visit 1: the root splits without a model call.
+  assert.equal(await runWalk(run, { ask, wiki, ...PLAIN }), true);
+  assert.equal(run.nodes[0].status, "waiting");
+  assert.deepEqual(run.nodes.slice(1).map((node) => node.question), ["Why did the Dead Sea and the Aral Sea both shrink? — about the Dead Sea", "Why did the Dead Sea and the Aral Sea both shrink? — about the Aral Sea"]);
+  assert.equal(run.modelCalls, 0);
+  assert.ok(run.trace.some((event) => event.event === "question_split"));
+  // Visits 2 and 3: each child reads its own article and picks.
+  assert.equal(await runWalk(run, { ask, wiki, ...PLAIN }), true);
+  assert.equal(await runWalk(run, { ask, wiki, ...PLAIN }), true);
+  assert.equal(run.nodes[1].finding, "The Dead Sea is receding at a swift rate today.");
+  assert.match(run.nodes[2].finding, /^It began shrinking in the 1960s/);
+  assert.equal(run.trace.filter((event) => event.event === "tool_proposed").map((event) => event.query).join(" | "), "Dead Sea shrink | Aral Sea shrink");
+  // Visit 4: the parent gathers both, no pick.
+  assert.equal(await runWalk(run, { ask, wiki, ...PLAIN }), true);
+  assert.equal(run.nodes[0].status, "resolved");
+  assert.equal(run.nodes[0].finding, `${run.nodes[1].finding} ${run.nodes[2].finding}`);
+  assert.deepEqual(run.nodes[0].evidence, ["e1", "e2"]);
+  assert.equal(run.modelCalls, 2);
+  assert.equal(seen.length, 2);
+  // A one-node run (the flat control) never splits.
+  const flat = createRun("Why did the Dead Sea and the Aral Sea both shrink?", "live", { maxDepth: 0, maxNodes: 1, ...ONE });
+  await runWalk(flat, { ask: scripted([["sentence", "2"]]).ask, wiki, ...PLAIN });
+  assert.equal(flat.nodes.length, 1);
+  assert.equal(flat.nodes[0].status, "resolved");
+  assert.match(flat.nodes[0].finding, /^It began shrinking/, "one article, half the answer");
 });
 
 test("the asks that name something see at most one window of sentences", async () => {
