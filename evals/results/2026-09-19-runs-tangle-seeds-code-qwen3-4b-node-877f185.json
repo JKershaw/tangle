@@ -1,0 +1,513 @@
+{
+  "suite": "runs",
+  "model": "qwen3:4b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "877f185 (uncommitted changes)",
+  "head": "877f185 (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T07:55:49.925Z",
+  "loadSeconds": 0,
+  "prompt": "walk-15/asks-4",
+  "schema": "sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 7,
+    "gpuPercent": {
+      "min": 0,
+      "max": 96,
+      "mean": 81.9
+    },
+    "vramGiB": {
+      "min": 3.26,
+      "max": 3.37,
+      "mean": 3.3
+    },
+    "load": {
+      "min": 16.79,
+      "max": 25.12,
+      "mean": 21.3
+    },
+    "memoryFreePercent": {
+      "min": 81,
+      "max": 82,
+      "mean": 81.6
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 11,
+  "factsSupported": 11,
+  "factsRead": 24,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 164,
+    "cache": "evals/model-cache/qwen3-4b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "streamed-write": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "serialisation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 5,
+      "distractors": [],
+      "cost": {
+        "nodes": 4,
+        "visits": 7,
+        "modelCalls": 17,
+        "lookups": 4,
+        "tokens": 5456
+      },
+      "statuses": {
+        "resolved": 3,
+        "blocked": 1
+      },
+      "finding": "// Atomic write: write to temp file, then rename\nif (i > 0) stream.write(',\\n');\nconst serialized = serializeDocument(documents[i]);\n\n* Serialize a document for JSON storage.",
+      "profile": {
+        "paragraphs": 2,
+        "sentences": 4,
+        "chars": 174,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 4,
+        "hopsChosen": 2,
+        "hopsRead": 2,
+        "hopsCited": 1,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 17
+      },
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tangle-persist.json",
+      "summary": "live run · seed: Tell me how MangoDB persists writes to disk.\nmodel qwen3:4b · prompt walk-15/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:55:50.093Z · exported 2026-09-19T07:56:00.625Z\nnodes 4 · visits 7 · model calls 17 · lookups 4 · evidence 4 · tokens 5456\nstatuses {\"resolved\":3,\"blocked\":1} · outcome: root resolved\n\nn1 [resolved v2] Tell me how MangoDB persists writes to disk. → // Atomic write: write to temp file, then rename\nif (i > 0) stream.write(',\\n');\nconst ser\n  n2 [resolved v2] Tell me how MangoDB persists writes to disk. — about writeDocuments → // Atomic write: write to temp file, then rename\nif (i > 0) stream.write(',\\n');\nconst ser\n    n3 [resolved v2] Tell me how MangoDB persists writes to disk. — about serializeDocument (src/document-utils.ts) → * Serialize a document for JSON storage.\n      n4 [blocked] Tell me how MangoDB persists writes to disk. — about transformDocument (src/document-utils.ts) !! Nothing of what transformDocument (src/document-utils.ts) says about the subject was kept.\n\nmodel latency ms: median 518 · max 1352 · n 17\nworth a look:\n- n4 blocked: Nothing of what transformDocument (src/document-utils.ts) says about the subject was kept.\n- n1 resolved citing only its children's sources"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "matches-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "logical-operators": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 5,
+      "distractors": [],
+      "cost": {
+        "nodes": 11,
+        "visits": 15,
+        "modelCalls": 39,
+        "lookups": 11,
+        "tokens": 9899
+      },
+      "statuses": {
+        "resolved": 10,
+        "blocked": 1
+      },
+      "finding": "* Analyzes query filters to determine if they can use an index,\n\n* Bounds for a range query on a single field.\n\n* Plan for executing a query using an index.\nexport interface IndexScanPlan {\n/** Name of the index to use */\n\n* Non-indexable operators that force a full collection scan.\nconst NON_INDEXABLE_OPERATORS = new Set([\n\n* Extract range bounds from a filter value.\n* Returns null if the value is not a simple range query.\n} else if ('$gte' in obj) {\n\n* Calculate how well an index matches a query.\n\n* Check if a field condition can use an index.\n* Returns the type of usage: 'equality', 'range', or null if not indexable.\nfunction getFieldIndexUsage(\n\n* Check if a filter value uses only $eq operator.\nfunction isEqOperator(value: unknown): value is { $eq: unknown } {\nreturn false;\n\n* Check if a filter value uses $in operator with values.\nfunction isInOperator(value: unknown): value is { $in: unknown[] } {\nreturn keys.length === 1 && keys[0] === '$in' && Array.isArray(obj.$in);\n\n* Analyze a query filter and determine the best index to use.\n* @param filter - The query filter\n* @param indexes - Available indexes on the collection",
+      "profile": {
+        "paragraphs": 10,
+        "sentences": 23,
+        "chars": 1141,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 11,
+        "hopsChosen": 4,
+        "hopsRead": 4,
+        "hopsCited": 3,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 20,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 39
+      },
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tangle-find.json",
+      "summary": "live run · seed: Tell me how MangoDB evaluates a find query with a filter.\nmodel qwen3:4b · prompt walk-15/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:56:00.628Z · exported 2026-09-19T07:56:20.480Z\nnodes 11 · visits 15 · model calls 39 · lookups 11 · evidence 11 · tokens 9899\nstatuses {\"resolved\":10,\"blocked\":1} · outcome: root resolved\n\nn1 [resolved v2] Tell me how MangoDB evaluates a find query with a filter. → * Analyzes query filters to determine if they can use an index,\n\n* Bounds for a range quer\n  n2 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about RangeBounds → * Bounds for a range query on a single field.\n  n3 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about IndexScanPlan → * Plan for executing a query using an index.\nexport interface IndexScanPlan {\n/** Name of \n  n4 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about NON_INDEXABLE_OPERATORS → * Non-indexable operators that force a full collection scan.\n* Non-indexable operators tha\n  n5 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about extractRangeBounds → * Extract range bounds from a filter value.\n* Returns null if the value is not a simple ra\n  n6 [resolved v2] Tell me how MangoDB evaluates a find query with a filter. — about scoreIndexMatch → * Calculate how well an index matches a query.\n\n* Check if a field condition can use an in\n    n8 [resolved v2] Tell me how MangoDB evaluates a find query with a filter. — about getFieldIndexUsage (src/query-analyzer.ts) → * Check if a field condition can use an index.\n* Returns the type of usage: 'equality', 'r\n      n9 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about isEqOperator (src/query-analyzer.ts) → * Check if a filter value uses only $eq operator.\nfunction isEqOperator(value: unknown): v\n      n10 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about isInOperator (src/query-analyzer.ts) → * Check if a filter value uses $in operator with values.\nfunction isInOperator(value: unkn\n  n7 [resolved v2] Tell me how MangoDB evaluates a find query with a filter. — about analyzeQuery → * Analyze a query filter and determine the best index to use.\n* @param filter - The query \n    n11 [blocked] Tell me how MangoDB evaluates a find query with a filter. — about Filter (src/types.ts) !! Nothing of what Filter (src/types.ts) says about the subject was kept.\n\nmodel latency ms: median 509 · max 697 · n 39\nworth a look:\n- n11 blocked: Nothing of what Filter (src/types.ts) says about the subject was kept."
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "default-id-index": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "metadata-file": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "built-lazily-in-memory": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "equality-map": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sorted-entries": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "compound-prefix": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "non-indexable": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "special-indexes-skipped": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 13,
+        "visits": 18,
+        "modelCalls": 49,
+        "lookups": 13,
+        "tokens": 15096
+      },
+      "statuses": {
+        "resolved": 9,
+        "blocked": 4
+      },
+      "finding": "* Build all index data structures from documents.\n\n* Read index metadata from the index file.\n* If the file doesn't exist, returns the default _id index.\nasync loadIndexes(): Promise<IndexInfo[]> {\n\n* Extract the key value from a document for a given index key specification.\n* Supports nested field paths using dot notation.\n\n* Look up documents by equality on indexed fields.\n\n* Look up documents by range on the first field of an index.\n* @param indexName - Name of the index to use\nif (bounds.lower !== undefined) {\n\n* Find the lower bound index for a range query.\nlow = mid + 1;\n\n// MongoDB uses binary comparison by default (not locale-aware)\n\n* Find the upper bound index for a range query.",
+      "profile": {
+        "paragraphs": 8,
+        "sentences": 14,
+        "chars": 697,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 11,
+        "hopsChosen": 6,
+        "hopsRead": 6,
+        "hopsCited": 5,
+        "blocked": 4
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 28,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 49
+      },
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tangle-indexes.json",
+      "summary": "live run · seed: Tell me how MangoDB's indexes work and when a query uses them.\nmodel qwen3:4b · prompt walk-15/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:56:20.483Z · exported 2026-09-19T07:56:48.373Z\nnodes 13 · visits 18 · model calls 49 · lookups 13 · evidence 13 · tokens 15096\nstatuses {\"resolved\":9,\"blocked\":4} · outcome: root resolved\n\nn1 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. → * Build all index data structures from documents.\n\n* Read index metadata from the index fi\n  n2 [blocked] Tell me how MangoDB's indexes work and when a query uses them. — about IndexManager !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n3 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about buildIndexes → * Build all index data structures from documents.\n\n* Read index metadata from the index fi\n    n8 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about loadIndexes (src/index-manager.ts) → * Read index metadata from the index file.\n* If the file doesn't exist, returns the defaul\n    n9 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about extractKeyValue (src/index-manager.ts) → * Extract the key value from a document for a given index key specification.\n* Supports ne\n  n4 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about lookupEquality → * Look up documents by equality on indexed fields.\n    n10 [blocked] Tell me how MangoDB's indexes work and when a query uses them. — about serializeCompoundKey (src/index-manager.ts) !! Nothing of what serializeCompoundKey (src/index-manager.ts) says about the subject was kep\n  n5 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about lookupRange → * Look up documents by range on the first field of an index.\n* @param indexName - Name of \n    n11 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about findLowerBound (src/index-manager.ts) → * Find the lower bound index for a range query.\nlow = mid + 1;\n\n// MongoDB uses binary com\n      n13 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about compareScalarValues (src/utils.ts) → // MongoDB uses binary comparison by default (not locale-aware)\n    n12 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about findUpperBound (src/index-manager.ts) → * Find the upper bound index for a range query.\n  n6 [blocked] Tell me how MangoDB's indexes work and when a query uses them. — about findLowerBound !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n7 [blocked] Tell me how MangoDB's indexes work and when a query uses them. — about findUpperBound !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 530 · max 1277 · n 49\nworth a look:\n- n2 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n6 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n7 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n10 blocked: Nothing of what serializeCompoundKey (src/index-manager.ts) says about the subject was kept.\n- n1 resolved citing only its children's sources"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "stage-dispatch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "in-memory-sequential": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "out-and-merge-last": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "accumulators": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "lookup": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "system-variables": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "one-key-per-stage": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 5,
+      "distractors": [],
+      "cost": {
+        "nodes": 17,
+        "visits": 25,
+        "modelCalls": 59,
+        "lookups": 17,
+        "tokens": 16888
+      },
+      "statuses": {
+        "resolved": 15,
+        "blocked": 2
+      },
+      "finding": "private async executeNearQuery(\naggregate(pipeline: PipelineStage[], _options?: AggregateOptions): AggregationCursor<T>\n\n* Execute an index lookup plan and return matching documents.\nprivate executeIndexLookup(plan: IndexScanPlan, documents: T[]): T[] | null {\ndocIds = this.indexManager.lookupEquality(plan.indexName, plan.equalityFields);\n\n* Look up documents by equality on indexed fields.\n\n* Serialize a compound key (multiple fields) for equality map.\nprivate serializeCompoundKey(keyValues: Record<string, unknown>): string {\nreturn JSON.stringify(serialized);\n\n* Look up documents by range on the first field of an index.\n\n* Find the lower bound index for a range query.\n\n* Execute a $near or $nearSphere query.\n\n* Evaluate a $near query operator.\n\nif (coords) {\nreturn { point: coords };\n\n* Extract a point from a document field value.\n\nprivate async readDocuments(): Promise<T[]> {\n// Streamed rather than readFile+JSON.parse: building the whole collection\n\n* Deserialize a document from JSON storage.\n\n* Read a JSON array file into memory one element at a time.\n* Equivalent in result to `JSON.parse(await readFile(path, 'utf-8'))` for an\nexport async function readJsonArray<T = unknown>(filePath: string): Promise<T[]> {\n\n* Execute an aggregation pipeline on the collection.\n* The aggregation pipeline processes documents through a sequence of stages,\n* each transforming the document stream. Stages are executed in order.\n\n* AggregationCursor represents a cursor over aggregation pipeline results.",
+      "profile": {
+        "paragraphs": 15,
+        "sentences": 26,
+        "chars": 1509,
+        "duplicates": 0,
+        "articles": 7,
+        "sections": 17,
+        "hopsChosen": 13,
+        "hopsRead": 13,
+        "hopsCited": 11,
+        "blocked": 2
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 34,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 59
+      },
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tangle-aggregate.json",
+      "summary": "live run · seed: Tell me how MangoDB executes an aggregation pipeline.\nmodel qwen3:4b · prompt walk-15/asks-4/sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:56:48.379Z · exported 2026-09-19T07:57:22.267Z\nnodes 17 · visits 25 · model calls 59 · lookups 17 · evidence 17 · tokens 16888\nstatuses {\"resolved\":15,\"blocked\":2} · outcome: root resolved\n\nn1 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. → private async executeNearQuery(\naggregate(pipeline: PipelineStage[], _options?: AggregateO\n  n2 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about executeIndexLookup → * Execute an index lookup plan and return matching documents.\nprivate executeIndexLookup(p\n    n5 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about lookupEquality (src/index-manager.ts) → * Look up documents by equality on indexed fields.\n\n* Serialize a compound key (multiple f\n      n7 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about serializeCompoundKey (src/index-manager.ts) → * Serialize a compound key (multiple fields) for equality map.\nprivate serializeCompoundKe\n    n6 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about lookupRange (src/index-manager.ts) → * Look up documents by range on the first field of an index.\n\n* Find the lower bound index\n      n8 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about findLowerBound (src/index-manager.ts) → * Find the lower bound index for a range query.\n      n9 [blocked] Tell me how MangoDB executes an aggregation pipeline. — about findUpperBound (src/index-manager.ts) !! Nothing of what findUpperBound (src/index-manager.ts) says about the subject was kept.\n  n3 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about executeNearQuery → * Execute a $near or $nearSphere query.\n\n* Evaluate a $near query operator.\n\nif (coords) {\n    n10 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about evaluateNear (src/geo/operators.ts) → * Evaluate a $near query operator.\n\nif (coords) {\nreturn { point: coords };\n\n* Extract a p\n      n12 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about parseNearQuery (src/geo/shapes.ts) → if (coords) {\nreturn { point: coords };\n      n13 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about extractPointFromDocument (src/geo/operators.ts) → * Extract a point from a document field value.\n    n11 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about readDocuments (src/collection.ts) → private async readDocuments(): Promise<T[]> {\n// Streamed rather than readFile+JSON.parse:\n      n14 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about deserializeDocument (src/document-utils.ts) → * Deserialize a document from JSON storage.\n      n15 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about readJsonArray (src/stream-json.ts) → * Read a JSON array file into memory one element at a time.\n* Equivalent in result to `JSO\n  n4 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about aggregate → * Execute an aggregation pipeline on the collection.\n* The aggregation pipeline processes \n    n16 [blocked] Tell me how MangoDB executes an aggregation pipeline. — about MangoCollection (src/collection.ts) !! Nothing of what MangoCollection (src/collection.ts) says about the subject was kept.\n    n17 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about AggregationCursor (src/aggregation/cursor.ts) → * AggregationCursor represents a cursor over aggregation pipeline results.\n\nmodel latency ms: median 544 · max 1379 · n 59\nworth a look:\n- n9 blocked: Nothing of what findUpperBound (src/index-manager.ts) says about the subject was kept.\n- n16 blocked: Nothing of what MangoCollection (src/collection.ts) says about the subject was kept."
+    }
+  ],
+  "notes": [
+    "2026-09-19T07:55:49.924Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T07:55:49.925Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:4b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T07:55:49.962Z model cache evals/model-cache/qwen3-4b: 445 responses loaded",
+    "machine at start: gpu 95% · vram 3.35 GiB · load 16.79 · mem 81% free (normal) · no throttling recorded",
+    "2026-09-19T07:55:50.093Z 4 seeds from evals/seeds-code.json · mode tangle · limits {} · prompt walk-15/asks-4 · grammar sentence:list,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit 877f185 (uncommitted changes)",
+    "wiki recording: 0 responses loaded",
+    "2026-09-19T07:56:00.618Z run stopped: Root resolved",
+    "persist: resolved · topics 2/9 · supported 2/9 · read 5/9 · ¶2 · 4 sentences · read 2 articles, 4 sections · hops 1 cited / 2 read / 2 chosen · 1 blocked · 4 nodes, 17 calls, 4 lookups, 5456 tokens · 11 s · wiki 0 hits 0 misses · model 0 replayed 17 missed",
+    "2026-09-19T07:56:20.471Z run stopped: Root resolved",
+    "find: resolved · topics 2/11 · supported 2/11 · read 5/11 · ¶10 · 23 sentences · read 2 articles, 11 sections · hops 3 cited / 4 read / 4 chosen · 1 blocked · 11 nodes, 39 calls, 11 lookups, 9899 tokens · 20 s · wiki 0 hits 0 misses · model 0 replayed 39 missed",
+    "2026-09-19T07:56:48.336Z run stopped: Root resolved",
+    "indexes: resolved · topics 4/11 · supported 4/11 · read 9/11 · ¶8 · 14 sentences · read 2 articles, 11 sections · hops 5 cited / 6 read / 6 chosen · 4 blocked · 13 nodes, 49 calls, 13 lookups, 15096 tokens · 28 s · wiki 0 hits 0 misses · model 0 replayed 49 missed",
+    "2026-09-19T07:57:22.256Z run stopped: Root resolved",
+    "aggregate: resolved · topics 3/11 · supported 3/11 · read 5/11 · ¶15 · 26 sentences · read 7 articles, 17 sections · hops 11 cited / 13 read / 13 chosen · 2 blocked · 17 nodes, 59 calls, 17 lookups, 16888 tokens · 34 s · wiki 0 hits 0 misses · model 0 replayed 59 missed",
+    "machine during the suite: gpu 81.9% mean, 96% peak · vram up to 3.37 GiB · load up to 25.12 · no throttling in 7 samples"
+  ]
+}

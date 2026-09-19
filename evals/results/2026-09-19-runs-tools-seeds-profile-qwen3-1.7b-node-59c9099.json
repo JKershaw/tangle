@@ -1,0 +1,489 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "59c9099",
+  "head": "59c9099",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:07:21.280Z",
+  "loadSeconds": 0,
+  "prompt": "tools-1",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 1,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 7.58,
+      "max": 7.58,
+      "mean": 7.6
+    },
+    "load": {
+      "min": 18.5,
+      "max": 18.5,
+      "mean": 18.5
+    },
+    "memoryFreePercent": {
+      "min": 65,
+      "max": 65,
+      "mean": 65
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 14,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 4,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "enigma": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "turing-test": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 711
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Alan Turing was a British mathematician, logician, and computer scientist who is widely regarded as one of the foundational figures in the field of computer science. He is best known for his work on formal systems, computability, and the concept of the \"Turing machine,\" which laid the groundwork for modern computing. Turing also played a crucial role in the development of the first practical computer, the Bombe, during World War II, which helped in breaking the German Enigma code.\n\nTuring's work on the Entscheidungsproblem, which asked whether a general algorithm could determine the truth of any mathematical statement, led to the development of the concept of computability. His paper \"Computability and Logic\" (1936) introduced the idea that some problems are inherently unsolvable by any algorithm, a concept that is central to the field of theoretical computer science.\n\nThe impact of Turing's work is profound and far-reaching. His ideas influenced the development of modern computers and the theory of algorithms. His contributions also paved the way for the creation of the first programmable computer, the Colossus, and the development of the first programming language, Fortran. Additionally, Turing's work on the Turing test, which assesses a machine's ability to exhibit intelligent behavior, has had a lasting influence on the philosophy of artificial intelligence.\n\nTuring's legacy is also marked by the recognition of his contributions to the field of computer science, including the establishment of the Alan Turing Institute in the UK, which focuses on research and innovation in the field. His work continues to be studied and celebrated, highlighting his pivotal role in shaping the modern computer science and its applications.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 11,
+        "chars": 1753,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 56,
+        "tokens": 20198
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "Alan Turing was a British mathematician, logician, and computer scientist who is widely regarded as one of the foundational figures in the field of computer science. He is best known for his work on formal systems, computability, and the concept of the \"Turing machine,\" which laid the groundwork for modern computing. Turing also played a crucial role in the development of the first practical computer, the Bombe, during World War II, which helped in breaking the German Enigma code.\n\nTuring's work on the Entscheidungsproblem, which asked whether a general algorithm could determine the truth of any mathematical statement, led to the development of the concept of computability. His paper \"Computability and Logic\" (1936) introduced the idea that some problems are inherently unsolvable by any algorithm, a concept that is central to the field of theoretical computer science.\n\nThe impact of Turing's work is profound and far-reaching. His ideas influenced the development of modern computers and the theory of algorithms. His contributions also paved the way for the creation of the first programmable computer, the Colossus, and the development of the first programming language, Fortran. Additionally, Turing's work on the Turing test, which assesses a machine's ability to exhibit intelligent behavior, has had a lasting influence on the philosophy of artificial intelligence.\n\nTuring's legacy is also marked by the recognition of his contributions to the field of computer science, including the establishment of the Alan Turing Institute in the UK, which focuses on research and innovation in the field. His work continues to be studied and celebrated, highlighting his pivotal role in shaping the modern computer science and its applications.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "silk": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "buddhism": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mongol": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 5,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 661
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Silk Road was a network of trade routes that connected East and West, spanning from China to the Mediterranean. It was established during the Han Dynasty (206 BCE – 220 CE) and flourished during the Tang Dynasty (618–907 CE). The Silk Road facilitated the exchange of goods, ideas, and cultures between different civilizations. It was instrumental in the spread of silk, which was highly valued in the West, and other commodities such as spices, precious metals, and ceramics.\n\nThe influence of the Silk Road was profound and multifaceted. It not only促进了 economic growth but also fostered cultural exchange, leading to the development of new technologies and artistic styles. The routes also facilitated the spread of religions, such as Buddhism, Islam, and Christianity, across continents. Additionally, the Silk Road played a crucial role in the transmission of knowledge, including scientific advancements and philosophical ideas.\n\nThe decline of the Silk Road began in the 14th century due to various factors, including the Mongol Empire's fall, the rise of maritime trade routes, and the impact of European exploration. The end of the Silk Road marked the beginning of a new era in global trade, with the rise of the maritime routes that connected Europe, Africa, and the Americas. The legacy of the Silk Road continues to be felt today, as it laid the foundation for modern global trade and cultural interactions.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 11,
+        "chars": 1423,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 55,
+        "tokens": 19421
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "The Silk Road was a network of trade routes that connected East and West, spanning from China to the Mediterranean. It was established during the Han Dynasty (206 BCE – 220 CE) and flourished during the Tang Dynasty (618–907 CE). The Silk Road facilitated the exchange of goods, ideas, and cultures between different civilizations. It was instrumental in the spread of silk, which was highly valued in the West, and other commodities such as spices, precious metals, and ceramics.\n\nThe influence of the Silk Road was profound and multifaceted. It not only促进了 economic growth but also fostered cultural exchange, leading to the development of new technologies and artistic styles. The routes also facilitated the spread of religions, such as Buddhism, Islam, and Christianity, across continents. Additionally, the Silk Road played a crucial role in the transmission of knowledge, including scientific advancements and philosophical ideas.\n\nThe decline of the Silk Road began in the 14th century due to various factors, including the Mongol Empire's fall, the rise of maritime trade routes, and the impact of European exploration. The end of the Silk Road marked the beginning of a new era in global trade, with the rise of the maritime routes that connected Europe, Africa, and the Americas. The legacy of the Silk Road continues to be felt today, as it laid the foundation for modern global trade and cultural interactions.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "expansion": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 655
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Hubble Space Telescope is a space telescope launched in 1990 by the United States Space Agency (NASA). It is located in low Earth orbit and is one of the most powerful telescopes in space. The telescope has been instrumental in observing the universe and has contributed significantly to our understanding of astrophysics, cosmology, and the life cycles of stars.\n\nOne of the most significant discoveries made by the Hubble Space Telescope is the measurement of the expansion rate of the universe, known as the Hubble constant. This discovery helped confirm that the universe is expanding at an accelerating rate, which is now understood to be driven by dark energy. The telescope has also provided detailed images of distant galaxies, nebulae, and other celestial objects, allowing scientists to study their formation and evolution.\n\nThe Hubble Space Telescope has also contributed to the discovery of exoplanets, the measurement of the age of the universe, and the observation of the life cycle of stars, including the death of massive stars and the formation of neutron stars and black holes. Its images have been used to study the structure of the Milky Way, the distribution of dark matter, and the formation of the first galaxies in the early universe.\n\nIn summary, the Hubble Space Telescope has made groundbreaking discoveries in various areas of astrophysics and has provided invaluable data that continues to shape our understanding of the universe.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 9,
+        "chars": 1463,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 47,
+        "tokens": 17825
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "The Hubble Space Telescope is a space telescope launched in 1990 by the United States Space Agency (NASA). It is located in low Earth orbit and is one of the most powerful telescopes in space. The telescope has been instrumental in observing the universe and has contributed significantly to our understanding of astrophysics, cosmology, and the life cycles of stars.\n\nOne of the most significant discoveries made by the Hubble Space Telescope is the measurement of the expansion rate of the universe, known as the Hubble constant. This discovery helped confirm that the universe is expanding at an accelerating rate, which is now understood to be driven by dark energy. The telescope has also provided detailed images of distant galaxies, nebulae, and other celestial objects, allowing scientists to study their formation and evolution.\n\nThe Hubble Space Telescope has also contributed to the discovery of exoplanets, the measurement of the age of the universe, and the observation of the life cycle of stars, including the death of massive stars and the formation of neutron stars and black holes. Its images have been used to study the structure of the Milky Way, the distribution of dark matter, and the formation of the first galaxies in the early universe.\n\nIn summary, the Hubble Space Telescope has made groundbreaking discoveries in various areas of astrophysics and has provided invaluable data that continues to shape our understanding of the universe.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "bleaching": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 4,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 599
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Great Barrier Reef is one of the world's most diverse and extensive coral reef systems, located in the Coral Sea off the northeastern coast of Australia. It spans over 2,300 kilometers and is home to thousands of species of marine life, including over 1,500 species of fish, 600 species of coral, and numerous other marine organisms. The reef is a critical habitat for many sea turtles, dolphins, and other wildlife, and it supports a significant portion of Australia's tourism industry.\n\nHowever, the Great Barrier Reef faces several threats, including climate change, ocean acidification, warming ocean temperatures, and human activities such as coastal development and fishing. Rising sea temperatures have led to coral bleaching events, where corals expel their algae and turn white, often leading to their death. Additionally, increased carbon dioxide levels in the atmosphere have caused ocean acidification, which harms the ability of corals and other marine organisms to build their calcium carbonate structures. These factors have contributed to the decline in reef health and biodiversity, prompting conservation efforts and international cooperation to protect this vital ecosystem.",
+      "profile": {
+        "paragraphs": 2,
+        "sentences": 7,
+        "chars": 1197,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 39,
+        "tokens": 13326
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "The Great Barrier Reef is one of the world's most diverse and extensive coral reef systems, located in the Coral Sea off the northeastern coast of Australia. It spans over 2,300 kilometers and is home to thousands of species of marine life, including over 1,500 species of fish, 600 species of coral, and numerous other marine organisms. The reef is a critical habitat for many sea turtles, dolphins, and other wildlife, and it supports a significant portion of Australia's tourism industry.\n\nHowever, the Great Barrier Reef faces several threats, including climate change, ocean acidification, warming ocean temperatures, and human activities such as coastal development and fishing. Rising sea temperatures have led to coral bleaching events, where corals expel their algae and turn white, often leading to their death. Additionally, increased carbon dioxide levels in the atmosphere have caused ocean acidification, which harms the ability of corals and other marine organisms to build their calcium carbonate structures. These factors have contributed to the decline in reef health and biodiversity, prompting conservation efforts and international cooperation to protect this vital ecosystem.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:07:21.279Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:07:21.315Z model cache evals/model-cache/qwen3-1.7b: 481 responses loaded",
+    "machine at start: gpu 93% · vram 7.58 GiB · load 18.5 · mem 65% free (normal) · no throttling recorded",
+    "2026-09-19T08:07:21.399Z 4 seeds from evals/seeds-profile.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-1 · grammar tools:composing · matched · commit 59c9099",
+    "wiki recording: 1302 responses loaded",
+    "turing: resolved · topics 3/8 · supported 0/8 · read 0/8 · ¶4 · 11 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 711 tokens · stopped by answer · 3 s · model 0 replayed 1 missed",
+    "silk-road: resolved · topics 5/9 · supported 0/9 · read 0/9 · ¶3 · 11 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 661 tokens · stopped by answer · 3 s · model 0 replayed 1 missed",
+    "hubble: resolved · topics 2/8 · supported 0/8 · read 0/8 · ¶4 · 9 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 655 tokens · stopped by answer · 3 s · model 0 replayed 1 missed",
+    "great-barrier-reef: resolved · topics 4/10 · supported 0/10 · read 0/10 · ¶2 · 7 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 599 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 7.58 GiB · load up to 18.5 · no throttling in 1 samples"
+  ]
+}

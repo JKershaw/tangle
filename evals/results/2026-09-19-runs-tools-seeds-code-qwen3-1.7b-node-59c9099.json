@@ -1,0 +1,532 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "59c9099",
+  "head": "59c9099",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:07:41.225Z",
+  "loadSeconds": 0,
+  "prompt": "tools-1",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 1,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 7.58,
+      "max": 7.58,
+      "mean": 7.6
+    },
+    "load": {
+      "min": 19.53,
+      "max": 19.53,
+      "mean": 19.5
+    },
+    "memoryFreePercent": {
+      "min": 65,
+      "max": 65,
+      "mean": 65
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 8,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 4,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "streamed-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "serialisation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 581
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB persists writes to disk using a mechanism called **WAL (Write-Ahead Log)**. The WAL is a sequential file that records all changes to the database before they are written to the main data file. This ensures that even in the event of a system crash, the database can recover the most recent transactions.\n\nWhen a write operation occurs in MangoDB, the system first writes the transaction to the WAL. This log entry includes the type of operation (e.g., insert, update, delete) and the specific data involved. Once the transaction is successfully recorded in the WAL, the actual data is written to the main data file. This process ensures data consistency and durability.\n\nThe WAL is crucial for recovery. If a crash occurs, the database can read the WAL to reconstruct the state of the database. This mechanism also helps in preventing data loss by ensuring that all transactions are recorded before they are applied to the database.\n\nIn summary, MangoDB uses the WAL to persist writes to disk, ensuring data integrity and recovery capabilities.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 11,
+        "chars": 1051,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 23,
+        "tokens": 8177
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "MangoDB persists writes to disk using a mechanism called **WAL (Write-Ahead Log)**. The WAL is a sequential file that records all changes to the database before they are written to the main data file. This ensures that even in the event of a system crash, the database can recover the most recent transactions.\n\nWhen a write operation occurs in MangoDB, the system first writes the transaction to the WAL. This log entry includes the type of operation (e.g., insert, update, delete) and the specific data involved. Once the transaction is successfully recorded in the WAL, the actual data is written to the main data file. This process ensures data consistency and durability.\n\nThe WAL is crucial for recovery. If a crash occurs, the database can read the WAL to reconstruct the state of the database. This mechanism also helps in preventing data loss by ensuring that all transactions are recorded before they are applied to the database.\n\nIn summary, MangoDB uses the WAL to persist writes to disk, ensuring data integrity and recovery capabilities.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-persist.json"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "matches-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "logical-operators": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 673
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB evaluates a find query with a filter by first applying the filter to the collection of documents. The filter is a query expression that specifies the conditions that the documents must meet to be included in the result. MangoDB uses a process called **query evaluation** to determine which documents satisfy the filter.\n\nWhen a `find` query is executed with a filter, MangoDB performs the following steps:\n\n1. **Filter Application**: The filter is applied to the documents in the collection. This involves checking each document against the filter expression.\n2. **Index Usage**: If an index is available and appropriate for the filter, MangoDB may use the index to speed up the query. This is particularly efficient for queries with simple filters.\n3. **Result Compilation**: The documents that meet the filter conditions are compiled into a result set, which is then returned to the user.\n\nFor example, if the query is:\n```javascript\ndb.collection.find({ age: { $gt: 25 } })\n```\nMangoDB will evaluate the filter `age > 25` against each document in the collection. If an index is present on the `age` field, the query can be optimized to use that index for faster performance.\n\nThe evaluation process ensures that only the relevant documents are returned, improving both performance and efficiency. If the filter is complex or involves multiple conditions, MangoDB may use a **query plan** to determine the most efficient way to evaluate the filter.",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 14,
+        "chars": 1458,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 50,
+        "tokens": 15898
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "MangoDB evaluates a find query with a filter by first applying the filter to the collection of documents. The filter is a query expression that specifies the conditions that the documents must meet to be included in the result. MangoDB uses a process called **query evaluation** to determine which documents satisfy the filter.\n\nWhen a `find` query is executed with a filter, MangoDB performs the following steps:\n\n1. **Filter Application**: The filter is applied to the documents in the collection. This involves checking each document against the filter expression.\n2. **Index Usage**: If an index is available and appropriate for the filter, MangoDB may use the index to speed up the query. This is particularly efficient for queries with simple filters.\n3. **Result Compilation**: The documents that meet the filter conditions are compiled into a result set, which is then returned to the user.\n\nFor example, if the query is:\n```javascript\ndb.collection.find({ age: { $gt: 25 } })\n```\nMangoDB will evaluate the filter `age > 25` against each document in the collection. If an index is present on the `age` field, the query can be optimized to use that index for faster performance.\n\nThe evaluation process ensures that only the relevant documents are returned, improving both performance and efficiency. If the filter is complex or involves multiple conditions, MangoDB may use a **query plan** to determine the most efficient way to evaluate the filter.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-find.json"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "default-id-index": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "built-lazily-in-memory": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "equality-map": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sorted-entries": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "compound-prefix": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "non-indexable": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "special-indexes-skipped": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 595
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB is a NoSQL database that allows for efficient querying and data storage. Its indexes are crucial for optimizing query performance. An index in MangoDB is a structure that allows the database to quickly locate and retrieve specific data from a collection. When a query is made, MangoDB uses the index to determine which data to retrieve, significantly reducing the time required to execute the query.\n\nFor example, if a query is made on a collection with a large number of documents, MangoDB will use the index to narrow down the search space. This is particularly effective when the query is based on a specific field, such as a document's title or a unique identifier. The use of indexes in MangoDB is essential for maintaining performance and scalability, especially when dealing with large datasets.\n\nIn summary, MangoDB's indexes work by creating a structured reference to data, allowing the database to quickly locate and retrieve information. Queries that involve specific fields or conditions benefit the most from indexes, as they enable the database to minimize the amount of data that needs to be scanned, thereby improving overall performance.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 9,
+        "chars": 1162,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 39,
+        "tokens": 12657
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "MangoDB is a NoSQL database that allows for efficient querying and data storage. Its indexes are crucial for optimizing query performance. An index in MangoDB is a structure that allows the database to quickly locate and retrieve specific data from a collection. When a query is made, MangoDB uses the index to determine which data to retrieve, significantly reducing the time required to execute the query.\n\nFor example, if a query is made on a collection with a large number of documents, MangoDB will use the index to narrow down the search space. This is particularly effective when the query is based on a specific field, such as a document's title or a unique identifier. The use of indexes in MangoDB is essential for maintaining performance and scalability, especially when dealing with large datasets.\n\nIn summary, MangoDB's indexes work by creating a structured reference to data, allowing the database to quickly locate and retrieve information. Queries that involve specific fields or conditions benefit the most from indexes, as they enable the database to minimize the amount of data that needs to be scanned, thereby improving overall performance.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-indexes.json"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "stage-dispatch": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "in-memory-sequential": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "out-and-merge-last": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "accumulators": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "lookup": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "system-variables": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "one-key-per-stage": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 4,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 574
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB executes an aggregation pipeline using a series of stages that process data and apply transformations. Each stage in the pipeline is a function that takes a document and returns a new document, and these stages are connected by pipeline operators. The pipeline starts with a stage that processes the input data, such as a $match stage that filters documents based on certain conditions.\n\nThe aggregation pipeline is executed in a sequential manner, with each stage processing the output of the previous stage. For example, a $match stage might filter documents based on a condition, and a $group stage might aggregate the remaining documents. The final stage in the pipeline, such as a $sort or $limit stage, determines the final output.\n\nThe execution of the pipeline is optimized for performance, with MangoDB using a query execution plan to minimize the number of operations performed. This allows for efficient processing of large datasets. The pipeline is also flexible, enabling users to add or remove stages as needed to achieve the desired transformation of the data.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 9,
+        "chars": 1083,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 10,
+        "tokens": 3659
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "MangoDB executes an aggregation pipeline using a series of stages that process data and apply transformations. Each stage in the pipeline is a function that takes a document and returns a new document, and these stages are connected by pipeline operators. The pipeline starts with a stage that processes the input data, such as a $match stage that filters documents based on certain conditions.\n\nThe aggregation pipeline is executed in a sequential manner, with each stage processing the output of the previous stage. For example, a $match stage might filter documents based on a condition, and a $group stage might aggregate the remaining documents. The final stage in the pipeline, such as a $sort or $limit stage, determines the final output.\n\nThe execution of the pipeline is optimized for performance, with MangoDB using a query execution plan to minimize the number of operations performed. This allows for efficient processing of large datasets. The pipeline is also flexible, enabling users to add or remove stages as needed to achieve the desired transformation of the data.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-aggregate.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:07:41.223Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T08:07:41.224Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:07:41.261Z model cache evals/model-cache/qwen3-1.7b: 488 responses loaded",
+    "machine at start: gpu 95% · vram 7.58 GiB · load 19.53 · mem 65% free (normal) · no throttling recorded",
+    "2026-09-19T08:07:41.344Z 4 seeds from evals/seeds-code.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-1 · grammar tools:composing · matched · commit 59c9099",
+    "wiki recording: 0 responses loaded",
+    "persist: resolved · topics 1/9 · supported 0/9 · read 0/9 · ¶4 · 11 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 581 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
+    "find: resolved · topics 1/11 · supported 0/11 · read 0/11 · ¶5 · 14 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 673 tokens · stopped by answer · 3 s · model 0 replayed 1 missed",
+    "indexes: resolved · topics 2/11 · supported 0/11 · read 0/11 · ¶3 · 9 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 595 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
+    "aggregate: resolved · topics 4/11 · supported 0/11 · read 0/11 · ¶3 · 9 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 574 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 7.58 GiB · load up to 19.53 · no throttling in 1 samples"
+  ]
+}

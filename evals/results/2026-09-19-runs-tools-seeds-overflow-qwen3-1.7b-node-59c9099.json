@@ -1,0 +1,407 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "59c9099",
+  "head": "59c9099",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:07:32.184Z",
+  "loadSeconds": 0,
+  "prompt": "tools-1",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 1,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 7.58,
+      "max": 7.58,
+      "mean": 7.6
+    },
+    "load": {
+      "min": 18.71,
+      "max": 18.71,
+      "mean": 18.7
+    },
+    "memoryFreePercent": {
+      "min": 65,
+      "max": 65,
+      "mean": 65
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 3,
+  "resolved": 3,
+  "factsPresent": 10,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 30,
+  "replay": {
+    "hits": 0,
+    "misses": 3,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "wreck": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "imaging": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "olympiad": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 632
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Antikythera mechanism is an ancient Greek analog computer discovered in 1901 in the Antikythera shipwreck off the coast of Greece. It dates back to around 330 BCE and is considered one of the most sophisticated ancient machines ever found. The mechanism was used to predict astronomical events, such as the positions of the planets and the phases of the moon, and it also included a calendar for the Olympic Games.\n\nThe decoding of the Antikythera mechanism was a significant achievement in the field of ancient technology. In the 1990s, a team of researchers, including Dr. John L. Gage, successfully decoded the mechanism using advanced imaging techniques and computer modeling. They discovered that the device was a complex system of interlocking gears, capable of calculating the positions of the planets and the moon with remarkable accuracy.\n\nThe decoding of the Antikythera mechanism provided valuable insights into the advanced knowledge of ancient Greek astronomers and their ability to create sophisticated mechanical devices. It also highlighted the importance of the ancient Greeks in the development of early computing technology. The mechanism's intricate design and its ability to predict astronomical events have made it a subject of great interest in both historical and technological studies.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 10,
+        "chars": 1314,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 37,
+        "tokens": 15754
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "The Antikythera mechanism is an ancient Greek analog computer discovered in 1901 in the Antikythera shipwreck off the coast of Greece. It dates back to around 330 BCE and is considered one of the most sophisticated ancient machines ever found. The mechanism was used to predict astronomical events, such as the positions of the planets and the phases of the moon, and it also included a calendar for the Olympic Games.\n\nThe decoding of the Antikythera mechanism was a significant achievement in the field of ancient technology. In the 1990s, a team of researchers, including Dr. John L. Gage, successfully decoded the mechanism using advanced imaging techniques and computer modeling. They discovered that the device was a complex system of interlocking gears, capable of calculating the positions of the planets and the moon with remarkable accuracy.\n\nThe decoding of the Antikythera mechanism provided valuable insights into the advanced knowledge of ancient Greek astronomers and their ability to create sophisticated mechanical devices. It also highlighted the importance of the ancient Greeks in the development of early computing technology. The mechanism's intricate design and its ability to predict astronomical events have made it a subject of great interest in both historical and technological studies.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-antikythera.json"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "philae": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "comet": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "launch": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "arrival": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "water": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "end": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 5,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 699
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Rosetta mission was a groundbreaking space exploration project launched by the European Space Agency (ESA) in 2004. Its primary goal was to study comet 67P/Churyumov–Gerasimenko, which is the first time a spacecraft has visited a comet. Rosetta was the first mission to orbit and land on a comet, achieving a significant milestone in space exploration.\n\nDuring its mission, Rosetta provided detailed images and data about the comet's surface, composition, and structure. It discovered that the comet's surface was covered with a complex network of ice and organic compounds, which suggested that it might have originated from the early solar system. The mission also revealed the presence of a subsurface layer of ice, which could be a source of water and other volatiles.\n\nOne of the most significant findings from the Rosetta mission was the discovery of a \"tail\" extending from the comet, which was composed of dust and gas. This tail was observed to be moving away from the comet, indicating that the comet was in the process of disintegrating. Additionally, Rosetta detected the presence of methane and other complex organic molecules on the comet's surface, further supporting the idea that comets may have played a crucial role in delivering organic materials to early Earth.\n\nThe Rosetta mission not only provided valuable scientific data but also demonstrated the capabilities of modern space exploration technology. It paved the way for future missions to study comets and other celestial bodies, contributing to our understanding of the solar system's formation and the potential for life in the universe.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 11,
+        "chars": 1620,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 42,
+        "tokens": 15344
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "The Rosetta mission was a groundbreaking space exploration project launched by the European Space Agency (ESA) in 2004. Its primary goal was to study comet 67P/Churyumov–Gerasimenko, which is the first time a spacecraft has visited a comet. Rosetta was the first mission to orbit and land on a comet, achieving a significant milestone in space exploration.\n\nDuring its mission, Rosetta provided detailed images and data about the comet's surface, composition, and structure. It discovered that the comet's surface was covered with a complex network of ice and organic compounds, which suggested that it might have originated from the early solar system. The mission also revealed the presence of a subsurface layer of ice, which could be a source of water and other volatiles.\n\nOne of the most significant findings from the Rosetta mission was the discovery of a \"tail\" extending from the comet, which was composed of dust and gas. This tail was observed to be moving away from the comet, indicating that the comet was in the process of disintegrating. Additionally, Rosetta detected the presence of methane and other complex organic molecules on the comet's surface, further supporting the idea that comets may have played a crucial role in delivering organic materials to early Earth.\n\nThe Rosetta mission not only provided valuable scientific data but also demonstrated the capabilities of modern space exploration technology. It paved the way for future missions to study comets and other celestial bodies, contributing to our understanding of the solar system's formation and the potential for life in the universe.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-rosetta.json"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "dam": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "kazakhstan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cotton": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "salinity": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "desert": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 720
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Aral Sea, once one of the world's largest lakes, was severely degraded due to the massive irrigation projects of the Soviet Union in the 1960s. These projects diverted the Amur River's flow to the south, leading to the shrinking of the Aral Sea and the creation of two new lakes, the \"Black Sea\" and \"White Sea.\" The ecological and social consequences were profound, including the loss of biodiversity, the collapse of local fisheries, and the displacement of millions of people.\n\nEfforts to restore the Aral Sea have been extensive and multifaceted. The most significant initiative was the construction of the Belkai Dam on the Amur River, which was intended to redirect water flow and promote the growth of the Aral Sea. However, the dam's construction was halted in the 1990s due to financial and political challenges. In the 2000s, the Russian government launched the \"Aral Sea Restoration Project,\" which aimed to rehydrate the Aral Sea by redirecting water flow from the Amur River to the south. This project involved the construction of the Krasnoyarsk Dam and the implementation of water management strategies to restore the lake's ecosystem.\n\nThe restoration efforts have faced numerous challenges, including the lack of consistent water flow, the persistence of salt accumulation in the lakebed, and the difficulty of balancing agricultural and ecological needs. Despite these challenges, the project has made some progress, with the Aral Sea gradually rehydrating and the ecosystem beginning to recover. However, the full restoration of the Aral Sea remains a complex and ongoing process, highlighting the delicate balance between human development and environmental preservation.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 11,
+        "chars": 1695,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 38,
+        "tokens": 12757
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "The Aral Sea, once one of the world's largest lakes, was severely degraded due to the massive irrigation projects of the Soviet Union in the 1960s. These projects diverted the Amur River's flow to the south, leading to the shrinking of the Aral Sea and the creation of two new lakes, the \"Black Sea\" and \"White Sea.\" The ecological and social consequences were profound, including the loss of biodiversity, the collapse of local fisheries, and the displacement of millions of people.\n\nEfforts to restore the Aral Sea have been extensive and multifaceted. The most significant initiative was the construction of the Belkai Dam on the Amur River, which was intended to redirect water flow and promote the growth of the Aral Sea. However, the dam's construction was halted in the 1990s due to financial and political challenges. In the 2000s, the Russian government launched the \"Aral Sea Restoration Project,\" which aimed to rehydrate the Aral Sea by redirecting water flow from the Amur River to the south. This project involved the construction of the Krasnoyarsk Dam and the implementation of water management strategies to restore the lake's ecosystem.\n\nThe restoration efforts have faced numerous challenges, including the lack of consistent water flow, the persistence of salt accumulation in the lakebed, and the difficulty of balancing agricultural and ecological needs. Despite these challenges, the project has made some progress, with the Aral Sea gradually rehydrating and the ecosystem beginning to recover. However, the full restoration of the Aral Sea remains a complex and ongoing process, highlighting the delicate balance between human development and environmental preservation.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-aral-restoration.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:07:32.183Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:07:32.220Z model cache evals/model-cache/qwen3-1.7b: 485 responses loaded",
+    "machine at start: gpu 94% · vram 7.58 GiB · load 18.71 · mem 65% free (normal) · no throttling recorded",
+    "2026-09-19T08:07:32.303Z 3 seeds from evals/seeds-overflow.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-1 · grammar tools:composing · matched · commit 59c9099",
+    "wiki recording: 1302 responses loaded",
+    "antikythera: resolved · topics 2/10 · supported 0/10 · read 0/10 · ¶3 · 10 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 632 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
+    "rosetta: resolved · topics 5/10 · supported 0/10 · read 0/10 · ¶4 · 11 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 699 tokens · stopped by answer · 3 s · model 0 replayed 1 missed",
+    "aral-restoration: resolved · topics 3/10 · supported 0/10 · read 0/10 · ¶3 · 11 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 1 calls, 0 lookups, 720 tokens · stopped by answer · 3 s · model 0 replayed 1 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 7.58 GiB · load up to 18.71 · no throttling in 1 samples"
+  ]
+}

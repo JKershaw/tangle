@@ -1,0 +1,392 @@
+{
+  "suite": "runs",
+  "model": "qwen3:8b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "59c9099",
+  "head": "59c9099",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:02:20.989Z",
+  "loadSeconds": 0,
+  "prompt": "walk-15/asks-4",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 9,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 87.2
+    },
+    "vramGiB": {
+      "min": 5.84,
+      "max": 5.84,
+      "mean": 5.8
+    },
+    "load": {
+      "min": 14.06,
+      "max": 18.32,
+      "mean": 15.5
+    },
+    "memoryFreePercent": {
+      "min": 33,
+      "max": 63,
+      "mean": 57.4
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 3,
+  "resolved": 3,
+  "factsPresent": 24,
+  "factsSupported": 24,
+  "factsRead": 30,
+  "factsTotal": 30,
+  "replay": {
+    "hits": 0,
+    "misses": 141,
+    "cache": "evals/model-cache/qwen3-8b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "wreck": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "wright": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cycles": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "imaging": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "olympiad": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "origin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "museum": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 14,
+        "visits": 21,
+        "modelCalls": 43,
+        "lookups": 14,
+        "tokens": 17797
+      },
+      "statuses": {
+        "resolved": 13,
+        "blocked": 1
+      },
+      "finding": "The Antikythera mechanism ( AN-tik-ih-THEER-ə, US also AN-ty-kih-) is an ancient Greek hand-powered orrery (model of the Solar System) built in the 2nd century BC and discovered in 1901. It is the oldest surviving analogue computer discovered to date, although descriptions of similar devices exist in the historical record. It could be used to predict astronomical positions and eclipses decades in advance. In 2005, a team from Cardiff University led by Mike Edmunds used computer X-ray tomography and high resolution scanning to image inside fragments of the crust-encased mechanism and read faint inscriptions that once covered the outer casing. These scans suggest that the mechanism had 35 meshing bronze gears, 30 of which are still visible, enabling it to follow the movements of the Moon and the Sun through the zodiac, to predict eclipses and to model the irregular orbit of the Moon, where the Moon's speed is higher in its perigee than in its apogee. The inscriptions were further deciphered in 2016, revealing numbers connected with the synodic cycles of Venus and Saturn.\n\nOn 17 May 1902, archaeologist Valerios Stais, together with his cousin, the Greek politician Spyridon Stais, found one of the pieces of rock had a gear wheel embedded in it. He initially believed that it was an astronomical clock, but most scholars considered the device to be prochronistic, too complex to have been constructed during the same period as the other pieces that had been discovered. The German philologist Albert Rehm became interested in the device and was the first to propose that it was an astronomical calculator.\n\nAlbert Rehm (August 15, 1871 (in Augsburg)- July 31, 1949 (in Munich)) was a German philologist best known for his work on the Antikythera mechanism - he was the first to propose that it was an astronomical calculator.\n\nIn 1902 Stais first noticed the Antikythera mechanism among other unidentified scraps of bronze, during a visit to the National Archaeological Museum in Athens. == References ==\n\n76 years ...\" which refers to the Callippic cycle.\n\nThe mechanism was operated by turning a small hand crank (now lost) which was linked via a crown gear to the largest gear, the four-spoked gear visible on the front of fragment A, gear b1. The action of turning the hand crank would also cause all interlocked gears within the mechanism to rotate, resulting in the simultaneous calculation of the position of the Sun and Moon, the moon phase, eclipse, and calendar cycles, and perhaps the locations of planets.\n\nNo gearing for such a planetary display survives and all gears are accounted for—with the exception of one 63-toothed gear (r1) otherwise unaccounted for in fragment D. The inner gear moves inside the outer gear reproducing an epicyclical motion that, with a pointer, gives the position of planet Jupiter. The inner gear is numbered 45, \"ME\" in Greek, and the same number is written on two surfaces of this small cylindrical box.\n\nThe earliest surviving gears in Europe were found in the Antikythera mechanism, an example of a very early and intricate geared device, designed to calculate astronomical positions of the sun, moon, and planets, and predict eclipses.\n\nThe Antikythera mechanism (c. 150–80 BC) was an early analog computer designed to calculate the location of the Sun, Moon, and planets for a given date.\n\nThe Sun gear is operated from the hand-operated crank (connected to gear a1, driving the large four-spoked mean Sun gear, b1) and in turn drives the rest of the gear sets. Over an entire revolution the average velocities are the same, but the fast-slow variation models the effects of the elliptical orbit of the Moon, in consequence of Kepler's second and third laws. The modelled rotational period of the Moon pointer (averaged over a year) is 27.321 days, compared to the modern length of a lunar sidereal month of 27.321661 days.\n\nBut as progress has been made on analyzing the internal structures and deciphering the inscriptions, earlier models have been ruled out and better models developed. In 2002 Michael Wright designed and built the first workable model with the known mechanism and his emulation of a potential planetarium system. This system would lead to a much simplified gear system, with much reduced forces and complexity, as compared to Wright's model.\n\nThe discovery of the Antikythera mechanism proved that such devices already existed during antiquity, though likely after Archimedes' lifetime.\n\nHe is also said to have built a planetarium device that demonstrated the movements of the known celestial bodies, and may have been a precursor to the Antikythera mechanism.",
+      "profile": {
+        "paragraphs": 13,
+        "sentences": 27,
+        "chars": 4647,
+        "duplicates": 0,
+        "articles": 8,
+        "sections": 14,
+        "hopsChosen": 7,
+        "hopsRead": 7,
+        "hopsCited": 6,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 41,
+      "wiki": {
+        "hits": 44,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 43
+      },
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tangle-antikythera.json",
+      "summary": "live run · seed: Tell me about the Antikythera mechanism and how it was decoded.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T08:02:21.211Z · exported 2026-09-19T08:03:01.889Z\nnodes 14 · visits 21 · model calls 43 · lookups 14 · evidence 14 · tokens 17797\nstatuses {\"resolved\":13,\"blocked\":1} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Antikythera mechanism and how it was decoded. → The Antikythera mechanism ( AN-tik-ih-THEER-ə, US also AN-ty-kih-) is an ancient Greek han\n  n2 [resolved v2] Tell me about the Antikythera mechanism and how it was decoded. — about Discovery → On 17 May 1902, archaeologist Valerios Stais, together with his cousin, the Greek politici\n    n8 [resolved v2] Tell me about the Antikythera mechanism and how it was decoded. — about Albert Rehm → Albert Rehm (August 15, 1871 (in Augsburg)- July 31, 1949 (in Munich)) was a German philol\n      n10 [blocked] Tell me about the Antikythera mechanism and how it was decoded. — about Augsburg !! Nothing of what Augsburg says about the subject was kept.\n    n9 [resolved] Tell me about the Antikythera mechanism and how it was decoded. — about Spyridon Stais → In 1902 Stais first noticed the Antikythera mechanism among other unidentified scraps of b\n  n3 [resolved] Tell me about the Antikythera mechanism and how it was decoded. — about Design → 76 years ...\" which refers to the Callippic cycle.\n  n4 [resolved] Tell me about the Antikythera mechanism and how it was decoded. — about Operation → The mechanism was operated by turning a small hand crank (now lost) which was linked via a\n  n5 [resolved v2] Tell me about the Antikythera mechanism and how it was decoded. — about Gearing → No gearing for such a planetary display survives and all gears are accounted for—with the \n    n11 [resolved v2] Tell me about the Antikythera mechanism and how it was decoded. — about Gear → The earliest surviving gears in Europe were found in the Antikythera mechanism, an example\n      n12 [resolved] Tell me about the Antikythera mechanism and how it was decoded. — about Astronomical → The Antikythera mechanism (c. 150–80 BC) was an early analog computer designed to calculat\n  n6 [resolved] Tell me about the Antikythera mechanism and how it was decoded. — about Known gear scheme → The Sun gear is operated from the hand-operated crank (connected to gear a1, driving the l\n  n7 [resolved v2] Tell me about the Antikythera mechanism and how it was decoded. — about Proposed gear schemes → But as progress has been made on analyzing the internal structures and deciphering the ins\n    n13 [resolved v2] Tell me about the Antikythera mechanism and how it was decoded. — about Planetarium → The discovery of the Antikythera mechanism proved that such devices already existed during\n      n14 [resolved] Tell me about the Antikythera mechanism and how it was decoded. — about Archimedes → He is also said to have built a planetarium device that demonstrated the movements of the \n\nmodel latency ms: median 625 · max 1915 · n 43\nworth a look:\n- n10 blocked: Nothing of what Augsburg says about the subject was kept."
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "philae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "comet": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "arrival": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "water": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "organics": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "landing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "end": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 8,
+      "factsSupported": 8,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 12,
+        "visits": 17,
+        "modelCalls": 40,
+        "lookups": 12,
+        "tokens": 14652
+      },
+      "statuses": {
+        "resolved": 9,
+        "blocked": 3
+      },
+      "finding": "Churyumov–Gerasimenko was the destination of the European Space Agency's Rosetta mission, launched on 2 March 2004. Rosetta rendezvoused with Churyumov–Gerasimenko on 6 August 2014 and entered orbit on 10 September 2014. Rosetta's lander, Philae, landed on the comet's surface on 12 November 2014, becoming the first spacecraft to land on a comet nucleus. On 30 September 2016, the Rosetta spacecraft ended its mission by landing on the comet in its Maʽat region.\n\nThe two-lobe shape of the comet is the result of a gentle, low-velocity collision of two objects, and is called a contact binary. The \"terraces\", layers of the interior of the comet that have been exposed by partial stripping of outer layers during its existence, are oriented in different directions in the two lobes, indicating that two objects fused to form Churyumov–Gerasimenko. A high-resolution photogrammetric shape model of the nucleus, featuring 132.1 million facets, was reconstructed using 7,682 NAC and 1,504 WAC images from the OSIRIS cameras taken post-perihelion.\n\nDuring Rosetta's lifetime, many changes were observed on the comet's surface, particularly when the comet was close to perihelion. A fracture in the neck region was also observed to grow in size; boulders tens of meters wide were displaced, sometimes travelling more than 100 meters; and patches of the ground were removed to expose new features. Rosetta scientists determined that a large cliff had collapsed, making it the first landslide on a comet known to be associated with an outburst of activity.\n\nThe Rosetta mission orbited Comet Churyumov–Gerasimenko for 17 months and was designed to complete the most detailed study of a comet ever attempted. Rosetta reached Comet Churyumov–Gerasimenko in May 2014. Rosetta's Philae lander successfully made the first soft landing on a comet nucleus when it touched down on Comet Churyumov–Gerasimenko on 12 November 2014.\n\nOn 4 February 1959, a close encounter with Jupiter of 0.0515 AU (7.70 million km) moved Churyumov–Gerasimenko's perihelion inward from 2.7 AU (400 million km) to 1.28 AU (191 million km), where it basically remains today. Before Churyumov–Gerasimenko's perihelion passage in 2009, its rotational period was 12.76 hours. During this perihelion passage, it decreased to 12.4 hours, which likely happened because of sublimation-induced torque.\n\nDescent of a small lander occurred on 12 November 2014. The lander bounced twice and only came to rest when it made contact with the surface for the third time, two hours after first contact. While the discovery solves the question of the lander's disposition, it also allows project scientists to properly contextualise the data it returned from the comet's surface.\n\nThe Rosetta probe, launched 2 March 2004, put the first robotic lander Philae on the comet Churyumov–Gerasimenko on 12 November 2014.\n\nThe composition of water vapor from Churyumov–Gerasimenko, as determined by the Rosetta spacecraft, is substantially different from that found on Earth. The ratio of deuterium to hydrogen in the water from the comet was determined to be three times that found for terrestrial water. The water vapor is also mixed with significant amount of formaldehyde (0.5 wt%) and methanol (0.4 wt%), these concentrations falling within common range for Solar system comets.\n\nThe deuterium ratio of comet 67P/Churyumov–Gerasimenko, as measured by the Rosetta space probe, is about three times that of Earth water.",
+      "profile": {
+        "paragraphs": 9,
+        "sentences": 24,
+        "chars": 3462,
+        "duplicates": 0,
+        "articles": 6,
+        "sections": 12,
+        "hopsChosen": 5,
+        "hopsRead": 5,
+        "hopsCited": 3,
+        "blocked": 3
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 35,
+      "wiki": {
+        "hits": 83,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 40
+      },
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tangle-rosetta.json",
+      "summary": "live run · seed: Tell me about the Rosetta mission and what it found at comet 67P.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T08:03:01.908Z · exported 2026-09-19T08:03:37.057Z\nnodes 12 · visits 17 · model calls 40 · lookups 12 · evidence 12 · tokens 14652\nstatuses {\"resolved\":9,\"blocked\":3} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Rosetta mission and what it found at comet 67P. → Churyumov–Gerasimenko was the destination of the European Space Agency's Rosetta mission, \n  n2 [blocked] Tell me about the Rosetta mission and what it found at comet 67P. — about Discovery !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n3 [resolved] Tell me about the Rosetta mission and what it found at comet 67P. — about Shape → The two-lobe shape of the comet is the result of a gentle, low-velocity collision of two o\n  n4 [resolved v2] Tell me about the Rosetta mission and what it found at comet 67P. — about Surface changes → During Rosetta's lifetime, many changes were observed on the comet's surface, particularly\n    n8 [resolved v2] Tell me about the Rosetta mission and what it found at comet 67P. — about Rosetta (spacecraft) → The Rosetta mission orbited Comet Churyumov–Gerasimenko for 17 months and was designed to \n      n9 [blocked] Tell me about the Rosetta mission and what it found at comet 67P. — about Rosetta (Vangelis album) !! Nothing of what Rosetta (Vangelis album) says about the subject was kept.\n      n10 [blocked] Tell me about the Rosetta mission and what it found at comet 67P. — about Philae (spacecraft) !! Nothing of what Philae (spacecraft) says about the subject was kept.\n  n5 [resolved] Tell me about the Rosetta mission and what it found at comet 67P. — about Orbit and rotation → On 4 February 1959, a close encounter with Jupiter of 0.0515 AU (7.70 million km) moved Ch\n  n6 [resolved v2] Tell me about the Rosetta mission and what it found at comet 67P. — about Landing → Descent of a small lander occurred on 12 November 2014. The lander bounced twice and only \n    n11 [resolved] Tell me about the Rosetta mission and what it found at comet 67P. — about Lander (spacecraft) → The Rosetta probe, launched 2 March 2004, put the first robotic lander Philae on the comet\n  n7 [resolved v2] Tell me about the Rosetta mission and what it found at comet 67P. — about Physical properties → The composition of water vapor from Churyumov–Gerasimenko, as determined by the Rosetta sp\n    n12 [resolved] Tell me about the Rosetta mission and what it found at comet 67P. — about Deuterium → The deuterium ratio of comet 67P/Churyumov–Gerasimenko, as measured by the Rosetta space p\n\nmodel latency ms: median 783 · max 1809 · n 40\nworth a look:\n- n2 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n9 blocked: Nothing of what Rosetta (Vangelis album) says about the subject was kept.\n- n10 blocked: Nothing of what Philae (spacecraft) says about the subject was kept."
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "dam": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "north-aral": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "kazakhstan": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "uzbekistan": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "world-bank": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "rivers": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cotton": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "salinity": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "desert": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 10,
+      "factsSupported": 10,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 16,
+        "visits": 23,
+        "modelCalls": 58,
+        "lookups": 16,
+        "tokens": 19019
+      },
+      "statuses": {
+        "resolved": 13,
+        "blocked": 3
+      },
+      "finding": "The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely dried up into desert by 2007. Formerly the third-largest lake in the world with an area of 68,000 km2 (26,300 sq mi), the Aral Sea began shrinking in the 1960s after the rivers that fed it were diverted by Soviet irrigation projects. By 2007, it had declined to 10% of its original size, splitting into four lakes: the North Aral Sea, the eastern and western basins of the once far larger South Aral Sea, and the smaller intermediate Barsakelmes Lake. By 2009, the southeastern lake had disappeared and the southwestern lake had retreated to a thin strip at the western edge of the former southern sea. Satellite images by NASA in August 2014 revealed that for the first time in modern history the eastern basin of the Aral Sea had completely dried up. After the visit to Muynak in 2011, United Nations secretary general Ban Ki-moon called the shrinking of the Aral Sea \"one of the planet's worst environmental disasters\".\n\nThe Aral Sea is considered an example of ecosystem collapse. Inhabitants of the surrounding areas commonly experience a shortage of fresh water, and health problems are widespread—including high rates of certain cancers, respiratory illnesses including tuberculosis (mostly drug resistant), digestive disorders, anaemia, and infectious diseases. Together, this presented an unusually high fatality rate among vulnerable age groups: child mortality stood at 75 per 1,000 in 2009, while maternal mortality was 12 in every 1,000.\n\nMany different solutions to the problems have been suggested over the years, varying in feasibility and cost, including: Improving the quality of irrigation canals Using alternative cotton species that require less water Promoting non-agricultural economic development in upstream countries Using fewer chemicals on the cotton Cultivating crops other than cotton Redirecting water from the Volga, Ob and Irtysh rivers to restore the Aral Sea to its former size in 20–30 years at a cost of US$30–50 billion Pumping sea water into the Aral Sea from the Caspian Sea via a pipeline, and diluting it with fresh water from local catchment areas In January 1994, Kazakhstan, Uzbekistan, Turkmenistan, Tajikistan, and Kyrgyzstan signed a deal to pledge 1% of their budgets to help the sea recover. In March 2000, UNESCO presented their \"Water-related vision for the Aral Sea basin for the year 2025\". By 2006, the World Bank's restoration projects, especially in the North Aral, were giving rise to some unexpected, tentative relief in what had been an extremely pessimistic picture.\n\nThe International Fund for Saving the Aral Sea (IFAS) is an intergovernmental organization whose goal is to finance and support collaborative initiatives and ecological, social, and technical projects aimed at addressing the catastrophic environmental and human impacts caused by the Aral Sea's desiccation, attributed to unsustainable irrigation practices during the Soviet era. The Aral Sea Basin Programme's (ASBP) four objectives are: stabilize the environment of the Aral Sea Basin rehabilitate the disaster area around the sea improve the management of the international waters of the Aral Sea Basin build the capacity of institutions at the regional and national level to advance the programme's aims\n\nThe International Fund for Saving the Aral Sea (IFAS) is an intergovernmental organization that was established in accordance with the decision of the Heads of State of Central Asia in 1993. The primary goal of IFAS is to finance and support collaborative initiatives and ecological and scientific-practical projects aimed at mitigating the catastrophic environmental and human impacts caused by the Aral Sea's desiccation, attributed to unsustainable irrigation practices during the Soviet era.\n\nIn the 1950s, Soviet officials began also diverting the Syr Darya and the Amu Darya, which fed the Aral Sea. Before diversion, the rivers delivered 55 cubic kilometres (13 cu mi) of water to the Aral Sea per year, but after diversion, they delivered only 6 cubic kilometres (1.4 cu mi). Because of its reduced inflow, the Aral Sea covered less than half of its original seabed, which made the regional climate more extreme and created airborne salinization, lowering nearby crop yields.\n\nDuring the Soviet era, extensive irrigation projects were constructed around both rivers, diverting their water into farmland and causing, during the post-Soviet era, the virtual disappearance of the Aral Sea, once the world's fourth-largest lake.\n\nRising in the Pamir Mountains, north of the Hindu Kush, the Amu Darya is formed by the confluence of the Vakhsh and Panj rivers, in the Tigrovaya Balka Nature Reserve on the border between Afghanistan and Tajikistan, and flows from there north-westwards into the southern remnants of the Aral Sea. However, today the Amu Darya does not reach the Aral Sea, and its mouth is in a dried-up area, of what was once the Aral Sea.\n\nIrrigation works on the Syr Darya have been repaired and improved to increase its water flow, and in October 2003, the Kazakh government announced a plan to build Dike Kokaral, a concrete dam separating the two halves of the Aral Sea. Work on this dam was completed in August 2005; since then, the water level of the North Aral has risen, and its salinity has decreased. Economically significant stocks of fish have returned, and observers who had written off the North Aral Sea as an environmental disaster were surprised by unexpected reports that, in 2006, its returning waters were already partly reviving the fishing industry and producing catches for export as far as Ukraine.\n\nDike Kokaral is a 12 km (7.5 mi) long dam across a narrow stretch of the former Aral Sea, splitting off the North Aral Sea (also called \"The Small Sea\") from the area that once contained the much larger South Aral Sea (\"The Large Sea\"). The dike is conserving the dwindling waters of the Syr Darya river and maintaining (and attempting to revive) the damaged ecology of the North Aral Sea, at the expense of sealing the fate of the larger South Aral.\n\nFrom 1987 on it became connected to the surrounding land also at its eastern end, over the Berg Strait, turning the peninsula into an isthmus separating the North Aral Sea and the South Aral Sea. The dike stops water from the North Aral Sea from spilling over into the South Aral Sea, and thus contributes to maintaining and increasing the water level in the northern sea. Since then, the water level of the North Aral Sea has risen. == References ==\n\nThe South Aral Sea is a lake in the basin of the former Aral Sea that formed in 1987 when that body divided in two, due to diversion of river inflow for agriculture. In 2003, the South Aral Sea itself split into eastern and western basins, the Eastern Sea and the West Aral Sea, connected by a narrow channel (channel bed at an elevation of 29 m (95 ft)) that balanced surface levels but did not allow mixing, and in 2005 the North Aral Sea was dammed to prevent the collapse of its fisheries, cutting off the only remaining inflow to the southern lakes.\n\nThe North Aral Sea (Kazakh: Soltüstık Aral teñızı) is the portion of the former Aral Sea that is fed by the Syr Darya River. It split from the South Aral Sea in 1987–1988 as water levels dropped due to river diversion for agriculture.",
+      "profile": {
+        "paragraphs": 13,
+        "sentences": 34,
+        "chars": 7433,
+        "duplicates": 0,
+        "articles": 12,
+        "sections": 16,
+        "hopsChosen": 11,
+        "hopsRead": 11,
+        "hopsCited": 8,
+        "blocked": 3
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 51,
+      "wiki": {
+        "hits": 137,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 58
+      },
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tangle-aral-restoration.json",
+      "summary": "live run · seed: Tell me about the Aral Sea and the efforts to restore it.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T08:03:37.067Z · exported 2026-09-19T08:04:27.639Z\nnodes 16 · visits 23 · model calls 58 · lookups 16 · evidence 16 · tokens 19019\nstatuses {\"resolved\":13,\"blocked\":3} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Aral Sea and the efforts to restore it. → The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekist\n  n2 [resolved] Tell me about the Aral Sea and the efforts to restore it. — about Impact on environment, economy, and public health → The Aral Sea is considered an example of ecosystem collapse. Inhabitants of the surroundin\n  n3 [resolved v2] Tell me about the Aral Sea and the efforts to restore it. — about Proposed environmental solutions → Many different solutions to the problems have been suggested over the years, varying in fe\n    n6 [blocked] Tell me about the Aral Sea and the efforts to restore it. — about Kazakhstan !! Nothing of what Kazakhstan says about the subject was kept.\n    n7 [blocked] Tell me about the Aral Sea and the efforts to restore it. — about Caspian Sea !! Nothing of what Caspian Sea says about the subject was kept.\n  n4 [resolved v2] Tell me about the Aral Sea and the efforts to restore it. — about Restoration strategies → The International Fund for Saving the Aral Sea (IFAS) is an intergovernmental organization\n    n8 [resolved v2] Tell me about the Aral Sea and the efforts to restore it. — about International Fund for Saving the Aral Sea → The International Fund for Saving the Aral Sea (IFAS) is an intergovernmental organization\n      n10 [blocked] Tell me about the Aral Sea and the efforts to restore it. — about Central Asia !! Nothing of what Central Asia says about the subject was kept.\n    n9 [resolved v2] Tell me about the Aral Sea and the efforts to restore it. — about Irrigation → In the 1950s, Soviet officials began also diverting the Syr Darya and the Amu Darya, which\n      n11 [resolved] Tell me about the Aral Sea and the efforts to restore it. — about Syr Darya → During the Soviet era, extensive irrigation projects were constructed around both rivers, \n      n12 [resolved] Tell me about the Aral Sea and the efforts to restore it. — about Amu Darya → Rising in the Pamir Mountains, north of the Hindu Kush, the Amu Darya is formed by the con\n  n5 [resolved v2] Tell me about the Aral Sea and the efforts to restore it. — about North Aral Sea restoration work → Irrigation works on the Syr Darya have been repaired and improved to increase its water fl\n    n13 [resolved v2] Tell me about the Aral Sea and the efforts to restore it. — about Dike Kokaral → Dike Kokaral is a 12 km (7.5 mi) long dam across a narrow stretch of the former Aral Sea, \n      n15 [resolved] Tell me about the Aral Sea and the efforts to restore it. — about Kokaral → From 1987 on it became connected to the surrounding land also at its eastern end, over the\n      n16 [resolved] Tell me about the Aral Sea and the efforts to restore it. — about South Aral Sea → The South Aral Sea is a lake in the basin of the former Aral Sea that formed in 1987 when \n    n14 [resolved] Tell me about the Aral Sea and the efforts to restore it. — about North Aral Sea → The North Aral Sea (Kazakh: Soltüstık Aral teñızı) is the portion of the former Aral Sea t\n\nmodel latency ms: median 848 · max 2133 · n 58\nworth a look:\n- n6 blocked: Nothing of what Kazakhstan says about the subject was kept.\n- n7 blocked: Nothing of what Caspian Sea says about the subject was kept.\n- n10 blocked: Nothing of what Central Asia says about the subject was kept."
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:02:20.988Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:8b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:02:21.028Z model cache evals/model-cache/qwen3-8b: 327 responses loaded",
+    "machine at start: gpu 99% · vram 5.84 GiB · load 18.32 · mem 33% free (warning) · no throttling recorded",
+    "2026-09-19T08:02:21.129Z 3 seeds from evals/seeds-overflow.json · mode tangle · limits {} · prompt walk-15/asks-4 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit 59c9099",
+    "wiki recording: 1302 responses loaded",
+    "2026-09-19T08:03:01.872Z run stopped: Root resolved",
+    "antikythera: resolved · topics 6/10 · supported 6/10 · read 10/10 · ¶13 · 27 sentences · read 8 articles, 14 sections · hops 6 cited / 7 read / 7 chosen · 1 blocked · 14 nodes, 43 calls, 14 lookups, 17797 tokens · 41 s · wiki 44 hits 0 misses · model 0 replayed 43 missed",
+    "2026-09-19T08:03:37.045Z run stopped: Root resolved",
+    "rosetta: resolved · topics 8/10 · supported 8/10 · read 10/10 · ¶9 · 24 sentences · read 6 articles, 12 sections · hops 3 cited / 5 read / 5 chosen · 3 blocked · 12 nodes, 40 calls, 12 lookups, 14652 tokens · 35 s · wiki 83 hits 0 misses · model 0 replayed 40 missed",
+    "2026-09-19T08:04:27.622Z run stopped: Root resolved",
+    "aral-restoration: resolved · topics 10/10 · supported 10/10 · read 10/10 · ¶13 · 34 sentences · read 12 articles, 16 sections · hops 8 cited / 11 read / 11 chosen · 3 blocked · 16 nodes, 58 calls, 16 lookups, 19019 tokens · 51 s · wiki 137 hits 0 misses · model 0 replayed 58 missed",
+    "machine during the suite: gpu 87.2% mean, 99% peak · vram up to 5.84 GiB · load up to 18.32 · no throttling in 9 samples"
+  ]
+}

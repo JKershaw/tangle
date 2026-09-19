@@ -1,0 +1,532 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "59c9099",
+  "head": "59c9099",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:08:12.955Z",
+  "loadSeconds": 0,
+  "prompt": "tools-1",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 1,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 7.58,
+      "max": 7.58,
+      "mean": 7.6
+    },
+    "load": {
+      "min": 18.48,
+      "max": 18.48,
+      "mean": 18.5
+    },
+    "memoryFreePercent": {
+      "min": 65,
+      "max": 65,
+      "mean": 65
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 4,
+  "resolved": 0,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 4,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "streamed-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "serialisation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 572
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 23,
+        "tokens": 8177
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "MangoDB persists writes to disk using a mechanism called \"WAL (Write-Ahead Log)\" and \"fsync\". The WAL is a separate file that records all changes to the database before they are written to the main data file. This ensures that even if a crash occurs, the most recent changes can be recovered from the WAL. \n\nMangoDB uses the `fsync` function to ensure that all data is written to the disk. This function can be called explicitly or automatically, depending on the configuration. When `fsync` is called, all data written to the database is immediately written to the disk, ensuring durability. \n\nThe `fsync` function is crucial for data durability and recovery. It helps prevent data loss in case of system crashes or hardware failures by ensuring that all data is written to the disk before the operation completes. This mechanism is essential for maintaining data integrity and reliability in a database system.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-persist.json"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "matches-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "logical-operators": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 613
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 50,
+        "tokens": 15898
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "MangoDB evaluates a find query with a filter by first applying the filter to the collection, which reduces the number of documents that need to be processed. The filter is a MongoDB query expression that specifies the conditions that the documents must meet to be included in the result. MangoDB uses a query planner to determine the most efficient way to execute the query, considering factors such as index availability and document structure. The query planner may choose to use a full-table scan, a index scan, or a combination of both, depending on the filter's complexity and the presence of indexes. If an index is available, MangoDB will use it to speed up the query, reducing the amount of data that needs to be processed. The evaluation of the filter also involves checking the conditions in the filter expression and ensuring that only the relevant documents are returned. If the filter is too complex or does not match an existing index, MangoDB may resort to a full-table scan, which is less efficient but guarantees accuracy. The evaluation process is optimized to minimize resource usage and maximize performance, ensuring that the query is executed efficiently even with large datasets.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-find.json"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "default-id-index": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "built-lazily-in-memory": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "equality-map": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sorted-entries": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "compound-prefix": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "non-indexable": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "special-indexes-skipped": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 584
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 39,
+        "tokens": 12657
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "MangoDB's indexes are used to improve the performance of database operations, such as sorting, filtering, and searching. When a query is executed, MangoDB checks the index to quickly locate the relevant data without scanning the entire table. This is particularly efficient for queries that involve a single condition or a small set of conditions.\n\nFor example, if a query filters data based on a specific column value, MangoDB will use the index to locate the corresponding rows. This process significantly reduces the amount of data that needs to be scanned, thereby speeding up the query execution. The use of indexes is especially beneficial for queries that involve sorting or limiting the result set, as the index can be leveraged to sort the data directly from the index without accessing the actual data rows.\n\nIn summary, MangoDB's indexes work by creating a structured reference to the data, allowing the database to quickly locate and retrieve the required information. This results in faster query performance and reduced resource consumption.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-indexes.json"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "stage-dispatch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "in-memory-sequential": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "out-and-merge-last": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "accumulators": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "lookup": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "system-variables": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "one-key-per-stage": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 557
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 10,
+        "tokens": 3659
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "MangoDB executes an aggregation pipeline by processing each document in the input collection and applying a series of aggregation operations in a specified order. The pipeline starts with the input documents and applies transformations such as filtering, sorting, grouping, and projecting. Each operation in the pipeline is applied sequentially to the documents, and the results are combined to produce the final output. For example, the `$match` stage filters documents based on specified conditions, while the `$project` stage allows for the transformation of fields and the addition of new fields. The `$sort` stage orders the documents, and the `$limit` stage restricts the number of documents returned. The pipeline is executed in a way that ensures each operation is applied to the intermediate result of the previous stage, leading to the final aggregation result. This process is efficient and allows for complex data transformations with minimal overhead.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-aggregate.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:08:12.953Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T08:08:12.955Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:08:12.990Z model cache evals/model-cache/qwen3-1.7b: 506 responses loaded",
+    "machine at start: gpu 95% · vram 7.58 GiB · load 18.48 · mem 65% free (normal) · no throttling recorded",
+    "2026-09-19T08:08:13.072Z 4 seeds from evals/seeds-code.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-1 · grammar tools:cited · matched · commit 59c9099",
+    "wiki recording: 0 responses loaded",
+    "persist: root blocked · topics 0/9 · supported 0/9 · read 0/9 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 1 calls, 0 lookups, 572 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
+    "find: root blocked · topics 0/11 · supported 0/11 · read 0/11 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 1 calls, 0 lookups, 613 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
+    "indexes: root blocked · topics 0/11 · supported 0/11 · read 0/11 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 1 calls, 0 lookups, 584 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
+    "aggregate: root blocked · topics 0/11 · supported 0/11 · read 0/11 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 1 calls, 0 lookups, 557 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 7.58 GiB · load up to 18.48 · no throttling in 1 samples"
+  ]
+}

@@ -8,11 +8,14 @@
 // word in what was read, each cited to its record, and graded as the graph
 // is. The context window is the walk's (CONTEXT_WINDOW tokens); when the
 // transcript outgrows it the oldest tool results are dropped, and the run
-// says how many. Node only; the page never offers the model a tool.
+// says how many. An answer given before anything was read is refused with
+// the reason and costs its call (tools-2: at 1.7B every seed was answered
+// on the first call with no tool used, and Ollama ignores tool_choice).
+// Node only; the page never offers the model a tool.
 import { NO_THINK, unitsOf } from "../src/asks.js";
 import { CONTEXT_WINDOW } from "../src/webllm.js";
 
-export const TOOLS_VERSION = "tools-1";
+export const TOOLS_VERSION = "tools-2";
 // About four characters a token for English prose under Qwen's tokeniser;
 // the answer needs room at the end.
 export const CONTEXT_CHARS = CONTEXT_WINDOW * 3;
@@ -33,6 +36,7 @@ const SYSTEM = {
   brief: "Write a short profile answering the brief using the tools. Read before you write. When you have what you need, write several short paragraphs from what you read, naming the specific works, events, places, people and consequences involved.",
 };
 const CITED = " Use only sentences copied word for word from what you read.";
+const REFUSED = "Nothing has been read yet, so that answer is not accepted. Use search to find a title, then read it, before answering.";
 const answerSchema = (kind) => ({ type: "object", properties: { answer: { type: "string", maxLength: kind === "brief" ? 6000 : 900 } }, required: ["answer"], additionalProperties: false });
 const answerTokens = (kind) => (kind === "brief" ? 1500 : 320);
 
@@ -123,6 +127,7 @@ export async function runTools(seed, { generate, wiki, kind = "question", cited 
   let tokens = 0;
   let lookups = 0;
   let dropped = 0;
+  let refused = 0;
   let answer = "";
   let stoppedBy = "answer";
   const log = (event, detail) => trace.push({ seq: trace.length + 1, time: new Date().toISOString(), event, node: "n1", ...detail });
@@ -158,6 +163,12 @@ export async function runTools(seed, { generate, wiki, kind = "question", cited 
       }
       continue;
     }
+    if (!last && !evidence.length) {
+      refused++;
+      log("answer_refused", { raw: output.text });
+      messages.push({ role: "assistant", content: String(output.text ?? "") }, { role: "user", content: REFUSED });
+      continue;
+    }
     if (last) {
       try {
         answer = String(JSON.parse(String(output.text ?? "").replace(/<think>[\s\S]*?<\/think>/g, "").trim()).answer ?? "");
@@ -170,5 +181,5 @@ export async function runTools(seed, { generate, wiki, kind = "question", cited 
   const cut = cited ? citedCut(answer, evidence) : { finding: answer.trim(), evidence: evidence.map((record) => record.id) };
   const resolved = Boolean(cut.finding);
   const root = { id: "n1", parent: null, depth: 0, question: String(seed), status: resolved ? "resolved" : "blocked", finding: resolved ? cut.finding : "", evidence: resolved ? cut.evidence : [], observed: evidence.map((record) => record.id), reason: resolved ? "" : cited ? "Nothing in the answer appears word for word in what was read." : "No answer." };
-  return { seed: String(seed), mode: cited ? "tools-cited" : "tools", kind, created, limits, nodes: [root], evidence, trace, visits: modelCalls, modelCalls, lookups, tokens, stopReason: null, answer, stoppedBy, dropped, transcript: messages };
+  return { seed: String(seed), mode: cited ? "tools-cited" : "tools", kind, created, limits, nodes: [root], evidence, trace, visits: modelCalls, modelCalls, lookups, tokens, stopReason: null, answer, stoppedBy, dropped, refused, transcript: messages };
 }

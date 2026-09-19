@@ -91,16 +91,25 @@ test("the cited variant keeps only the sentences that appear word for word in wh
   assert.deepEqual(citedCut("Short. The Dead Sea is a salt lake.", [{ id: "e9", text: "The Dead Sea is a salt lake bordered by Jordan." }]), { finding: "The Dead Sea is a salt lake.", evidence: ["e9"] });
 });
 
-test("a model that answers in words before the budget is done stops there, and a token budget forces the answer", async () => {
-  const early = await runTools(seed.seed, { generate: scripted([{ answer: "Because the Jordan River was diverted." }]).generate, wiki, budget: { calls: 8, tokens: 20000 } });
-  assert.equal(early.modelCalls, 1);
+test("an answer given before anything was read is refused with the reason and costs its call; after a read, an early answer stands; a token budget forces the answer", async () => {
+  const model = scripted([{ answer: "Because the Jordan River was diverted." }, { calls: [{ name: "read", arguments: { title: "Dead Sea" } }] }, { answer: "Because the Jordan River was diverted." }]);
+  const early = await runTools(seed.seed, { generate: model.generate, wiki, budget: { calls: 8, tokens: 20000 } });
+  assert.equal(early.refused, 1);
+  assert.equal(early.modelCalls, 3, "the refused answer cost a call");
   assert.equal(early.stoppedBy, "answer");
   assert.equal(early.nodes[0].finding, "Because the Jordan River was diverted.");
-  const model = scripted([{ calls: [{ name: "search", arguments: { term: "Dead Sea" } }] }, { calls: [{ name: "search", arguments: { term: "Jordan River" } }] }, { answer: "An answer." }]);
-  const run = await runTools(seed.seed, { generate: model.generate, wiki, budget: { calls: 8, tokens: 150 } });
+  assert.deepEqual(model.seen[1].messages.slice(-2).map((message) => message.role), ["assistant", "user"], "the model sees its answer and the refusal");
+  assert.match(model.seen[1].messages.at(-1).content, /Nothing has been read yet/);
+  assert.equal(early.trace.filter((event) => event.event === "answer_refused").length, 1);
+  const stubborn = await runTools(seed.seed, { generate: scripted([{ answer: "Made up." }]).generate, wiki, budget: { calls: 3, tokens: 20000 } });
+  assert.equal(stubborn.refused, 2, "refused until the budget forces the answer");
+  assert.equal(stubborn.stoppedBy, "calls");
+  assert.equal(stubborn.nodes[0].finding, "Made up.", "and the forced answer stands, unread, for the row to show");
+  const spent = scripted([{ calls: [{ name: "search", arguments: { term: "Dead Sea" } }] }, { calls: [{ name: "search", arguments: { term: "Jordan River" } }] }, { answer: "An answer." }]);
+  const run = await runTools(seed.seed, { generate: spent.generate, wiki, budget: { calls: 8, tokens: 150 } });
   assert.equal(run.modelCalls, 3, "after two calls the tokens are spent, so the third is the answer");
   assert.equal(run.stoppedBy, "tokens");
-  assert.ok(model.seen[2].options.schema);
+  assert.ok(spent.seen[2].options.schema);
 });
 
 test("when the transcript outgrows the context window the oldest tool results are dropped and the run says how many", async () => {

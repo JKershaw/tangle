@@ -2,6 +2,10 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-19 · milestone 5b, first rows: a small model offered tools does not use them
+
+The tool control (`scripts/tools.mjs`): the same model, the four source requests as tools in one context, each seed given the calls and tokens the graph's row spent on it. At 1.7B, tools-1, all 36 seeds across the four suites were answered on the first call with no tool used: composing 14 / 23, 14 / 35, 10 / 30 and 8 / 42 topics with nothing read and nothing supported, which is the memory column under another name; cited 0 everywhere, because there was nothing to cite. 4B on two seeds searched once and answered from the snippets without reading. Probes on the OpenAI route: with a shorter system prompt 1.7B does call search, and with the suite's prompt it does not, whatever `tool_choice` says; Ollama 0.34.2 ignores `"required"` and a named tool (identical output all three ways). So the API cannot force a read, and the prompt is not going to be reworded to beg for one. The rule "read before you answer" is the harness's to enforce: an answer given before anything was read is refused with the reason, costs its call, and the model gets the next turn (tools-2). If a model then spends its whole budget refusing to read, the row says so, and that is the finding.
+
 ## 2026-09-19 · milestone 5a: the replay
 
 Milestone 5a of [ROADMAP.md](../ROADMAP.md). Every model call is now recorded by its exact context and replayed when it recurs (`src/replay.js`, `evals/model-cache/`), the way Wikipedia has been replayed since the bridge. The point was never the cache itself but what it makes cheap: a rerun of unchanged code, and the miss count after a change.

@@ -1,0 +1,489 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "59c9099",
+  "head": "59c9099",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:07:55.342Z",
+  "loadSeconds": 0,
+  "prompt": "tools-1",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 1,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 7.58,
+      "max": 7.58,
+      "mean": 7.6
+    },
+    "load": {
+      "min": 20.48,
+      "max": 20.48,
+      "mean": 20.5
+    },
+    "memoryFreePercent": {
+      "min": 65,
+      "max": 65,
+      "mean": 65
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 4,
+  "resolved": 0,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 4,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "turing-machine": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 715
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 56,
+        "tokens": 20198
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "Alan Turing was a British mathematician, logician, and computer scientist who is widely regarded as one of the foundational figures in the field of computer science. He is best known for his work on formal systems and the concept of the \"Turing machine,\" which laid the groundwork for modern computing. Turing also played a crucial role in the development of the first practical computer, the Bombe, which was used to break encrypted messages during World War II.\n\nTuring's work on the Entscheidungsproblem, a challenge in mathematical logic, led to the creation of the Turing machine, which could perform any computation that can be described algorithmically. This concept was pivotal in the development of the theory of computation and the understanding of algorithmic processes.\n\nThe impact of Turing's work extends beyond the realm of mathematics and computer science. His ideas influenced the development of artificial intelligence and the concept of machine intelligence. The Turing Test, a measure of a machine's ability to exhibit intelligent behavior indistinguishable from that of a human, remains a significant benchmark in the field of AI.\n\nAdditionally, Turing's contributions to cryptography and code-breaking during World War II were instrumental in the Allied victory. His work on the Bombe machine helped decrypt enemy communications, providing critical intelligence that contributed to the war's outcome.\n\nTuring's legacy is also marked by the recognition of his contributions to the field of computer science and the establishment of the Turing Award, often referred to as the \"Nobel Prize of Computing,\" which is given annually to individuals who have made significant contributions to the field. His work continues to influence modern technology and the development of computational theory.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "silk": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 693
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 55,
+        "tokens": 19421
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "The Silk Road was a network of trade routes that connected East and West, facilitating the exchange of goods, ideas, and cultures. It spanned over 3,000 miles and connected major cities such as Chang'an in China, Samarkand in Uzbekistan, and Constantinople in Turkey. The trade routes were vital for the exchange of silk, spices, precious metals, and other commodities, and they played a crucial role in the economic and cultural development of the regions involved.\n\nThe Silk Road had a profound influence on the development of civilizations. It allowed for the spread of technologies, such as papermaking and the compass, from China to the West, and also facilitated the transmission of ideas, religions, and artistic styles. The exchange of goods also led to the creation of new markets and the growth of cities, which became important centers of trade and culture. Additionally, the Silk Road influenced the development of languages and scripts, as traders and travelers brought new words and concepts into different regions.\n\nThe influence of the Silk Road extended beyond trade and culture; it also played a significant role in the spread of religions, such as Buddhism, Islam, and Christianity, across different parts of the world. The interactions along the Silk Road also led to the formation of new political and economic alliances, and the exchange of knowledge and ideas contributed to the advancement of various fields, including science, art, and philosophy. The legacy of the Silk Road is still evident today, as it laid the foundation for modern global trade and cultural exchange.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "expansion": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 648
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 47,
+        "tokens": 17825
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "The Hubble Space Telescope is a space telescope launched in 1990, operated by the Space Telescope Program of the United States National Aeronautics and Space Administration (NASA). It is located in low Earth orbit and has provided some of the most significant images and data in the history of astronomy. \n\nHubble has discovered numerous celestial objects and phenomena, including distant galaxies, nebulae, and exoplanets. One of its most famous discoveries is the image of the Crab Nebula, which was captured in 1995. This image revealed the intricate structure of the nebula, including a pulsar at its center. \n\nThe telescope has also contributed to the understanding of the age of the universe, the expansion of the universe, and the formation of galaxies. In 2012, Hubble made a groundbreaking discovery of a galaxy that is 13 billion years old, which is the oldest known galaxy in the universe. \n\nAdditionally, Hubble has observed the formation of stars in young galaxies and has provided evidence for the existence of dark energy, which is thought to be responsible for the accelerated expansion of the universe. The telescope's data has been instrumental in shaping our understanding of the cosmos and has inspired countless scientific studies and public interest in astronomy.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "bleaching": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 1,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 560
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 2,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 1302
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 39,
+        "tokens": 13326
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "answer": "The Great Barrier Reef is a vast coral reef system located in the Coral Sea, off the northeastern coast of Australia. It is one of the most biodiverse ecosystems on Earth, home to thousands of marine species, including fish, turtles, and various types of coral. The reef is also a significant tourist attraction, drawing millions of visitors each year.\n\nHowever, the Great Barrier Reef faces several threats, including climate change, ocean acidification, and rising sea temperatures. These factors have led to coral bleaching events, where corals expel their algae and turn white, often leading to their death. Additionally, human activities such as coastal development, pollution, and overfishing have contributed to the degradation of the reef. The consequences of these threats include the loss of biodiversity, the decline of marine ecosystems, and the impact on local economies that rely on tourism and fishing.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:07:55.341Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:07:55.378Z model cache evals/model-cache/qwen3-1.7b: 499 responses loaded",
+    "machine at start: gpu 94% · vram 7.58 GiB · load 20.48 · mem 65% free (normal) · no throttling recorded",
+    "2026-09-19T08:07:55.467Z 4 seeds from evals/seeds-profile.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-1 · grammar tools:cited · matched · commit 59c9099",
+    "wiki recording: 1302 responses loaded",
+    "turing: root blocked · topics 0/8 · supported 0/8 · read 0/8 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 1 calls, 0 lookups, 715 tokens · stopped by answer · 3 s · model 0 replayed 1 missed",
+    "silk-road: root blocked · topics 0/9 · supported 0/9 · read 0/9 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 1 calls, 0 lookups, 693 tokens · stopped by answer · 3 s · model 0 replayed 1 missed",
+    "hubble: root blocked · topics 0/8 · supported 0/8 · read 0/8 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 1 calls, 0 lookups, 648 tokens · stopped by answer · 3 s · model 0 replayed 1 missed",
+    "great-barrier-reef: root blocked · topics 0/10 · supported 0/10 · read 0/10 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 1 calls, 0 lookups, 560 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 7.58 GiB · load up to 20.48 · no throttling in 1 samples"
+  ]
+}

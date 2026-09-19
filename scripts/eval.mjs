@@ -199,10 +199,9 @@ try {
         const exportPath = `evals/results/runs/${date}-${modelName.replace(/[:/]/g, "-")}-${mode}-${seed.id}${suffix}.json`;
         mkdirSync(dirname(exportPath), { recursive: true });
         writeFileSync(exportPath, JSON.stringify({ ...exported, model, exportedAt: new Date().toISOString() }));
-        const replay = { hits: exported.trace.filter((event) => event.event === "model_output" && event.replayed).length, misses: exported.trace.filter((event) => event.event === "model_output" && !event.replayed).length };
-        const grade = { ...gradeRun(seed, exported), kind: seed.kind, outcome: exported.nodes[0].status === "resolved" ? "root resolved" : `root ${exported.nodes[0].status}`, retriesUsed: 0, wallSeconds, wiki: saved, replay, budget: exported.limits ?? null, stoppedBy: exported.stoppedBy, dropped: exported.dropped, answer: exported.answer ?? null, export: exportPath };
+        const grade = { ...gradeRun(seed, exported), kind: seed.kind, outcome: exported.nodes[0].status === "resolved" ? "root resolved" : `root ${exported.nodes[0].status}`, retriesUsed: 0, wallSeconds, wiki: saved, replay: replayed ? { hits: replayed.hits, misses: replayed.misses } : { hits: 0, misses: 0 }, budget: exported.limits ?? null, stoppedBy: exported.stoppedBy, dropped: exported.dropped, refused: exported.refused ?? 0, answer: exported.answer ?? null, export: exportPath };
         results.push(grade);
-        note(`${formatRunGrade(grade)} · stopped by ${exported.stoppedBy}${exported.dropped ? ` · ${exported.dropped} results dropped from the context` : ""} · ${wallSeconds} s${replayed ? ` · model ${replayed.hits} replayed ${replayed.misses} missed` : ""}`);
+        note(`${formatRunGrade(grade)} · stopped by ${exported.stoppedBy}${exported.refused ? ` · ${exported.refused} unread answers refused` : ""}${exported.dropped ? ` · ${exported.dropped} results dropped from the context` : ""} · ${wallSeconds} s${replayed ? ` · model ${replayed.hits} replayed ${replayed.misses} missed` : ""}`);
         continue;
       }
       await lab.newLive(seed.seed, limits);
