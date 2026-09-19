@@ -1,0 +1,112 @@
+{
+  "dead-sea": {
+    "model": "qwen3:1.7b",
+    "walk": "walk-15/asks-4",
+    "nodes": 1,
+    "statuses": {
+      "resolved": 1
+    },
+    "questions": [
+      "Why is the Dead Sea shrinking?"
+    ],
+    "cited": [
+      "Dead Sea",
+      "Dead Sea § Receding shoreline"
+    ],
+    "read": [
+      "Dead Sea",
+      "Dead Sea § Receding shoreline"
+    ],
+    "findingChars": 657,
+    "calls": 6,
+    "tokens": 3051
+  },
+  "turing": {
+    "model": "qwen3:1.7b",
+    "walk": "walk-15/asks-4",
+    "nodes": 13,
+    "statuses": {
+      "resolved": 12,
+      "blocked": 1
+    },
+    "questions": [
+      "Tell me about Alan Turing and elaborate on the impact of his work.",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about Homosexuality and indecency conviction",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about Death",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about Books",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about Computing Machinery and Intelligence",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about Artificial intelligence",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about Mathematical biology",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about Morphogenesis",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about The Chemical Basis of Morphogenesis",
+      "Tell me about Alan Turing and elaborate on the impact of his work. — about D'Arcy Wentworth Thompson"
+    ],
+    "cited": [
+      "Alan Turing",
+      "Alan Turing § University and work on computability",
+      "Alan Turing § Early computers and the Turing test",
+      "Computing Machinery and Intelligence",
+      "Alan Turing § Pattern formation and mathematical biology",
+      "Mathematical and theoretical biology § Spatial modelling and dynamical systems",
+      "The Chemical Basis of Morphogenesis",
+      "Morphogenesis § History",
+      "D'Arcy Wentworth Thompson",
+      "Alan Turing § Homosexuality and indecency conviction",
+      "Alan Turing § Death",
+      "Alan Turing § Books"
+    ],
+    "read": [
+      "Alan Turing",
+      "Alan Turing § University and work on computability",
+      "Alan Turing § Early computers and the Turing test",
+      "Computing Machinery and Intelligence",
+      "Artificial intelligence § Frameworks",
+      "Alan Turing § Pattern formation and mathematical biology",
+      "Mathematical and theoretical biology § Spatial modelling and dynamical systems",
+      "The Chemical Basis of Morphogenesis",
+      "Morphogenesis § History",
+      "D'Arcy Wentworth Thompson",
+      "Alan Turing § Homosexuality and indecency conviction",
+      "Alan Turing § Death",
+      "Alan Turing § Books"
+    ],
+    "findingChars": 5324,
+    "calls": 56,
+    "tokens": 20198
+  },
+  "persist": {
+    "model": "qwen3:1.7b",
+    "walk": "walk-15/asks-4",
+    "nodes": 5,
+    "statuses": {
+      "resolved": 5
+    },
+    "questions": [
+      "Tell me how MangoDB persists writes to disk.",
+      "Tell me how MangoDB persists writes to disk. — about IndexManager",
+      "Tell me how MangoDB persists writes to disk. — about buildIndexes",
+      "Tell me how MangoDB persists writes to disk. — about loadIndexes",
+      "Tell me how MangoDB persists writes to disk. — about saveIndexes"
+    ],
+    "cited": [
+      "src/index-manager.ts",
+      "src/index-manager.ts § IndexManager",
+      "src/index-manager.ts § buildIndexes",
+      "src/index-manager.ts § loadIndexes",
+      "src/index-manager.ts § saveIndexes"
+    ],
+    "read": [
+      "src/index-manager.ts",
+      "src/index-manager.ts § IndexManager",
+      "src/index-manager.ts § buildIndexes",
+      "src/index-manager.ts § loadIndexes",
+      "src/index-manager.ts § saveIndexes"
+    ],
+    "findingChars": 786,
+    "calls": 23,
+    "tokens": 8177
+  }
+}
