@@ -360,6 +360,21 @@ export async function runWalk(run, options) {
   };
 
   const visible = () => [...new Set([...node.observed, ...children(run, node.id).filter((child) => child.status === "resolved").flatMap((child) => child.evidence)])];
+  // The article to read from what a search found. A title that is the
+  // query itself is read by code. Otherwise the model picks from the first
+  // `shown` titles (with a snippet each when the search gave them). A "none"
+  // is overridden by a title that shares a content word with the question
+  // (0.6B says none to everything; a title about the subject is worth a
+  // read regardless) or, when the search ranked its hits (a file corpus,
+  // src/files.js, whose paths rarely share a word with a brief), by the
+  // first hit. `label` is what the trace calls the query.
+  const chooseArticle = async (query, titles, { snippets = null, ranked = false, shown = titles.length, label = query } = {}) => {
+    const exact = titles.find((title) => normalise(title) === normalise(query));
+    const chosen = exact ?? (await answer("article", { question: node.question, titles: titles.slice(0, shown), ...(snippets ? { snippets: snippets.slice(0, shown) } : {}) }, "Choosing an article"));
+    const fallback = chosen === "none" ? titles.find((title) => !isForeign(title, node.question)) ?? (ranked ? titles[0] : null) : null;
+    trace(run, "article_chosen", { node: node.id, query: label, titles, article: chosen, ...(exact ? { byCode: true } : {}), ...(fallback ? { readInstead: fallback } : {}) });
+    return fallback ?? chosen;
+  };
   const lookup = async (query, readOn = null, { chosen = false, fresh = false } = {}) => {
     trace(run, "tool_proposed", { node: node.id, query, tool: source, ...(readOn ? { readOn } : {}) });
     if (!(await approve(query, signal))) {
@@ -376,18 +391,11 @@ export async function runWalk(run, options) {
     signal?.throwIfAborted();
     trace(run, "tool_result", { node: node.id, query, ...(readOn ? { readOn } : {}), result: outcome });
     // A search's first hit is Wikipedia's guess. When there are others, the
-    // model picks the article from the titles — one enum call — and the
-    // walk reads that one instead. "none" is a failed lookup.
+    // article is chosen from the titles (chooseArticle) and the walk reads
+    // that one instead. "none" is a failed lookup.
     if (!readOn && !chosen && outcome.ok && outcome.alternatives?.length && variants.article !== "off") {
       const titles = [outcome.title, ...outcome.alternatives];
-      const exact = titles.find((title) => normalise(title) === normalise(query));
-      let chosen = exact ?? (await answer("article", { question: node.question, titles }, "Choosing an article"));
-      // "none" is overridden by a title that is the query itself (a hop to
-      // "Bombe" offered Bombe, Baked Alaska and Bombe glacée; 8B said none)
-      // or that shares a content word with the question.
-      const fallback = chosen === "none" ? titles.find((title) => normalise(title) === normalise(query)) ?? titles.find((title) => !isForeign(title, node.question)) ?? null : null;
-      trace(run, "article_chosen", { node: node.id, query, titles, article: chosen, ...(exact ? { byCode: true } : {}), ...(fallback ? { readInstead: fallback } : {}) });
-      if (fallback) chosen = fallback;
+      const chosen = await chooseArticle(query, titles);
       if (chosen === "none") outcome = { ok: false, error: { kind: "no_match", message: `None of the articles found for “${query}” is about the question: ${titles.join(", ")}.` } };
       else if (chosen !== outcome.title) {
         outcome = await wiki(chosen, { signal });
@@ -456,24 +464,7 @@ export async function runWalk(run, options) {
       });
     }
     if (!titles.length) return lookup(terms[0]);
-    // A hit whose title is the search term itself is read without asking.
-    const exact = titles.find((title) => normalise(title) === normalise(terms[0]));
-    if (exact) {
-      trace(run, "article_chosen", { node: node.id, query: terms.join(" | "), titles, article: exact, byCode: true });
-      return lookup(exact, null, { chosen: true });
-    }
-    let chosen = await answer("article", { question: node.question, titles: titles.slice(0, 8), snippets: snippets.slice(0, 8) }, "Choosing an article");
-    // "none" is honoured only when no title is about the question's subject:
-    // 0.6B says none to everything (evals/node/results.md), and a title that
-    // shares a content word with the question is worth a read regardless.
-    // A ranked search (a file corpus, src/files.js) puts code's best match
-    // first, and a file's path rarely shares a word with a brief: 1.7B said
-    // none to eight paths for "how MangoDB persists writes" with
-    // src/collection.ts at the top (experiments/2026-09-19, the first live
-    // run over code), so the first hit is read instead.
-    const fallback = chosen === "none" ? titles.find((title) => !isForeign(title, node.question)) ?? (ranked ? titles[0] : null) : null;
-    trace(run, "article_chosen", { node: node.id, query: terms.join(" | "), titles, article: chosen, ...(fallback ? { readInstead: fallback } : {}) });
-    if (fallback) chosen = fallback;
+    const chosen = await chooseArticle(terms[0], titles, { snippets, ranked, shown: 8, label: terms.join(" | ") });
     if (chosen === "none") {
       lookups++;
       run.lookups++;
@@ -482,6 +473,39 @@ export async function runWalk(run, options) {
       return "nothing";
     }
     return lookup(chosen, null, { chosen: true });
+  };
+
+  // The one way a node resolves: its own kept text (this visit's picks, or
+  // the picks it saved before fanning out) followed by what its settled
+  // children found, one paragraph each. A sentence the finding already has
+  // is dropped from later paragraphs; over the cap, a child's hop paragraphs
+  // go before any child does (the 8B Turing profile at walk-12 lost its
+  // last three sections, and their topics, to hops under the first three);
+  // and a finding is a claim, not a fragment (six words, as graph.js says).
+  const settled = () => children(run, node.id).filter((child) => child.status === "resolved" && child.finding);
+  const resolve = (own) => {
+    const found = settled();
+    const seenText = new Set();
+    const fresh = (text) => String(text).split(/\n\n+/).map((paragraph) => unitsOf(paragraph).filter((sentence) => !seenText.has(sentence) && seenText.add(sentence)).join(paragraph.includes("\n") ? "\n" : " ")).filter(Boolean).join("\n\n");
+    const parts = [...(own?.text ? [fresh(own.text)] : []), ...found.map((child) => fresh(child.finding))].filter(Boolean);
+    const cap = run.limits.maxFindingChars ?? 6000;
+    const joiner = node.fanned ? "\n\n" : " ";
+    while (parts.join(joiner).length > cap) {
+      const split = parts.map((part, index) => [index, part.split(/\n\n+/)]).filter(([, paragraphs]) => paragraphs.length > 1);
+      if (!split.length) break;
+      const [index, paragraphs] = split.sort((a, b) => b[1].join("").length - a[1].join("").length)[0];
+      parts[index] = paragraphs.slice(0, -1).join("\n\n");
+    }
+    while (parts.length > 1 && parts.join(joiner).length > cap) parts.pop();
+    const finding = parts.join(joiner);
+    if (finding.split(/\s+/).filter(Boolean).length < MIN_FINDING_WORDS) {
+      applyResult(run, node.id, { action: "blocked", reason: `What was kept is a fragment, not a finding: "${finding.slice(0, 80)}".` }, visible());
+      onUpdate(node.id, "Blocked");
+      return true;
+    }
+    applyResult(run, node.id, { action: "resolved", harness: true, finding, evidence: [...new Set([...(own?.evidence ?? []), ...found.flatMap((child) => child.evidence)])] }, visible());
+    onUpdate(node.id, found.length ? "Findings gathered" : "Finding recorded");
+    return true;
   };
 
   try {
@@ -509,29 +533,8 @@ export async function runWalk(run, options) {
     // when the finding was one kept sentence the run-wide kept set hid it and
     // the parent was never asked at all (the observer's case, 2026-09-19).
     if (children(run, node.id).length) {
-      const found = children(run, node.id).filter((child) => child.status === "resolved" && child.finding);
       const kept = node.kept ?? [];
-      if (found.length || kept.some((entry) => entry.evidence.length)) {
-        // A sentence the profile already has is dropped from later paragraphs.
-        const seenText = new Set();
-        const fresh = (text) => String(text).split(/\n\n+/).map((paragraph) => unitsOf(paragraph).filter((sentence) => !seenText.has(sentence) && seenText.add(sentence)).join(paragraph.includes("\n") ? "\n" : " ")).filter(Boolean).join("\n\n");
-        const parts = [...(kept.length ? [fresh(kept.map((entry) => entry.text).join(kept.some((entry) => entry.line) ? "\n" : " "))] : []), ...found.map((child) => fresh(child.finding))].filter(Boolean);
-        const cap = run.limits.maxFindingChars ?? 6000;
-        const joiner = node.fanned ? "\n\n" : " ";
-        // Over the cap, a child's hop paragraphs go before any child does: the
-        // 8B Turing profile at walk-12 lost its last three sections, and their
-        // topics, to hops under the first three.
-        while (parts.join(joiner).length > cap) {
-          const split = parts.map((part, index) => [index, part.split(/\n\n+/)]).filter(([, paragraphs]) => paragraphs.length > 1);
-          if (!split.length) break;
-          const [index, paragraphs] = split.sort((a, b) => b[1].join("").length - a[1].join("").length)[0];
-          parts[index] = paragraphs.slice(0, -1).join("\n\n");
-        }
-        while (parts.length > 1 && parts.join(joiner).length > cap) parts.pop();
-        applyResult(run, node.id, { action: "resolved", harness: true, finding: parts.join(joiner), evidence: [...new Set([...kept.flatMap((entry) => entry.evidence), ...found.flatMap((child) => child.evidence)])] }, visible());
-        onUpdate(node.id, "Findings gathered");
-        return true;
-      }
+      if (settled().length || kept.some((entry) => entry.evidence.length)) return resolve(kept.length ? { text: kept.map((entry) => entry.text).join(kept.some((entry) => entry.line) ? "\n" : " "), evidence: kept.flatMap((entry) => entry.evidence) } : null);
       if (kind === "split" || node.fanned) {
         applyResult(run, node.id, { action: "blocked", reason: "Neither part of the question could be answered." }, visible());
         onUpdate(node.id, "Blocked");
@@ -588,15 +591,7 @@ export async function runWalk(run, options) {
     };
     const resolveWith = () => {
       const picked = padded();
-      const text = picked.map((candidate) => candidate.text).join(glue(picked));
-      if (text.split(/\s+/).filter(Boolean).length < MIN_FINDING_WORDS) {
-        applyResult(run, node.id, { action: "blocked", reason: `What was kept is a fragment, not a finding: "${text.slice(0, 80)}".` }, visible());
-        onUpdate(node.id, "Blocked");
-        return true;
-      }
-      applyResult(run, node.id, { action: "resolved", harness: true, finding: text, evidence: [...new Set(picked.flatMap((candidate) => candidate.evidence))] }, visible());
-      onUpdate(node.id, "Finding recorded");
-      return true;
+      return resolve({ text: picked.map((candidate) => candidate.text).join(glue(picked)), evidence: picked.flatMap((candidate) => candidate.evidence) });
     };
     // A first answer is rarely the whole answer to a why-question: the Dead
     // Sea lead says it is receding, the section says why. While the finding
