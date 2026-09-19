@@ -163,6 +163,19 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 
 **What the node evals say.** From 1.7B up, the model finds the answering sentence in every positive case with a plain numbered list, and every failure is a *none* case: shown sentences that do not answer, it picks one anyway (the same two Dead Sea cases defeat 4B and 8B too; a reference model is needed to say whether those cases are fair). 8B is perfect when a pick is followed by one yes-or-no on that sentence alone. 0.6B does best when *none* is an ordinary numbered option, and answers yes to every sentence in the one-per-sentence floor. Section picks are 14/15 from 1.7B up; naming an article to search is 9/9 from 1.7B up while naming "the missing fact" is not, so the walk asks for a search term. Every one of these calls is 0.2 to 4 seconds; the grammar compile cost that ate half a run under the old prompt is gone, because the schemas are tiny enums. The walk (`src/walk.js`) uses list / list / search.
 
+## Files as a source (milestone 5, begun 2026-09-19)
+
+Four briefs over MangoDB's `src/` (`evals/seeds-code.json`, 42 topics), the walk unchanged, `src/files.js` as the source, Node through Ollama. Reading in [evals/readings.md](evals/readings.md).
+
+| date | commit | model | tangle | read anywhere | one node | memory | nodes · calls · tokens · seconds |
+|---|---|---|---|---|---|---|---|
+| 2026-09-19 | e02f312 (first run, docs in the corpus, no summaries) | 1.7B | 16/42 | 27 | 9 | 9 | — |
+| 2026-09-19 | fc81ce1 (walk-15: hops follow calls, declarations with summaries, src only) | 1.7B | **14/42** | 25 | 7 | 9 | 28 · 122 · 40k · 19 |
+| 2026-09-19 | fc81ce1 | 4B | **11/42** | 24 | 2 | 8 | 45 · 164 · 47k · 66 |
+| 2026-09-19 | fc81ce1 | 8B | **12/42** | 31 | 3 | 9 | 42 · 167 · 53k · 97 |
+
+Memory writes a write-ahead log and replication into a database that has neither (persist 0 of 9 at every size). The graph reads most of the rubric at every size and keeps a third to a half: the sentence pick over lines of code is the frontier. Exit condition (a cited, correct profile of one module at 4B): not met.
+
 ## Frontier
 
 | issue | fixture | micro-eval cases | benchmark delta | status |
@@ -180,6 +193,12 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-19 · milestone 5, day one · files as a source
+
+- `src/files.js` and `scripts/corpus.mjs` (e02f312): a directory as a corpus behind the wiki driver's four requests; MangoDB the first corpus; `--source <dir>` in Node; four briefs with topics checked against the code; a scripted walk over a fixture corpus in the tests.
+- Eight reruns at 1.7B, each fixing one fault reading found, all code's: the article pick's none over file paths, hops refused by the subject test, a hop to `rename` from a comment, the corpus's name as the subject, a brief's root that would not fan out from a one-line header, a barrel file chosen by name, sections chosen by name alone. Two prompt experiments lost and the asks are unchanged. Then, at John's asking, the loop changed: classes of fault, tests first (two fixture files, six failing parser tests), the parser rebuilt (fc81ce1). Table above; reading in evals/readings.md.
+- Wikipedia unchanged at walk-15 in Node at 1.7B: 15 of 23, profiles 25 of 35, overflow 24 of 30.
 
 ### 2026-09-19 · morning · walk-14, the observer's second case
 

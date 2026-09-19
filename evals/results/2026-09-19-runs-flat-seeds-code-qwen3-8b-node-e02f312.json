@@ -7,14 +7,14 @@
     "kind": "files",
     "name": "MangoDB",
     "root": "/Users/work/development/mangodb",
-    "files": 55,
-    "hash": "451c7e0b"
+    "files": 45,
+    "hash": "a5efe859"
   },
   "commit": "e02f312 (uncommitted changes)",
   "head": "e02f312 (uncommitted changes)",
   "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
   "browser": "node v25.9.0",
-  "date": "2026-09-19T07:01:20.109Z",
+  "date": "2026-09-19T07:12:20.356Z",
   "loadSeconds": 0,
   "prompt": "walk-15/asks-4",
   "schema": "sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
@@ -38,8 +38,8 @@
     "samples": 2,
     "gpuPercent": {
       "min": 0,
-      "max": 98,
-      "mean": 49
+      "max": 97,
+      "mean": 48.5
     },
     "vramGiB": {
       "min": 10.54,
@@ -47,14 +47,14 @@
       "mean": 10.5
     },
     "load": {
-      "min": 16.01,
-      "max": 17.6,
-      "mean": 16.8
+      "min": 17.06,
+      "max": 20.09,
+      "mean": 18.6
     },
     "memoryFreePercent": {
-      "min": 24,
-      "max": 24,
-      "mean": 24
+      "min": 25,
+      "max": 26,
+      "mean": 25.5
     },
     "throttledSamples": 0,
     "worstSpeedLimit": 100
@@ -74,7 +74,7 @@
   "resolved": 3,
   "factsPresent": 3,
   "factsSupported": 3,
-  "factsRead": 22,
+  "factsRead": 24,
   "factsTotal": 42,
   "results": [
     {
@@ -84,14 +84,14 @@
       "outcome": "Root resolved",
       "facts": {
         "json-file-per-collection": {
-          "present": true,
-          "supported": true,
-          "read": true
-        },
-        "temp-then-rename": {
           "present": false,
           "supported": false,
           "read": false
+        },
+        "temp-then-rename": {
+          "present": true,
+          "supported": true,
+          "read": true
         },
         "streamed-write": {
           "present": false,
@@ -101,7 +101,7 @@
         "serialisation": {
           "present": false,
           "supported": false,
-          "read": false
+          "read": true
         },
         "mutex": {
           "present": false,
@@ -121,7 +121,7 @@
         "index-sidecar": {
           "present": false,
           "supported": false,
-          "read": false
+          "read": true
         },
         "missing-file-is-empty": {
           "present": false,
@@ -132,23 +132,23 @@
       "factsTotal": 9,
       "factsPresent": 1,
       "factsSupported": 1,
-      "factsRead": 1,
+      "factsRead": 3,
       "distractors": [],
       "cost": {
         "nodes": 1,
         "visits": 1,
-        "modelCalls": 5,
+        "modelCalls": 8,
         "lookups": 2,
-        "tokens": 1093
+        "tokens": 2239
       },
       "statuses": {
         "resolved": 1
       },
-      "finding": "- Store data as JSON files on disk",
+      "finding": "// Atomic write: write to temp file, then rename",
       "profile": {
         "paragraphs": 1,
         "sentences": 1,
-        "chars": 34,
+        "chars": 48,
         "duplicates": 0,
         "articles": 1,
         "sections": 2,
@@ -166,7 +166,7 @@
         "entries": 0
       },
       "export": "evals/results/runs/2026-09-19-qwen3-8b-node-flat-persist.json",
-      "summary": "live run · seed: Tell me how MangoDB persists writes to disk.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:01:20.219Z · exported 2026-09-19T07:01:23.888Z\nnodes 1 · visits 1 · model calls 5 · lookups 2 · evidence 2 · tokens 1093\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me how MangoDB persists writes to disk. → - Store data as JSON files on disk\n\nmodel latency ms: median 586 · max 1037 · n 5\nnothing flagged"
+      "summary": "live run · seed: Tell me how MangoDB persists writes to disk.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:12:20.465Z · exported 2026-09-19T07:12:24.588Z\nnodes 1 · visits 1 · model calls 8 · lookups 2 · evidence 2 · tokens 2239\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me how MangoDB persists writes to disk. → // Atomic write: write to temp file, then rename\n\nmodel latency ms: median 505 · max 1058 · n 8\nnothing flagged"
     },
     {
       "id": "find",
@@ -240,7 +240,7 @@
         "visits": 1,
         "modelCalls": 4,
         "lookups": 1,
-        "tokens": 1148
+        "tokens": 1136
       },
       "statuses": {
         "resolved": 1
@@ -259,7 +259,7 @@
         "blocked": 0
       },
       "retriesUsed": 0,
-      "wallSeconds": 3,
+      "wallSeconds": 2,
       "wiki": {
         "hits": 0,
         "misses": 0,
@@ -267,7 +267,7 @@
         "entries": 0
       },
       "export": "evals/results/runs/2026-09-19-qwen3-8b-node-flat-find.json",
-      "summary": "live run · seed: Tell me how MangoDB evaluates a find query with a filter.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:01:23.890Z · exported 2026-09-19T07:01:27.112Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1148\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me how MangoDB evaluates a find query with a filter. → export function matchesFilter<T extends Document>(doc: T, filter: Filter<T>): boolean\n\nmodel latency ms: median 977 · max 986 · n 4\nnothing flagged"
+      "summary": "live run · seed: Tell me how MangoDB evaluates a find query with a filter.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:12:24.590Z · exported 2026-09-19T07:12:26.736Z\nnodes 1 · visits 1 · model calls 4 · lookups 1 · evidence 1 · tokens 1136\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me how MangoDB evaluates a find query with a filter. → export function matchesFilter<T extends Document>(doc: T, filter: Filter<T>): boolean\n\nmodel latency ms: median 450 · max 959 · n 4\nnothing flagged"
     },
     {
       "id": "indexes",
@@ -341,7 +341,7 @@
         "visits": 1,
         "modelCalls": 11,
         "lookups": 3,
-        "tokens": 3008
+        "tokens": 3016
       },
       "statuses": {
         "resolved": 1
@@ -360,7 +360,7 @@
         "blocked": 0
       },
       "retriesUsed": 0,
-      "wallSeconds": 8,
+      "wallSeconds": 6,
       "wiki": {
         "hits": 0,
         "misses": 0,
@@ -368,7 +368,7 @@
         "entries": 0
       },
       "export": "evals/results/runs/2026-09-19-qwen3-8b-node-flat-indexes.json",
-      "summary": "live run · seed: Tell me how MangoDB's indexes work and when a query uses them.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:01:27.113Z · exported 2026-09-19T07:01:35.021Z\nnodes 1 · visits 1 · model calls 11 · lookups 3 · evidence 3 · tokens 3008\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me how MangoDB's indexes work and when a query uses them. → * Look up documents by equality on indexed fields.\n\nmodel latency ms: median 846 · max 904 · n 11\nnothing flagged"
+      "summary": "live run · seed: Tell me how MangoDB's indexes work and when a query uses them.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:12:26.746Z · exported 2026-09-19T07:12:32.542Z\nnodes 1 · visits 1 · model calls 11 · lookups 3 · evidence 3 · tokens 3016\nstatuses {\"resolved\":1} · outcome: root resolved\n\nn1 [resolved] Tell me how MangoDB's indexes work and when a query uses them. → * Look up documents by equality on indexed fields.\n\nmodel latency ms: median 320 · max 1137 · n 11\nnothing flagged"
     },
     {
       "id": "aggregate",
@@ -442,7 +442,7 @@
         "visits": 1,
         "modelCalls": 10,
         "lookups": 2,
-        "tokens": 2632
+        "tokens": 2624
       },
       "statuses": {
         "blocked": 1
@@ -461,7 +461,7 @@
         "blocked": 1
       },
       "retriesUsed": 0,
-      "wallSeconds": 9,
+      "wallSeconds": 4,
       "wiki": {
         "hits": 0,
         "misses": 0,
@@ -469,24 +469,24 @@
         "entries": 0
       },
       "export": "evals/results/runs/2026-09-19-qwen3-8b-node-flat-aggregate.json",
-      "summary": "live run · seed: Tell me how MangoDB executes an aggregation pipeline.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:01:35.022Z · exported 2026-09-19T07:01:43.881Z\nnodes 1 · visits 1 · model calls 10 · lookups 2 · evidence 2 · tokens 2632\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked] Tell me how MangoDB executes an aggregation pipeline. !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 879 · max 1107 · n 10\nworth a look:\n- n1 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
+      "summary": "live run · seed: Tell me how MangoDB executes an aggregation pipeline.\nmodel qwen3:8b · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T07:12:32.544Z · exported 2026-09-19T07:12:36.751Z\nnodes 1 · visits 1 · model calls 10 · lookups 2 · evidence 2 · tokens 2624\nstatuses {\"blocked\":1} · outcome: root unresolved\n\nn1 [blocked] Tell me how MangoDB executes an aggregation pipeline. !! Nothing read states the answer, and no further lookup or question is allowed here.\n\nmodel latency ms: median 309 · max 1158 · n 10\nworth a look:\n- n1 blocked: Nothing read states the answer, and no further lookup or question is allowed here."
     }
   ],
   "notes": [
-    "2026-09-19T07:01:20.108Z corpus MangoDB: 55 files, 568 declared names, 451c7e0b",
-    "2026-09-19T07:01:20.109Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "2026-09-19T07:12:20.355Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T07:12:20.356Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
     "model qwen3:8b: served by http://127.0.0.1:11434/v1 (0 s)",
-    "machine at start: gpu 98% · vram 10.54 GiB · load 16.01 · mem 24% free (warning) · no throttling recorded",
-    "2026-09-19T07:01:20.219Z 4 seeds from evals/seeds-code.json · mode flat · limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8} · prompt walk-15/asks-4 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit e02f312 (uncommitted changes)",
+    "machine at start: gpu 92% · vram 10.54 GiB · load 20.09 · mem 25% free (warning) · no throttling recorded",
+    "2026-09-19T07:12:20.465Z 4 seeds from evals/seeds-code.json · mode flat · limits {\"maxNodes\":1,\"maxVisits\":3,\"maxDepth\":0,\"maxLookups\":6,\"maxPasses\":8} · prompt walk-15/asks-4 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit e02f312 (uncommitted changes)",
     "wiki recording: 0 responses loaded",
-    "2026-09-19T07:01:23.887Z run stopped: Root resolved",
-    "persist: resolved · topics 1/9 · supported 1/9 · read 1/9 · ¶1 · 1 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 2 lookups, 1093 tokens · 4 s · wiki 0 hits 0 misses",
-    "2026-09-19T07:01:27.111Z run stopped: Root resolved",
-    "find: resolved · topics 2/11 · supported 2/11 · read 2/11 · ¶1 · 1 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 1 lookups, 1148 tokens · 3 s · wiki 0 hits 0 misses",
-    "2026-09-19T07:01:35.021Z run stopped: Root resolved",
-    "indexes: resolved · topics 0/11 · supported 0/11 · read 9/11 · ¶1 · 1 sentences · read 1 articles, 3 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 11 calls, 3 lookups, 3008 tokens · 8 s · wiki 0 hits 0 misses",
-    "2026-09-19T07:01:43.881Z run stopped: No runnable nodes · root unresolved",
-    "aggregate: No runnable nodes · root unresolved · topics 0/11 · supported 0/11 · read 10/11 · ¶0 · 0 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 10 calls, 2 lookups, 2632 tokens · 9 s · wiki 0 hits 0 misses",
-    "machine during the suite: gpu 49% mean, 98% peak · vram up to 10.54 GiB · load up to 17.6 · no throttling in 2 samples"
+    "2026-09-19T07:12:24.588Z run stopped: Root resolved",
+    "persist: resolved · topics 1/9 · supported 1/9 · read 3/9 · ¶1 · 1 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 8 calls, 2 lookups, 2239 tokens · 4 s · wiki 0 hits 0 misses",
+    "2026-09-19T07:12:26.736Z run stopped: Root resolved",
+    "find: resolved · topics 2/11 · supported 2/11 · read 2/11 · ¶1 · 1 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 1 lookups, 1136 tokens · 2 s · wiki 0 hits 0 misses",
+    "2026-09-19T07:12:32.542Z run stopped: Root resolved",
+    "indexes: resolved · topics 0/11 · supported 0/11 · read 9/11 · ¶1 · 1 sentences · read 1 articles, 3 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 11 calls, 3 lookups, 3016 tokens · 6 s · wiki 0 hits 0 misses",
+    "2026-09-19T07:12:36.751Z run stopped: No runnable nodes · root unresolved",
+    "aggregate: No runnable nodes · root unresolved · topics 0/11 · supported 0/11 · read 10/11 · ¶0 · 0 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 10 calls, 2 lookups, 2624 tokens · 4 s · wiki 0 hits 0 misses",
+    "machine during the suite: gpu 48.5% mean, 97% peak · vram up to 10.54 GiB · load up to 20.09 · no throttling in 2 samples"
   ]
 }
