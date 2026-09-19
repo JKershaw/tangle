@@ -48,6 +48,8 @@ A **visit** is a fixed sequence of small decisions, each a single model call wit
 3. If nothing answers, the model picks a section to read on into, or names a smaller question. A smaller question becomes a child node, with an empty context of its own.
 4. When the children are settled, the parent's answer is what they found, with no further model call.
 
+A **source** is what the walk reads, behind one interface: search, an article's lead with its section headings, one section, the part of an article about something, and an article's links. Wikipedia is the first source. A directory of files is the second: a file is an article, its declarations (functions, classes, methods, a document's headings) are its sections, its lines are its sentences, and the declarations a line uses are its links. The walk is the same over both.
+
 A **brief** (no question mark, or "tell me about…") takes a different shape: the lead, one child per section the model chooses, and under each child up to two more children opened on the things its sentences name, each reading the part of that article that is about the subject. The root's finding is the profile, paragraph by paragraph, in the article's order.
 
 Two rules hold everything up.
@@ -82,7 +84,7 @@ Where it stands as of 19 September 2026 (walk-14 and the bridge). Kept current a
 - When a question hands down a narrower question, the parent's answer is what the child found, by code and with no pick (walk-14; before it the model was asked and its "none" ignored). Whether the narrower answer really answers the parent's question is not judged. The rubric cannot tell, and a judge is missing.
 - A cited sentence can still be off the brief. A 1.7B Rosetta profile carried a paragraph about Jupiter's core because "mission" is a word of "Rosetta mission"; walk-13 requires the subject's own capitalised words. The topic rubric cannot see that fault, and the graph reads five times the tokens of one node; a judge and an equal-budget control are both missing.
 
-**Next.** Roadmap milestone 5: read-only tools over files, with this repository as the first corpus, which tests whether the gains transfer beyond Wikipedia's ready-made sections and links. The milestones and their exit conditions are in [ROADMAP.md](ROADMAP.md).
+**In progress.** Roadmap milestone 5: a directory of files as a second source, with [MangoDB](https://github.com/JKershaw/mangodb) (19,000 lines of TypeScript and a four-second test suite) as the first corpus. A file is an article, its declarations are sections, its lines are sentences, and the declarations a line uses are its links. It runs in Node (`--source <dir>`); the page does not read files yet. The first rows are in PROGRESS.md; the reading in evals/readings.md. The milestones and their exit conditions are in [ROADMAP.md](ROADMAP.md).
 
 Small models will decompose badly, repeat themselves, misread evidence and resolve too early. Keep the exports; that is the experiment.
 
@@ -103,6 +105,8 @@ src/asks.js        the asks: each pick as a prompt and a tiny JSON schema, in va
 src/episode.js     the earlier one-prompt visit, kept for the simulation and comparison
 src/simulation.js  the scripted water-cycle scenarios and fixture evidence
 src/wiki.js        the Wikipedia tool (HTTPS en.wikipedia.org only, timeout, byte cap)
+src/files.js       the second source: a directory of files, its declarations as sections, its lines
+                   as sentences, the declarations a line uses as links (no AST)
 src/webllm.js      device, storage and cache probes; the WebLLM engine adapter; model list
 src/endpoint.js    the second model adapter: an OpenAI-compatible endpoint (Ollama, LM Studio)
 src/scripted.js    a scripted first-choice model, for the runtime parity test
@@ -112,7 +116,8 @@ src/page.html      page template; the bundle is inlined at build time
 build.js           esbuild bundle + inline -> docs/index.html (one self-contained file, ~6 MB)
 test/              node --test suites, including ones that drive the built page
 scripts/           lab.mjs drives the built page; node-lab.mjs runs the walk in Node; recording.mjs
-                   is the Wikipedia recording; live-run.mjs and run.mjs record one run (page, Node);
+                   is the Wikipedia recording; corpus.mjs reads a directory as a corpus;
+                   live-run.mjs and run.mjs record one run (page, Node);
                    eval.mjs runs the eval suites in either runtime; grade.js holds the graders;
                    summarise.js reads an export
 evals/             eval cases, benchmark seeds with rubrics, the Wikipedia recording, results

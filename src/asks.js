@@ -218,7 +218,9 @@ export const ASKS = Object.freeze({
       brief: single((input) => ({
         messages: [
           { role: "system", content: `You are given a brief and the section headings of a Wikipedia article. Pick the heading of the section most worth reading for the brief${input.chosen?.length ? ", other than those already chosen" : ""}. If none of the remaining sections would add anything the brief asks for, pick none. Reply with JSON only.` + NO_THINK },
-          { role: "user", content: `Brief: ${input.question}\nArticle: ${input.article}${input.chosen?.length ? `\nAlready chosen: ${input.chosen.join(", ")}` : ""}\n\nSections:\n${input.sections.map((heading) => `- ${heading}`).join("\n")}\n\nReply {"section": "<heading>"} or {"section": "none"}.` },
+          // Input may carry { summaries: [string] } parallel to sections (a
+          // file's declarations, src/files.js); shown as a search snippet is.
+          { role: "user", content: `Brief: ${input.question}\nArticle: ${input.article}${input.chosen?.length ? `\nAlready chosen: ${input.chosen.join(", ")}` : ""}\n\nSections:\n${input.sections.map((heading, index) => `- ${heading}${input.summaries?.[index] ? ` — ${String(input.summaries[index]).slice(0, 120)}` : ""}`).join("\n")}\n\nReply {"section": "<heading>"} or {"section": "none"}.` },
         ],
         schema: enumSchema("section", [...input.sections, "none"]),
         maxTokens: 80,

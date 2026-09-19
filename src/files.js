@@ -22,12 +22,20 @@ const TOP = [
   /^(?:export\s+)?(?:declare\s+)?(?:interface|type|enum|namespace)\s+([A-Za-z_$][\w$]*)/,
   /^(?:export\s+)?(?:const|let|var)\s+([A-Za-z_$][\w$]*)/,
 ];
-// A method or field initialiser inside a class body, at the class's indent + 2.
-const METHOD = /^(?:(?:public|private|protected|static|readonly|override|async|abstract|get|set|declare|accessor)\s+)*\*?\s*(?:#?[A-Za-z_$][\w$]*)\s*(?:<[^>]*>)?\s*\(/;
-const NOT_A_METHOD = /^(?:if|for|while|switch|return|catch|await|else|do|try|new|typeof|throw|case|default|super|function|const|let|var|yield|delete|void)\b/;
+// A member of a class body: modifiers, then a method (name followed by its
+// parameters or type arguments), a getter or setter, or a field holding a
+// function ("private normalise = (text) => …"). A plain field is not a
+// declaration worth a section.
+const MODIFIERS = "(?:(?:public|private|protected|static|readonly|override|async|abstract|declare|accessor)\\s+)*";
+const MEMBER_METHOD = new RegExp(`^${MODIFIERS}(?:(?:get|set)\\s+)?\\*?\\s*(#?[A-Za-z_$][\\w$]*)\\s*(?:<[^>]*>)?\\s*\\(`);
+const MEMBER_FUNCTION_FIELD = new RegExp(`^${MODIFIERS}(#?[A-Za-z_$][\\w$]*)\\s*(?::[^=]+)?=\\s*(?:async\\s+)?(?:function\\b|\\(|[A-Za-z_$][\\w$]*\\s*=>)`);
+const NOT_A_MEMBER = /^(?:if|for|while|switch|return|catch|await|else|do|try|new|typeof|throw|case|default|super|function|const|let|var|yield|delete|void|import|export)\b/;
 const COMMENT = /^\s*(?:\/\/|\/\*|\*|\*\/)/;
+const DECORATOR = /^\s*@[A-Za-z_$][\w$.]*(?:\(.*\))?\s*$/;
 const IMPORT = /^(?:import|export\s+\*|export\s+\{|export\s+type\s+\{|require\()/;
 const FENCE = /^\s*```/;
+const CLOSING = /^\s*\}\s*;?\s*$/;
+const indentOf = (line) => line.search(/\S/);
 
 // Header comment lines from the top of a file: what the author says the
 // file is for, before any import or declaration.
@@ -41,58 +49,129 @@ function headerOf(lines) {
   return out;
 }
 
-function parseCode(lines) {
-  const decls = []; // { name, indent, line (0-based), classOf }
-  let classOpen = null; // { name, indent, end }
+// The declarations of a code file: { name, indent, line (0-based), classOf }.
+// A class opens a body whose indent is that of its first line of code, and
+// closes at a lone brace back at the class's own indent; overload
+// signatures of one method are one declaration.
+function declarationsOfCode(lines) {
+  const decls = [];
+  let open = null; // { name, indent, bodyIndent }
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    if (classOpen && /^\s*\}\s*;?\s*$/.test(line) && line.search(/\S/) === classOpen.indent) { classOpen.end = i; classOpen = null; continue; }
-    if (classOpen) {
-      const indent = line.search(/\S/);
-      if (indent === classOpen.indent + 2 && METHOD.test(line.slice(indent)) && !NOT_A_METHOD.test(line.slice(indent))) {
-        const name = line.slice(indent).match(/#?[A-Za-z_$][\w$]*(?=\s*(?:<[^>]*>)?\s*\()/g)?.at(-1);
-        if (name) decls.push({ name, indent, line: i, classOf: classOpen.name });
-      }
+    if (!line.trim() || COMMENT.test(line) || DECORATOR.test(line)) continue;
+    const indent = indentOf(line);
+    if (open) {
+      if (CLOSING.test(line) && indent === open.indent) { open = null; continue; }
+      if (open.bodyIndent === null) open.bodyIndent = indent > open.indent ? indent : null;
+      if (indent !== open.bodyIndent) continue;
+      const text = line.slice(indent);
+      if (NOT_A_MEMBER.test(text)) continue;
+      const name = text.match(MEMBER_METHOD)?.[1] ?? text.match(MEMBER_FUNCTION_FIELD)?.[1];
+      if (!name) continue;
+      const previous = decls.at(-1);
+      if (previous && previous.classOf === open.name && previous.name === name) continue;
+      decls.push({ name, indent, line: i, classOf: open.name });
       continue;
     }
-    if (line.search(/\S/) !== 0) continue;
+    if (indent !== 0) continue;
     for (const pattern of TOP) {
       const match = line.match(pattern);
       if (!match) continue;
+      const previous = decls.at(-1);
+      if (previous && previous.classOf === null && previous.name === match[1] && pattern === TOP[0]) break; // an overload signature
       decls.push({ name: match[1], indent: 0, line: i, classOf: null });
-      if (pattern === TOP[1]) classOpen = { name: match[1], indent: 0, end: lines.length };
+      if (pattern === TOP[1]) open = { name: match[1], indent: 0, bodyIndent: null };
       break;
     }
   }
   return decls;
 }
 
-function parseDoc(lines) {
+function declarationsOfDoc(lines) {
   const decls = [];
   let fenced = false;
   for (let i = 0; i < lines.length; i++) {
     if (FENCE.test(lines[i])) fenced = !fenced;
     if (fenced) continue;
     const match = lines[i].match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
-    if (match) decls.push({ name: match[2].trim(), indent: match[1].length, line: i, classOf: null, heading: true });
+    if (match) decls.push({ name: match[2].trim(), indent: match[1].length, line: i, classOf: null });
   }
   // A document's title (one #) is the lead's heading, not a section, when
   // any deeper heading exists.
   return decls.length > 1 && decls[0].indent === 1 && decls.some((decl) => decl.indent > 1) ? decls.slice(1) : decls;
 }
 
-// The comment block directly above a declaration belongs to it.
+// The comment block and decorators directly above a declaration belong to it.
 function commentAbove(lines, at) {
   let start = at;
-  while (start > 0 && COMMENT.test(lines[start - 1]) && lines[start - 1].trim()) start--;
+  while (start > 0 && lines[start - 1].trim() && (COMMENT.test(lines[start - 1]) || DECORATOR.test(lines[start - 1]))) start--;
   return start;
 }
 
 const dedent = (block) => {
-  const indents = block.filter((line) => line.trim()).map((line) => line.search(/\S/));
+  const indents = block.filter((line) => line.trim()).map(indentOf);
   const common = indents.length ? Math.min(...indents) : 0;
   return block.map((line) => line.slice(common));
 };
+
+// Where a declaration's section ends: the line before the next declaration
+// at the same or a shallower indent (for a document, the next heading); a
+// class's own section is its head, up to its first member.
+function sectionEnd(lines, decls, index, doc) {
+  const decl = decls[index];
+  for (let n = index + 1; n < decls.length; n++) {
+    const next = decls[n];
+    if (doc || next.indent <= decl.indent || (decl.classOf === null && next.classOf === decl.name)) return commentAbove(lines, next.line) - 1;
+  }
+  return lines.length - 1;
+}
+
+// One line to say what a declaration is: the first line of the comment
+// above it, else its signature. Shown beside its name when a section is
+// chosen, as a search snippet is beside a title: 4B chose RangeBounds,
+// IndexScanPlan and extractRangeBounds by name for how indexes work
+// (2026-09-19).
+function summaryOf(block, lines, decl, start) {
+  const commentLine = block.slice(0, decl.line - start).map((line) => line.replace(/^\s*(?:\/\*\*?|\*\/|\*|\/\/)\s?/, "").trim()).find((line) => line && !/^[@]/.test(line));
+  return (commentLine ?? lines[decl.line].trim().replace(/\s*(?:=>|[{=])\s*$/, "")).slice(0, 120);
+}
+
+function sectionsOf(lines, decls, doc) {
+  const sections = decls.map((decl, index) => {
+    const start = doc ? decl.line : commentAbove(lines, decl.line);
+    let block = lines.slice(start, sectionEnd(lines, decls, index, doc) + 1);
+    while (block.length && !block.at(-1).trim()) block.pop();
+    // A member's block may end with the class's closing brace, which is not
+    // its text.
+    if (!doc && decl.classOf !== null) while (block.length && CLOSING.test(block.at(-1)) && indentOf(block.at(-1)) < decl.indent) block.pop();
+    const body = dedent(block).join("\n");
+    return { heading: decl.name, name: decl.name, classOf: decl.classOf, start, end: start + block.length - 1, declLine: decl.line, text: body, size: body.length, summary: doc ? block.slice(1).map((line) => line.trim()).find(Boolean)?.slice(0, 120) ?? decl.name : summaryOf(block, lines, decl, start) };
+  });
+  // Headings are an enum: a name repeated in one file is told apart by its
+  // class, then by a count.
+  const seen = new Map();
+  for (const section of sections) {
+    const count = (seen.get(section.heading) ?? 0) + 1;
+    seen.set(section.heading, count);
+    if (count > 1) section.heading = section.classOf ? `${section.classOf}.${section.name}` : `${section.name} (${count})`;
+  }
+  return sections;
+}
+
+// The lead: a document's text before its first heading; a code file's
+// header comment (what its author says it is for) and its outline, one
+// signature per declaration. The outline was tried as headings only, so
+// that the opening paragraph would be the header rather than signatures:
+// 1.7B then kept less of the file's shape and chose worse sections, 18 to
+// 13 topics on the MangoDB briefs (2026-09-19), so the signatures stay.
+function leadOf(lines, sections, doc) {
+  if (doc) return { lead: lines.slice(0, sections.length ? sections[0].start : lines.length).join("\n").trim(), outline: [] };
+  const header = headerOf(lines);
+  const outline = sections.map((section) => lines[section.declLine].trim().replace(/\s*(?:=>|[{=])\s*$/, ""));
+  let lead = [...header, ...(header.length && outline.length ? [""] : []), ...outline].join("\n").trim();
+  if (!lead) lead = lines.filter((line) => line.trim() && !IMPORT.test(line.trim())).slice(0, 12).join("\n");
+  return { lead, outline };
+}
 
 // FNV-1a, enough to say "this content" in a citation.
 export function hashOf(text) {
@@ -105,51 +184,14 @@ export function hashOf(text) {
 }
 
 // A file parsed into a lead and sections. Each section: { heading, name,
-// classOf, start, end (0-based, inclusive), text, size }.
+// classOf, start, end (0-based, inclusive), text, size, summary }.
 export function parseFile(path, text) {
   const lines = String(text).replace(/\r\n?/g, "\n").split("\n");
   const doc = DOC.test(path);
-  const decls = doc ? parseDoc(lines) : CODE.test(path) ? parseCode(lines) : [];
-  const sections = [];
-  for (let d = 0; d < decls.length; d++) {
-    const decl = decls[d];
-    // The section ends where the next declaration at the same or a
-    // shallower indent (for a document, the next heading) begins; a class's
-    // own section is its head, up to its first method.
-    let end = lines.length - 1;
-    for (let n = d + 1; n < decls.length; n++) {
-      const next = decls[n];
-      if (doc ? true : next.indent <= decl.indent || (decl.classOf === null && next.classOf === decl.name)) { end = commentAbove(lines, next.line) - 1; break; }
-    }
-    const start = doc ? decl.line : commentAbove(lines, decl.line);
-    let block = lines.slice(start, end + 1);
-    while (block.length && !block.at(-1).trim()) block.pop();
-    // A method's block may end with the class's closing brace; a class
-    // head's with nothing of its own. Neither is text.
-    if (!doc && decl.classOf !== null) while (block.length && /^\s*\}\s*;?\s*$/.test(block.at(-1)) && block.at(-1).search(/\S/) < decl.indent) block.pop();
-    const body = dedent(block).join("\n");
-    sections.push({ heading: decl.name, name: decl.name, classOf: decl.classOf, start, end: start + block.length - 1, declLine: decl.line, text: body, size: body.length });
-  }
-  // Headings are an enum: a name repeated in one file is told apart by its
-  // class, then by a count.
-  const seen = new Map();
-  for (const section of sections) {
-    const count = (seen.get(section.heading) ?? 0) + 1;
-    seen.set(section.heading, count);
-    if (count > 1) section.heading = section.classOf ? `${section.classOf}.${section.name}` : `${section.name} (${count})`;
-  }
-  // The lead: a document's text before its first heading; a code file's
-  // header comment and one line per declaration (its signature), so a
-  // reader sees what the file holds before choosing a section.
-  let lead;
-  if (doc) lead = lines.slice(0, sections.length ? sections[0].start : lines.length).join("\n").trim();
-  else {
-    const header = headerOf(lines);
-    const outline = sections.map((section) => lines[section.declLine].trim().replace(/\s*(?:=>|[{=])\s*$/, ""));
-    lead = [...header, ...(header.length && outline.length ? [""] : []), ...outline].join("\n").trim();
-  }
-  if (!lead && !doc) lead = lines.filter((line) => line.trim()).slice(0, 40).join("\n");
-  return { path, lines, lead, sections, hash: hashOf(String(text)), doc };
+  const decls = doc ? declarationsOfDoc(lines) : CODE.test(path) ? declarationsOfCode(lines) : [];
+  const sections = sectionsOf(lines, decls, doc);
+  const { lead, outline } = leadOf(lines, sections, doc);
+  return { path, lines, lead, outline, sections, hash: hashOf(String(text)), doc };
 }
 
 // The lines of a read that a model can pick: not blank, with a word in them.
@@ -218,6 +260,10 @@ export function search(corpus, term) {
   const exact = parseTitle(corpus, term);
   const scored = [];
   for (const article of corpus.articles.values()) {
+    // A file with no declarations and next to no text (a barrel of
+    // re-exports) is not an article: 4B chose src/aggregation/index.ts by
+    // its name for how aggregation runs and read eight lines of exports.
+    if (!article.sections.length && article.lines.filter((line) => line.trim() && !IMPORT.test(line.trim())).length < 10) continue;
     const pathTokens = tokens(article.path.replace(/\.[^.]+$/, ""));
     let score = 0;
     let best = { line: "", hits: 0 };
@@ -255,6 +301,7 @@ function readLead(corpus, article, query, alternatives = []) {
     sections: article.sections.length + 1,
     headings: article.sections.map((section) => section.heading),
     sizes: article.sections.map((section) => section.size),
+    summaries: article.sections.map((section) => section.summary),
     text: article.lead.slice(0, EXTRACT_LIMIT),
     exact: true,
     alternatives,
@@ -358,6 +405,15 @@ export function readFileAbout(corpus, title, phrase) {
   return best.index === 0 ? { ...readLead(corpus, article, title), about: whole } : readSection(corpus, article, best.index, title, { about: whole });
 }
 
+// A use of a name in a line of code, not a mention in prose: a call, a
+// member, a type argument or a code span. "rename" in "// then rename" is a
+// word; "await rename(tmp, path)" and "this.rename(" are uses.
+const useOf = (name, flags = "m") => new RegExp(`(?:\\.|\`|(?:^|[^\\w$.])(?=[\\w$]+\\s*[(<]))${String(name).replace(/[$]/g, "\\$&")}(?=$|[^\\w$])`, flags);
+export function usesName(text, name) {
+  return useOf(name).test(String(text));
+}
+const memberUse = (text, name) => new RegExp(`\\.${String(name).replace(/[$]/g, "\\$&")}(?=$|[^\\w$])`, "m").test(String(text));
+
 // The declarations a file (or one of its declarations) names that the
 // corpus declares, as "name (path)" titles, most-mentioned first.
 export function fileLinks(corpus, title) {
@@ -365,15 +421,18 @@ export function fileLinks(corpus, title) {
   if (!target) return { ok: false, tool: "files", kind: "links", query: title, error: { kind: "no_match", message: `No file "${title}" in ${corpus.name}.` }, requests: [] };
   const article = corpus.articles.get(target.path);
   const scope = target.heading ? article.sections.find((section) => section.heading === target.heading || section.name === target.heading)?.text ?? "" : article.lines.join("\n");
+  // A name the file imports from outside the corpus ("rename" from
+  // node:fs) is that import when called bare, even if a method of the same
+  // file shares the name; only a member use (".rename(") is the method.
+  const imported = new Set((article.lines.filter((line) => IMPORT.test(line.trim())).join(" ").match(/[A-Za-z_$][\w$]*/g) ?? []));
   const counts = [];
   for (const [name, places] of corpus.declared) {
-    // A use, not a mention: a call, a member, a type argument or a code
-    // span. "collection" in a comment names nothing; ".collection(" does.
-    const occurrences = scope.match(new RegExp(`(?:\\.|\`|(?:^|[^\\w$.])(?=[\\w$]+\\s*[(<]))${name.replace(/[$]/g, "\\$&")}(?=$|[^\\w$])`, "gm"))?.length ?? 0;
+    const occurrences = scope.match(useOf(name, "gm"))?.length ?? 0;
     if (!occurrences) continue;
     for (const place of places) {
       // A declaration is not a link to itself.
       if (place.path === article.path && target.heading && (place.heading === target.heading || name === target.heading)) continue;
+      if (place.path === article.path && imported.has(name) && !memberUse(scope, name)) continue;
       counts.push({ link: `${name} (${place.path})`, occurrences, own: place.path === article.path });
     }
   }

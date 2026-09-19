@@ -1,0 +1,448 @@
+{
+  "suite": "runs",
+  "model": "qwen3:8b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 55,
+    "hash": "451c7e0b"
+  },
+  "commit": "e02f312 (uncommitted changes)",
+  "head": "e02f312 (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T07:01:44.048Z",
+  "loadSeconds": 0,
+  "prompt": "closed-profile-1",
+  "schema": "answer:string",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 97,
+      "mean": 48.5
+    },
+    "vramGiB": {
+      "min": 10.6,
+      "max": 10.71,
+      "mean": 10.7
+    },
+    "load": {
+      "min": 18.67,
+      "max": 22.92,
+      "mean": 20.8
+    },
+    "memoryFreePercent": {
+      "min": 23,
+      "max": 24,
+      "mean": 23.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "closed",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "closed": true
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 9,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 42,
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "streamed-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "serialisation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 290
+      },
+      "statuses": {},
+      "finding": "MangoDB, also known as MongoDB, persists writes to disk through a combination of journaling, write concern, and the WiredTiger storage engine. When a write operation is performed, MongoDB first writes the data to the in-memory document cache. It then applies the write to the journal, which is a write-ahead log that ensures data durability in the event of a crash. The journal is written to disk synchronously or asynchronously, depending on the configured write concern. MongoDB also uses the WiredTiger storage engine, which stores data in a format that allows for efficient disk-based persistence. Data is periodically flushed from the in-memory cache to disk, a process known as a checkpoint. This ensures that all data is safely stored on disk, even if the server is restarted. Additionally, MongoDB supports replication, where writes are synchronized across multiple nodes to ensure data consistency and availability. The specific behavior can be further controlled through configuration options such as `journaling`, `syncPeriodSecs`, and `writeConcern`. These mechanisms collectively ensure that MongoDB reliably persists writes to disk, providing durability and data integrity.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 10,
+        "chars": 1187,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 9,
+      "latencyMs": 8646,
+      "raw": "{\n  \"answer\": \"MangoDB, also known as MongoDB, persists writes to disk through a combination of journaling, write concern, and the WiredTiger storage engine. When a write operation is performed, MongoDB first writes the data to the in-memory document cache. It then applies the write to the journal, which is a write-ahead log that ensures data durability in the event of a crash. The journal is written to disk synchronously or asynchronously, depending on the configured write concern. MongoDB also uses the WiredTiger storage engine, which stores data in a format that allows for efficient disk-based persistence. Data is periodically flushed from the in-memory cache to disk, a process known as a checkpoint. This ensures that all data is safely stored on disk, even if the server is restarted. Additionally, MongoDB supports replication, where writes are synchronized across multiple nodes to ensure data consistency and availability. The specific behavior can be further controlled through configuration options such as `journaling`, `syncPeriodSecs`, and `writeConcern`. These mechanisms collectively ensure that MongoDB reliably persists writes to disk, providing durability and data integrity.\"\n}"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "matches-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "logical-operators": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 261
+      },
+      "statuses": {},
+      "finding": "MangoDB evaluates a find query with a filter by using its query optimizer to determine the most efficient way to retrieve the matching documents. When a query with a filter is executed, MangoDB first parses the query to understand the filter conditions. It then checks if any indexes can be used to speed up the query. If an index exists on the fields used in the filter, MangoDB will use that index to quickly locate the relevant documents. If no suitable index is available, MangoDB will perform a full collection scan, which can be slower and less efficient. The query optimizer also considers factors such as the size of the collection, the selectivity of the filter, and the available resources to choose the best execution plan. In some cases, MangoDB may also use features like aggregation pipelines or in-memory processing to further optimize the query. The result is a set of documents that match the filter criteria, which are then returned to the user.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 8,
+        "chars": 963,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 7,
+      "latencyMs": 7090,
+      "raw": "{\n  \"answer\": \"MangoDB evaluates a find query with a filter by using its query optimizer to determine the most efficient way to retrieve the matching documents. When a query with a filter is executed, MangoDB first parses the query to understand the filter conditions. It then checks if any indexes can be used to speed up the query. If an index exists on the fields used in the filter, MangoDB will use that index to quickly locate the relevant documents. If no suitable index is available, MangoDB will perform a full collection scan, which can be slower and less efficient. The query optimizer also considers factors such as the size of the collection, the selectivity of the filter, and the available resources to choose the best execution plan. In some cases, MangoDB may also use features like aggregation pipelines or in-memory processing to further optimize the query. The result is a set of documents that match the filter criteria, which are then returned to the user.\"\n}"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "default-id-index": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "built-lazily-in-memory": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "equality-map": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sorted-entries": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "compound-prefix": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "non-indexable": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "special-indexes-skipped": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 261
+      },
+      "statuses": {},
+      "finding": "MangoDB, also known as MongoDB, uses a document-oriented database model and supports various types of indexes to improve query performance. The most common index types include single field indexes, compound indexes, and text indexes. When a query is executed, MongoDB checks if an index can be used to efficiently retrieve the required data. If the query's conditions match the indexed fields, the database will use the index to quickly locate the documents, rather than scanning the entire collection. Indexes are particularly useful for queries that involve equality comparisons, range queries, or sorting. However, MongoDB does not automatically use an index for every query; it evaluates whether using an index would be more efficient than a full collection scan. Additionally, MongoDB supports index-only queries, where the query can be satisfied entirely using the index without needing to access the actual documents. The effectiveness of an index depends on the query pattern, the data distribution, and the index structure.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 8,
+        "chars": 1032,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 7,
+      "latencyMs": 7133,
+      "raw": "{\n  \"answer\": \"MangoDB, also known as MongoDB, uses a document-oriented database model and supports various types of indexes to improve query performance. The most common index types include single field indexes, compound indexes, and text indexes. When a query is executed, MongoDB checks if an index can be used to efficiently retrieve the required data. If the query's conditions match the indexed fields, the database will use the index to quickly locate the documents, rather than scanning the entire collection. Indexes are particularly useful for queries that involve equality comparisons, range queries, or sorting. However, MongoDB does not automatically use an index for every query; it evaluates whether using an index would be more efficient than a full collection scan. Additionally, MongoDB supports index-only queries, where the query can be satisfied entirely using the index without needing to access the actual documents. The effectiveness of an index depends on the query pattern, the data distribution, and the index structure.\"\n}"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "answered",
+      "facts": {
+        "stage-dispatch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "in-memory-sequential": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "out-and-merge-last": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "accumulators": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "lookup": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "system-variables": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "one-key-per-stage": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 5,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 0,
+        "visits": 0,
+        "modelCalls": 1,
+        "lookups": 0,
+        "tokens": 231
+      },
+      "statuses": {},
+      "finding": "MangoDB, also known as MongoDB, executes an aggregation pipeline as a series of stages that process data in a document-oriented manner. The pipeline is composed of multiple stages, each performing a specific operation on the data, such as filtering, sorting, grouping, or projecting fields. These stages are processed sequentially, with the output of one stage serving as the input for the next. For example, a $match stage filters documents based on specified criteria, while a $group stage aggregates data by a common field. The pipeline is executed in memory, and MongoDB optimizes the execution by using indexes where possible to improve performance. The final output of the pipeline is returned to the client. The aggregation framework is flexible and allows for complex data processing, making it a powerful tool for data analysis and transformation within MongoDB.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 7,
+        "chars": 871,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "wallSeconds": 6,
+      "latencyMs": 6052,
+      "raw": "{\n  \"answer\": \"MangoDB, also known as MongoDB, executes an aggregation pipeline as a series of stages that process data in a document-oriented manner. The pipeline is composed of multiple stages, each performing a specific operation on the data, such as filtering, sorting, grouping, or projecting fields. These stages are processed sequentially, with the output of one stage serving as the input for the next. For example, a $match stage filters documents based on specified criteria, while a $group stage aggregates data by a common field. The pipeline is executed in memory, and MongoDB optimizes the execution by using indexes where possible to improve performance. The final output of the pipeline is returned to the client. The aggregation framework is flexible and allows for complex data processing, making it a powerful tool for data analysis and transformation within MongoDB.\"\n}"
+    }
+  ],
+  "notes": [
+    "2026-09-19T07:01:44.046Z corpus MangoDB: 55 files, 568 declared names, 451c7e0b",
+    "2026-09-19T07:01:44.047Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:8b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "machine at start: gpu 98% · vram 10.71 GiB · load 18.67 · mem 23% free (warning) · no throttling recorded",
+    "2026-09-19T07:01:44.164Z 4 seeds from evals/seeds-code.json · mode closed · limits {\"closed\":true} · prompt closed-profile-1 · grammar answer:string · commit e02f312 (uncommitted changes)",
+    "wiki recording: 0 responses loaded",
+    "persist: resolved · topics 0/9 · supported 0/9 · read 0/9 · ¶1 · 10 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 290 tokens · 9 s",
+    "find: resolved · topics 1/11 · supported 0/11 · read 0/11 · ¶1 · 8 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 261 tokens · 7 s",
+    "indexes: resolved · topics 3/11 · supported 0/11 · read 0/11 · ¶1 · 8 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 261 tokens · 7 s",
+    "aggregate: resolved · topics 5/11 · supported 0/11 · read 0/11 · ¶1 · 7 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 0 nodes, 1 calls, 0 lookups, 231 tokens · 6 s",
+    "machine during the suite: gpu 48.5% mean, 97% peak · vram up to 10.71 GiB · load up to 22.92 · no throttling in 2 samples"
+  ]
+}

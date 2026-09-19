@@ -16,9 +16,9 @@
 import { ASKS, ASK_VERSION, parseJson, splitSentences, unitsOf } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { contentWords, isParaphrase, namesSubject } from "./text.js";
-import { lineUnits } from "./files.js";
+import { lineUnits, usesName } from "./files.js";
 
-export const WALK_VERSION = "walk-14"; // walk-14: a parent whose children answered resolves with what they found by code, with no pick, for a question as for a split or a brief; a child's finding is no longer offered to the sentence pick, so no "none" over it can be overridden; // walk-13: a hop's sentence names the subject only by the subject's own capitalised words, with their capitals ("Juno mission" and "rosetta orbit" no longer count for the Rosetta mission), and the first search waits for approval like every other request; // walk-12: an over-long profile loses hop paragraphs before it loses sections, and a short section is not handed to a child; a hop child may hand down hops of its own (one level), a reserve keeps room for every open node's hops, and a name is offered only if its article says something about the subject; // walk-11: a hop child reads the part of its article that names the brief's subject, and a brief's root keeps twice the sentences; a brief's child hands the things its kept sentences name (the article's links that occur in them, else capitalised phrases) to children of its own, the model picking which from a list ranked by how often the run has met each; a sentence kept anywhere is never offered again; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
+export const WALK_VERSION = "walk-15"; // walk-15: a second source (src/files.js): a file's sentences are its lines, a finding over code reads as lines and a short one brings its neighbours, a hop over code is on subject by construction (a link is a use, named by a use, and may be another declaration of a file already read), a ranked search's first hit is read when the model says none, the corpus's own name and a brief's framing words ("tell me about") are not search terms or subjects, and a brief's root fans out even when its lead gave it nothing to keep; // walk-14: a parent whose children answered resolves with what they found by code, with no pick, for a question as for a split or a brief; a child's finding is no longer offered to the sentence pick, so no "none" over it can be overridden; // walk-13: a hop's sentence names the subject only by the subject's own capitalised words, with their capitals ("Juno mission" and "rosetta orbit" no longer count for the Rosetta mission), and the first search waits for approval like every other request; // walk-12: an over-long profile loses hop paragraphs before it loses sections, and a short section is not handed to a child; a hop child may hand down hops of its own (one level), a reserve keeps room for every open node's hops, and a name is offered only if its article says something about the subject; // walk-11: a hop child reads the part of its article that names the brief's subject, and a brief's root keeps twice the sentences; a brief's child hands the things its kept sentences name (the article's links that occur in them, else capitalised phrases) to children of its own, the model picking which from a list ranked by how often the run has met each; a sentence kept anywhere is never offered again; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -54,6 +54,10 @@ export const CHECK_FOREIGN = true;
 // root's finding is the kept sentences and the children's findings in order.
 export const BRIEF = /^(tell|describe|explain|write|give|summari[sz]e|elaborate|outline|profile|discuss)\b/i;
 export const BRIEF_VARIANTS = Object.freeze({ sentence: "brief", section: "brief", missing: "names" });
+// Over a file corpus (src/files.js) the same asks serve: wordings that named
+// lines, declarations and paths were tried at 1.7B (2026-09-19, four
+// combinations on the MangoDB briefs) and none beat the brief's, and one
+// halved the graph (evals/readings.md).
 // How many named things one hop pick sees.
 export const NAMES_SHOWN = 8;
 // A section shorter than this is not handed to a child under a brief.
@@ -570,8 +574,9 @@ export async function runWalk(run, options) {
       // what a brief may need most.
       let remaining = unread.headings.filter((heading) => { const size = sizes[lead.headings.indexOf(heading)]; return lead.lines || !(Number.isFinite(size) && size < SHORT_SECTION); });
       if (!remaining.length) remaining = [...unread.headings];
+      const summaryOf = (heading) => lead?.summaries?.[lead.headings.indexOf(heading)];
       while (chosen.length < budget && remaining.length) {
-        const pick = await answer("section", { question: node.question, article: unread.article, sections: remaining, chosen }, "Choosing sections");
+        const pick = await answer("section", { question: node.question, article: unread.article, sections: remaining, chosen, ...(lead?.summaries ? { summaries: remaining.map(summaryOf) } : {}) }, "Choosing sections");
         if (pick === "none" || !remaining.includes(pick)) break;
         chosen.push(pick);
         remaining = remaining.filter((heading) => heading !== pick);
@@ -623,11 +628,18 @@ export async function runWalk(run, options) {
       // children were offered "Turing (disambiguation)", "February", "German").
       let linked = false;
       for (const candidate of kept) {
-        const article = run.evidence.find((record) => record.id === candidate.evidence[0])?.article;
-        const links = frontier.links.get(article);
+        const record = run.evidence.find((entry) => entry.id === candidate.evidence[0]);
+        const links = frontier.links.get(record?.article);
         if (!links) continue;
         linked = true;
-        for (const link of links) if (!UNWANTED_NAME.test(link) && occurs(link, candidate.text)) add(link);
+        // A line of code names a link by using it, not by containing the
+        // word: "// then rename" named the collection's rename method (1.7B,
+        // 2026-09-19). And the lines a model keeps from a declaration are
+        // its comments, which use nothing, so over code the hops are what
+        // the declaration read calls, not what the kept lines say.
+        const shown = (link) => String(link).replace(/\s*\([^)]*\)\s*$/, "");
+        const scope = candidate.line ? record.text : candidate.text;
+        for (const link of links) if (!UNWANTED_NAME.test(link) && (candidate.line ? usesName(scope, shown(link)) : occurs(link, scope))) add(link);
       }
       if (!linked) for (const name of namesIn(kept.map((candidate) => candidate.text), subject)) if (!UNWANTED_NAME.test(name)) add(name);
       // Ranked by how many excerpts in the run name each: what several
@@ -650,7 +662,10 @@ export async function runWalk(run, options) {
           if (signal?.aborted || error?.name === "AbortError") throw error;
         }
         signal?.throwIfAborted();
-        const says = Boolean(found?.ok) && !read.has(normalise(found.title)) && !read.has(normalise(found.article));
+        // An article read by any node is not hopped to again; over code the
+        // unit is the declaration, and another method of a file already
+        // read is new reading ("rename" beside "writeDocuments").
+        const says = Boolean(found?.ok) && !read.has(normalise(found.title)) && (Boolean(found.lines) || !read.has(normalise(found.article)));
         trace(run, "hop_checked", { node: node.id, name, about, says, ...(found?.ok ? { title: found.title } : { error: found?.error?.message ?? null }) });
         if (says) offered.push(name);
       }
@@ -756,6 +771,14 @@ export async function runWalk(run, options) {
         return resolveWith();
       }
       // Nothing left to judge.
+      // A brief's root whose lead gave it nothing to keep still hands its
+      // sections down: a source file's header can be one line ("Common
+      // types and interfaces"), and the file's substance is its
+      // declarations (1.7B, 2026-09-19, the find brief blocked at the root).
+      if (brief && node.depth === 0 && !children(run, node.id).length && node.depth < run.limits.maxDepth) {
+        const unread = unreadSections(run, node)[0];
+        if (unread && (await fanOut(unread))) return true;
+      }
       // A hop child reads one article for sentences that name the brief's
       // subject; when its lead has none, no section of it is read either
       // (8B's Gordon Brown child read on and asked for section "none").

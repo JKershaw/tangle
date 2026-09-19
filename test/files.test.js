@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { corpusFrom, fileDriver, fileLinks, lineUnits, lookupFiles, parseFile, readFileAbout, readFileSection, search, tokens } from "../src/files.js";
+import { corpusFrom, fileDriver, fileLinks, lineUnits, lookupFiles, parseFile, readFileAbout, readFileSection, search, tokens, usesName } from "../src/files.js";
 import { readCorpus, readCorpusEntries } from "../scripts/corpus.mjs";
 import { createRun, nextRunnable } from "../src/graph.js";
 import { runWalk, subjectIgnore } from "../src/walk.js";
@@ -16,11 +16,14 @@ test("a code file's declarations are its sections, each with the comment above i
   assert.deepEqual(store.sections.map((section) => section.heading), ["Store", "constructor", "readAll", "writeAll", "find", "path"]);
   const writeAll = store.sections.find((section) => section.heading === "writeAll");
   assert.equal(writeAll.classOf, "Store");
+  assert.equal(writeAll.summary, "Writes the whole collection back: to a temp file, then a rename, so a", "a declaration's summary is the first line of its comment");
+  assert.equal(store.sections.find((section) => section.heading === "find").summary, "async find(name: string, filter: object): Promise<object[]>", "else its signature");
   assert.ok(writeAll.text.startsWith("// Writes the whole collection back"), "the comment above belongs to the section");
   assert.ok(writeAll.text.includes("await rename(tmp, this.path(name));"));
   assert.ok(!writeAll.text.includes("async find("), "the section ends where the next declaration's comment begins");
-  assert.equal(store.lead.split("\n")[1], " * A tiny document store: one JSON file per collection.");
-  assert.ok(store.lead.includes("async writeAll(name: string, docs: object[]): Promise<void>"), "the outline is one signature per declaration");
+  assert.equal(store.lead.split("\n")[1], " * A tiny document store: one JSON file per collection.", "the lead opens with the header comment");
+  assert.ok(store.lead.includes("async writeAll(name: string, docs: object[]): Promise<void>"), "and continues with one signature per declaration");
+  assert.deepEqual(store.outline.length, 6);
   const match = parseFile("src/match.ts", entries.find(([path]) => path === "src/match.ts")[1]);
   assert.deepEqual(match.sections.map((section) => section.heading), ["matchesFilter", "matchesKey"]);
 });
@@ -35,6 +38,8 @@ test("a document's headings are its sections and the text before the first headi
 test("search ranks files by their names, declarations and matching lines, minus the corpus's own name; tokens match by stem prefix", () => {
   const c = corpus();
   assert.ok(tokens("writeDocuments persists").has("write"));
+  const barrel = corpusFrom([...readCorpusEntries(ROOT), ["src/index.ts", "export * from './store.ts';\nexport * from './match.ts';\n"]], { name: "Tinystore" });
+  assert.ok(!search(barrel, "store match").some((hit) => hit.path === "src/index.ts"), "a barrel of re-exports is not an article");
   const hits = search(c, "Tinystore persists writes to disk");
   assert.equal(hits[0].path, "src/store.ts", hits.map((hit) => `${hit.path}:${hit.score}`).join(" "));
   assert.ok(hits[0].snippet.length > 0);
@@ -52,7 +57,9 @@ test("reading a file gives its lead with headings and sizes; a section by name; 
   assert.equal(lead.section, 0);
   assert.deepEqual(lead.headings, ["Store", "constructor", "readAll", "writeAll", "find", "path"]);
   assert.equal(lead.sizes.length, 6);
+  assert.equal(lead.summaries.length, 6);
   assert.equal(lead.url, "file:src/store.ts#L1");
+  assert.ok(lineUnits(lead.text).includes("* A tiny document store: one JSON file per collection."));
   assert.ok(lineUnits(lead.text).includes("export class Store"));
   const section = readFileSection(c, "src/store.ts", "writeAll");
   assert.equal(section.title, "src/store.ts § writeAll");
@@ -72,6 +79,9 @@ test("reading a file gives its lead with headings and sizes; a section by name; 
 
 test("a file's links are the corpus's declarations it uses, as 'name (path)' titles, most used first", () => {
   const c = corpus();
+  assert.equal(usesName("return this.mutex.runExclusive(async () => {", "runExclusive"), true);
+  assert.equal(usesName("// to a temp file, then a rename, so a", "rename"), false, "a word in a comment is not a use");
+  assert.equal(usesName("await rename(tmp, this.path(name));", "rename"), true);
   const links = fileLinks(c, "src/store.ts").links;
   assert.ok(links.includes("matchesFilter (src/match.ts)"), links.join(", "));
   assert.ok(links.includes("runExclusive (src/mutex.ts)"));
@@ -80,6 +90,19 @@ test("a file's links are the corpus's declarations it uses, as 'name (path)' tit
   assert.ok(inWriteAll.includes("runExclusive (src/mutex.ts)"));
   assert.ok(!inWriteAll.includes("matchesFilter (src/match.ts)"), "a declaration's links are its own uses");
   assert.ok(!inWriteAll.includes("writeAll (src/store.ts)"), "not itself");
+});
+
+test("a brief's root whose lead gives it nothing to keep still fans out to the file's declarations", async () => {
+  const c = corpus();
+  subjectIgnore.add("tinystore");
+  const run = createRun("Tell me how Tinystore matches a filter", "live");
+  // Every sentence pick says none; every other ask takes the first choice.
+  const ask = async (call) => (call.schema?.properties?.sentence ? { text: JSON.stringify({ sentence: "none" }), tokens: 0 } : SCRIPTED.first(call));
+  const first = await runWalk(run, { ask, wiki: fileDriver(c), source: "files", variants: { sentence: "list", article: "snippets" } });
+  assert.equal(first, true, run.nodes[0].reason);
+  assert.equal(run.nodes[0].status, "waiting", "the root handed its sections down");
+  assert.ok(run.nodes.length > 1);
+  assert.ok(run.trace.some((event) => event.event === "sections_chosen" && event.sections.length));
 });
 
 test("the walk over a file corpus: a brief reads a file's lead, fans out to its declarations, keeps lines, hops along the links, and the profile cites file lines", async () => {
@@ -96,6 +119,7 @@ test("the walk over a file corpus: a brief reads a file's lead, fans out to its 
   assert.ok(run.evidence.every((record) => record.kind === "file" && record.lines === true && record.url.startsWith("file:")));
   assert.ok(run.trace.some((event) => event.event === "tool_proposed" && event.tool === "files"));
   assert.ok(run.nodes.some((node) => node.hopTo), "some child hopped along a link");
+  assert.ok(run.nodes.some((node) => node.hopTo === "runExclusive (src/mutex.ts)"), "writeAll calls runExclusive, so its child hops there: " + run.nodes.map((node) => node.hopTo).filter(Boolean).join(", "));
   const hopped = run.nodes.filter((node) => node.hopTo && node.status === "resolved");
   assert.ok(hopped.length >= 1, "a hop child read the declaration it was named");
   assert.ok(hopped.every((node) => node.evidence.every((id) => run.evidence.find((record) => record.id === id).title.includes(" § "))));
