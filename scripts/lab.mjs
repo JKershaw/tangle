@@ -214,8 +214,6 @@ export function browserLab({ browser, page, version }) {
       return run;
     },
     ask: (call) => page.evaluate((call) => window.__tangle.ask(call), call),
-    visit: (context) => page.evaluate((context) => window.__tangle.visit(context), context),
-    pick: (context) => page.evaluate((context) => window.__tangle.pick(context), context),
     wikiLoad: (dir) => loadWikiCache(page, dir),
     wikiSave: (dir) => saveWikiCache(page, dir),
     modelLoad: (dir) => loadModelCache(page, dir),

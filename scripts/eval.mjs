@@ -1,72 +1,54 @@
 #!/usr/bin/env node
-// Run an eval suite against a model in the built page (PLAN.md):
-//   node scripts/eval.mjs visits --model Qwen3-1.7B-q4f16_1-MLC [--only <regex>] [--out evals/results/<name>]
-//   node scripts/eval.mjs runs --model <id> --mode tangle|flat|composing|closed [--seeds <path>] [--repeat N] [--only <regex>] [--run-timeout <minutes>]
+// Run the benchmark (PLAN.md) in one column against one model:
+//   node scripts/eval.mjs runs --model <id> --mode tangle|flat|closed|tools|tools-cited [--seeds <path>] [--repeat N] [--only <regex>] [--out <path>] [--run-timeout <minutes>]
 //   node scripts/eval.mjs runs --endpoint http://127.0.0.1:11434/v1 --model qwen3:8b --mode tangle
-// With --endpoint the suite runs in Node (scripts/node-lab.mjs) against an
-// OpenAI-compatible server instead of in the page; the same walk, the same
-// recording, one more row. The visits and composing suites need the page.
-// Modes: tangle is the walk with default limits; flat is the walk on one node
-// (no children, more lookups); composing is the old one-prompt visit on one
-// node, where the model writes its own finding; closed is the model alone,
-// asked the seed with no tools — what it knows, graded on facts named, none
-// of them supported by construction. --repeat runs the suite N times, one
-// row and one JSON each, so a one-fact gap can be told from noise.
-// The tool control (scripts/tools.mjs, ROADMAP 5b): --mode tools is the same
-// model with the four source requests as tools in one context, composing its
-// answer; --mode tools-cited cuts that answer to the sentences read word for
-// word. --match <tangle results json> gives each seed the calls and tokens
-// the graph's row spent on it; without it, the defaults in tools.mjs.
+//   node scripts/eval.mjs runs --model qwen3:1.7b --mode tangle --replay-only          # from the cache alone (CI)
+// Columns (scripts/columns.mjs): tangle is the walk; flat the walk on one
+// node; closed the model alone; tools and tools-cited the same model with the
+// four source requests as tools in one context (--match <tangle results json>
+// gives each seed the graph's own calls and tokens). Every column's export is
+// shaped like a run and graded once (grade.js gradeRun). --repeat runs the
+// suite N times, one row and one JSON each, so a one-fact gap can be told
+// from noise. Without --endpoint the suite runs in the built page through
+// Playwright (--url, --profile, --chromium, --load-timeout as live-run.mjs);
+// with it, in Node (scripts/node-lab.mjs) against an OpenAI-compatible server,
+// or OpenRouter with OPENROUTER_API_KEY in the environment. A file corpus
+// (--source <dir>, or the seeds file's "source") runs in Node only.
 // The model cache (src/replay.js): every call is recorded by its exact context
 // under --model-cache <dir> (default evals/model-cache/<model>/) and replayed
 // when seen again, so a rerun after a code change costs only the calls the
 // change touched; the row says how many calls were replayed. --replay-only
-// runs from the cache alone, in Node, without a server, a GPU or the network,
-// and exits non-zero on a miss: the benchmark in CI. --no-model-cache turns
-// recording and replay off.
-// Options shared with live-run.mjs: --url, --profile, --chromium, --load-timeout.
-// visits: every case in evals/visits.json through one model call, graded.
-// runs: every seed in evals/seeds.json as a whole graph (tangle limits or the
-// flat one-node baseline), Wikipedia served from evals/wiki-cache and added to.
-// Both write <out>.json and append one row to evals/results.md; full run
-// exports go to evals/results/runs/ (not committed).
+// runs from the cache alone, without a server, a GPU or the network, and
+// exits non-zero on a miss. --no-model-cache turns recording and replay off.
+// Writes <out>.json and appends one row to evals/results.md; full run exports
+// go to evals/results/runs/ (not committed).
 import { existsSync, mkdirSync, readFileSync, writeFileSync, appendFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import { FLAT_LIMITS, formatGrades, formatRunGrade, gradeCase, gradeRun, profileOf, summariseGrades } from "./grade.js";
+import { formatRunGrade, gradeRun } from "./grade.js";
 import { summarise } from "./summarise.js";
-import { mentions } from "./text.js";
 import { formatSample, sample, startSampling } from "./machine.js";
 import { DEFAULT_MODEL, DEFAULT_URL, browserLab, commitInfo, machineInfo, makeNotes, openLab, pageInfo, parseArgs, shortModel, stamp } from "./lab.mjs";
 import { openNodeLab } from "./node-lab.mjs";
 import { MODEL_CACHE, modelCacheDir } from "./recording.mjs";
-import { TOOLS_VERSION, runTools } from "./tools.mjs";
+import { TOOLS_VERSION } from "./tools.mjs";
+import { CLOSED_PROFILE_VERSION, CLOSED_VERSION, COLUMNS, limitsFor, runColumn } from "./columns.mjs";
 import { DEFAULT_ENDPOINT } from "../src/endpoint.js";
 
 const args = parseArgs(process.argv.slice(2));
-const suiteName = args._[0];
-if (!["visits", "runs"].includes(suiteName)) {
-  console.error("usage: node scripts/eval.mjs visits|runs --model <id> [--mode tangle|flat|composing] [--seeds <path>] [--repeat N] [--only <regex>] [--out <path>]");
+const usage = "usage: node scripts/eval.mjs runs --model <id> [--mode tangle|flat|closed|tools|tools-cited] [--seeds <path>] [--repeat N] [--only <regex>] [--out <path>] [--endpoint <url>] [--match <json>] [--replay-only]";
+if (args._[0] !== "runs") {
+  console.error(usage);
   process.exit(2);
 }
 const mode = args.mode || "tangle";
-if (!["tangle", "flat", "composing", "closed", "tools", "tools-cited"].includes(mode)) {
-  console.error(`unknown mode ${mode}`);
+if (!COLUMNS.includes(mode)) {
+  console.error(`unknown mode ${mode}\n${usage}`);
   process.exit(2);
 }
+const tools = mode.startsWith("tools");
 const repeats = Math.max(1, Number(args.repeat ?? 1));
-// The closed-book control: one call, the question, no evidence. The answer is
-// a short JSON string so the same grammar path and token cap apply.
-const CLOSED_VERSION = "closed-1";
-const CLOSED_SYSTEM = "Answer the question in two or three sentences from what you know. Name the specific causes, places, processes or people involved.";
-// A brief gets room for a profile: the same characters the graph may gather.
-const CLOSED_PROFILE_VERSION = "closed-profile-1";
-const CLOSED_PROFILE_SYSTEM = "Write a short profile answering the brief from what you know, in several short paragraphs. Name the specific works, events, places, people and consequences involved.";
-const closedCall = (seed) =>
-  seed.kind === "brief"
-    ? { messages: [{ role: "system", content: CLOSED_PROFILE_SYSTEM }, { role: "user", content: seed.seed }], schema: { type: "object", properties: { answer: { type: "string", maxLength: 6000 } }, required: ["answer"], additionalProperties: false }, maxTokens: 1500 }
-    : { messages: [{ role: "system", content: CLOSED_SYSTEM }, { role: "user", content: seed.seed }], schema: { type: "object", properties: { answer: { type: "string", maxLength: 900 } }, required: ["answer"], additionalProperties: false }, maxTokens: 320 };
 const seedsPath = args.seeds || "evals/seeds.json";
-const allSeedsFile = suiteName === "runs" ? JSON.parse(readFileSync(seedsPath, "utf8")) : {};
+const allSeedsFile = JSON.parse(readFileSync(seedsPath, "utf8"));
 const allSeeds = allSeedsFile.seeds ?? [];
 const seedSet = seedsPath.replace(/^.*\//, "").replace(/\.json$/, "");
 const WIKI_CACHE = "evals/wiki-cache";
@@ -81,11 +63,6 @@ if (replayOnly && !modelDir) {
   process.exit(2);
 }
 const endpoint = args.endpoint ? String(args.endpoint) : replayOnly ? DEFAULT_ENDPOINT : null;
-if (endpoint && (suiteName === "visits" || mode === "composing")) {
-  console.error("the visits suite and the composing mode run in the page; drop --endpoint");
-  process.exit(2);
-}
-const tools = mode.startsWith("tools");
 if (tools && !endpoint) {
   console.error("the tool control runs in Node; add --endpoint");
   process.exit(2);
@@ -102,7 +79,7 @@ const commit = endpoint ? commitInfo() : pageInfo();
 const head = commitInfo();
 const date = new Date().toISOString().slice(0, 10);
 const modelName = `${shortModel(model)}${endpoint ? "-node" : ""}`;
-const out = args.out || `evals/results/${date}-${suiteName}${suiteName === "runs" ? "-" + mode : ""}${seedSet !== "seeds" ? "-" + seedSet : ""}-${modelName.replace(/[:/]/g, "-")}-${commit.replace(/ .*/, "")}${replayOnly ? "-replay" : ""}${repeats > 1 ? "-" + new Date().toISOString().slice(11, 16).replace(":", "") : ""}`;
+const out = args.out || `evals/results/${date}-runs-${mode}${seedSet !== "seeds" ? "-" + seedSet : ""}-${modelName.replace(/[:/]/g, "-")}-${commit.replace(/ .*/, "")}${replayOnly ? "-replay" : ""}${repeats > 1 ? "-" + new Date().toISOString().slice(11, 16).replace(":", "") : ""}`;
 const only = args.only ? new RegExp(args.only) : null;
 const { notes, note } = makeNotes();
 // --source <dir>: a directory as the corpus (src/files.js); the seeds file
@@ -114,11 +91,8 @@ if (sourceRoot && !endpoint) {
   process.exit(2);
 }
 const lab = endpoint ? await openNodeLab({ endpoint, live: !replayOnly, offline: replayOnly, wikiCache: WIKI_CACHE, source: sourceRoot ? { ...(allSeedsFile.source ?? {}), root: sourceRoot } : null, note }) : browserLab(await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note }));
-const results = [];
 const corpus = lab.corpus?.() ?? null;
-const record = { suite: suiteName, model, runtime: lab.kind, ...(endpoint ? { endpoint } : {}), ...(corpus ? { source: { kind: "files", name: corpus.name, root: corpus.root, files: corpus.size, hash: corpus.hash } } : {}), commit, head, machine: machineInfo(), browser: lab.version(), date: new Date().toISOString() };
-let PROMPT_VERSION = "?";
-let RESPONSE_SCHEMA_VERSION = "?";
+const record = { suite: "runs", model, runtime: lab.kind, ...(endpoint ? { endpoint } : {}), ...(corpus ? { source: { kind: "files", name: corpus.name, root: corpus.root, files: corpus.size, hash: corpus.hash } } : {}), commit, head, machine: machineInfo(), browser: lab.version(), date: new Date().toISOString() };
 const appendRow = (cells) => {
   if (!existsSync(TABLE)) writeFileSync(TABLE, HEADER);
   appendFileSync(TABLE, `| ${date} | ${commit} | ${cells.join(" | ")} |\n`);
@@ -127,16 +101,16 @@ try {
   record.loadSeconds = await lab.loadModel(model, { loadTimeoutMs: Number(args["load-timeout"] ?? 20) * 60000, note });
   if (modelDir) note(`${stamp()} model cache ${modelDir}: ${await lab.modelLoad(modelDir)} responses loaded${replayOnly ? " · replay only" : ""}`);
   const versions = await lab.versions();
-  if (versions) ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION } = versions);
-  // Live runs are the walk unless a run's limits say otherwise: label rows
-  // with the walk and its ask variants rather than the one-prompt visit.
+  // The row's prompt and grammar columns name what decided the column's picks.
+  let PROMPT_VERSION = "?";
+  let RESPONSE_SCHEMA_VERSION = "?";
   if (mode === "closed") {
     PROMPT_VERSION = allSeeds.some((seed) => seed.kind === "brief") ? CLOSED_PROFILE_VERSION : CLOSED_VERSION;
     RESPONSE_SCHEMA_VERSION = "answer:string";
   } else if (tools) {
     PROMPT_VERSION = TOOLS_VERSION;
     RESPONSE_SCHEMA_VERSION = `tools:${mode === "tools-cited" ? "cited" : "composing"}${matched ? " · matched" : ""}`;
-  } else if (versions?.walk && suiteName === "runs" && mode !== "composing") {
+  } else if (versions?.walk) {
     PROMPT_VERSION = `${versions.walk}/${versions.asks}`;
     RESPONSE_SCHEMA_VERSION = Object.entries(versions.variants ?? {}).map(([ask, variant]) => `${ask}:${variant}`).join(",");
   }
@@ -150,71 +124,39 @@ try {
     return rolled;
   };
   mkdirSync(dirname(out), { recursive: true });
-  if (suiteName === "runs") {
-    const seeds = allSeeds.filter((seed) => !only || only.test(seed.id));
-    const limits = mode === "flat" ? FLAT_LIMITS : mode === "composing" ? { ...FLAT_LIMITS, walk: false } : mode === "closed" ? { closed: true } : tools ? { tools: mode, matched: args.match ?? null } : {};
-    note(`${stamp()} ${seeds.length} seeds from ${seedsPath} · mode ${mode} · limits ${JSON.stringify(limits)} · prompt ${PROMPT_VERSION} · grammar ${RESPONSE_SCHEMA_VERSION} · commit ${commit}${repeats > 1 ? ` · ${repeats} repeats` : ""}`);
-    note(`wiki recording: ${await lab.wikiLoad(WIKI_CACHE)} responses loaded`);
-    for (let repeat = 1; repeat <= repeats; repeat++) {
+  const seeds = allSeeds.filter((seed) => !only || only.test(seed.id));
+  const limits = limitsFor(mode, { matched: args.match ?? null });
+  note(`${stamp()} ${seeds.length} seeds from ${seedsPath} · mode ${mode} · limits ${JSON.stringify(limits)} · prompt ${PROMPT_VERSION} · grammar ${RESPONSE_SCHEMA_VERSION} · commit ${commit}${repeats > 1 ? ` · ${repeats} repeats` : ""}`);
+  note(`wiki recording: ${await lab.wikiLoad(WIKI_CACHE)} responses loaded`);
+  for (let repeat = 1; repeat <= repeats; repeat++) {
     const results = [];
     const suffix = repeats > 1 ? `-r${repeat}` : "";
     if (repeats > 1) note(`${stamp()} repeat ${repeat} of ${repeats}`);
     for (const seed of seeds) {
-      if (mode === "closed") {
-        const started = Date.now();
-        let output;
-        try {
-          output = await lab.ask(closedCall(seed));
-        } catch (error) {
-          output = { text: "", error: String(error?.message || error) };
-        }
-        let text = "";
-        try {
-          text = String(JSON.parse(String(output.text ?? "").replace(/<think>[\s\S]*?<\/think>/g, "").trim()).answer ?? "");
-        } catch {
-          text = String(output.text ?? "");
-        }
-        const facts = {};
-        for (const [name, alternatives] of Object.entries(seed.facts)) facts[name] = { present: mentions(text, alternatives), supported: false, read: false };
-        const profile = profileOf({ nodes: [{ id: "n1", status: "resolved", finding: text, evidence: [] }], evidence: [], trace: [] });
-        const grade = { id: seed.id, kind: seed.kind ?? null, resolved: Boolean(text.trim()), outcome: text.trim() ? "answered" : "no answer", facts, factsTotal: Object.keys(facts).length, factsPresent: Object.values(facts).filter((fact) => fact.present).length, factsSupported: 0, factsRead: 0, distractors: (seed.distractors ?? []).filter((entry) => mentions(text, entry)), cost: { nodes: 0, visits: 0, modelCalls: 1, lookups: 0, tokens: output.tokens ?? 0 }, statuses: {}, finding: text, profile, wallSeconds: Math.round((Date.now() - started) / 1000), latencyMs: output.latencyMs ?? null, raw: output.text ?? "", replay: { hits: output.replayed ? 1 : 0, misses: output.replayed || output.error ? 0 : 1 }, ...(output.error ? { driverError: output.error } : {}) };
-        if (modelDir) await lab.modelSave(modelDir);
-        results.push(grade);
-        note(`${formatRunGrade(grade)} · ${grade.wallSeconds} s${output.replayed ? " · replayed" : ""}`);
-        continue;
-      }
-      if (tools) {
-        const started = Date.now();
-        const budget = budgetFor(seed);
-        if (matched && !budget) note(`${seed.id}: no row in ${args.match}; the default budget`);
-        let exported;
-        try {
-          exported = await runTools(seed.seed, { generate: lab.generate, wiki: lab.wiki(), kind: seed.kind === "brief" ? "brief" : "question", cited: mode === "tools-cited", budget });
-        } catch (error) {
-          exported = { seed: seed.seed, mode, nodes: [{ id: "n1", status: "error", finding: "", evidence: [], reason: String(error?.message || error) }], evidence: [], trace: [], visits: 0, modelCalls: 0, lookups: 0, tokens: 0, stopReason: null, stoppedBy: "error", dropped: 0 };
-        }
-        const wallSeconds = Math.round((Date.now() - started) / 1000);
-        const saved = await lab.wikiSave(WIKI_CACHE);
-        const replayed = modelDir ? await lab.modelSave(modelDir) : null;
-        const exportPath = `evals/results/runs/${date}-${modelName.replace(/[:/]/g, "-")}-${mode}-${seed.id}${suffix}.json`;
-        mkdirSync(dirname(exportPath), { recursive: true });
-        writeFileSync(exportPath, JSON.stringify({ ...exported, model, exportedAt: new Date().toISOString() }));
-        const grade = { ...gradeRun(seed, exported), kind: seed.kind, outcome: exported.nodes[0].status === "resolved" ? "root resolved" : `root ${exported.nodes[0].status}`, retriesUsed: 0, wallSeconds, wiki: saved, replay: replayed ? { hits: replayed.hits, misses: replayed.misses } : { hits: 0, misses: 0 }, budget: exported.limits ?? null, stoppedBy: exported.stoppedBy, dropped: exported.dropped, refused: exported.refused ?? 0, answer: exported.answer ?? null, export: exportPath };
-        results.push(grade);
-        note(`${formatRunGrade(grade)} · stopped by ${exported.stoppedBy}${exported.refused ? ` · ${exported.refused} unread answers refused` : ""}${exported.dropped ? ` · ${exported.dropped} results dropped from the context` : ""} · ${wallSeconds} s${replayed ? ` · model ${replayed.hits} replayed ${replayed.misses} missed` : ""}`);
-        continue;
-      }
-      await lab.newLive(seed.seed, limits);
-      const { outcome, retriesUsed, wallSeconds } = await lab.runToEnd({ retries: Number(args.retries ?? 2), runTimeoutMs: Number(args["run-timeout"] ?? 45) * 60000, note });
+      const budget = tools ? budgetFor(seed) : null;
+      if (tools && matched && !budget) note(`${seed.id}: no row in ${args.match}; the default budget`);
+      const { exported, outcome, retriesUsed, wallSeconds } = await runColumn(mode, seed, lab, { retries: Number(args.retries ?? 2), runTimeoutMs: Number(args["run-timeout"] ?? 45) * 60000, budget, note });
       const saved = await lab.wikiSave(WIKI_CACHE);
       const replayed = modelDir ? await lab.modelSave(modelDir) : null;
-      const exported = await lab.exportRun();
       const exportPath = `evals/results/runs/${date}-${modelName.replace(/[:/]/g, "-")}-${mode}-${seed.id}${suffix}.json`;
       mkdirSync(dirname(exportPath), { recursive: true });
-      writeFileSync(exportPath, JSON.stringify(exported));
-      const grade = { ...gradeRun(seed, exported), kind: seed.kind, outcome, retriesUsed, wallSeconds, wiki: saved, replay: exported.replay ?? { hits: 0, misses: 0 }, export: exportPath, summary: summarise(exported) };
+      writeFileSync(exportPath, JSON.stringify({ ...exported, model: exported.model ?? model, exportedAt: exported.exportedAt ?? new Date().toISOString() }));
+      const grade = {
+        ...gradeRun(seed, exported),
+        kind: seed.kind,
+        outcome,
+        retriesUsed,
+        wallSeconds,
+        wiki: saved,
+        replay: exported.replay ?? (replayed ? { hits: replayed.hits, misses: replayed.misses } : { hits: 0, misses: 0 }),
+        export: exportPath,
+        ...(mode === "closed" ? { raw: exported.raw ?? "", latencyMs: exported.latencyMs ?? null } : {}),
+        ...(tools ? { budget: exported.limits ?? null, stoppedBy: exported.stoppedBy, dropped: exported.dropped, refused: exported.refused ?? 0, answer: exported.answer ?? null } : {}),
+        ...(mode === "tangle" || mode === "flat" ? { summary: summarise(exported) } : {}),
+      };
       results.push(grade);
-      note(`${formatRunGrade(grade)} · ${wallSeconds} s · wiki ${saved.hits} hits ${saved.misses} misses${replayed ? ` · model ${replayed.hits} replayed ${replayed.misses} missed` : ""}`);
+      const extras = tools ? ` · stopped by ${exported.stoppedBy}${exported.refused ? ` · ${exported.refused} unread answers refused` : ""}${exported.dropped ? ` · ${exported.dropped} results dropped from the context` : ""}` : mode === "closed" ? "" : ` · wiki ${saved.hits} hits ${saved.misses} misses`;
+      note(`${formatRunGrade(grade)}${extras} · ${wallSeconds} s${replayed ? ` · model ${replayed.hits} replayed ${replayed.misses} missed` : ""}`);
     }
     const rolled = repeat === repeats ? machineNote() : null;
     const sum = (key) => results.reduce((total, grade) => total + grade[key], 0);
@@ -233,38 +175,8 @@ try {
       console.error(`replay only, but ${replay.misses} calls were not in the cache`);
       process.exitCode = 1;
     }
-    }
-    await lab.close();
-    process.exit(process.exitCode ?? 0);
   }
-  const suite = JSON.parse(readFileSync(new URL("../evals/visits.json", import.meta.url), "utf8"));
-  const cases = suite.cases.filter((entry) => !only || only.test(entry.id) || only.test(entry.class ?? ""));
-  note(`${stamp()} ${cases.length} cases · prompt ${PROMPT_VERSION} · grammar ${RESPONSE_SCHEMA_VERSION} · commit ${commit}`);
-  for (const entry of cases) {
-    let output;
-    try {
-      output = await (entry.kind === "section" ? lab.pick(entry.context) : lab.visit(entry.context));
-    } catch (error) {
-      output = { text: "", error: String(error?.message || error), latencyMs: null, tokens: null };
-    }
-    const grade = gradeCase(entry, output.text ?? "");
-    const result = { ...grade, raw: output.text ?? "", latencyMs: output.latencyMs ?? null, tokens: output.tokens ?? null, ...(output.error ? { driverError: output.error } : {}) };
-    results.push(result);
-    const failed = grade.checks.filter((check) => !check.pass);
-    note(`${grade.pass ? "pass" : "FAIL"} ${entry.id} → ${grade.action ?? grade.error ?? "?"} (${output.latencyMs ?? "?"} ms)${failed.length ? " · " + failed.map((check) => `${check.name}: ${check.detail}`).join(" · ") : ""}`);
-  }
-  const rolled = machineNote();
-  const total = summariseGrades(results);
-  Object.assign(record, { cases: results.length, passed: total.passed, rate: total.rate, byClass: total.byClass, results, notes });
-  writeFileSync(`${out}.json`, JSON.stringify(record, null, 2) + "\n");
-  const failing = Object.entries(total.byClass)
-    .filter(([, entry]) => entry.passed < entry.cases)
-    .map(([name, entry]) => `${name} ${entry.passed}/${entry.cases}`)
-    .join(", ");
-  const latencies = results.map((result) => result.latencyMs).filter(Number.isFinite).sort((a, b) => a - b);
-  const median = latencies.length ? latencies[Math.floor(latencies.length / 2)] : null;
-  appendRow([suiteName, shortModel(model), `${PROMPT_VERSION} · ${RESPONSE_SCHEMA_VERSION}`, `**${total.passed}/${total.cases}**`, failing ? `not fully passing: ${failing}` : "all classes pass", `median ${median ?? "?"} ms${rolled?.throttledSamples ? ` · throttled to ${rolled.worstSpeedLimit}%` : ""}`]);
-  console.log("\n" + formatGrades(results) + `\n\nwrote ${out}.json and a row in ${TABLE}`);
 } finally {
   await lab.close();
 }
+process.exit(process.exitCode ?? 0);

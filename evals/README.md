@@ -2,18 +2,14 @@
 
 The model-in-the-loop layer described in [PLAN.md](../PLAN.md). Results land in [PROGRESS.md](../PROGRESS.md).
 
-- `visits.json` — micro-eval cases: one recorded situation each (the exact context a node saw in a real run, or a section-pick request), the output the model gave at the time, and the named checks a good answer passes. `test/evals.test.js` keeps the file well formed and grades the recorded outputs.
-- `scripts/eval-case.mjs` — adds a case from an experiment export (`--export … --seq …`) or from a test fixture (`--fixture …`).
-- `scripts/grade.js` — the checks, all deterministic. `test/grade.test.js` pins each one with recorded outputs.
+- `scripts/grade.js` — the whole-run graders (facts present, supported and read; the shape of a profile), all deterministic. `test/grade.test.js` pins them with recorded runs.
 - `scripts/eval.mjs` — runs a suite against a loaded model in the built page or in Node and writes results here under `results/`; rows land in `results.md`, and what each round meant is written up in `readings.md`.
 - `wiki-cache/` — the Wikipedia recording, one file per response, replayed in both runtimes and added to as runs need more.
 - `model-cache/<model>/` — the model's responses recorded by their exact context (`src/replay.js`), one file per call, in the same format. A rerun of unchanged code replays every call (`--replay-only` insists on it and is what CI runs); after a change, the misses are the calls the change touched.
 
-To add a case after a run shows something new: find the `model_input` (or `section_chosen`) event's `seq` in the export, add it with a class name and the checks that describe the right behaviour, and let the recorded output stand as what the model did then.
-
 ## Node evals
 
-The cases above are visits under the one-prompt design: one call, five decisions. The node evals measure the asks the walk makes instead (`src/walk.js`, `src/asks.js`): one decision per call, so each ask can be tried in several *variants* and the simplest one a small model passes can be kept.
+The one-prompt visit (one call, five decisions) and its micro-eval suite retired on 2026-09-19 (REVIEW.md); its rows stay in results.md. The node evals measure the asks the walk makes (`src/walk.js`, `src/asks.js`): one decision per call, so each ask can be tried in several *variants* and the simplest one a small model passes can be kept.
 
 - `node/sentence.json` — which numbered sentence answers the question, or none. Cases name a cached article, a section and a slice of its sentences (`from`/`to`), and the expected pick; `contains` guards the numbering, `accept` lists every defensible pick. Five cases expect `none`.
 - `node/section.json` — which section heading of an article most likely holds the answer.
