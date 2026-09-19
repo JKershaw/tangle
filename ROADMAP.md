@@ -77,9 +77,16 @@ One HTML file. Questions: the walk reads, picks a sentence, reads on, splits two
 - **Verified by:** one table, every seed set, 1.7B to 32B, with DeepSeek over the key when it is worth a dollar.
 - **Exit:** we know whether the graph beats a tool-using single context at equal budget, and at which size the answer changes. Actions are not built until this says the graph earns its keep. **Exited 2026-09-19 (a811bbd):** at 1.7B and 4B the graph beats the tool control on every brief set about two to one (profiles 25 / 24 against 13 / 11, overflow 24 / 23 against 11 / 11, MangoDB 14 / 11 against 6 / 11) and the tool control equals memory; at 8B the tool control closes to within three or four topics on Wikipedia and beats the graph on MangoDB (15 against 12) at a third of the tokens per topic; at 14B the graph leads again (profiles 27 against 20, MangoDB 18 against 15) at three to four times the tokens per topic, and per token a larger call costs proportionally more. The cited variant is near zero below 8B and 16 of 35 at 14B. So the graph earns its keep where the thesis lives, small models, loses once at 8B on code, and is never the cheaper row per topic from 8B up. The warm-graph row is not built: no node question repeats across the four MangoDB briefs at any size, so there is nothing for it to reuse yet. Table in PROGRESS.md; reading in [evals/readings.md](evals/readings.md). DeepSeek over the key is still unrun.
 
+### 5c. The foundations
+
+- **Entry:** milestone 5b. A review before a milestone builds on a new layer; the first is [REVIEW.md](REVIEW.md), 2026-09-19.
+- **Work:** the review's plan, in order: a golden-graph test and a complete replay key; one result shape for every source and evidence built by the walk; run state into the run so a run can be exported mid-way and resumed; node kinds with one resolution path and a source profile in place of flags; columns in the harness and the one-prompt path retired.
+- **Verified by:** after every step the four suites replay at 1.7B with zero misses and identical rows; the golden graph holds; a MangoDB export opens in the page.
+- **Exit:** the plan's five steps landed with no row moved, and `runWalk` reads as a table of node kinds.
+
 ### 6. Actions and blocking
 
-- **Entry:** milestone 5b, and only if it says the graph earns its keep. It does at 1.7B, 4B and 14B on briefs and not at 8B on code (2026-09-19); whether to build actions for the small sizes is the next decision.
+- **Entry:** milestones 5b and 5c, and only if 5b says the graph earns its keep. It does at 1.7B, 4B and 14B on briefs and not at 8B on code (2026-09-19); whether to build actions for the small sizes is the next decision.
 - **Work:** a node whose finding is the result of an action: run the tests, write a file, show a diff. The model picks an action from a list code prepared; code runs it in a worktree and records the result as evidence. A node can block on named nodes. Tests are read-only to the agent; a node that wants to change one blocks on a human.
 - **Verified by:** scripted tests; tiny real tasks the suite can check (add a skipped section name and get a green run), at every size.
 - **Exit:** the smallest size that completes a tiny task is known, and the failure modes of the sizes below it are recorded.
@@ -116,4 +123,4 @@ A server. Fine-tuning. Parallel workers (nodes at one depth are independent, so 
 
 ## Order of work
 
-1 → 2 → 3 with 4 alongside → 5 → 5a → 5b → 6 → 7 and 8 → 9. Each milestone lands as commits on `main` with its rows in PROGRESS.md and its reading in evals/readings.md, and this file's milestone gets a date and a commit when it exits.
+1 → 2 → 3 with 4 alongside → 5 → 5a → 5b → 5c → 6 → 7 and 8 → 9. Each milestone lands as commits on `main` with its rows in PROGRESS.md and its reading in evals/readings.md, and this file's milestone gets a date and a commit when it exits.

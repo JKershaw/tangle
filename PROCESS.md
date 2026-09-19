@@ -28,6 +28,7 @@ Each loop is a way of finding out something at a cost. Use the cheapest one that
 4. **The eval loop, minutes to an hour.** The benchmark: every seed set, every column (the graph, one node, memory, and soon the same model with the same tools), every size that fits. A change is kept when it lifts its target without lowering the rest. Prompt changes are measured here and mostly lose; the walk's shape decides the row.
 5. **The architecture pause, an hour, after each text loop.** Step back from the faults and ask: what did the model just decide that code could have prepared or decided outright? Do the units (sentence, section, link) still fit the source? What shape should a node have for this task? The answers become code the model no longer has to think about, then the loops resume with the code tidied for the next change.
 6. **The milestone loop, a day or two.** The roadmap's entry and exit conditions bound it. It ends with the row in PROGRESS.md, the reading in evals/readings.md, the date and commit on the milestone in ROADMAP.md, a commit and a push.
+7. **The foundations review, before a milestone builds on a new layer.** Read the code as a reviewer would, in thirds (the walk, the sources and graph, the harness and tests), and list what fits one seed, one size or one source, what has accreted, and what the next milestone would fight. The output is a dated [REVIEW.md](REVIEW.md) with a plan in order, each step verified by the replay showing no row moved. Patches are cheap to add in the text loop and expensive to carry; this is where they are paid down.
 
 ## What we have learned about working
 
@@ -57,4 +58,5 @@ Each loop is a way of finding out something at a cost. Use the cheapest one that
 | [PROGRESS.md](PROGRESS.md) | the scoreboard and the log |
 | [LEARNED.md](LEARNED.md) | what the numbers mean and how far this can go |
 | [evals/readings.md](evals/readings.md) | what each round of runs showed, faults first |
+| [REVIEW.md](REVIEW.md) | the latest foundations review and its plan |
 | this file | how a day of work goes |
