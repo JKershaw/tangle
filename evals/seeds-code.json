@@ -82,6 +82,18 @@
         "system-variables": "$$NOW|$$ROOT|createSystemVars|system variable",
         "one-key-per-stage": "single key|exactly one|one field|one key|one stage"
       }
+    },
+    {
+      "id": "suite",
+      "seed": "Tell me how MangoDB's test suite is run and whether it passes.",
+      "kind": "brief",
+      "article": "README.md",
+      "facts": {
+        "node-test-runner": "node --test|--experimental-strip-types|npm test|node:test",
+        "test-count": "1730|1,730|1729",
+        "passes": "pass 1729|fail 0|0 fail|all pass|passing",
+        "test-layout": "test/unit|test/integration|unit tests|integration tests"
+      }
     }
   ]
 }

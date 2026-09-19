@@ -90,6 +90,7 @@ One HTML file. Questions: the walk reads, picks a sentence, reads on, splits two
 - **Work:** a node whose finding is the result of an action: run the tests, write a file, show a diff. The model picks an action from a list code prepared; code runs it in a worktree and records the result as evidence. A node can block on named nodes. Tests are read-only to the agent; a node that wants to change one blocks on a human.
 - **Verified by:** scripted tests; tiny real tasks the suite can check (add a skipped section name and get a green run), at every size.
 - **Exit:** the smallest size that completes a tiny task is known, and the failure modes of the sizes below it are recorded.
+- **Day one (2026-09-19, 130d0dc):** the action node. `scripts/actions.mjs` lists what a corpus can run (its package scripts, `git status`, `git diff`), runs one in a git worktree of the corpus with node_modules linked in, and returns the output's tail and exit code as a result record; a brief's root, once its sections are handed down, may hand down one command the model picks from that list (asks-5 `action`), and the child's finding is the result's last lines, cited (walk-16). Read-only actions only; no write, no blocking on named nodes yet. Verified by scripted tests over a temporary repository and the fixture corpus, and the four suites replaying with zero misses.
 
 ### 7. The reference model
 

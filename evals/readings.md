@@ -2,6 +2,15 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-19 · milestone 6, day one: the first action
+
+The first node whose finding is something that happened rather than something read. `scripts/actions.mjs` lists what a corpus can run (its package scripts, `git status`, `git diff`), runs one in a git worktree of the corpus with node_modules linked in, and returns the output's tail and exit code as a result record; the walk's brief root, once its sections are handed down, may hand down one command the model picks from that list, and the child's finding is the result's last lines, cited (walk-16, asks-5). A fifth MangoDB brief asks how the test suite is run and whether it passes.
+
+- **It works at 1.7B and 4B on the first try, and the result is the same at both.** Offered six commands, both sizes picked `npm run test`; the child ran the 1,730 tests in the worktree in four seconds (exit 0) and the profile ends with the runner's summary, `pass 1729 · fail 0 · skipped 1`, cited to the result. Two nodes, eight calls, 2.6k tokens, eight to eleven seconds. The checkout was never touched.
+- **The pick from a list holds for commands as it held for sentences.** A small model shown six named commands with one-line descriptions chose the one the brief needed; nothing it said became a command. The list is the whole safety story so far, and it stays code's.
+- **The reading half of the brief missed.** The brief's search found `src/collection.ts` (the ranked first hit after a "none") rather than the README that says how the tests are run, the lead gave nothing to keep, no section was chosen, so the profile is the result alone: 2 of 4 topics. The search over a corpus ranks paths and declarations, not documents' headings; a brief about how a project is run wants its README first. That is milestone 5's loop, not this one's.
+- **What is not built.** Only read-only actions; no write, no diff to judge, no node waiting on a named node, no fairness in the scheduler. The next step is the tiny task the roadmap names: an edit the suite can check, which is composition and the risky layer.
+
 ## 2026-09-19 · the reference column: the graph and the tool control on DeepSeek and Haiku
 
 Milestone 7 brought forward by a day, at John's question: does the boost run out when the model is large, or does a task that needs a large model run cheaper as the graph on a mid-sized one? The same graph and the same tool control over OpenRouter, DeepSeek V3.2 and Claude Haiku 4.5, on the profile and MangoDB suites, under a dollar in all; rows added to the table below.

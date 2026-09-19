@@ -221,6 +221,10 @@ Memory writes a write-ahead log and replication into a database that has neither
 
 ## Log
 
+### 2026-09-19 · milestone 6, day one · the action node
+
+- `scripts/actions.mjs` and the `action` node kind (130d0dc, walk-16, asks-5): code lists the corpus's commands, the model picks one at a brief's root, the child runs it in a git worktree with node_modules linked in, and the result's last lines are the child's finding, cited to a result record. `--actions` in eval.mjs and run.mjs; a fifth MangoDB brief (`suite`) asks how the tests are run and whether they pass. Live at 1.7B and 4B: both picked `npm run test` from six commands, ran the 1,730 tests in the worktree in four seconds, and cited the runner's summary; the reading half found a source file instead of the README, so 2 of 4 topics. Reading in evals/readings.md.
+
 ### 2026-09-19 · milestone 5c · the foundations
 
 - The review's five steps ([REVIEW.md](REVIEW.md)), each landed with the four suites replaying at 1.7B with zero misses and no row moved, and spot-checked at 4B, 8B and Haiku: a golden-graph test and the replay keyed on the adapter's config (every cached entry rewritten); one result shape for both sources with evidence built from it, and a run over files opening in the page; the walk's memory in `run.state` with a resumable import; node kinds, one article choice and one resolution path in the walk, the foreign-source confirmation dropped because it never fired, the unwanted-name list kept because it moved nine hop calls; columns in the harness, one grading path, and the one-prompt visit suite, its graders, the page's live episode runner and the adapter's grammar retired. Tests 167 → 136 with the retired suite's. `runWalk` is 572 lines from 575: the kinds and the one resolution path took out about what the article choice and its comments put back, so its length is the next review's business; what changed is that its decisions now read from a kind and resolve through one path.

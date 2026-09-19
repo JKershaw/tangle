@@ -66,8 +66,10 @@ export function isBrief(question) {
 // next window; a visit's passes bound how far it reads.
 export const WINDOW = 12;
 export const MIN_FINDING_WORDS = 6;
-// How many of a result's last lines an action node keeps as its finding.
-export const RESULT_LINES = 6;
+// How many of a result's last lines an action node keeps as its finding:
+// a test runner's summary is eight (tests, suites, pass, fail, cancelled,
+// skipped, todo, duration), and the count is the first of them.
+export const RESULT_LINES = 8;
 // Sentences a node has already judged as not answering, kept across visits
 // so a revisit reads on instead of re-showing the same windows (the water
 // cycle root, walk-3: four passes over the same lead, twice). In the run's
