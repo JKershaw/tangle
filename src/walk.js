@@ -13,9 +13,10 @@
 // runEpisode (episode.js) is the earlier one-prompt visit, kept so the two can
 // be compared on the same seeds. Both persist outcomes through applyResult.
 
-import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
+import { ASKS, ASK_VERSION, parseJson, splitSentences, unitsOf } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { contentWords, isParaphrase, namesSubject } from "./text.js";
+import { lineUnits } from "./files.js";
 
 export const WALK_VERSION = "walk-14"; // walk-14: a parent whose children answered resolves with what they found by code, with no pick, for a question as for a split or a brief; a child's finding is no longer offered to the sentence pick, so no "none" over it can be overridden; // walk-13: a hop's sentence names the subject only by the subject's own capitalised words, with their capitals ("Juno mission" and "rosetta orbit" no longer count for the Rosetta mission), and the first search waits for approval like every other request; // walk-12: an over-long profile loses hop paragraphs before it loses sections, and a short section is not handed to a child; a hop child may hand down hops of its own (one level), a reserve keeps room for every open node's hops, and a name is offered only if its article says something about the subject; // walk-11: a hop child reads the part of its article that names the brief's subject, and a brief's root keeps twice the sentences; a brief's child hands the things its kept sentences name (the article's links that occur in them, else capitalised phrases) to children of its own, the model picking which from a list ranked by how often the run has met each; a sentence kept anywhere is never offered again; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
@@ -76,7 +77,7 @@ const judgedByNode = new WeakMap();
 // Sea shrinking?" (experiments/2026-09-18-qwen3-1.7b-dead-sea-walk-1); the
 // stripped term finds the Dead Sea, and the same rule finds the right article
 // for every benchmark seed tried.
-const QUESTION_WORDS = new Set("why is are was were the a an does do did how what which who whom when where keep going happen happened happens it its there so much many still".split(" "));
+const QUESTION_WORDS = new Set("why is are was were the a an does do did how what which who whom when where keep going happen happened happens it its there so much many still tell me us about describe explain elaborate".split(" "));
 // Words that only join two subjects; dropped from a split child's search term.
 const JOIN_WORDS = new Set("and or both common share shared versus vs have in of do".split(" "));
 // A brief names its subject: "Tell me about the Hubble Space Telescope and
@@ -89,12 +90,15 @@ const JOIN_WORDS = new Set("and or both common share shared versus vs have in of
 // "the Rosetta mission") are kept up to the first joining word or mark, so
 // the search is not for "Antikythera", the island.
 const SUBJECT_STOP = new Set("and or but that which who whom whose what how why when where in on at of for from with by to as into over under since during after before its his her their it he she they is was were are be been has have had does did".split(" "));
+// Names that are never a brief's subject: a corpus's own name ("MangoDB" in
+// every brief about MangoDB), registered by whoever loads the corpus.
+export const subjectIgnore = new Set();
 export function briefSubject(question) {
   const text = String(question ?? "").split(FOCUS)[0];
   for (const match of text.matchAll(NAME_IN_TEXT)) {
     // The brief's first word is its verb ("Describe the Great Barrier Reef").
     const name = (match.index === 0 ? match[1].replace(/^\S+\s+(?:me\s+|us\s+)?(?:about\s+)?(?:the\s+)?/i, "") : match[1]).replace(/^the /i, "").trim();
-    if (!name || BRIEF.test(name)) continue;
+    if (!name || BRIEF.test(name) || subjectIgnore.has(normalise(name)) || subjectIgnore.has(normalise(name.split(/\s+/)[0].replace(/['’]s$/, "")))) continue;
     const rest = text.slice(match.index + match[0].length).match(/^((?:\s+[a-z][a-z'’-]*)*)/)?.[1] ?? "";
     const tail = [];
     for (const word of rest.trim().split(/\s+/).filter(Boolean)) {
@@ -114,7 +118,7 @@ export function searchTerm(question) {
   let text = String(base ?? "").replace(/[?.!,;:"“”]/g, "");
   for (const other of others) text = text.replace(other.replace(/[?.!,;:"“”]/g, ""), " ");
   const words = text.split(/\s+/).filter(Boolean);
-  const kept = words.filter((word) => !QUESTION_WORDS.has(word.toLowerCase()) && !(focus && JOIN_WORDS.has(word.toLowerCase())));
+  const kept = words.filter((word) => !QUESTION_WORDS.has(word.toLowerCase()) && !subjectIgnore.has(normalise(word)) && !(focus && JOIN_WORDS.has(word.toLowerCase())));
   return (kept.length ? kept : words).join(" ").trim();
 }
 
@@ -208,12 +212,17 @@ export function candidates(run, node) {
   // "Chess" cannot fill a Turing profile with chess.
   const base = String(node.question).split(FOCUS)[0];
   const subject = node.hopTo ? (briefSubject(base) ?? base) : null;
-  const onSubject = (record, text) => subject === null || record.node !== node.id || node.readFirst?.article === record.article || namesSubject(text, subject);
+  // A file's lines are on subject by construction: a hop to a declaration
+  // comes from a line that used it, and a callee rarely restates its
+  // caller's subject.
+  const onSubject = (record, text) => subject === null || record.lines || record.node !== node.id || node.readFirst?.article === record.article || namesSubject(text, subject);
   for (const id of [...node.observed].reverse()) {
     const record = run.evidence.find((candidate) => candidate.id === id);
     if (!record) continue;
-    splitSentences(record.text).forEach((text, index) => {
-      if (onSubject(record, text)) out.push({ text, evidence: [id], from: "excerpt", source: record.title, at: index });
+    // A file's sentences are its lines (files.js); an article's are split.
+    const units = record.lines ? lineUnits(record.text) : splitSentences(record.text);
+    units.forEach((text, index) => {
+      if (onSubject(record, text)) out.push({ text, evidence: [id], from: "excerpt", source: record.title, at: index, ...(record.lines ? { line: true } : {}) });
     });
   }
   return out;
@@ -257,7 +266,7 @@ export function isRepeat(run, node, question) {
 }
 
 export async function runWalk(run, options) {
-  const { signal, onUpdate = () => {}, ask, wiki, approve = async () => true, pace = null, variants: chosen = {} } = options;
+  const { signal, onUpdate = () => {}, ask, wiki, approve = async () => true, pace = null, variants: chosen = {}, source = "wiki" } = options;
   if (run.readOnly) throw new Error("Imported runs are inspect-only.");
   const variants = { ...DEFAULT_VARIANTS, ...chosen };
   run.promptVersion ??= `${WALK_VERSION}/${ASK_VERSION}/${Object.entries(variants).map(([ask, variant]) => `${ask}:${variant}`).join(",")}`;
@@ -306,7 +315,7 @@ export async function runWalk(run, options) {
 
   const visible = () => [...new Set([...node.observed, ...children(run, node.id).filter((child) => child.status === "resolved").flatMap((child) => child.evidence)])];
   const lookup = async (query, readOn = null, { chosen = false, fresh = false } = {}) => {
-    trace(run, "tool_proposed", { node: node.id, query, tool: "wiki", ...(readOn ? { readOn } : {}) });
+    trace(run, "tool_proposed", { node: node.id, query, tool: source, ...(readOn ? { readOn } : {}) });
     if (!(await approve(query, signal))) {
       signal?.throwIfAborted();
       applyResult(run, node.id, { action: "blocked", reason: "Wikipedia request declined by the user." }, visible());
@@ -316,7 +325,7 @@ export async function runWalk(run, options) {
     signal?.throwIfAborted();
     lookups++;
     run.lookups++;
-    onUpdate(node.id, run.mode === "simulation" ? "Reading fixture evidence" : "Reading Wikipedia");
+    onUpdate(node.id, run.mode === "simulation" ? "Reading fixture evidence" : source === "wiki" ? "Reading Wikipedia" : `Reading ${source}`);
     let outcome = await wiki(query, readOn ? { signal, readOn } : { signal });
     signal?.throwIfAborted();
     trace(run, "tool_result", { node: node.id, query, ...(readOn ? { readOn } : {}), result: outcome });
@@ -374,7 +383,7 @@ export async function runWalk(run, options) {
     if (variants.article === "off" || !wiki.length || terms.length < 2) return lookup(terms[0]);
     // The search is a Wikipedia request too, and the page promises that
     // every request is approved: it went out unasked until 2026-09-18.
-    trace(run, "tool_proposed", { node: node.id, query: terms.join(" | "), tool: "wiki", searchOnly: true });
+    trace(run, "tool_proposed", { node: node.id, query: terms.join(" | "), tool: source, searchOnly: true });
     if (!(await approve(terms.join(" | "), signal))) {
       signal?.throwIfAborted();
       applyResult(run, node.id, { action: "blocked", reason: "Wikipedia request declined by the user." }, visible());
@@ -383,6 +392,7 @@ export async function runWalk(run, options) {
     }
     const titles = [];
     const snippets = [];
+    let ranked = false;
     for (const term of terms) {
       let found = null;
       try {
@@ -392,6 +402,7 @@ export async function runWalk(run, options) {
       }
       signal?.throwIfAborted();
       trace(run, "tool_result", { node: node.id, query: term, searchOnly: true, result: found });
+      if (found?.ranked && !titles.length) ranked = true;
       (found?.hits ?? []).forEach((title, index) => {
         if (titles.includes(title)) return;
         titles.push(title);
@@ -409,7 +420,12 @@ export async function runWalk(run, options) {
     // "none" is honoured only when no title is about the question's subject:
     // 0.6B says none to everything (evals/node/results.md), and a title that
     // shares a content word with the question is worth a read regardless.
-    const fallback = chosen === "none" ? titles.find((title) => !isForeign(title, node.question)) ?? null : null;
+    // A ranked search (a file corpus, src/files.js) puts code's best match
+    // first, and a file's path rarely shares a word with a brief: 1.7B said
+    // none to eight paths for "how MangoDB persists writes" with
+    // src/collection.ts at the top (experiments/2026-09-19, the first live
+    // run over code), so the first hit is read instead.
+    const fallback = chosen === "none" ? titles.find((title) => !isForeign(title, node.question)) ?? (ranked ? titles[0] : null) : null;
     trace(run, "article_chosen", { node: node.id, query: terms.join(" | "), titles, article: chosen, ...(fallback ? { readInstead: fallback } : {}) });
     if (fallback) chosen = fallback;
     if (chosen === "none") {
@@ -450,8 +466,8 @@ export async function runWalk(run, options) {
       if (found.length || kept.some((entry) => entry.evidence.length)) {
         // A sentence the profile already has is dropped from later paragraphs.
         const seenText = new Set();
-        const fresh = (text) => String(text).split(/\n\n+/).map((paragraph) => splitSentences(paragraph).filter((sentence) => !seenText.has(sentence) && seenText.add(sentence)).join(" ")).filter(Boolean).join("\n\n");
-        const parts = [...(kept.length ? [fresh(kept.map((entry) => entry.text).join(" "))] : []), ...found.map((child) => fresh(child.finding))].filter(Boolean);
+        const fresh = (text) => String(text).split(/\n\n+/).map((paragraph) => unitsOf(paragraph).filter((sentence) => !seenText.has(sentence) && seenText.add(sentence)).join(paragraph.includes("\n") ? "\n" : " ")).filter(Boolean).join("\n\n");
+        const parts = [...(kept.length ? [fresh(kept.map((entry) => entry.text).join(kept.some((entry) => entry.line) ? "\n" : " "))] : []), ...found.map((child) => fresh(child.finding))].filter(Boolean);
         const cap = run.limits.maxFindingChars ?? 6000;
         const joiner = node.fanned ? "\n\n" : " ";
         // Over the cap, a child's hop paragraphs go before any child does: the
@@ -504,8 +520,34 @@ export async function runWalk(run, options) {
     // The finding reads in source order — the order the article says it,
     // excerpt by excerpt — not the order the model picked it.
     const inOrder = (picked) => [...picked].sort((a, b) => a.evidence[0] === b.evidence[0] ? (a.at ?? 0) - (b.at ?? 0) : run.evidence.findIndex((record) => record.id === a.evidence[0]) - run.evidence.findIndex((record) => record.id === b.evidence[0]));
+    // Lines kept from a file read as lines; sentences as prose.
+    const glue = (picked) => (picked.some((candidate) => candidate.line) ? "\n" : " ");
+    // A finding is a claim, not a label (graph.js: six words). A kept line
+    // of code can be shorter ("export class Store"), so the lines after it
+    // in the same read come along, verbatim and cited, until it is one.
+    const padded = () => {
+      const picked = inOrder(gathered);
+      const words = () => picked.map((candidate) => candidate.text).join(" ").split(/\s+/).filter(Boolean).length;
+      if (!picked.some((candidate) => candidate.line)) return picked;
+      const pool = candidates(run, node);
+      for (let guard = 0; words() < MIN_FINDING_WORDS && guard < 8; guard++) {
+        const last = picked.at(-1);
+        const next = pool.find((candidate) => candidate.evidence[0] === last.evidence[0] && candidate.at === last.at + 1) ?? pool.find((candidate) => candidate.evidence[0] === picked[0].evidence[0] && candidate.at === picked[0].at - 1);
+        if (!next || picked.includes(next)) break;
+        picked.push(next);
+        picked.sort((a, b) => a.at - b.at);
+      }
+      return picked;
+    };
     const resolveWith = () => {
-      applyResult(run, node.id, { action: "resolved", harness: true, finding: inOrder(gathered).map((candidate) => candidate.text).join(" "), evidence: [...new Set(inOrder(gathered).flatMap((candidate) => candidate.evidence))] }, visible());
+      const picked = padded();
+      const text = picked.map((candidate) => candidate.text).join(glue(picked));
+      if (text.split(/\s+/).filter(Boolean).length < MIN_FINDING_WORDS) {
+        applyResult(run, node.id, { action: "blocked", reason: `What was kept is a fragment, not a finding: "${text.slice(0, 80)}".` }, visible());
+        onUpdate(node.id, "Blocked");
+        return true;
+      }
+      applyResult(run, node.id, { action: "resolved", harness: true, finding: text, evidence: [...new Set(picked.flatMap((candidate) => candidate.evidence))] }, visible());
       onUpdate(node.id, "Finding recorded");
       return true;
     };
@@ -524,7 +566,9 @@ export async function runWalk(run, options) {
       // worth a child; its subsections are offered instead.
       const lead = run.evidence.find((record) => record.article === unread.article && record.section === 0 && record.headings?.length);
       const sizes = lead?.sizes ?? [];
-      let remaining = unread.headings.filter((heading) => { const size = sizes[lead.headings.indexOf(heading)]; return !(Number.isFinite(size) && size < SHORT_SECTION); });
+      // A file's short declaration is still a section: a two-line method is
+      // what a brief may need most.
+      let remaining = unread.headings.filter((heading) => { const size = sizes[lead.headings.indexOf(heading)]; return lead.lines || !(Number.isFinite(size) && size < SHORT_SECTION); });
       if (!remaining.length) remaining = [...unread.headings];
       while (chosen.length < budget && remaining.length) {
         const pick = await answer("section", { question: node.question, article: unread.article, sections: remaining, chosen }, "Choosing sections");
@@ -535,7 +579,7 @@ export async function runWalk(run, options) {
       chosen.sort((a, b) => unread.headings.indexOf(a) - unread.headings.indexOf(b));
       trace(run, "sections_chosen", { node: node.id, article: unread.article, sections: chosen });
       if (!chosen.length) return false;
-      node.kept = inOrder(gathered).map((candidate) => ({ text: candidate.text, evidence: [...candidate.evidence] }));
+      node.kept = inOrder(gathered).map((candidate) => ({ text: candidate.text, evidence: [...candidate.evidence], ...(candidate.line ? { line: true } : {}) }));
       node.fanned = true;
       applyResult(run, node.id, { action: "decompose", harness: true, questions: chosen.map((heading) => `${String(node.question).trim()}${FOCUS}${heading}`) }, visible());
       for (const child of run.nodes.slice(-chosen.length)) child.readFirst = { article: unread.article, section: chosen[run.nodes.slice(-chosen.length).indexOf(child)] };
@@ -640,7 +684,7 @@ export async function runWalk(run, options) {
       if (!chosen.length) return false;
       const frontier = frontierOf(run);
       for (const name of chosen) frontier.opened.add(normalise(name));
-      node.kept = inOrder(gathered).map((candidate) => ({ text: candidate.text, evidence: [...candidate.evidence] }));
+      node.kept = inOrder(gathered).map((candidate) => ({ text: candidate.text, evidence: [...candidate.evidence], ...(candidate.line ? { line: true } : {}) }));
       node.fanned = true;
       const base = focusOf(node.question).base.trim();
       applyResult(run, node.id, { action: "decompose", harness: true, questions: chosen.map((name) => `${base}${FOCUS}${name}`) }, visible());

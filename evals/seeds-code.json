@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "note": "Briefs over a code corpus (ROADMAP milestone 5): MangoDB, John's file-based MongoDB, read through src/files.js with 'source' below (relative to this repository). Each brief asks how one part of the implementation works; the topics are identifiers and phrases a correct profile touches, pipe-separated alternatives matched as substrings (normalised) of the root finding (present), of its cited evidence (supported) and of anything read (read), checked against the corpus by scripts/rubric-check (2026-09-19). Chosen where the closed-book column should be low: they are about MangoDB's own choices (a temp file and a rename, an in-process mutex, indexes rebuilt lazily in memory), not MongoDB's semantics, which every model has memorised. Kind 'brief' makes the runner grade the profile's shape and give the closed-book column a profile prompt.",
+  "source": {
+    "root": "../mangodb",
+    "name": "MangoDB"
+  },
+  "seeds": [
+    {
+      "id": "persist",
+      "seed": "Tell me how MangoDB persists writes to disk.",
+      "kind": "brief",
+      "article": "src/collection.ts",
+      "facts": {
+        "json-file-per-collection": "collection.json|json file|JSON files|one file per collection",
+        "temp-then-rename": "rename|temp file|tmp",
+        "streamed-write": "createWriteStream|streamed|streaming|stream the|streams",
+        "serialisation": "serializeDocument|$oid|$date|serializ",
+        "mutex": "runExclusive|mutex",
+        "whole-collection-rewrite": "writeDocuments|entire collection|whole collection|rewrit",
+        "read-path": "readDocuments|readJsonArray|streamJsonArrayEntries|readFile",
+        "index-sidecar": "indexes.json|index metadata|indexesPath",
+        "missing-file-is-empty": "ENOENT|does not exist|empty collection|empty array"
+      }
+    },
+    {
+      "id": "find",
+      "seed": "Tell me how MangoDB evaluates a find query with a filter.",
+      "kind": "brief",
+      "article": "src/collection.ts",
+      "facts": {
+        "reads-whole-file": "readDocuments|readJsonArray",
+        "index-first": "tryIndexLookup|executeIndexLookup|index lookup",
+        "query-analyzer": "analyzeQuery|IndexScanPlan|query-analyzer|query analyzer",
+        "remaining-filter": "remainingFilter|remaining filter|post-filter",
+        "matches-filter": "matchesFilter",
+        "path-values": "getValuesByPath|array element",
+        "logical-operators": "$and|$or|$nor|evaluateLogicalOperator|logical operator",
+        "lazy-cursor": "MangoCursor|toArray|lazily|until toArray|cursor",
+        "sort-skip-limit": "sortDocuments|sort|skip|limit",
+        "projection": "applyProjection|projection",
+        "text-search": "$text|matchesTextSearch|text search"
+      }
+    },
+    {
+      "id": "indexes",
+      "seed": "Tell me how MangoDB's indexes work and when a query uses them.",
+      "kind": "brief",
+      "article": "src/index-manager.ts",
+      "facts": {
+        "default-id-index": "_id_|DEFAULT_ID_INDEX|default index",
+        "metadata-file": "indexes.json|index metadata|persisted",
+        "built-lazily-in-memory": "ensureIndexesBuilt|buildIndexes|lazily|lazy|in memory|in-memory",
+        "equality-map": "equalityMap|equality lookup|lookupEquality",
+        "sorted-entries": "sortedEntries|lookupRange|binary search|findLowerBound|range query|range scan|range bounds|RangeBounds",
+        "compound-prefix": "compound|prefix",
+        "non-indexable": "NON_INDEXABLE_OPERATORS|$or|$text|full scan|scan",
+        "special-indexes-skipped": "sparse|partial|hidden|text index|geo",
+        "unique-at-write": "checkUniqueConstraints|DuplicateKeyError|unique constraint|unique index|duplicate key",
+        "hint": "hint|$natural|BadHintError",
+        "ttl-not-enforced": "expireAfterSeconds|TTL"
+      }
+    },
+    {
+      "id": "aggregate",
+      "seed": "Tell me how MangoDB executes an aggregation pipeline.",
+      "kind": "brief",
+      "article": "src/aggregation/cursor.ts",
+      "facts": {
+        "stage-dispatch": "executeStage|each stage|stage by stage|per stage|for each stage",
+        "in-memory-sequential": "in memory|in-memory|sequential|whole collection|Document[]",
+        "out-and-merge-last": "$out|$merge|must be the last|last stage",
+        "expression-evaluator": "evaluateExpression|expression operator|evaluate the expression|evaluates expressions",
+        "operator-registry": "operators/index|operator registry|registry|$literal|operators map",
+        "accumulators": "createAccumulator|accumulator|$group",
+        "lookup": "$lookup|foreign",
+        "unwind": "$unwind",
+        "window-functions": "$setWindowFields|applyWindowOperator|window function|window operator|getWindowDocuments",
+        "system-variables": "$$NOW|$$ROOT|createSystemVars|system variable",
+        "one-key-per-stage": "single key|exactly one|one field|one key|one stage"
+      }
+    }
+  ]
+}

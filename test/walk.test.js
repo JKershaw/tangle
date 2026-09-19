@@ -45,7 +45,7 @@ test("a brief's search term is its subject, and a hit that is the search term it
   assert.equal(searchTerm("Tell me about the Rosetta mission and what it found at comet 67P."), "Rosetta mission");
   assert.equal(briefSubject("Describe Marie Curie, her discoveries and their influence."), "Marie Curie", "a mark ends the subject");
   assert.equal(briefSubject("Tell me about the Aral Sea and the efforts to restore it."), "Aral Sea");
-  assert.equal(searchTerm("Tell me about coral bleaching."), "Tell me about coral bleaching");
+  assert.equal(searchTerm("Tell me about coral bleaching."), "coral bleaching", "the brief's framing words are not search terms");
   const hits = { "Hubble Space Telescope": ["Nancy Grace Roman Space Telescope", "Hubble Space Telescope", "Edwin Hubble"], "Tell me about the Hubble Space Telescope and what it has discovered.": ["Edwin Hubble", "Nancy Grace Roman Space Telescope"] };
   const wiki = async (query, options = {}) => {
     if (options.searchOnly) return { ok: true, kind: "search", hits: hits[query] ?? [], snippets: [] };

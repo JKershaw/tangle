@@ -30,6 +30,13 @@ export function splitSentences(text, { minLength = 25 } = {}) {
   return sentences;
 }
 
+// The units of a finding or a read: a file's lines when the text has
+// single line breaks (files.js), else sentences.
+export function unitsOf(text) {
+  const clean = String(text ?? "").trim();
+  return clean.includes("\n") ? clean.split("\n").map((line) => line.trim()).filter(Boolean) : splitSentences(clean);
+}
+
 const numbered = (sentences) => sentences.map((sentence, index) => `${index + 1}. ${sentence}`).join("\n");
 const labels = (count) => Array.from({ length: count }, (_, index) => String(index + 1));
 // An enum is a set: an article's headings can repeat ("History" under two

@@ -5,8 +5,11 @@
 // flag. Retries after an error do what the page's Retry button does.
 import { clone, createRun, nextRunnable, outcomeLabel, trace, VERSION } from "../src/graph.js";
 import { ASK_VERSION } from "../src/asks.js";
-import { DEFAULT_VARIANTS, WALK_VERSION, runWalk, variantsFor } from "../src/walk.js";
+import { DEFAULT_VARIANTS, WALK_VERSION, runWalk, variantsFor, subjectIgnore } from "../src/walk.js";
 import { wikiDriver } from "../src/wiki.js";
+import { fileDriver } from "../src/files.js";
+import { readCorpus } from "./corpus.mjs";
+import { normalise } from "../src/text.js";
 import { SAMPLING } from "../src/webllm.js";
 import { DEFAULT_ENDPOINT, createEndpointAdapter } from "../src/endpoint.js";
 import { USER_AGENT, recordingFetch } from "./recording.mjs";
@@ -20,12 +23,19 @@ const timed = async (work) => {
 
 // ask: a scripted model in place of the endpoint (src/scripted.js), for
 // parity. offline: a Wikipedia response not in the recording is an error.
-export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, wikiCache = null, ask: scripted = null, offline = false, onUpdate = null, note = console.log } = {}) {
+// source: { root, include?, exclude?, name? } reads a directory as the
+// corpus (scripts/corpus.mjs, src/files.js) in place of Wikipedia.
+export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, wikiCache = null, ask: scripted = null, offline = false, source = null, onUpdate = null, note = console.log } = {}) {
   const adapter = createEndpointAdapter({ url: endpoint });
+  const corpus = source ? readCorpus(source.root, source) : null;
+  if (corpus) {
+    subjectIgnore.add(normalise(corpus.name));
+    note(`${stamp()} corpus ${corpus.name}: ${corpus.size} files, ${corpus.declared.size} declared names, ${corpus.hash}`);
+  }
   const runtime = scripted ? "scripted" : `node ${process.version} · ${endpoint}`;
   const network = offline ? null : (url, init = {}) => fetch(url, { ...init, headers: { ...(init.headers ?? {}), "user-agent": USER_AGENT } });
-  let recording = wikiCache ? recordingFetch(wikiCache, { fetchImpl: network }) : null;
-  const wiki = wikiDriver({ fetchImpl: (url, init) => (recording ? recording.fetch(url, init) : network(url, init)) });
+  let recording = wikiCache && !corpus ? recordingFetch(wikiCache, { fetchImpl: network }) : null;
+  const wiki = corpus ? fileDriver(corpus) : wikiDriver({ fetchImpl: (url, init) => (recording ? recording.fetch(url, init) : network(url, init)) });
   const ask = scripted ?? ((call, { signal } = {}) => adapter.generate(call.messages, { signal, schema: call.schema, maxTokens: call.maxTokens, seed: SAMPLING.seed, temperature: SAMPLING.temperature }));
   let loadedModel = null;
   let run = null;
@@ -52,8 +62,8 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, wikiCache = nul
       if (!run) throw new Error("No run: call newLive first.");
       if (!loadedModel) throw new Error("Load a model first.");
       const started = Date.now();
-      Object.assign(run, { model: loadedModel, runtime, sampling: { ...SAMPLING }, schema: `${WALK_VERSION}/${ASK_VERSION}` });
-      const drivers = { ask, wiki, variants: variantsFor(loadedModel), onUpdate: (nodeId, message) => onUpdate?.(nodeId, message) };
+      Object.assign(run, { model: loadedModel, runtime, sampling: { ...SAMPLING }, schema: `${WALK_VERSION}/${ASK_VERSION}`, ...(corpus ? { source: { kind: "files", name: corpus.name, root: corpus.root, files: corpus.size, hash: corpus.hash } } : {}) });
+      const drivers = { ask, wiki, source: corpus ? "files" : "wiki", variants: variantsFor(loadedModel), onUpdate: (nodeId, message) => onUpdate?.(nodeId, message) };
       let retriesUsed = 0;
       let outcome;
       for (;;) {
@@ -87,9 +97,11 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, wikiCache = nul
       return timed(() => (scripted ? scripted(call) : adapter.generate(call.messages, { schema: call.schema, maxTokens: call.maxTokens, seed: SAMPLING.seed, temperature: SAMPLING.temperature })));
     },
     wikiLoad(dir) {
+      if (corpus) return 0;
       recording = recordingFetch(dir, { fetchImpl: network });
       return recording.entries.size;
     },
+    corpus: () => corpus,
     // Node records as it goes; saving reports what happened.
     wikiSave: () => recording?.stats() ?? { hits: 0, misses: 0, added: 0, entries: 0 },
     close: () => adapter.unload(),

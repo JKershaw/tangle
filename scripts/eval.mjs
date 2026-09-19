@@ -19,7 +19,7 @@
 // Both write <out>.json and append one row to evals/results.md; full run
 // exports go to evals/results/runs/ (not committed).
 import { existsSync, mkdirSync, readFileSync, writeFileSync, appendFileSync } from "node:fs";
-import { dirname } from "node:path";
+import { dirname, resolve } from "node:path";
 import { FLAT_LIMITS, formatGrades, formatRunGrade, gradeCase, gradeRun, profileOf, summariseGrades } from "./grade.js";
 import { summarise } from "./summarise.js";
 import { mentions } from "./text.js";
@@ -51,7 +51,8 @@ const closedCall = (seed) =>
     ? { messages: [{ role: "system", content: CLOSED_PROFILE_SYSTEM }, { role: "user", content: seed.seed }], schema: { type: "object", properties: { answer: { type: "string", maxLength: 6000 } }, required: ["answer"], additionalProperties: false }, maxTokens: 1500 }
     : { messages: [{ role: "system", content: CLOSED_SYSTEM }, { role: "user", content: seed.seed }], schema: { type: "object", properties: { answer: { type: "string", maxLength: 900 } }, required: ["answer"], additionalProperties: false }, maxTokens: 320 };
 const seedsPath = args.seeds || "evals/seeds.json";
-const allSeeds = suiteName === "runs" ? JSON.parse(readFileSync(seedsPath, "utf8")).seeds : [];
+const allSeedsFile = suiteName === "runs" ? JSON.parse(readFileSync(seedsPath, "utf8")) : {};
+const allSeeds = allSeedsFile.seeds ?? [];
 const seedSet = seedsPath.replace(/^.*\//, "").replace(/\.json$/, "");
 const WIKI_CACHE = "evals/wiki-cache";
 const TABLE = "evals/results.md";
@@ -71,9 +72,18 @@ const modelName = `${shortModel(model)}${endpoint ? "-node" : ""}`;
 const out = args.out || `evals/results/${date}-${suiteName}${suiteName === "runs" ? "-" + mode : ""}${seedSet !== "seeds" ? "-" + seedSet : ""}-${modelName.replace(/[:/]/g, "-")}-${commit.replace(/ .*/, "")}${repeats > 1 ? "-" + new Date().toISOString().slice(11, 16).replace(":", "") : ""}`;
 const only = args.only ? new RegExp(args.only) : null;
 const { notes, note } = makeNotes();
-const lab = endpoint ? await openNodeLab({ endpoint, wikiCache: WIKI_CACHE, note }) : browserLab(await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note }));
+// --source <dir>: a directory as the corpus (src/files.js); the seeds file
+// may name one too ("source": { "root": "../mangodb" }, relative to the
+// repository). Node only, for now.
+const sourceRoot = args.source ? String(args.source) : allSeedsFile.source?.root ? resolve(process.cwd(), allSeedsFile.source.root) : null;
+if (sourceRoot && !endpoint) {
+  console.error("a file corpus runs in Node for now; add --endpoint");
+  process.exit(2);
+}
+const lab = endpoint ? await openNodeLab({ endpoint, wikiCache: WIKI_CACHE, source: sourceRoot ? { ...(allSeedsFile.source ?? {}), root: sourceRoot } : null, note }) : browserLab(await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note }));
 const results = [];
-const record = { suite: suiteName, model, runtime: lab.kind, ...(endpoint ? { endpoint } : {}), commit, head, machine: machineInfo(), browser: lab.version(), date: new Date().toISOString() };
+const corpus = lab.corpus?.() ?? null;
+const record = { suite: suiteName, model, runtime: lab.kind, ...(endpoint ? { endpoint } : {}), ...(corpus ? { source: { kind: "files", name: corpus.name, root: corpus.root, files: corpus.size, hash: corpus.hash } } : {}), commit, head, machine: machineInfo(), browser: lab.version(), date: new Date().toISOString() };
 let PROMPT_VERSION = "?";
 let RESPONSE_SCHEMA_VERSION = "?";
 const appendRow = (cells) => {

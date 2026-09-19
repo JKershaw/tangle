@@ -4,7 +4,7 @@
 // feeds them recorded fixtures so the graders themselves are pinned.
 import { captureEvidence, createRun, parseModelOutput, validateResult } from "../src/graph.js";
 import { responseSchema } from "../src/webllm.js";
-import { splitSentences } from "../src/asks.js";
+import { splitSentences, unitsOf } from "../src/asks.js";
 import { mentions, missingWords, normalise } from "./text.js";
 
 export const ABSENT_WORDS_THRESHOLD = 4;
@@ -210,7 +210,7 @@ export function profileOf(run) {
   const root = run.nodes[0];
   const finding = root.status === "resolved" ? String(root.finding ?? "") : "";
   const paragraphs = finding.split(/\n\s*\n/).filter((paragraph) => paragraph.trim()).length;
-  const sentences = splitSentences(finding);
+  const sentences = finding.split(/\n\s*\n/).flatMap((paragraph) => unitsOf(paragraph));
   const seen = new Set();
   let duplicates = 0;
   for (const sentence of sentences) {
