@@ -8,7 +8,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { replayAdapter, replayKey } from "../src/replay.js";
 import { entryPath, readRecording, writeEntry } from "../scripts/recording.mjs";
-import { openNodeLab } from "../scripts/node-lab.mjs";
+import { endpointOptions, openNodeLab } from "../scripts/node-lab.mjs";
 import { SCRIPTED } from "../src/scripted.js";
 
 const RECORDING = new URL("../evals/wiki-cache", import.meta.url).pathname;
@@ -180,4 +180,12 @@ test("in Node a rerun with no code change replays every call from the model cach
   assert.equal(second.run.tokens, first.run.tokens, "the cost columns reproduce");
   const shape = (run) => run.nodes.map(({ id, status, finding, evidence }) => ({ id, status, finding, evidence }));
   assert.deepEqual(shape(second.run), shape(first.run));
+});
+
+test("a remote endpoint gets the key from the environment and none of the local server's fields; a local one gets neither", () => {
+  assert.deepEqual(endpointOptions("http://127.0.0.1:11434/v1", { OPENROUTER_API_KEY: "k" }), {});
+  const remote = endpointOptions("https://openrouter.ai/api/v1", { OPENROUTER_API_KEY: "k" });
+  assert.equal(remote.apiKey, "k");
+  assert.deepEqual(remote.extra, {}, "no reasoning_effort or chat_template_kwargs over the network");
+  assert.equal(remote.headers["X-Title"], "Tangle");
 });

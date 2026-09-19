@@ -35,7 +35,9 @@ export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "list
 export function variantsFor(modelId = "") {
   // "Qwen3-8B-q4f16_1-MLC" in the page; "qwen3:8b", "qwen3:14b-q4_K_M" over
   // an endpoint (endpoint.js). Not "Qwen3-30B-A3B", not "qwen3:1.7b".
-  const big = /(?:^|[-:_/])(8|14|32)b(?=$|[-:_@\s])/i.test(String(modelId));
+  // A provider-prefixed id ("deepseek/deepseek-v3.2", "anthropic/claude-haiku-4.5")
+  // is a reference model over an API, and large by construction.
+  const big = /(?:^|[-:_/])(8|14|32)b(?=$|[-:_@\s])/i.test(String(modelId)) || /^[a-z0-9-]+\/[^/]+$/i.test(String(modelId));
   return { ...DEFAULT_VARIANTS, ...(big ? { sentence: "check" } : {}) };
 }
 // When the picked sentence comes from an article that shares no content

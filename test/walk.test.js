@@ -591,6 +591,8 @@ test("variants by model size: the sentence pick is checked at 8B and above, plai
   assert.equal(variantsFor("qwen3:1.7b").sentence, "list");
   assert.equal(variantsFor("Qwen3-30B-A3B").sentence, "list");
   assert.equal(variantsFor("scripted:first").sentence, "list");
+  assert.equal(variantsFor("deepseek/deepseek-v3.2").sentence, "check", "a reference model over an API is large");
+  assert.equal(variantsFor("anthropic/claude-haiku-4.5").sentence, "check");
   assert.equal(variantsFor("Qwen3-1.7B-q4f16_1-MLC").article, "snippets");
 });
 

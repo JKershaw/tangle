@@ -29,8 +29,15 @@ const timed = async (work) => {
 // modelCache: a directory of recorded model responses (src/replay.js), one
 // subdirectory per model, replayed and added to; live: false replays only,
 // and a call not in the cache is an error rather than a request.
+// An endpoint over the network (OpenRouter) needs a key and no local-server
+// fields: OPENROUTER_API_KEY from the environment when the host is openrouter.ai.
+export function endpointOptions(endpoint, env = process.env) {
+  const remote = /openrouter\.ai/.test(String(endpoint));
+  return remote ? { apiKey: env.OPENROUTER_API_KEY ?? null, extra: {}, headers: { "HTTP-Referer": "https://github.com/JKershaw/tangle", "X-Title": "Tangle" } } : {};
+}
+
 export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, fetchImpl = globalThis.fetch, wikiCache = null, modelCache = null, live = true, ask: scripted = null, offline = false, source = null, onUpdate = null, note = console.log } = {}) {
-  const adapter = replayAdapter(createEndpointAdapter({ url: endpoint, fetchImpl }), { live });
+  const adapter = replayAdapter(createEndpointAdapter({ url: endpoint, fetchImpl, ...endpointOptions(endpoint) }), { live });
   let modelDir = null;
   let saved = { hits: 0, misses: 0 };
   const replayStats = () => adapter.replay.stats();
