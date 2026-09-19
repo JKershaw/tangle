@@ -52,6 +52,13 @@ function makeNode(id, parent, depth, question) {
   return { id, parent, depth, question, status: "open", visits: 0, finding: "", evidence: [], observed: [], failedLookups: [], reason: "" };
 }
 
+// The walk's run-wide memory, in the run so an export can be resumed: the
+// sentences any node kept, the names any node opened a child for, the links
+// of each article read (null when unavailable), and per node the sentences
+// it judged as not answering. Plain data, and empty on a run from before it.
+export const emptyState = () => ({ kept: [], opened: [], links: {}, judged: {} });
+export const stateOf = (run) => (run.state ??= emptyState());
+
 export function createRun(seed, mode = "simulation", limits = {}) {
   assert(isText(seed, 400), "Give the seed a question of 1–400 characters.");
   return {
@@ -65,6 +72,7 @@ export function createRun(seed, mode = "simulation", limits = {}) {
     nodes: [makeNode("n1", null, 0, seed)],
     evidence: [],
     trace: [],
+    state: emptyState(),
     visits: 0,
     modelCalls: 0,
     tokens: 0,
@@ -244,14 +252,20 @@ export function outcomeLabel(run) {
   return nextRunnable(run) ? "Ready" : "No runnable nodes · root unresolved";
 }
 
-// Imported runs are inspect-only. Everything is bounds-checked because the file
-// came from outside; evidence URLs must be HTTPS Wikipedia so rendering a link is safe.
-export function validateImport(text) {
+// Imported runs are inspect-only unless resumed: with the run's memory in the
+// export (stateOf), a walk can carry on where it stopped. Everything is
+// bounds-checked because the file came from outside; evidence URLs must be
+// HTTPS Wikipedia or file: so rendering a link is safe.
+export function validateImport(text, { resume = false } = {}) {
   assert(typeof text === "string" && text.length < 8e6, "Import is too large (8 MB maximum).");
   const run = JSON.parse(text);
   assert(run && run.format === FORMAT, "Not a Tangle Pocket Lab export.");
   assert(["simulation", "live"].includes(run.mode) && isText(run.seed, 400), "Invalid run metadata.");
   assert(Array.isArray(run.nodes) && run.nodes.length >= 1 && run.nodes.length <= 150, "Invalid node count.");
+  if (run.state !== undefined) {
+    const state = run.state;
+    assert(state && typeof state === "object" && Array.isArray(state.kept) && Array.isArray(state.opened) && state.links && typeof state.links === "object" && state.judged && typeof state.judged === "object", "Invalid run state.");
+  }
   assert(Array.isArray(run.evidence) && run.evidence.length <= 300, "Invalid evidence count.");
   assert(Array.isArray(run.trace) && run.trace.length <= 5000, "Invalid trace count.");
   const evidenceIds = new Set();
@@ -317,6 +331,6 @@ export function validateImport(text) {
   for (const key of ["visits", "modelCalls", "tokens", "lookups"]) {
     assert(Number.isFinite(run[key]) && run[key] >= 0, "Invalid counters.");
   }
-  run.readOnly = true;
+  run.readOnly = !resume;
   return run;
 }

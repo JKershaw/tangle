@@ -14,7 +14,7 @@
 // be compared on the same seeds. Both persist outcomes through applyResult.
 
 import { ASKS, ASK_VERSION, parseJson, splitSentences, unitsOf } from "./asks.js";
-import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
+import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, stateOf, trace } from "./graph.js";
 import { evidenceOf } from "./source.js";
 import { contentWords, isParaphrase, namesSubject } from "./text.js";
 import { lineUnits, usesName } from "./files.js";
@@ -76,8 +76,18 @@ export const WINDOW = 12;
 export const MIN_FINDING_WORDS = 6;
 // Sentences a node has already judged as not answering, kept across visits
 // so a revisit reads on instead of re-showing the same windows (the water
-// cycle root, walk-3: four passes over the same lead, twice).
-const judgedByNode = new WeakMap();
+// cycle root, walk-3: four passes over the same lead, twice). In the run's
+// state (graph.js), as is everything below, so an export resumes.
+const setOn = (array) => ({
+  has: (value) => array.includes(value),
+  add: (value) => {
+    if (!array.includes(value)) array.push(value);
+  },
+  get size() {
+    return array.length;
+  },
+});
+const judgedOf = (run, node) => setOn((stateOf(run).judged[node.id] ??= []));
 
 // The first lookup is code: the question minus its question words. The raw
 // question sent to Wikipedia's search found the Aral Sea for "Why is the Dead
@@ -213,19 +223,16 @@ export function occurs(title, text) {
   return pattern.test(text);
 }
 // Per run: the links of each article read (null when unavailable), and the
-// names any node has already opened a child for. Kept outside the run so an
-// export stays what the model saw and said.
-const frontierByRun = new WeakMap();
+// names any node has already opened a child for.
 const frontierOf = (run) => {
-  if (!frontierByRun.has(run)) frontierByRun.set(run, { links: new Map(), opened: new Set() });
-  return frontierByRun.get(run);
+  const state = stateOf(run);
+  return {
+    links: { has: (article) => Object.hasOwn(state.links, article), get: (article) => state.links[article], set: (article, links) => void (state.links[article] = links) },
+    opened: setOn(state.opened),
+  };
 };
 // Sentences kept by any node, so a profile never offers one twice.
-const keptByRun = new WeakMap();
-const keptOf = (run) => {
-  if (!keptByRun.has(run)) keptByRun.set(run, new Set());
-  return keptByRun.get(run);
-};
+const keptOf = (run) => setOn(stateOf(run).kept);
 
 // The sentences a node can choose between: the excerpts it has observed,
 // newest first. Every candidate carries the evidence it rests on. A child's
@@ -532,8 +539,7 @@ export async function runWalk(run, options) {
         return true;
       }
     }
-    if (!judgedByNode.has(node)) judgedByNode.set(node, new Set());
-    const judged = judgedByNode.get(node);
+    const judged = judgedOf(run, node);
     // Sentences picked and checked so far this visit; the finding is their
     // text, verbatim, in the order found. After a pick the walk asks again
     // over what remains until it says none or maxSentences is reached.
