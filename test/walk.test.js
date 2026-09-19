@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { createRun, nextRunnable } from "../src/graph.js";
+import { applyResult, captureEvidence, createRun, nextRunnable } from "../src/graph.js";
 import { briefSubject, candidates, isBrief, isForeign, isRepeat, namesIn, occurs, runWalk, searchTerm, splitSubjects, unreadSections, variantsFor } from "../src/walk.js";
 
 // A scripted model: answers come off a queue, keyed by the field the schema
@@ -102,7 +102,7 @@ test("when the lead does not answer, the walk reads a chosen section and picks f
   assert.deepEqual(unreadSections(run, root), [{ article: "Dead Sea", headings: ["Geography"] }]);
 });
 
-test("with lookups exhausted the walk hands down one question; the parent later chooses among its children's findings", async () => {
+test("with lookups exhausted the walk hands down one question; when it answers, the parent's answer is what it found, with no pick", async () => {
   const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 2, ...ONE });
   const { ask } = scripted([["sentence", "none"], ["section", "Geography"], ["sentence", "none"], ["question", "What diverts water from the Jordan River?"]]);
   assert.equal(await runWalk(run, { ask, wiki: wikiFixture, ...PLAIN }), true);
@@ -119,31 +119,50 @@ test("with lookups exhausted the walk hands down one question; the parent later 
   assert.equal(run.nodes[1].finding, "Its main tributary is the Jordan River.");
   assert.deepEqual(run.nodes[1].evidence, ["e3"], "the child reads its own copy of the lead");
   assert.equal(run.nodes[1].failedLookups[0].query, "diverts water from Jordan River");
-  // The parent runs again and sees the child's finding first, then its own excerpt.
+  // The parent runs again. Its child's finding is not a sentence it can pick
+  // (a finding is not evidence), and it is not asked anything: the answer to
+  // the question it handed down is the answer to its own.
   assert.equal(nextRunnable(run).id, "n1");
-  const pool = candidates(run, run.nodes[0]);
-  assert.equal(pool[0].from, "child");
-  assert.deepEqual(pool[0].evidence, ["e3"]);
-  assert.equal(pool.length, 1 + 2 + 3, "the child's finding, then Geography's two sentences, then the lead's three");
-  const parent = scripted([["sentence", "1"]]);
+  assert.ok(candidates(run, run.nodes[0]).every((candidate) => candidate.from !== "child"));
+  const parent = scripted([]);
+  const before = run.trace.length;
   assert.equal(await runWalk(run, { ask: parent.ask, wiki: wikiFixture, ...PLAIN }), true);
+  assert.deepEqual(parent.seen, []);
+  assert.ok(!run.trace.slice(before).some((event) => event.event === "model_input"));
   assert.equal(run.nodes[0].status, "resolved");
   assert.equal(run.nodes[0].finding, run.nodes[1].finding);
   assert.deepEqual(run.nodes[0].evidence, ["e3"]);
 });
 
-test("a parent that finds none of its children's sentences answers alone still resolves with what they found", async () => {
-  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1, ...ONE });
-  await runWalk(run, { ask: scripted([["sentence", "none"], ["question", "What feeds the Dead Sea?"]]).ask, wiki: wikiFixture, ...PLAIN });
-  await runWalk(run, { ask: scripted([["sentence", "2"]]).ask, wiki: wikiFixture, ...PLAIN });
-  assert.equal(run.nodes[1].finding, "Its main tributary is the Jordan River.");
-  // The parent has judged its own lead already this visit? No: each visit
-  // judges afresh. It sees the child's finding and its own three sentences.
-  const parent = scripted([["sentence", "none"]]);
-  assert.equal(await runWalk(run, { ask: parent.ask, wiki: wikiFixture, ...PLAIN }), true);
+test("a parent is never asked to judge its child's finding, so no none over it can be overridden (the observer's case)", async () => {
+  // Before walk-14 the parent was shown the finding as "a finding below",
+  // said none, and resolved with it anyway. The model is not asked; the
+  // resolution is code's and traced as the harness's.
+  const run = createRun("Why is the Dead Sea shrinking?", "live");
+  applyResult(run, "n1", { action: "decompose", questions: ["What colour is the sky?"] }, []);
+  const finding = "The sky often appears blue during the daytime.";
+  captureEvidence(run, "n2", { ok: true, kind: "wiki", title: "Sky", text: finding, url: "https://en.wikipedia.org/wiki/Sky" });
+  const evidence = [run.evidence[0].id];
+  applyResult(run, "n2", { action: "resolved", finding, evidence }, evidence);
+  assert.equal(await runWalk(run, { ask: async () => { throw new Error("The model was asked."); }, wiki: async () => { throw new Error("Unexpected lookup"); }, ...PLAIN }), true);
+  assert.ok(!run.trace.some((event) => event.event === "sentence_picked"));
   assert.equal(run.nodes[0].status, "resolved");
-  assert.equal(run.nodes[0].finding, "Its main tributary is the Jordan River.");
-  assert.ok(run.trace.some((event) => event.event === "node_resolved" && event.node === "n1"));
+  assert.equal(run.nodes[0].finding, finding);
+  assert.deepEqual(run.nodes[0].evidence, evidence);
+  assert.ok(run.trace.some((event) => event.event === "node_resolved" && event.node === "n1" && event.result?.harness === true));
+});
+
+test("a question whose handed-down question blocked judges its own excerpts again and blocks honestly when nothing answers", async () => {
+  const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1, maxNodes: 2, ...ONE });
+  await runWalk(run, { ask: scripted([["sentence", "none"], ["question", "What feeds the Dead Sea?"]]).ask, wiki: wikiFixture, ...PLAIN });
+  applyResult(run, "n2", { action: "blocked", reason: "Nothing could be read for this question." }, []);
+  // Its lead was judged on the first visit and is remembered; it is asked
+  // for a heading (none) and a search term (the article it has read, so
+  // nothing new), and with no room for another question it blocks.
+  const parent = scripted([["section", "none"], ["search", "Dead Sea"]]);
+  assert.equal(await runWalk(run, { ask: parent.ask, wiki: wikiFixture, ...PLAIN }), true);
+  assert.deepEqual(parent.seen.map((entry) => entry.field), ["section", "search"]);
+  assert.equal(run.nodes[0].status, "blocked");
 });
 
 test("a repeated question is refused by code and the node blocks", async () => {

@@ -46,7 +46,7 @@ A **visit** is a fixed sequence of small decisions, each a single model call wit
 1. Code turns the question into a search term and searches Wikipedia. If several articles match, the model picks one from the titles.
 2. Code reads the article's lead and numbers its sentences. The model picks the sentence that answers the question, or says none. That sentence, verbatim, is the **finding**, cited to the excerpt it came from. Up to three sentences can be kept.
 3. If nothing answers, the model picks a section to read on into, or names a smaller question. A smaller question becomes a child node, with an empty context of its own.
-4. When the children are settled, the parent's answer is what they found.
+4. When the children are settled, the parent's answer is what they found, with no further model call.
 
 A **brief** (no question mark, or "tell me about…") takes a different shape: the lead, one child per section the model chooses, and under each child up to two more children opened on the things its sentences name, each reading the part of that article that is about the subject. The root's finding is the profile, paragraph by paragraph, in the article's order.
 
@@ -65,7 +65,7 @@ Either way, tap a node to see exactly what the model was shown and what it said.
 
 ## The frontier
 
-Where it stands as of 18 September 2026 (walk-13 and the bridge). Kept current as the numbers move.
+Where it stands as of 19 September 2026 (walk-14 and the bridge). Kept current as the numbers move.
 
 **Known to work.**
 - A pick from a numbered list is reliable from 1.7B up, and every finding is supported by construction. No run has stated a fact its evidence did not hold.
@@ -79,6 +79,7 @@ Where it stands as of 18 September 2026 (walk-13 and the bridge). Kept current a
 - 8B fills every hop slot and rejects a third of what it finds; 1.7B opens fewer hops and cites every one. Neither uses the forty-node budget. The topic rubric counts touches and cannot say whether a longer profile is better; a judge is missing.
 - 0.6B says none to every sentence under a brief. It is below the floor for profiles.
 - Section choice sets breadth: 4B stops after three sections, and a short parent heading is chosen and blocks. 14B says none more often than any smaller size, then asks a question, and a question child may re-read what its parent read.
+- When a question hands down a narrower question, the parent's answer is what the child found, by code and with no pick (walk-14; before it the model was asked and its "none" ignored). Whether the narrower answer really answers the parent's question is not judged. The rubric cannot tell, and a judge is missing.
 - A cited sentence can still be off the brief. A 1.7B Rosetta profile carried a paragraph about Jupiter's core because "mission" is a word of "Rosetta mission"; walk-13 requires the subject's own capitalised words. The topic rubric cannot see that fault, and the graph reads five times the tokens of one node; a judge and an equal-budget control are both missing.
 
 **Next.** Roadmap milestone 5: read-only tools over files, with this repository as the first corpus, which tests whether the gains transfer beyond Wikipedia's ready-made sections and links. The milestones and their exit conditions are in [ROADMAP.md](ROADMAP.md).

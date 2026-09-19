@@ -17,7 +17,7 @@ import { ASKS, ASK_VERSION, parseJson, splitSentences } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
 import { contentWords, isParaphrase, namesSubject } from "./text.js";
 
-export const WALK_VERSION = "walk-13"; // walk-13: a hop's sentence names the subject only by the subject's own capitalised words, with their capitals ("Juno mission" and "rosetta orbit" no longer count for the Rosetta mission), and the first search waits for approval like every other request; // walk-12: an over-long profile loses hop paragraphs before it loses sections, and a short section is not handed to a child; a hop child may hand down hops of its own (one level), a reserve keeps room for every open node's hops, and a name is offered only if its article says something about the subject; // walk-11: a hop child reads the part of its article that names the brief's subject, and a brief's root keeps twice the sentences; a brief's child hands the things its kept sentences name (the article's links that occur in them, else capitalised phrases) to children of its own, the model picking which from a list ranked by how often the run has met each; a sentence kept anywhere is never offered again; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
+export const WALK_VERSION = "walk-14"; // walk-14: a parent whose children answered resolves with what they found by code, with no pick, for a question as for a split or a brief; a child's finding is no longer offered to the sentence pick, so no "none" over it can be overridden; // walk-13: a hop's sentence names the subject only by the subject's own capitalised words, with their capitals ("Juno mission" and "rosetta orbit" no longer count for the Rosetta mission), and the first search waits for approval like every other request; // walk-12: an over-long profile loses hop paragraphs before it loses sections, and a short section is not handed to a child; a hop child may hand down hops of its own (one level), a reserve keeps room for every open node's hops, and a name is offered only if its article says something about the subject; // walk-11: a hop child reads the part of its article that names the brief's subject, and a brief's root keeps twice the sentences; a brief's child hands the things its kept sentences name (the article's links that occur in them, else capitalised phrases) to children of its own, the model picking which from a list ranked by how often the run has met each; a sentence kept anywhere is never offered again; // walk-10: a hop never re-reads an article any node has read, a brief's children follow the article's order, and the profile drops a sentence it already has; // walk-9: under a brief no model-asked questions (the shape is code's), only the root fans out, a hop's sentences must name the brief's subject, the hop comes before the sentence cap, and a finding's sentences are in source order; walk-8: a brief (no question mark, or "tell me about…") reads the lead, hands one child per section the model chooses, each child may hop to one article named from what it kept, and the root's finding is the profile in order; // walk-7: a question about two named subjects is split by code, one child per subject, and the parent's answer is their findings; after a first answer a node reads on into an unread section while lookups remain; walk-6: search snippets shown with the titles, the sentence check by model size; walk-2: paraphrases refused; walk-3: questions about "the text" refused, up to maxSentences per finding; walk-4: the article is picked from the search hits, judged sentences remembered across visits; walk-5: the first search tries both terms, the pick is checked only when its source is foreign to the question
 // Which variant of each ask the walk uses; the node evals choose these
 // (evals/node/results.md). Overridable per run for A/B comparison.
 // sentence: a pick from the numbered list, then one yes-or-no on the chosen
@@ -197,9 +197,10 @@ const keptOf = (run) => {
   return keptByRun.get(run);
 };
 
-// The sentences a node can choose between: its resolved children's findings
-// (each already a cited sentence), then the excerpts it has observed, newest
-// first. Every candidate carries the evidence it rests on.
+// The sentences a node can choose between: the excerpts it has observed,
+// newest first. Every candidate carries the evidence it rests on. A child's
+// finding is not a candidate: a finding is not evidence, and a parent whose
+// children answered resolves with what they found without a pick (below).
 export function candidates(run, node) {
   const out = [];
   // Under a brief, a hop's article is about something else (the bombe, chess);
@@ -208,9 +209,6 @@ export function candidates(run, node) {
   const base = String(node.question).split(FOCUS)[0];
   const subject = node.hopTo ? (briefSubject(base) ?? base) : null;
   const onSubject = (record, text) => subject === null || record.node !== node.id || node.readFirst?.article === record.article || namesSubject(text, subject);
-  for (const child of children(run, node.id)) {
-    if (child.status === "resolved" && child.finding) out.push({ text: child.finding, evidence: [...child.evidence], from: "child", source: child.id });
-  }
   for (const id of [...node.observed].reverse()) {
     const record = run.evidence.find((candidate) => candidate.id === id);
     if (!record) continue;
@@ -438,7 +436,15 @@ export async function runWalk(run, options) {
         return true;
       }
     }
-    if ((node.split || node.fanned) && children(run, node.id).length) {
+    // When the children are settled, the parent's answer is what they found,
+    // by code and with no pick: each half of a split question answers its
+    // half, a brief's sections are its paragraphs, and a question handed down
+    // answers the question above it. Until walk-14 a question's parent was
+    // shown its child's finding as one more sentence and then resolved with
+    // the parts whatever it said: an explicit "none" was overridden, and
+    // when the finding was one kept sentence the run-wide kept set hid it and
+    // the parent was never asked at all (the observer's case, 2026-09-19).
+    if (children(run, node.id).length) {
       const found = children(run, node.id).filter((child) => child.status === "resolved" && child.finding);
       const kept = node.kept ?? [];
       if (found.length || kept.some((entry) => entry.evidence.length)) {
@@ -460,11 +466,15 @@ export async function runWalk(run, options) {
         while (parts.length > 1 && parts.join(joiner).length > cap) parts.pop();
         applyResult(run, node.id, { action: "resolved", harness: true, finding: parts.join(joiner), evidence: [...new Set([...kept.flatMap((entry) => entry.evidence), ...found.flatMap((child) => child.evidence)])] }, visible());
         onUpdate(node.id, "Findings gathered");
-      } else {
+        return true;
+      }
+      if (node.split || node.fanned) {
         applyResult(run, node.id, { action: "blocked", reason: "Neither part of the question could be answered." }, visible());
         onUpdate(node.id, "Blocked");
+        return true;
       }
-      return true;
+      // A question whose handed-down question blocked judges its own
+      // excerpts again and may read on or ask another.
     }
     // Nothing read and nothing found by children: the first lookup searches
     // for the question minus its question words and for the question itself
@@ -661,7 +671,7 @@ export async function runWalk(run, options) {
       if (pool.length && passes < run.limits.maxPasses && gathered.length < room()) {
         const window = pool.slice(0, WINDOW);
         passes++;
-        const pick = await answer("sentence", { question: node.question, sentences: window.map((candidate) => candidate.text), titles: window.map((candidate) => (candidate.from === "child" ? "a finding below" : String(candidate.source).split(" § ")[0])) }, gathered.length ? "Reading for more" : "Reading");
+        const pick = await answer("sentence", { question: node.question, sentences: window.map((candidate) => candidate.text), titles: window.map((candidate) => String(candidate.source).split(" § ")[0]) }, gathered.length ? "Reading for more" : "Reading");
         trace(run, "sentence_picked", { node: node.id, pick, shown: window.length, gathered: gathered.length });
         if (pick !== "none") {
           const index = Number(pick) - 1;
@@ -701,14 +711,7 @@ export async function runWalk(run, options) {
         if (next) continue;
         return resolveWith();
       }
-      // Nothing left to judge. A parent whose children answered resolves with
-      // what they found: the answer to a decomposed question is its parts.
-      const found = children(run, node.id).filter((child) => child.status === "resolved" && child.finding);
-      if (found.length) {
-        applyResult(run, node.id, { action: "resolved", harness: true, finding: found.map((child) => child.finding).join(" "), evidence: [...new Set(found.flatMap((child) => child.evidence))] }, visible());
-        onUpdate(node.id, "Findings gathered");
-        return true;
-      }
+      // Nothing left to judge.
       // A hop child reads one article for sentences that name the brief's
       // subject; when its lead has none, no section of it is read either
       // (8B's Gordon Brown child read on and asked for section "none").

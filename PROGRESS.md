@@ -129,6 +129,7 @@ The bridge (ROADMAP milestone 4): the same walk in Node against an OpenAI-compat
 | 2026-09-18 | b71a368 | Ollama | 4B | 12/23 | 69 · 22 · 75 | — |
 | 2026-09-18 | b71a368 | Ollama | 8B | 12/23 | 61 · 16 · 96 | 18/23 |
 | 2026-09-18 | b71a368 | Ollama | 14B | 16/23 | 96 · 28 · 372 | **21/23** |
+| 2026-09-19 | walk-14 (uncommitted at 3b3daac) | Ollama | 1.7B / 4B / 8B / 14B | 15 / 12 / 12 / 16 of 23, identical to walk-12; page 1.7B 10/23 | 1.7B 38 · 13 · 11 (five calls fewer); 4B, 8B, 14B the same calls | — |
 | 2026-09-18 | 27f36a8 | Ollama | 32B | **17/23** | 73 · 18 · 358 | 19/23 |
 | 2026-09-18 | b71a368 | LM Studio (MLX) | 4B | 16/23 · Dead Sea lost to a schema error, fixed at 27f36a8; rerun 16/23 with the Dead Sea resolved at 0 | 52 · 13 · 104 | — |
 | 2026-09-18 | 4ea1f89 | LM Studio (MLX) | 30B-A3B (2507) | 16/23 · the same error; rerun at 495d69d: **17/23** in 313 s | 50 · 15 · 239 | — |
@@ -179,6 +180,12 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-19 · morning · walk-14, the observer's second case
+
+- The observer clarified their earlier point as a synthetic reproduction, and it reproduced on 3b3daac: a question's parent, shown its child's finding as "a finding below", says none, and the "nothing left to judge" fallback resolves it with that finding anyway. A scan of the recorded runs: 41 parents resolved that way, on about 16 of which the model had said none, and on most of the rest it was never asked, because a one-sentence finding sits in the run-wide kept set and was filtered out of the pool before the pick. Reading in [evals/readings.md](evals/readings.md).
+- walk-14: a parent whose children are settled resolves with what they found by code, with no pick, for a question as for a split or a brief; a child's finding is no longer a sentence candidate. Three tests, one of them the observer's script with a model that throws if asked. The alternative, honouring the none so the parent blocks, is recorded and not taken: it leaves the root blocked on every recorded chain, and whether a narrower answer answers the parent is a judge's call.
+- Base rows after the change: unchanged at every size (table above); 1.7B five calls fewer for the same findings.
 
 ### 2026-09-18 · night, later · the bridge
 
