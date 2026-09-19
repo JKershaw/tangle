@@ -115,7 +115,7 @@ test("the driver hooks: a live run with custom limits, and Wikipedia served from
     assert.deepEqual(requests.filter((url) => url.includes("wikipedia")), [], "the recording must answer every Wikipedia request");
 
     // Model calls need a loaded model; the hook says so rather than hanging.
-    await assert.rejects(page.evaluate(() => window.__tangle.visit({ question: "Q?", children: [], evidence: [] })), /Load a model first/);
+    await assert.rejects(page.evaluate(() => window.__tangle.ask({ messages: [{ role: "user", content: "Q?" }], schema: { type: "object" }, maxTokens: 8 })), /Load a model first/);
     assert.deepEqual(errors, []);
   } finally {
     await browser.close();
