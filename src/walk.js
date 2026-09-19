@@ -184,11 +184,30 @@ export function namesIn(sentences, subject = "") {
 }
 // Does a title occur in the text, as whole words, ignoring case and any
 // disambiguation in parentheses ("Mercury (planet)" occurs as "Mercury")?
+// An article's links are all tested against every kept sentence, thousands
+// of titles a node: two million Unicode regex tests in the profile suite,
+// nine tenths of the walk's own time once the model was replayed. So a
+// lower-cased substring check goes first and the regex decides only when
+// the title's letters are there at all; the pattern is kept per title.
 const escapeRe = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const occursPatterns = new Map();
+let lastText = null;
+let lastLower = "";
 export function occurs(title, text) {
   const shown = String(title).replace(/\s*\([^)]*\)\s*$/, "").trim();
   if (shown.length < 3) return false;
-  return new RegExp(`(?:^|[^\\p{L}\\p{N}])${escapeRe(shown)}(?=$|[^\\p{L}\\p{N}])`, "iu").test(String(text));
+  text = String(text);
+  if (text !== lastText) {
+    lastText = text;
+    lastLower = text.toLowerCase();
+  }
+  if (!lastLower.includes(shown.toLowerCase())) return false;
+  let pattern = occursPatterns.get(shown);
+  if (!pattern) {
+    pattern = new RegExp(`(?:^|[^\\p{L}\\p{N}])${escapeRe(shown)}(?=$|[^\\p{L}\\p{N}])`, "iu");
+    occursPatterns.set(shown, pattern);
+  }
+  return pattern.test(text);
 }
 // Per run: the links of each article read (null when unavailable), and the
 // names any node has already opened a child for. Kept outside the run so an

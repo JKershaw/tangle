@@ -74,7 +74,7 @@ Where it stands as of 19 September 2026 (walk-15, files as a source, the replay)
 - Profiles beat one node and memory at every size on every brief set tried (table above).
 - Splitting a two-subject question in code beats one node at every size on the seeds no single article answers. Model-written sub-questions drift and rarely help.
 - The same walk runs in Node with no browser against Ollama or LM Studio, and a parity test shows both runtimes grow the identical graph from the same seed, recording and picks. That extends the ladder to 14B and 32B, and Node is fast: the 1.7B suite in 12 seconds against a minute in the page.
-- Every model call is recorded by its exact context and replayed when it recurs: the four seed sets at 1.7B rerun in under twenty seconds each with no GPU and identical rows, and a one-word change to an ask misses exactly its own calls. CI replays the base suite on every push.
+- Every model call is recorded by its exact context and replayed when it recurs: the four seed sets at 1.7B rerun in under a second each with no GPU and identical rows, and a one-word change to an ask misses exactly its own calls. CI replays the base suite on every push.
 - A bigger picker helps on briefs and not on questions. In Node the four profiles reach 25 / 27 / 30 of 35 topics at 8B / 14B / 32B, the best row yet; the question seeds stay between 15 and 17 of 23 from 1.7B to 32B while memory climbs.
 
 **Known to fail.**

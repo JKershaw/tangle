@@ -411,6 +411,9 @@ test("without an article's links the names are capitalised phrases, still checke
   assert.equal(occurs("Bombe", "improvements to the bombe."), true);
   assert.equal(occurs("Mercury (planet)", "Mercury is the smallest planet."), true);
   assert.equal(occurs("Bomb", "the bombe"), false, "whole words only");
+  assert.equal(occurs("Émile Zola", "a letter from ÉMILE ZOLA, printed"), true, "case folds beyond ASCII");
+  assert.equal(occurs("Zola", "Zola's letter; then Émile Zola again"), true, "the same text tested twice keeps the same answer");
+  assert.equal(occurs("Bombe", "improvements to the bombe."), true, "and a title seen before still matches a new text");
   const run = createRun("Tell me about Alan Turing.", "live", { maxSentences: 1, maxLookups: 2 });
   // Root keeps the Bletchley Park sentence and hands down War; the child reads the section, where that sentence is repeated: it is not offered again.
   assert.equal(await runWalk(run, { ask: scripted([["sentence", "2"], ["sentence", "none"], ["section", "War"], ["section", "none"]]).ask, wiki, ...PLAIN }), true);
