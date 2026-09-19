@@ -5,7 +5,7 @@
 // answers here, so the walk reads one shape and an evidence record is built
 // from the result rather than being the result. `units` says what the
 // article's sentences are: prose sentences, or the lines of a file.
-export const KINDS = Object.freeze(["search", "read", "links", "error"]);
+export const KINDS = Object.freeze(["search", "read", "links", "result", "error"]);
 export const UNITS = Object.freeze(["sentences", "lines"]);
 
 // A search: titles in the source's order, a snippet each. `ranked` says the
@@ -25,6 +25,13 @@ export function readResult({ source, query, title, article, section = 0, section
   return { ok: true, kind: "read", source, query, title, article, section, sections, headings, sizes, summaries, text: String(text), units, lines: units === "lines", url, revision, exact, alternatives, about, requests };
 }
 
+// A result: what an action left behind (scripts/actions.mjs), the tail of
+// its output as text, cited like a read. `exit` is the process's exit code,
+// null when it was cut off.
+export function resultRecord({ source, query, title, text, exit = null, ms = null, cwd = null }) {
+  return { ok: true, kind: "result", source, query, title, article: title, section: 0, sections: null, headings: [], sizes: [], summaries: [], text: String(text), units: "lines", lines: true, url: null, revision: null, exact: true, alternatives: [], about: null, exit, ms, cwd, requests: [] };
+}
+
 export function linksResult({ source, query, title, links, requests = [] }) {
   return { ok: true, kind: "links", source, query, title, links: [...new Set(links.map(String))], requests };
 }
@@ -38,10 +45,11 @@ export function failure({ source, query, kind, message, requests = [], ...extra 
 // A driver built here gives every field; a test's minimal driver gives a
 // title and text, and the rest takes the contract's defaults.
 export function evidenceOf(result) {
-  if (!result?.ok || typeof result.text !== "string" || result.kind === "search" || result.kind === "links") throw new Error("Only a read is evidence.");
+  if (!result?.ok || typeof result.text !== "string" || result.kind === "search" || result.kind === "links") throw new Error("Only a read or a result is evidence.");
   const { source = result.tool ?? "wiki", title, article = title, section = 0, headings = [], sizes = [], summaries = [], text, url = null, revision = null, exact = true } = result;
   const units = result.units ?? (result.lines ? "lines" : "sentences");
-  return { kind: "read", source, title, article, section, headings, sizes, summaries, text, units, lines: units === "lines", url, revision, exact };
+  const record = { kind: result.kind === "result" ? "result" : "read", source, title, article, section, headings, sizes, summaries, text, units, lines: units === "lines", url, revision, exact };
+  return result.kind === "result" ? { ...record, exit: result.exit ?? null, ms: result.ms ?? null } : record;
 }
 
 // True when a driver's answer has the shape above; the reason otherwise.
@@ -52,6 +60,7 @@ export function checkResult(result) {
   if (result.ok === false) return result.error?.kind && result.error?.message ? null : "an error without kind and message";
   if (result.kind === "search") return Array.isArray(result.hits) && Array.isArray(result.snippets) && typeof result.ranked === "boolean" ? null : "a search without hits, snippets and ranked";
   if (result.kind === "links") return Array.isArray(result.links) ? null : "links without links";
+  if (result.kind === "result" && !("exit" in result)) return "a result without an exit code";
   if (typeof result.text !== "string" || !result.title || !result.article) return "a read without text, title and article";
   if (!UNITS.includes(result.units) || result.lines !== (result.units === "lines")) return "a read whose units and lines disagree";
   return Array.isArray(result.headings) && Array.isArray(result.sizes) && Array.isArray(result.summaries) ? null : "a read without headings, sizes and summaries";

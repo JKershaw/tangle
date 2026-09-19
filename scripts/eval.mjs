@@ -13,7 +13,8 @@
 // Playwright (--url, --profile, --chromium, --load-timeout as live-run.mjs);
 // with it, in Node (scripts/node-lab.mjs) against an OpenAI-compatible server,
 // or OpenRouter with OPENROUTER_API_KEY in the environment. A file corpus
-// (--source <dir>, or the seeds file's "source") runs in Node only.
+// (--source <dir>, or the seeds file's "source") runs in Node only; with
+// --actions a brief's root may run one of the corpus's commands in a worktree.
 // The model cache (src/replay.js): every call is recorded by its exact context
 // under --model-cache <dir> (default evals/model-cache/<model>/) and replayed
 // when seen again, so a rerun after a code change costs only the calls the
@@ -90,7 +91,7 @@ if (sourceRoot && !endpoint) {
   console.error("a file corpus runs in Node for now; add --endpoint");
   process.exit(2);
 }
-const lab = endpoint ? await openNodeLab({ endpoint, live: !replayOnly, offline: replayOnly, wikiCache: WIKI_CACHE, source: sourceRoot ? { ...(allSeedsFile.source ?? {}), root: sourceRoot } : null, note }) : browserLab(await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note }));
+const lab = endpoint ? await openNodeLab({ endpoint, live: !replayOnly, offline: replayOnly, wikiCache: WIKI_CACHE, source: sourceRoot ? { ...(allSeedsFile.source ?? {}), root: sourceRoot } : null, actions: Boolean(args.actions), note }) : browserLab(await openLab({ url: args.url || DEFAULT_URL, profile: args.profile, chromium: args.chromium, note }));
 const corpus = lab.corpus?.() ?? null;
 const record = { suite: "runs", model, runtime: lab.kind, ...(endpoint ? { endpoint } : {}), ...(corpus ? { source: { kind: "files", name: corpus.name, root: corpus.root, files: corpus.size, hash: corpus.hash } } : {}), commit, head, machine: machineInfo(), browser: lab.version(), date: new Date().toISOString() };
 const appendRow = (cells) => {

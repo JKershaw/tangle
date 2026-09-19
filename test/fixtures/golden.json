@@ -1,7 +1,7 @@
 {
   "dead-sea": {
     "model": "qwen3:1.7b",
-    "walk": "walk-15/asks-4",
+    "walk": "walk-16/asks-5",
     "nodes": 1,
     "statuses": {
       "resolved": 1
@@ -23,7 +23,7 @@
   },
   "turing": {
     "model": "qwen3:1.7b",
-    "walk": "walk-15/asks-4",
+    "walk": "walk-16/asks-5",
     "nodes": 13,
     "statuses": {
       "resolved": 12,
@@ -79,7 +79,7 @@
   },
   "persist": {
     "model": "qwen3:1.7b",
-    "walk": "walk-15/asks-4",
+    "walk": "walk-16/asks-5",
     "nodes": 5,
     "statuses": {
       "resolved": 5

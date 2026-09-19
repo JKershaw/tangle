@@ -10,7 +10,7 @@
 // maxTokens }) and combines the raw outputs into one answer. Schemas stay tiny
 // and few: web-llm compiles a grammar per distinct schema (see webllm.js).
 
-export const ASK_VERSION = "asks-4"; // asks-4: missing/names, a pick from the things the kept sentences name
+export const ASK_VERSION = "asks-5"; // asks-5: action, a pick from the commands code can run; asks-4: missing/names, a pick from the things the kept sentences name
 export const NO_THINK = " /no_think";
 
 // Sentences are what the model picks between, so they are made by code, the
@@ -273,6 +273,24 @@ export const ASKS = Object.freeze({
   // ---- missing: the one free-text ask. What would you look up next? ----
   // Input { question, sentences: [string] } (sentences already read, possibly
   // empty). Answer: a short search phrase.
+  // ---- action: which of the commands code can run would the brief need? ----
+  // Input { question, actions: [{ name, description }] }. Answer: a name or
+  // "none". The list is code's (scripts/actions.mjs); nothing the model says
+  // becomes a command.
+  action: {
+    describe: (input) => `${input.actions.length} actions`,
+    variants: {
+      list: single((input) => ({
+        messages: [
+          { role: "system", content: `You are given a brief and the commands that can be run in the project it is about. Pick the one command whose result the brief needs. If the brief needs none of them, pick none. Reply with JSON only.` + NO_THINK },
+          { role: "user", content: `Brief: ${input.question}\n\nCommands:\n${input.actions.map((action) => `- ${action.name} — ${action.description}`).join("\n")}\n\nReply {"action": "<name>"} or {"action": "none"}.` },
+        ],
+        schema: enumSchema("action", [...input.actions.map((action) => action.name), "none"]),
+        maxTokens: 40,
+      }), (parsed) => String(parsed.action)),
+    },
+  },
+
   missing: {
     describe: (input) => `${input.sentences.length} sentences read`,
     variants: {

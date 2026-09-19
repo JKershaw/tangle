@@ -9,6 +9,7 @@ import { DEFAULT_VARIANTS, WALK_VERSION, runWalk, variantsFor } from "../src/wal
 import { wikiDriver } from "../src/wiki.js";
 import { fileDriver } from "../src/files.js";
 import { readCorpus } from "./corpus.mjs";
+import { actionDriver } from "./actions.mjs";
 import { SAMPLING } from "../src/webllm.js";
 import { DEFAULT_ENDPOINT, createEndpointAdapter } from "../src/endpoint.js";
 import { replayAdapter } from "../src/replay.js";
@@ -35,13 +36,17 @@ export function endpointOptions(endpoint, env = process.env) {
   return remote ? { apiKey: env.OPENROUTER_API_KEY ?? null, extra: {}, headers: { "HTTP-Referer": "https://github.com/JKershaw/tangle", "X-Title": "Tangle" } } : {};
 }
 
-export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, fetchImpl = globalThis.fetch, wikiCache = null, modelCache = null, live = true, ask: scripted = null, offline = false, source = null, onUpdate = null, note = console.log } = {}) {
+// actions: true offers the corpus's commands to a brief's root (ROADMAP 6,
+// scripts/actions.mjs), run in a worktree of the corpus.
+export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, fetchImpl = globalThis.fetch, wikiCache = null, modelCache = null, live = true, ask: scripted = null, offline = false, source = null, actions: withActions = false, onUpdate = null, note = console.log } = {}) {
   const contextWindow = Number(process.env.OLLAMA_CONTEXT_LENGTH) || undefined;
   const adapter = replayAdapter(createEndpointAdapter({ url: endpoint, fetchImpl, contextWindow, ...endpointOptions(endpoint) }), { live });
   let modelDir = null;
   let saved = { hits: 0, misses: 0 };
   const replayStats = () => adapter.replay.stats();
   const corpus = source ? readCorpus(source.root, source) : null;
+  const actions = withActions && corpus ? actionDriver(corpus.root, { name: corpus.name }) : null;
+  if (actions) note(`${stamp()} actions: ${actions.list().map((entry) => entry.name).join(", ") || "none"}`);
   if (corpus) {
     note(`${stamp()} corpus ${corpus.name}: ${corpus.size} files, ${corpus.declared.size} declared names, ${corpus.hash}`);
   }
@@ -77,7 +82,7 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, fetchImpl = glo
       if (!loadedModel) throw new Error("Load a model first.");
       const started = Date.now();
       Object.assign(run, { model: loadedModel, runtime, sampling: { ...SAMPLING }, schema: `${WALK_VERSION}/${ASK_VERSION}`, ...(corpus ? { source: { kind: "files", name: corpus.name, root: corpus.root, files: corpus.size, hash: corpus.hash } } : {}) });
-      const drivers = { ask, wiki, source: corpus ? "files" : "wiki", ignore: corpus ? [corpus.name] : [], variants: variantsFor(loadedModel), onUpdate: (nodeId, message) => onUpdate?.(nodeId, message) };
+      const drivers = { ask, wiki, actions, source: corpus ? "files" : "wiki", ignore: corpus ? [corpus.name] : [], variants: variantsFor(loadedModel), onUpdate: (nodeId, message) => onUpdate?.(nodeId, message) };
       let retriesUsed = 0;
       let outcome;
       const before = replayStats();
@@ -143,6 +148,9 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, fetchImpl = glo
       saved = now;
       return report;
     },
-    close: () => adapter.unload(),
+    close: () => {
+      actions?.close();
+      return adapter.unload();
+    },
   };
 }

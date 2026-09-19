@@ -277,7 +277,7 @@ export function validateImport(text, { resume = false } = {}) {
     evidenceIds.add(record.id);
     // "read" is any source's read (src/source.js); "wiki" is what exports
     // before it carried; "fixture" is the simulation's.
-    assert(["read", "wiki", "fixture"].includes(record.kind), "Unknown evidence kind.");
+    assert(["read", "result", "wiki", "fixture"].includes(record.kind), "Unknown evidence kind.");
     if (record.url) {
       const url = new URL(record.url);
       assert(
@@ -291,7 +291,7 @@ export function validateImport(text, { resume = false } = {}) {
     assert(/^n\d+$/.test(node.id) && !nodeIds.has(node.id), "Invalid or duplicate node ID.");
     nodeIds.add(node.id);
     assert(isText(node.question, 400) && NODE_STATUSES.includes(node.status), "Invalid node.");
-    assert(node.kind === undefined || ["question", "split", "brief", "section", "hop"].includes(node.kind), "Invalid node kind.");
+    assert(node.kind === undefined || ["question", "split", "brief", "section", "hop", "action"].includes(node.kind), "Invalid node kind.");
     assert(
       typeof node.finding === "string" && node.finding.length <= 12000 && typeof node.reason === "string" && node.reason.length <= 4000,
       "Invalid node text.",
