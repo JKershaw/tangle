@@ -291,6 +291,7 @@ export function validateImport(text, { resume = false } = {}) {
     assert(/^n\d+$/.test(node.id) && !nodeIds.has(node.id), "Invalid or duplicate node ID.");
     nodeIds.add(node.id);
     assert(isText(node.question, 400) && NODE_STATUSES.includes(node.status), "Invalid node.");
+    assert(node.kind === undefined || ["question", "split", "brief", "section", "hop"].includes(node.kind), "Invalid node kind.");
     assert(
       typeof node.finding === "string" && node.finding.length <= 12000 && typeof node.reason === "string" && node.reason.length <= 4000,
       "Invalid node text.",

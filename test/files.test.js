@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { corpusFrom, fileDriver, fileLinks, lineUnits, lookupFiles, parseFile, readFileAbout, readFileSection, search, tokens, usesName } from "../src/files.js";
 import { readCorpus, readCorpusEntries } from "../scripts/corpus.mjs";
 import { createRun, nextRunnable, validateImport } from "../src/graph.js";
-import { runWalk, subjectIgnore } from "../src/walk.js";
+import { runWalk } from "../src/walk.js";
 import { SCRIPTED } from "../src/scripted.js";
 
 const ROOT = new URL("./fixtures/corpus", import.meta.url).pathname;
@@ -95,11 +95,10 @@ test("a file's links are the corpus's declarations it uses, as 'name (path)' tit
 
 test("a brief's root whose lead gives it nothing to keep still fans out to the file's declarations", async () => {
   const c = corpus();
-  subjectIgnore.add("tinystore");
   const run = createRun("Tell me how Tinystore matches a filter", "live");
   // Every sentence pick says none; every other ask takes the first choice.
   const ask = async (call) => (call.schema?.properties?.sentence ? { text: JSON.stringify({ sentence: "none" }), tokens: 0 } : SCRIPTED.first(call));
-  const first = await runWalk(run, { ask, wiki: fileDriver(c), source: "files", variants: { sentence: "list", article: "snippets" } });
+  const first = await runWalk(run, { ask, wiki: fileDriver(c), source: "files", ignore: ["tinystore"], variants: { sentence: "list", article: "snippets" } });
   assert.equal(first, true, run.nodes[0].reason);
   assert.equal(run.nodes[0].status, "waiting", "the root handed its sections down");
   assert.ok(run.nodes.length > 1);
@@ -108,11 +107,10 @@ test("a brief's root whose lead gives it nothing to keep still fans out to the f
 
 test("the walk over a file corpus: a brief reads a file's lead, fans out to its declarations, keeps lines, hops along the links, and the profile cites file lines", async () => {
   const c = corpus();
-  subjectIgnore.add("tinystore");
   const run = createRun("Tell me how Tinystore persists writes to disk", "live");
   const wiki = fileDriver(c);
   for (let guard = 0; nextRunnable(run) && guard < 80; guard++) {
-    assert.equal(await runWalk(run, { ask: SCRIPTED.first, wiki, source: "files", variants: { sentence: "list", article: "snippets" } }), true, run.nodes.find((node) => node.status === "error")?.reason);
+    assert.equal(await runWalk(run, { ask: SCRIPTED.first, wiki, source: "files", ignore: ["tinystore"], variants: { sentence: "list", article: "snippets" } }), true, run.nodes.find((node) => node.status === "error")?.reason);
   }
   const root = run.nodes[0];
   assert.equal(root.status, "resolved");

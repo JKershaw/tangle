@@ -109,13 +109,15 @@ const JOIN_WORDS = new Set("and or both common share shared versus vs have in of
 const SUBJECT_STOP = new Set("and or but that which who whom whose what how why when where in on at of for from with by to as into over under since during after before its his her their it he she they is was were are be been has have had does did".split(" "));
 // Names that are never a brief's subject: a corpus's own name ("MangoDB" in
 // every brief about MangoDB), registered by whoever loads the corpus.
-export const subjectIgnore = new Set();
-export function briefSubject(question) {
+// Words a source says to ignore as a subject (a corpus's own name: every
+// MangoDB brief names MangoDB); the walk passes them from its options.
+const NO_IGNORE = new Set();
+export function briefSubject(question, ignore = NO_IGNORE) {
   const text = String(question ?? "").split(FOCUS)[0];
   for (const match of text.matchAll(NAME_IN_TEXT)) {
     // The brief's first word is its verb ("Describe the Great Barrier Reef").
     const name = (match.index === 0 ? match[1].replace(/^\S+\s+(?:me\s+|us\s+)?(?:about\s+)?(?:the\s+)?/i, "") : match[1]).replace(/^the /i, "").trim();
-    if (!name || BRIEF.test(name) || subjectIgnore.has(normalise(name)) || subjectIgnore.has(normalise(name.split(/\s+/)[0].replace(/['’]s$/, "")))) continue;
+    if (!name || BRIEF.test(name) || ignore.has(normalise(name)) || ignore.has(normalise(name.split(/\s+/)[0].replace(/['’]s$/, "")))) continue;
     const rest = text.slice(match.index + match[0].length).match(/^((?:\s+[a-z][a-z'’-]*)*)/)?.[1] ?? "";
     const tail = [];
     for (const word of rest.trim().split(/\s+/).filter(Boolean)) {
@@ -126,16 +128,16 @@ export function briefSubject(question) {
   }
   return null;
 }
-export function searchTerm(question) {
+export function searchTerm(question, ignore = NO_IGNORE) {
   const { base, focus, others } = focusOf(question);
   if (!focus && isBrief(base)) {
-    const subject = briefSubject(base);
+    const subject = briefSubject(base, ignore);
     if (subject) return subject;
   }
   let text = String(base ?? "").replace(/[?.!,;:"“”]/g, "");
   for (const other of others) text = text.replace(other.replace(/[?.!,;:"“”]/g, ""), " ");
   const words = text.split(/\s+/).filter(Boolean);
-  const kept = words.filter((word) => !QUESTION_WORDS.has(word.toLowerCase()) && !subjectIgnore.has(normalise(word)) && !(focus && JOIN_WORDS.has(word.toLowerCase())));
+  const kept = words.filter((word) => !QUESTION_WORDS.has(word.toLowerCase()) && !ignore.has(normalise(word)) && !(focus && JOIN_WORDS.has(word.toLowerCase())));
   return (kept.length ? kept : words).join(" ").trim();
 }
 
@@ -238,13 +240,21 @@ const keptOf = (run) => setOn(stateOf(run).kept);
 // newest first. Every candidate carries the evidence it rests on. A child's
 // finding is not a candidate: a finding is not evidence, and a parent whose
 // children answered resolves with what they found without a pick (below).
-export function candidates(run, node) {
+// A node's kind is set when the walk creates it and derived, for an export
+// from before kinds, from what it carries: a hop child names hopTo, a
+// section child names readFirst, a split parent lists its subjects, and a
+// brief's root is the root of a brief. Everything else is a question.
+export function kindOf(node) {
+  return node.kind ?? (node.hopTo ? "hop" : node.readFirst ? "section" : node.split ? "split" : isBrief(node.question) && node.depth === 0 ? "brief" : "question");
+}
+
+export function candidates(run, node, ignore = NO_IGNORE) {
   const out = [];
   // Under a brief, a hop's article is about something else (the bombe, chess);
   // only its sentences that name the brief's subject are offered, so a hop to
   // "Chess" cannot fill a Turing profile with chess.
   const base = String(node.question).split(FOCUS)[0];
-  const subject = node.hopTo ? (briefSubject(base) ?? base) : null;
+  const subject = kindOf(node) === "hop" ? (briefSubject(base, ignore) ?? base) : null;
   // A file's lines are on subject by construction: a hop to a declaration
   // comes from a line that used it, and a callee rarely restates its
   // caller's subject.
@@ -299,7 +309,8 @@ export function isRepeat(run, node, question) {
 }
 
 export async function runWalk(run, options) {
-  const { signal, onUpdate = () => {}, ask, wiki, approve = async () => true, pace = null, variants: chosen = {}, source = "wiki" } = options;
+  const { signal, onUpdate = () => {}, ask, wiki, approve = async () => true, pace = null, variants: chosen = {}, source = "wiki", ignore: ignored = [] } = options;
+  const ignore = new Set(ignored.map(normalise));
   if (run.readOnly) throw new Error("Imported runs are inspect-only.");
   const variants = { ...DEFAULT_VARIANTS, ...chosen };
   run.promptVersion ??= `${WALK_VERSION}/${ASK_VERSION}/${Object.entries(variants).map(([ask, variant]) => `${ask}:${variant}`).join(",")}`;
@@ -313,6 +324,8 @@ export async function runWalk(run, options) {
   if (!node) return false;
   const previousStatus = node.status;
   node.status = "working";
+  node.kind = kindOf(node);
+  const kind = node.kind;
   node.visits++;
   run.visits++;
   trace(run, "node_started", { node: node.id, visit: node.visits });
@@ -399,20 +412,20 @@ export async function runWalk(run, options) {
   // what was read most recently, one window of it: 8B once overflowed the
   // 4,096-token context with every sentence of five excerpts (evals/results/
   // runs 2026-09-18, sky-blue).
-  const readSentences = () => candidates(run, node).slice(0, WINDOW).map((candidate) => candidate.text);
+  const readSentences = () => candidates(run, node, ignore).slice(0, WINDOW).map((candidate) => candidate.text);
   const firstLookup = async () => {
-    if (node.readFirst) return lookup(`${node.readFirst.article} / ${node.readFirst.section}`, { ...node.readFirst });
-    if (node.hopTo) {
+    if (kind === "section") return lookup(`${node.readFirst.article} / ${node.readFirst.section}`, { ...node.readFirst });
+    if (kind === "hop") {
       // A name from the article's links is an article title: read it
       // directly — the part of it that is about the brief's subject, since
       // that is what a hop is for. A capitalised phrase may not be a title;
       // then search for it.
-      const direct = await lookup(node.hopTo, { article: node.hopTo, section: 0, about: briefSubject(focusOf(node.question).base) ?? focusOf(node.question).base }, { fresh: true });
+      const direct = await lookup(node.hopTo, { article: node.hopTo, section: 0, about: briefSubject(focusOf(node.question).base, ignore) ?? focusOf(node.question).base }, { fresh: true });
       if (direct !== "nothing" || lookups >= run.limits.maxLookups) return direct;
       return lookup(node.hopTo, null, { fresh: true });
     }
     const { focus } = focusOf(node.question);
-    const terms = [...new Set([searchTerm(node.question), focus ? focus.replace(/^the /, "") : String(node.question).trim()])];
+    const terms = [...new Set([searchTerm(node.question, ignore), focus ? focus.replace(/^the /, "") : String(node.question).trim()])];
     if (variants.article === "off" || !wiki.length || terms.length < 2) return lookup(terms[0]);
     // The search is a Wikipedia request too, and the page promises that
     // every request is approved: it went out unasked until 2026-09-18.
@@ -479,8 +492,10 @@ export async function runWalk(run, options) {
       const subjects = splitSubjects(node.question);
       if (subjects.length && node.depth < run.limits.maxDepth && run.nodes.length + subjects.length <= run.limits.maxNodes) {
         node.split = subjects;
+        node.kind = "split";
         trace(run, "question_split", { node: node.id, subjects });
         applyResult(run, node.id, { action: "decompose", harness: true, questions: subjects.map((subject) => `${String(node.question).trim()}${FOCUS}${subject}`) }, visible());
+        for (const child of run.nodes.slice(-subjects.length)) child.kind = "question";
         onUpdate(node.id, "Split into one question per subject");
         return true;
       }
@@ -517,7 +532,7 @@ export async function runWalk(run, options) {
         onUpdate(node.id, "Findings gathered");
         return true;
       }
-      if (node.split || node.fanned) {
+      if (kind === "split" || node.fanned) {
         applyResult(run, node.id, { action: "blocked", reason: "Neither part of the question could be answered." }, visible());
         onUpdate(node.id, "Blocked");
         return true;
@@ -533,7 +548,7 @@ export async function runWalk(run, options) {
     if (!node.observed.length && !children(run, node.id).length && lookups < run.limits.maxLookups) {
       if ((await firstLookup()) === "declined") return true;
       // A hop child exists to read one article; with none read it is done.
-      if (node.hopTo && !node.observed.length) {
+      if (kind === "hop" && !node.observed.length) {
         applyResult(run, node.id, { action: "blocked", reason: `Nothing could be read about ${node.hopTo}.` }, visible());
         onUpdate(node.id, "Blocked");
         return true;
@@ -548,7 +563,7 @@ export async function runWalk(run, options) {
     // root, whose lead is the article's own summary (the Hubble lead holds
     // the launch, the flawed mirror and the servicing missions; three picks
     // kept none of them, 8B, walk-11).
-    const room = () => (run.limits.maxSentences ?? 1) * (brief && node.depth === 0 ? 2 : 1);
+    const room = () => (run.limits.maxSentences ?? 1) * (kind === "brief" ? 2 : 1);
     // The finding reads in source order — the order the article says it,
     // excerpt by excerpt — not the order the model picked it.
     const inOrder = (picked) => [...picked].sort((a, b) => a.evidence[0] === b.evidence[0] ? (a.at ?? 0) - (b.at ?? 0) : run.evidence.findIndex((record) => record.id === a.evidence[0]) - run.evidence.findIndex((record) => record.id === b.evidence[0]));
@@ -561,7 +576,7 @@ export async function runWalk(run, options) {
       const picked = inOrder(gathered);
       const words = () => picked.map((candidate) => candidate.text).join(" ").split(/\s+/).filter(Boolean).length;
       if (!picked.some((candidate) => candidate.line)) return picked;
-      const pool = candidates(run, node);
+      const pool = candidates(run, node, ignore);
       for (let guard = 0; words() < MIN_FINDING_WORDS && guard < 8; guard++) {
         const last = picked.at(-1);
         const next = pool.find((candidate) => candidate.evidence[0] === last.evidence[0] && candidate.at === last.at + 1) ?? pool.find((candidate) => candidate.evidence[0] === picked[0].evidence[0] && candidate.at === picked[0].at - 1);
@@ -615,7 +630,10 @@ export async function runWalk(run, options) {
       node.kept = inOrder(gathered).map((candidate) => ({ text: candidate.text, evidence: [...candidate.evidence], ...(candidate.line ? { line: true } : {}) }));
       node.fanned = true;
       applyResult(run, node.id, { action: "decompose", harness: true, questions: chosen.map((heading) => `${String(node.question).trim()}${FOCUS}${heading}`) }, visible());
-      for (const child of run.nodes.slice(-chosen.length)) child.readFirst = { article: unread.article, section: chosen[run.nodes.slice(-chosen.length).indexOf(child)] };
+      run.nodes.slice(-chosen.length).forEach((child, index) => {
+        child.kind = "section";
+        child.readFirst = { article: unread.article, section: chosen[index] };
+      });
       onUpdate(node.id, `Reading ${chosen.length} section${chosen.length === 1 ? "" : "s"} below`);
       return "fanned";
     };
@@ -679,7 +697,7 @@ export async function runWalk(run, options) {
       // reads the part that would be read (cached, no evidence captured), so
       // Astronomy, Universe and Star — named by every excerpt, ranked first,
       // chosen, and empty of the subject (8B, walk-11) — are not on the list.
-      const about = briefSubject(subject) ?? subject;
+      const about = briefSubject(subject, ignore) ?? subject;
       const offered = [];
       for (const name of names.slice(0, NAMES_SHOWN + 4)) {
         if (offered.length >= NAMES_SHOWN) break;
@@ -704,7 +722,8 @@ export async function runWalk(run, options) {
       // A hop child may hand down hops of its own, once: the Bombe's child
       // reads Bletchley Park for what it says about Turing. A hop's hop is a
       // leaf, so the first section's subtree cannot swallow the budget.
-      if (node.hopTo && run.nodes.find((candidate) => candidate.id === node.parent)?.hopTo) return false;
+      const parent = run.nodes.find((candidate) => candidate.id === node.parent);
+      if (kind === "hop" && parent && kindOf(parent) === "hop") return false;
       // Every node still open is owed room for its own hops.
       const open = run.nodes.filter((candidate) => candidate.status === "open" && candidate.id !== node.id).length;
       const budget = Math.min(run.limits.maxHops ?? 2, run.limits.maxNodes - run.nodes.length - open * (run.limits.maxHops ?? 2));
@@ -731,7 +750,10 @@ export async function runWalk(run, options) {
       node.fanned = true;
       const base = focusOf(node.question).base.trim();
       applyResult(run, node.id, { action: "decompose", harness: true, questions: chosen.map((name) => `${base}${FOCUS}${name}`) }, visible());
-      run.nodes.slice(-chosen.length).forEach((child, index) => { child.hopTo = chosen[index]; });
+      run.nodes.slice(-chosen.length).forEach((child, index) => {
+        child.kind = "hop";
+        child.hopTo = chosen[index];
+      });
       onUpdate(node.id, `Reading about ${chosen.length} more thing${chosen.length === 1 ? "" : "s"} below`);
       return "fanned";
     };
@@ -742,7 +764,7 @@ export async function runWalk(run, options) {
       // Only the brief's root fans out: a child that hopped to "Chess" once
       // fanned that article's sections into grandchildren (1.7B, walk-8).
       if (brief) {
-        if (unread && node.depth === 0 && node.depth < run.limits.maxDepth && !children(run, node.id).length && (await fanOut(unread))) return "fanned";
+        if (unread && kind === "brief" && node.depth < run.limits.maxDepth && !children(run, node.id).length && (await fanOut(unread))) return "fanned";
         return hopOut();
       }
       if (gathered.length >= room() || lookups >= run.limits.maxLookups || passes >= run.limits.maxPasses) return false;
@@ -754,7 +776,7 @@ export async function runWalk(run, options) {
     while (true) {
       signal?.throwIfAborted();
       const keptAnywhere = keptOf(run);
-      const pool = candidates(run, node).filter((candidate) => !judged.has(candidate.text) && !keptAnywhere.has(normalise(candidate.text)));
+      const pool = candidates(run, node, ignore).filter((candidate) => !judged.has(candidate.text) && !keptAnywhere.has(normalise(candidate.text)));
       if (pool.length && passes < run.limits.maxPasses && gathered.length < room()) {
         const window = pool.slice(0, WINDOW);
         passes++;
@@ -803,14 +825,14 @@ export async function runWalk(run, options) {
       // sections down: a source file's header can be one line ("Common
       // types and interfaces"), and the file's substance is its
       // declarations (1.7B, 2026-09-19, the find brief blocked at the root).
-      if (brief && node.depth === 0 && !children(run, node.id).length && node.depth < run.limits.maxDepth) {
+      if (kind === "brief" && !children(run, node.id).length && node.depth < run.limits.maxDepth) {
         const unread = unreadSections(run, node)[0];
         if (unread && (await fanOut(unread))) return true;
       }
       // A hop child reads one article for sentences that name the brief's
       // subject; when its lead has none, no section of it is read either
       // (8B's Gordon Brown child read on and asked for section "none").
-      if (brief && node.hopTo) {
+      if (kind === "hop") {
         applyResult(run, node.id, { action: "blocked", reason: judged.size ? `Nothing of what ${node.hopTo} says about the subject was kept.` : `Nothing read about ${node.hopTo} names the subject of the brief.` }, visible());
         onUpdate(node.id, "Blocked");
         return true;

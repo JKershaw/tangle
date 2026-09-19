@@ -5,11 +5,10 @@
 // flag. Retries after an error do what the page's Retry button does.
 import { clone, createRun, nextRunnable, outcomeLabel, trace, VERSION } from "../src/graph.js";
 import { ASK_VERSION } from "../src/asks.js";
-import { DEFAULT_VARIANTS, WALK_VERSION, runWalk, variantsFor, subjectIgnore } from "../src/walk.js";
+import { DEFAULT_VARIANTS, WALK_VERSION, runWalk, variantsFor } from "../src/walk.js";
 import { wikiDriver } from "../src/wiki.js";
 import { fileDriver } from "../src/files.js";
 import { readCorpus } from "./corpus.mjs";
-import { normalise } from "../src/text.js";
 import { SAMPLING } from "../src/webllm.js";
 import { DEFAULT_ENDPOINT, createEndpointAdapter } from "../src/endpoint.js";
 import { replayAdapter } from "../src/replay.js";
@@ -44,7 +43,6 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, fetchImpl = glo
   const replayStats = () => adapter.replay.stats();
   const corpus = source ? readCorpus(source.root, source) : null;
   if (corpus) {
-    subjectIgnore.add(normalise(corpus.name));
     note(`${stamp()} corpus ${corpus.name}: ${corpus.size} files, ${corpus.declared.size} declared names, ${corpus.hash}`);
   }
   const runtime = scripted ? "scripted" : `node ${process.version} · ${endpoint}`;
@@ -79,7 +77,7 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, fetchImpl = glo
       if (!loadedModel) throw new Error("Load a model first.");
       const started = Date.now();
       Object.assign(run, { model: loadedModel, runtime, sampling: { ...SAMPLING }, schema: `${WALK_VERSION}/${ASK_VERSION}`, ...(corpus ? { source: { kind: "files", name: corpus.name, root: corpus.root, files: corpus.size, hash: corpus.hash } } : {}) });
-      const drivers = { ask, wiki, source: corpus ? "files" : "wiki", variants: variantsFor(loadedModel), onUpdate: (nodeId, message) => onUpdate?.(nodeId, message) };
+      const drivers = { ask, wiki, source: corpus ? "files" : "wiki", ignore: corpus ? [corpus.name] : [], variants: variantsFor(loadedModel), onUpdate: (nodeId, message) => onUpdate?.(nodeId, message) };
       let retriesUsed = 0;
       let outcome;
       const before = replayStats();

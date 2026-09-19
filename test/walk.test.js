@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { applyResult, captureEvidence, createRun, nextRunnable } from "../src/graph.js";
-import { briefSubject, candidates, isBrief, isForeign, isRepeat, namesIn, occurs, runWalk, searchTerm, splitSubjects, unreadSections, variantsFor } from "../src/walk.js";
+import { briefSubject, candidates, isBrief, isForeign, isRepeat, kindOf, namesIn, occurs, runWalk, searchTerm, splitSubjects, unreadSections, variantsFor } from "../src/walk.js";
 
 // A scripted model: answers come off a queue, keyed by the field the schema
 // asks for, so a test states exactly what the model says at each ask.
@@ -635,4 +635,15 @@ test("the first search asks for approval before anything is sent, and a refusal 
   assert.deepEqual(asked, ["Dead Sea shrinking | Why is the Dead Sea shrinking?"]);
   assert.equal(run.nodes[0].status, "blocked");
   assert.match(run.nodes[0].reason, /declined/);
+});
+
+test("a node's kind is what the walk set, or derived from what an older export carries; a source's ignored words are an option, not a global", () => {
+  assert.equal(kindOf({ question: "Tell me about Alan Turing.", depth: 0 }), "brief");
+  assert.equal(kindOf({ question: "Tell me about Alan Turing. — about Bombe", depth: 1, hopTo: "Bombe" }), "hop");
+  assert.equal(kindOf({ question: "Tell me about Alan Turing. — about War", depth: 1, readFirst: { article: "Alan Turing", section: "War" } }), "section");
+  assert.equal(kindOf({ question: "Why did A and B shrink?", depth: 0, split: ["A", "B"] }), "split");
+  assert.equal(kindOf({ question: "Why is the Dead Sea shrinking?", depth: 0 }), "question");
+  assert.equal(kindOf({ question: "Tell me about Alan Turing.", depth: 0, kind: "question" }), "question", "what the walk set wins");
+  assert.equal(searchTerm("Tell me how MangoDB persists writes to disk.", new Set(["mangodb"])), "persists writes to disk");
+  assert.equal(briefSubject("Tell me how MangoDB persists writes to disk.", new Set(["mangodb"])), null);
 });
