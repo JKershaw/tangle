@@ -175,12 +175,14 @@ The same model with the four source requests as tools in one context, each seed 
 | profiles, 35 topics | 1.7B | **25** · 197 · 71k · 2.8k | 13 · 34 · 49k · 3.8k | 11 | 15 |
 | | 4B | **24** · 241 · 76k · 3.2k | 11 · 28 · 64k · 5.8k | 1 | 10 |
 | | 8B | **24** · 266 · 85k · 3.5k | 20 · 19 · 25k · 1.3k | 8 | 20 |
+| | 14B | **27** · 265 · 87k · 3.2k | 20 (18 supported) · 15 · 16k · 0.8k | 16 | 21 (walk-12 day) |
 | overflow, 30 topics | 1.7B | **24** · 117 · 44k · 1.8k | 11 · 25 · 39k · 3.5k | 0 | 5 |
 | | 4B | **23** · 135 · 50k · 2.2k | 11 · 17 · 35k · 3.2k | 0 | 12 |
 | | 8B | **24** · 141 · 51k · 2.1k | 21 · 15 · 18k · 0.9k | 6 | 17 |
 | MangoDB, 42 topics | 1.7B | **14** · 122 · 40k · 2.9k | 6 · 30 · 37k · 6.1k | 0 | 9 |
 | | 4B | **11** · 164 · 47k · 4.3k | 11 (6 supported) · 24 · 43k · 4.0k | 0 | 8 |
 | | 8B | 12 · 167 · 53k · 4.4k | **15** (14 supported) · 16 · 15k · 1.0k | 0 | 9 |
+| | 14B | **18** · 201 · 62k · 3.5k | 15 · 26 · 32k · 2.1k | 3 | — |
 
 Each cell: topics (or facts) present · model calls · tokens · tokens per topic. The graph's topics are all supported by construction; the tool control's "supported" means the fact was named and something read held it. Memory is the closed-book column (page rows for Wikipedia, Node for MangoDB). Budget: each seed's calls and tokens are the graph's spend on that seed; the tool control may stop early, and at 8B it does.
 
@@ -218,7 +220,7 @@ Memory writes a write-ahead log and replication into a database that has neither
 ### 2026-09-19 · milestone 5b · the tool control
 
 - `scripts/tools.mjs` (59c9099 → a811bbd): the same model with search, read, section and about as tools in one context, budget-matched per seed to the graph's row, composing and cited. tools-1: at 1.7B every seed was answered on the first call with no tool used, and Ollama ignores `tool_choice`; tools-2 refuses an unread answer with the reason and charges the call; tools-3 cuts a search line handed back as a title and checks the budget against the next call's cost.
-- The table above. At 1.7B and 4B the graph beats the tool control on every brief set about two to one and the tool control equals memory; at 8B the tool control closes to within three or four topics on Wikipedia briefs and beats the graph on MangoDB (15 against 12) at a third of the tokens per topic. The cited variant is near zero below 8B. The warm-graph row is not built: no node question repeats across the four MangoDB briefs at any size.
+- The table above. At 1.7B and 4B the graph beats the tool control on every brief set about two to one and the tool control equals memory; at 8B the tool control closes to within three or four topics on Wikipedia briefs and beats the graph on MangoDB (15 against 12) at a third of the tokens per topic; at 14B the graph leads again (27 and 18 against 20 and 15) at three to four times the tokens per topic. The cited variant is near zero below 8B and 16 of 35 on profiles at 14B. The warm-graph row is not built: no node question repeats across the four MangoDB briefs at any size.
 
 ### 2026-09-19 · milestone 5a · the replay
 

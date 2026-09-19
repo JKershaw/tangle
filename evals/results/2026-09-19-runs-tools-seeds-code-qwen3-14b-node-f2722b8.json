@@ -1,0 +1,536 @@
+{
+  "suite": "runs",
+  "model": "qwen3:14b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "f2722b8",
+  "head": "f2722b8",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T09:01:30.386Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 15,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 92
+    },
+    "vramGiB": {
+      "min": 9.7,
+      "max": 9.75,
+      "mean": 9.7
+    },
+    "load": {
+      "min": 14.44,
+      "max": 18.27,
+      "mean": 16.6
+    },
+    "memoryFreePercent": {
+      "min": 59,
+      "max": 59,
+      "mean": 59
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-14b-node-5b.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 15,
+  "factsSupported": 15,
+  "factsRead": 27,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 26,
+    "cache": "evals/model-cache/qwen3-14b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "streamed-write": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "serialisation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 5,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 8,
+        "modelCalls": 8,
+        "lookups": 6,
+        "tokens": 9989
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB persists writes to disk using an atomic write strategy that ensures data integrity and avoids potential issues with large collections. In the `writeDocuments` method of `src/collection.ts`, MangoDB writes data to a temporary file first and then renames it to the target file path. This approach minimizes the risk of data corruption or partial writes, as the rename operation is atomic and ensures that the file is only updated once the write is complete.\n\nThe method uses a streaming approach to write data, which is particularly useful for large collections. Instead of serializing the entire collection into a single string (which could exceed V8's string length limit), MangoDB writes each document individually to the stream. This avoids potential out-of-memory issues and ensures that the write process is efficient and scalable.\n\nAdditionally, the method ensures that the directory for the file is created if it does not already exist, using the `mkdir` function with the `recursive: true` option. After writing the data to the temporary file, the method renames the temporary file to the target file path, completing the write operation. If the rename operation fails, the temporary file is cleaned up to avoid leaving behind orphaned files. This strategy ensures that MangoDB reliably persists writes to disk while maintaining performance and data integrity.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 10,
+        "chars": 1375,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 54,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 8
+      },
+      "budget": {
+        "calls": 33,
+        "tokens": 10327
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "MangoDB persists writes to disk using an atomic write strategy that ensures data integrity and avoids potential issues with large collections. In the `writeDocuments` method of `src/collection.ts`, MangoDB writes data to a temporary file first and then renames it to the target file path. This approach minimizes the risk of data corruption or partial writes, as the rename operation is atomic and ensures that the file is only updated once the write is complete.\n\nThe method uses a streaming approach to write data, which is particularly useful for large collections. Instead of serializing the entire collection into a single string (which could exceed V8's string length limit), MangoDB writes each document individually to the stream. This avoids potential out-of-memory issues and ensures that the write process is efficient and scalable.\n\nAdditionally, the method ensures that the directory for the file is created if it does not already exist, using the `mkdir` function with the `recursive: true` option. After writing the data to the temporary file, the method renames the temporary file to the target file path, completing the write operation. If the rename operation fails, the temporary file is cleaned up to avoid leaving behind orphaned files. This strategy ensures that MangoDB reliably persists writes to disk while maintaining performance and data integrity.",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-persist.json"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "matches-filter": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "logical-operators": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 4,
+        "tokens": 8003
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The `matchesFilter` function in `src/query-matcher.ts` is the core mechanism in MangoDB for evaluating whether a document matches a MongoDB-style filter. This function is responsible for checking if a given document satisfies the conditions specified in a filter, which can include simple equality checks, query operators, logical operators, and nested field access using dot notation.\n\n### Key Features of `matchesFilter`:\n1. **Logical Operators**: The function supports logical operators such as `$and`, `$or`, and `$nor`, which allow for complex query combinations. For example, using `$and` ensures that all conditions in the array must be satisfied for the document to match.\n\n2. **Query Operators**: It supports a wide range of query operators, including `$eq`, `$ne`, `$gt`, `$gte`, `$lt`, `$lte`, `$in`, `$nin`, `$exists`, `$not`, `$size`, `$all`, and `$elemMatch`. These operators allow for precise filtering based on field values and their relationships.\n\n3. **Dot Notation**: The function can handle dot notation for accessing nested fields, such as `{ \"address.city\": \"NYC\" }`, which enables querying on deeply nested document structures.\n\n4. **Array Matching**: It supports array field matching, including checking if any element in an array matches a condition, such as `{ \"tags\": \"js\" }` or `{ \"scores\": { \"$gt\": 80 } }`.\n\n5. **$expr and $comment**: The function also handles `$expr`, which allows for evaluating aggregation expressions against the document, and `$comment`, which is used for logging or profiling without affecting query results.\n\n### Example Usage:\n- **Simple Equality**: `matchesFilter({ age: 25 }, { age: 25 })` returns `true` because the document matches the filter exactly.\n- **Query Operators**: `matchesFilter({ age: 25 }, { age: { $gte: 18",
+      "profile": {
+        "paragraphs": 7,
+        "sentences": 12,
+        "chars": 1779,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 71,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 70,
+        "tokens": 21966
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The `matchesFilter` function in `src/query-matcher.ts` is the core mechanism in MangoDB for evaluating whether a document matches a MongoDB-style filter. This function is responsible for checking if a given document satisfies the conditions specified in a filter, which can include simple equality checks, query operators, logical operators, and nested field access using dot notation.\n\n### Key Features of `matchesFilter`:\n1. **Logical Operators**: The function supports logical operators such as `$and`, `$or`, and `$nor`, which allow for complex query combinations. For example, using `$and` ensures that all conditions in the array must be satisfied for the document to match.\n\n2. **Query Operators**: It supports a wide range of query operators, including `$eq`, `$ne`, `$gt`, `$gte`, `$lt`, `$lte`, `$in`, `$nin`, `$exists`, `$not`, `$size`, `$all`, and `$elemMatch`. These operators allow for precise filtering based on field values and their relationships.\n\n3. **Dot Notation**: The function can handle dot notation for accessing nested fields, such as `{ \"address.city\": \"NYC\" }`, which enables querying on deeply nested document structures.\n\n4. **Array Matching**: It supports array field matching, including checking if any element in an array matches a condition, such as `{ \"tags\": \"js\" }` or `{ \"scores\": { \"$gt\": 80 } }`.\n\n5. **$expr and $comment**: The function also handles `$expr`, which allows for evaluating aggregation expressions against the document, and `$comment`, which is used for logging or profiling without affecting query results.\n\n### Example Usage:\n- **Simple Equality**: `matchesFilter({ age: 25 }, { age: 25 })` returns `true` because the document matches the filter exactly.\n- **Query Operators**: `matchesFilter({ age: 25 }, { age: { $gte: 18",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-find.json"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "default-id-index": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "built-lazily-in-memory": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "equality-map": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sorted-entries": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "compound-prefix": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "non-indexable": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "special-indexes-skipped": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 4,
+        "tokens": 7118
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "From the `createIndex` section in `src/index-manager.ts`, we learn that MangoDB allows the creation of indexes on collections. The `createIndex` function takes a `keySpec` parameter, which defines the fields to be indexed (e.g., `{ email: 1 }`), and an `options` parameter, which includes settings like `unique`, `name`, `sparse`, `expireAfterSeconds`, and `partialFilterExpression`. The function returns the name of the created or existing index.\n\nSeveral validations are performed during the index creation process. For example, it is not allowed to combine the `sparse` and `partialFilterExpression` options. Additionally, the `expireAfterSeconds` option, which is used for Time-to-Live (TTL) indexes, must be a number between 0 and 2147483647. It also cannot be applied to the `_id` field or used in compound indexes. Hashed indexes, which are created using the `hashed` value in the `keySpec`, cannot be unique and cannot have multiple hashed fields in a single index.\n\nThis function is essential for managing how MangoDB indexes are created and ensures that the indexes adhere to specific constraints and rules.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 9,
+        "chars": 1117,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 46,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 41,
+        "tokens": 13007
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "From the `createIndex` section in `src/index-manager.ts`, we learn that MangoDB allows the creation of indexes on collections. The `createIndex` function takes a `keySpec` parameter, which defines the fields to be indexed (e.g., `{ email: 1 }`), and an `options` parameter, which includes settings like `unique`, `name`, `sparse`, `expireAfterSeconds`, and `partialFilterExpression`. The function returns the name of the created or existing index.\n\nSeveral validations are performed during the index creation process. For example, it is not allowed to combine the `sparse` and `partialFilterExpression` options. Additionally, the `expireAfterSeconds` option, which is used for Time-to-Live (TTL) indexes, must be a number between 0 and 2147483647. It also cannot be applied to the `_id` field or used in compound indexes. Hashed indexes, which are created using the `hashed` value in the `keySpec`, cannot be unique and cannot have multiple hashed fields in a single index.\n\nThis function is essential for managing how MangoDB indexes are created and ensures that the indexes adhere to specific constraints and rules.",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-indexes.json"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "stage-dispatch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "in-memory-sequential": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "out-and-merge-last": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "accumulators": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "lookup": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "system-variables": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "one-key-per-stage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 4,
+        "tokens": 7131
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The `executeStage` method in `src/aggregation/cursor.ts` is a crucial part of how MangoDB processes each stage in an aggregation pipeline. This method takes a `PipelineStage` and an array of `Document[]` as inputs and returns a new array of `Document[]` after applying the stage's logic. The method first checks that the stage has exactly one field, which is a requirement for valid pipeline stages. It then identifies the stage's key (e.g., `$match`, `$project`, `$sort`, etc.) and uses a `switch` statement to route the processing to the appropriate helper method, such as `execMatch`, `execProject`, or `execSort`.\n\nFor example, if the stage is `$match`, the method calls `this.execMatch(stageValue as Filter<Document>, docs)` to filter the documents based on the provided criteria. Similarly, for `$project`, it calls `this.execProject(stageValue as Record<string, 0 | 1 | string | ProjectExpression>, docs)` to project or reshape the documents according to the specified fields. This modular approach ensures that each stage is processed efficiently and correctly, allowing MangoDB to handle complex aggregation operations with clarity and precision.",
+      "profile": {
+        "paragraphs": 2,
+        "sentences": 7,
+        "chars": 1155,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 51,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 57,
+        "tokens": 17040
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The `executeStage` method in `src/aggregation/cursor.ts` is a crucial part of how MangoDB processes each stage in an aggregation pipeline. This method takes a `PipelineStage` and an array of `Document[]` as inputs and returns a new array of `Document[]` after applying the stage's logic. The method first checks that the stage has exactly one field, which is a requirement for valid pipeline stages. It then identifies the stage's key (e.g., `$match`, `$project`, `$sort`, etc.) and uses a `switch` statement to route the processing to the appropriate helper method, such as `execMatch`, `execProject`, or `execSort`.\n\nFor example, if the stage is `$match`, the method calls `this.execMatch(stageValue as Filter<Document>, docs)` to filter the documents based on the provided criteria. Similarly, for `$project`, it calls `this.execProject(stageValue as Record<string, 0 | 1 | string | ProjectExpression>, docs)` to project or reshape the documents according to the specified fields. This modular approach ensures that each stage is processed efficiently and correctly, allowing MangoDB to handle complex aggregation operations with clarity and precision.",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-aggregate.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T09:01:30.385Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T09:01:30.386Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:14b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T09:01:30.423Z model cache evals/model-cache/qwen3-14b: 201 responses loaded",
+    "machine at start: gpu 99% · vram 9.7 GiB · load 16.41 · mem 59% free (normal) · no throttling recorded",
+    "2026-09-19T09:01:30.504Z 4 seeds from evals/seeds-code.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-14b-node-5b.json\"} · prompt tools-3 · grammar tools:composing · matched · commit f2722b8",
+    "wiki recording: 0 responses loaded",
+    "persist: resolved · topics 4/9 · supported 4/9 · read 5/9 · ¶3 · 10 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 8 calls, 6 lookups, 9989 tokens · stopped by answer · 1 unread answers refused · 54 s · model 0 replayed 8 missed",
+    "find: resolved · topics 2/11 · supported 2/11 · read 3/11 · ¶7 · 12 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 4 lookups, 8003 tokens · stopped by answer · 1 unread answers refused · 71 s · model 0 replayed 6 missed",
+    "indexes: resolved · topics 5/11 · supported 5/11 · read 9/11 · ¶3 · 9 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 4 lookups, 7118 tokens · stopped by answer · 1 unread answers refused · 46 s · model 0 replayed 6 missed",
+    "aggregate: resolved · topics 4/11 · supported 4/11 · read 10/11 · ¶2 · 7 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 4 lookups, 7131 tokens · stopped by answer · 1 unread answers refused · 51 s · model 0 replayed 6 missed",
+    "machine during the suite: gpu 92% mean, 99% peak · vram up to 9.75 GiB · load up to 18.27 · no throttling in 15 samples"
+  ]
+}

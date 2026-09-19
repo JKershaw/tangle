@@ -4,7 +4,7 @@
 
 ## 2026-09-19 · milestone 5b: the tool control, 1.7B to 8B
 
-The control the graph had to beat (ROADMAP 5b): the same model with the four source requests as tools in one context, driving itself, each seed given the calls and tokens the graph's row spent on it, in the walk's context window. tools-3: an answer given before anything was read is refused with the reason and charged; a search line handed back as a title is cut to the title; the budget is checked against the next call's cost. Rows in Node against Ollama, the four seed sets, three sizes.
+The control the graph had to beat (ROADMAP 5b): the same model with the four source requests as tools in one context, driving itself, each seed given the calls and tokens the graph's row spent on it, in the walk's context window. tools-3: an answer given before anything was read is refused with the reason and charged; a search line handed back as a title is cut to the title; the budget is checked against the next call's cost. Rows in Node against Ollama, the four seed sets, three sizes, and 14B on the profile and code suites (the 14B memory row is from the walk-12 day; there is none for MangoDB).
 
 | suite | size | the graph (walk-15) | tool control, composing | tool control, cited | memory |
 |---|---|---|---|---|---|
@@ -14,17 +14,19 @@ The control the graph had to beat (ROADMAP 5b): the same model with the four sou
 | profiles, 35 topics | 1.7B | **25** · 197 · 71k · 2.8k | 13 · 34 · 49k · 3.8k | 11 | 15 |
 | | 4B | **24** · 241 · 76k · 3.2k | 11 · 28 · 64k · 5.8k | 1 | 10 |
 | | 8B | **24** · 266 · 85k · 3.5k | 20 · 19 · 25k · 1.3k | 8 | 20 |
+| | 14B | **27** · 265 · 87k · 3.2k | 20 (18 supported) · 15 · 16k · 0.8k | 16 | 21 (walk-12 day) |
 | overflow, 30 topics | 1.7B | **24** · 117 · 44k · 1.8k | 11 · 25 · 39k · 3.5k | 0 | 5 |
 | | 4B | **23** · 135 · 50k · 2.2k | 11 · 17 · 35k · 3.2k | 0 | 12 |
 | | 8B | **24** · 141 · 51k · 2.1k | 21 · 15 · 18k · 0.9k | 6 | 17 |
 | MangoDB, 42 topics | 1.7B | **14** · 122 · 40k · 2.9k | 6 · 30 · 37k · 6.1k | 0 | 9 |
 | | 4B | **11** · 164 · 47k · 4.3k | 11 (6 supported) · 24 · 43k · 4.0k | 0 | 8 |
 | | 8B | 12 · 167 · 53k · 4.4k | **15** (14 supported) · 16 · 15k · 1.0k | 0 | 9 |
+| | 14B | **18** · 201 · 62k · 3.5k | 15 · 26 · 32k · 2.1k | 3 | — |
 
 Each cell: topics (or facts) present · model calls · tokens · tokens per topic. The graph's topics are all supported by construction; the tool control's "supported" means the fact was named and something read held it. Memory is the closed-book column (page rows for Wikipedia, Node for MangoDB). Budget: each seed's calls and tokens are the graph's spend on that seed; the tool control may stop early, and at 8B it does.
 
 - **At 1.7B and 4B the graph earns its keep on every brief set, about two to one.** Profiles 25 and 24 against 13 and 11; overflow 24 and 23 against 11 and 11; MangoDB 14 against 6 at 1.7B and 11 against 11 at 4B, where the tool control's 11 has 6 supported. The tool control at these sizes reads, is refused a few times, spends its whole budget on the transcript and then answers from memory: on the question seeds it lands within a fact of the memory column (14 against 14, 18 against 19) with nothing supported.
-- **At 8B the answer changes.** The tool control stops by itself after two or three reads, spends a fifth to a third of its budget, and states what it read: profiles 20 against the graph's 24, overflow 21 against 24, and on MangoDB 15 against 12, ahead of the graph at a third of the tokens per topic (1.0k against 4.4k). Per topic it is the cheapest row at every suite at 8B. The graph's rows do not move from 4B to 8B; the tool control's double.
+- **At 8B the answer changes, and at 14B it changes back.** At 8B the tool control stops by itself after two or three reads, spends a fifth to a third of its budget, and states what it read: profiles 20 against the graph's 24, overflow 21 against 24, and on MangoDB 15 against 12, ahead of the graph at a third of the tokens per topic (1.0k against 4.4k). The graph's rows do not move from 4B to 8B; the tool control's double. At 14B the graph moves again, profiles 27 (its best row) and MangoDB 18 (its best code row, above 8B's 12), while the tool control stays at 20 and 15. So the single context overtakes the graph at one size on one suite, and per topic it is cheaper from 8B up (0.8k against 3.2k on profiles at 14B). The 14B profile row is the first where the cited single context is real: 16 of 35, every one supported.
 - **Cost per topic in compute favours the graph at 1.7B.** Tokens are not equal across sizes: a token at 8B costs about five times one at 1.7B. The graph at 1.7B on profiles is 2.8k tokens per topic; the tool control at 8B is 1.3k tokens per topic at five times the price per token. For Harbour's question, small acting big beats big driving itself, on the briefs, so far.
 - **The cited variant fails below 8B, and mostly at 8B.** Told to answer only in sentences copied word for word, 1.7B and 4B paraphrase everything: 0 of 23, 0 of 30, 0 of 42, and 11 of 35 on profiles at 1.7B is the one place it copied. At 8B some sentences survive the cut (8 of 35, 6 of 30) and none on code. A single context cannot be made to cite by asking; the graph cites because a finding is a pick, not a composition.
 - **The question seeds are memory's, whoever reads.** The tool control equals memory at every size on them and the graph is below memory from 4B up, as it has been since the bridge. They measure recall, and the reading columns add nothing to a model that already knows.

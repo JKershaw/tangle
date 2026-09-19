@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "qwen3:14b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "f2722b8",
+  "head": "f2722b8",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T09:14:39.949Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 11,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 89.5
+    },
+    "vramGiB": {
+      "min": 9.7,
+      "max": 16.93,
+      "mean": 11.9
+    },
+    "load": {
+      "min": 14.24,
+      "max": 18.63,
+      "mean": 16.5
+    },
+    "memoryFreePercent": {
+      "min": 23,
+      "max": 42,
+      "mean": 35.2
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-14b-node-5b.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 20,
+  "factsSupported": 18,
+  "factsRead": 23,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 15,
+    "cache": "evals/model-cache/qwen3-14b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 4,
+        "tokens": 7283
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Alan Turing: The Enigma, written by Andrew Hodges, is a comprehensive biography of Alan Turing, detailing his life, work, and the significant impact he had on the world. The book not only explores Turing's contributions to computer science and cryptography but also delves into his personal life, including his relationships and the tragic circumstances surrounding his death. Hodges' work has been widely acclaimed for its depth and accuracy, offering readers a nuanced understanding of Turing's legacy.\n\nOne of the most notable influences of the book is its role in inspiring the 2014 film *The Imitation Game*, directed by Morten Tyldum and starring Benedict Cumberbatch as Alan Turing. The film dramatizes Turing's work at Bletchley Park during World War II, where he played a pivotal role in breaking the Enigma code used by Nazi Germany. While the film takes some creative liberties, it has brought Turing's story to a broader audience, highlighting his contributions to the Allied war effort and his pioneering work in computer science.\n\nIn addition to inspiring *The Imitation Game*, *Alan Turing: The Enigma* has also influenced other works, such as the earlier play and film *Breaking the Code*, which portrayed more of Turing's life and struggles. Hodges' biography remains a foundational text for anyone interested in understanding the life and legacy of Alan Turing, as well as the broader historical and scientific context in which he lived and worked.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 8,
+        "chars": 1466,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 57,
+      "wiki": {
+        "hits": 5,
+        "misses": 0,
+        "added": 0,
+        "entries": 1339
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 85,
+        "tokens": 28662
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "Alan Turing: The Enigma, written by Andrew Hodges, is a comprehensive biography of Alan Turing, detailing his life, work, and the significant impact he had on the world. The book not only explores Turing's contributions to computer science and cryptography but also delves into his personal life, including his relationships and the tragic circumstances surrounding his death. Hodges' work has been widely acclaimed for its depth and accuracy, offering readers a nuanced understanding of Turing's legacy.\n\nOne of the most notable influences of the book is its role in inspiring the 2014 film *The Imitation Game*, directed by Morten Tyldum and starring Benedict Cumberbatch as Alan Turing. The film dramatizes Turing's work at Bletchley Park during World War II, where he played a pivotal role in breaking the Enigma code used by Nazi Germany. While the film takes some creative liberties, it has brought Turing's story to a broader audience, highlighting his contributions to the Allied war effort and his pioneering work in computer science.\n\nIn addition to inspiring *The Imitation Game*, *Alan Turing: The Enigma* has also influenced other works, such as the earlier play and film *Breaking the Code*, which portrayed more of Turing's life and struggles. Hodges' biography remains a foundational text for anyone interested in understanding the life and legacy of Alan Turing, as well as the broader historical and scientific context in which he lived and worked.",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 2,
+        "tokens": 2798
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Silk Road was a vast network of trade routes that connected the East and West, spanning over 6,400 km (4,000 mi) and playing a pivotal role in shaping the economic, cultural, and religious landscapes of Eurasia from the second century BCE until the mid-15th century. The name \"Silk Road\" was coined in the late 19th century, but some historians argue that the term \"Silk Routes\" is more accurate, as it reflects the complex web of land and sea routes that linked Central, East, South, Southeast, and West Asia, as well as East Africa and Southern Europe. The term has also faced criticism for emphasizing the contributions of sedentary empires while overlooking the role of nomadic peoples and the civilizations of India and Iran.\n\nThe Silk Road was initiated by the expansion of the Han dynasty into Central Asia around 114 BCE, following the missions of the Chinese imperial envoy Zhang Qian. This expansion brought the region under Chinese control and laid the foundation for the trade routes. The Chinese were deeply invested in securing their trade products, leading to the extension of the Great Wall of China to protect the trade routes. The Parthian Empire served as a crucial intermediary, connecting the Silk Road to the Mediterranean, while the rise of the Roman Empire in the west established the western terminus of the interconnected trade system. By the first century CE, Chinese silk was highly sought after in Rome, Egypt, and Greece, with other valuable goods such as tea, dyes, and porcelain flowing from the East, and horses, camels, honey, and gold coming from the West.\n\nThe Silk Road was not only a conduit for trade but also a channel for the exchange of ideas, religions, and technologies. It facilitated the spread of Buddhism from India to East Asia, the transmission of Christianity, and the presence of Judaism along the route. The Mongol Empire, which controlled much of the Silk Road",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 11,
+        "chars": 1918,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 33,
+      "wiki": {
+        "hits": 8,
+        "misses": 0,
+        "added": 0,
+        "entries": 1339
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 69,
+        "tokens": 21274
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Silk Road was a vast network of trade routes that connected the East and West, spanning over 6,400 km (4,000 mi) and playing a pivotal role in shaping the economic, cultural, and religious landscapes of Eurasia from the second century BCE until the mid-15th century. The name \"Silk Road\" was coined in the late 19th century, but some historians argue that the term \"Silk Routes\" is more accurate, as it reflects the complex web of land and sea routes that linked Central, East, South, Southeast, and West Asia, as well as East Africa and Southern Europe. The term has also faced criticism for emphasizing the contributions of sedentary empires while overlooking the role of nomadic peoples and the civilizations of India and Iran.\n\nThe Silk Road was initiated by the expansion of the Han dynasty into Central Asia around 114 BCE, following the missions of the Chinese imperial envoy Zhang Qian. This expansion brought the region under Chinese control and laid the foundation for the trade routes. The Chinese were deeply invested in securing their trade products, leading to the extension of the Great Wall of China to protect the trade routes. The Parthian Empire served as a crucial intermediary, connecting the Silk Road to the Mediterranean, while the rise of the Roman Empire in the west established the western terminus of the interconnected trade system. By the first century CE, Chinese silk was highly sought after in Rome, Egypt, and Greece, with other valuable goods such as tea, dyes, and porcelain flowing from the East, and horses, camels, honey, and gold coming from the West.\n\nThe Silk Road was not only a conduit for trade but also a channel for the exchange of ideas, religions, and technologies. It facilitated the spread of Buddhism from India to East Asia, the transmission of Christianity, and the presence of Judaism along the route. The Mongol Empire, which controlled much of the Silk Road",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mirror": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "servicing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 2,
+        "tokens": 2876
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It is one of the largest and most versatile space telescopes, renowned as a vital research tool and a public relations boon for astronomy. Named after astronomer Edwin Hubble, it is one of NASA's Great Observatories and has a 2.4-meter mirror that observes in the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum. Hubble's orbit outside Earth's atmosphere allows it to capture extremely high-resolution images with minimal background light, enabling groundbreaking discoveries in astrophysics, such as determining the rate of expansion of the universe.\n\nHubble was funded and built in the 1970s by NASA with contributions from the European Space Agency. Its intended launch was in 1983, but the project faced technical delays, budget problems, and the 1986 Challenger disaster. It was finally launched in 1990, but its main mirror had a flaw that caused spherical aberration, which was corrected during a servicing mission in 1993. Hubble is the only telescope designed to be maintained in space by astronauts, with five Space Shuttle missions repairing, upgrading, and replacing systems on the telescope.\n\nHubble has made numerous important discoveries, including determining the age and expansion rate of the universe, observing black holes, and capturing detailed images of distant galaxies. It has also contributed to understanding the structure of the Milky Way, the formation of stars and planets, and the nature of dark energy. Hubble's legacy continues to shape modern astronomy, and it is expected to remain operational until 2030 to 2040.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 11,
+        "chars": 1716,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 34,
+      "wiki": {
+        "hits": 11,
+        "misses": 0,
+        "added": 0,
+        "entries": 1339
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 71,
+        "tokens": 23465
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It is one of the largest and most versatile space telescopes, renowned as a vital research tool and a public relations boon for astronomy. Named after astronomer Edwin Hubble, it is one of NASA's Great Observatories and has a 2.4-meter mirror that observes in the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum. Hubble's orbit outside Earth's atmosphere allows it to capture extremely high-resolution images with minimal background light, enabling groundbreaking discoveries in astrophysics, such as determining the rate of expansion of the universe.\n\nHubble was funded and built in the 1970s by NASA with contributions from the European Space Agency. Its intended launch was in 1983, but the project faced technical delays, budget problems, and the 1986 Challenger disaster. It was finally launched in 1990, but its main mirror had a flaw that caused spherical aberration, which was corrected during a servicing mission in 1993. Hubble is the only telescope designed to be maintained in space by astronauts, with five Space Shuttle missions repairing, upgrading, and replacing systems on the telescope.\n\nHubble has made numerous important discoveries, including determining the age and expansion rate of the universe, observing black holes, and capturing detailed images of distant galaxies. It has also contributed to understanding the structure of the Milky Way, the formation of stars and planets, and the nature of dark energy. Hubble's legacy continues to shape modern astronomy, and it is expected to remain operational until 2030 to 2040.",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 8,
+      "factsSupported": 6,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 2,
+        "tokens": 2592
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Great Barrier Reef, located off the northeastern coast of Australia, is the world's largest coral reef system, stretching over 2,300 kilometers and covering an area of approximately 344,400 square kilometers. It is composed of over 2,900 individual reefs and 940 islands and cays, and is home to a vast array of marine life, including more than 1,500 species of fish, 400 types of coral, and numerous species of turtles, sharks, and whales. The reef is protected by the Great Barrier Reef Marine Park, which aims to balance conservation with sustainable use.\n\nHowever, the Great Barrier Reef faces numerous environmental threats. Climate change is the most significant threat, as rising ocean temperatures contribute to coral bleaching and ocean acidification, both of which can severely damage coral ecosystems. Additionally, decreased water quality from land-based runoff, coastal development, and fishing activities further stresses the reef. In 2022, UNESCO launched a monitoring mission to assess the impact of pollution, fishing, climate change, and coral bleaching on the reef, highlighting the urgent need for conservation efforts.\n\nOther threats include the Crown-of-thorns starfish, a coral-eating species that has caused significant damage to the reef in recent years, and tropical cyclones, which can destroy large areas of coral. Overfishing and shark culling have also disrupted the delicate balance of the reef's ecosystem. Scientists have emphasized that the cumulative effects of these combined impacts pose a serious risk to the reef's long-term survival. Efforts to protect the Great Barrier Reef continue, with ongoing research and management strategies aimed at mitigating these threats and preserving this unique and vital ecosystem.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 11,
+        "chars": 1759,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 32,
+      "wiki": {
+        "hits": 14,
+        "misses": 0,
+        "added": 0,
+        "entries": 1339
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 40,
+        "tokens": 14080
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Great Barrier Reef, located off the northeastern coast of Australia, is the world's largest coral reef system, stretching over 2,300 kilometers and covering an area of approximately 344,400 square kilometers. It is composed of over 2,900 individual reefs and 940 islands and cays, and is home to a vast array of marine life, including more than 1,500 species of fish, 400 types of coral, and numerous species of turtles, sharks, and whales. The reef is protected by the Great Barrier Reef Marine Park, which aims to balance conservation with sustainable use.\n\nHowever, the Great Barrier Reef faces numerous environmental threats. Climate change is the most significant threat, as rising ocean temperatures contribute to coral bleaching and ocean acidification, both of which can severely damage coral ecosystems. Additionally, decreased water quality from land-based runoff, coastal development, and fishing activities further stresses the reef. In 2022, UNESCO launched a monitoring mission to assess the impact of pollution, fishing, climate change, and coral bleaching on the reef, highlighting the urgent need for conservation efforts.\n\nOther threats include the Crown-of-thorns starfish, a coral-eating species that has caused significant damage to the reef in recent years, and tropical cyclones, which can destroy large areas of coral. Overfishing and shark culling have also disrupted the delicate balance of the reef's ecosystem. Scientists have emphasized that the cumulative effects of these combined impacts pose a serious risk to the reef's long-term survival. Efforts to protect the Great Barrier Reef continue, with ongoing research and management strategies aimed at mitigating these threats and preserving this unique and vital ecosystem.",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T09:14:39.947Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:14b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T09:14:39.987Z model cache evals/model-cache/qwen3-14b: 517 responses loaded",
+    "machine at start: gpu 99% · vram 9.7 GiB · load 17.01 · mem 40% free (normal) · no throttling recorded",
+    "2026-09-19T09:14:40.124Z 4 seeds from evals/seeds-profile.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-14b-node-5b.json\"} · prompt tools-3 · grammar tools:composing · matched · commit f2722b8",
+    "wiki recording: 1339 responses loaded",
+    "turing: resolved · topics 1/8 · supported 1/8 · read 1/8 · ¶3 · 8 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 4 lookups, 7283 tokens · stopped by answer · 1 unread answers refused · 57 s · model 0 replayed 6 missed",
+    "silk-road: resolved · topics 5/9 · supported 5/9 · read 7/9 · ¶3 · 11 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 2 lookups, 2798 tokens · stopped by answer · 33 s · model 0 replayed 3 missed",
+    "hubble: resolved · topics 6/8 · supported 6/8 · read 7/8 · ¶3 · 11 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 2 lookups, 2876 tokens · stopped by answer · 34 s · model 0 replayed 3 missed",
+    "great-barrier-reef: resolved · topics 8/10 · supported 6/10 · read 8/10 · ¶3 · 11 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 2 lookups, 2592 tokens · stopped by answer · 32 s · model 0 replayed 3 missed",
+    "machine during the suite: gpu 89.5% mean, 99% peak · vram up to 16.93 GiB · load up to 18.63 · no throttling in 11 samples"
+  ]
+}

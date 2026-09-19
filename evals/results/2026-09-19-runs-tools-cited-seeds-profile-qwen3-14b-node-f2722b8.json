@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "qwen3:14b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "f2722b8",
+  "head": "f2722b8",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T09:17:16.893Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 9,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 87.6
+    },
+    "vramGiB": {
+      "min": 9.71,
+      "max": 16.93,
+      "mean": 15
+    },
+    "load": {
+      "min": 13.98,
+      "max": 18.14,
+      "mean": 15.9
+    },
+    "memoryFreePercent": {
+      "min": 21,
+      "max": 34,
+      "mean": 25.3
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-14b-node-5b.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 16,
+  "factsSupported": 16,
+  "factsRead": 23,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 14,
+    "cache": "evals/model-cache/qwen3-14b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 3,
+        "tokens": 4807
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Alan Turing: The Enigma (1983) is a biography of the British mathematician, codebreaker, and early computer scientist, Alan Turing (1912–1954) by Andrew Hodges. The book covers Alan Turing's life and work, as well as supplementary individuals in his life including Christopher Morcom and Conel Hugh O'Donel Alexander. The 2014 film The Imitation Game is loosely based on the book, with dramatization as well as reduction of certain details and a focus on wartime events. The earlier play and film Breaking the Code was inspired by the same biography, and portrayed more of Turing's life.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 4,
+        "chars": 587,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 35,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "added": 0,
+        "entries": 1339
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 85,
+        "tokens": 28662
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "Alan Turing: The Enigma (1983) is a biography of the British mathematician, codebreaker, and early computer scientist, Alan Turing (1912–1954) by Andrew Hodges. The book covers Alan Turing's life and work, as well as supplementary individuals in his life including Christopher Morcom and Conel Hugh O'Donel Alexander. The 2014 film The Imitation Game is loosely based on the book, with dramatization as well as reduction of certain details and a focus on wartime events. The earlier play and film Breaking the Code was inspired by the same biography, and portrayed more of Turing's life. Sections: Editions; Reviews; Influence.",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-cited-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 2,
+        "tokens": 2924
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The name \"Silk Road\" was coined in the late 19th century, but some 20th- and 21st-century historians instead prefer the term Silk Routes, on the grounds that it more accurately describes the intricate web of land and sea routes connecting Central, East, South, Southeast, and West Asia as well as East Africa and Southern Europe. In fact, some scholars criticise or even dismiss the idea of silk roads and call for a new definition or alternate term. According to them, the literature using this term has \"privileged the sedentary and literate empires at either end of Eurasia\" thereby ignoring the contributions of steppe nomads. In addition, the classic definition sidelines prominent civilisations such as India and Iran.\n\nThe Silk Road derives its name from the highly lucrative trade of silk textiles that were primarily produced in China. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. The Chinese took great interest in the security of their trade products, and extended the Great Wall of China to ensure the protection of the trade route. The Parthian Empire provided a vital bridge connecting the network to the Mediterranean. Meanwhile, the rise of the Roman Empire in the west further established the western terminus of the interconnected trade system. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece. Other lucrative commodities from the East included tea, dyes,",
+      "profile": {
+        "paragraphs": 2,
+        "sentences": 13,
+        "chars": 1901,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 39,
+      "wiki": {
+        "hits": 7,
+        "misses": 0,
+        "added": 0,
+        "entries": 1339
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 69,
+        "tokens": 21274
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The name \"Silk Road\" was coined in the late 19th century, but some 20th- and 21st-century historians instead prefer the term Silk Routes, on the grounds that it more accurately describes the intricate web of land and sea routes connecting Central, East, South, Southeast, and West Asia as well as East Africa and Southern Europe. In fact, some scholars criticise or even dismiss the idea of silk roads and call for a new definition or alternate term. According to them, the literature using this term has \"privileged the sedentary and literate empires at either end of Eurasia\" thereby ignoring the contributions of steppe nomads. In addition, the classic definition sidelines prominent civilisations such as India and Iran.\n\nThe Silk Road derives its name from the highly lucrative trade of silk textiles that were primarily produced in China. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. The Chinese took great interest in the security of their trade products, and extended the Great Wall of China to ensure the protection of the trade route. The Parthian Empire provided a vital bridge connecting the network to the Mediterranean. Meanwhile, the rise of the Roman Empire in the west further established the western terminus of the interconnected trade system. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece. Other lucrative commodities from the East included tea, dyes,",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-cited-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mirror": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "servicing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 2,
+        "tokens": 3031
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, renowned as a vital research tool and as a public relations boon for astronomy. The Hubble Space Telescope is named after astronomer Edwin Hubble and is one of NASA's Great Observatories.\n\nHubble features a 2.4 m (7 ft 10 in) mirror, and its five main instruments observe in the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum. Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe.\n\nThe Hubble Space Telescope was funded and built in the 1970s by NASA with contributions from the European Space Agency. Its intended launch was in 1983, but the project was beset by technical delays, budget problems, and the 1986 Challenger disaster. Hubble was launched on STS-31 in 1990, but its main mirror had been ground incorrectly, resulting in spherical aberration that compromised the telescope's capabilities. The optics were corrected to their intended quality by a servicing mission, STS-61, in 1993.\n\nHubble is the only telescope designed to be maintained in space by astronauts. Five Space Shuttle missions repaired, upgraded, and replaced systems on the telescope, including all five of the main instruments. The fifth mission was initially canceled on safety grounds following the Columbia disaster (2003), but after NASA administrator Michael D. Griffin approved it,",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 14,
+        "chars": 1878,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 38,
+      "wiki": {
+        "hits": 10,
+        "misses": 0,
+        "added": 0,
+        "entries": 1339
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 71,
+        "tokens": 23465
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, renowned as a vital research tool and as a public relations boon for astronomy. The Hubble Space Telescope is named after astronomer Edwin Hubble and is one of NASA's Great Observatories.\n\nHubble features a 2.4 m (7 ft 10 in) mirror, and its five main instruments observe in the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum. Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe.\n\nThe Hubble Space Telescope was funded and built in the 1970s by NASA with contributions from the European Space Agency. Its intended launch was in 1983, but the project was beset by technical delays, budget problems, and the 1986 Challenger disaster. Hubble was launched on STS-31 in 1990, but its main mirror had been ground incorrectly, resulting in spherical aberration that compromised the telescope's capabilities. The optics were corrected to their intended quality by a servicing mission, STS-61, in 1993.\n\nHubble is the only telescope designed to be maintained in space by astronauts. Five Space Shuttle missions repaired, upgraded, and replaced systems on the telescope, including all five of the main instruments. The fifth mission was initially canceled on safety grounds following the Columbia disaster (2003), but after NASA administrator Michael D. Griffin approved it,",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-cited-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 2,
+        "tokens": 2511
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Great Barrier Reef is the world's largest reef systems, stretching along the East coast of Australia from the northern tip down at Cape York to the town of Bundaberg, is composed of roughly 2,900 individual reefs and 940 islands and cays that stretch for 2,300 kilometres (1,616 mi) and cover an area of approximately 344,400 square kilometres (133,000 sq mi). A 2014 report of the Australian Government's Great Barrier Reef Marine Park Authority (GBRMPA) says that climate change is the most significant environmental threat to the Great Barrier Reef. Other major environmental pressures listed are decreased water quality from land-based runoff, impacts from coastal development, and some persistent impacts from fishing activities. The reef is also threatened by storms, coral bleaching and ocean acidification. In March 2022, UNESCO launched a monitoring mission to assess the impact of pollution, fishing, climate change and coral bleaching.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 5,
+        "chars": 950,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 23,
+      "wiki": {
+        "hits": 13,
+        "misses": 0,
+        "added": 0,
+        "entries": 1339
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 40,
+        "tokens": 14080
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Great Barrier Reef is the world's largest reef systems, stretching along the East coast of Australia from the northern tip down at Cape York to the town of Bundaberg, is composed of roughly 2,900 individual reefs and 940 islands and cays that stretch for 2,300 kilometres (1,616 mi) and cover an area of approximately 344,400 square kilometres (133,000 sq mi). A 2014 report of the Australian Government's Great Barrier Reef Marine Park Authority (GBRMPA) says that climate change is the most significant environmental threat to the Great Barrier Reef. Other major environmental pressures listed are decreased water quality from land-based runoff, impacts from coastal development, and some persistent impacts from fishing activities. The reef is also threatened by storms, coral bleaching and ocean acidification. In March 2022, UNESCO launched a monitoring mission to assess the impact of pollution, fishing, climate change and coral bleaching. The report concluded that the Great Barrier Reef should be included on UNESCO's list of World Heritage in Danger.",
+      "export": "evals/results/runs/2026-09-19-qwen3-14b-node-tools-cited-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T09:17:16.891Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:14b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T09:17:16.931Z model cache evals/model-cache/qwen3-14b: 532 responses loaded",
+    "machine at start: gpu 98% · vram 14.85 GiB · load 17.93 · mem 26% free (warning) · no throttling recorded",
+    "2026-09-19T09:17:17.081Z 4 seeds from evals/seeds-profile.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-14b-node-5b.json\"} · prompt tools-3 · grammar tools:cited · matched · commit f2722b8",
+    "wiki recording: 1339 responses loaded",
+    "turing: resolved · topics 1/8 · supported 1/8 · read 1/8 · ¶1 · 4 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 3 lookups, 4807 tokens · stopped by answer · 1 unread answers refused · 35 s · model 0 replayed 5 missed",
+    "silk-road: resolved · topics 3/9 · supported 3/9 · read 7/9 · ¶2 · 13 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 2 lookups, 2924 tokens · stopped by answer · 39 s · model 0 replayed 3 missed",
+    "hubble: resolved · topics 6/8 · supported 6/8 · read 7/8 · ¶4 · 14 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 2 lookups, 3031 tokens · stopped by answer · 38 s · model 0 replayed 3 missed",
+    "great-barrier-reef: resolved · topics 6/10 · supported 6/10 · read 8/10 · ¶1 · 5 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 2 lookups, 2511 tokens · stopped by answer · 23 s · model 0 replayed 3 missed",
+    "machine during the suite: gpu 87.6% mean, 99% peak · vram up to 16.93 GiB · load up to 18.14 · no throttling in 9 samples"
+  ]
+}
