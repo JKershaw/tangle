@@ -1,0 +1,410 @@
+{
+  "suite": "runs",
+  "model": "qwen3:8b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:52:53.417Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 5,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 78.4
+    },
+    "vramGiB": {
+      "min": 5.84,
+      "max": 5.84,
+      "mean": 5.8
+    },
+    "load": {
+      "min": 16.92,
+      "max": 20.06,
+      "mean": 19
+    },
+    "memoryFreePercent": {
+      "min": 68,
+      "max": 68,
+      "mean": 68
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-8b-node-59c9099.json"
+  },
+  "seeds": 3,
+  "resolved": 2,
+  "factsPresent": 6,
+  "factsSupported": 6,
+  "factsRead": 25,
+  "factsTotal": 30,
+  "replay": {
+    "hits": 0,
+    "misses": 16,
+    "cache": "evals/model-cache/qwen3-8b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "wreck": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cycles": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "imaging": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "olympiad": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 4,
+        "tokens": 6323
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Antikythera mechanism is generally referred to as the first known analogue computer. The quality and complexity of the mechanism's manufacture suggests it must have had undiscovered predecessors during the Hellenistic period. Its construction relied on theories of astronomy and mathematics developed by Greek astronomers during the second century BC, and it is estimated to have been built in the late second century BC or the early first century BC.\n\nIn 2008, research by the Antikythera Mechanism Research Project suggested the concept for the mechanism may have originated in the colonies of Corinth, since they identified the calendar on the Metonic Spiral as coming from Corinth, or one of its colonies in northwest Greece or Sicily. Syracuse was a colony of Corinth and the home of Archimedes, and the Antikythera Mechanism Research Project argued in 2008 that it might imply a connection with the school of Archimedes. It was demonstrated in 2017 that the calendar on the Metonic Spiral is of the Corinthian type, but cannot be that of Syracuse.\n\nAnother theory suggests that coins found by Jacques Cousteau at the wreck site in the 1970s date to the time of the device's construction, and posits that its origin may have been from the ancient Greek city of Pergamon, home of the Library of Pergamum. With its many scrolls of art and science, it was second in importance only to the Library of Alexandria during the Hellenistic period.\n\nThe ship carrying the device contained vases in the Rhodian style, leading to a hypothesis that it was constructed at an academy founded by Stoic philosopher Posidonius on that Greek island. Rhodes was a busy trading port and centre of astronomy and mechanical engineering, home to astronomer Hipparchus, who was active from about 140–120 BC. The mechanism uses Hipparchus' theory for the motion of the Moon, which",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 11,
+        "chars": 1863,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 23,
+      "wiki": {
+        "hits": 5,
+        "misses": 0,
+        "added": 0,
+        "entries": 1338
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 43,
+        "tokens": 17797
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Antikythera mechanism is generally referred to as the first known analogue computer. The quality and complexity of the mechanism's manufacture suggests it must have had undiscovered predecessors during the Hellenistic period. Its construction relied on theories of astronomy and mathematics developed by Greek astronomers during the second century BC, and it is estimated to have been built in the late second century BC or the early first century BC.\n\nIn 2008, research by the Antikythera Mechanism Research Project suggested the concept for the mechanism may have originated in the colonies of Corinth, since they identified the calendar on the Metonic Spiral as coming from Corinth, or one of its colonies in northwest Greece or Sicily. Syracuse was a colony of Corinth and the home of Archimedes, and the Antikythera Mechanism Research Project argued in 2008 that it might imply a connection with the school of Archimedes. It was demonstrated in 2017 that the calendar on the Metonic Spiral is of the Corinthian type, but cannot be that of Syracuse.\n\nAnother theory suggests that coins found by Jacques Cousteau at the wreck site in the 1970s date to the time of the device's construction, and posits that its origin may have been from the ancient Greek city of Pergamon, home of the Library of Pergamum. With its many scrolls of art and science, it was second in importance only to the Library of Alexandria during the Hellenistic period.\n\nThe ship carrying the device contained vases in the Rhodian style, leading to a hypothesis that it was constructed at an academy founded by Stoic philosopher Posidonius on that Greek island. Rhodes was a busy trading port and centre of astronomy and mechanical engineering, home to astronomer Hipparchus, who was active from about 140–120 BC. The mechanism uses Hipparchus' theory for the motion of the Moon, which",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-cited-antikythera.json"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "philae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "comet": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "arrival": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "water": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "end": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 4,
+        "tokens": 5687
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Communications with Philae were briefly restored in June and July 2015, but due to diminishing solar power, Rosetta's communications module with the lander was turned off on 27 July 2016. On 30 September 2016, the Rosetta spacecraft ended its mission by hard-landing on the comet in its Ma'at region.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 2,
+        "chars": 300,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 19,
+      "wiki": {
+        "hits": 10,
+        "misses": 0,
+        "added": 0,
+        "entries": 1338
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 40,
+        "tokens": 14652
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Rosetta mission, launched by the European Space Agency on 2 March 2004, was a groundbreaking mission that studied comet 67P/Churyumov–Gerasimenko (67P). The mission included the Rosetta spacecraft and its lander module, Philae. Rosetta performed flybys of Earth, Mars, and the asteroids 21 Lutetia and 2867 Šteins on its way to comet 67P. The mission was part of the ESA's Horizon 2000 programme and had a total cost of about €1.3 billion (US$1.8 billion).\n\nOn 6 August 2014, Rosetta reached comet 67P and began a series of maneuvers to orbit the comet at distances of 30 to 10 kilometres (19 to 6 mi). On 12 November 2014, Philae successfully landed on the comet, marking the first time a lander had touched down on a comet. However, its battery power ran out two days later. Communications with Philae were briefly restored in June and July 2015, but due to diminishing solar power, Rosetta's communications module with the lander was turned off on 27 July 2016. On 30 September 2016, the Rosetta spacecraft ended its mission by hard-landing on the comet in its Ma'at region.",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-cited-rosetta.json"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "dam": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "kazakhstan": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cotton": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "salinity": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "desert": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 5,
+        "tokens": 8736
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 3,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 28,
+      "wiki": {
+        "hits": 16,
+        "misses": 0,
+        "added": 0,
+        "entries": 1338
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 58,
+        "tokens": 19019
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Aral Sea, once the fourth-largest inland body of water in the world, has undergone dramatic changes due to human activity, particularly the diversion of its feeder rivers for irrigation. The Soviet Union's large-scale irrigation projects in the 1960s diverted the Amu Darya and Syr Darya rivers, which fed the Aral Sea, leading to its rapid shrinkage. By the early 2000s, the Aral Sea had split into four smaller lakes, with the eastern basin, now known as the Aralkum Desert, completely drying up. The environmental, economic, and public health impacts of this desiccation were severe, including the loss of livelihoods for local communities, the degradation of the ecosystem, and the spread of health issues due to dust storms and salinity.\n\nEfforts to restore the Aral Sea have focused primarily on the North Aral Sea, with the construction of the Kok-Aral Dam in 2005 playing a central role. This dam, built by Kazakhstan, helped to contain the North Aral Sea and increase its water level, which in turn reduced salinity and allowed for the return of fish species. The restoration of the North Aral Sea has led to some recovery of the fishing industry, with fish catches becoming viable again and even being exported to countries like Ukraine. The dam also contributed to the return of rain clouds and potential microclimate changes, offering hope for the region's agricultural recovery.\n\nThe International Fund for Saving the Aral Sea (IFAS) has been instrumental in supporting these restoration efforts. IFAS has focused on stabilizing the environment, rehabilitating the disaster area, improving the management of the Aral Sea Basin, and building institutional capacity to support long-term recovery. Additionally, the World Bank has provided financial support for further restoration projects, including the construction of a second dam and a canal to reconnect the port city of Aralsk to the sea. These efforts have shown that, while the",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-cited-aral-restoration.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:52:53.415Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:8b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:52:53.452Z model cache evals/model-cache/qwen3-8b: 751 responses loaded",
+    "machine at start: gpu 98% · vram 5.84 GiB · load 19.33 · mem 68% free (normal) · no throttling recorded",
+    "2026-09-19T08:52:53.553Z 3 seeds from evals/seeds-overflow.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-8b-node-59c9099.json\"} · prompt tools-3 · grammar tools:cited · matched · commit a811bbd",
+    "wiki recording: 1338 responses loaded",
+    "antikythera: resolved · topics 3/10 · supported 3/10 · read 7/10 · ¶4 · 11 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 4 lookups, 6323 tokens · stopped by answer · 23 s · model 0 replayed 5 missed",
+    "rosetta: resolved · topics 3/10 · supported 3/10 · read 8/10 · ¶1 · 2 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 4 lookups, 5687 tokens · stopped by answer · 19 s · model 0 replayed 5 missed",
+    "aral-restoration: root blocked · topics 0/10 · supported 0/10 · read 10/10 · ¶0 · 0 sentences · read 1 articles, 3 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 6 calls, 5 lookups, 8736 tokens · stopped by answer · 28 s · model 0 replayed 6 missed",
+    "machine during the suite: gpu 78.4% mean, 98% peak · vram up to 5.84 GiB · load up to 20.06 · no throttling in 5 samples"
+  ]
+}

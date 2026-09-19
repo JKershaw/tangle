@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "qwen3:8b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:47:47.986Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 7,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 84.1
+    },
+    "vramGiB": {
+      "min": 5.84,
+      "max": 8.8,
+      "mean": 8.3
+    },
+    "load": {
+      "min": 15.7,
+      "max": 18.36,
+      "mean": 16.9
+    },
+    "memoryFreePercent": {
+      "min": 34,
+      "max": 41,
+      "mean": 37.7
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-8b-node-59c9099.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 20,
+  "factsSupported": 17,
+  "factsRead": 29,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 19,
+    "cache": "evals/model-cache/qwen3-8b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "conviction": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 3,
+        "tokens": 4313
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Alan Turing was a pioneering English mathematician, computer scientist, logician, cryptanalyst, philosopher, and theoretical biologist, widely regarded as the father of theoretical computer science and artificial intelligence. Born on 23 June 1912 in London, Turing made groundbreaking contributions to the fields of computation, cryptography, and mathematical biology. His most notable work includes the formalization of the concepts of algorithms and computation through the invention of the Turing machine, a theoretical model of a general-purpose computer. This foundational concept laid the groundwork for modern computing.\n\nDuring World War II, Turing played a crucial role in the Allied effort to break German ciphers, particularly those used by the Enigma machine. He worked at Bletchley Park, where he led the team responsible for German naval cryptanalysis. Turing devised techniques to improve the efficiency of codebreaking, including enhancements to the Polish bomba method, which was used to determine the settings of the Enigma machine. His work significantly aided the Allies in the Battle of the Atlantic and other critical engagements, contributing to the eventual defeat of the Axis powers.\n\nAfter the war, Turing continued his research at the University of Manchester, where he contributed to the development of early computers and explored the field of mathematical biology. He proposed theories on the chemical basis of morphogenesis and predicted oscillating chemical reactions, such as the Belousov–Zhabotinsky reaction, which were later observed in the 1960s. Despite his contributions, much of his work was classified due to the Official Secrets Act, and he was not fully recognized during his lifetime.\n\nIn 1952, Turing was prosecuted for homosexual acts, which was illegal at the time in Britain. He accepted chemical castration as an alternative to prison. Tragically, Turing died on 7 June 1954, aged 41, from cyanide poisoning. An inquest concluded his death as suicide, though some evidence suggests it may have been accidental.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 15,
+        "chars": 2060,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 20,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "added": 0,
+        "entries": 1330
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 81,
+        "tokens": 25296
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "Alan Turing was a pioneering English mathematician, computer scientist, logician, cryptanalyst, philosopher, and theoretical biologist, widely regarded as the father of theoretical computer science and artificial intelligence. Born on 23 June 1912 in London, Turing made groundbreaking contributions to the fields of computation, cryptography, and mathematical biology. His most notable work includes the formalization of the concepts of algorithms and computation through the invention of the Turing machine, a theoretical model of a general-purpose computer. This foundational concept laid the groundwork for modern computing.\n\nDuring World War II, Turing played a crucial role in the Allied effort to break German ciphers, particularly those used by the Enigma machine. He worked at Bletchley Park, where he led the team responsible for German naval cryptanalysis. Turing devised techniques to improve the efficiency of codebreaking, including enhancements to the Polish bomba method, which was used to determine the settings of the Enigma machine. His work significantly aided the Allies in the Battle of the Atlantic and other critical engagements, contributing to the eventual defeat of the Axis powers.\n\nAfter the war, Turing continued his research at the University of Manchester, where he contributed to the development of early computers and explored the field of mathematical biology. He proposed theories on the chemical basis of morphogenesis and predicted oscillating chemical reactions, such as the Belousov–Zhabotinsky reaction, which were later observed in the 1960s. Despite his contributions, much of his work was classified due to the Official Secrets Act, and he was not fully recognized during his lifetime.\n\nIn 1952, Turing was prosecuted for homosexual acts, which was illegal at the time in Britain. He accepted chemical castration as an alternative to prison. Tragically, Turing died on 7 June 1954, aged 41, from cyanide poisoning. An inquest concluded his death as suicide, though some evidence suggests it may have been accidental.",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 4,
+        "tokens": 5860
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Silk Road was a vast network of trade routes that connected the East and West, spanning over 6,400 km (4,000 mi) across land and sea. It played a crucial role in the exchange of goods, ideas, and cultures between Asia, the Middle East, and Europe. The name \"Silk Road\" was coined in the late 19th century, but many historians prefer the term \"Silk Routes\" to better reflect the complexity of the trade network. The term has been contested, as it has historically privileged the sedentary and literate empires at either end of Eurasia, often overlooking the contributions of nomadic groups like the steppe peoples, as well as the significance of civilizations such as India and Iran.\n\nThe Silk Road was primarily driven by the trade of silk, which originated in China. The network began to take shape during the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, facilitated by the missions of the Chinese imperial envoy Zhang Qian. The Chinese government took great interest in securing their trade routes, even extending the Great Wall of China to protect the trade routes. The Parthian Empire served as a vital bridge between the East and the Mediterranean, while the Roman Empire established the western terminus of the trade system. By the first century CE, Chinese silk was highly sought after in Rome, Egypt, and Greece, alongside other goods such as tea, dyes, perfumes, and porcelain. In return, the West exported items like horses, camels, honey, wine, and gold.\n\nThe Silk Road was not a single route but a complex network of paths, including northern and southern routes that bypassed the Taklamakan Desert and Lop Nur. These routes facilitated \"relay trade,\" where goods changed hands multiple times before reaching their final destinations. The network also included maritime routes, connecting East Asia with the Middle East",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 13,
+        "chars": 1872,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 22,
+      "wiki": {
+        "hits": 8,
+        "misses": 1,
+        "added": 1,
+        "entries": 1331
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 71,
+        "tokens": 21889
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Silk Road was a vast network of trade routes that connected the East and West, spanning over 6,400 km (4,000 mi) across land and sea. It played a crucial role in the exchange of goods, ideas, and cultures between Asia, the Middle East, and Europe. The name \"Silk Road\" was coined in the late 19th century, but many historians prefer the term \"Silk Routes\" to better reflect the complexity of the trade network. The term has been contested, as it has historically privileged the sedentary and literate empires at either end of Eurasia, often overlooking the contributions of nomadic groups like the steppe peoples, as well as the significance of civilizations such as India and Iran.\n\nThe Silk Road was primarily driven by the trade of silk, which originated in China. The network began to take shape during the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, facilitated by the missions of the Chinese imperial envoy Zhang Qian. The Chinese government took great interest in securing their trade routes, even extending the Great Wall of China to protect the trade routes. The Parthian Empire served as a vital bridge between the East and the Mediterranean, while the Roman Empire established the western terminus of the trade system. By the first century CE, Chinese silk was highly sought after in Rome, Egypt, and Greece, alongside other goods such as tea, dyes, perfumes, and porcelain. In return, the West exported items like horses, camels, honey, wine, and gold.\n\nThe Silk Road was not a single route but a complex network of paths, including northern and southern routes that bypassed the Taklamakan Desert and Lop Nur. These routes facilitated \"relay trade,\" where goods changed hands multiple times before reaching their final destinations. The network also included maritime routes, connecting East Asia with the Middle East",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 3,
+      "factsSupported": 2,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 5,
+        "tokens": 10630
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Hubble Space Telescope has made numerous groundbreaking discoveries since its launch in 1990. One of its most significant contributions was determining the rate of expansion of the universe. By observing distant supernovae, Hubble helped astronomers discover that the universe is expanding at an accelerating rate, a finding that led to the concept of dark energy.\n\nHubble has also played a crucial role in the study of black holes. It has captured detailed images of the supermassive black hole at the center of the galaxy M87, providing insights into its behavior and the environment around it. Additionally, Hubble has observed the accretion disks of black holes, helping scientists understand how these cosmic entities consume matter and emit energy.\n\nAnother major discovery involves the age of the universe. By measuring the distances to faraway galaxies and the rate of their recession, Hubble has contributed to refining the estimated age of the universe to approximately 13.8 billion years.\n\nHubble has also provided critical data on the structure and evolution of galaxies. It has captured images of galaxy clusters, revealing how they form and evolve over time. The telescope has also contributed to the study of star formation, capturing images of nebulae where stars are born and observing the life cycles of stars in different stages of their development.\n\nIn addition to its scientific contributions, Hubble has captured stunning images of the cosmos, such as the iconic \"Hubble Deep Field,\" which revealed thousands of galaxies in a small patch of sky. These images have not only advanced scientific understanding but have also inspired public interest in astronomy.",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 13,
+        "chars": 1686,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 33,
+      "wiki": {
+        "hits": 13,
+        "misses": 2,
+        "added": 2,
+        "entries": 1332
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 68,
+        "tokens": 21756
+      },
+      "stoppedBy": "answer",
+      "dropped": 1,
+      "refused": 0,
+      "answer": "The Hubble Space Telescope has made numerous groundbreaking discoveries since its launch in 1990. One of its most significant contributions was determining the rate of expansion of the universe. By observing distant supernovae, Hubble helped astronomers discover that the universe is expanding at an accelerating rate, a finding that led to the concept of dark energy.\n\nHubble has also played a crucial role in the study of black holes. It has captured detailed images of the supermassive black hole at the center of the galaxy M87, providing insights into its behavior and the environment around it. Additionally, Hubble has observed the accretion disks of black holes, helping scientists understand how these cosmic entities consume matter and emit energy.\n\nAnother major discovery involves the age of the universe. By measuring the distances to faraway galaxies and the rate of their recession, Hubble has contributed to refining the estimated age of the universe to approximately 13.8 billion years.\n\nHubble has also provided critical data on the structure and evolution of galaxies. It has captured images of galaxy clusters, revealing how they form and evolve over time. The telescope has also contributed to the study of star formation, capturing images of nebulae where stars are born and observing the life cycles of stars in different stages of their development.\n\nIn addition to its scientific contributions, Hubble has captured stunning images of the cosmos, such as the iconic \"Hubble Deep Field,\" which revealed thousands of galaxies in a small patch of sky. These images have not only advanced scientific understanding but have also inspired public interest in astronomy.",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 9,
+      "factsSupported": 7,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 3,
+        "tokens": 4339
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Great Barrier Reef, located off the coast of Queensland, Australia, is the world's largest coral reef system, stretching over 2,300 kilometers and covering an area of approximately 344,400 square kilometers. It is composed of over 2,900 individual reefs and 900 islands, making it a unique and diverse marine ecosystem. The reef is protected by the Great Barrier Reef Marine Park, which aims to preserve its ecological integrity and biodiversity.\n\nThe Great Barrier Reef faces several significant threats, with climate change being the most pressing. Rising sea temperatures have led to widespread coral bleaching, where corals expel the algae living in their tissues, causing them to turn white and often die. This has been exacerbated by the increasing frequency and intensity of tropical cyclones, which can physically damage the reef structure and disrupt marine life.\n\nOcean acidification, a consequence of increased carbon dioxide absorption by the oceans, also poses a threat. This process reduces the availability of carbonate ions, which are essential for coral to build their skeletons. As a result, coral growth is hindered, and the reef's ability to recover from damage is compromised.\n\nIn addition to climate change, other environmental pressures include decreased water quality from land-based runoff, which introduces pollutants and sediments that smother corals and reduce light penetration. Coastal development and overfishing further stress the reef by disrupting its delicate balance and reducing biodiversity. The Crown-of-thorns starfish, a predator of corals, has also been a concern due to its population outbreaks, which can cause significant damage to reef ecosystems.\n\nEfforts to mitigate these threats include monitoring and management strategies, such as the mapping of ocean acidification exposure to tailor conservation efforts. International organizations like UNESCO have also been involved in assessing the reef's condition and recommending actions to protect it. Despite these efforts, the Great Barrier Reef continues to face an uncertain future, highlighting the urgent need for global action to address climate change and its impacts",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 15,
+        "chars": 2174,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 22,
+      "wiki": {
+        "hits": 17,
+        "misses": 2,
+        "added": 2,
+        "entries": 1332
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 46,
+        "tokens": 16102
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Great Barrier Reef, located off the coast of Queensland, Australia, is the world's largest coral reef system, stretching over 2,300 kilometers and covering an area of approximately 344,400 square kilometers. It is composed of over 2,900 individual reefs and 900 islands, making it a unique and diverse marine ecosystem. The reef is protected by the Great Barrier Reef Marine Park, which aims to preserve its ecological integrity and biodiversity.\n\nThe Great Barrier Reef faces several significant threats, with climate change being the most pressing. Rising sea temperatures have led to widespread coral bleaching, where corals expel the algae living in their tissues, causing them to turn white and often die. This has been exacerbated by the increasing frequency and intensity of tropical cyclones, which can physically damage the reef structure and disrupt marine life.\n\nOcean acidification, a consequence of increased carbon dioxide absorption by the oceans, also poses a threat. This process reduces the availability of carbonate ions, which are essential for coral to build their skeletons. As a result, coral growth is hindered, and the reef's ability to recover from damage is compromised.\n\nIn addition to climate change, other environmental pressures include decreased water quality from land-based runoff, which introduces pollutants and sediments that smother corals and reduce light penetration. Coastal development and overfishing further stress the reef by disrupting its delicate balance and reducing biodiversity. The Crown-of-thorns starfish, a predator of corals, has also been a concern due to its population outbreaks, which can cause significant damage to reef ecosystems.\n\nEfforts to mitigate these threats include monitoring and management strategies, such as the mapping of ocean acidification exposure to tailor conservation efforts. International organizations like UNESCO have also been involved in assessing the reef's condition and recommending actions to protect it. Despite these efforts, the Great Barrier Reef continues to face an uncertain future, highlighting the urgent need for global action to address climate change and its impacts",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:47:47.984Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:8b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:47:48.025Z model cache evals/model-cache/qwen3-8b: 682 responses loaded",
+    "machine at start: gpu 98% · vram 8.5 GiB · load 15.7 · mem 40% free (normal) · no throttling recorded",
+    "2026-09-19T08:47:48.185Z 4 seeds from evals/seeds-profile.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-8b-node-59c9099.json\"} · prompt tools-3 · grammar tools:composing · matched · commit a811bbd",
+    "wiki recording: 1330 responses loaded",
+    "turing: resolved · topics 5/8 · supported 5/8 · read 7/8 · ¶4 · 15 sentences · read 2 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 3 lookups, 4313 tokens · stopped by answer · 20 s · model 0 replayed 4 missed",
+    "silk-road: resolved · topics 3/9 · supported 3/9 · read 7/9 · ¶3 · 13 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 4 lookups, 5860 tokens · stopped by answer · 22 s · model 0 replayed 5 missed",
+    "hubble: resolved · topics 3/8 · supported 2/8 · read 7/8 · ¶5 · 13 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 5 lookups, 10630 tokens · stopped by answer · 1 results dropped from the context · 33 s · model 0 replayed 6 missed",
+    "great-barrier-reef: resolved · topics 9/10 · supported 7/10 · read 8/10 · ¶5 · 15 sentences · read 2 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 3 lookups, 4339 tokens · stopped by answer · 22 s · model 0 replayed 4 missed",
+    "machine during the suite: gpu 84.1% mean, 99% peak · vram up to 8.8 GiB · load up to 18.36 · no throttling in 7 samples"
+  ]
+}

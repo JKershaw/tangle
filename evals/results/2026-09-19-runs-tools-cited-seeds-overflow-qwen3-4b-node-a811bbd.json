@@ -1,0 +1,410 @@
+{
+  "suite": "runs",
+  "model": "qwen3:4b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:37:25.333Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 16,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 91.2
+    },
+    "vramGiB": {
+      "min": 3.28,
+      "max": 3.28,
+      "mean": 3.3
+    },
+    "load": {
+      "min": 16.11,
+      "max": 19.73,
+      "mean": 18.6
+    },
+    "memoryFreePercent": {
+      "min": 81,
+      "max": 81,
+      "mean": 81
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-4b-node-877f185.json"
+  },
+  "seeds": 3,
+  "resolved": 0,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 30,
+  "replay": {
+    "hits": 0,
+    "misses": 24,
+    "cache": "evals/model-cache/qwen3-4b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "wreck": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "imaging": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "olympiad": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 8,
+        "modelCalls": 8,
+        "lookups": 1,
+        "tokens": 18930
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 75,
+      "wiki": {
+        "hits": 1,
+        "misses": 0,
+        "added": 0,
+        "entries": 1325
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 8
+      },
+      "budget": {
+        "calls": 37,
+        "tokens": 16074
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 6,
+      "answer": "Nothing has been read yet, so that answer is not accepted. Use search to find a title, then read it, before answering.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-cited-antikythera.json"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "philae": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "comet": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "arrival": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "water": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "end": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 8,
+        "modelCalls": 8,
+        "lookups": 0,
+        "tokens": 17893
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 74,
+      "wiki": {
+        "hits": 1,
+        "misses": 0,
+        "added": 0,
+        "entries": 1325
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 8
+      },
+      "budget": {
+        "calls": 41,
+        "tokens": 14650
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 7,
+      "answer": "I need to use the search tool to find a title related to the Rosetta mission. Then I'll read that title to get the information. Let me call the search function with the term 'Rosetta mission'.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-cited-rosetta.json"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "dam": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "kazakhstan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cotton": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "salinity": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "desert": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 8,
+        "modelCalls": 8,
+        "lookups": 2,
+        "tokens": 20104
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 77,
+      "wiki": {
+        "hits": 2,
+        "misses": 1,
+        "added": 1,
+        "entries": 1326
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 8
+      },
+      "budget": {
+        "calls": 57,
+        "tokens": 18798
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 6,
+      "answer": "I need to use the search function first to find a title related to the Aral Sea. Then, I need to read that title to get the content. The user wants a short profile with specific works, events, places, people, and consequences. Let me call the search function with 'Aral Sea' to get titles.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-cited-aral-restoration.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:37:25.332Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:4b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:37:25.369Z model cache evals/model-cache/qwen3-4b: 753 responses loaded",
+    "machine at start: gpu 98% · vram 3.28 GiB · load 19.21 · mem 81% free (normal) · no throttling recorded",
+    "2026-09-19T08:37:25.474Z 3 seeds from evals/seeds-overflow.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-4b-node-877f185.json\"} · prompt tools-3 · grammar tools:cited · matched · commit a811bbd",
+    "wiki recording: 1325 responses loaded",
+    "antikythera: root blocked · topics 0/10 · supported 0/10 · read 0/10 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 8 calls, 1 lookups, 18930 tokens · stopped by tokens · 6 unread answers refused · 75 s · model 0 replayed 8 missed",
+    "rosetta: root blocked · topics 0/10 · supported 0/10 · read 0/10 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 8 calls, 0 lookups, 17893 tokens · stopped by tokens · 7 unread answers refused · 74 s · model 0 replayed 8 missed",
+    "aral-restoration: root blocked · topics 0/10 · supported 0/10 · read 0/10 · ¶0 · 0 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 8 calls, 2 lookups, 20104 tokens · stopped by tokens · 6 unread answers refused · 77 s · model 0 replayed 8 missed",
+    "machine during the suite: gpu 91.2% mean, 98% peak · vram up to 3.28 GiB · load up to 19.73 · no throttling in 16 samples"
+  ]
+}

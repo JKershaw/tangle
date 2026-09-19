@@ -1,0 +1,607 @@
+{
+  "suite": "runs",
+  "model": "qwen3:4b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:17:22.429Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 10,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 87.4
+    },
+    "vramGiB": {
+      "min": 2.08,
+      "max": 5.03,
+      "mean": 4.7
+    },
+    "load": {
+      "min": 16.5,
+      "max": 21.13,
+      "mean": 19.1
+    },
+    "memoryFreePercent": {
+      "min": 73,
+      "max": 83,
+      "mean": 75.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-qwen3-4b-node-877f185.json"
+  },
+  "seeds": 7,
+  "resolved": 7,
+  "factsPresent": 18,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 23,
+  "replay": {
+    "hits": 4,
+    "misses": 20,
+    "cache": "evals/model-cache/qwen3-4b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "dead-sea",
+      "kind": "multi-section",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "jordan-diversion": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 2,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 3005
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Dead Sea is shrinking primarily due to the diversion of water from the Jordan River for irrigation and industrial use, as well as the lack of natural inflow since it is a terminal lake with no outflow. The process has accelerated since the 1960s, with the water level dropping by over one meter per year. The Red Sea–Dead Sea Water Conveyance project, which began in 2021, aims to address this issue by transferring water from the Red Sea to the Dead Sea.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 459,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 4,
+      "wiki": {
+        "hits": 1,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 2,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 6,
+        "tokens": 2664
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Dead Sea is shrinking primarily due to the diversion of water from the Jordan River for irrigation and industrial use, as well as the lack of natural inflow since it is a terminal lake with no outflow. The process has accelerated since the 1960s, with the water level dropping by over one meter per year. The Red Sea–Dead Sea Water Conveyance project, which began in 2021, aims to address this issue by transferring water from the Red Sea to the Dead Sea.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-dead-sea.json"
+    },
+    {
+      "id": "water-cycle",
+      "kind": "single-article",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "sun": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "evaporation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "condensation-precipitation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 2976
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The water cycle keeps going because water continuously moves between Earth's surface and atmosphere through processes like evaporation, condensation, precipitation, and collection. This perpetual motion is driven by solar energy heating water bodies, causing evaporation and maintaining the cycle without external input. The cycle operates globally across oceans, land, and atmosphere, with no single starting point.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 416,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 21,
+      "wiki": {
+        "hits": 1,
+        "misses": 1,
+        "added": 1,
+        "entries": 1320
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 5,
+        "tokens": 1980
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The water cycle keeps going because water continuously moves between Earth's surface and atmosphere through processes like evaporation, condensation, precipitation, and collection. This perpetual motion is driven by solar energy heating water bodies, causing evaporation and maintaining the cycle without external input. The cycle operates globally across oceans, land, and atmosphere, with no single starting point.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-water-cycle.json"
+    },
+    {
+      "id": "bronze-age",
+      "kind": "multi-section",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sea-peoples": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 3227
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Late Bronze Age collapse (c. 1200–1150 BCE) involved the rapid decline of major civilizations across the Eastern Mediterranean and Near East, including the Hittite Empire in Anatolia and Mycenaean Greece. Key causes include the violent invasions by the Sea Peoples—a coalition of seafaring groups from the Levant and North Africa—and internal instability, such as the collapse of trade networks and resource shortages, which exacerbated societal breakdown in regions like the Levant and Egypt.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 2,
+        "chars": 497,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 22,
+      "wiki": {
+        "hits": 1,
+        "misses": 2,
+        "added": 2,
+        "entries": 1321
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 5,
+        "tokens": 1850
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Late Bronze Age collapse (c. 1200–1150 BCE) involved the rapid decline of major civilizations across the Eastern Mediterranean and Near East, including the Hittite Empire in Anatolia and Mycenaean Greece. Key causes include the violent invasions by the Sea Peoples—a coalition of seafaring groups from the Levant and North Africa—and internal instability, such as the collapse of trade networks and resource shortages, which exacerbated societal breakdown in regions like the Levant and Egypt.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-bronze-age.json"
+    },
+    {
+      "id": "colony-collapse",
+      "kind": "multi-section",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "mites": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "pesticides": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "pathogens": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "stressors": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 2837
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Honey bee colonies collapse primarily due to Varroa mites (a parasitic mite), pesticide exposure, and diseases like deformed wing virus. These factors cause mass die-offs of worker bees while leaving queen bees and brood behind, leading to colony collapse disorder (CCD) in regions such as North America and Europe. The process is exacerbated by poor hive management and climate change impacts on bee health.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 408,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 18,
+      "wiki": {
+        "hits": 2,
+        "misses": 2,
+        "added": 2,
+        "entries": 1321
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 7,
+        "tokens": 2686
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "Honey bee colonies collapse primarily due to Varroa mites (a parasitic mite), pesticide exposure, and diseases like deformed wing virus. These factors cause mass die-offs of worker bees while leaving queen bees and brood behind, leading to colony collapse disorder (CCD) in regions such as North America and Europe. The process is exacerbated by poor hive management and climate change impacts on bee health.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-colony-collapse.json"
+    },
+    {
+      "id": "coral",
+      "kind": "single-lead",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "temperature": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "algae": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 1,
+        "tokens": 11191
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Coral bleaching occurs when corals expel their symbiotic algae due to elevated sea temperatures, causing them to lose their color. This process is primarily driven by global warming-induced thermal stress, as seen in major events like the 2016 bleaching of the Great Barrier Reef and the 2023–2025 global event affecting two-thirds of reefs. Key causes include rising ocean temperatures, pollution, and changes in ocean chemistry.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 430,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 54,
+      "wiki": {
+        "hits": 3,
+        "misses": 2,
+        "added": 2,
+        "entries": 1321
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 30,
+        "tokens": 9624
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 4,
+      "answer": "Coral bleaching occurs when corals expel their symbiotic algae due to elevated sea temperatures, causing them to lose their color. This process is primarily driven by global warming-induced thermal stress, as seen in major events like the 2016 bleaching of the Great Barrier Reef and the 2023–2025 global event affecting two-thirds of reefs. Key causes include rising ocean temperatures, pollution, and changes in ocean chemistry.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-coral.json"
+    },
+    {
+      "id": "sky-blue",
+      "kind": "single-lead, search trap",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "rayleigh": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 2898
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The sky appears blue due to Rayleigh scattering, where shorter blue wavelengths of sunlight are scattered more by molecules and small particles in Earth's atmosphere. This process was explained by Lord Rayleigh and further studied by C. V. Raman, who won the Nobel Prize for his work on light scattering.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 304,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 4,
+        "misses": 2,
+        "added": 2,
+        "entries": 1321
+      },
+      "replay": {
+        "hits": 2,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 10,
+        "tokens": 2671
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The sky appears blue due to Rayleigh scattering, where shorter blue wavelengths of sunlight are scattered more by molecules and small particles in Earth's atmosphere. This process was explained by Lord Rayleigh and further studied by C. V. Raman, who won the Nobel Prize for his work on light scattering.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-sky-blue.json"
+    },
+    {
+      "id": "aral",
+      "kind": "single-article",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "irrigation": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "soviet": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 3,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 3305
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Aral Sea shrank primarily due to the diversion of water from the Amu Darya and Syr Darya rivers for extensive irrigation projects in the Soviet Union starting in the 1960s, which led to massive water loss from the sea. This process caused the sea to shrink significantly, with the North Aral Sea being fed by the Syr Darya River and the South Aral Sea splitting into eastern and western basins due to agricultural demands.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 2,
+        "chars": 426,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 22,
+      "wiki": {
+        "hits": 5,
+        "misses": 2,
+        "added": 2,
+        "entries": 1321
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 6,
+        "tokens": 2896
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Aral Sea shrank primarily due to the diversion of water from the Amu Darya and Syr Darya rivers for extensive irrigation projects in the Soviet Union starting in the 1960s, which led to massive water loss from the sea. This process caused the sea to shrink significantly, with the North Aral Sea being fed by the Syr Darya River and the South Aral Sea splitting into eastern and western basins due to agricultural demands.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-aral.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:17:22.428Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:4b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:17:22.465Z model cache evals/model-cache/qwen3-4b: 613 responses loaded",
+    "machine at start: gpu 93% · vram 2.08 GiB · load 18.05 · mem 83% free (normal) · no throttling recorded",
+    "2026-09-19T08:17:22.632Z 7 seeds from evals/seeds.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-qwen3-4b-node-877f185.json\"} · prompt tools-3 · grammar tools:composing · matched · commit a811bbd",
+    "wiki recording: 1319 responses loaded",
+    "dead-sea: resolved · facts 2/3 · supported 0/3 · read 0/3 · 1 nodes, 3 calls, 1 lookups, 3005 tokens · stopped by tokens · 1 unread answers refused · 4 s · model 2 replayed 1 missed",
+    "water-cycle: resolved · facts 3/3 · supported 0/3 · read 0/3 · 1 nodes, 3 calls, 1 lookups, 2976 tokens · stopped by tokens · 1 unread answers refused · 21 s · model 0 replayed 3 missed",
+    "bronze-age: resolved · facts 1/4 · supported 0/4 · read 0/4 · 1 nodes, 3 calls, 1 lookups, 3227 tokens · stopped by tokens · 1 unread answers refused · 22 s · model 0 replayed 3 missed",
+    "colony-collapse: resolved · facts 3/4 · supported 0/4 · read 0/4 · 1 nodes, 3 calls, 1 lookups, 2837 tokens · stopped by tokens · 1 unread answers refused · 18 s · model 0 replayed 3 missed",
+    "coral: resolved · facts 3/3 · supported 0/3 · read 0/3 · 1 nodes, 6 calls, 1 lookups, 11191 tokens · stopped by tokens · 4 unread answers refused · 54 s · model 0 replayed 6 missed",
+    "sky-blue: resolved · facts 3/3 · supported 0/3 · read 0/3 · 1 nodes, 3 calls, 1 lookups, 2898 tokens · stopped by tokens · 1 unread answers refused · 3 s · model 2 replayed 1 missed",
+    "aral: resolved · facts 3/3 · supported 0/3 · read 0/3 · 1 nodes, 3 calls, 1 lookups, 3305 tokens · stopped by tokens · 1 unread answers refused · 22 s · model 0 replayed 3 missed",
+    "machine during the suite: gpu 87.4% mean, 98% peak · vram up to 5.03 GiB · load up to 21.13 · no throttling in 10 samples"
+  ]
+}

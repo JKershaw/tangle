@@ -1,0 +1,410 @@
+{
+  "suite": "runs",
+  "model": "qwen3:4b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:24:09.068Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 11,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 88.4
+    },
+    "vramGiB": {
+      "min": 3.28,
+      "max": 3.28,
+      "mean": 3.3
+    },
+    "load": {
+      "min": 16.16,
+      "max": 20.13,
+      "mean": 18.5
+    },
+    "memoryFreePercent": {
+      "min": 81,
+      "max": 81,
+      "mean": 81
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-4b-node-877f185.json"
+  },
+  "seeds": 3,
+  "resolved": 3,
+  "factsPresent": 11,
+  "factsSupported": 10,
+  "factsRead": 14,
+  "factsTotal": 30,
+  "replay": {
+    "hits": 0,
+    "misses": 17,
+    "cache": "evals/model-cache/qwen3-4b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "wreck": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "imaging": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "olympiad": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 6,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 2,
+        "tokens": 6220
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Okay, let's tackle this. The user wants a short profile about the Antikythera mechanism and how it was decoded. I need to use the information from the tool responses.\n\nFirst, the search function gave me five titles. I picked the first one, \"Antikythera mechanism\", and used the read function to get the opening and sections. The read response has the key details.\n\nFrom the read response: The Antikythera mechanism is an ancient Greek device discovered in 1901 off Antikythera island. It's a hand-powered orrery from the 2nd century BC, the oldest known analog computer. It predicts astronomical positions and eclipses. Found in a shipwreck, it was split into fragments. In 2005, Cardiff University used X-ray tomography to image the gears and inscriptions. They found 35 gears, 30 visible, which track the Moon, Sun, eclipses, and possibly planets. The inscriptions were deciphered in 2016.\n\nThe sections list includes Discovery, Origin, Design, etc. But the user wants a short profile with specific works, events, places, people, and consequences.\n\nKey points:\n- Place: Antikythera island, Greece (shipwreck)\n- Event: Discovered in 1901, studied by Spyridon Stais and Valerios Stais\n- People: Spyridon Stais (Greek politician), Valerios Stais (museum director), Mike Edmunds (Cardiff University team)\n- Works: The mechanism itself, 35 bronze gears, inscriptions\n- Decoding process: X-ray tomography in 2005, deciphered inscriptions in 2016\n- Consequences: Confirmed ancient Greek advanced technology, understanding of ancient astronomy, impact on modern understanding of ancient engineering\n\nI need to structure this into a",
+      "profile": {
+        "paragraphs": 6,
+        "sentences": 23,
+        "chars": 1625,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 33,
+      "wiki": {
+        "hits": 3,
+        "misses": 0,
+        "added": 0,
+        "entries": 1321
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 37,
+        "tokens": 16074
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "Okay, let's tackle this. The user wants a short profile about the Antikythera mechanism and how it was decoded. I need to use the information from the tool responses.\n\nFirst, the search function gave me five titles. I picked the first one, \"Antikythera mechanism\", and used the read function to get the opening and sections. The read response has the key details.\n\nFrom the read response: The Antikythera mechanism is an ancient Greek device discovered in 1901 off Antikythera island. It's a hand-powered orrery from the 2nd century BC, the oldest known analog computer. It predicts astronomical positions and eclipses. Found in a shipwreck, it was split into fragments. In 2005, Cardiff University used X-ray tomography to image the gears and inscriptions. They found 35 gears, 30 visible, which track the Moon, Sun, eclipses, and possibly planets. The inscriptions were deciphered in 2016.\n\nThe sections list includes Discovery, Origin, Design, etc. But the user wants a short profile with specific works, events, places, people, and consequences.\n\nKey points:\n- Place: Antikythera island, Greece (shipwreck)\n- Event: Discovered in 1901, studied by Spyridon Stais and Valerios Stais\n- People: Spyridon Stais (Greek politician), Valerios Stais (museum director), Mike Edmunds (Cardiff University team)\n- Works: The mechanism itself, 35 bronze gears, inscriptions\n- Decoding process: X-ray tomography in 2005, deciphered inscriptions in 2016\n- Consequences: Confirmed ancient Greek advanced technology, understanding of ancient astronomy, impact on modern understanding of ancient engineering\n\nI need to structure this into a",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-antikythera.json"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "philae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "comet": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "arrival": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "water": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "end": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "flybys": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 8,
+      "factsSupported": 7,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 2,
+        "tokens": 9432
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Okay, let's see. The user wants a short profile about the Rosetta mission and what it found at comet 67P. I used the search function first to find relevant titles, then read the \"Rosetta (spacecraft)\" title. The read response gives some key info.\n\nFirst, Rosetta was ESA's mission that studied comet 67P/Churyumov–Gerasimenko. It launched in 2004, did flybys of Earth, Mars, and asteroids. Reached comet in August 2014, orbited it, and deployed Philae lander in November 2014. Philae landed but had issues with power. Mission ended in September 2016 with a hard landing.\n\nThe sections list includes things like \"Notable results\", \"Cometary activity\", \"Organic chemistry\", etc. The user wants what it found at comet 67P. The read response mentions \"Notable results\" but doesn't detail them. Maybe I need to check the sections to get more info. Wait, the user said to use the tools. The previous step was to read the title, but the answer isn't complete yet.\n\nWait, the user's instruction says to write several short paragraphs from what you read, naming specific works, events, places, people, and consequences. The read response has the mission overview, but maybe the \"Notable results\" section would have the findings. However, the tool response for read only gives the opening and section headings. So the sections list shows possible sections to explore, but I don't have the content of those sections.\n\nHmm, the user said \"Nothing has been read yet\" in the previous step, but now after reading the title, I have the sections. Maybe I can use the section function to get more details. Wait, the user wants a short profile based on what's been read. The read response gives the mission's timeline and",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 23,
+        "chars": 1702,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 48,
+      "wiki": {
+        "hits": 5,
+        "misses": 1,
+        "added": 1,
+        "entries": 1322
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 41,
+        "tokens": 14650
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 2,
+      "answer": "Okay, let's see. The user wants a short profile about the Rosetta mission and what it found at comet 67P. I used the search function first to find relevant titles, then read the \"Rosetta (spacecraft)\" title. The read response gives some key info.\n\nFirst, Rosetta was ESA's mission that studied comet 67P/Churyumov–Gerasimenko. It launched in 2004, did flybys of Earth, Mars, and asteroids. Reached comet in August 2014, orbited it, and deployed Philae lander in November 2014. Philae landed but had issues with power. Mission ended in September 2016 with a hard landing.\n\nThe sections list includes things like \"Notable results\", \"Cometary activity\", \"Organic chemistry\", etc. The user wants what it found at comet 67P. The read response mentions \"Notable results\" but doesn't detail them. Maybe I need to check the sections to get more info. Wait, the user said to use the tools. The previous step was to read the title, but the answer isn't complete yet.\n\nWait, the user's instruction says to write several short paragraphs from what you read, naming specific works, events, places, people, and consequences. The read response has the mission overview, but maybe the \"Notable results\" section would have the findings. However, the tool response for read only gives the opening and section headings. So the sections list shows possible sections to explore, but I don't have the content of those sections.\n\nHmm, the user said \"Nothing has been read yet\" in the previous step, but now after reading the title, I have the sections. Maybe I can use the section function to get more details. Wait, the user wants a short profile based on what's been read. The read response gives the mission's timeline and",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-rosetta.json"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "dam": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "kazakhstan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cotton": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "salinity": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "desert": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 8,
+        "modelCalls": 8,
+        "lookups": 1,
+        "tokens": 19134
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Okay, I need to use the tools to get the information about the Aral Sea and restoration efforts. First, I'll search for relevant titles. The search results show that the International Fund for Saving the Aral Sea (IFAS) is a key organization. Let me read that title to get details. Once I have the information, I'll structure a short profile with specific works, events, places, people, and consequences.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 5,
+        "chars": 404,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 76,
+      "wiki": {
+        "hits": 6,
+        "misses": 1,
+        "added": 1,
+        "entries": 1322
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 8
+      },
+      "budget": {
+        "calls": 57,
+        "tokens": 18798
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 6,
+      "answer": "Okay, I need to use the tools to get the information about the Aral Sea and restoration efforts. First, I'll search for relevant titles. The search results show that the International Fund for Saving the Aral Sea (IFAS) is a key organization. Let me read that title to get details. Once I have the information, I'll structure a short profile with specific works, events, places, people, and consequences.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-aral-restoration.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:24:09.066Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:4b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:24:09.104Z model cache evals/model-cache/qwen3-4b: 661 responses loaded",
+    "machine at start: gpu 97% · vram 3.28 GiB · load 20.03 · mem 81% free (normal) · no throttling recorded",
+    "2026-09-19T08:24:09.277Z 3 seeds from evals/seeds-overflow.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-4b-node-877f185.json\"} · prompt tools-3 · grammar tools:composing · matched · commit a811bbd",
+    "wiki recording: 1321 responses loaded",
+    "antikythera: resolved · topics 3/10 · supported 3/10 · read 6/10 · ¶6 · 23 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 2 lookups, 6220 tokens · stopped by answer · 1 unread answers refused · 33 s · model 0 replayed 4 missed",
+    "rosetta: resolved · topics 8/10 · supported 7/10 · read 8/10 · ¶5 · 23 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 2 lookups, 9432 tokens · stopped by answer · 2 unread answers refused · 48 s · model 0 replayed 5 missed",
+    "aral-restoration: resolved · topics 0/10 · supported 0/10 · read 0/10 · ¶1 · 5 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 8 calls, 1 lookups, 19134 tokens · stopped by tokens · 6 unread answers refused · 76 s · model 0 replayed 8 missed",
+    "machine during the suite: gpu 88.4% mean, 98% peak · vram up to 3.28 GiB · load up to 20.13 · no throttling in 11 samples"
+  ]
+}

@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "qwen3:4b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:19:46.368Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 18,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 91.9
+    },
+    "vramGiB": {
+      "min": 3.28,
+      "max": 5.05,
+      "mean": 4.2
+    },
+    "load": {
+      "min": 16.19,
+      "max": 20.26,
+      "mean": 18.5
+    },
+    "memoryFreePercent": {
+      "min": 74,
+      "max": 81,
+      "mean": 77.8
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-4b-node-877f185.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 11,
+  "factsSupported": 10,
+  "factsRead": 16,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 28,
+    "cache": "evals/model-cache/qwen3-4b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "enigma": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 1,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 9,
+        "modelCalls": 9,
+        "lookups": 1,
+        "tokens": 22572
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Okay, I need to follow the user's instructions precisely. They want a short profile about Alan Turing and the impact of his work, using the tools provided. The key is that I must first search for a title related to Alan Turing, then read it before answering. The previous attempts show that I called the search function and got five results, but I haven't actually read any title yet. The system says 'Nothing has been read yet', so I need to pick a title from the search results and call the read function on it. Let me choose the third result from the search: 'Alan Turing: The Enigma'. Now I'll simulate the read function call with that title. Once I have the content from the read, I can write the profile. I'll make sure to use specific works, events, places, people, and consequences as required.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 9,
+        "chars": 802,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 87,
+      "wiki": {
+        "hits": 1,
+        "misses": 0,
+        "added": 0,
+        "entries": 1321
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 9
+      },
+      "budget": {
+        "calls": 59,
+        "tokens": 19370
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 7,
+      "answer": "Okay, I need to follow the user's instructions precisely. They want a short profile about Alan Turing and the impact of his work, using the tools provided. The key is that I must first search for a title related to Alan Turing, then read it before answering. The previous attempts show that I called the search function and got five results, but I haven't actually read any title yet. The system says 'Nothing has been read yet', so I need to pick a title from the search results and call the read function on it. Let me choose the third result from the search: 'Alan Turing: The Enigma'. Now I'll simulate the read function call with that title. Once I have the content from the read, I can write the profile. I'll make sure to use specific works, events, places, people, and consequences as required.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mongol": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 2,
+        "tokens": 11785
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Okay, let's see. The user wants a short profile about the Silk Road and its influence. I need to use the tools provided to get the info. Earlier, I did a search for \"Silk Road\" and got some titles. Then I called the read function on \"Silk Road\" to get the opening and sections.\n\nThe response from read shows the title \"Silk Road\" with an opening paragraph and sections. The sections list includes things like Name and contested significance, Routes, Northern route, etc. The user wants specific works, events, places, people, and consequences.\n\nFirst, I need to extract the key points from the read response. The opening paragraph says the Silk Road was a network active from 2nd century BCE to mid-15th century. It spans 6,400 km, facilitated trade between East and West. The name came from silk trade from China. The Han dynasty expanded into Central Asia around 114 BCE via Zhang Qian. The Great Wall was extended for protection. Parthian Empire connected to Mediterranean. Roman Empire in the west. By 1st century CE, silk was in Rome, Egypt, Greece. Other goods: tea, porcelain from East; horses, camels from West. The Black Death and Mongol conquests are mentioned as events that affected the Silk Road.\n\nThe sections list includes events like Mongol Empire (13th-14th centuries), Decline (15th century–present), Transmission of Buddhism, Christianity, etc.\n\nI need to write a short profile with specific works (maybe the Han dynasty, Zhang Qian), events (Mongol conquests, Black Death), places (China, Parthian Empire, Roman Empire), people (Zhang Qian), and consequences (cultural exchanges, spread of religions, trade goods).\n\nWait, the user said \"elaborate on its influence\". So the influence part should be detailed. The read response",
+      "profile": {
+        "paragraphs": 6,
+        "sentences": 23,
+        "chars": 1745,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 57,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "added": 0,
+        "entries": 1321
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 57,
+        "tokens": 19997
+      },
+      "stoppedBy": "answer",
+      "dropped": 1,
+      "refused": 3,
+      "answer": "Okay, let's see. The user wants a short profile about the Silk Road and its influence. I need to use the tools provided to get the info. Earlier, I did a search for \"Silk Road\" and got some titles. Then I called the read function on \"Silk Road\" to get the opening and sections.\n\nThe response from read shows the title \"Silk Road\" with an opening paragraph and sections. The sections list includes things like Name and contested significance, Routes, Northern route, etc. The user wants specific works, events, places, people, and consequences.\n\nFirst, I need to extract the key points from the read response. The opening paragraph says the Silk Road was a network active from 2nd century BCE to mid-15th century. It spans 6,400 km, facilitated trade between East and West. The name came from silk trade from China. The Han dynasty expanded into Central Asia around 114 BCE via Zhang Qian. The Great Wall was extended for protection. Parthian Empire connected to Mediterranean. Roman Empire in the west. By 1st century CE, silk was in Rome, Egypt, Greece. Other goods: tea, porcelain from East; horses, camels from West. The Black Death and Mongol conquests are mentioned as events that affected the Silk Road.\n\nThe sections list includes events like Mongol Empire (13th-14th centuries), Decline (15th century–present), Transmission of Buddhism, Christianity, etc.\n\nI need to write a short profile with specific works (maybe the Han dynasty, Zhang Qian), events (Mongol conquests, Black Death), places (China, Parthian Empire, Roman Empire), people (Zhang Qian), and consequences (cultural exchanges, spread of religions, trade goods).\n\nWait, the user said \"elaborate on its influence\". So the influence part should be detailed. The read response",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "expansion": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 9,
+        "modelCalls": 9,
+        "lookups": 1,
+        "tokens": 23244
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "I need to use the search tool to find a title about the Hubble Space Telescope, then read it to get the information. Let me call the search function with the term 'Hubble Space Telescope' to get the titles.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 2,
+        "chars": 206,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 86,
+      "wiki": {
+        "hits": 5,
+        "misses": 0,
+        "added": 0,
+        "entries": 1321
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 9
+      },
+      "budget": {
+        "calls": 70,
+        "tokens": 20172
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 7,
+      "answer": "I need to use the search tool to find a title about the Hubble Space Telescope, then read it to get the information. Let me call the search function with the term 'Hubble Space Telescope' to get the titles.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 2,
+        "tokens": 6052
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Okay, let's see. The user wants a short profile about the Great Barrier Reef and the threats it faces. I need to use the tools provided to get the info.\n\nFirst, I did a search for \"Great Barrier Reef\" and got five titles. Then I called the read function on the first title, which gave me the opening and sections. The read response includes the description of the reef and mentions environmental threats like coral bleaching, pollution, crown of thorns starfish, etc.\n\nThe sections list includes \"Environmental threats\" and others. The user specifically wants threats, so I should focus on that. The read response mentions \"Environmental threats\" as a section, so maybe I need to call section on that heading to get more details. Wait, but the user said to write a short profile using the tools. The previous step was reading the article, so now I can extract the info from the read response.\n\nLooking at the read response: The text says \"Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish.\" Also, the study from 2012 and 2020 mentions coral cover loss.\n\nThe sections list has \"Environmental threats\" as a section, so maybe the next step would be to read that section. But the user wants a short profile, so maybe the info from the read response is enough. Wait, the user's instruction says \"when you have what you need, write several short paragraphs\". Since the read response already has the description and threats mentioned, I can use that.\n\nWait, the user said \"nothing has been read yet\" before, but now I did a read. So the answer should be based on the read response. Let me check the read response again.\n\nThe read response gives the description: it's the world's largest coral reef system, 2",
+      "profile": {
+        "paragraphs": 7,
+        "sentences": 21,
+        "chars": 1893,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 33,
+      "wiki": {
+        "hits": 8,
+        "misses": 0,
+        "added": 0,
+        "entries": 1321
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 55,
+        "tokens": 16316
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "Okay, let's see. The user wants a short profile about the Great Barrier Reef and the threats it faces. I need to use the tools provided to get the info.\n\nFirst, I did a search for \"Great Barrier Reef\" and got five titles. Then I called the read function on the first title, which gave me the opening and sections. The read response includes the description of the reef and mentions environmental threats like coral bleaching, pollution, crown of thorns starfish, etc.\n\nThe sections list includes \"Environmental threats\" and others. The user specifically wants threats, so I should focus on that. The read response mentions \"Environmental threats\" as a section, so maybe I need to call section on that heading to get more details. Wait, but the user said to write a short profile using the tools. The previous step was reading the article, so now I can extract the info from the read response.\n\nLooking at the read response: The text says \"Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish.\" Also, the study from 2012 and 2020 mentions coral cover loss.\n\nThe sections list has \"Environmental threats\" as a section, so maybe the next step would be to read that section. But the user wants a short profile, so maybe the info from the read response is enough. Wait, the user's instruction says \"when you have what you need, write several short paragraphs\". Since the read response already has the description and threats mentioned, I can use that.\n\nWait, the user said \"nothing has been read yet\" before, but now I did a read. So the answer should be based on the read response. Let me check the read response again.\n\nThe read response gives the description: it's the world's largest coral reef system, 2",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:19:46.367Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:4b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:19:46.404Z model cache evals/model-cache/qwen3-4b: 633 responses loaded",
+    "machine at start: gpu 97% · vram 5.02 GiB · load 16.44 · mem 75% free (normal) · no throttling recorded",
+    "2026-09-19T08:19:46.556Z 4 seeds from evals/seeds-profile.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-4b-node-877f185.json\"} · prompt tools-3 · grammar tools:composing · matched · commit a811bbd",
+    "wiki recording: 1321 responses loaded",
+    "turing: resolved · topics 1/8 · supported 0/8 · read 0/8 · ¶1 · 9 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 9 calls, 1 lookups, 22572 tokens · stopped by tokens · 7 unread answers refused · 87 s · model 0 replayed 9 missed",
+    "silk-road: resolved · topics 5/9 · supported 5/9 · read 7/9 · ¶6 · 23 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 2 lookups, 11785 tokens · stopped by answer · 3 unread answers refused · 1 results dropped from the context · 57 s · model 0 replayed 6 missed",
+    "hubble: resolved · topics 0/8 · supported 0/8 · read 0/8 · ¶1 · 2 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 9 calls, 1 lookups, 23244 tokens · stopped by tokens · 7 unread answers refused · 86 s · model 0 replayed 9 missed",
+    "great-barrier-reef: resolved · topics 5/10 · supported 5/10 · read 9/10 · ¶7 · 21 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 2 lookups, 6052 tokens · stopped by answer · 1 unread answers refused · 33 s · model 0 replayed 4 missed",
+    "machine during the suite: gpu 91.9% mean, 98% peak · vram up to 5.05 GiB · load up to 20.26 · no throttling in 18 samples"
+  ]
+}

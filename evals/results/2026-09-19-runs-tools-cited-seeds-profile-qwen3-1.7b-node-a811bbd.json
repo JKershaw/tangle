@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:17:04.616Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 1,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 2.07,
+      "max": 2.07,
+      "mean": 2.1
+    },
+    "load": {
+      "min": 19.44,
+      "max": 19.44,
+      "mean": 19.4
+    },
+    "memoryFreePercent": {
+      "min": 83,
+      "max": 83,
+      "mean": 83
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 4,
+  "resolved": 2,
+  "factsPresent": 11,
+  "factsSupported": 11,
+  "factsRead": 32,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 31,
+    "misses": 2,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "turing-machine": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 13,
+        "modelCalls": 13,
+        "lookups": 11,
+        "tokens": 21019
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 0,
+      "wiki": {
+        "hits": 3,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 12,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 56,
+        "tokens": 20198
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "section needs a title.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 4,
+        "tokens": 9725
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The name \"Silk Road\" was coined in the late 19th century, but some 20th- and 21st-century historians instead prefer the term Silk Routes, on the grounds that it more accurately describes the intricate web of land and sea routes connecting Central, East, South, Southeast, and West Asia as well as East Africa and Southern Europe. In fact, some scholars criticise or even dismiss the idea of silk roads and call for a new definition or alternate term. According to them, the literature using this term has \"privileged the sedentary and literate empires at either end of Eurasia\" thereby ignoring the contributions of steppe nomads. In addition, the classic definition sidelines prominent civilisations such as India and Iran.\n\nThe Silk Road derives its name from the highly lucrative trade of silk textiles that were primarily produced in China. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. The Chinese took great interest in the security of their trade products, and extended the Great Wall of China to ensure the protection of the trade route. The Parthian Empire provided a vital bridge connecting the network to the Mediterranean. Meanwhile, the rise of the Roman Empire in the west further established the western terminus of the interconnected trade system. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece. Other lucrative commodities from the East included tea, dyes,",
+      "profile": {
+        "paragraphs": 2,
+        "sentences": 13,
+        "chars": 1901,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 0,
+      "wiki": {
+        "hits": 8,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 6,
+        "misses": 0
+      },
+      "budget": {
+        "calls": 55,
+        "tokens": 19421
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The name \"Silk Road\" was coined in the late 19th century, but some 20th- and 21st-century historians instead prefer the term Silk Routes, on the grounds that it more accurately describes the intricate web of land and sea routes connecting Central, East, South, Southeast, and West Asia as well as East Africa and Southern Europe. In fact, some scholars criticise or even dismiss the idea of silk roads and call for a new definition or alternate term. According to them, the literature using this term has \"privileged the sedentary and literate empires at either end of Eurasia\" thereby ignoring the contributions of steppe nomads. In addition, the classic definition sidelines prominent civilisations such as India and Iran.\n\nThe Silk Road derives its name from the highly lucrative trade of silk textiles that were primarily produced in China. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. The Chinese took great interest in the security of their trade products, and extended the Great Wall of China to ensure the protection of the trade route. The Parthian Empire provided a vital bridge connecting the network to the Mediterranean. Meanwhile, the rise of the Roman Empire in the west further established the western terminus of the interconnected trade system. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece. Other lucrative commodities from the East included tea, dyes,",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 2,
+        "tokens": 4360
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 0,
+      "wiki": {
+        "hits": 11,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 4,
+        "misses": 0
+      },
+      "budget": {
+        "calls": 47,
+        "tokens": 17825
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Hubble Space Telescope is a space telescope launched in 1990, operated by NASA, and is one of the most significant instruments in modern astronomy. It is named after Edwin Hubble, an astronomer who made groundbreaking discoveries about the universe. The telescope is located in low Earth orbit and has provided some of the most significant images and data in the history of astronomy.\n\nHubble has discovered numerous celestial objects and phenomena, including distant galaxies, nebulae, and exoplanets. One of its most famous discoveries is the image of the Crab Nebula, which was captured in 1995. This image revealed the intricate structure of the nebula, including a pulsar at its center. \n\nThe telescope has also contributed to the understanding of the age of the universe, the expansion of the universe, and the formation of galaxies. In 2012, Hubble made a groundbreaking discovery of a galaxy that is 13 billion years old, which is the oldest known galaxy in the universe. \n\nAdditionally, Hubble has observed the formation of stars in young galaxies and has provided evidence for the existence of dark energy, which is thought to be responsible for the accelerated expansion of the universe. The telescope's data has been instrumental in shaping our understanding of the cosmos and has inspired countless scientific studies and public interest in astronomy.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "queensland": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 8,
+      "factsSupported": 8,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 10,
+        "modelCalls": 10,
+        "lookups": 8,
+        "tokens": 14278
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The reef is located in the Coral Sea, off the coast of Queensland, Australia. It is separated from the coast by a channel 160 kilometres (100 mi) wide in places and over 61 metres (200 ft) deep. The Great Barrier Reef can be seen from outer space and is the world's biggest single structure made by living organisms. This reef structure is composed of and built by billions of tiny organisms, known as coral polyps. It supports a wide diversity of life and was selected as a World Heritage Site in 1981. CNN labelled it one of the Seven Natural Wonders of the World in 1997. Australian World Heritage places included it in its list in 2007. The Queensland National Trust named it a state icon of Queensland in 2006.\n\nA large part of the reef is protected by the Great Barrier Reef Marine Park, which helps to limit the impact of human use, such as fishing and tourism. Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified.\n\nThe Great Barrier Reef has long been known to and used by the Aboriginal Australian and Torres Strait Islander peoples, and is an important part of local groups' cultures and spirituality. The reef is a very popular destination for tourists, especially in the Whitsunday Islands and Cairns regions. Tourism is an important economic activity for the region, generating over AUD$3 billion per year. In November 2014, Google launched Google Underwater Street View in 3D of the Great Barrier Reef.\n\nA March 2016 report stated that coral bleaching was more widespread than previously thought, seriously affecting the northern parts of the reef as a result of warming ocean temperatures.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 16,
+        "chars": 2159,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 14,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 9,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 39,
+        "tokens": 13326
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres (1,400 mi) over an area of approximately 344,400 square kilometres (133,000 mi²). The reef is located in the Coral Sea, off the coast of Queensland, Australia. It is separated from the coast by a channel 160 kilometres (100 mi) wide in places and over 61 metres (200 ft) deep. The Great Barrier Reef can be seen from outer space and is the world's biggest single structure made by living organisms. This reef structure is composed of and built by billions of tiny organisms, known as coral polyps. It supports a wide diversity of life and was selected as a World Heritage Site in 1981. CNN labelled it one of the Seven Natural Wonders of the World in 1997. Australian World Heritage places included it in its list in 2007. The Queensland National Trust named it a state icon of Queensland in 2006.\n\nA large part of the reef is protected by the Great Barrier Reef Marine Park, which helps to limit the impact of human use, such as fishing and tourism. Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified.\n\nThe Great Barrier Reef has long been known to and used by the Aboriginal Australian and Torres Strait Islander peoples, and is an important part of local groups' cultures and spirituality. The reef is a very popular destination for tourists, especially in the Whitsunday Islands and Cairns regions. Tourism is an important economic activity for the region, generating over AUD$3 billion per year. In November 2014, Google launched Google Underwater Street View in 3D of the Great Barrier Reef.\n\nA March 2016 report stated that coral bleaching was more widespread than previously thought, seriously affecting the northern parts of the reef as a result of warming ocean temperatures. In 2020, the Great Barrier Reef experienced one of the most severe bleaching events in its history, with over 50% of the reef's coral dying. This event was linked to rising sea temperatures and ocean acidification, both of which are exacerbated by climate change. The loss of coral has had significant impacts on marine life, including the decline of fish populations and the disruption of food chains. The Great Barrier Reef is also facing threats from pollution, including agricultural runoff, plastic waste, and chemical contaminants. These pollutants can harm marine life and degrade water quality, further stressing the reef's ecosystem.\n\nThe Great Barrier Reef is a vital ecological and cultural site, and its health is closely monitored by scientists and conservationists. Efforts to protect the reef include initiatives such as the Reef 2050 plan, which aims to restore and maintain the reef's biodiversity and resilience. These efforts are crucial in addressing the challenges posed by climate change, ocean acidification, and human activities that threaten the reef's integrity.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:17:04.615Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:17:04.653Z model cache evals/model-cache/qwen3-1.7b: 759 responses loaded",
+    "machine at start: gpu 94% · vram 2.07 GiB · load 19.44 · mem 83% free (normal) · no throttling recorded",
+    "2026-09-19T08:17:04.769Z 4 seeds from evals/seeds-profile.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-3 · grammar tools:cited · matched · commit a811bbd",
+    "wiki recording: 1319 responses loaded",
+    "turing: root blocked · topics 0/8 · supported 0/8 · read 7/8 · ¶0 · 0 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 13 calls, 11 lookups, 21019 tokens · stopped by tokens · 1 unread answers refused · 0 s · model 12 replayed 1 missed",
+    "silk-road: resolved · topics 3/9 · supported 3/9 · read 9/9 · ¶2 · 13 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 4 lookups, 9725 tokens · stopped by answer · 1 unread answers refused · 0 s · model 6 replayed 0 missed",
+    "hubble: root blocked · topics 0/8 · supported 0/8 · read 7/8 · ¶0 · 0 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 4 calls, 2 lookups, 4360 tokens · stopped by answer · 1 unread answers refused · 0 s · model 4 replayed 0 missed",
+    "great-barrier-reef: resolved · topics 8/10 · supported 8/10 · read 9/10 · ¶4 · 16 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 10 calls, 8 lookups, 14278 tokens · stopped by tokens · 1 unread answers refused · 8 s · model 9 replayed 1 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 2.07 GiB · load up to 19.44 · no throttling in 1 samples"
+  ]
+}

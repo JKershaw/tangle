@@ -1,0 +1,536 @@
+{
+  "suite": "runs",
+  "model": "qwen3:4b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:26:46.885Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 15,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 90.7
+    },
+    "vramGiB": {
+      "min": 3.28,
+      "max": 3.3,
+      "mean": 3.3
+    },
+    "load": {
+      "min": 18.38,
+      "max": 20.9,
+      "mean": 19.6
+    },
+    "memoryFreePercent": {
+      "min": 81,
+      "max": 81,
+      "mean": 81
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-4b-node-877f185.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 11,
+  "factsSupported": 6,
+  "factsRead": 11,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 24,
+    "cache": "evals/model-cache/qwen3-4b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "streamed-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "serialisation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 1,
+        "tokens": 7764
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "I need to use the search tool to find a relevant title about MongoDB's disk persistence. The previous search results were code files, not documentation. Let me try searching for 'MongoDB persistence' to find an official documentation title. Once I find a title, I'll read it to get the details.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 4,
+        "chars": 294,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 41,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 17,
+        "tokens": 5456
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 3,
+      "answer": "I need to use the search tool to find a relevant title about MongoDB's disk persistence. The previous search results were code files, not documentation. Let me try searching for 'MongoDB persistence' to find an official documentation title. Once I find a title, I'll read it to get the details.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-persist.json"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "matches-filter": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "logical-operators": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": true,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 4,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 1,
+        "tokens": 10660
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Okay, the user asked how MongoDB evaluates a find query with a filter. I used the search tool to find relevant titles. The search results showed several MongoDB source files related to query execution, including `query-matcher.ts` and `query-analyzer.ts`. Let me read one of these titles to get the details.\n\nFirst, I'll read the title from the search results: `src/query-matcher.ts — Query matching logic for MongoDB-compatible filters`.\n\nAfter reading this title, I can explain how MongoDB evaluates find queries with filters. The key points are:\n\n1. **Filter Evaluation Process**: MongoDB first checks if the query filter matches the document using `matchesFilter` (from `query-matcher.ts`). This ensures the filter is compatible with MongoDB's query syntax.\n\n2. **Index Utilization**: If an index exists for the filter fields, MongoDB uses it to quickly locate matching documents (as seen in `query-analyzer.ts`), avoiding full collection scans.\n\n3. **Execution Plan**: The `query-analyzer.ts` file handles generating an execution plan for the query, which determines whether to use an index or perform a collection scan.\n\n4. **Error Handling**: If a filter requires a text index (e.g., `$text` queries), MongoDB throws an error if the index isn't present (as in `errors.ts`).\n\nThis process ensures efficient and accurate evaluation of find queries with filters in MongoDB.",
+      "profile": {
+        "paragraphs": 8,
+        "sentences": 12,
+        "chars": 1377,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 55,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 39,
+        "tokens": 9899
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 4,
+      "answer": "Okay, the user asked how MongoDB evaluates a find query with a filter. I used the search tool to find relevant titles. The search results showed several MongoDB source files related to query execution, including `query-matcher.ts` and `query-analyzer.ts`. Let me read one of these titles to get the details.\n\nFirst, I'll read the title from the search results: `src/query-matcher.ts — Query matching logic for MongoDB-compatible filters`.\n\nAfter reading this title, I can explain how MongoDB evaluates find queries with filters. The key points are:\n\n1. **Filter Evaluation Process**: MongoDB first checks if the query filter matches the document using `matchesFilter` (from `query-matcher.ts`). This ensures the filter is compatible with MongoDB's query syntax.\n\n2. **Index Utilization**: If an index exists for the filter fields, MongoDB uses it to quickly locate matching documents (as seen in `query-analyzer.ts`), avoiding full collection scans.\n\n3. **Execution Plan**: The `query-analyzer.ts` file handles generating an execution plan for the query, which determines whether to use an index or perform a collection scan.\n\n4. **Error Handling**: If a filter requires a text index (e.g., `$text` queries), MongoDB throws an error if the index isn't present (as in `errors.ts`).\n\nThis process ensures efficient and accurate evaluation of find queries with filters in MongoDB.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-find.json"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "default-id-index": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "built-lazily-in-memory": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "equality-map": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sorted-entries": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "compound-prefix": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "non-indexable": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "special-indexes-skipped": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 3,
+      "factsSupported": 2,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 2,
+        "tokens": 8122
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Okay, let's see. The user asked about how MongoDB's indexes work and when a query uses them. I need to use the tools provided to get the answer.\n\nFirst, I called the search function with \"MongoDB indexes\" and got a list of titles. The relevant one was \"src/query-analyzer.ts\" which deals with query utilization. Then I used the read function on that title to get the opening and section headings.\n\nThe response from read shows that the file is a Query Analyzer for MongoDB index utilization. It has sections like RangeBounds, IndexScanPlan, and functions related to analyzing queries. The key points here are that the analyzer checks if query filters can use an index and generates execution plans.\n\nNow, I need to explain how MongoDB indexes work and when queries use them based on this info. The functions mentioned (getFieldIndexUsage, scoreIndexMatch, analyzeQuery) suggest that indexes are used when queries have conditions that match the index structure, like equality or range operations. For example, if a query has $gt or $lt operators, it might use a range index.\n\nThe user probably wants a concise answer. Let me structure it into a few short paragraphs. Mention that MongoDB indexes are data structures that speed up queries. When a query uses an index, it's when the query conditions match the index's structure (like equality or range operations). The query analyzer checks this and uses the index to optimize the query.\n\nWait, the specific works here are the functions in query-analyzer.ts. The answer should reference that the analyzer determines index usage based on operators like $gt, $lt, etc. Also, the consequences are faster queries when indexes are used appropriately.\n\nI need to make sure to name specific works (the file, functions), events (query execution), places (MongoDB), people (not sure, maybe the team that built it), and consequences (faster queries).\n\nSo the answer would be something like:\n\nMongoDB uses indexes to speed up data",
+      "profile": {
+        "paragraphs": 9,
+        "sentences": 23,
+        "chars": 1966,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 44,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 49,
+        "tokens": 15096
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 2,
+      "answer": "Okay, let's see. The user asked about how MongoDB's indexes work and when a query uses them. I need to use the tools provided to get the answer.\n\nFirst, I called the search function with \"MongoDB indexes\" and got a list of titles. The relevant one was \"src/query-analyzer.ts\" which deals with query utilization. Then I used the read function on that title to get the opening and section headings.\n\nThe response from read shows that the file is a Query Analyzer for MongoDB index utilization. It has sections like RangeBounds, IndexScanPlan, and functions related to analyzing queries. The key points here are that the analyzer checks if query filters can use an index and generates execution plans.\n\nNow, I need to explain how MongoDB indexes work and when queries use them based on this info. The functions mentioned (getFieldIndexUsage, scoreIndexMatch, analyzeQuery) suggest that indexes are used when queries have conditions that match the index structure, like equality or range operations. For example, if a query has $gt or $lt operators, it might use a range index.\n\nThe user probably wants a concise answer. Let me structure it into a few short paragraphs. Mention that MongoDB indexes are data structures that speed up queries. When a query uses an index, it's when the query conditions match the index's structure (like equality or range operations). The query analyzer checks this and uses the index to optimize the query.\n\nWait, the specific works here are the functions in query-analyzer.ts. The answer should reference that the analyzer determines index usage based on operators like $gt, $lt, etc. Also, the consequences are faster queries when indexes are used appropriately.\n\nI need to make sure to name specific works (the file, functions), events (query execution), places (MongoDB), people (not sure, maybe the team that built it), and consequences (faster queries).\n\nSo the answer would be something like:\n\nMongoDB uses indexes to speed up data",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-indexes.json"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "stage-dispatch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "in-memory-sequential": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "out-and-merge-last": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "accumulators": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "lookup": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "system-variables": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "one-key-per-stage": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 8,
+        "modelCalls": 8,
+        "lookups": 2,
+        "tokens": 16936
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MongoDB executes an aggregation pipeline through a series of stages defined in the pipeline. The process begins with the **AggregationCursor** object, which manages the pipeline stages and their execution order. Each stage (e.g., $match, $group, $project) processes the data sequentially, applying transformations to the dataset. The pipeline starts with a **source collection**, where data is read from the database. The **execution engine** then processes each stage in order, using memory-efficient techniques like **sharding** and **caching** to handle large datasets. Key components include the **pipeline stage implementations** (e.g., $sort, $limit), which transform the data step-by-step. The final output is a single document or a collection of documents, depending on the pipeline configuration. This approach ensures efficient data processing while minimizing memory usage and enabling complex queries without full dataset scans.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 8,
+        "chars": 940,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 72,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 8
+      },
+      "budget": {
+        "calls": 59,
+        "tokens": 16888
+      },
+      "stoppedBy": "tokens",
+      "dropped": 2,
+      "refused": 5,
+      "answer": "MongoDB executes an aggregation pipeline through a series of stages defined in the pipeline. The process begins with the **AggregationCursor** object, which manages the pipeline stages and their execution order. Each stage (e.g., $match, $group, $project) processes the data sequentially, applying transformations to the dataset. The pipeline starts with a **source collection**, where data is read from the database. The **execution engine** then processes each stage in order, using memory-efficient techniques like **sharding** and **caching** to handle large datasets. Key components include the **pipeline stage implementations** (e.g., $sort, $limit), which transform the data step-by-step. The final output is a single document or a collection of documents, depending on the pipeline configuration. This approach ensures efficient data processing while minimizing memory usage and enabling complex queries without full dataset scans.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-aggregate.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:26:46.883Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T08:26:46.884Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:4b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:26:46.921Z model cache evals/model-cache/qwen3-4b: 678 responses loaded",
+    "machine at start: gpu 99% · vram 3.28 GiB · load 19.13 · mem 81% free (normal) · no throttling recorded",
+    "2026-09-19T08:26:47.019Z 4 seeds from evals/seeds-code.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-4b-node-877f185.json\"} · prompt tools-3 · grammar tools:composing · matched · commit a811bbd",
+    "wiki recording: 0 responses loaded",
+    "persist: resolved · topics 0/9 · supported 0/9 · read 0/9 · ¶1 · 4 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 1 lookups, 7764 tokens · stopped by tokens · 3 unread answers refused · 41 s · model 0 replayed 5 missed",
+    "find: resolved · topics 4/11 · supported 0/11 · read 0/11 · ¶8 · 12 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 1 lookups, 10660 tokens · stopped by tokens · 4 unread answers refused · 55 s · model 0 replayed 6 missed",
+    "indexes: resolved · topics 3/11 · supported 2/11 · read 2/11 · ¶9 · 23 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 2 lookups, 8122 tokens · stopped by answer · 2 unread answers refused · 44 s · model 0 replayed 5 missed",
+    "aggregate: resolved · topics 4/11 · supported 4/11 · read 9/11 · ¶1 · 8 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 8 calls, 2 lookups, 16936 tokens · stopped by tokens · 5 unread answers refused · 2 results dropped from the context · 72 s · model 0 replayed 8 missed",
+    "machine during the suite: gpu 90.7% mean, 98% peak · vram up to 3.3 GiB · load up to 20.9 · no throttling in 15 samples"
+  ]
+}

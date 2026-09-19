@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "qwen3:8b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:51:41.708Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 5,
+    "gpuPercent": {
+      "min": 0,
+      "max": 99,
+      "mean": 78.6
+    },
+    "vramGiB": {
+      "min": 5.84,
+      "max": 5.84,
+      "mean": 5.8
+    },
+    "load": {
+      "min": 16.43,
+      "max": 19.22,
+      "mean": 17.9
+    },
+    "memoryFreePercent": {
+      "min": 68,
+      "max": 68,
+      "mean": 68
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-8b-node-59c9099.json"
+  },
+  "seeds": 4,
+  "resolved": 3,
+  "factsPresent": 8,
+  "factsSupported": 8,
+  "factsRead": 31,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 19,
+    "cache": "evals/model-cache/qwen3-8b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "conviction": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 4,
+        "tokens": 6118
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science.\n\nDuring World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence. He led Hut 8, the section responsible for German naval cryptanalysis. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n\nAfter the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s.\n\nDespite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act. In 1952, Turing was prosecuted for homosexual acts. He accepted hormone treatment, a procedure commonly referred to as chemical castration, as an alternative to prison. Turing died on 7 June 1954, aged 41, from cyanide poisoning. An inquest determined his death as suicide, but the evidence is also consistent with accidental poisoning. Following",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 14,
+        "chars": 1966,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 24,
+      "wiki": {
+        "hits": 4,
+        "misses": 1,
+        "added": 1,
+        "entries": 1338
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 81,
+        "tokens": 25296
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "Alan Turing was an English mathematician, computer scientist, logician, cryptanalyst, philosopher, and theoretical biologist. He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science.\n\nDuring World War II, Turing worked for the Government Code and Cypher School at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence. He led Hut 8, the section responsible for German naval cryptanalysis. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements.\n\nAfter the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer. In 1948, Turing joined Max Newman's Computing Machine Laboratory at the University of Manchester, where he contributed to the development of early Manchester computers and became interested in mathematical biology. Turing wrote on the chemical basis of morphogenesis and predicted oscillating chemical reactions such as the Belousov–Zhabotinsky reaction, first observed in the 1960s.\n\nDespite these accomplishments, he was never fully recognised during his lifetime because much of his work was covered by the Official Secrets Act. In 1952, Turing was prosecuted for homosexual acts. He accepted hormone treatment, a procedure commonly referred to as chemical castration, as an alternative to prison. Turing died on 7 June 1954, aged 41, from cyanide poisoning. An inquest determined his death as suicide, but the evidence is also consistent with accidental poisoning. Following",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-cited-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 4,
+        "tokens": 5594
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Silk Road consisted of several routes. As it extended westwards from the ancient commercial centres of China, the overland, intercontinental Silk Road divided into northern and southern routes bypassing the Taklamakan Desert and Lop Nur. Merchants along these routes were involved in \"relay trade\" in which goods changed \"hands many times before reaching their final destinations\".",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 385,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 10,
+      "wiki": {
+        "hits": 9,
+        "misses": 1,
+        "added": 1,
+        "entries": 1338
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 71,
+        "tokens": 21889
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Silk Road consisted of several routes. As it extended westwards from the ancient commercial centres of China, the overland, intercontinental Silk Road divided into northern and southern routes bypassing the Taklamakan Desert and Lop Nur. Merchants along these routes were involved in \"relay trade\" in which goods changed \"hands many times before reaching their final destinations\".",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-cited-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 4,
+        "tokens": 7271
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 17,
+      "wiki": {
+        "hits": 14,
+        "misses": 1,
+        "added": 1,
+        "entries": 1338
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 68,
+        "tokens": 21756
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Hubble Space Telescope has discovered many significant things in astronomy. It has helped determine the rate of expansion of the universe, which is crucial for understanding the universe's age and future. The telescope has also discovered black holes, providing insights into their properties and behavior. Additionally, Hubble has contributed to the study of the Milky Way, helping to determine its mass and size. It has also played a role in observing supernovae, which has led to a better understanding of stellar evolution and the life cycles of stars. The telescope has also contributed to the study of distant galaxies, allowing scientists to observe the early universe and understand how galaxies have evolved over time. Hubble's observations have also led to the discovery of exoplanets and the study of their atmospheres, expanding our knowledge of planetary systems beyond our own.",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-cited-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "bleaching": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "runoff": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cyclone": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 3,
+        "tokens": 4136
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Other threats include shipping accidents, oil spills, and tropical cyclones. In 2022, the northern and central parts of the reef had the highest amount of coral cover since monitoring began, but the cover in the southern part had decreased,",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 2,
+        "chars": 240,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 21,
+      "wiki": {
+        "hits": 18,
+        "misses": 1,
+        "added": 1,
+        "entries": 1338
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 46,
+        "tokens": 16102
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "The Great Barrier Reef is the world's largest coral reef system, stretching over 2,300 kilometres along the East coast of Australia from the northern tip down to the town of Bundaberg. It is composed of over 2,900 individual reefs and 900 islands, covering an area of approximately 344,400 square kilometres. The reef is located in the Coral Sea, off the coast of Queensland in northeast Australia, and a large part of it is protected by the Great Barrier Reef Marine Park.\n\nClimate change is the most significant environmental threat to the Great Barrier Reef, according to a 2014 report by the Australian Government's Great Barrier Reef Marine Park Authority (GBRMPA). Other major threats include decreased water quality from land-based runoff, impacts from coastal development, and persistent effects from fishing activities. The reef is also threatened by storms, coral bleaching, and ocean acidification. The 2014 report also noted that while many marine life species have recovered after previous declines, the strength of the dugong population is continuing to decline.\n\nIn addition to climate change, pollution, crown-of-thorns starfish, and fishing are the primary threats to the health of the Great Barrier Reef. Other threats include shipping accidents, oil spills, and tropical cyclones. Skeletal Eroding Band, a disease of bony corals caused by the protozoan *Halofolliculina corallasia*, affects 31 coral species. According to a 2012 study by the National Academy of Sciences, since 1985, the Great Barrier Reef has lost more than half of its corals, with two-thirds of the loss occurring from 1998 due to the factors listed above. In 2022, the northern and central parts of the reef had the highest amount of coral cover since monitoring began, but the cover in the southern part had decreased,",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-cited-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:51:41.706Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:8b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:51:41.744Z model cache evals/model-cache/qwen3-8b: 732 responses loaded",
+    "machine at start: gpu 98% · vram 5.84 GiB · load 17.68 · mem 68% free (normal) · no throttling recorded",
+    "2026-09-19T08:51:41.839Z 4 seeds from evals/seeds-profile.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-8b-node-59c9099.json\"} · prompt tools-3 · grammar tools:cited · matched · commit a811bbd",
+    "wiki recording: 1337 responses loaded",
+    "turing: resolved · topics 6/8 · supported 6/8 · read 7/8 · ¶4 · 14 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 4 lookups, 6118 tokens · stopped by answer · 24 s · model 0 replayed 5 missed",
+    "silk-road: resolved · topics 1/9 · supported 1/9 · read 7/9 · ¶1 · 3 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 4 lookups, 5594 tokens · stopped by answer · 10 s · model 0 replayed 5 missed",
+    "hubble: root blocked · topics 0/8 · supported 0/8 · read 7/8 · ¶0 · 0 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 5 calls, 4 lookups, 7271 tokens · stopped by answer · 17 s · model 0 replayed 5 missed",
+    "great-barrier-reef: resolved · topics 1/10 · supported 1/10 · read 10/10 · ¶1 · 2 sentences · read 2 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 3 lookups, 4136 tokens · stopped by answer · 21 s · model 0 replayed 4 missed",
+    "machine during the suite: gpu 78.6% mean, 99% peak · vram up to 5.84 GiB · load up to 19.22 · no throttling in 5 samples"
+  ]
+}

@@ -163,6 +163,27 @@ Node evals (`scripts/node-eval.mjs`): pass rate over the cases in `evals/node/<a
 
 **What the node evals say.** From 1.7B up, the model finds the answering sentence in every positive case with a plain numbered list, and every failure is a *none* case: shown sentences that do not answer, it picks one anyway (the same two Dead Sea cases defeat 4B and 8B too; a reference model is needed to say whether those cases are fair). 8B is perfect when a pick is followed by one yes-or-no on that sentence alone. 0.6B does best when *none* is an ordinary numbered option, and answers yes to every sentence in the one-per-sentence floor. Section picks are 14/15 from 1.7B up; naming an article to search is 9/9 from 1.7B up while naming "the missing fact" is not, so the walk asks for a search term. Every one of these calls is 0.2 to 4 seconds; the grammar compile cost that ate half a run under the old prompt is gone, because the schemas are tiny enums. The walk (`src/walk.js`) uses list / list / search.
 
+## The tool control (milestone 5b, 2026-09-19)
+
+The same model with the four source requests as tools in one context, each seed budgeted to the graph's calls and tokens on it (`scripts/eval.mjs runs --mode tools|tools-cited --match <tangle json>`, tools-3, a811bbd). Reading in [evals/readings.md](evals/readings.md).
+
+| suite | size | the graph (walk-15) | tool control, composing | tool control, cited | memory |
+|---|---|---|---|---|---|
+| questions, 23 facts | 1.7B | **15** · 38 calls · 16k · 1.0k/fact | 14 (0 supported) · 29 · 18k · 1.3k | 0 | 14 |
+| | 4B | 12 · 69 · 24k · 2.0k | **18** (0 supported) · 24 · 29k · 1.6k | 0 | 19 |
+| | 8B | 12 · 61 · 19k · 1.6k | **17** (15 supported) · 23 · 18k · 1.1k | 1 | 20 |
+| profiles, 35 topics | 1.7B | **25** · 197 · 71k · 2.8k | 13 · 34 · 49k · 3.8k | 11 | 15 |
+| | 4B | **24** · 241 · 76k · 3.2k | 11 · 28 · 64k · 5.8k | 1 | 10 |
+| | 8B | **24** · 266 · 85k · 3.5k | 20 · 19 · 25k · 1.3k | 8 | 20 |
+| overflow, 30 topics | 1.7B | **24** · 117 · 44k · 1.8k | 11 · 25 · 39k · 3.5k | 0 | 5 |
+| | 4B | **23** · 135 · 50k · 2.2k | 11 · 17 · 35k · 3.2k | 0 | 12 |
+| | 8B | **24** · 141 · 51k · 2.1k | 21 · 15 · 18k · 0.9k | 6 | 17 |
+| MangoDB, 42 topics | 1.7B | **14** · 122 · 40k · 2.9k | 6 · 30 · 37k · 6.1k | 0 | 9 |
+| | 4B | **11** · 164 · 47k · 4.3k | 11 (6 supported) · 24 · 43k · 4.0k | 0 | 8 |
+| | 8B | 12 · 167 · 53k · 4.4k | **15** (14 supported) · 16 · 15k · 1.0k | 0 | 9 |
+
+Each cell: topics (or facts) present · model calls · tokens · tokens per topic. The graph's topics are all supported by construction; the tool control's "supported" means the fact was named and something read held it. Memory is the closed-book column (page rows for Wikipedia, Node for MangoDB). Budget: each seed's calls and tokens are the graph's spend on that seed; the tool control may stop early, and at 8B it does.
+
 ## Files as a source (milestone 5, begun 2026-09-19)
 
 Four briefs over MangoDB's `src/` (`evals/seeds-code.json`, 42 topics), the walk unchanged, `src/files.js` as the source, Node through Ollama. Reading in [evals/readings.md](evals/readings.md).
@@ -193,6 +214,11 @@ Memory writes a write-ahead log and replication into a database that has neither
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-19 · milestone 5b · the tool control
+
+- `scripts/tools.mjs` (59c9099 → a811bbd): the same model with search, read, section and about as tools in one context, budget-matched per seed to the graph's row, composing and cited. tools-1: at 1.7B every seed was answered on the first call with no tool used, and Ollama ignores `tool_choice`; tools-2 refuses an unread answer with the reason and charges the call; tools-3 cuts a search line handed back as a title and checks the budget against the next call's cost.
+- The table above. At 1.7B and 4B the graph beats the tool control on every brief set about two to one and the tool control equals memory; at 8B the tool control closes to within three or four topics on Wikipedia briefs and beats the graph on MangoDB (15 against 12) at a third of the tokens per topic. The cited variant is near zero below 8B. The warm-graph row is not built: no node question repeats across the four MangoDB briefs at any size.
 
 ### 2026-09-19 · milestone 5a · the replay
 

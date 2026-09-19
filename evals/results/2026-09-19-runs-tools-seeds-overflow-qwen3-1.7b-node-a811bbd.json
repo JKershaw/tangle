@@ -1,0 +1,410 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:16:48.141Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 1,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 2.13,
+      "max": 2.13,
+      "mean": 2.1
+    },
+    "load": {
+      "min": 22.4,
+      "max": 22.4,
+      "mean": 22.4
+    },
+    "memoryFreePercent": {
+      "min": 83,
+      "max": 83,
+      "mean": 83
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 3,
+  "resolved": 3,
+  "factsPresent": 11,
+  "factsSupported": 10,
+  "factsRead": 22,
+  "factsTotal": 30,
+  "replay": {
+    "hits": 23,
+    "misses": 2,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "wreck": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "imaging": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "olympiad": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 6,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 4,
+        "tokens": 8333
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Antikythera mechanism is an ancient Greek analog computer discovered in 1901 in the Antikythera shipwreck off the coast of Greece. It is one of the most sophisticated ancient machines ever found and dates back to around 330 BCE. The mechanism was used to predict astronomical events, such as the positions of the planets and the phases of the moon, and it also included a calendar for the Olympic Games. It was designed to calculate the movements of the Sun and the Moon, as well as to predict eclipses.\n\nThe mechanism was composed of a complex system of interlocking gears, which allowed it to simulate the motion of celestial bodies. It was capable of predicting the positions of the five classical planets, as well as the phases of the moon and the occurrence of eclipses. The device was used to track the four-year cycle of the Olympic Games, which was a significant aspect of ancient Greek culture.\n\nIn 2005, a team from Cardiff University led by Mike Edmunds used advanced imaging techniques to decode the mechanism. They discovered that the device had 35 meshing bronze gears, enabling it to follow the movements of the Moon and the Sun through the zodiac. The mechanism was also used to model the irregular orbit of the Moon, where the Moon's speed is higher in its perigee than in its apogee. This motion was studied by astronomer Hipparchus of Rhodes in the 2nd century BC, and he may have been consulted in the machine's construction.\n\nThe decoding of the Antikythera mechanism provided valuable insights into the advanced knowledge of ancient Greek astronomers and their ability to create sophisticated mechanical devices. It also highlighted the importance of the ancient Greeks in the development of early computing technology. The mechanism's intricate design and its ability to predict astronomical events have made it a subject of great interest in both historical and technological studies.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 14,
+        "chars": 1912,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 0,
+      "wiki": {
+        "hits": 5,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 6,
+        "misses": 0
+      },
+      "budget": {
+        "calls": 37,
+        "tokens": 15754
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Antikythera mechanism is an ancient Greek analog computer discovered in 1901 in the Antikythera shipwreck off the coast of Greece. It is one of the most sophisticated ancient machines ever found and dates back to around 330 BCE. The mechanism was used to predict astronomical events, such as the positions of the planets and the phases of the moon, and it also included a calendar for the Olympic Games. It was designed to calculate the movements of the Sun and the Moon, as well as to predict eclipses.\n\nThe mechanism was composed of a complex system of interlocking gears, which allowed it to simulate the motion of celestial bodies. It was capable of predicting the positions of the five classical planets, as well as the phases of the moon and the occurrence of eclipses. The device was used to track the four-year cycle of the Olympic Games, which was a significant aspect of ancient Greek culture.\n\nIn 2005, a team from Cardiff University led by Mike Edmunds used advanced imaging techniques to decode the mechanism. They discovered that the device had 35 meshing bronze gears, enabling it to follow the movements of the Moon and the Sun through the zodiac. The mechanism was also used to model the irregular orbit of the Moon, where the Moon's speed is higher in its perigee than in its apogee. This motion was studied by astronomer Hipparchus of Rhodes in the 2nd century BC, and he may have been consulted in the machine's construction.\n\nThe decoding of the Antikythera mechanism provided valuable insights into the advanced knowledge of ancient Greek astronomers and their ability to create sophisticated mechanical devices. It also highlighted the importance of the ancient Greeks in the development of early computing technology. The mechanism's intricate design and its ability to predict astronomical events have made it a subject of great interest in both historical and technological studies.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-antikythera.json"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "philae": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "comet": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "arrival": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "water": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "end": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 7,
+      "factsSupported": 6,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 11,
+        "modelCalls": 11,
+        "lookups": 9,
+        "tokens": 16183
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Rosetta mission is a European Space Agency (ESA) mission launched in 2004 to study comet 67P/Churyumov–Gerasimenko. It was the first spacecraft to orbit and land on a comet, achieving a major milestone in space exploration. The mission involved a complex rendezvous and orbital insertion, with Rosetta arriving at the comet on 6 August 2014. The lander, Philae, was deployed on 12 November 2014, becoming the first spacecraft to land on a comet nucleus. The mission provided extensive data on the comet's composition, structure, and surface characteristics, including the discovery of organic compounds and a complex tail. The mission concluded on 30 September 2016, with Rosetta continuing its scientific observations until its final approach to the comet in its Maʽat region.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 781,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 8,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 10,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 42,
+        "tokens": 15344
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Rosetta mission is a European Space Agency (ESA) mission launched in 2004 to study comet 67P/Churyumov–Gerasimenko. It was the first spacecraft to orbit and land on a comet, achieving a major milestone in space exploration. The mission involved a complex rendezvous and orbital insertion, with Rosetta arriving at the comet on 6 August 2014. The lander, Philae, was deployed on 12 November 2014, becoming the first spacecraft to land on a comet nucleus. The mission provided extensive data on the comet's composition, structure, and surface characteristics, including the discovery of organic compounds and a complex tail. The mission concluded on 30 September 2016, with Rosetta continuing its scientific observations until its final approach to the comet in its Maʽat region.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-rosetta.json"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "dam": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "kazakhstan": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cotton": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "salinity": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "desert": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 8,
+        "modelCalls": 8,
+        "lookups": 6,
+        "tokens": 13987
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Impact on Environment, Economy, and Public Health of the Aral Sea Restoration",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 1,
+        "chars": 77,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 0,
+      "wiki": {
+        "hits": 14,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 7,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 38,
+        "tokens": 12757
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "Impact on Environment, Economy, and Public Health of the Aral Sea Restoration",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-aral-restoration.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:16:48.139Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:16:48.179Z model cache evals/model-cache/qwen3-1.7b: 749 responses loaded",
+    "machine at start: gpu 95% · vram 2.13 GiB · load 22.4 · mem 83% free (normal) · no throttling recorded",
+    "2026-09-19T08:16:48.291Z 3 seeds from evals/seeds-overflow.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-3 · grammar tools:composing · matched · commit a811bbd",
+    "wiki recording: 1319 responses loaded",
+    "antikythera: resolved · topics 4/10 · supported 4/10 · read 6/10 · ¶4 · 14 sentences · read 2 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 4 lookups, 8333 tokens · stopped by answer · 1 unread answers refused · 0 s · model 6 replayed 0 missed",
+    "rosetta: resolved · topics 7/10 · supported 6/10 · read 7/10 · ¶1 · 6 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 11 calls, 9 lookups, 16183 tokens · stopped by tokens · 1 unread answers refused · 3 s · model 10 replayed 1 missed",
+    "aral-restoration: resolved · topics 0/10 · supported 0/10 · read 9/10 · ¶1 · 1 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 8 calls, 6 lookups, 13987 tokens · stopped by tokens · 1 unread answers refused · 0 s · model 7 replayed 1 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 2.13 GiB · load up to 22.4 · no throttling in 1 samples"
+  ]
+}

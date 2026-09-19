@@ -1,0 +1,536 @@
+{
+  "suite": "runs",
+  "model": "qwen3:8b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:50:31.971Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 5,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 78.4
+    },
+    "vramGiB": {
+      "min": 5.84,
+      "max": 5.86,
+      "mean": 5.8
+    },
+    "load": {
+      "min": 16.04,
+      "max": 17.59,
+      "mean": 16.8
+    },
+    "memoryFreePercent": {
+      "min": 68,
+      "max": 68,
+      "mean": 68
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-8b-node-59c9099.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 15,
+  "factsSupported": 14,
+  "factsRead": 24,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 16,
+    "cache": "evals/model-cache/qwen3-8b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "streamed-write": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "serialisation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "read-path": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 5,
+      "factsSupported": 4,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 4,
+        "tokens": 5188
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB, a file-based MongoDB-compatible database, persists writes to disk through its internal mechanisms. While the specific function `writeDocuments` was not found in the source code, the general approach to persisting writes is likely similar to how MongoDB operates. MangoDB uses a file system to store data, and writes are typically handled through operations such as `insertOne`, `insertMany`, `updateOne`, and `updateMany`.\n\nIn MangoDB, when documents are inserted or updated, they are written to the file system using Node.js's `fs` module. For instance, the `createWriteStream` function from `node:fs` is used to stream data to disk, ensuring that writes are persisted. Additionally, functions like `readFile`, `writeFile`, `mkdir`, `renameFile`, and `unlink` from `node:fs/promises` are used for file operations, which are essential for managing the data on disk.\n\nWhen documents are written, MangoDB may also use indexing to manage and retrieve data efficiently. The `createIndex` and `dropIndex` functions are used to manage indexes, which are stored on disk and help in faster data retrieval. The `ensureIndexesBuilt` function ensures that indexes are created and maintained, contributing to the persistence and performance of writes.\n\nIn summary, MangoDB persists writes to disk through a combination of file operations and indexing mechanisms, ensuring that data is reliably stored and accessible.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 10,
+        "chars": 1413,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 17,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 31,
+        "tokens": 10714
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "MangoDB, a file-based MongoDB-compatible database, persists writes to disk through its internal mechanisms. While the specific function `writeDocuments` was not found in the source code, the general approach to persisting writes is likely similar to how MongoDB operates. MangoDB uses a file system to store data, and writes are typically handled through operations such as `insertOne`, `insertMany`, `updateOne`, and `updateMany`.\n\nIn MangoDB, when documents are inserted or updated, they are written to the file system using Node.js's `fs` module. For instance, the `createWriteStream` function from `node:fs` is used to stream data to disk, ensuring that writes are persisted. Additionally, functions like `readFile`, `writeFile`, `mkdir`, `renameFile`, and `unlink` from `node:fs/promises` are used for file operations, which are essential for managing the data on disk.\n\nWhen documents are written, MangoDB may also use indexing to manage and retrieve data efficiently. The `createIndex` and `dropIndex` functions are used to manage indexes, which are stored on disk and help in faster data retrieval. The `ensureIndexesBuilt` function ensures that indexes are created and maintained, contributing to the persistence and performance of writes.\n\nIn summary, MangoDB persists writes to disk through a combination of file operations and indexing mechanisms, ensuring that data is reliably stored and accessible.",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-persist.json"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "matches-filter": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "logical-operators": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 3,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 3,
+        "tokens": 4001
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB evaluates a find query with a filter using a structured and modular approach, primarily through the `matchesFilter` function in the `src/query-matcher.ts` file. This function is the core of the query matching logic and supports a wide range of MongoDB query features, including equality, operators, logical operators, and dot notation for nested fields.\n\nThe `matchesFilter` function iterates through each key-value pair in the filter object. If the key is a logical operator such as `$and`, `$or`, or `$nor`, it uses the `evaluateLogicalOperator` function to check if the document satisfies the logical condition. For `$expr`, it evaluates an aggregation expression against the document, and for `$comment`, it handles comments for logging or profiling without affecting the query results.\n\nFor other keys, the function checks if the document's field matches the filter value using helper functions like `matchesSingleValue`, `matchesIn`, and `matchesOperators`. These functions handle various query operators such as `$eq`, `$ne`, `$gt`, `$gte`, `$lt`, `$lte`, `$in`, `$nin`, `$exists`, `$not`, `$size`, `$all`, and `$elemMatch`. The function also supports array field matching, where it checks if any element in the array matches the filter condition.\n\nIn summary, MangoDB evaluates a find query with a filter by systematically checking each field against the filter conditions using a combination of helper functions and logical operators, ensuring that the query is executed efficiently and accurately.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 9,
+        "chars": 1515,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 18,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 56,
+        "tokens": 17495
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "MangoDB evaluates a find query with a filter using a structured and modular approach, primarily through the `matchesFilter` function in the `src/query-matcher.ts` file. This function is the core of the query matching logic and supports a wide range of MongoDB query features, including equality, operators, logical operators, and dot notation for nested fields.\n\nThe `matchesFilter` function iterates through each key-value pair in the filter object. If the key is a logical operator such as `$and`, `$or`, or `$nor`, it uses the `evaluateLogicalOperator` function to check if the document satisfies the logical condition. For `$expr`, it evaluates an aggregation expression against the document, and for `$comment`, it handles comments for logging or profiling without affecting the query results.\n\nFor other keys, the function checks if the document's field matches the filter value using helper functions like `matchesSingleValue`, `matchesIn`, and `matchesOperators`. These functions handle various query operators such as `$eq`, `$ne`, `$gt`, `$gte`, `$lt`, `$lte`, `$in`, `$nin`, `$exists`, `$not`, `$size`, `$all`, and `$elemMatch`. The function also supports array field matching, where it checks if any element in the array matches the filter condition.\n\nIn summary, MangoDB evaluates a find query with a filter by systematically checking each field against the filter conditions using a combination of helper functions and logical operators, ensuring that the query is executed efficiently and accurately.",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-find.json"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "default-id-index": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "built-lazily-in-memory": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "equality-map": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sorted-entries": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "compound-prefix": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "non-indexable": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "special-indexes-skipped": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 3,
+        "tokens": 3848
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB's indexes are used to optimize query performance by allowing the database to quickly locate documents that match a query condition. Indexes are created on specific fields in a collection, and they store a sorted copy of the indexed data. When a query is executed, MangoDB checks if an index can be used to efficiently retrieve the required data.\n\nIndexes in MangoDB are managed through the `IndexManager` class, which handles tasks like building, updating, and dropping indexes. The `createIndex` method is used to create a new index, and it can be configured with options such as `unique` or `sparse` to control its behavior. Indexes can be created on single fields or compound fields, and they can also be geo-indexes for spatial queries.\n\nWhen a query uses an index, MangoDB typically performs a lookup using the index to quickly find the relevant documents. This is especially useful for queries that involve filtering, sorting, or range conditions. However, if an index is not suitable for a query, MangoDB may need to perform a full collection scan, which can be slower.\n\nGeo-indexes are a special type of index used for spatial queries, such as finding documents near a specific location. These indexes are created using the `2d` or `2dsphere` types and are used with operators like `$near` or `$geoWithin`. If a geo query is executed without a required geo index, MangoDB throws a `GeoNearIndexRequiredError`.\n\nIn summary, MangoDB's indexes are essential for improving query performance, and they are used when a query can benefit from a sorted or filtered access to data. The system provides various tools and methods to manage and utilize indexes effectively.",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 14,
+        "chars": 1677,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 18,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 10,
+        "tokens": 3578
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "MangoDB's indexes are used to optimize query performance by allowing the database to quickly locate documents that match a query condition. Indexes are created on specific fields in a collection, and they store a sorted copy of the indexed data. When a query is executed, MangoDB checks if an index can be used to efficiently retrieve the required data.\n\nIndexes in MangoDB are managed through the `IndexManager` class, which handles tasks like building, updating, and dropping indexes. The `createIndex` method is used to create a new index, and it can be configured with options such as `unique` or `sparse` to control its behavior. Indexes can be created on single fields or compound fields, and they can also be geo-indexes for spatial queries.\n\nWhen a query uses an index, MangoDB typically performs a lookup using the index to quickly find the relevant documents. This is especially useful for queries that involve filtering, sorting, or range conditions. However, if an index is not suitable for a query, MangoDB may need to perform a full collection scan, which can be slower.\n\nGeo-indexes are a special type of index used for spatial queries, such as finding documents near a specific location. These indexes are created using the `2d` or `2dsphere` types and are used with operators like `$near` or `$geoWithin`. If a geo query is executed without a required geo index, MangoDB throws a `GeoNearIndexRequiredError`.\n\nIn summary, MangoDB's indexes are essential for improving query performance, and they are used when a query can benefit from a sorted or filtered access to data. The system provides various tools and methods to manage and utilize indexes effectively.",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-indexes.json"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "stage-dispatch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "in-memory-sequential": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "out-and-merge-last": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "accumulators": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "lookup": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "system-variables": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "one-key-per-stage": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 2,
+        "tokens": 2389
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB executes an aggregation pipeline through a structured and modular approach, primarily handled by the `AggregationCursor` class. This class manages the execution of each stage in the pipeline, such as `match`, `project`, `sort`, and `limit`, among others. The pipeline is executed step by step, with each stage processing the documents and passing the results to the next stage.\n\nThe `AggregationCursor` class includes a constructor that initializes the cursor and sets up the system variables, which are essential for operations like `$$NOW` (current datetime). The `toArray()` method is used to execute the entire pipeline and return the results as an array of documents.\n\nEach stage in the pipeline is implemented as a private method within the `AggregationCursor` class. For instance, `execMatch` applies a filter to the documents, `execProject` modifies the documents by adding or removing fields, and `execSort` sorts the documents based on a specified specification. These methods are called sequentially, ensuring that the pipeline processes the data efficiently.\n\nThe execution of the pipeline is also supported by various helper methods, such as `getSystemVars`, which provides system variables, and `executeStage`, which handles the execution of a single stage. Additionally, methods like `execLookup` and `execGraphLookup` are used for joining collections and performing graph-based lookups, respectively.\n\nOverall, MangoDB's aggregation pipeline execution is designed to be flexible and efficient, allowing for complex data processing and transformation through a series of well-defined stages.",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 11,
+        "chars": 1614,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 15,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 70,
+        "tokens": 21392
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "MangoDB executes an aggregation pipeline through a structured and modular approach, primarily handled by the `AggregationCursor` class. This class manages the execution of each stage in the pipeline, such as `match`, `project`, `sort`, and `limit`, among others. The pipeline is executed step by step, with each stage processing the documents and passing the results to the next stage.\n\nThe `AggregationCursor` class includes a constructor that initializes the cursor and sets up the system variables, which are essential for operations like `$$NOW` (current datetime). The `toArray()` method is used to execute the entire pipeline and return the results as an array of documents.\n\nEach stage in the pipeline is implemented as a private method within the `AggregationCursor` class. For instance, `execMatch` applies a filter to the documents, `execProject` modifies the documents by adding or removing fields, and `execSort` sorts the documents based on a specified specification. These methods are called sequentially, ensuring that the pipeline processes the data efficiently.\n\nThe execution of the pipeline is also supported by various helper methods, such as `getSystemVars`, which provides system variables, and `executeStage`, which handles the execution of a single stage. Additionally, methods like `execLookup` and `execGraphLookup` are used for joining collections and performing graph-based lookups, respectively.\n\nOverall, MangoDB's aggregation pipeline execution is designed to be flexible and efficient, allowing for complex data processing and transformation through a series of well-defined stages.",
+      "export": "evals/results/runs/2026-09-19-qwen3-8b-node-tools-aggregate.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:50:31.969Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T08:50:31.971Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:8b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:50:32.009Z model cache evals/model-cache/qwen3-8b: 716 responses loaded",
+    "machine at start: gpu 98% · vram 5.84 GiB · load 16.04 · mem 68% free (normal) · no throttling recorded",
+    "2026-09-19T08:50:32.188Z 4 seeds from evals/seeds-code.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-8b-node-59c9099.json\"} · prompt tools-3 · grammar tools:composing · matched · commit a811bbd",
+    "wiki recording: 0 responses loaded",
+    "persist: resolved · topics 5/9 · supported 4/9 · read 4/9 · ¶4 · 10 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 4 lookups, 5188 tokens · stopped by answer · 17 s · model 0 replayed 5 missed",
+    "find: resolved · topics 2/11 · supported 2/11 · read 3/11 · ¶4 · 9 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 3 lookups, 4001 tokens · stopped by answer · 18 s · model 0 replayed 4 missed",
+    "indexes: resolved · topics 4/11 · supported 4/11 · read 8/11 · ¶5 · 14 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 3 lookups, 3848 tokens · stopped by answer · 18 s · model 0 replayed 4 missed",
+    "aggregate: resolved · topics 4/11 · supported 4/11 · read 9/11 · ¶5 · 11 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 3 calls, 2 lookups, 2389 tokens · stopped by answer · 15 s · model 0 replayed 3 missed",
+    "machine during the suite: gpu 78.4% mean, 98% peak · vram up to 5.86 GiB · load up to 17.59 · no throttling in 5 samples"
+  ]
+}

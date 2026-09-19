@@ -1,0 +1,410 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:17:13.373Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 1,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 2.13,
+      "max": 2.13,
+      "mean": 2.1
+    },
+    "load": {
+      "min": 18.01,
+      "max": 18.01,
+      "mean": 18
+    },
+    "memoryFreePercent": {
+      "min": 83,
+      "max": 83,
+      "mean": 83
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 3,
+  "resolved": 0,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 23,
+  "factsTotal": 30,
+  "replay": {
+    "hits": 22,
+    "misses": 2,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "wreck": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "imaging": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "olympiad": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 6,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 4,
+        "tokens": 7969
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 0,
+      "wiki": {
+        "hits": 5,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 6,
+        "misses": 0
+      },
+      "budget": {
+        "calls": 37,
+        "tokens": 15754
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Antikythera mechanism is an ancient Greek analog computer discovered in 1901 in the Antikythera shipwreck off the coast of Greece. It dates back to around 330 BCE and is considered one of the earliest known mechanisms of its kind. The mechanism was used to predict astronomical events such as the positions of the planets, the phases of the moon, and the movements of the sun. It also included a calendar for the Olympic Games, which were held every four years.\n\nThe mechanism was decoded in the 1950s by a team of researchers, including Dr. John L. H. Dobbins. They used advanced imaging techniques and computer modeling to understand the complex gear system within the mechanism. The decoding revealed that the mechanism was a sophisticated device capable of calculating the positions of the planets and the phases of the moon with remarkable accuracy for its time. The discovery of the Antikythera mechanism has provided valuable insights into the technological and scientific capabilities of ancient Greek civilization.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-antikythera.json"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "philae": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "comet": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "arrival": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "water": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "end": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 10,
+        "modelCalls": 10,
+        "lookups": 8,
+        "tokens": 17763
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 3,
+      "wiki": {
+        "hits": 14,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 9,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 42,
+        "tokens": 15344
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Rosetta mission was a European Space Agency (ESA) space probe launched on 2 March 2004 to study comet 67P/Churyumov–Gerasimenko. It successfully orbited the comet and deployed the Philae lander, which touched down on the comet's surface on 12 November 2014. The mission achieved several historic firsts, including becoming the first spacecraft to land on a comet nucleus. Rosetta performed flybys of Earth, Mars, and the asteroids 21 Lutetia and 2867 Šteins during its journey to the comet. The spacecraft reached the comet on 6 August 2014 and eventually orbited it at distances of 30 to 10 kilometers. Philae's lander module, which was initially turned off due to insufficient solar power, was briefly restored in June and July 2015. On 30 September 2016, Rosetta ended its mission by hard-landing on the comet in its Ma'at region. The mission provided valuable data on the comet's composition, structure, and environment, including its icy surface, dust, and potential for past atmospheric activity. The data from Rosetta have been instrumental in understanding the early solar system and the formation of comets.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-rosetta.json"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "dam": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "kazakhstan": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cotton": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "salinity": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "desert": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 8,
+        "modelCalls": 8,
+        "lookups": 6,
+        "tokens": 13178
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 1,
+      "wiki": {
+        "hits": 20,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 7,
+        "misses": 1
+      },
+      "budget": {
+        "calls": 38,
+        "tokens": 12757
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Aral Sea restoration efforts involve multiple international organizations and projects aimed at reversing the ecological damage caused by the diversion of the Amur River. Key initiatives include the construction of the Dike Kokaral dam in Kazakhstan to replenish the North Aral Sea, the work of the International Fund for Saving the Aral Sea (IFAS), and the Aral Sea Basin Programme (ASBP), which focuses on restoring the ecological balance and improving the livelihoods of local communities. These efforts face challenges such as insufficient water flow, environmental degradation, and the need for sustainable water management to achieve long-term success.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-aral-restoration.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:17:13.372Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:17:13.409Z model cache evals/model-cache/qwen3-1.7b: 761 responses loaded",
+    "machine at start: gpu 92% · vram 2.13 GiB · load 18.01 · mem 83% free (normal) · no throttling recorded",
+    "2026-09-19T08:17:13.513Z 3 seeds from evals/seeds-overflow.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-3 · grammar tools:cited · matched · commit a811bbd",
+    "wiki recording: 1319 responses loaded",
+    "antikythera: root blocked · topics 0/10 · supported 0/10 · read 6/10 · ¶0 · 0 sentences · read 2 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 6 calls, 4 lookups, 7969 tokens · stopped by answer · 1 unread answers refused · 0 s · model 6 replayed 0 missed",
+    "rosetta: root blocked · topics 0/10 · supported 0/10 · read 8/10 · ¶0 · 0 sentences · read 2 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 10 calls, 8 lookups, 17763 tokens · stopped by tokens · 1 unread answers refused · 3 s · model 9 replayed 1 missed",
+    "aral-restoration: root blocked · topics 0/10 · supported 0/10 · read 9/10 · ¶0 · 0 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 8 calls, 6 lookups, 13178 tokens · stopped by tokens · 1 unread answers refused · 1 s · model 7 replayed 1 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 2.13 GiB · load up to 18.01 · no throttling in 1 samples"
+  ]
+}

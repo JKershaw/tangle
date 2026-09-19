@@ -2,6 +2,35 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-19 · milestone 5b: the tool control, 1.7B to 8B
+
+The control the graph had to beat (ROADMAP 5b): the same model with the four source requests as tools in one context, driving itself, each seed given the calls and tokens the graph's row spent on it, in the walk's context window. tools-3: an answer given before anything was read is refused with the reason and charged; a search line handed back as a title is cut to the title; the budget is checked against the next call's cost. Rows in Node against Ollama, the four seed sets, three sizes.
+
+| suite | size | the graph (walk-15) | tool control, composing | tool control, cited | memory |
+|---|---|---|---|---|---|
+| questions, 23 facts | 1.7B | **15** · 38 calls · 16k · 1.0k/fact | 14 (0 supported) · 29 · 18k · 1.3k | 0 | 14 |
+| | 4B | 12 · 69 · 24k · 2.0k | **18** (0 supported) · 24 · 29k · 1.6k | 0 | 19 |
+| | 8B | 12 · 61 · 19k · 1.6k | **17** (15 supported) · 23 · 18k · 1.1k | 1 | 20 |
+| profiles, 35 topics | 1.7B | **25** · 197 · 71k · 2.8k | 13 · 34 · 49k · 3.8k | 11 | 15 |
+| | 4B | **24** · 241 · 76k · 3.2k | 11 · 28 · 64k · 5.8k | 1 | 10 |
+| | 8B | **24** · 266 · 85k · 3.5k | 20 · 19 · 25k · 1.3k | 8 | 20 |
+| overflow, 30 topics | 1.7B | **24** · 117 · 44k · 1.8k | 11 · 25 · 39k · 3.5k | 0 | 5 |
+| | 4B | **23** · 135 · 50k · 2.2k | 11 · 17 · 35k · 3.2k | 0 | 12 |
+| | 8B | **24** · 141 · 51k · 2.1k | 21 · 15 · 18k · 0.9k | 6 | 17 |
+| MangoDB, 42 topics | 1.7B | **14** · 122 · 40k · 2.9k | 6 · 30 · 37k · 6.1k | 0 | 9 |
+| | 4B | **11** · 164 · 47k · 4.3k | 11 (6 supported) · 24 · 43k · 4.0k | 0 | 8 |
+| | 8B | 12 · 167 · 53k · 4.4k | **15** (14 supported) · 16 · 15k · 1.0k | 0 | 9 |
+
+Each cell: topics (or facts) present · model calls · tokens · tokens per topic. The graph's topics are all supported by construction; the tool control's "supported" means the fact was named and something read held it. Memory is the closed-book column (page rows for Wikipedia, Node for MangoDB). Budget: each seed's calls and tokens are the graph's spend on that seed; the tool control may stop early, and at 8B it does.
+
+- **At 1.7B and 4B the graph earns its keep on every brief set, about two to one.** Profiles 25 and 24 against 13 and 11; overflow 24 and 23 against 11 and 11; MangoDB 14 against 6 at 1.7B and 11 against 11 at 4B, where the tool control's 11 has 6 supported. The tool control at these sizes reads, is refused a few times, spends its whole budget on the transcript and then answers from memory: on the question seeds it lands within a fact of the memory column (14 against 14, 18 against 19) with nothing supported.
+- **At 8B the answer changes.** The tool control stops by itself after two or three reads, spends a fifth to a third of its budget, and states what it read: profiles 20 against the graph's 24, overflow 21 against 24, and on MangoDB 15 against 12, ahead of the graph at a third of the tokens per topic (1.0k against 4.4k). Per topic it is the cheapest row at every suite at 8B. The graph's rows do not move from 4B to 8B; the tool control's double.
+- **Cost per topic in compute favours the graph at 1.7B.** Tokens are not equal across sizes: a token at 8B costs about five times one at 1.7B. The graph at 1.7B on profiles is 2.8k tokens per topic; the tool control at 8B is 1.3k tokens per topic at five times the price per token. For Harbour's question, small acting big beats big driving itself, on the briefs, so far.
+- **The cited variant fails below 8B, and mostly at 8B.** Told to answer only in sentences copied word for word, 1.7B and 4B paraphrase everything: 0 of 23, 0 of 30, 0 of 42, and 11 of 35 on profiles at 1.7B is the one place it copied. At 8B some sentences survive the cut (8 of 35, 6 of 30) and none on code. A single context cannot be made to cite by asking; the graph cites because a finding is a pick, not a composition.
+- **The question seeds are memory's, whoever reads.** The tool control equals memory at every size on them and the graph is below memory from 4B up, as it has been since the bridge. They measure recall, and the reading columns add nothing to a model that already knows.
+- **Refusals and drops.** At 1.7B and 4B most seeds were refused an unread answer once or twice and then stopped by the token budget; at 8B one refusal across 36 seeds and every seed stopped by answer. The context window forced a drop of the oldest tool result on four seeds in all, so the window was not the binding limit; the budget was.
+- **The warm-graph row is not built, on a measurement.** Across the four MangoDB briefs no node question repeats at any size (28, 45 and 42 nodes, all distinct), so a store of findings keyed by question would reuse nothing under the current node design; what the briefs share is reads, which the corpus already holds in memory. It waits for a node design whose questions recur.
+
 ## 2026-09-19 · milestone 5b, first rows: a small model offered tools does not use them
 
 The tool control (`scripts/tools.mjs`): the same model, the four source requests as tools in one context, each seed given the calls and tokens the graph's row spent on it. At 1.7B, tools-1, all 36 seeds across the four suites were answered on the first call with no tool used: composing 14 / 23, 14 / 35, 10 / 30 and 8 / 42 topics with nothing read and nothing supported, which is the memory column under another name; cited 0 everywhere, because there was nothing to cite. 4B on two seeds searched once and answered from the snippets without reading. Probes on the OpenAI route: with a shorter system prompt 1.7B does call search, and with the suite's prompt it does not, whatever `tool_choice` says; Ollama 0.34.2 ignores `"required"` and a named tool (identical output all three ways). So the API cannot force a read, and the prompt is not going to be reworded to beg for one. The rule "read before you answer" is the harness's to enforce: an answer given before anything was read is refused with the reason, costs its call, and the model gets the next turn (tools-2). If a model then spends its whole budget refusing to read, the row says so, and that is the finding.

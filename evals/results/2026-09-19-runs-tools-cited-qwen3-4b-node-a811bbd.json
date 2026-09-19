@@ -1,0 +1,607 @@
+{
+  "suite": "runs",
+  "model": "qwen3:4b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a811bbd",
+  "head": "a811bbd",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:30:18.532Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 12,
+    "gpuPercent": {
+      "min": 0,
+      "max": 98,
+      "mean": 89
+    },
+    "vramGiB": {
+      "min": 3.28,
+      "max": 3.28,
+      "mean": 3.3
+    },
+    "load": {
+      "min": 18.43,
+      "max": 22.81,
+      "mean": 21.1
+    },
+    "memoryFreePercent": {
+      "min": 81,
+      "max": 81,
+      "mean": 81
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-qwen3-4b-node-877f185.json"
+  },
+  "seeds": 7,
+  "resolved": 0,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 0,
+  "factsTotal": 23,
+  "replay": {
+    "hits": 0,
+    "misses": 24,
+    "cache": "evals/model-cache/qwen3-4b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "dead-sea",
+      "kind": "multi-section",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "jordan-diversion": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "mineral-extraction": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 3252
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 21,
+      "wiki": {
+        "hits": 1,
+        "misses": 0,
+        "added": 0,
+        "entries": 1322
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 6,
+        "tokens": 2664
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Dead Sea has been rapidly shrinking since the 1960s because of water diversion from the Jordan River and other rivers into the Jordan Valley for irrigation and drinking water, reducing the inflow to the Dead Sea. The water level in the Dead Sea is shrinking at a rate of more than one metre per year, and its surface area has decreased significantly due to the diversion of water from the Jordan River and the lack of sufficient inflow from the Red Sea through the Red Sea–Dead Sea Water Conveyance project.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-cited-dead-sea.json"
+    },
+    {
+      "id": "water-cycle",
+      "kind": "single-article",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "sun": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "evaporation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "condensation-precipitation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 3256
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 21,
+      "wiki": {
+        "hits": 2,
+        "misses": 0,
+        "added": 0,
+        "entries": 1322
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 5,
+        "tokens": 1980
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The water cycle keeps going because water moves continuously through the water cycle of evaporation, transpiration, precipitation, and runoff. This continuous movement is driven by solar energy, which heats water on Earth's surface, causing it to evaporate and form clouds that eventually precipitate back to the ground. The water cycle is a biogeochemical cycle that involves the continuous change in form of water on, above and below the Earth's surface.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-cited-water-cycle.json"
+    },
+    {
+      "id": "bronze-age",
+      "kind": "multi-section",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sea-peoples": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "earthquakes": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "systems": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 2910
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 17,
+      "wiki": {
+        "hits": 3,
+        "misses": 0,
+        "added": 0,
+        "entries": 1322
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 5,
+        "tokens": 1850
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Late Bronze Age collapse was a period of societal collapse in the Mediterranean basin during the late 13th to early 12th century BC. Between c. 1200–1150 BC, all of these powers suddenly collapsed. Levant completely collapsed in the wake of the Late Bronze Age collapse.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-cited-bronze-age.json"
+    },
+    {
+      "id": "colony-collapse",
+      "kind": "multi-section",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "mites": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "pesticides": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "pathogens": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "stressors": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 4,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 0,
+        "tokens": 2992
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 21,
+      "wiki": {
+        "hits": 3,
+        "misses": 0,
+        "added": 0,
+        "entries": 1322
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 7,
+        "tokens": 2686
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 2,
+      "answer": "I need to use the search function first to find a relevant title about honey bee colonies collapsing. Then I'll read that title to get the specific information. Let me call the search function with the term 'honey bee colonies collapse'.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-cited-colony-collapse.json"
+    },
+    {
+      "id": "coral",
+      "kind": "single-lead",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "temperature": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "algae": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 1,
+        "tokens": 10334
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 49,
+      "wiki": {
+        "hits": 4,
+        "misses": 0,
+        "added": 0,
+        "entries": 1322
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 30,
+        "tokens": 9624
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 4,
+      "answer": "The user's question is about why coral reefs bleach. The previous attempt didn't work because nothing was read yet. I need to use the search function to find a title, then read it before answering. The search results show that the second title is '2023–2025 global coral bleaching event' which mentions thermal stress as a cause. I'll call the read function with this title to get the content.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-cited-coral.json"
+    },
+    {
+      "id": "sky-blue",
+      "kind": "single-lead, search trap",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "rayleigh": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wavelength": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "scattering": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 3279
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 21,
+      "wiki": {
+        "hits": 5,
+        "misses": 0,
+        "added": 0,
+        "entries": 1322
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 10,
+        "tokens": 2671
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The sky appears blue because of Rayleigh scattering, where shorter wavelengths of light (blue and violet) are scattered more by the atmosphere than longer wavelengths. This effect is most noticeable during the day when sunlight travels through the atmosphere at a shallow angle, causing the blue light to dominate the sky's color. The specific process involves sunlight interacting with molecules and small particles in the Earth's atmosphere, which scatter the blue light in all directions.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-cited-sky-blue.json"
+    },
+    {
+      "id": "aral",
+      "kind": "single-article",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "irrigation": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "soviet": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 3,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 3,
+        "modelCalls": 3,
+        "lookups": 1,
+        "tokens": 3140
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 21,
+      "wiki": {
+        "hits": 6,
+        "misses": 0,
+        "added": 0,
+        "entries": 1322
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 6,
+        "tokens": 2896
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Aral Sea shrank primarily due to extensive irrigation projects in the 1960s that diverted water from the Amu Darya and Syr Darya rivers into the surrounding agricultural regions of Uzbekistan and Kazakhstan. This massive water diversion for cotton and other crops caused the sea to shrink significantly, with the South Aral Sea splitting into eastern and western basins by 2003. The Aral Sea was an endorheic salt lake lying between Kazakhstan to its north and Uzbekistan to its south, which began shrinking in the 1960s and had largely disappeared by the early 2000s.",
+      "export": "evals/results/runs/2026-09-19-qwen3-4b-node-tools-cited-aral.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:30:18.531Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:4b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:30:18.568Z model cache evals/model-cache/qwen3-4b: 702 responses loaded",
+    "machine at start: gpu 96% · vram 3.28 GiB · load 21.12 · mem 81% free (normal) · no throttling recorded",
+    "2026-09-19T08:30:18.669Z 7 seeds from evals/seeds.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-qwen3-4b-node-877f185.json\"} · prompt tools-3 · grammar tools:cited · matched · commit a811bbd",
+    "wiki recording: 1322 responses loaded",
+    "dead-sea: root blocked · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 3 calls, 1 lookups, 3252 tokens · stopped by tokens · 1 unread answers refused · 21 s · model 0 replayed 3 missed",
+    "water-cycle: root blocked · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 3 calls, 1 lookups, 3256 tokens · stopped by tokens · 1 unread answers refused · 21 s · model 0 replayed 3 missed",
+    "bronze-age: root blocked · facts 0/4 · supported 0/4 · read 0/4 · 1 nodes, 3 calls, 1 lookups, 2910 tokens · stopped by tokens · 1 unread answers refused · 17 s · model 0 replayed 3 missed",
+    "colony-collapse: root blocked · facts 0/4 · supported 0/4 · read 0/4 · 1 nodes, 3 calls, 0 lookups, 2992 tokens · stopped by tokens · 2 unread answers refused · 21 s · model 0 replayed 3 missed",
+    "coral: root blocked · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 6 calls, 1 lookups, 10334 tokens · stopped by tokens · 4 unread answers refused · 49 s · model 0 replayed 6 missed",
+    "sky-blue: root blocked · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 3 calls, 1 lookups, 3279 tokens · stopped by tokens · 1 unread answers refused · 21 s · model 0 replayed 3 missed",
+    "aral: root blocked · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 3 calls, 1 lookups, 3140 tokens · stopped by tokens · 1 unread answers refused · 21 s · model 0 replayed 3 missed",
+    "machine during the suite: gpu 89% mean, 98% peak · vram up to 3.28 GiB · load up to 22.81 · no throttling in 12 samples"
+  ]
+}
