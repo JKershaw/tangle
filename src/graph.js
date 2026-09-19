@@ -261,11 +261,13 @@ export function validateImport(text) {
       "Invalid evidence.",
     );
     evidenceIds.add(record.id);
-    assert(["wiki", "fixture"].includes(record.kind), "Unknown evidence kind.");
+    // "read" is any source's read (src/source.js); "wiki" is what exports
+    // before it carried; "fixture" is the simulation's.
+    assert(["read", "wiki", "fixture"].includes(record.kind), "Unknown evidence kind.");
     if (record.url) {
       const url = new URL(record.url);
       assert(
-        url.protocol === "https:" && url.hostname === "en.wikipedia.org" && !url.username && !url.password,
+        (url.protocol === "https:" && url.hostname === "en.wikipedia.org" && !url.username && !url.password) || (url.protocol === "file:" && !url.username && !url.password),
         "Unsafe evidence URL.",
       );
     }

@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { corpusFrom, fileDriver, fileLinks, lineUnits, lookupFiles, parseFile, readFileAbout, readFileSection, search, tokens, usesName } from "../src/files.js";
 import { readCorpus, readCorpusEntries } from "../scripts/corpus.mjs";
-import { createRun, nextRunnable } from "../src/graph.js";
+import { createRun, nextRunnable, validateImport } from "../src/graph.js";
 import { runWalk, subjectIgnore } from "../src/walk.js";
 import { SCRIPTED } from "../src/scripted.js";
 
@@ -52,7 +52,8 @@ test("search ranks files by their names, declarations and matching lines, minus 
 test("reading a file gives its lead with headings and sizes; a section by name; the part about something; all as lines", () => {
   const c = corpus();
   const lead = lookupFiles(c, "src/store.ts");
-  assert.equal(lead.kind, "file");
+  assert.equal(lead.kind, "read");
+  assert.equal(lead.source, "files");
   assert.equal(lead.lines, true);
   assert.equal(lead.section, 0);
   assert.deepEqual(lead.headings, ["Store", "constructor", "readAll", "writeAll", "find", "path"]);
@@ -116,7 +117,8 @@ test("the walk over a file corpus: a brief reads a file's lead, fans out to its 
   const root = run.nodes[0];
   assert.equal(root.status, "resolved");
   assert.ok(root.finding.includes("\n"), "a profile over code is lines");
-  assert.ok(run.evidence.every((record) => record.kind === "file" && record.lines === true && record.url.startsWith("file:")));
+  assert.ok(run.evidence.every((record) => record.kind === "read" && record.source === "files" && record.lines === true && record.url.startsWith("file:")));
+  assert.equal(validateImport(JSON.stringify(run)).evidence.length, run.evidence.length, "a run over files opens in the page");
   assert.ok(run.trace.some((event) => event.event === "tool_proposed" && event.tool === "files"));
   assert.ok(run.nodes.some((node) => node.hopTo), "some child hopped along a link");
   assert.ok(run.nodes.some((node) => node.hopTo === "runExclusive (src/mutex.ts)"), "writeAll calls runExclusive, so its child hops there: " + run.nodes.map((node) => node.hopTo).filter(Boolean).join(", "));

@@ -6,6 +6,7 @@
 // indent. The corpus lives in memory ({ path → text }), so the page and Node
 // read the same thing; Node fills it from disk (scripts/corpus.mjs).
 import { contentWords, normalise, stem } from "./text.js";
+import { failure as failed, linksResult, readResult, searchResult } from "./source.js";
 
 export const EXTRACT_LIMIT = 4000; // as wiki.js: what one read returns, in characters
 export const HITS = 8; // titles a search returns
@@ -286,14 +287,12 @@ export function search(corpus, term) {
   return scored.slice(0, HITS);
 }
 
-const failure = (query, kind, message, extra = {}) => ({ ok: false, tool: "files", query, error: { kind, message }, requests: [], ...extra });
+const failure = (query, kind, message, extra = {}) => failed({ source: "files", query, kind, message, ...extra });
 
 function readLead(corpus, article, query, alternatives = []) {
-  return {
-    ok: true,
-    tool: "files",
-    kind: "file",
-    lines: true,
+  return readResult({
+    source: "files",
+    units: "lines",
     query,
     title: article.path,
     article: article.path,
@@ -303,33 +302,27 @@ function readLead(corpus, article, query, alternatives = []) {
     sizes: article.sections.map((section) => section.size),
     summaries: article.sections.map((section) => section.summary),
     text: article.lead.slice(0, EXTRACT_LIMIT),
-    exact: true,
     alternatives,
     revision: article.hash,
     url: sectionUrl(article, null),
-    requests: [],
-  };
+  });
 }
 
 function readSection(corpus, article, index, query, extra = {}) {
   const section = article.sections[index - 1];
-  return {
-    ok: true,
-    tool: "files",
-    kind: "file",
-    lines: true,
+  return readResult({
+    source: "files",
+    units: "lines",
     query,
     title: `${article.path} § ${section.heading}`,
     article: article.path,
     section: index,
     sections: article.sections.length + 1,
     text: section.text.slice(0, EXTRACT_LIMIT),
-    exact: true,
     revision: article.hash,
     url: sectionUrl(article, section),
-    requests: [],
     ...extra,
-  };
+  });
 }
 
 export function lookupFiles(corpus, query, { searchOnly = false } = {}) {
@@ -346,7 +339,7 @@ export function lookupFiles(corpus, query, { searchOnly = false } = {}) {
   const titles = hits.map((hit) => hit.path);
   // ranked: the hits are ordered by how much of the term each file holds,
   // so the first is code's best guess (Wikipedia's first hit is not).
-  if (searchOnly) return { ok: true, tool: "files", kind: "search", query: term, title: titles[0], alternatives: titles.slice(1), hits: titles, snippets: hits.map((hit) => hit.snippet), ranked: true, requests: [] };
+  if (searchOnly) return searchResult({ source: "files", query: term, hits: titles, snippets: hits.map((hit) => hit.snippet), ranked: true });
   return readLead(corpus, corpus.articles.get(titles[0]), term, titles.slice(1));
 }
 
@@ -418,7 +411,7 @@ const memberUse = (text, name) => new RegExp(`\\.${String(name).replace(/[$]/g, 
 // corpus declares, as "name (path)" titles, most-mentioned first.
 export function fileLinks(corpus, title) {
   const target = parseTitle(corpus, title);
-  if (!target) return { ok: false, tool: "files", kind: "links", query: title, error: { kind: "no_match", message: `No file "${title}" in ${corpus.name}.` }, requests: [] };
+  if (!target) return failed({ source: "files", query: title, kind: "no_match", message: `No file "${title}" in ${corpus.name}.` });
   const article = corpus.articles.get(target.path);
   const scope = target.heading ? article.sections.find((section) => section.heading === target.heading || section.name === target.heading)?.text ?? "" : article.lines.join("\n");
   // A name the file imports from outside the corpus ("rename" from
@@ -437,7 +430,7 @@ export function fileLinks(corpus, title) {
     }
   }
   counts.sort((a, b) => b.occurrences - a.occurrences || a.link.localeCompare(b.link));
-  return { ok: true, tool: "files", kind: "links", query: title, title: article.path, links: [...new Set(counts.map((entry) => entry.link))], requests: [] };
+  return linksResult({ source: "files", query: title, title: article.path, links: counts.map((entry) => entry.link) });
 }
 
 // The one driver the walk calls, the same four requests as wikiDriver.

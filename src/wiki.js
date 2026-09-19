@@ -3,6 +3,7 @@
 // follow no redirects, and are bounded by a timeout and a byte cap.
 
 import { namesSubject, subjectWords } from "./text.js";
+import { failure as failed, linksResult, readResult, searchResult } from "./source.js";
 
 export const WIKI_HOST = "en.wikipedia.org";
 export const DEFAULT_TIMEOUT_MS = 20000;
@@ -173,7 +174,7 @@ const sectionUrl = (title, revision, heading) =>
 export async function lookupWikipedia(query, options = {}) {
   const term = String(query ?? "").trim();
   const requests = [];
-  const failure = (kind, message, extra = {}) => ({ ok: false, tool: "wiki", query: term, error: { kind, message }, requests, ...extra });
+  const failure = (kind, message, extra = {}) => failed({ source: "wiki", query: term, kind, message, requests, ...extra });
   if (!term) return failure("no_match", "No search term was given.");
   const search = await fetchWikipedia(searchUrl(term), options);
   requests.push(requestRecord(search));
@@ -189,21 +190,20 @@ export async function lookupWikipedia(query, options = {}) {
   const title = String(hits[0].title);
   const alternatives = hits.slice(1).map((hit) => String(hit.title));
   // The walk searches first and reads after the article is chosen.
-  if (options.searchOnly) return { ok: true, tool: "wiki", kind: "search", query: term, title, alternatives, hits: [title, ...alternatives], snippets: hits.map((hit) => stripHtml(String(hit.snippet ?? ""))), requests };
+  if (options.searchOnly) return searchResult({ source: "wiki", query: term, hits: [title, ...alternatives], snippets: hits.map((hit) => stripHtml(String(hit.snippet ?? ""))), ranked: false, requests });
   const article = await fetchArticle(title, options);
   requests.push(article.record);
   const exact = article.ok;
   const extract = exact ? article.sections[0]?.text ?? "" : stripHtml(hits[0].snippet);
   if (!extract) return failure("bad_response", `Found the article "${title}" but could not read any text from it.`, { title, alternatives });
   const name = exact ? article.title : title;
-  return {
-    ok: true,
-    tool: "wiki",
-    kind: "wiki",
+  return readResult({
+    source: "wiki",
     query: term,
     title: name,
     article: name,
     section: 0,
+    sections: exact ? article.sections.length : null,
     headings: exact ? article.sections.slice(1).map((section) => section.heading) : [],
     // Characters per section after the lead, so a brief can skip a heading
     // that is only a short introduction to its subsections.
@@ -214,7 +214,7 @@ export async function lookupWikipedia(query, options = {}) {
     revision: exact ? article.revision : null,
     url: exact ? sectionUrl(name, article.revision, "") : articleUrl(title),
     requests,
-  };
+  });
 }
 
 // The part of an article that is about something else: the lead if it names
@@ -231,7 +231,7 @@ export function aboutWords(phrase) {
 const wordIn = (word, text) => new RegExp(`(?:^|[^\\p{L}\\p{N}])${word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=$|[^\\p{L}\\p{N}])`, "iu").test(text);
 export async function readWikipediaAbout(title, phrase, options = {}) {
   const requests = [];
-  const failure = (kind, message) => ({ ok: false, tool: "wiki", query: title, error: { kind, message }, requests });
+  const failure = (kind, message) => failed({ source: "wiki", query: title, kind, message, requests });
   const article = await fetchArticle(title, options);
   requests.push(article.record);
   if (!article.ok) return failure(article.kind, article.message);
@@ -240,10 +240,8 @@ export async function readWikipediaAbout(title, phrase, options = {}) {
   const index = [article.sections.findIndex((section) => whole && wordIn(whole, section.text)), article.sections.findIndex((section) => namesSubject(section.text, whole) || (!subjectWords(whole).cased.length && words.some((word) => wordIn(word, section.text))))].find((found) => found >= 0);
   if (index === undefined) return failure("no_match", `"${article.title}" never mentions ${whole || words.join(", ")}.`);
   const section = article.sections[index];
-  return {
-    ok: true,
-    tool: "wiki",
-    kind: "wiki",
+  return readResult({
+    source: "wiki",
     query: title,
     title: section.heading ? `${article.title} § ${section.heading}` : article.title,
     article: article.title,
@@ -251,11 +249,10 @@ export async function readWikipediaAbout(title, phrase, options = {}) {
     sections: article.sections.length,
     about: whole,
     text: section.text.slice(0, EXTRACT_LIMIT),
-    exact: true,
     revision: article.revision,
     url: sectionUrl(article.title, article.revision, section.heading),
     requests,
-  };
+  });
 }
 
 // The articles an article links to: what its editors decided the text names.
@@ -265,7 +262,7 @@ export const LINKS_MAX_BYTES = 262144;
 export const linksUrl = (title) => `https://${WIKI_HOST}/w/api.php?action=parse&page=${titlePath(title)}&prop=links&redirects=1&format=json&origin=*`;
 export async function fetchWikipediaLinks(title, options = {}) {
   const requests = [];
-  const failure = (kind, message) => ({ ok: false, tool: "wiki", kind: "links", query: title, error: { kind, message }, requests });
+  const failure = (kind, message) => failed({ source: "wiki", query: title, kind, message, requests });
   const response = await fetchWikipedia(linksUrl(title), { maxBytes: LINKS_MAX_BYTES, ...options });
   requests.push(requestRecord(response));
   if (!response.ok) return failure("unreachable", response.error.message);
@@ -277,13 +274,13 @@ export async function fetchWikipediaLinks(title, options = {}) {
   }
   if (!parsed || !Array.isArray(parsed.links)) return failure("bad_response", `Wikipedia's parse API returned no links for "${title}" (HTTP ${response.status}).`);
   const links = [...new Set(parsed.links.filter((link) => link.ns === 0 && "exists" in link).map((link) => String(link["*"])))];
-  return { ok: true, tool: "wiki", kind: "links", query: title, title: String(parsed.title ?? title), links, requests };
+  return linksResult({ source: "wiki", query: title, title: String(parsed.title ?? title), links, requests });
 }
 
 // Read one section of an article, by index (0 = lead) or by heading.
 export async function readWikipediaSection(title, which, options = {}) {
   const requests = [];
-  const failure = (kind, message) => ({ ok: false, tool: "wiki", query: title, error: { kind, message }, requests });
+  const failure = (kind, message) => failed({ source: "wiki", query: title, kind, message, requests });
   const article = await fetchArticle(title, options);
   requests.push(article.record);
   if (!article.ok) return failure(article.kind, article.message);
@@ -305,21 +302,18 @@ export async function readWikipediaSection(title, which, options = {}) {
         : `"${article.title}" has no section "${which}". Its sections: ${headings.filter(Boolean).join(", ")}.`,
     );
   }
-  return {
-    ok: true,
-    tool: "wiki",
-    kind: "wiki",
+  return readResult({
+    source: "wiki",
     query: title,
     title: section.heading ? `${article.title} § ${section.heading}` : article.title,
     article: article.title,
     section: index,
     sections: article.sections.length,
     text: section.text.slice(0, EXTRACT_LIMIT),
-    exact: true,
     revision: article.revision,
     url: sectionUrl(article.title, article.revision, section.heading),
     requests,
-  };
+  });
 }
 
 // The one Wikipedia driver the walk calls, in either runtime: a search and

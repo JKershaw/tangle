@@ -15,6 +15,7 @@
 
 import { ASKS, ASK_VERSION, parseJson, splitSentences, unitsOf } from "./asks.js";
 import { applyResult, captureEvidence, children, nextRunnable, recordFailedLookup, trace } from "./graph.js";
+import { evidenceOf } from "./source.js";
 import { contentWords, isParaphrase, namesSubject } from "./text.js";
 import { lineUnits, usesName } from "./files.js";
 
@@ -379,7 +380,7 @@ export async function runWalk(run, options) {
       outcome = { ok: false, error: { kind: "no_match", message: `Already read: “${outcome.title}”.` } };
     }
     if (outcome.ok) {
-      captureEvidence(run, node.id, outcome);
+      captureEvidence(run, node.id, evidenceOf(outcome));
       onUpdate(node.id, "Evidence captured");
       return "captured";
     }

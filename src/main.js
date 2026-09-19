@@ -146,7 +146,7 @@ function render() {
         "p",
         record.kind === "fixture"
           ? "Illustrative fixture · not a fetched source"
-          : (record.exact ? "Wikipedia summary" : "Wikipedia search snippet") + " · captured " + record.capturedAt,
+          : (record.source === "files" ? "File" : record.exact ? "Wikipedia summary" : "Wikipedia search snippet") + " · captured " + record.capturedAt,
         "muted",
       ),
     );

@@ -31,8 +31,8 @@ The seams are right and proven: the model adapter (page and endpoint behind one 
 
 Each step lands with the four suites replaying at 1.7B with zero misses and identical rows, which is the test that nothing moved.
 
-1. **A golden-graph test and a complete replay key.** walk-15 on the three parity seeds and one MangoDB brief, from the recording and the model cache, asserting node count, statuses and cited titles. Then the rest is safe.
-2. **One result shape** (`src/source.js`): five requests, one constructor, evidence built by the walk, import accepting any source; a MangoDB export opens in the page.
+1. **A golden-graph test and a complete replay key.** walk-15 on the three parity seeds and one MangoDB brief, from the recording and the model cache, asserting node count, statuses and cited titles. Then the rest is safe. *Golden graph landed 2026-09-19 (4aa0cdd, `test/golden.test.js`); the replay key still omits the adapter's extra fields and the context window.*
+2. **One result shape** (`src/source.js`): five requests, one constructor, evidence built by the walk, import accepting any source; a MangoDB export opens in the page. *Landed 2026-09-19: both drivers build their answers through `source.js`, the walk captures `evidenceOf(result)`, the import accepts `read` records and `file:` URLs; the four suites replayed with zero misses and the golden graph held.*
 3. **Run state into the run**: kept, frontier, judged and the node fields as serialisable fields; export mid-run, reimport, finish.
 4. **Node kinds and one resolution path**: a `kind` with a table; `resolveWith` and the settled-children block become one `gather`; the source profile replaces the `line` flag; `subjectIgnore` moves to the run. Then drop `UNWANTED_NAME` and `CHECK_FOREIGN` if no row moves.
 5. **Columns in the harness, the episode retired**: `columns.mjs`, `eval.mjs` grades once, the lab interface written down, the `visits` suite and `composing` mode deleted (their rows stay in the record), the page bundle smaller.

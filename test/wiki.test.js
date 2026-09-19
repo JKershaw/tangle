@@ -41,7 +41,9 @@ test("a lookup searches, reads the top hit's lead and headings, and pins the evi
   ]);
   const result = await lookupWikipedia("water cycle", { fetchImpl });
   assert.equal(result.ok, true);
-  assert.equal(result.kind, "wiki");
+  assert.equal(result.kind, "read");
+  assert.equal(result.source, "wiki");
+  assert.equal(result.units, "sentences");
   assert.equal(result.title, "Water cycle");
   assert.equal(result.exact, true);
   assert.equal(result.text, "The water cycle describes movement of water.");
