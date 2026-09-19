@@ -12,7 +12,8 @@ import { readCorpus } from "./corpus.mjs";
 import { normalise } from "../src/text.js";
 import { SAMPLING } from "../src/webllm.js";
 import { DEFAULT_ENDPOINT, createEndpointAdapter } from "../src/endpoint.js";
-import { USER_AGENT, recordingFetch } from "./recording.mjs";
+import { replayAdapter } from "../src/replay.js";
+import { USER_AGENT, modelCacheDir, readRecording, recordingFetch, writeEntry } from "./recording.mjs";
 import { stamp } from "./lab.mjs";
 
 const timed = async (work) => {
@@ -25,8 +26,14 @@ const timed = async (work) => {
 // parity. offline: a Wikipedia response not in the recording is an error.
 // source: { root, include?, exclude?, name? } reads a directory as the
 // corpus (scripts/corpus.mjs, src/files.js) in place of Wikipedia.
-export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, wikiCache = null, ask: scripted = null, offline = false, source = null, onUpdate = null, note = console.log } = {}) {
-  const adapter = createEndpointAdapter({ url: endpoint });
+// modelCache: a directory of recorded model responses (src/replay.js), one
+// subdirectory per model, replayed and added to; live: false replays only,
+// and a call not in the cache is an error rather than a request.
+export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, fetchImpl = globalThis.fetch, wikiCache = null, modelCache = null, live = true, ask: scripted = null, offline = false, source = null, onUpdate = null, note = console.log } = {}) {
+  const adapter = replayAdapter(createEndpointAdapter({ url: endpoint, fetchImpl }), { live });
+  let modelDir = null;
+  let saved = { hits: 0, misses: 0 };
+  const replayStats = () => adapter.replay.stats();
   const corpus = source ? readCorpus(source.root, source) : null;
   if (corpus) {
     subjectIgnore.add(normalise(corpus.name));
@@ -49,8 +56,9 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, wikiCache = nul
       const started = Date.now();
       if (!scripted) await adapter.load(model);
       loadedModel = model;
+      if (modelCache && !scripted) note(`${stamp()} model cache ${modelCacheDir(modelCache, model)}: ${this.modelLoad(modelCacheDir(modelCache, model))} responses loaded`);
       const seconds = Math.round((Date.now() - started) / 1000);
-      note(`model ${model}: ${scripted ? "scripted" : `served by ${endpoint}`} (${seconds} s)`);
+      note(`model ${model}: ${scripted ? "scripted" : live ? `served by ${endpoint}` : "replayed from the cache only"} (${seconds} s)`);
       return seconds;
     },
     newLive(seed, limits = {}) {
@@ -66,6 +74,7 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, wikiCache = nul
       const drivers = { ask, wiki, source: corpus ? "files" : "wiki", variants: variantsFor(loadedModel), onUpdate: (nodeId, message) => onUpdate?.(nodeId, message) };
       let retriesUsed = 0;
       let outcome;
+      const before = replayStats();
       for (;;) {
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), runTimeoutMs);
@@ -89,6 +98,8 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, wikiCache = nul
         trace(run, "manual_retry", { node: errored.id });
         retriesUsed++;
       }
+      const after = replayStats();
+      run.replay = { hits: after.hits - before.hits, misses: after.misses - before.misses };
       return { outcome, retriesUsed, wallSeconds: Math.round((Date.now() - started) / 1000) };
     },
     exportRun: () => ({ ...clone(run), exportedAt: new Date().toISOString() }),
@@ -104,6 +115,21 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, wikiCache = nul
     corpus: () => corpus,
     // Node records as it goes; saving reports what happened.
     wikiSave: () => recording?.stats() ?? { hits: 0, misses: 0, added: 0, entries: 0 },
+    // The model cache: loading reads a directory of recorded responses into
+    // the replay and remembers where to save; saving writes what was recorded
+    // since the last save and reports the hits and misses since then.
+    modelLoad(dir) {
+      modelDir = dir;
+      return adapter.replay.load(readRecording(dir));
+    },
+    modelSave(dir = modelDir) {
+      let added = 0;
+      if (dir) for (const entry of adapter.replay.dump()) if (writeEntry(dir, entry)) added++;
+      const now = replayStats();
+      const report = { hits: now.hits - saved.hits, misses: now.misses - saved.misses, added, entries: now.entries };
+      saved = now;
+      return report;
+    },
     close: () => adapter.unload(),
   };
 }

@@ -2,6 +2,22 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-19 · milestone 5a: the replay
+
+Milestone 5a of [ROADMAP.md](../ROADMAP.md). Every model call is now recorded by its exact context and replayed when it recurs (`src/replay.js`, `evals/model-cache/`), the way Wikipedia has been replayed since the bridge. The point was never the cache itself but what it makes cheap: a rerun of unchanged code, and the miss count after a change.
+
+| suite (1.7B, tangle) | calls | replayed | misses | seconds live | seconds replayed | row |
+|---|---|---|---|---|---|---|
+| base (7 seeds) | 38 | 38 | 0 | 22 | 0.5 | 15 / 23, unchanged |
+| profile (4) | 197 | 197 | 0 | ~180 | 19 | 25 / 35, unchanged |
+| overflow (3) | 117 | 117 | 0 | ~120 | 7 | 24 / 30, unchanged |
+| code, MangoDB (4) | 122 | 122 | 0 | 19 | 0.6 | 14 / 42, unchanged |
+
+- **The benchmark is deterministic to the call.** Four suites, 474 calls, and the second run asked for the same 474 contexts in the same order. That is the strongest statement of determinism yet: not just the same score but the same conversation. It also means every recorded call is a node-eval case waiting to be written, with the model's actual answer attached.
+- **The blast radius of a change is countable.** One word added to the article ask ("the one article") on a scratch copy of the cache: 5 of 38 calls missed, exactly the five article picks in the base suite, the model gave the same five picks, and nothing downstream moved. A prompt change now announces which calls it touched before anyone reads a row.
+- **With the model gone, the harness's own cost shows.** The profile suite replays in 19 seconds for 197 calls, about a tenth of a second a call, with no model and no network. That is the walk's text work: splitting articles into sentences again on every visit, rebuilding candidates, grading. It was invisible under a model that takes a second a call; it is the next architecture pause, not a fault.
+- **What it does not cover.** The page's adapter is wrapped and the parity test checks its hooks, but no page suite has been recorded yet; a page cache is its own directory because the weights differ. The code suite cannot replay in CI because the corpus lives outside the repository. Ollama's prompt cache is known to perturb a pick when the preceding calls differ, so a cache populated in one order is authoritative for that order; a change that reorders calls will miss more than it touched, and that is correct.
+
 ## 2026-09-19 · milestone 5, day one: the walk over a codebase
 
 Milestone 5 of [ROADMAP.md](../ROADMAP.md). A directory of files as a second source behind the wiki driver's interface (`src/files.js`, `scripts/corpus.mjs`): a file is an article, its declarations (top-level functions, classes, methods; a document's headings) are sections, its lines are sentences, and the declarations a line uses that the corpus declares are its links, offered as "name (path)". No AST: a declaration is a line that looks like one. The first corpus is MangoDB (`../mangodb`: 55 files of source and docs, 568 declared names). Four briefs in `evals/seeds-code.json`, 42 topics, chosen where memory should be low: how writes are persisted, how a find with a filter is evaluated, how indexes work and when they are used, how an aggregation pipeline runs. Rows in Node only; the page does not read files yet.

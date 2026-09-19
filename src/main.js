@@ -10,6 +10,7 @@ import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
 import { wikiDriver } from "./wiki.js";
 import { SCRIPTED } from "./scripted.js";
 import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, createSectionChooser, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
+import { replayAdapter } from "./replay.js";
 import { GraphMap } from "./map.js";
 
 const $ = (id) => document.getElementById(id);
@@ -39,7 +40,11 @@ const current = () => imported || runs[mode];
 const locked = () => running || autorun || busy;
 
 const engineOptions = { cacheBackend: "cache" };
-const adapter = createEngineAdapter(webllm, engineOptions);
+// The replay (src/replay.js) sits between the page and the engine: a call
+// whose exact context was recorded is answered from the record, so a suite
+// rerun after a code change replays what the change did not touch. The
+// record is loaded and dumped by the driver scripts (window.__tangle.model).
+const adapter = replayAdapter(createEngineAdapter(webllm, engineOptions));
 
 const map = new GraphMap($("map"), {
   onSelect: (id) => {
@@ -598,5 +603,6 @@ window.__tangle = {
     dump: () => [...wikiCache.values()],
     stats: () => ({ ...wikiStats, entries: wikiCache.size }),
   },
+  model: adapter.replay,
 };
 render();

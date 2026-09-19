@@ -172,25 +172,54 @@ export async function saveWikiCache(page, dir) {
   return { ...stats, added };
 }
 
+// ---- the model cache (src/replay.js) ----
+// The same files as the Wikipedia recording, one directory per model.
+export async function loadModelCache(page, dir) {
+  const entries = readRecording(dir);
+  if (!entries.length) return 0;
+  return page.evaluate((entries) => window.__tangle.model.load(entries), entries);
+}
+
+export async function saveModelCache(page, dir) {
+  const entries = await page.evaluate(() => window.__tangle.model.dump());
+  let added = 0;
+  for (const entry of entries) if (writeEntry(dir, entry)) added++;
+  const stats = await page.evaluate(() => window.__tangle.model.stats());
+  return { ...stats, added };
+}
+
 // ---- the lab interface ----
 // What a driver needs from a runtime, in one shape: the page through
 // Playwright here, the walk in Node in node-lab.mjs. scripts/eval.mjs and
 // scripts/run.mjs speak only this.
 export function browserLab({ browser, page, version }) {
+  const replayStats = () => page.evaluate(() => window.__tangle.model?.stats() ?? { hits: 0, misses: 0 });
+  let replayMark = { hits: 0, misses: 0 };
   return {
     kind: "page",
     page,
     version,
     versions: () => page.evaluate(() => window.__tangle.versions?.() ?? null),
     loadModel: (model, options) => loadModel(page, model, options),
-    newLive: (seed, limits = {}) => page.evaluate(([seed, limits]) => window.__tangle.newLive(seed, limits), [seed, limits]),
+    newLive: async (seed, limits = {}) => {
+      replayMark = await replayStats();
+      return page.evaluate(([seed, limits]) => window.__tangle.newLive(seed, limits), [seed, limits]);
+    },
     runToEnd: (options) => runToEnd(page, options),
-    exportRun: () => exportRun(page),
+    // The export says how many of the run's calls were replayed, as Node's does.
+    exportRun: async () => {
+      const run = await exportRun(page);
+      const now = await replayStats();
+      run.replay = { hits: now.hits - replayMark.hits, misses: now.misses - replayMark.misses };
+      return run;
+    },
     ask: (call) => page.evaluate((call) => window.__tangle.ask(call), call),
     visit: (context) => page.evaluate((context) => window.__tangle.visit(context), context),
     pick: (context) => page.evaluate((context) => window.__tangle.pick(context), context),
     wikiLoad: (dir) => loadWikiCache(page, dir),
     wikiSave: (dir) => saveWikiCache(page, dir),
+    modelLoad: (dir) => loadModelCache(page, dir),
+    modelSave: (dir) => saveModelCache(page, dir),
     close: () => browser.close(),
   };
 }

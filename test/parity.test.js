@@ -95,6 +95,11 @@ test("the page grows the identical graph from the same seed, recording and scrip
     const loaded = await page.evaluate((entries) => window.__tangle.wiki.load(entries), readRecording(RECORDING));
     assert.ok(loaded > 0);
     assert.equal(await page.evaluate(() => window.__tangle.script("first")), "scripted:first");
+    // The page holds the model cache (src/replay.js) as it holds the wiki
+    // recording: loaded and dumped by the driver, counted by exact context.
+    assert.deepEqual(await page.evaluate(() => window.__tangle.model.stats()), { hits: 0, misses: 0, entries: 0 });
+    assert.equal(await page.evaluate(() => window.__tangle.model.load([{ key: "k", text: "{}", tokens: 1 }])), 1);
+    assert.deepEqual(await page.evaluate(() => window.__tangle.model.dump()), [{ key: "k", text: "{}", tokens: 1 }]);
     for (const seed of SEEDS) {
       await page.evaluate((seed) => window.__tangle.newLive(seed, {}), seed);
       // Visible only once a live run exists; every lookup is approved.

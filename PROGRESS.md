@@ -194,6 +194,12 @@ Memory writes a write-ahead log and replication into a database that has neither
 
 ## Log
 
+### 2026-09-19 · milestone 5a · the replay
+
+- `src/replay.js`: every model call recorded by its exact context (model, messages, schema, token cap, sampling) and served back without the model when the context comes round again, in either runtime; the files are the Wikipedia recording's, under `evals/model-cache/<model>/`. `scripts/eval.mjs` and `run.mjs` record by default; each row says how many calls were replayed; `--replay-only` runs from the cache alone and fails on a miss. A new `checks` workflow runs the tests, the build parity and a replay of the base suite on every push.
+- Verified at 1.7B: the base, profile, overflow and code suites replay 38, 197, 117 and 122 calls with zero misses in 0.5, 19, 7 and 0.6 seconds, rows identical to the live ones (15 / 23, 25 / 35, 24 / 30, 14 / 42). One word changed in the article ask missed exactly the five article calls and nothing else, and the row held. The cache is 474 files, 2.6 MB. Reading in evals/readings.md.
+- Now the loop after a code change is the replay, not the model: a row that moves with zero misses is a fault in code, and the miss count is what a change touched.
+
 ### 2026-09-19 · milestone 5, day one · files as a source
 
 - `src/files.js` and `scripts/corpus.mjs` (e02f312): a directory as a corpus behind the wiki driver's four requests; MangoDB the first corpus; `--source <dir>` in Node; four briefs with topics checked against the code; a scripted walk over a fixture corpus in the tests.

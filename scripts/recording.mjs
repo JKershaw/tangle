@@ -3,7 +3,9 @@
 // (evals/wiki-cache). The page loads it as a list and dumps what it fetched
 // (lab.mjs); Node reads it as a fetch that serves recorded responses and
 // writes new ones the moment they arrive. The same files either way, so a
-// run in one runtime replays in the other.
+// run in one runtime replays in the other. The model cache (src/replay.js,
+// evals/model-cache/<model>/) uses the same files, keyed by the call's
+// context instead of a URL.
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -11,7 +13,9 @@ import { join } from "node:path";
 // Wikipedia asks that automated clients say who they are.
 export const USER_AGENT = "Tangle/0.2.0 (https://github.com/JKershaw/tangle; a research harness) node";
 
-export const entryPath = (dir, url) => join(dir, createHash("sha1").update(url).digest("hex").slice(0, 16) + ".json");
+export const entryPath = (dir, key) => join(dir, createHash("sha1").update(key).digest("hex").slice(0, 16) + ".json");
+export const MODEL_CACHE = "evals/model-cache";
+export const modelCacheDir = (root, model) => join(root, String(model).replace(/[:/]/g, "-"));
 
 export function readRecording(dir) {
   if (!existsSync(dir)) return [];
@@ -20,10 +24,10 @@ export function readRecording(dir) {
     .map((name) => JSON.parse(readFileSync(join(dir, name), "utf8")));
 }
 
-// Writes one entry unless the URL is already recorded. Returns whether it wrote.
+// Writes one entry unless its URL (or key) is already recorded. Returns whether it wrote.
 export function writeEntry(dir, entry) {
   mkdirSync(dir, { recursive: true });
-  const path = entryPath(dir, entry.url);
+  const path = entryPath(dir, entry.url ?? entry.key);
   if (existsSync(path)) return false;
   writeFileSync(path, JSON.stringify(entry) + "\n");
   return true;

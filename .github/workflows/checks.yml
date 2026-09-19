@@ -1,0 +1,27 @@
+# The tests, the build parity and the replay: the base suite at 1.7B replayed
+# from evals/model-cache and evals/wiki-cache, no server, no GPU, no network.
+# A miss fails the job (scripts/eval.mjs --replay-only), which is what says
+# the code and its cache still agree.
+name: checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: The committed page must match a fresh build
+        run: npm run build && git diff --exit-code --stat docs/index.html
+      - name: The base suite replays from the cache with no misses
+        run: node scripts/eval.mjs runs --model qwen3:1.7b --mode tangle --replay-only --out /tmp/replay-base

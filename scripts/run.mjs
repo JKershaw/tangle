@@ -4,6 +4,7 @@
 //   node scripts/run.mjs --seed "Why is the Dead Sea shrinking?" --model qwen3:8b --out experiments/2026-09-19-qwen3-8b-dead-sea-node
 // Options: --endpoint <url> (default http://127.0.0.1:11434/v1) · --limits '<json>' · --source <dir> (a directory as the corpus, in place of Wikipedia)
 //          --wiki-cache <dir> (default evals/wiki-cache; replayed and added to)
+//          --model-cache <dir> (default evals/model-cache; the model's responses replayed by exact context and added to) · --no-model-cache
 //          --retries N (default 2) · --run-timeout <minutes> (default 45) · --quiet
 // Writes <out>.json (the export) and <out>.md (notes skeleton with the summary),
 // the same files scripts/live-run.mjs writes for the page, minus the map image.
@@ -13,6 +14,7 @@ import { summarise } from "./summarise.js";
 import { commitInfo, machineInfo, makeNotes, parseArgs, stamp } from "./lab.mjs";
 import { openNodeLab } from "./node-lab.mjs";
 import { DEFAULT_ENDPOINT } from "../src/endpoint.js";
+import { MODEL_CACHE } from "./recording.mjs";
 
 const args = parseArgs(process.argv.slice(2));
 if (!args.seed || !args.out || !args.model) {
@@ -20,7 +22,7 @@ if (!args.seed || !args.out || !args.model) {
   process.exit(2);
 }
 const { notes, note } = makeNotes();
-const lab = await openNodeLab({ endpoint: args.endpoint || DEFAULT_ENDPOINT, wikiCache: args["wiki-cache"] ?? "evals/wiki-cache", source: args.source ? { root: String(args.source) } : null, note, onUpdate: args.quiet ? null : (nodeId, message) => message && console.log(`${stamp()} ${nodeId} · ${message}`) });
+const lab = await openNodeLab({ endpoint: args.endpoint || DEFAULT_ENDPOINT, wikiCache: args["wiki-cache"] ?? "evals/wiki-cache", modelCache: args["no-model-cache"] ? null : args["model-cache"] && args["model-cache"] !== true ? String(args["model-cache"]) : MODEL_CACHE, source: args.source ? { root: String(args.source) } : null, note, onUpdate: args.quiet ? null : (nodeId, message) => message && console.log(`${stamp()} ${nodeId} · ${message}`) });
 try {
   await lab.loadModel(String(args.model));
   const limits = lab.newLive(String(args.seed), args.limits ? JSON.parse(args.limits) : {});
@@ -28,6 +30,8 @@ try {
   const { retriesUsed, wallSeconds } = await lab.runToEnd({ retries: Number(args.retries ?? 2), runTimeoutMs: Number(args["run-timeout"] ?? 45) * 60000, note });
   const saved = lab.wikiSave();
   note(`wiki recording: ${saved.hits} hits, ${saved.misses} misses, ${saved.added} new responses saved`);
+  const replayed = lab.modelSave();
+  note(`model cache: ${replayed.hits} calls replayed, ${replayed.misses} went to the model, ${replayed.added} new responses saved`);
   const exported = lab.exportRun();
   mkdirSync(dirname(String(args.out)), { recursive: true });
   writeFileSync(`${args.out}.json`, JSON.stringify(exported, null, 2));

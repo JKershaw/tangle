@@ -67,13 +67,14 @@ Either way, tap a node to see exactly what the model was shown and what it said.
 
 ## The frontier
 
-Where it stands as of 19 September 2026 (walk-14 and the bridge). Kept current as the numbers move.
+Where it stands as of 19 September 2026 (walk-15, files as a source, the replay). Kept current as the numbers move.
 
 **Known to work.**
 - A pick from a numbered list is reliable from 1.7B up, and every finding is supported by construction. No run has stated a fact its evidence did not hold.
 - Profiles beat one node and memory at every size on every brief set tried (table above).
 - Splitting a two-subject question in code beats one node at every size on the seeds no single article answers. Model-written sub-questions drift and rarely help.
 - The same walk runs in Node with no browser against Ollama or LM Studio, and a parity test shows both runtimes grow the identical graph from the same seed, recording and picks. That extends the ladder to 14B and 32B, and Node is fast: the 1.7B suite in 12 seconds against a minute in the page.
+- Every model call is recorded by its exact context and replayed when it recurs: the four seed sets at 1.7B rerun in under twenty seconds each with no GPU and identical rows, and a one-word change to an ask misses exactly its own calls. CI replays the base suite on every push.
 - A bigger picker helps on briefs and not on questions. In Node the four profiles reach 25 / 27 / 30 of 35 topics at 8B / 14B / 32B, the best row yet; the question seeds stay between 15 and 17 of 23 from 1.7B to 32B while memory climbs.
 
 **Known to fail.**
@@ -109,6 +110,7 @@ src/files.js       the second source: a directory of files, its declarations as 
                    as sentences, the declarations a line uses as links (no AST)
 src/webllm.js      device, storage and cache probes; the WebLLM engine adapter; model list
 src/endpoint.js    the second model adapter: an OpenAI-compatible endpoint (Ollama, LM Studio)
+src/replay.js      the model cache: responses recorded by exact context, replayed by either adapter
 src/scripted.js    a scripted first-choice model, for the runtime parity test
 src/map.js         the graph map (layout, pan, zoom)
 src/main.js        UI wiring
@@ -116,11 +118,11 @@ src/page.html      page template; the bundle is inlined at build time
 build.js           esbuild bundle + inline -> docs/index.html (one self-contained file, ~6 MB)
 test/              node --test suites, including ones that drive the built page
 scripts/           lab.mjs drives the built page; node-lab.mjs runs the walk in Node; recording.mjs
-                   is the Wikipedia recording; corpus.mjs reads a directory as a corpus;
+                   is the Wikipedia recording and the model cache's files; corpus.mjs reads a directory as a corpus;
                    live-run.mjs and run.mjs record one run (page, Node);
                    eval.mjs runs the eval suites in either runtime; grade.js holds the graders;
                    summarise.js reads an export
-evals/             eval cases, benchmark seeds with rubrics, the Wikipedia recording, results
+evals/             eval cases, benchmark seeds with rubrics, the Wikipedia recording, the model cache, results
 experiments/       exported runs and notes, committed next to the code that produced them
 docs/index.html    the built page, served by GitHub Pages
 ```
@@ -165,6 +167,8 @@ node scripts/eval.mjs runs --endpoint http://127.0.0.1:11434/v1 --model qwen3:14
 ```
 
 The page stays the lab and the single file; Node is an adapter behind the same two seams, the model and Wikipedia. The weights differ by quantisation between the page and a server, so a Node row is its own column rather than a rerun of the page's.
+
+Every model call is recorded by its exact context (model, messages, schema, token cap, sampling) under `evals/model-cache/<model>/`, in the same files as the Wikipedia recording, and replayed when the same context comes round again. The benchmark is deterministic, so a rerun of unchanged code replays every call in a second with no GPU, and after a change the misses are exactly the calls the change touched; each row says how many calls were replayed. `--replay-only` runs a suite from the cache alone and fails on a miss, which is how CI runs the base suite on every push.
 
 Each run writes an export (everything the model saw and said) and a notes file with the summary and space for observations. Commit them. The summariser flags what deserves a second look: repeated questions, lookups that found nothing, generations cut off mid-way.
 

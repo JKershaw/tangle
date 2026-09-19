@@ -67,7 +67,7 @@ One HTML file. Questions: the walk reads, picks a sentence, reads on, splits two
 - **Entry:** any time; before any further model reruns.
 - **Work:** the model's responses cached by their exact context (model, messages, schema, sampling), stored like the Wikipedia recording, replayed by the endpoint and page adapters; every row labelled with how many calls were replayed; the benchmark runnable in CI from the cache.
 - **Verified by:** a rerun with no code change replays every call and reproduces the row; a change to one ask misses only that ask's calls.
-- **Exit:** the base, profile, overflow and code suites replay from the cache with zero misses at one size.
+- **Exit:** the base, profile, overflow and code suites replay from the cache with zero misses at one size. **Exited 2026-09-19:** `src/replay.js` wraps either adapter; the cache lives in `evals/model-cache/<model>/` in the recording's files; at 1.7B the four suites replay 38, 197, 117 and 122 calls with zero misses in 0.5, 19, 7 and 0.6 seconds and reproduce their rows (15 / 23, 25 / 35, 24 / 30, 14 / 42); one word changed in the article ask missed exactly its five calls. `--replay-only` fails on a miss and CI runs the base suite that way on every push (`.github/workflows/checks.yml`). Reading in [evals/readings.md](evals/readings.md).
 
 ### 5b. The tool control
 
