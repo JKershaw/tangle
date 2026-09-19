@@ -8,15 +8,17 @@ A single HTML file that is a complete, incredibly cheap agent: give it a brief, 
 
 Between here and there is a sequence of milestones. Each has an entry condition, the work, what verifies it, and an exit condition. Nothing later starts until the exit condition of what it depends on is met, because every layer built on an unmeasured layer measures noise (the lesson of the 2026-09-17 matrix).
 
-## The three loops
+## The loops
 
-Every milestone is worked with the same three loops, and a typical session runs all three.
+Every milestone is worked with the same loops, innermost first; [PROCESS.md](PROCESS.md) says how a day goes.
 
-1. **The text loop.** Choose what to send Tangle, watch it run live, read the output as a person would. Faults are found by reading, not by score: children asking drifting questions, a bibliography chosen as a section, a hop re-reading the subject. Each fault is recorded in [evals/readings.md](evals/readings.md) before it is fixed.
-2. **The eval loop.** A recurring fault becomes a seed with a rubric, or a node-eval case for the ask that made the wrong choice. The seed runs in every column (tangle, one-node walk, composing, closed book) on every model size. The benchmark is deterministic, so a row moves only when the code moves. A change is kept when it lifts its target without lowering the rest.
-3. **The test loop.** The fix lands as a scripted walk test where the model's picks are fixed and the graph's shape is asserted. Then commit, push, and Pages rebuilds the page from `src/`.
+1. **The test loop.** A fix lands as a scripted walk test where the model's picks are fixed and the graph's shape is asserted. Faults found by reading are fixed in classes here, not one rerun at a time.
+2. **The replay loop** (from milestone 5a). A rerun with the model's responses cached by exact context: unchanged prompts replay in seconds, and the miss count is the blast radius of a change.
+3. **The text loop.** Choose what to send Tangle, watch it run live, read the output as a person would. Faults are found by reading, not by score, and each is recorded in [evals/readings.md](evals/readings.md) before it is fixed, then sorted: code's or the model's.
+4. **The eval loop.** A recurring fault becomes a seed with a rubric, or a node-eval case for the ask that made the wrong choice. The seed runs in every column on every model size. The benchmark is deterministic, so a row moves only when the code moves. A change is kept when it lifts its target without lowering the rest.
+5. **The architecture pause.** After each text loop: what did the model decide that code could have prepared; do the units fit the source; what shape should a node have. Then tidy the code for the next change.
 
-The rule under all three, from [BRIEF.md](BRIEF.md) and the turn in PLAN.md: the model only selects from things code prepared; if code can do it, the model is not asked; findings are not evidence; strange behaviour is recorded before it is fixed; Tangle stays tiny.
+The rule under all of them, from [BRIEF.md](BRIEF.md) and the turn in PLAN.md: the model only selects from things code prepared; if code can do it, the model is not asked; findings are not evidence; strange behaviour is recorded before it is fixed; Tangle stays tiny.
 
 ## Milestones
 
@@ -60,9 +62,23 @@ One HTML file. Questions: the walk reads, picks a sentence, reads on, splits two
 - **Verified by:** tests with a fixture directory; profile rows over MangoDB at every size.
 - **Exit:** a cited, correct profile of one MangoDB module at 4B. **Day one (2026-09-19, e02f312 → fc81ce1):** steps 1 to 5 built and run; the graph beats one node and memory at 1.7B, 4B and 8B (14 / 11 / 12 of 42 topics against 7 / 2 / 3 and 9 / 8 / 9) and reads most of the rubric; the sentence pick over lines of code is where it stops. Not exited. Next: node-eval cases for that pick, the warm-graph row, the page's folder picker.
 
+### 5a. The replay
+
+- **Entry:** any time; before any further model reruns.
+- **Work:** the model's responses cached by their exact context (model, messages, schema, sampling), stored like the Wikipedia recording, replayed by the endpoint and page adapters; every row labelled with how many calls were replayed; the benchmark runnable in CI from the cache.
+- **Verified by:** a rerun with no code change replays every call and reproduces the row; a change to one ask misses only that ask's calls.
+- **Exit:** the base, profile, overflow and code suites replay from the cache with zero misses at one size.
+
+### 5b. The tool control
+
+- **Entry:** milestone 5a.
+- **Work:** the same model with the same four source requests as tools, in one context, driving itself, matched to the graph on tokens or calls: a composing variant (what people actually run), graded on topics present, and a cited variant that may answer only in verbatim lines, graded as the graph is. The warm-graph row beside it: the second brief on a corpus after the first, with what the first read persisted. Cost per topic on every row.
+- **Verified by:** one table, every seed set, 1.7B to 32B, with DeepSeek over the key when it is worth a dollar.
+- **Exit:** we know whether the graph beats a tool-using single context at equal budget, and at which size the answer changes. Actions are not built until this says the graph earns its keep.
+
 ### 6. Actions and blocking
 
-- **Entry:** milestone 5.
+- **Entry:** milestone 5b, and only if it says the graph earns its keep.
 - **Work:** a node whose finding is the result of an action: run the tests, write a file, show a diff. The model picks an action from a list code prepared; code runs it in a worktree and records the result as evidence. A node can block on named nodes. Tests are read-only to the agent; a node that wants to change one blocks on a human.
 - **Verified by:** scripted tests; tiny real tasks the suite can check (add a skipped section name and get a green run), at every size.
 - **Exit:** the smallest size that completes a tiny task is known, and the failure modes of the sizes below it are recorded.
@@ -99,4 +115,4 @@ A server. Fine-tuning. Parallel workers (nodes at one depth are independent, so 
 
 ## Order of work
 
-1 → 2 → 3 with 4 alongside → 5 → 6 → 7 and 8 → 9. Each milestone lands as commits on `main` with its rows in PROGRESS.md and its reading in evals/readings.md, and this file's milestone gets a date and a commit when it exits.
+1 → 2 → 3 with 4 alongside → 5 → 5a → 5b → 6 → 7 and 8 → 9. Each milestone lands as commits on `main` with its rows in PROGRESS.md and its reading in evals/readings.md, and this file's milestone gets a date and a commit when it exits.
