@@ -17,11 +17,30 @@ export const DEFAULT_ENDPOINT = "http://127.0.0.1:11434/v1";
 // a field ignores it.
 export const NO_THINKING = Object.freeze({ reasoning_effort: "none", chat_template_kwargs: { enable_thinking: false } });
 
-export function requestBody(model, messages, { schema = null, maxTokens = MAX_ACTION_TOKENS, temperature = SAMPLING.temperature, seed = null, extra = NO_THINKING } = {}) {
+// tools: OpenAI function definitions, for the tool control (scripts/tools.mjs)
+// only; the walk never offers the model a tool.
+export function requestBody(model, messages, { schema = null, maxTokens = MAX_ACTION_TOKENS, temperature = SAMPLING.temperature, seed = null, tools = null, extra = NO_THINKING } = {}) {
   const body = { model, messages, stream: false, temperature, max_tokens: maxTokens, ...extra };
   if (Number.isInteger(seed)) body.seed = seed;
   if (schema) body.response_format = { type: "json_schema", json_schema: { name: "answer", strict: true, schema } };
+  if (tools?.length) body.tools = tools;
   return body;
+}
+
+// The tool calls of a response, each with its arguments parsed (or kept as
+// the raw string when they are not JSON), in the order the model made them.
+export function toolCallsOf(message) {
+  return (message?.tool_calls ?? []).map((call, index) => {
+    let args = call.function?.arguments ?? {};
+    if (typeof args === "string") {
+      try {
+        args = JSON.parse(args);
+      } catch {
+        args = { raw: args };
+      }
+    }
+    return { id: String(call.id ?? `call_${index + 1}`), name: String(call.function?.name ?? ""), arguments: args };
+  });
 }
 
 export function createEndpointAdapter({ url = DEFAULT_ENDPOINT, fetchImpl = globalThis.fetch, apiKey = null, headers = {}, timeoutMs = GENERATION_TIMEOUT_MS, extra = NO_THINKING } = {}) {
@@ -68,9 +87,10 @@ export function createEndpointAdapter({ url = DEFAULT_ENDPOINT, fetchImpl = glob
     stats() {
       return { modelId, totalTokens, calls, lastUsage };
     },
-    // One completion. Resolves to { text, tokens, usage }. Rejects with an
-    // AbortError when cancelled, like the WebLLM adapter.
-    async generate(messages, { signal, maxTokens = MAX_ACTION_TOKENS, temperature = SAMPLING.temperature, seed = null, schema = null } = {}) {
+    // One completion. Resolves to { text, tokens, usage } and, when tools were
+    // offered and used, toolCalls. Rejects with an AbortError when cancelled,
+    // like the WebLLM adapter.
+    async generate(messages, { signal, maxTokens = MAX_ACTION_TOKENS, temperature = SAMPLING.temperature, seed = null, schema = null, tools = null } = {}) {
       if (!modelId) throw new Error("No model is loaded yet.");
       const abortError = () => Object.assign(new Error("aborted"), { name: "AbortError", partialText: "" });
       if (signal?.aborted) throw abortError();
@@ -84,13 +104,14 @@ export function createEndpointAdapter({ url = DEFAULT_ENDPOINT, fetchImpl = glob
       const forward = () => controller.abort();
       signal?.addEventListener("abort", forward, { once: true });
       try {
-        const body = await request("/chat/completions", { method: "POST", body: JSON.stringify(requestBody(modelId, messages, { schema, maxTokens, temperature, seed, extra })), signal: controller.signal });
+        const body = await request("/chat/completions", { method: "POST", body: JSON.stringify(requestBody(modelId, messages, { schema, maxTokens, temperature, seed, tools, extra })), signal: controller.signal });
         const message = body.choices?.[0]?.message ?? {};
         lastUsage = body.usage ?? null;
         const tokens = lastUsage?.total_tokens ?? null;
         if (tokens) totalTokens += tokens;
         calls++;
-        return { text: String(message.content ?? ""), tokens, usage: lastUsage };
+        const toolCalls = toolCallsOf(message);
+        return { text: String(message.content ?? ""), tokens, usage: lastUsage, ...(toolCalls.length ? { toolCalls } : {}) };
       } catch (error) {
         if (timedOut) throw Object.assign(new Error(`Generation time limit reached (${timeoutMs / 1000} seconds).`), { partialText: "" });
         if (signal?.aborted || error?.name === "AbortError") throw abortError();

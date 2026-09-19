@@ -120,7 +120,8 @@ test/              node --test suites, including ones that drive the built page
 scripts/           lab.mjs drives the built page; node-lab.mjs runs the walk in Node; recording.mjs
                    is the Wikipedia recording and the model cache's files; corpus.mjs reads a directory as a corpus;
                    live-run.mjs and run.mjs record one run (page, Node);
-                   eval.mjs runs the eval suites in either runtime; grade.js holds the graders;
+                   eval.mjs runs the eval suites in either runtime; tools.mjs is the tool control
+                   (the same model with the four source requests as tools, one context); grade.js holds the graders;
                    summarise.js reads an export
 evals/             eval cases, benchmark seeds with rubrics, the Wikipedia recording, the model cache, results
 experiments/       exported runs and notes, committed next to the code that produced them

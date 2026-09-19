@@ -12,6 +12,11 @@
 // asked the seed with no tools — what it knows, graded on facts named, none
 // of them supported by construction. --repeat runs the suite N times, one
 // row and one JSON each, so a one-fact gap can be told from noise.
+// The tool control (scripts/tools.mjs, ROADMAP 5b): --mode tools is the same
+// model with the four source requests as tools in one context, composing its
+// answer; --mode tools-cited cuts that answer to the sentences read word for
+// word. --match <tangle results json> gives each seed the calls and tokens
+// the graph's row spent on it; without it, the defaults in tools.mjs.
 // The model cache (src/replay.js): every call is recorded by its exact context
 // under --model-cache <dir> (default evals/model-cache/<model>/) and replayed
 // when seen again, so a rerun after a code change costs only the calls the
@@ -34,6 +39,7 @@ import { formatSample, sample, startSampling } from "./machine.js";
 import { DEFAULT_MODEL, DEFAULT_URL, browserLab, commitInfo, machineInfo, makeNotes, openLab, pageInfo, parseArgs, shortModel, stamp } from "./lab.mjs";
 import { openNodeLab } from "./node-lab.mjs";
 import { MODEL_CACHE, modelCacheDir } from "./recording.mjs";
+import { TOOLS_VERSION, runTools } from "./tools.mjs";
 import { DEFAULT_ENDPOINT } from "../src/endpoint.js";
 
 const args = parseArgs(process.argv.slice(2));
@@ -43,7 +49,7 @@ if (!["visits", "runs"].includes(suiteName)) {
   process.exit(2);
 }
 const mode = args.mode || "tangle";
-if (!["tangle", "flat", "composing", "closed"].includes(mode)) {
+if (!["tangle", "flat", "composing", "closed", "tools", "tools-cited"].includes(mode)) {
   console.error(`unknown mode ${mode}`);
   process.exit(2);
 }
@@ -79,6 +85,17 @@ if (endpoint && (suiteName === "visits" || mode === "composing")) {
   console.error("the visits suite and the composing mode run in the page; drop --endpoint");
   process.exit(2);
 }
+const tools = mode.startsWith("tools");
+if (tools && !endpoint) {
+  console.error("the tool control runs in Node; add --endpoint");
+  process.exit(2);
+}
+// The budget each seed gets in the tool control: the graph's own spend on it.
+const matched = args.match ? JSON.parse(readFileSync(String(args.match), "utf8")) : null;
+const budgetFor = (seed) => {
+  const row = matched?.results?.find((result) => result.id === seed.id);
+  return row ? { calls: row.cost.modelCalls, tokens: row.cost.tokens } : null;
+};
 // The page under test is docs/index.html as served; name it by the commit
 // that built it. In Node the code under test is src/ at HEAD.
 const commit = endpoint ? commitInfo() : pageInfo();
@@ -116,6 +133,9 @@ try {
   if (mode === "closed") {
     PROMPT_VERSION = allSeeds.some((seed) => seed.kind === "brief") ? CLOSED_PROFILE_VERSION : CLOSED_VERSION;
     RESPONSE_SCHEMA_VERSION = "answer:string";
+  } else if (tools) {
+    PROMPT_VERSION = TOOLS_VERSION;
+    RESPONSE_SCHEMA_VERSION = `tools:${mode === "tools-cited" ? "cited" : "composing"}${matched ? " · matched" : ""}`;
   } else if (versions?.walk && suiteName === "runs" && mode !== "composing") {
     PROMPT_VERSION = `${versions.walk}/${versions.asks}`;
     RESPONSE_SCHEMA_VERSION = Object.entries(versions.variants ?? {}).map(([ask, variant]) => `${ask}:${variant}`).join(",");
@@ -132,7 +152,7 @@ try {
   mkdirSync(dirname(out), { recursive: true });
   if (suiteName === "runs") {
     const seeds = allSeeds.filter((seed) => !only || only.test(seed.id));
-    const limits = mode === "flat" ? FLAT_LIMITS : mode === "composing" ? { ...FLAT_LIMITS, walk: false } : mode === "closed" ? { closed: true } : {};
+    const limits = mode === "flat" ? FLAT_LIMITS : mode === "composing" ? { ...FLAT_LIMITS, walk: false } : mode === "closed" ? { closed: true } : tools ? { tools: mode, matched: args.match ?? null } : {};
     note(`${stamp()} ${seeds.length} seeds from ${seedsPath} · mode ${mode} · limits ${JSON.stringify(limits)} · prompt ${PROMPT_VERSION} · grammar ${RESPONSE_SCHEMA_VERSION} · commit ${commit}${repeats > 1 ? ` · ${repeats} repeats` : ""}`);
     note(`wiki recording: ${await lab.wikiLoad(WIKI_CACHE)} responses loaded`);
     for (let repeat = 1; repeat <= repeats; repeat++) {
@@ -161,6 +181,28 @@ try {
         if (modelDir) await lab.modelSave(modelDir);
         results.push(grade);
         note(`${formatRunGrade(grade)} · ${grade.wallSeconds} s${output.replayed ? " · replayed" : ""}`);
+        continue;
+      }
+      if (tools) {
+        const started = Date.now();
+        const budget = budgetFor(seed);
+        if (matched && !budget) note(`${seed.id}: no row in ${args.match}; the default budget`);
+        let exported;
+        try {
+          exported = await runTools(seed.seed, { generate: lab.generate, wiki: lab.wiki(), kind: seed.kind === "brief" ? "brief" : "question", cited: mode === "tools-cited", budget });
+        } catch (error) {
+          exported = { seed: seed.seed, mode, nodes: [{ id: "n1", status: "error", finding: "", evidence: [], reason: String(error?.message || error) }], evidence: [], trace: [], visits: 0, modelCalls: 0, lookups: 0, tokens: 0, stopReason: null, stoppedBy: "error", dropped: 0 };
+        }
+        const wallSeconds = Math.round((Date.now() - started) / 1000);
+        const saved = await lab.wikiSave(WIKI_CACHE);
+        const replayed = modelDir ? await lab.modelSave(modelDir) : null;
+        const exportPath = `evals/results/runs/${date}-${modelName.replace(/[:/]/g, "-")}-${mode}-${seed.id}${suffix}.json`;
+        mkdirSync(dirname(exportPath), { recursive: true });
+        writeFileSync(exportPath, JSON.stringify({ ...exported, model, exportedAt: new Date().toISOString() }));
+        const replay = { hits: exported.trace.filter((event) => event.event === "model_output" && event.replayed).length, misses: exported.trace.filter((event) => event.event === "model_output" && !event.replayed).length };
+        const grade = { ...gradeRun(seed, exported), kind: seed.kind, outcome: exported.nodes[0].status === "resolved" ? "root resolved" : `root ${exported.nodes[0].status}`, retriesUsed: 0, wallSeconds, wiki: saved, replay, budget: exported.limits ?? null, stoppedBy: exported.stoppedBy, dropped: exported.dropped, answer: exported.answer ?? null, export: exportPath };
+        results.push(grade);
+        note(`${formatRunGrade(grade)} · stopped by ${exported.stoppedBy}${exported.dropped ? ` · ${exported.dropped} results dropped from the context` : ""} · ${wallSeconds} s${replayed ? ` · model ${replayed.hits} replayed ${replayed.misses} missed` : ""}`);
         continue;
       }
       await lab.newLive(seed.seed, limits);

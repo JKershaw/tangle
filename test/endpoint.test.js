@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { DEFAULT_ENDPOINT, NO_THINKING, createEndpointAdapter, requestBody } from "../src/endpoint.js";
+import { DEFAULT_ENDPOINT, NO_THINKING, createEndpointAdapter, requestBody, toolCallsOf } from "../src/endpoint.js";
 
 const json = (value, status = 200) => new Response(JSON.stringify(value), { status, headers: { "content-type": "application/json" } });
 
@@ -68,4 +68,19 @@ test("an API key becomes a bearer header, and a request body without a schema ca
   assert.equal(requests[0].headers.authorization, "Bearer k");
   const body = requestBody("m", [{ role: "user", content: "x" }], { extra: {} });
   assert.deepEqual(body, { model: "m", messages: [{ role: "user", content: "x" }], stream: false, temperature: 0.2, max_tokens: 420 });
+});
+
+test("with tools offered, the request carries them and the response's tool calls come back parsed, in order", async () => {
+  const { fetchImpl, requests } = fakeServer();
+  const tools = [{ type: "function", function: { name: "search", description: "Search.", parameters: { type: "object", properties: { term: { type: "string" } }, required: ["term"] } } }];
+  const adapter = createEndpointAdapter({ url: "http://127.0.0.1:11434/v1", fetchImpl });
+  await adapter.load("qwen3:8b");
+  const plain = await adapter.generate([{ role: "user", content: "hi" }], { tools });
+  assert.deepEqual(requests.at(-1).body.tools, tools);
+  assert.equal("toolCalls" in plain, false, "no tool calls when the model answered in words");
+  assert.deepEqual(toolCallsOf({ tool_calls: [{ id: "c1", type: "function", function: { name: "search", arguments: '{"term":"x"}' } }, { function: { name: "read", arguments: "not json" } }] }), [
+    { id: "c1", name: "search", arguments: { term: "x" } },
+    { id: "call_2", name: "read", arguments: { raw: "not json" } },
+  ]);
+  assert.equal("tools" in requestBody("m", [], {}), false, "the walk's requests carry no tools");
 });

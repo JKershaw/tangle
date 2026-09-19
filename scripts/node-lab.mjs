@@ -113,6 +113,13 @@ export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, fetchImpl = glo
       return recording.entries.size;
     },
     corpus: () => corpus,
+    // For the tool control (scripts/tools.mjs): the adapter's generate with
+    // the fixed sampling, and the source driver as the walk gets it.
+    generate: (messages, options = {}) => {
+      if (!loadedModel) throw new Error("Load a model first.");
+      return adapter.generate(messages, { ...options, seed: SAMPLING.seed, temperature: SAMPLING.temperature });
+    },
+    wiki: () => wiki,
     // Node records as it goes; saving reports what happened.
     wikiSave: () => recording?.stats() ?? { hits: 0, misses: 0, added: 0, entries: 0 },
     // The model cache: loading reads a directory of recorded responses into

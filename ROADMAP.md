@@ -71,8 +71,9 @@ One HTML file. Questions: the walk reads, picks a sentence, reads on, splits two
 
 ### 5b. The tool control
 
-- **Entry:** milestone 5a.
+- **Entry:** milestone 5a. Begun 2026-09-19.
 - **Work:** the same model with the same four source requests as tools, in one context, driving itself, matched to the graph on tokens or calls: a composing variant (what people actually run), graded on topics present, and a cited variant that may answer only in verbatim lines, graded as the graph is. The warm-graph row beside it: the second brief on a corpus after the first, with what the first read persisted. Cost per topic on every row.
+- **Built:** `scripts/tools.mjs`, `--mode tools` and `--mode tools-cited` in `scripts/eval.mjs`, `--match <tangle results json>` for the per-seed budget (the graph's calls and tokens on that seed); the context window is the walk's, the oldest tool results are dropped when the transcript outgrows it, and the run says how many. The endpoint adapter carries tools and parses tool calls; the replay records them. Tests over the recording with a scripted model.
 - **Verified by:** one table, every seed set, 1.7B to 32B, with DeepSeek over the key when it is worth a dollar.
 - **Exit:** we know whether the graph beats a tool-using single context at equal budget, and at which size the answer changes. Actions are not built until this says the graph earns its keep.
 

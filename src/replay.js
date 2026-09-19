@@ -9,8 +9,8 @@
 
 // The context of one call, as readable JSON with the keys in a fixed order.
 // Anything that is not context (a signal, a delta callback) is left out.
-export function replayKey(model, messages, { schema = null, maxTokens = null, temperature = null, seed = null } = {}) {
-  return JSON.stringify({ model, messages, schema, maxTokens, temperature, seed });
+export function replayKey(model, messages, { schema = null, maxTokens = null, temperature = null, seed = null, tools = null } = {}) {
+  return JSON.stringify({ model, messages, schema, maxTokens, temperature, seed, ...(tools?.length ? { tools } : {}) });
 }
 
 // The wrapped adapter keeps every method of the one underneath, with the
@@ -47,13 +47,13 @@ export function replayAdapter(adapter, { live = true } = {}) {
         const hit = entries.get(key);
         if (hit) {
           stats.hits++;
-          return { text: hit.text, tokens: hit.tokens, usage: hit.usage, replayed: true };
+          return { text: hit.text, tokens: hit.tokens, usage: hit.usage, ...(hit.toolCalls ? { toolCalls: hit.toolCalls } : {}), replayed: true };
         }
         stats.misses++;
         if (!live) throw new Error(`Not in the replay: ${modelId()} · ${String(messages.at(-1)?.content ?? "").slice(0, 80)}`);
         const output = await adapter.generate(messages, options);
-        const { schema = null, maxTokens = null, temperature = null, seed = null } = options;
-        entries.set(key, { key, model: modelId(), messages, options: { schema, maxTokens, temperature, seed }, text: output.text, tokens: output.tokens ?? null, usage: output.usage ?? null, recordedAt: new Date().toISOString() });
+        const { schema = null, maxTokens = null, temperature = null, seed = null, tools = null } = options;
+        entries.set(key, { key, model: modelId(), messages, options: { schema, maxTokens, temperature, seed, ...(tools?.length ? { tools } : {}) }, text: output.text, tokens: output.tokens ?? null, usage: output.usage ?? null, ...(output.toolCalls ? { toolCalls: output.toolCalls } : {}), recordedAt: new Date().toISOString() });
         return { ...output, replayed: false };
       },
     },

@@ -54,6 +54,22 @@ test("the replay key is the exact context: model, messages, schema, token cap an
   assert.notEqual(key, replayKey("qwen3:1.7b", messages, { ...options, temperature: 0 }));
   assert.notEqual(key, replayKey("qwen3:1.7b", messages, { ...options, seed: 2 }));
   assert.ok(JSON.parse(key).messages, "the key is readable JSON, so an entry can be read as the ask it answered");
+  const tools = [{ type: "function", function: { name: "search" } }];
+  assert.notEqual(key, replayKey("qwen3:1.7b", messages, { ...options, tools }), "tools offered are context");
+  assert.equal(key, replayKey("qwen3:1.7b", messages, { ...options, tools: [] }), "and none offered is the walk's key, unchanged");
+});
+
+test("a replayed tool call comes back as the model made it", async () => {
+  const inner = fakeAdapter();
+  inner.generate = async () => ({ text: "", tokens: 30, usage: null, toolCalls: [{ id: "c1", name: "search", arguments: { term: "x" } }] });
+  const adapter = replayAdapter(inner);
+  await adapter.load("qwen3:1.7b");
+  const tools = [{ type: "function", function: { name: "search" } }];
+  const first = await adapter.generate(messages, { ...options, tools });
+  assert.deepEqual(first.toolCalls, [{ id: "c1", name: "search", arguments: { term: "x" } }]);
+  assert.deepEqual(adapter.replay.dump()[0].options.tools, tools);
+  const again = await adapter.generate(messages, { ...options, tools });
+  assert.deepEqual(again, { ...first, replayed: true });
 });
 
 test("the replay answers a recorded context without the model, records a miss, and delegates everything else to the adapter", async () => {
