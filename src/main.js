@@ -3,13 +3,13 @@
 
 import * as webllm from "@mlc-ai/web-llm";
 import { clone, createRun, nextRunnable, outcomeLabel, trace, validateImport, buildContext, VERSION } from "./graph.js";
-import { PROMPT_VERSION, buildMessages, runEpisode } from "./episode.js";
+import { runEpisode } from "./episode.js";
 import { ASK_VERSION } from "./asks.js";
 import { DEFAULT_VARIANTS, WALK_VERSION, runWalk, variantsFor } from "./walk.js";
 import { PRESETS, SIMULATION_SEED, simulationDrivers } from "./simulation.js";
 import { wikiDriver } from "./wiki.js";
 import { SCRIPTED } from "./scripted.js";
-import { MODELS, RESPONSE_SCHEMA_VERSION, RUNTIME, SAMPLING, createEngineAdapter, createLiveGenerator, createSectionChooser, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
+import { MODELS, RUNTIME, SAMPLING, createEngineAdapter, downloadBytes, probeEnvironment, requestPersistence } from "./webllm.js";
 import { replayAdapter } from "./replay.js";
 import { GraphMap } from "./map.js";
 
@@ -294,9 +294,10 @@ function driversFor(run) {
     return { ...simulationDrivers(run.preset), pace: (signal) => pace(320, signal) };
   }
   const ask = scripted ? async (call) => scripted(call) : (call, { signal } = {}) => adapter.generate(call.messages, { signal, schema: call.schema, maxTokens: call.maxTokens, seed: SAMPLING.seed, temperature: SAMPLING.temperature });
-  return { ask, variants: variantsFor(loadedModel), generate: createLiveGenerator(adapter), chooseSection: createSectionChooser(adapter), wiki: liveWiki, approve: approveLookup, pace: null };
+  return { ask, variants: variantsFor(loadedModel), wiki: liveWiki, approve: approveLookup, pace: null };
 }
-const runnerFor = (run) => (run.mode === "live" && run.limits.walk !== false ? runWalk : runEpisode);
+// A live run is the walk; the simulation keeps the earlier one-prompt episode.
+const runnerFor = (run) => (run.mode === "live" ? runWalk : runEpisode);
 
 // ---- running ----
 async function step() {
@@ -312,7 +313,7 @@ async function step() {
     run.model = loadedModel;
     run.runtime = RUNTIME;
     run.sampling = { ...SAMPLING };
-    run.schema = run.limits.walk !== false ? `${WALK_VERSION}/${ASK_VERSION}` : RESPONSE_SCHEMA_VERSION;
+    run.schema = `${WALK_VERSION}/${ASK_VERSION}`;
   }
   render();
   const ok = await runnerFor(run)(run, {
@@ -539,9 +540,9 @@ window.addEventListener("beforeunload", (event) => {
 
 // Exposed for browser-level tests and the scripts/live-run.mjs driver only.
 // Hooks for the driver scripts (scripts/live-run.mjs, scripts/eval.mjs). They
-// do what the buttons do, plus three things the buttons cannot: start a live
-// run with custom limits (the flat baseline), run one model call on a recorded
-// context (a micro-eval), and load or dump the Wikipedia recording.
+// do what the buttons do, plus what the buttons cannot: start a live run with
+// custom limits (the flat baseline), run one raw model call (the node evals),
+// and load or dump the Wikipedia recording and the model cache.
 const timed = async (work) => {
   const started = performance.now();
   const output = await work();
@@ -555,7 +556,7 @@ window.__tangle = {
   runnable: () => !!nextRunnable(current()),
   outcome: () => outcomeLabel(current()),
   loadedModel: () => loadedModel,
-  versions: () => ({ prompt: PROMPT_VERSION, schema: RESPONSE_SCHEMA_VERSION, walk: WALK_VERSION, asks: ASK_VERSION, variants: loadedModel ? variantsFor(loadedModel) : { ...DEFAULT_VARIANTS }, runtime: RUNTIME, page: VERSION }),
+  versions: () => ({ prompt: null, schema: null, walk: WALK_VERSION, asks: ASK_VERSION, variants: loadedModel ? variantsFor(loadedModel) : { ...DEFAULT_VARIANTS }, runtime: RUNTIME, page: VERSION }),
   newLive: (seed, limits = {}) => {
     if (locked()) throw new Error("Busy.");
     mode = "live";
@@ -565,17 +566,6 @@ window.__tangle = {
     map.scale = 1;
     render();
     return clone(runs.live.limits);
-  },
-  visit: async (context) => {
-    if (!loadedModel) throw new Error("Load a model first.");
-    if (locked()) throw new Error("Busy.");
-    const messages = buildMessages(context);
-    return timed(async () => ({ ...(await createLiveGenerator(adapter)(messages, { context })), messages }));
-  },
-  pick: async (request) => {
-    if (!loadedModel) throw new Error("Load a model first.");
-    if (locked()) throw new Error("Busy.");
-    return timed(() => createSectionChooser(adapter)(request));
   },
   // One raw call: the node evals (scripts/node-eval.mjs) build calls from
   // src/asks.js and send each here unchanged.

@@ -82,7 +82,7 @@ One HTML file. Questions: the walk reads, picks a sentence, reads on, splits two
 - **Entry:** milestone 5b. A review before a milestone builds on a new layer; the first is [REVIEW.md](REVIEW.md), 2026-09-19.
 - **Work:** the review's plan, in order: a golden-graph test and a complete replay key; one result shape for every source and evidence built by the walk; run state into the run so a run can be exported mid-way and resumed; node kinds with one resolution path and a source profile in place of flags; columns in the harness and the one-prompt path retired.
 - **Verified by:** after every step the four suites replay at 1.7B with zero misses and identical rows; the golden graph holds; a MangoDB export opens in the page.
-- **Exit:** the plan's five steps landed with no row moved, and `runWalk` reads as a table of node kinds.
+- **Exit:** the plan's five steps landed with no row moved, and `runWalk` reads as a table of node kinds. **Exited 2026-09-19 (4aa0cdd → this commit):** the golden graph and a complete replay key; one result shape (`src/source.js`) and a run over files opens in the page; run state in the run and a resumable import; node kinds, one article choice, one resolution path, the dead confirmation dropped and the name list kept by measurement; columns in the harness and the one-prompt path retired. Every step replayed with zero misses and no row moved at 1.7B, 4B, 8B and Haiku.
 
 ### 6. Actions and blocking
 

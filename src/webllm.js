@@ -22,45 +22,6 @@ export const MODELS = Object.freeze([
 
 export const downloadBytes = (modelId) => MODELS.find((model) => model.id === modelId)?.downloadBytes ?? null;
 
-// Grammar-constrained decoding: the model can only emit an object of this shape.
-// The harness validator still decides whether the content is acceptable.
-export const RESPONSE_SCHEMA_VERSION = "per-action-7";
-// Excerpts are cited by positional label, not ID. web-llm compiles a new grammar
-// for every distinct schema at ~22 s each (a token mask over Qwen's 151k-token
-// vocabulary, in wasm; experiments/2026-09-17-qwen3-0.6b-water-cycle-4), so an
-// enum of real IDs made nearly every resolved a fresh compile. The enum is the
-// first k labels for the k excerpts shown (at most five, graph.js), so a session
-// compiles at most ten grammars, and a label that was not shown is impossible —
-// shown one excerpt, 0.6B cited "1", "2" and "3" when the alphabet allowed it.
-export const EVIDENCE_LABELS = Object.freeze(["1", "2", "3", "4", "5"]);
-// One variant per action, built per call from the evidence the model was shown:
-// decompose must carry 1–3 questions, wiki a query, blocked a reason, and
-// resolved may only cite IDs that are in context — with no evidence in context
-// there is no resolved variant at all, so the grammar itself refuses a finding
-// without inspected sources. The first two live runs (experiments/2026-09-17-*)
-// show why: a flat schema let a 0.6B model put its questions in `reason`, then
-// answer from memory with evidence it wrote itself.
-const variant = (action, properties, required) =>
-  Object.freeze({ type: "object", properties: { action: { const: action }, ...properties }, required: ["action", ...required], additionalProperties: false });
-export function responseSchema(evidenceIds = [], questionsAllowed = 3, lookupsRemaining = null) {
-  const ids = [...new Set(evidenceIds)];
-  return Object.freeze({
-    anyOf: [
-      // No wiki variant once the visit's lookups are spent: 1.7B kept searching
-      // at lookupsRemaining 0 and the validator had to stop the run.
-      ...(lookupsRemaining === null || lookupsRemaining > 0 ? [variant("wiki", { query: { type: "string", minLength: 1, maxLength: 180 } }, ["query"])] : []),
-      ...(questionsAllowed > 0
-        ? [variant("decompose", { questions: { type: "array", items: { type: "string", minLength: 1, maxLength: 300 }, minItems: 1, maxItems: questionsAllowed } }, ["questions"])]
-        : []),
-      ...(ids.length
-        ? [variant("resolved", { finding: { type: "string", minLength: 1, maxLength: 1400 }, evidence: { type: "array", items: { enum: EVIDENCE_LABELS.slice(0, ids.length) }, minItems: 1, maxItems: Math.min(ids.length, EVIDENCE_LABELS.length) } }, ["finding", "evidence"])]
-        : []),
-      variant("blocked", { reason: { type: "string", minLength: 1, maxLength: 1000 } }, ["reason"]),
-    ],
-  });
-}
-// The schema before anything has been read: no resolved variant.
-export const RESPONSE_SCHEMA = responseSchema([]);
 
 export async function probeDevice(navigator = globalThis.navigator) {
   const report = { webgpu: false, reason: null, deviceMemoryGb: null, maxBufferBytes: null, lowMemory: false };
@@ -276,7 +237,7 @@ export function createEngineAdapter(webllm, options = {}) {
     },
     // Streams one completion. Resolves to { text, tokens, usage }. Rejects with an
     // AbortError when cancelled; the partial text is attached as error.partialText.
-    async generate(messages, { signal, maxTokens = MAX_ACTION_TOKENS, temperature = 0.2, seed = null, onDelta, schema = RESPONSE_SCHEMA } = {}) {
+    async generate(messages, { signal, maxTokens = MAX_ACTION_TOKENS, temperature = 0.2, seed = null, onDelta, schema = null } = {}) {
       if (!engine) throw new Error("No model is loaded yet.");
       const abort = () => this.interrupt();
       const abortError = () => Object.assign(new Error("aborted"), { name: "AbortError" });
@@ -292,7 +253,7 @@ export function createEngineAdapter(webllm, options = {}) {
           temperature,
           max_tokens: maxTokens,
           extra_body: { enable_thinking: false },
-          response_format: { type: "json_object", schema: JSON.stringify(schema) },
+          ...(schema ? { response_format: { type: "json_object", schema: JSON.stringify(schema) } } : {}),
         };
         if (Number.isInteger(seed)) request.seed = seed;
         const stream = await engine.chat.completions.create(request);
@@ -317,43 +278,5 @@ export function createEngineAdapter(webllm, options = {}) {
         signal?.removeEventListener("abort", abort);
       }
     },
-  };
-}
-
-// The generate driver the episode runner calls in live mode: one bounded action.
-export function createLiveGenerator(adapter, sampling = SAMPLING) {
-  return async (messages, { signal, context } = {}) => {
-    const schema = responseSchema((context?.evidence ?? []).map((excerpt) => excerpt.id), context?.questionsAllowed ?? 3, context?.lookupsRemaining ?? null);
-    const timer = setTimeout(() => adapter.interrupt(), GENERATION_TIMEOUT_MS);
-    const started = performance.now();
-    try {
-      const result = await adapter.generate(messages, { signal, seed: sampling.seed, temperature: sampling.temperature, schema });
-      if (performance.now() - started >= GENERATION_TIMEOUT_MS) {
-        throw Object.assign(new Error(`Generation time limit reached (${GENERATION_TIMEOUT_MS / 1000} seconds).`), { partialText: result.text });
-      }
-      return { text: result.text, tokens: result.tokens };
-    } finally {
-      clearTimeout(timer);
-    }
-  };
-}
-
-// ---- choosing a section ----
-// When a node asks again for the bare title of an article whose sections are
-// listed in its context, 1.7B repeats the title no matter what the context says
-// (experiments/2026-09-17-qwen3-1.7b-dead-sea-2 and -3). So the choice is put to
-// the model as a forced pick: one small call whose grammar is an enum of the
-// article's headings. The episode runner records it as a model call.
-export const SECTION_PROMPT = `Pick the one section of the article most likely to answer the question. Reply with JSON: {"section": "<exact heading>"}. /no_think`;
-export const sectionSchema = (sections) =>
-  Object.freeze({ type: "object", properties: { section: { enum: [...sections] } }, required: ["section"], additionalProperties: false });
-export function createSectionChooser(adapter, sampling = SAMPLING) {
-  return async ({ question, article, sections }, { signal } = {}) => {
-    const messages = [
-      { role: "system", content: SECTION_PROMPT },
-      { role: "user", content: JSON.stringify({ question, article, sections }) },
-    ];
-    const result = await adapter.generate(messages, { signal, seed: sampling.seed, temperature: sampling.temperature, maxTokens: 80, schema: sectionSchema(sections) });
-    return { text: result.text, tokens: result.tokens, messages };
   };
 }

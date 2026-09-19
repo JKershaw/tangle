@@ -221,6 +221,10 @@ Memory writes a write-ahead log and replication into a database that has neither
 
 ## Log
 
+### 2026-09-19 · milestone 5c · the foundations
+
+- The review's five steps ([REVIEW.md](REVIEW.md)), each landed with the four suites replaying at 1.7B with zero misses and no row moved, and spot-checked at 4B, 8B and Haiku: a golden-graph test and the replay keyed on the adapter's config (every cached entry rewritten); one result shape for both sources with evidence built from it, and a run over files opening in the page; the walk's memory in `run.state` with a resumable import; node kinds, one article choice and one resolution path in the walk, the foreign-source confirmation dropped because it never fired, the unwanted-name list kept because it moved nine hop calls; columns in the harness, one grading path, and the one-prompt visit suite, its graders, the page's live episode runner and the adapter's grammar retired. Tests 167 → 136 with the retired suite's; `runWalk` 575 → about 500 lines.
+
 ### 2026-09-19 · the reference column, a day early
 
 - The graph and the tool control on DeepSeek V3.2 and Claude Haiku 4.5 over OpenRouter (`--endpoint https://openrouter.ai/api/v1`, the key from the environment, 054ad09), profile and MangoDB suites, under a dollar. The graph wins on both models and both suites; Haiku through the graph is the best code row, 25 of 42, all cited; DeepSeek picks poorly (13 of 42, one-topic persist profile). Rows in the table above; reading in evals/readings.md.
