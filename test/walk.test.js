@@ -503,7 +503,7 @@ test("sentences judged as not answering are remembered across visits, so a revis
   assert.equal(run.nodes.length, 3);
 });
 
-test("the first lookup searches both terms and picks from every title found; a foreign source gets its pick confirmed", async () => {
+test("the first lookup searches both terms and picks from every title found; a pick from a foreign source stands, since the article choice is what keeps the walk on subject", async () => {
   const searches = [];
   const wiki = async (query, options = {}) => {
     if (options.searchOnly) {
@@ -514,14 +514,17 @@ test("the first lookup searches both terms and picks from every title found; a f
     return wikiFixture(query, options);
   };
   const run = createRun("Why is the Dead Sea shrinking?", "live", { maxLookups: 1, maxDepth: 0, ...ONE });
-  const { ask, seen } = scripted([["article", "Aral Sea"], ["sentence", "2"], ["answers", "no"], ["sentence", "none"]]);
+  const { ask, seen } = scripted([["article", "Aral Sea"], ["sentence", "2"]]);
   assert.equal(await runWalk(run, { ask, wiki }), true);
   assert.deepEqual(searches, ["Dead Sea shrinking", "Why is the Dead Sea shrinking?"]);
   assert.deepEqual(seen[0].options, ["Dead Sea", "Aral Sea", "List of drying lakes", "none"], "the union of both searches, in order");
   assert.match(seen[0].user, /- Aral Sea — was a lake/, "each title carries its search snippet");
-  assert.equal(seen[2].field, "answers", "a pick from an article foreign to the question is confirmed");
-  assert.match(seen[2].user, /Sentence: It began shrinking/);
-  assert.notEqual(run.nodes[0].status, "resolved", "the confirmation said no");
+  // The foreign-source confirmation (walk-5 to walk-15) never fired on any
+  // suite at any size once the article was picked with snippets, so it was
+  // dropped (REVIEW.md, 2026-09-19): the pick stands, cited to what it read.
+  assert.ok(!seen.some((call) => call.field === "answers"), "no confirmation");
+  assert.equal(run.nodes[0].status, "resolved");
+  assert.match(run.nodes[0].finding, /It began shrinking/);
   assert.equal(run.lookups, 1);
   assert.equal(isForeign("Aral Sea", "Why is the Dead Sea shrinking?"), true);
   assert.equal(isForeign("Dead Sea § Receding shoreline", "Why is the Dead Sea shrinking?"), false);

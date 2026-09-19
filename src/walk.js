@@ -31,8 +31,7 @@ export const DEFAULT_VARIANTS = Object.freeze({ sentence: "list", section: "list
 // Variants by model size. The pick-then-check sentence ask has no false
 // negatives at 8B (node evals 23/23; benchmark 12 → 16 facts) but costs 4B
 // two facts on the benchmark (16 → 14) and refuses true answers at 1.7B, so
-// only 8B and above check every pick; the rest take the plain pick and
-// confirm only foreign-source picks (CHECK_FOREIGN).
+// only 8B and above check every pick; the rest take the plain pick.
 export function variantsFor(modelId = "") {
   // "Qwen3-8B-q4f16_1-MLC" in the page; "qwen3:8b", "qwen3:14b-q4_K_M" over
   // an endpoint (endpoint.js). Not "Qwen3-30B-A3B", not "qwen3:1.7b".
@@ -41,13 +40,6 @@ export function variantsFor(modelId = "") {
   const big = /(?:^|[-:_/])(8|14|32)b(?=$|[-:_@\s])/i.test(String(modelId)) || /^[a-z0-9-]+\/[^/]+$/i.test(String(modelId));
   return { ...DEFAULT_VARIANTS, ...(big ? { sentence: "check" } : {}) };
 }
-// When the picked sentence comes from an article that shares no content
-// word with the question (the Aral Sea for a Dead Sea question), the pick is
-// confirmed with one yes-or-no on that sentence alone. When the source is
-// about the question's subject it is not: at 1.7B the check refused the
-// Aral Sea's own reason for shrinking (node evals and the walk-4 benchmark),
-// and a wrong pick about the right subject costs less than a lost answer.
-export const CHECK_FOREIGN = true;
 // A brief rather than a question: "Tell me about Alan Turing and elaborate on
 // the impact of his work." There is no answering sentence to find, so the
 // asks change wording (asks.js: sentence/brief, section/brief, missing/hop)
@@ -781,16 +773,6 @@ export async function runWalk(run, options) {
           const index = Number(pick) - 1;
           const chosen = window[index];
           if (!chosen) throw new Error(`The model picked sentence ${pick} of ${window.length}.`);
-          // A brief's hop article is foreign to the brief by design (the
-          // Bombe for Turing), so its picks are not confirmed.
-          if (CHECK_FOREIGN && !brief && variants.sentence !== "check" && chosen.from === "excerpt" && isForeign(chosen.source, node.question)) {
-            const verdict = await answer("confirm", { question: node.question, sentence: chosen.text }, "Checking the pick");
-            trace(run, "pick_checked", { node: node.id, pick, source: chosen.source, verdict });
-            if (verdict !== "yes") {
-              judged.add(chosen.text);
-              continue;
-            }
-          }
           // A finding is a sentence, not a fragment (validateResult). A very
           // short first pick keeps its neighbour for context — still verbatim.
           if (!gathered.length && chosen.text.split(/\s+/).length < MIN_FINDING_WORDS && index > 0 && window[index - 1].evidence[0] === chosen.evidence[0]) gathered.push(window[index - 1]);
