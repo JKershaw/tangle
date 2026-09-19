@@ -1,0 +1,536 @@
+{
+  "suite": "runs",
+  "model": "deepseek/deepseek-v3.2",
+  "runtime": "node",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "4aa0cdd (uncommitted changes)",
+  "head": "4aa0cdd (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T10:53:31.338Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · https://openrouter.ai/api/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 8,
+    "gpuPercent": {
+      "min": 0,
+      "max": 1,
+      "mean": 0.1
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.06,
+      "mean": 0
+    },
+    "load": {
+      "min": 17.87,
+      "max": 19.23,
+      "mean": 18.6
+    },
+    "memoryFreePercent": {
+      "min": 90,
+      "max": 90,
+      "mean": 90
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-code-deepseek-deepseek-v3.2-ref.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 8,
+  "factsSupported": 7,
+  "factsRead": 33,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 35,
+    "cache": "evals/model-cache/deepseek-deepseek-v3.2",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "json-file-per-collection": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "streamed-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "serialisation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 3,
+      "factsSupported": 2,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 5,
+        "tokens": 7817
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Based on my research, I found that MangoDB is a file-based MongoDB-compatible collection system rather than the actual MongoDB database. From examining the source code, I can provide the following profile on how MangoDB handles write persistence:\n\nMangoDB persists writes to disk through a file-based storage system where each collection's data is stored in JSON files. The system uses asynchronous file operations to write document data to persistent storage. When documents are inserted, updated, or deleted, the `writeDocuments()` method is called to serialize the entire document collection to a JSON file in the data directory.\n\nThe persistence mechanism operates at the collection level, with each collection maintaining its own data file. When write operations like `insertOne()`, `insertMany()`, `updateOne()`, `updateMany()`, `deleteOne()`, or `deleteMany()` are performed, the system reads the current document set from the JSON file, applies the changes in memory, and then writes the entire updated collection back to disk. This approach ensures data consistency but may have performance implications for large datasets.\n\nIndex persistence is handled separately through index files that are also stored on disk. The system maintains indexes to improve query performance, and these indexes are rebuilt as needed when documents are modified. The file-based architecture means that data durability is achieved through standard filesystem operations, with writes being persisted to the underlying storage medium according to the operating system's file write guarantees.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 11,
+        "chars": 1578,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 19,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 12,
+        "tokens": 6480
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "Based on my research, I found that MangoDB is a file-based MongoDB-compatible collection system rather than the actual MongoDB database. From examining the source code, I can provide the following profile on how MangoDB handles write persistence:\n\nMangoDB persists writes to disk through a file-based storage system where each collection's data is stored in JSON files. The system uses asynchronous file operations to write document data to persistent storage. When documents are inserted, updated, or deleted, the `writeDocuments()` method is called to serialize the entire document collection to a JSON file in the data directory.\n\nThe persistence mechanism operates at the collection level, with each collection maintaining its own data file. When write operations like `insertOne()`, `insertMany()`, `updateOne()`, `updateMany()`, `deleteOne()`, or `deleteMany()` are performed, the system reads the current document set from the JSON file, applies the changes in memory, and then writes the entire updated collection back to disk. This approach ensures data consistency but may have performance implications for large datasets.\n\nIndex persistence is handled separately through index files that are also stored on disk. The system maintains indexes to improve query performance, and these indexes are rebuilt as needed when documents are modified. The file-based architecture means that data durability is achieved through standard filesystem operations, with writes being persisted to the underlying storage medium according to the operating system's file write guarantees.",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-persist.json"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "query-analyzer": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "matches-filter": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "logical-operators": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "text-search": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 11,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 10,
+        "modelCalls": 10,
+        "lookups": 9,
+        "tokens": 23719
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Let me continue reading the find method to see how it processes filters\n\n<function_calls>\n<invoke name=\"section\">\n<parameter name=\"title\" string=\"true\">src/collection.ts</parameter>\n<parameter name=\"heading\" string=\"true\">find</parameter>\n<parameter name=\"start_line\" string=\"true\">400</parameter>\n</invoke>\n</function_calls>",
+      "profile": {
+        "paragraphs": 2,
+        "sentences": 8,
+        "chars": 325,
+        "duplicates": 0,
+        "articles": 3,
+        "sections": 6,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 29,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 10
+      },
+      "budget": {
+        "calls": 44,
+        "tokens": 20911
+      },
+      "stoppedBy": "tokens",
+      "dropped": 4,
+      "refused": 0,
+      "answer": "Let me continue reading the find method to see how it processes filters\n\n<function_calls>\n<invoke name=\"section\">\n<parameter name=\"title\" string=\"true\">src/collection.ts</parameter>\n<parameter name=\"heading\" string=\"true\">find</parameter>\n<parameter name=\"start_line\" string=\"true\">400</parameter>\n</invoke>\n</function_calls>",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-find.json"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "default-id-index": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "built-lazily-in-memory": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "equality-map": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sorted-entries": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "compound-prefix": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "non-indexable": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "special-indexes-skipped": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 12,
+        "modelCalls": 12,
+        "lookups": 11,
+        "tokens": 30943
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MongoDB's indexes work by creating specialized data structures that allow for efficient querying. The system uses a query analyzer to determine when and how to use indexes based on the query structure and available indexes.\n\nIndexes in MongoDB are implemented as B-tree-like structures that store sorted entries. For equality queries, the system uses a hash map (`equalityMap`) to quickly look up documents matching exact values. For range queries, the system uses sorted entries (`sortedEntries`) and performs binary search operations to efficiently find documents within specified bounds.\n\nA query uses indexes when the query analyzer determines that an index can be effectively applied. The analyzer evaluates queries against available indexes using a scoring system. It checks for non-indexable operators like `$or`, `$nor`, `$not`, `$where`, `$expr`, and `$jsonSchema` at the top level, which force full collection scans. It also checks for non-indexable field operators like `$ne`, `$nin`, `$regex`, `$elemMatch`, `$all`, `$size`, `$type`, `$mod`, and various geospatial operators.\n\nFor a query to use an index, it must have field conditions that match the index structure. The analyzer looks for equality conditions (using `$eq` or simple equality) and range conditions (using operators like `$gt`, `$gte`, `$lt`, `$lte`, or `$in` with multiple values). The system scores indexes based on how well they match the query, with equality matches receiving higher scores than range matches.\n\nCompound indexes require prefix matching - queries must use the index fields in order from the beginning. Once a range condition is encountered on an index field, subsequent fields in the index cannot be used. The system also excludes sparse indexes and partial indexes from general queries since they could return incomplete results.\n\nWhen an index is selected, the system uses either `lookupEquality` for exact matches or `lookupRange` for range queries. Equality lookups use serialized compound keys to find matching documents, while range lookups use binary search on sorted index entries to efficiently locate documents within specified bounds.",
+      "profile": {
+        "paragraphs": 6,
+        "sentences": 17,
+        "chars": 2143,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 9,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 43,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 12
+      },
+      "budget": {
+        "calls": 58,
+        "tokens": 28740
+      },
+      "stoppedBy": "tokens",
+      "dropped": 4,
+      "refused": 0,
+      "answer": "MongoDB's indexes work by creating specialized data structures that allow for efficient querying. The system uses a query analyzer to determine when and how to use indexes based on the query structure and available indexes.\n\nIndexes in MongoDB are implemented as B-tree-like structures that store sorted entries. For equality queries, the system uses a hash map (`equalityMap`) to quickly look up documents matching exact values. For range queries, the system uses sorted entries (`sortedEntries`) and performs binary search operations to efficiently find documents within specified bounds.\n\nA query uses indexes when the query analyzer determines that an index can be effectively applied. The analyzer evaluates queries against available indexes using a scoring system. It checks for non-indexable operators like `$or`, `$nor`, `$not`, `$where`, `$expr`, and `$jsonSchema` at the top level, which force full collection scans. It also checks for non-indexable field operators like `$ne`, `$nin`, `$regex`, `$elemMatch`, `$all`, `$size`, `$type`, `$mod`, and various geospatial operators.\n\nFor a query to use an index, it must have field conditions that match the index structure. The analyzer looks for equality conditions (using `$eq` or simple equality) and range conditions (using operators like `$gt`, `$gte`, `$lt`, `$lte`, or `$in` with multiple values). The system scores indexes based on how well they match the query, with equality matches receiving higher scores than range matches.\n\nCompound indexes require prefix matching - queries must use the index fields in order from the beginning. Once a range condition is encountered on an index field, subsequent fields in the index cannot be used. The system also excludes sparse indexes and partial indexes from general queries since they could return incomplete results.\n\nWhen an index is selected, the system uses either `lookupEquality` for exact matches or `lookupRange` for range queries. Equality lookups use serialized compound keys to find matching documents, while range lookups use binary search on sorted index entries to efficiently locate documents within specified bounds.",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-indexes.json"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "stage-dispatch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "in-memory-sequential": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "out-and-merge-last": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "accumulators": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "lookup": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "system-variables": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "one-key-per-stage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 7,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 13068
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Let me read the aggregate method\n\n<function_calls>\n<invoke name=\"section\">\n<parameter name=\"title\" string=\"true\">src/collection.ts</parameter>\n<parameter name=\"heading\" string=\"true\">aggregate</parameter>\n</invoke>\n</function_calls>",
+      "profile": {
+        "paragraphs": 2,
+        "sentences": 7,
+        "chars": 232,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 4,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 19,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 7
+      },
+      "budget": {
+        "calls": 23,
+        "tokens": 11309
+      },
+      "stoppedBy": "tokens",
+      "dropped": 2,
+      "refused": 0,
+      "answer": "Let me read the aggregate method\n\n<function_calls>\n<invoke name=\"section\">\n<parameter name=\"title\" string=\"true\">src/collection.ts</parameter>\n<parameter name=\"heading\" string=\"true\">aggregate</parameter>\n</invoke>\n</function_calls>",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-aggregate.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T10:53:31.336Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T10:53:31.338Z node runtime node v25.9.0 · https://openrouter.ai/api/v1",
+    "model deepseek/deepseek-v3.2: served by https://openrouter.ai/api/v1 (0 s)",
+    "2026-09-19T10:53:31.753Z model cache evals/model-cache/deepseek-deepseek-v3.2: 141 responses loaded",
+    "machine at start: gpu 0% · vram 0.03 GiB · load 17.87 · mem 90% free (normal) · no throttling recorded",
+    "2026-09-19T10:53:31.832Z 4 seeds from evals/seeds-code.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-code-deepseek-deepseek-v3.2-ref.json\"} · prompt tools-3 · grammar tools:composing · matched · commit 4aa0cdd (uncommitted changes)",
+    "wiki recording: 0 responses loaded",
+    "persist: resolved · topics 3/9 · supported 2/9 · read 4/9 · ¶4 · 11 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 5 lookups, 7817 tokens · stopped by tokens · 19 s · model 0 replayed 6 missed",
+    "find: resolved · topics 0/11 · supported 0/11 · read 11/11 · ¶2 · 8 sentences · read 3 articles, 6 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 10 calls, 9 lookups, 23719 tokens · stopped by tokens · 4 results dropped from the context · 29 s · model 0 replayed 10 missed",
+    "indexes: resolved · topics 5/11 · supported 5/11 · read 8/11 · ¶6 · 17 sentences · read 2 articles, 9 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 12 calls, 11 lookups, 30943 tokens · stopped by tokens · 4 results dropped from the context · 43 s · model 0 replayed 12 missed",
+    "aggregate: resolved · topics 0/11 · supported 0/11 · read 10/11 · ¶2 · 7 sentences · read 2 articles, 4 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 7 calls, 6 lookups, 13068 tokens · stopped by tokens · 2 results dropped from the context · 19 s · model 0 replayed 7 missed",
+    "machine during the suite: gpu 0.1% mean, 1% peak · vram up to 0.06 GiB · load up to 19.23 · no throttling in 8 samples"
+  ]
+}

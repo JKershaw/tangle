@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "anthropic/claude-haiku-4.5",
+  "runtime": "node",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "commit": "4aa0cdd (uncommitted changes)",
+  "head": "4aa0cdd (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T11:19:09.175Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · https://openrouter.ai/api/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 3,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.09,
+      "mean": 0.1
+    },
+    "load": {
+      "min": 16.5,
+      "max": 17.15,
+      "mean": 16.8
+    },
+    "memoryFreePercent": {
+      "min": 89,
+      "max": 89,
+      "mean": 89
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-anthropic-claude-haiku-4.5-ref.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 15,
+  "factsSupported": 15,
+  "factsRead": 31,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 19,
+    "cache": "evals/model-cache/anthropic-claude-haiku-4.5",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 2,
+      "factsSupported": 2,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 6,
+        "tokens": 12301
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Now I have enough information to write a comprehensive profile. Let me compose it:\n\n## Alan Turing: Pioneer of Theoretical Computer Science\n\nAlan Mathison Turing (1912–1954) was an English mathematician, computer scientist, logician, and cryptanalyst who fundamentally shaped the modern world through his groundbreaking theoretical and practical contributions. Born in London and educated at King's College, Cambridge, where he earned first-class honours in mathematics, Turing went on to earn a doctorate from Princeton University in 1938, establishing himself as one of the most brilliant minds of the twentieth century.\n\nTuring's most enduring theoretical contribution was the development of the Turing machine, a mathematical model that formalized the concepts of algorithm and computation. This abstract device provided a theoretical foundation for understanding what could and could not be computed, making Turing widely recognized as the father of theoretical computer science. His work on computability between 1935 and 1936, conducted simultaneously with Alonzo Church's independent research, established fundamental principles that would underpin all future computer science.\n\nDuring World War II, Turing became a leading cryptanalyst at Bletchley Park, Britain's codebreaking centre. Working from September 1938 and intensifying his efforts after the UK declared war on Germany in September 1939, Turing concentrated on breaking the German Enigma cipher machine. Building on Polish methods, he developed the bombe—an improved electromechanical machine that could find Enigma settings more efficiently. Beyond this initial breakthrough, Turing made four additional major cryptanalytical advances, including developing statistical procedures called Banburismus and Turingery, and creating a portable secure voice scrambler called Delilah. His innovative use of statistical techniques to optimize the code-breaking process proved invaluable, and his contributions were so",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 12,
+        "chars": 1979,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 4,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 12,
+      "wiki": {
+        "hits": 7,
+        "misses": 0,
+        "added": 0,
+        "entries": 1385
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 83,
+        "tokens": 41717
+      },
+      "stoppedBy": "answer",
+      "dropped": 2,
+      "refused": 0,
+      "answer": "Now I have enough information to write a comprehensive profile. Let me compose it:\n\n## Alan Turing: Pioneer of Theoretical Computer Science\n\nAlan Mathison Turing (1912–1954) was an English mathematician, computer scientist, logician, and cryptanalyst who fundamentally shaped the modern world through his groundbreaking theoretical and practical contributions. Born in London and educated at King's College, Cambridge, where he earned first-class honours in mathematics, Turing went on to earn a doctorate from Princeton University in 1938, establishing himself as one of the most brilliant minds of the twentieth century.\n\nTuring's most enduring theoretical contribution was the development of the Turing machine, a mathematical model that formalized the concepts of algorithm and computation. This abstract device provided a theoretical foundation for understanding what could and could not be computed, making Turing widely recognized as the father of theoretical computer science. His work on computability between 1935 and 1936, conducted simultaneously with Alonzo Church's independent research, established fundamental principles that would underpin all future computer science.\n\nDuring World War II, Turing became a leading cryptanalyst at Bletchley Park, Britain's codebreaking centre. Working from September 1938 and intensifying his efforts after the UK declared war on Germany in September 1939, Turing concentrated on breaking the German Enigma cipher machine. Building on Polish methods, he developed the bombe—an improved electromechanical machine that could find Enigma settings more efficiently. Beyond this initial breakthrough, Turing made four additional major cryptanalytical advances, including developing statistical procedures called Banburismus and Turingery, and creating a portable secure voice scrambler called Delilah. His innovative use of statistical techniques to optimize the code-breaking process proved invaluable, and his contributions were so",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 8,
+        "tokens": 12730
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Now I have enough information to write a comprehensive profile about the Silk Road and its influence.\n\n## The Silk Road: A Network of Trade and Transformation\n\nThe Silk Road was a vast network of Asian trade routes that remained active from the second century BCE until the mid-15th century, spanning over 6,400 kilometers across land. Rather than a single route, it represented an intricate web of connections linking Central, East, South, Southeast, and West Asia, as well as East Africa and Southern Europe. The network began with the expansion of the Han dynasty into Central Asia around 114 BCE through the missions of Chinese imperial envoy Zhang Qian. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece, alongside other lucrative commodities including tea, dyes, perfumes, and porcelain. Western exports included horses, camels, honey, wine, and gold. The Parthian Empire served as a vital bridge connecting the network to the Mediterranean, while the rise of the Roman Empire established the western terminus of this interconnected trade system.\n\nBeyond the exchange of goods, the Silk Road facilitated profound cultural and religious transformations across Eurasia. Buddhism became the first large-scale missionary movement in world religious history, spreading from India to China and throughout Southeast, East, and Central Asia beginning in the 1st century CE. Buddhist monasteries along the Silk Road offered refuge and spiritual instruction to foreigners, while Parthian, Kushan, Sogdian, and Kuchean missionaries and translators brought Buddhist scriptures to Chinese lands. The city of Merv became a major Buddhist center by the middle of the 2nd century. Christianity, known as Nestorianism on the Silk Road, arrived through missionary efforts documented by an inscribed stele from 781 CE. Additionally, Zoroastrianism,",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 14,
+        "chars": 1874,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 6,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 15,
+        "misses": 1,
+        "added": 1,
+        "entries": 1386
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 64,
+        "tokens": 33388
+      },
+      "stoppedBy": "answer",
+      "dropped": 1,
+      "refused": 0,
+      "answer": "Now I have enough information to write a comprehensive profile about the Silk Road and its influence.\n\n## The Silk Road: A Network of Trade and Transformation\n\nThe Silk Road was a vast network of Asian trade routes that remained active from the second century BCE until the mid-15th century, spanning over 6,400 kilometers across land. Rather than a single route, it represented an intricate web of connections linking Central, East, South, Southeast, and West Asia, as well as East Africa and Southern Europe. The network began with the expansion of the Han dynasty into Central Asia around 114 BCE through the missions of Chinese imperial envoy Zhang Qian. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece, alongside other lucrative commodities including tea, dyes, perfumes, and porcelain. Western exports included horses, camels, honey, wine, and gold. The Parthian Empire served as a vital bridge connecting the network to the Mediterranean, while the rise of the Roman Empire established the western terminus of this interconnected trade system.\n\nBeyond the exchange of goods, the Silk Road facilitated profound cultural and religious transformations across Eurasia. Buddhism became the first large-scale missionary movement in world religious history, spreading from India to China and throughout Southeast, East, and Central Asia beginning in the 1st century CE. Buddhist monasteries along the Silk Road offered refuge and spiritual instruction to foreigners, while Parthian, Kushan, Sogdian, and Kuchean missionaries and translators brought Buddhist scriptures to Chinese lands. The city of Merv became a major Buddhist center by the middle of the 2nd century. Christianity, known as Nestorianism on the Silk Road, arrived through missionary efforts documented by an inscribed stele from 781 CE. Additionally, Zoroastrianism,",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mirror": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "servicing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 6,
+        "tokens": 10559
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "## The Hubble Space Telescope: A Revolutionary Observatory\n\nThe Hubble Space Telescope (HST) is one of NASA's most significant scientific instruments, launched into low Earth orbit on April 24, 1990, aboard Space Shuttle Discovery. Named after astronomer Edwin Hubble, the telescope features a 2.4-meter mirror and five main instruments that observe in the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum. Its position outside Earth's atmosphere allows it to capture extraordinarily high-resolution images with minimal background light, producing some of the most detailed visible light images ever recorded and enabling a deep view into space.\n\nThe telescope's journey to success was not without challenges. Originally intended for launch in 1983, the project faced technical delays, budget problems, and was further postponed following the 1986 Challenger disaster. After its 1990 launch, scientists discovered that the main mirror had been ground incorrectly, causing spherical aberration that severely compromised the telescope's capabilities. This flaw was corrected during a servicing mission (STS-61) in 1993, and Hubble has since become the only telescope designed to be maintained in space by astronauts. Five Space Shuttle missions have repaired, upgraded, and replaced systems on the telescope, with the final servicing mission completed in 2009.\n\nHubble's discoveries have fundamentally transformed our understanding of the universe. One of its primary achievements was measuring the Hubble constant—the rate at which the universe is expanding—with unprecedented accuracy of ±10%, compared to previous estimates with errors up to 50%. This refined measurement established that the universe is approximately 13.7 billion years old. Perhaps most remarkably, observations of distant supernovae by the High-z Supernova Search Team and the Supernova Cosmology Project revealed",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 13,
+        "chars": 1915,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 10,
+      "wiki": {
+        "hits": 22,
+        "misses": 1,
+        "added": 1,
+        "entries": 1386
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 79,
+        "tokens": 40765
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "## The Hubble Space Telescope: A Revolutionary Observatory\n\nThe Hubble Space Telescope (HST) is one of NASA's most significant scientific instruments, launched into low Earth orbit on April 24, 1990, aboard Space Shuttle Discovery. Named after astronomer Edwin Hubble, the telescope features a 2.4-meter mirror and five main instruments that observe in the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum. Its position outside Earth's atmosphere allows it to capture extraordinarily high-resolution images with minimal background light, producing some of the most detailed visible light images ever recorded and enabling a deep view into space.\n\nThe telescope's journey to success was not without challenges. Originally intended for launch in 1983, the project faced technical delays, budget problems, and was further postponed following the 1986 Challenger disaster. After its 1990 launch, scientists discovered that the main mirror had been ground incorrectly, causing spherical aberration that severely compromised the telescope's capabilities. This flaw was corrected during a servicing mission (STS-61) in 1993, and Hubble has since become the only telescope designed to be maintained in space by astronauts. Five Space Shuttle missions have repaired, upgraded, and replaced systems on the telescope, with the final servicing mission completed in 2009.\n\nHubble's discoveries have fundamentally transformed our understanding of the universe. One of its primary achievements was measuring the Hubble constant—the rate at which the universe is expanding—with unprecedented accuracy of ±10%, compared to previous estimates with errors up to 50%. This refined measurement established that the universe is approximately 13.7 billion years old. Perhaps most remarkably, observations of distant supernovae by the High-z Supernova Search Team and the Supernova Cosmology Project revealed",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 7,
+        "tokens": 10022
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "## The Great Barrier Reef: A Natural Wonder Under Threat\n\nThe Great Barrier Reef is the world's largest reef system, stretching 2,300 kilometres along the east coast of Australia from Cape York to Bundaberg. Composed of roughly 2,900 individual reefs and 940 islands and cays, it covers approximately 344,400 square kilometres in the Coral Sea off Queensland. This extraordinary ecosystem supports remarkable biodiversity, including more than 1,500 fish species, 30 species of cetaceans, six species of sea turtles, 215 bird species, and close to 5,000 mollusc species. The reef's islands and waters provide critical breeding grounds for millions of birds and marine animals, making it one of Earth's most biologically significant ecosystems.\n\nHowever, the Great Barrier Reef faces mounting environmental pressures. According to the Australian Government's Great Barrier Reef Marine Park Authority (GBRMPA), climate change is the most significant threat. Rising sea temperatures pose a particular danger—reef scientist Terry Done has predicted that a one-degree rise in global temperature would result in 82% of the reef being bleached, while a three-degree rise would cause total coral mortality. A 2009 GBRMPA report warned that if carbon dioxide levels reached 450 parts per million, corals and reef habitats would become highly vulnerable.\n\nWater quality degradation represents another major threat. The reef's catchment area covers 423,000 square kilometres and includes major urban centers like Cairns and Townsville, as well as extensive agricultural operations. Over 90% of nutrient pollution during tropical flood events comes from farms, and approximately 700 of the 3,000 reefs are in risk zones where water quality has declined due to chemical runoff and sediment. Between 2012",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 12,
+        "chars": 1789,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 10,
+      "wiki": {
+        "hits": 30,
+        "misses": 2,
+        "added": 2,
+        "entries": 1387
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 45,
+        "tokens": 22887
+      },
+      "stoppedBy": "answer",
+      "dropped": 3,
+      "refused": 0,
+      "answer": "## The Great Barrier Reef: A Natural Wonder Under Threat\n\nThe Great Barrier Reef is the world's largest reef system, stretching 2,300 kilometres along the east coast of Australia from Cape York to Bundaberg. Composed of roughly 2,900 individual reefs and 940 islands and cays, it covers approximately 344,400 square kilometres in the Coral Sea off Queensland. This extraordinary ecosystem supports remarkable biodiversity, including more than 1,500 fish species, 30 species of cetaceans, six species of sea turtles, 215 bird species, and close to 5,000 mollusc species. The reef's islands and waters provide critical breeding grounds for millions of birds and marine animals, making it one of Earth's most biologically significant ecosystems.\n\nHowever, the Great Barrier Reef faces mounting environmental pressures. According to the Australian Government's Great Barrier Reef Marine Park Authority (GBRMPA), climate change is the most significant threat. Rising sea temperatures pose a particular danger—reef scientist Terry Done has predicted that a one-degree rise in global temperature would result in 82% of the reef being bleached, while a three-degree rise would cause total coral mortality. A 2009 GBRMPA report warned that if carbon dioxide levels reached 450 parts per million, corals and reef habitats would become highly vulnerable.\n\nWater quality degradation represents another major threat. The reef's catchment area covers 423,000 square kilometres and includes major urban centers like Cairns and Townsville, as well as extensive agricultural operations. Over 90% of nutrient pollution during tropical flood events comes from farms, and approximately 700 of the 3,000 reefs are in risk zones where water quality has declined due to chemical runoff and sediment. Between 2012",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T11:19:09.173Z node runtime node v25.9.0 · https://openrouter.ai/api/v1",
+    "model anthropic/claude-haiku-4.5: served by https://openrouter.ai/api/v1 (0 s)",
+    "2026-09-19T11:19:09.613Z model cache evals/model-cache/anthropic-claude-haiku-4.5: 552 responses loaded",
+    "machine at start: gpu 0% · vram 0.09 GiB · load 16.88 · mem 89% free (normal) · no throttling recorded",
+    "2026-09-19T11:19:09.713Z 4 seeds from evals/seeds-profile.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-anthropic-claude-haiku-4.5-ref.json\"} · prompt tools-3 · grammar tools:composing · matched · commit 4aa0cdd (uncommitted changes)",
+    "wiki recording: 1385 responses loaded",
+    "turing: resolved · topics 2/8 · supported 2/8 · read 8/8 · ¶5 · 12 sentences · read 1 articles, 4 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 6 lookups, 12301 tokens · stopped by answer · 2 results dropped from the context · 12 s · model 0 replayed 5 missed",
+    "silk-road: resolved · topics 3/9 · supported 3/9 · read 7/9 · ¶4 · 14 sentences · read 1 articles, 6 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 8 lookups, 12730 tokens · stopped by answer · 1 results dropped from the context · 11 s · model 0 replayed 5 missed",
+    "hubble: resolved · topics 5/8 · supported 5/8 · read 7/8 · ¶4 · 13 sentences · read 1 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 6 lookups, 10559 tokens · stopped by answer · 10 s · model 0 replayed 5 missed",
+    "great-barrier-reef: resolved · topics 5/10 · supported 5/10 · read 9/10 · ¶4 · 12 sentences · read 2 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 7 lookups, 10022 tokens · stopped by answer · 3 results dropped from the context · 10 s · model 0 replayed 4 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 0.09 GiB · load up to 17.15 · no throttling in 3 samples"
+  ]
+}

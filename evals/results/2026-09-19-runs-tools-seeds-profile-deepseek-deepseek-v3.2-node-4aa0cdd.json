@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "deepseek/deepseek-v3.2",
+  "runtime": "node",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "commit": "4aa0cdd (uncommitted changes)",
+  "head": "4aa0cdd (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T11:01:35.795Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · https://openrouter.ai/api/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 14,
+    "gpuPercent": {
+      "min": 0,
+      "max": 1,
+      "mean": 0.1
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.03,
+      "mean": 0
+    },
+    "load": {
+      "min": 11.61,
+      "max": 16.73,
+      "mean": 14.8
+    },
+    "memoryFreePercent": {
+      "min": 90,
+      "max": 90,
+      "mean": 90
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-deepseek-deepseek-v3.2-ref.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 21,
+  "factsSupported": 20,
+  "factsRead": 31,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 45,
+    "cache": "evals/model-cache/deepseek-deepseek-v3.2",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "turing-test": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "morphogenesis": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "conviction": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "apology": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "manchester": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 8,
+      "factsSupported": 8,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 15,
+        "modelCalls": 15,
+        "lookups": 14,
+        "tokens": 38701
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Now I have enough information to write a comprehensive profile about Alan Turing and his impact. Let me organize this information into a coherent response.\n\n```json\n{\n  \"answer\": \"Alan Turing was a British mathematician, logician, and computer scientist born in London in 1912. His most foundational work was the conceptualization of the Turing machine in his 1936 paper 'On Computable Numbers,' which mathematically defined computation and algorithms. This theoretical device, consisting of an infinite tape and a read-write head following simple rules, established the fundamental principles of modern computing and demonstrated that some mathematical problems are undecidable. During World War II, Turing worked at Bletchley Park, Britain's codebreaking center, where he played a crucial role in breaking the German Enigma cipher. He contributed to the design of the Bombe machine, which automated the process of finding Enigma settings, and his work in Hut 8 focused on decrypting German naval communications. Historians estimate this work shortened the war by two to four years, saving millions of lives. After the war, Turing worked at the National Physical Laboratory and the University of Manchester, contributing to early computer designs like the Automatic Computing Engine and the Manchester Mark 1. In 1950, he published 'Computing Machinery and Intelligence,' introducing the Turing Test as a criterion for machine intelligence. This became the foundational philosophical framework for artificial intelligence research. Turing also made significant contributions to mathematical biology, publishing on morphogenesis and pattern formation in 1952. Tragically, Turing was prosecuted for homosexuality in 1952, accepting chemical castration as an alternative to prison. He died in 1954 from cyanide poisoning, officially ruled as suicide. His legacy includes the Turing Award, established in 1966 as computing's highest honor. In 2009, Prime Minister Gordon Brown issued a formal government apology, and in 2013, Queen Elizabeth II granted Turing a posthumous royal pardon. The 'Alan Turing law' later pardoned thousands of other men convicted under similar historical laws. Turing's theoretical work established computer science as a discipline, his wartime contributions significantly influenced the Allied victory, and his vision of artificial intelligence continues to shape technological development today.\"\n}\n```",
+      "profile": {
+        "paragraphs": 2,
+        "sentences": 7,
+        "chars": 2428,
+        "duplicates": 2,
+        "articles": 4,
+        "sections": 8,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 88,
+      "wiki": {
+        "hits": 13,
+        "misses": 5,
+        "added": 5,
+        "entries": 1350
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 15
+      },
+      "budget": {
+        "calls": 80,
+        "tokens": 35934
+      },
+      "stoppedBy": "tokens",
+      "dropped": 9,
+      "refused": 0,
+      "answer": "Now I have enough information to write a comprehensive profile about Alan Turing and his impact. Let me organize this information into a coherent response.\n\n```json\n{\n  \"answer\": \"Alan Turing was a British mathematician, logician, and computer scientist born in London in 1912. His most foundational work was the conceptualization of the Turing machine in his 1936 paper 'On Computable Numbers,' which mathematically defined computation and algorithms. This theoretical device, consisting of an infinite tape and a read-write head following simple rules, established the fundamental principles of modern computing and demonstrated that some mathematical problems are undecidable. During World War II, Turing worked at Bletchley Park, Britain's codebreaking center, where he played a crucial role in breaking the German Enigma cipher. He contributed to the design of the Bombe machine, which automated the process of finding Enigma settings, and his work in Hut 8 focused on decrypting German naval communications. Historians estimate this work shortened the war by two to four years, saving millions of lives. After the war, Turing worked at the National Physical Laboratory and the University of Manchester, contributing to early computer designs like the Automatic Computing Engine and the Manchester Mark 1. In 1950, he published 'Computing Machinery and Intelligence,' introducing the Turing Test as a criterion for machine intelligence. This became the foundational philosophical framework for artificial intelligence research. Turing also made significant contributions to mathematical biology, publishing on morphogenesis and pattern formation in 1952. Tragically, Turing was prosecuted for homosexuality in 1952, accepting chemical castration as an alternative to prison. He died in 1954 from cyanide poisoning, officially ruled as suicide. His legacy includes the Turing Award, established in 1966 as computing's highest honor. In 2009, Prime Minister Gordon Brown issued a formal government apology, and in 2013, Queen Elizabeth II granted Turing a posthumous royal pardon. The 'Alan Turing law' later pardoned thousands of other men convicted under similar historical laws. Turing's theoretical work established computer science as a discipline, his wartime contributions significantly influenced the Allied victory, and his vision of artificial intelligence continues to shape technological development today.\"\n}\n```",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 11,
+        "modelCalls": 11,
+        "lookups": 10,
+        "tokens": 26837
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Based on my research, here is a profile about the Silk Road and its influence:\n\n**The Silk Road: A Network of Global Exchange**\n\nThe Silk Road was an extensive network of Asian trade routes active from the 2nd century BCE until the mid-15th century, spanning over 6,400 kilometers (4,000 miles) on land. This intricate web of land and sea routes connected Central, East, South, Southeast, and West Asia as well as East Africa and Southern Europe, playing a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds.\n\n**Economic and Trade Influence**\nThe Silk Road derived its name from the highly lucrative trade of silk textiles primarily produced in China. The network began with the expansion of the Han dynasty into Central Asia around 114 BCE through the missions of Chinese imperial envoy Zhang Qian. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece. Beyond silk, other lucrative commodities from the East included tea, dyes, perfumes, and porcelain, while Western exports included horses, camels, honey, wine, and gold. The proliferation of goods such as paper and gunpowder greatly affected the trajectory of political history across Eurasia. The Armenians played a particularly significant role in making Europe-Asia trade possible, holding a monopoly on almost all trade roads in the region from 1700 to 1765.\n\n**Religious and Cultural Transmission**\nThe Silk Road served as a vital conduit for the spread of major world religions. Zoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across Eurasia through trade networks tied to specific religious communities. Buddhist missions thrived along the Silk Roads, partly due to the conducive intermixing of trade and cultural values. Established Buddhist monasteries along the route offered both haven and religious conversion opportunities for foreigners. The transmission of Buddhism was particularly significant, with the first depiction of Buddha as human occurring during",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 8,
+        "chars": 2071,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 33,
+      "wiki": {
+        "hits": 21,
+        "misses": 8,
+        "added": 8,
+        "entries": 1353
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 11
+      },
+      "budget": {
+        "calls": 83,
+        "tokens": 36528
+      },
+      "stoppedBy": "answer",
+      "dropped": 4,
+      "refused": 0,
+      "answer": "Based on my research, here is a profile about the Silk Road and its influence:\n\n**The Silk Road: A Network of Global Exchange**\n\nThe Silk Road was an extensive network of Asian trade routes active from the 2nd century BCE until the mid-15th century, spanning over 6,400 kilometers (4,000 miles) on land. This intricate web of land and sea routes connected Central, East, South, Southeast, and West Asia as well as East Africa and Southern Europe, playing a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds.\n\n**Economic and Trade Influence**\nThe Silk Road derived its name from the highly lucrative trade of silk textiles primarily produced in China. The network began with the expansion of the Han dynasty into Central Asia around 114 BCE through the missions of Chinese imperial envoy Zhang Qian. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece. Beyond silk, other lucrative commodities from the East included tea, dyes, perfumes, and porcelain, while Western exports included horses, camels, honey, wine, and gold. The proliferation of goods such as paper and gunpowder greatly affected the trajectory of political history across Eurasia. The Armenians played a particularly significant role in making Europe-Asia trade possible, holding a monopoly on almost all trade roads in the region from 1700 to 1765.\n\n**Religious and Cultural Transmission**\nThe Silk Road served as a vital conduit for the spread of major world religions. Zoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across Eurasia through trade networks tied to specific religious communities. Buddhist missions thrived along the Silk Roads, partly due to the conducive intermixing of trade and cultural values. Established Buddhist monasteries along the route offered both haven and religious conversion opportunities for foreigners. The transmission of Buddhism was particularly significant, with the first depiction of Buddha as human occurring during",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 3,
+      "factsSupported": 2,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 12,
+        "modelCalls": 12,
+        "lookups": 11,
+        "tokens": 28799
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Hubble Space Telescope, launched in 1990, has made numerous groundbreaking discoveries that have transformed our understanding of the universe. One of its most significant contributions was helping to determine the **age and expansion rate of the universe** with unprecedented precision. By observing Cepheid variable stars in distant galaxies, Hubble provided key data that refined the Hubble constant, the rate of the universe's expansion, and helped establish that the universe is approximately 13.8 billion years old.\n\nHubble revolutionized our understanding of **black holes** by providing high-resolution spectra and images that established the prevalence of supermassive black holes at the centers of galaxies. While black holes had been hypothesized since the early 1960s, Hubble's work demonstrated that black holes are probably common to the centers of all galaxies and revealed a close relationship between the masses of nuclear black holes and the properties of their host galaxies.\n\nPerhaps Hubble's most iconic contributions are the **deep field images** that revealed the early universe. The Hubble Deep Field, Hubble Ultra-Deep Field, and Hubble Extreme Deep Field images used Hubble's unmatched sensitivity at visible and ultraviolet wavelengths to peer back in time, capturing thousands of galaxies in various stages of evolution and providing crucial insights into galaxy formation and cosmic history.\n\nAlthough not primarily designed for Solar System observations, Hubble has made important contributions here as well, capturing detailed images of planets, moons, and other objects within our solar system. Additionally, Hubble has played a significant role in **exoplanet research**, studying the atmospheres of exoplanets and contributing to our understanding of worlds beyond our solar system.\n\nThese discoveries, among many others, have cemented Hubble's legacy as one of the most important scientific instruments ever created, fundamentally changing astronomy and our cosmic perspective.",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 10,
+        "chars": 2016,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 30,
+      "wiki": {
+        "hits": 29,
+        "misses": 12,
+        "added": 12,
+        "entries": 1357
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 12
+      },
+      "budget": {
+        "calls": 59,
+        "tokens": 28478
+      },
+      "stoppedBy": "tokens",
+      "dropped": 4,
+      "refused": 0,
+      "answer": "The Hubble Space Telescope, launched in 1990, has made numerous groundbreaking discoveries that have transformed our understanding of the universe. One of its most significant contributions was helping to determine the **age and expansion rate of the universe** with unprecedented precision. By observing Cepheid variable stars in distant galaxies, Hubble provided key data that refined the Hubble constant, the rate of the universe's expansion, and helped establish that the universe is approximately 13.8 billion years old.\n\nHubble revolutionized our understanding of **black holes** by providing high-resolution spectra and images that established the prevalence of supermassive black holes at the centers of galaxies. While black holes had been hypothesized since the early 1960s, Hubble's work demonstrated that black holes are probably common to the centers of all galaxies and revealed a close relationship between the masses of nuclear black holes and the properties of their host galaxies.\n\nPerhaps Hubble's most iconic contributions are the **deep field images** that revealed the early universe. The Hubble Deep Field, Hubble Ultra-Deep Field, and Hubble Extreme Deep Field images used Hubble's unmatched sensitivity at visible and ultraviolet wavelengths to peer back in time, capturing thousands of galaxies in various stages of evolution and providing crucial insights into galaxy formation and cosmic history.\n\nAlthough not primarily designed for Solar System observations, Hubble has made important contributions here as well, capturing detailed images of planets, moons, and other objects within our solar system. Additionally, Hubble has played a significant role in **exoplanet research**, studying the atmospheres of exoplanets and contributing to our understanding of worlds beyond our solar system.\n\nThese discoveries, among many others, have cemented Hubble's legacy as one of the most important scientific instruments ever created, fundamentally changing astronomy and our cosmic perspective.",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 7,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 11525
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "**Profile: The Great Barrier Reef**\n\nThe **Great Barrier Reef** is the world's largest coral reef system, located off the northeastern coast of **Australia** in the Coral Sea. Stretching over **2,300 kilometers**, it is composed of nearly **3,000 individual reefs** and **900 islands**, visible from space. It is an ecosystem of immense biodiversity, often called the largest living structure on Earth, providing a habitat for thousands of species, including **1,500 species of fish, 400 species of coral, 4,000 species of mollusk**, and iconic marine life such as **sea turtles, dugongs, and whales**.\n\nThis natural wonder is of profound **ecological, cultural, and economic** importance. It holds deep significance for **Aboriginal and Torres Strait Islander peoples**, who have cultural connections to the reef spanning thousands of years. Economically, it supports a **tourism industry worth billions of dollars annually** and sustains commercial fisheries.\n\nHowever, the Great Barrier Reef faces severe and escalating threats:\n\n1.  **Climate Change:** This is the most critical threat. Rising ocean temperatures cause **mass coral bleaching events**, where stressed corals expel their symbiotic algae, turning white. Without these algae, corals starve and die. The reef has suffered **massive bleaching events in 2016, 2017, 2020, and 2022**, with significant mortality. **Ocean acidification**, caused by increased atmospheric CO2, also weakens coral skeletons, hindering growth.\n\n2.  **Water Quality and Pollution:** Runoff from the adjacent land carries **sediment, nutrients, and pesticides** from agricultural and industrial activities. This pollution can smother corals, fuel algal blooms that outcompete them, and increase disease susceptibility.\n\n3.  **Crown-of-Thorns Starfish Outbreaks:** This native starfish is a coral predator. When populations explode due to nutrient runoff and other factors, they can devastate large reef areas.\n\n4.  **Coastal Development and Shipping:** **Dredging for ports**, construction, and increased maritime traffic pose risks of physical damage, pollution from spills, and the introduction of invasive species.\n\nThe **consequences** of these threats are dire: widespread coral death, loss of biodiversity, degradation of marine habitats, and severe impacts on the reef-dependent communities and economies. Conservation efforts, including the **Reef 2050 Plan**, focus on improving water quality, controlling starfish outbreaks, and, most critically, global action to reduce greenhouse gas emissions. In 2021, UNESCO's World Heritage Committee considered listing the reef as \"in danger,\" highlighting the urgent need for greater protection.",
+      "profile": {
+        "paragraphs": 9,
+        "sentences": 20,
+        "chars": 2686,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 54,
+      "wiki": {
+        "hits": 37,
+        "misses": 12,
+        "added": 12,
+        "entries": 1357
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 7
+      },
+      "budget": {
+        "calls": 27,
+        "tokens": 13584
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "**Profile: The Great Barrier Reef**\n\nThe **Great Barrier Reef** is the world's largest coral reef system, located off the northeastern coast of **Australia** in the Coral Sea. Stretching over **2,300 kilometers**, it is composed of nearly **3,000 individual reefs** and **900 islands**, visible from space. It is an ecosystem of immense biodiversity, often called the largest living structure on Earth, providing a habitat for thousands of species, including **1,500 species of fish, 400 species of coral, 4,000 species of mollusk**, and iconic marine life such as **sea turtles, dugongs, and whales**.\n\nThis natural wonder is of profound **ecological, cultural, and economic** importance. It holds deep significance for **Aboriginal and Torres Strait Islander peoples**, who have cultural connections to the reef spanning thousands of years. Economically, it supports a **tourism industry worth billions of dollars annually** and sustains commercial fisheries.\n\nHowever, the Great Barrier Reef faces severe and escalating threats:\n\n1.  **Climate Change:** This is the most critical threat. Rising ocean temperatures cause **mass coral bleaching events**, where stressed corals expel their symbiotic algae, turning white. Without these algae, corals starve and die. The reef has suffered **massive bleaching events in 2016, 2017, 2020, and 2022**, with significant mortality. **Ocean acidification**, caused by increased atmospheric CO2, also weakens coral skeletons, hindering growth.\n\n2.  **Water Quality and Pollution:** Runoff from the adjacent land carries **sediment, nutrients, and pesticides** from agricultural and industrial activities. This pollution can smother corals, fuel algal blooms that outcompete them, and increase disease susceptibility.\n\n3.  **Crown-of-Thorns Starfish Outbreaks:** This native starfish is a coral predator. When populations explode due to nutrient runoff and other factors, they can devastate large reef areas.\n\n4.  **Coastal Development and Shipping:** **Dredging for ports**, construction, and increased maritime traffic pose risks of physical damage, pollution from spills, and the introduction of invasive species.\n\nThe **consequences** of these threats are dire: widespread coral death, loss of biodiversity, degradation of marine habitats, and severe impacts on the reef-dependent communities and economies. Conservation efforts, including the **Reef 2050 Plan**, focus on improving water quality, controlling starfish outbreaks, and, most critically, global action to reduce greenhouse gas emissions. In 2021, UNESCO's World Heritage Committee considered listing the reef as \"in danger,\" highlighting the urgent need for greater protection.",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T11:01:35.794Z node runtime node v25.9.0 · https://openrouter.ai/api/v1",
+    "model deepseek/deepseek-v3.2: served by https://openrouter.ai/api/v1 (0 s)",
+    "2026-09-19T11:01:36.106Z model cache evals/model-cache/deepseek-deepseek-v3.2: 460 responses loaded",
+    "machine at start: gpu 0% · vram 0.03 GiB · load 16.73 · mem 90% free (normal) · no throttling recorded",
+    "2026-09-19T11:01:36.203Z 4 seeds from evals/seeds-profile.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-deepseek-deepseek-v3.2-ref.json\"} · prompt tools-3 · grammar tools:composing · matched · commit 4aa0cdd (uncommitted changes)",
+    "wiki recording: 1345 responses loaded",
+    "turing: resolved · topics 8/8 · supported 8/8 · read 8/8 · ¶2 · 7 sentences (2 repeated) · read 4 articles, 8 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 15 calls, 14 lookups, 38701 tokens · stopped by tokens · 9 results dropped from the context · 88 s · model 0 replayed 15 missed",
+    "silk-road: resolved · topics 4/9 · supported 4/9 · read 7/9 · ¶5 · 8 sentences · read 1 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 11 calls, 10 lookups, 26837 tokens · stopped by answer · 4 results dropped from the context · 33 s · model 0 replayed 11 missed",
+    "hubble: resolved · topics 3/8 · supported 2/8 · read 7/8 · ¶5 · 10 sentences · read 1 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 12 calls, 11 lookups, 28799 tokens · stopped by tokens · 4 results dropped from the context · 30 s · model 0 replayed 12 missed",
+    "great-barrier-reef: resolved · topics 6/10 · supported 6/10 · read 9/10 · ¶9 · 20 sentences · read 2 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 7 calls, 6 lookups, 11525 tokens · stopped by tokens · 54 s · model 0 replayed 7 missed",
+    "machine during the suite: gpu 0.1% mean, 1% peak · vram up to 0.03 GiB · load up to 16.73 · no throttling in 14 samples"
+  ]
+}

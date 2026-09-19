@@ -176,6 +176,8 @@ The same model with the four source requests as tools in one context, each seed 
 | | 4B | **24** · 241 · 76k · 3.2k | 11 · 28 · 64k · 5.8k | 1 | 10 |
 | | 8B | **24** · 266 · 85k · 3.5k | 20 · 19 · 25k · 1.3k | 8 | 20 |
 | | 14B | **27** · 265 · 87k · 3.2k | 20 (18 supported) · 15 · 16k · 0.8k | 16 | 21 (walk-12 day) |
+| | DeepSeek V3.2 (API) | **27** · 249 · 115k · 4.2k | 21 · 45 · 106k · 5.0k | 0 | — |
+| | Haiku 4.5 (API) | **23** · 271 · 139k · 6.0k | 15 · 19 · 46k · 3.0k | 12 | — |
 | overflow, 30 topics | 1.7B | **24** · 117 · 44k · 1.8k | 11 · 25 · 39k · 3.5k | 0 | 5 |
 | | 4B | **23** · 135 · 50k · 2.2k | 11 · 17 · 35k · 3.2k | 0 | 12 |
 | | 8B | **24** · 141 · 51k · 2.1k | 21 · 15 · 18k · 0.9k | 6 | 17 |
@@ -183,6 +185,8 @@ The same model with the four source requests as tools in one context, each seed 
 | | 4B | **11** · 164 · 47k · 4.3k | 11 (6 supported) · 24 · 43k · 4.0k | 0 | 8 |
 | | 8B | 12 · 167 · 53k · 4.4k | **15** (14 supported) · 16 · 15k · 1.0k | 0 | 9 |
 | | 14B | **18** · 201 · 62k · 3.5k | 15 · 26 · 32k · 2.1k | 3 | — |
+| | DeepSeek V3.2 (API) | **13** · 137 · 67k · 5.2k | 8 (7 supported) · 35 · 76k · 9.4k | 0 | — |
+| | Haiku 4.5 (API) | **25** · 239 · 128k · 5.1k | 20 · 20 · 48k · 2.4k | 0 | — |
 
 Each cell: topics (or facts) present · model calls · tokens · tokens per topic. The graph's topics are all supported by construction; the tool control's "supported" means the fact was named and something read held it. Memory is the closed-book column (page rows for Wikipedia, Node for MangoDB). Budget: each seed's calls and tokens are the graph's spend on that seed; the tool control may stop early, and at 8B it does.
 
@@ -216,6 +220,10 @@ Memory writes a write-ahead log and replication into a database that has neither
 | map unreadable at 40 nodes | n/a | n/a | n/a | open, UI phase |
 
 ## Log
+
+### 2026-09-19 · the reference column, a day early
+
+- The graph and the tool control on DeepSeek V3.2 and Claude Haiku 4.5 over OpenRouter (`--endpoint https://openrouter.ai/api/v1`, the key from the environment, 054ad09), profile and MangoDB suites, under a dollar. The graph wins on both models and both suites; Haiku through the graph is the best code row, 25 of 42, all cited; DeepSeek picks poorly (13 of 42, one-topic persist profile). Rows in the table above; reading in evals/readings.md.
 
 ### 2026-09-19 · milestone 5b · the tool control
 

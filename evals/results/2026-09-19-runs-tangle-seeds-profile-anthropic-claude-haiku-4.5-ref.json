@@ -1,0 +1,470 @@
+{
+  "suite": "runs",
+  "model": "anthropic/claude-haiku-4.5",
+  "runtime": "node",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "commit": "4aa0cdd (uncommitted changes)",
+  "head": "4aa0cdd (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T11:13:46.676Z",
+  "loadSeconds": 0,
+  "prompt": "walk-15/asks-4",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · https://openrouter.ai/api/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 22,
+    "gpuPercent": {
+      "min": 0,
+      "max": 1,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.09,
+      "mean": 0
+    },
+    "load": {
+      "min": 14.05,
+      "max": 19.76,
+      "mean": 17.5
+    },
+    "memoryFreePercent": {
+      "min": 89,
+      "max": 90,
+      "mean": 89.4
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 23,
+  "factsSupported": 23,
+  "factsRead": 33,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 271,
+    "cache": "evals/model-cache/anthropic-claude-haiku-4.5",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "enigma": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "ace": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "turing-test": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "morphogenesis": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 27,
+        "visits": 39,
+        "modelCalls": 83,
+        "lookups": 27,
+        "tokens": 41717
+      },
+      "statuses": {
+        "resolved": 22,
+        "blocked": 5
+      },
+      "finding": "Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer scientist, logician, cryptanalyst, philosopher and theoretical biologist. He was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science. Turing devised techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine. He played a crucial role in cracking intercepted messages that enabled the Allies to defeat the Axis powers in the Battle of the Atlantic and other engagements. After the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine, one of the first designs for a stored-program computer.\n\nHe studied \"Schedule B\" of the Mathematical Tripos course. He was awarded first-class honours in mathematics. His dissertation, On the Gaussian error function, written during his senior year and delivered in November 1934 proved a version of the central limit theorem.\n\nA curious footnote to the history of the Central Limit Theorem is that a proof of a result similar to the 1922 Lindeberg CLT was the subject of Alan Turing's 1934 Fellowship Dissertation for King's College at the University of Cambridge.\n\nDuring the Second World War, Turing was a leading participant in the breaking of German ciphers at Bletchley Park. Turing's approach was more general, using crib-based decryption for which he produced the functional specification of the bombe (an improvement on the Polish Bomba). Specifying the bombe was the first of five major cryptanalytical advances that Turing made during the war.\n\nThe initial design of the British bombe was produced in 1939 at the UK Government Code and Cypher School (GC&CS) at Bletchley Park by Alan Turing, with an important refinement devised in 1940 by Gordon Welchman.\n\nPolish cryptanalysts had developed the bomba, an electromechanical device for finding the Enigma settings used by German operators; Turing improved the Polish design.\n\nWhen a captured German revealed under interrogation that Enigma operators had been instructed to encode numbers by spelling them out, Alan Turing reviewed decrypted messages and determined that the number \"eins\" (\"one\") was the most common string in the plaintext (Benford's law).\n\nWithin weeks of arriving at Bletchley Park, Turing had specified an electromechanical machine called the bombe, which could break Enigma more effectively than the Polish bomba kryptologiczna, from which its name was derived. The bombe, with an enhancement suggested by mathematician Gordon Welchman, became one of the primary tools, and the major automated one, used to attack Enigma-enciphered messages. The bombe searched for possible correct settings used for an Enigma message (i.e., rotor order, rotor settings and plugboard settings) using a suitable crib: a fragment of probable plaintext.\n\nHe presented a paper on 19 February 1946, which was the first detailed design of a stored-program computer. In late 1947 he returned to Cambridge for a sabbatical year during which he produced a seminal work on Intelligent Machinery that was not published in his lifetime. It executed its first program on 10 May 1950, and a number of later computers around the world owe much to it, including the English Electric DEUCE and the American Bendix G-15.\n\nThe concept of the stored-program computer can be traced back to the 1936 theoretical concept of a universal Turing machine.\n\nIn computer science, a universal Turing machine (UTM) is a Turing machine capable of computing any computable sequence, as described by Alan Turing in his seminal paper \"On Computable Numbers, with an Application to the Entscheidungsproblem\". Or, in other words, a Turing machine that is capable of simulating any other specialized Turing machines. Common sense might say that a universal machine is impossible, but Turing proves that it is possible.\n\nIn his seminal 1936 paper, On Computable Numbers, Alan Turing proposed the principle of the modern computer. Turing proposed a simple device that he called \"Universal Computing machine\" and that is now known as a universal Turing machine. The fundamental concept of Turing's design is the stored program, where all the instructions for computing are stored in memory.\n\nIt was the production version of the Pilot ACE, itself a cut-down version of Alan Turing's ACE.\n\nIt was a preliminary version of the full ACE, which was designed by Alan Turing, who left NPL before construction of the Pilot ACE was completed.\n\nWhen Turing was 39 years old in 1951, he turned to mathematical biology, finally publishing his masterpiece \"The Chemical Basis of Morphogenesis\" in January 1952. He suggested that a system of chemicals reacting with each other and diffusing across space, termed a reaction–diffusion system, could account for \"the main phenomena of morphogenesis\". Turing discovered that patterns could be created if the chemical reaction not only produced catalyst A, but also produced an inhibitor B that slowed down the production of A.\n\nAn important idea that was first proposed by Alan Turing is that a state that is stable in the local system can become unstable in the presence of diffusion.\n\nSome of the earliest ideas and mathematical descriptions on how physical processes and constraints affect biological growth, and hence natural patterns such as the spirals of phyllotaxis, were written by D'Arcy Wentworth Thompson in his 1917 book On Growth and Form and Alan Turing in his The Chemical Basis of Morphogenesis (1952). Where Thompson explained animal body shapes as being created by varying rates of growth in different directions, for instance to create the spiral shell of a snail, Turing correctly predicted a mechanism of morphogenesis, the diffusion of two different chemical signals, one activating and one deactivating growth, to set up patterns of development, decades before the formation of such patterns was observed.\n\n\"The Chemical Basis of Morphogenesis\" is an article that the English mathematician Alan Turing wrote in 1952. Such patterns have come to be known as Turing patterns.\n\nThe Ratio Club was a London dining club for researchers (mostly biologists) with interests in cybernetics (which encompassed neuroscience, artificial intelligence and computing), \"undoubtedly the most intellectually powerful grouping of British scientists interested in cybernetics\" according to Phil Husbands and Owen Holland. He accepted, giving his introductory talk at the 21 April 1950 meeting. He gave later talks based on both his \"Computing Machinery and Intelligence\" and \"Chemical Basis of Morphogenesis\" papers.\n\nThe paper, published in 1950 in Mind, was the first to introduce his concept of what is now known as the Turing test to the general public. Turing's paper considers the question \"Can machines think?\" Turing says that since the words \"think\" and \"machine\" cannot clearly be defined, we should \"replace the question by another, which is closely related to it and is expressed in relatively unambiguous words.\"\n\nThe Turing test was designed by Alan Turing to assess a machine's ability to exhibit intelligent behaviour equivalent to that of a human by imitating interactive dialogue. The test was introduced as the imitation game by Turing in his 1950 paper \"Computing Machinery and Intelligence\" while working at the University of Manchester. Since Turing introduced his test, it has been highly influential in the philosophy of artificial intelligence, resulting in substantial discussion and controversy, as well as criticism from philosophers like John Searle, who argue against the test's ability to detect consciousness.",
+      "profile": {
+        "paragraphs": 21,
+        "sentences": 48,
+        "chars": 7966,
+        "duplicates": 0,
+        "articles": 21,
+        "sections": 27,
+        "hopsChosen": 20,
+        "hopsRead": 20,
+        "hopsCited": 15,
+        "blocked": 5
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 100,
+      "wiki": {
+        "hits": 81,
+        "misses": 1,
+        "added": 1,
+        "entries": 1377
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 83
+      },
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tangle-turing.json",
+      "summary": "live run · seed: Tell me about Alan Turing and elaborate on the impact of his work.\nmodel anthropic/claude-haiku-4.5 · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T11:13:46.994Z · exported 2026-09-19T11:15:26.739Z\nnodes 27 · visits 39 · model calls 83 · lookups 27 · evidence 27 · tokens 41717\nstatuses {\"resolved\":22,\"blocked\":5} · outcome: root resolved\n\nn1 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. → Alan Mathison Turing (; 23 June 1912 – 7 June 1954) was an English mathematician, computer\n  n2 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about University and work on computability → He studied \"Schedule B\" of the Mathematical Tripos course. He was awarded first-class hono\n    n8 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Central limit theorem → A curious footnote to the history of the Central Limit Theorem is that a proof of a result\n      n9 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about University of Cambridge !! Nothing of what University of Cambridge says about the subject was kept.\n      n10 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Theorem !! Nothing of what Theorem says about the subject was kept.\n  n3 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Cryptanalysis → During the Second World War, Turing was a leading participant in the breaking of German ci\n    n11 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Bombe → The initial design of the British bombe was produced in 1939 at the UK Government Code and\n      n13 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Gordon Welchman → Polish cryptanalysts had developed the bomba, an electromechanical device for finding the \n      n14 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Bletchley Park !! Nothing of what Bletchley Park says about the subject was kept.\n    n12 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Crib (cryptanalysis) → When a captured German revealed under interrogation that Enigma operators had been instruc\n  n4 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Bombe → Within weeks of arriving at Bletchley Park, Turing had specified an electromechanical mach\n  n5 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Early computers and the Turing test → He presented a paper on 19 February 1946, which was the first detailed design of a stored-\n    n15 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Stored-program computer → The concept of the stored-program computer can be traced back to the 1936 theoretical conc\n      n17 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Universal Turing machine → In computer science, a universal Turing machine (UTM) is a Turing machine capable of compu\n      n18 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Computer → In his seminal 1936 paper, On Computable Numbers, Alan Turing proposed the principle of th\n    n16 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about English Electric DEUCE → It was the production version of the Pilot ACE, itself a cut-down version of Alan Turing's\n      n19 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Pilot ACE → It was a preliminary version of the full ACE, which was designed by Alan Turing, who left \n  n6 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Pattern formation and mathematical biology → When Turing was 39 years old in 1951, he turned to mathematical biology, finally publishin\n    n20 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Reaction–diffusion system → An important idea that was first proposed by Alan Turing is that a state that is stable in\n    n21 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Morphogenesis → Some of the earliest ideas and mathematical descriptions on how physical processes and con\n      n22 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about The Chemical Basis of Morphogenesis → \"The Chemical Basis of Morphogenesis\" is an article that the English mathematician Alan Tu\n      n23 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about D'Arcy Wentworth Thompson !! Nothing of what D'Arcy Wentworth Thompson says about the subject was kept.\n  n7 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Ratio Club and other cybernetics contacts → The Ratio Club was a London dining club for researchers (mostly biologists) with interests\n    n24 [blocked] Tell me about Alan Turing and elaborate on the impact of his work. — about Ratio Club !! Nothing of what Ratio Club says about the subject was kept.\n    n25 [resolved v2] Tell me about Alan Turing and elaborate on the impact of his work. — about Computing Machinery and Intelligence → The paper, published in 1950 in Mind, was the first to introduce his concept of what is no\n      n26 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Turing test → The Turing test was designed by Alan Turing to assess a machine's ability to exhibit intel\n      n27 [resolved] Tell me about Alan Turing and elaborate on the impact of his work. — about Mind (journal) → Three of the most famous, arguably, are Lewis Carroll's \"What the Tortoise Said to Achille\n\nmodel latency ms: median 1052 · max 2734 · n 83\nworth a look:\n- repeated question (n4, n11): tell me about alan turing and elaborate on the impact of his work. — about bombe\n- n9 blocked: Nothing of what University of Cambridge says about the subject was kept.\n- n10 blocked: Nothing of what Theorem says about the subject was kept.\n- n14 blocked: Nothing of what Bletchley Park says about the subject was kept.\n- n23 blocked: Nothing of what D'Arcy Wentworth Thompson says about the subject was kept.\n- n24 blocked: Nothing of what Ratio Club says about the subject was kept."
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 22,
+        "visits": 33,
+        "modelCalls": 64,
+        "lookups": 22,
+        "tokens": 33388
+      },
+      "statuses": {
+        "resolved": 19,
+        "blocked": 3
+      },
+      "finding": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The Silk Road derives its name from the highly lucrative trade of silk textiles that were primarily produced in China. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece. Aside from generating substantial wealth for emerging mercantile classes, the proliferation of goods such as paper and gunpowder greatly affected the trajectory of political history in several theatres in Eurasia and beyond.\n\nThe Silk Road consisted of several routes. As it extended westwards from the ancient commercial centres of China, the overland, intercontinental Silk Road divided into northern and southern routes bypassing the Taklamakan Desert and Lop Nur. Merchants along these routes were involved in \"relay trade\" in which goods changed \"hands many times before reaching their final destinations\".\n\nIt is crossed at its northern and at its southern edge by two branches of the Silk Road, by which travellers sought to avoid the arid wasteland.\n\nSoon after the Roman conquest of Egypt in 30 BCE, regular communications and trade between China, Southeast Asia, India, the Middle East, Africa, and Europe blossomed on an unprecedented scale. With control of these trade routes, citizens of the Roman Empire received new luxuries and greater prosperity for the Empire as a whole. The Greco-Roman trade with India started by Eudoxus of Cyzicus in 130 BCE continued to increase, and according to Strabo (II.5.12), by the time of Augustus, up to 120 ships were setting sail every year from Myos Hormos in Roman Egypt to India.\n\nThe imperial era saw the expansion of the Silk Road and the invention of gunpowder, paper, printing, and the compass.\n\nThe Tang dynasty (along with Turkic allies) conquered and subdued Central Asia during the 640s and 650s. After these conquests, the Tang dynasty fully controlled the Xiyu, which was the strategic location astride the Silk Road. The Tang dynasty established a second Pax Sinica, and the Silk Road reached its golden age, whereby Persian and Sogdian merchants benefited from the commerce between East and West.\n\nIt stimulated long-distance travel and trade in Eurasian history, as noted by the establishment of the Silk Road and attempted diplomatic contacts between the two empires.\n\nThe Silk Road became the main east–west trading route in the Asian hinterlands while the Straits of Malacca stood as a major sea route.\n\nThe Strait of Malacca is part of the Maritime Silk Road that runs from the Chinese coast towards the southern tip of India to Mombasa, from there through the Red Sea via the Suez Canal to the Mediterranean, there to the upper Adriatic region to the northern Italian hub of Trieste with its rail connections to Central Europe and the North Sea.\n\nRichard Foltz, Xinru Liu, and others have described how trading activities along the Silk Road over many centuries facilitated the transmission not just of goods but also ideas and culture, notably in the area of religions. Zoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across Eurasia through trade networks that were tied to specific religious communities and their institutions. Notably, established Buddhist monasteries along the Silk Road offered a haven, as well as a new religion for foreigners.\n\nIn contrast to widespread notions associating the Silk Road with China, he sees the premodern trans-Asian trade networks as having been driven by the activities of traders who were mostly of Iranian background, principally Sogdians but also Parthians and Persians.\n\nIt originated in the eastern Gangetic plain as a śramaṇa movement in the 5th century BCE, and gradually spread throughout much of Asia via the Silk Road.\n\nThe transmission of Buddhism to China via the Silk Road began in the 1st century CE, according to a semi-legendary account of an ambassador sent to the West by the Chinese Emperor Ming (58–75). Mahayana, Theravada, and Vajrayana are the three primary forms of Buddhism that spread across Asia via the Silk Road. Extensive contacts started in the 2nd century, probably as a consequence of the expansion of the Kushan empire into the Chinese territory of the Tarim Basin, due to the missionary efforts of a great number of Buddhist monks to Chinese lands.\n\nThe rule of the Kushans linked the seagoing trade of the Indian Ocean with the commerce of the Silk Road through the long-civilized Indus Valley.\n\nIn particular, the maritime part of the Silk Road leads through the Indian Ocean, on which a large part of the global container trade is carried out. The Silk Road runs with its connections from the Chinese coast and its large container ports to the south via Hanoi to Jakarta, Singapore and Kuala Lumpur through the Strait of Malacca via the Sri Lankan Colombo opposite the southern tip of India via Malé, the capital of the Maldives, to the East African Mombasa, from there to Djibouti, then through the Red Sea over the Suez Canal into the Mediterranean, there via Haifa, Istanbul and Athens to the Upper Adriatic to the northern Italian junction of Trieste with its international free port and its rail connections to Central and Eastern Europe. The Silk Road has become internationally important again on the one hand through European integration, the end of the Cold War and free world trade and on the other hand through Chinese initiatives.\n\nOver time Indian Mahāyāna texts and philosophy reached Central Asia and China through trade routes like the Silk Road, later spreading throughout East Asia. Central Asian Mahāyāna scholars were very important in the Silk Road Transmission of Buddhism.\n\nThe Silk Road trade routes crossed through Central Asia, leading to the rise of prosperous trade cities.\n\nMany artistic influences were transmitted via the Silk Road, particularly through Central Asia, where Hellenistic, Iranian, Indian and Chinese influences could intermix. These artistic influences can be seen in the development of Buddhism where, for instance, Buddha was first depicted as human in the Kushan period. The mixture of Greek and Indian elements can be found in later Buddhist art in China and throughout countries on the Silk Road.\n\nAccording to Strabo, the Greco-Bactrians seem to have had contacts with Han China through the Silk Road trade routes (Strabo, XI.11.1).",
+      "profile": {
+        "paragraphs": 19,
+        "sentences": 39,
+        "chars": 6813,
+        "duplicates": 0,
+        "articles": 16,
+        "sections": 22,
+        "hopsChosen": 15,
+        "hopsRead": 15,
+        "hopsCited": 12,
+        "blocked": 3
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 74,
+      "wiki": {
+        "hits": 156,
+        "misses": 6,
+        "added": 6,
+        "entries": 1382
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 64
+      },
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tangle-silk-road.json",
+      "summary": "live run · seed: Tell me about the Silk Road and elaborate on its influence.\nmodel anthropic/claude-haiku-4.5 · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T11:15:26.763Z · exported 2026-09-19T11:16:40.661Z\nnodes 22 · visits 33 · model calls 64 · lookups 22 · evidence 22 · tokens 33388\nstatuses {\"resolved\":19,\"blocked\":3} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Silk Road and elaborate on its influence. → The Silk Road was a network of Asian trade routes active from the second century BCE until\n  n2 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Routes → The Silk Road consisted of several routes. As it extended westwards from the ancient comme\n    n8 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Trade !! Nothing of what Trade says about the subject was kept.\n    n9 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Taklamakan Desert → It is crossed at its northern and at its southern edge by two branches of the Silk Road, b\n  n3 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Roman Empire (30 BCE – 3rd century CE) → Soon after the Roman conquest of Egypt in 30 BCE, regular communications and trade between\n    n10 [resolved] Tell me about the Silk Road and elaborate on its influence. — about China → The imperial era saw the expansion of the Silk Road and the invention of gunpowder, paper,\n    n11 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Egypt !! Nothing of what Egypt says about the subject was kept.\n  n4 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Tang dynasty (7th century) → The Tang dynasty (along with Turkic allies) conquered and subdued Central Asia during the \n    n12 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Pax Sinica → It stimulated long-distance travel and trade in Eurasian history, as noted by the establis\n    n13 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Asia → The Silk Road became the main east–west trading route in the Asian hinterlands while the S\n      n14 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Straits of Malacca → The Strait of Malacca is part of the Maritime Silk Road that runs from the Chinese coast t\n  n5 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Expansion of religions → Richard Foltz, Xinru Liu, and others have described how trading activities along the Silk \n    n15 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Richard Foltz → In contrast to widespread notions associating the Silk Road with China, he sees the premod\n    n16 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Buddhism → It originated in the eastern Gangetic plain as a śramaṇa movement in the 5th century BCE, \n      n17 [blocked] Tell me about the Silk Road and elaborate on its influence. — about Gangetic plain !! Nothing of what Gangetic plain says about the subject was kept.\n  n6 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Transmission of Buddhism → The transmission of Buddhism to China via the Silk Road began in the 1st century CE, accor\n    n18 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Kushan Empire → The rule of the Kushans linked the seagoing trade of the Indian Ocean with the commerce of\n      n20 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Indian Ocean → In particular, the maritime part of the Silk Road leads through the Indian Ocean, on which\n    n19 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Mahayana → Over time Indian Mahāyāna texts and philosophy reached Central Asia and China through trad\n      n21 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Central Asia → The Silk Road trade routes crossed through Central Asia, leading to the rise of prosperous\n  n7 [resolved v2] Tell me about the Silk Road and elaborate on its influence. — about Expansion of the arts → Many artistic influences were transmitted via the Silk Road, particularly through Central \n    n22 [resolved] Tell me about the Silk Road and elaborate on its influence. — about Hellenistic → According to Strabo, the Greco-Bactrians seem to have had contacts with Han China through \n\nmodel latency ms: median 1021 · max 1808 · n 64\nworth a look:\n- n8 blocked: Nothing of what Trade says about the subject was kept.\n- n11 blocked: Nothing of what Egypt says about the subject was kept.\n- n17 blocked: Nothing of what Gangetic plain says about the subject was kept."
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 24,
+        "visits": 35,
+        "modelCalls": 79,
+        "lookups": 24,
+        "tokens": 40765
+      },
+      "statuses": {
+        "resolved": 18,
+        "blocked": 6
+      },
+      "finding": "The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, renowned as a vital research tool and as a public relations boon for astronomy. Hubble features a 2.4 m (7 ft 10 in) mirror, and its five main instruments observe in the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum. Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe.\n\nThese were projects that were both scientifically important and would require significant telescope time, which would be explicitly dedicated to each project. The panels identified three such projects: 1) a study of the nearby intergalactic medium using quasar absorption lines to determine the properties of the intergalactic medium and the gaseous content of galaxies and groups of galaxies; 2) a medium deep survey using the Wide Field Camera to take data whenever one of the other instruments was being used and 3) a project to determine the Hubble constant within ten percent by reducing the errors, both external and internal, in the calibration of the distance scale.\n\nAmong its primary mission targets was to measure distances to Cepheid variable stars more accurately than ever before, and thus constrain the value of the Hubble constant, the measure of the rate at which the universe is expanding, which is also related to its age. Before the launch of HST, estimates of the Hubble constant typically had errors of up to 50%, but Hubble measurements of Cepheid variables in the Virgo Cluster and other distant galaxy clusters provided a measured value with an accuracy of ±10%, which is consistent with other more accurate measurements made since Hubble's launch using other techniques. Astronomers from the High-z Supernova Search Team and the Supernova Cosmology Project used ground-based telescopes and HST to observe distant supernovae and uncovered evidence that, far from decelerating under the influence of gravity, the expansion of the universe is instead accelerating.\n\nIn 1924, Edwin Hubble established the distance to classical Cepheid variables in the Andromeda Galaxy, until then known as the \"Andromeda Nebula\" and showed that those variables were not members of the Milky Way. Hubble's finding settled the question raised in the \"Great Debate\" of whether the Milky Way represented the entire Universe or was merely one of many galaxies in the Universe. Humason formulated what is now known as Hubble's law by combining Cepheid distances to several galaxies with Vesto Slipher's measurements of the speed at which those galaxies recede from us.\n\nHubble proved that many objects previously thought to be clouds of dust and gas and classified as \"nebulae\" were actually galaxies beyond the Milky Way. Hubble confirmed in 1929 that the recessional velocity of a galaxy increases with its distance from Earth, a behavior that became known as Hubble's law, although it had been proposed two years earlier by Georges Lemaître. The Hubble law implies that the universe is expanding.\n\nIn January 1998, Notre Dame astrophysicist Peter Garnavich, then working at the Harvard-Smithsonian Center for Astrophysics, led a High-Z team publication that used the Hubble Space Telescope to study three high-redshift supernovae.\n\nThe high-resolution spectra and images provided by the HST have been especially well-suited to establishing the prevalence of black holes in the center of nearby galaxies. While it had been hypothesized in the early 1960s that black holes would be found at the centers of some galaxies, and astronomers in the 1980s identified a number of good black hole candidates, work conducted with Hubble shows that black holes are probably common to the centers of all galaxies. The Hubble programs further established that the masses of the nuclear black holes and properties of the galaxies are closely related.\n\nWhen the Hubble Space Telescope launched in the 1990s, optical studies of the centre of galaxy Messier 87 showed it must have a large concentration of mass. On 10 April 2019, the first direct image of a black hole and its vicinity was published, following observations made by the Event Horizon Telescope (EHT) of the supermassive black hole in Messier 87's galactic centre. In 2022, the Event Horizon Telescope collaboration released an image of the black hole in the center of the Milky Way galaxy, Sagittarius A*; the data had been collected in 2017.\n\nIn May 2022, astronomers released the first image of the accretion disk around the event horizon of Sagittarius A*, using the Event Horizon Telescope, a world-wide network of radio observatories.\n\nAfter the installation of the COSTAR corrective-optics module in the Hubble Space Telescope in 1993, the Hubble Faint Object Spectrograph (FOS) was used to measure the rotation velocity of the ionized gas disk at the center of M87, as an \"early release observation\" designed to test the scientific performance of the post-repair Hubble instruments. M87 was observed by the Event Horizon Telescope (EHT) during much of 2017.\n\nHubble images of the planet were sharper than any taken since the passage of Voyager 2 in 1979, and were crucial in studying the dynamics of the collision of a large comet with Jupiter, an event believed to occur once every few centuries. In March 2015, researchers announced that measurements of aurorae around Ganymede, one of Jupiter's moons, revealed that it has a subsurface ocean. In April 2022 NASA announced that astronomers were able to use images from HST to determine the size of the nucleus of comet C/2014 UN271 (Bernardinelli–Bernstein), which is the largest icy comet nucleus ever seen by astronomers.\n\nC/2014 UN271 was observed by the Hubble Space Telescope in January, March, July, August, and October 2022.\n\nImages by the Hubble Space Telescope have shown two more \"red spots\" adjacent to the Great Red Spot.\n\nOther discoveries made with Hubble data include proto-planetary disks (proplyds) in the Orion Nebula; evidence for the presence of extrasolar planets around Sun-like stars; and the optical counterparts of the still-mysterious gamma-ray bursts. MACS 2129-1 subverted expectations about galaxies in which new star formation had ceased, a significant result for understanding the formation of elliptical galaxies. In 2022 Hubble detected the light of the farthest individual star ever seen to date.\n\nMACS 2129-1 is an early universe so-called 'dead' disk galaxy discovered in 2017 by the Hubble Space Telescope from NASA.\n\nBeginning in the 1990s, the Hubble Space Telescope yielded improved observations. The Hubble Deep Field, an extremely long exposure of a relatively empty part of the sky, provided evidence that there are about 125 billion (1.25×1011) galaxies in the observable universe. A 2016 study published in The Astrophysical Journal, led by Christopher Conselice of the University of Nottingham, analyzed many sources of data to estimate that the observable universe (up to z=8) contained at least two trillion (2×1012) galaxies, a factor of 10 more than are directly observed in Hubble images.\n\nAs of 2025, over 22,000 papers based on Hubble data have been published in peer-reviewed journals, and countless more have appeared in conference proceedings. On average, a paper based on Hubble data receives about twice as many citations as papers based on non-Hubble data. Of the 200 papers published each year that receive the most citations, about 10% are based on Hubble data.",
+      "profile": {
+        "paragraphs": 17,
+        "sentences": 42,
+        "chars": 7918,
+        "duplicates": 0,
+        "articles": 18,
+        "sections": 24,
+        "hopsChosen": 17,
+        "hopsRead": 17,
+        "hopsCited": 11,
+        "blocked": 6
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 95,
+      "wiki": {
+        "hits": 235,
+        "misses": 6,
+        "added": 6,
+        "entries": 1382
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 79
+      },
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tangle-hubble.json",
+      "summary": "live run · seed: Tell me about the Hubble Space Telescope and what it has discovered.\nmodel anthropic/claude-haiku-4.5 · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T11:16:40.683Z · exported 2026-09-19T11:18:16.044Z\nnodes 24 · visits 35 · model calls 79 · lookups 24 · evidence 24 · tokens 40765\nstatuses {\"resolved\":18,\"blocked\":6} · outcome: root resolved\n\nn1 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. → The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low\n  n2 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Key projects → These were projects that were both scientifically important and would require significant \n    n8 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Intergalactic medium !! Nothing read about Intergalactic medium names the subject of the brief.\n  n3 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Age and expansion of the universe → Among its primary mission targets was to measure distances to Cepheid variable stars more \n    n9 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Cepheid variable → In 1924, Edwin Hubble established the distance to classical Cepheid variables in the Andro\n      n11 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Edwin Hubble → Hubble proved that many objects previously thought to be clouds of dust and gas and classi\n      n12 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Vesto Slipher !! Nothing of what Vesto Slipher says about the subject was kept.\n    n10 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about High-z Supernova Search Team → In January 1998, Notre Dame astrophysicist Peter Garnavich, then working at the Harvard-Sm\n      n13 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Peter Garnavich !! Nothing of what Peter Garnavich says about the subject was kept.\n      n14 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Redshift → By that year Edwin Hubble had established that these were galaxies and worked out a proced\n  n4 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Black holes → The high-resolution spectra and images provided by the HST have been especially well-suite\n    n15 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Black hole → When the Hubble Space Telescope launched in the 1990s, optical studies of the centre of ga\n      n16 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Sagittarius A* → In May 2022, astronomers released the first image of the accretion disk around the event h\n      n17 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Messier 87 → After the installation of the COSTAR corrective-optics module in the Hubble Space Telescop\n  n5 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Solar System discoveries → Hubble images of the planet were sharper than any taken since the passage of Voyager 2 in \n    n18 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about C/2014 UN271 (Bernardinelli–Bernstein) → C/2014 UN271 was observed by the Hubble Space Telescope in January, March, July, August, a\n    n19 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Jupiter → Images by the Hubble Space Telescope have shown two more \"red spots\" adjacent to the Great\n      n20 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Great Red Spot !! Nothing of what Great Red Spot says about the subject was kept.\n  n6 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about Other discoveries → Other discoveries made with Hubble data include proto-planetary disks (proplyds) in the Or\n    n21 [resolved v2] Tell me about the Hubble Space Telescope and what it has discovered. — about MACS 2129-1 → MACS 2129-1 is an early universe so-called 'dead' disk galaxy discovered in 2017 by the Hu\n      n23 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Galaxy → Beginning in the 1990s, the Hubble Space Telescope yielded improved observations. The Hubb\n      n24 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about NASA !! Nothing of what NASA says about the subject was kept.\n    n22 [blocked] Tell me about the Hubble Space Telescope and what it has discovered. — about Orion (space telescope) !! Nothing of what Orion (space telescope) says about the subject was kept.\n  n7 [resolved] Tell me about the Hubble Space Telescope and what it has discovered. — about Impact on astronomy → As of 2025, over 22,000 papers based on Hubble data have been published in peer-reviewed j\n\nmodel latency ms: median 1044 · max 2371 · n 79\nworth a look:\n- n8 blocked: Nothing read about Intergalactic medium names the subject of the brief.\n- n12 blocked: Nothing of what Vesto Slipher says about the subject was kept.\n- n13 blocked: Nothing of what Peter Garnavich says about the subject was kept.\n- n20 blocked: Nothing of what Great Red Spot says about the subject was kept.\n- n22 blocked: Nothing of what Orion (space telescope) says about the subject was kept.\n- n24 blocked: Nothing of what NASA says about the subject was kept."
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "queensland": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 9,
+      "factsSupported": 9,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 13,
+        "visits": 18,
+        "modelCalls": 45,
+        "lookups": 13,
+        "tokens": 22887
+      },
+      "statuses": {
+        "resolved": 11,
+        "blocked": 2
+      },
+      "finding": "The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres (1,400 mi) over an area of approximately 344,400 square kilometres (133,000 mi2). The Great Barrier Reef can be seen from outer space and is the world's biggest single structure made by living organisms. This reef structure is composed of and built by billions of tiny organisms, known as coral polyps. Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017, with the effects of a widespread 2020 bleaching event not yet quantified. A March 2016 report stated that coral bleaching was more widespread than previously thought, seriously affecting the northern parts of the reef as a result of warming ocean temperatures.\n\nThe Great Barrier Reef supports an extraordinary diversity of life, including many vulnerable or endangered species, some of which may be endemic to the reef system.\n\nClimate change, pollution, crown-of-thorns starfish and fishing are the primary threats to the health of this reef system. According to a 2012 study by the National Academy of Sciences, since 1985, the Great Barrier Reef has lost more than half of its corals with two-thirds of the loss occurring from 1998 due to the factors listed before. In 2022, the northern and central parts of the reef had the highest amount of coral cover since monitoring began, but the cover in the southern part had decreased and bleaching events occurred more frequently.\n\nCorals are major contributors to the physical structure of the coral reefs that develop in tropical and subtropical waters, such as the Great Barrier Reef off the coast of Australia.\n\nThe Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Barrier Reef to be climate change, causing ocean warming which increases coral bleaching. Mass coral bleaching events due to marine heatwaves occurred in the summers of 1998, 2002, 2006, 2016, 2017 and 2020, and coral bleaching is expected to become an annual occurrence. In 2020, a study found that the Great Barrier Reef has lost more than half of its corals since 1995 due to warmer seas driven by climate change.\n\nIn 2016, bleaching of coral on the Great Barrier Reef killed 29 to 50 percent of the reef's coral.\n\nThe Great Barrier Reef Marine Park protects a large part of Australia's Great Barrier Reef from damaging activities. The Great Barrier Reef is the largest and best known coral reef ecosystem in the world.\n\nThe rivers of north-eastern Australia pollute the Reef during tropical flood events. Over 90% of this pollution comes from farm runoff. Farming practices damage the reef due to overgrazing, increased run-off of agricultural sediments, nutrients and chemicals including fertilisers, herbicides and pesticides representing a major health risk for the coral and biodiversity of the reefs.\n\nFarming fertiliser runoff release nitrogen, phosphorus, and potassium into the oceanic ecosystem, and these limiting nutrients cause massive algal growth which eventually leads to a reduction in oxygen available for other creatures in a process called eutrophication. A study by Katharina Fabricius and Glen Death of Australian Institute of Marine Science found that hard corals numbers were almost double on reefs that were far from agricultural areas. A study showed that a doubling of the chlorophyll in the water leads to a tenfold increase in the crown-of-thorns starfish larvae's survival rate.\n\nIts research programs support the management of tropical marine environments around the world, with a primary focus on the Great Barrier Reef World Heritage Area, the pristine Ningaloo Marine Park in Western Australia and northwest Australia.\n\nIn March 2015, the Australian and Queensland's governments formed a plan for the protection and preservation of the reef's universal heritage until 2050. This 35-year plan, titled \"Reef 2050 Plan\" is a document proposing possible measures for the long-term management of the pollution, climate change and other issues that threaten the life-span and value of this global heritage. However, whereas the 2050 plan aims to incorporate protective measures such as improving water quality, reef restoration and killing predatory starfish, it does not incorporate additional measures to address what may be the root cause of the problem – climate change, which is caused by greenhouse gas emissions.",
+      "profile": {
+        "paragraphs": 11,
+        "sentences": 27,
+        "chars": 4898,
+        "duplicates": 0,
+        "articles": 7,
+        "sections": 13,
+        "hopsChosen": 6,
+        "hopsRead": 6,
+        "hopsCited": 4,
+        "blocked": 2
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 53,
+      "wiki": {
+        "hits": 276,
+        "misses": 9,
+        "added": 9,
+        "entries": 1385
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 45
+      },
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tangle-great-barrier-reef.json",
+      "summary": "live run · seed: Describe the Great Barrier Reef and the threats it faces.\nmodel anthropic/claude-haiku-4.5 · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T11:18:16.062Z · exported 2026-09-19T11:19:08.921Z\nnodes 13 · visits 18 · model calls 45 · lookups 13 · evidence 13 · tokens 22887\nstatuses {\"resolved\":11,\"blocked\":2} · outcome: root resolved\n\nn1 [resolved v2] Describe the Great Barrier Reef and the threats it faces. → The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 in\n  n2 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Ecology → The Great Barrier Reef supports an extraordinary diversity of life, including many vulnera\n  n3 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Environmental threats → Climate change, pollution, crown-of-thorns starfish and fishing are the primary threats to\n    n8 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Crown-of-thorns starfish !! Nothing of what Crown-of-thorns starfish says about the subject was kept.\n    n9 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Coral → Corals are major contributors to the physical structure of the coral reefs that develop in\n  n4 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Climate change → The Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Ba\n    n10 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Coral bleaching → In 2016, bleaching of coral on the Great Barrier Reef killed 29 to 50 percent of the reef'\n    n11 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Great Barrier Reef Marine Park → The Great Barrier Reef Marine Park protects a large part of Australia's Great Barrier Reef\n  n5 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Pollution → The rivers of north-eastern Australia pollute the Reef during tropical flood events. Over \n  n6 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Eutrophication → Farming fertiliser runoff release nitrogen, phosphorus, and potassium into the oceanic eco\n    n12 [resolved v2] Describe the Great Barrier Reef and the threats it faces. — about Australian Institute of Marine Science → Its research programs support the management of tropical marine environments around the wo\n      n13 [blocked] Describe the Great Barrier Reef and the threats it faces. — about Marine (ocean) !! Nothing of what Marine (ocean) says about the subject was kept.\n  n7 [resolved] Describe the Great Barrier Reef and the threats it faces. — about Protection and preservation: Reef 2050 plan → In March 2015, the Australian and Queensland's governments formed a plan for the protectio\n\nmodel latency ms: median 1040 · max 2121 · n 45\nworth a look:\n- n8 blocked: Nothing of what Crown-of-thorns starfish says about the subject was kept.\n- n13 blocked: Nothing of what Marine (ocean) says about the subject was kept."
+    }
+  ],
+  "notes": [
+    "2026-09-19T11:13:46.675Z node runtime node v25.9.0 · https://openrouter.ai/api/v1",
+    "model anthropic/claude-haiku-4.5: served by https://openrouter.ai/api/v1 (0 s)",
+    "2026-09-19T11:13:46.837Z model cache evals/model-cache/anthropic-claude-haiku-4.5: 281 responses loaded",
+    "machine at start: gpu 0% · vram 0.03 GiB · load 17.87 · mem 90% free (normal) · no throttling recorded",
+    "2026-09-19T11:13:46.925Z 4 seeds from evals/seeds-profile.json · mode tangle · limits {} · prompt walk-15/asks-4 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit 4aa0cdd (uncommitted changes)",
+    "wiki recording: 1376 responses loaded",
+    "2026-09-19T11:15:26.708Z run stopped: Root resolved",
+    "turing: resolved · topics 6/8 · supported 6/8 · read 8/8 · ¶21 · 48 sentences · read 21 articles, 27 sections · hops 15 cited / 20 read / 20 chosen · 5 blocked · 27 nodes, 83 calls, 27 lookups, 41717 tokens · 100 s · wiki 81 hits 1 misses · model 0 replayed 83 missed",
+    "2026-09-19T11:16:40.638Z run stopped: Root resolved",
+    "silk-road: resolved · topics 4/9 · supported 4/9 · read 7/9 · ¶19 · 39 sentences · read 16 articles, 22 sections · hops 12 cited / 15 read / 15 chosen · 3 blocked · 22 nodes, 64 calls, 22 lookups, 33388 tokens · 74 s · wiki 156 hits 6 misses · model 0 replayed 64 missed",
+    "2026-09-19T11:18:16.014Z run stopped: Root resolved",
+    "hubble: resolved · topics 4/8 · supported 4/8 · read 8/8 · ¶17 · 42 sentences · read 18 articles, 24 sections · hops 11 cited / 17 read / 17 chosen · 6 blocked · 24 nodes, 79 calls, 24 lookups, 40765 tokens · 95 s · wiki 235 hits 6 misses · model 0 replayed 79 missed",
+    "2026-09-19T11:19:08.896Z run stopped: Root resolved",
+    "great-barrier-reef: resolved · topics 9/10 · supported 9/10 · read 10/10 · ¶11 · 27 sentences · read 7 articles, 13 sections · hops 4 cited / 6 read / 6 chosen · 2 blocked · 13 nodes, 45 calls, 13 lookups, 22887 tokens · 53 s · wiki 276 hits 9 misses · model 0 replayed 45 missed",
+    "machine during the suite: gpu 0% mean, 1% peak · vram up to 0.09 GiB · load up to 19.76 · no throttling in 22 samples"
+  ]
+}

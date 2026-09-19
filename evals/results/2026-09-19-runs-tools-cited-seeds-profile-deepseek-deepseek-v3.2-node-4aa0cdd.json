@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "deepseek/deepseek-v3.2",
+  "runtime": "node",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "commit": "4aa0cdd (uncommitted changes)",
+  "head": "4aa0cdd (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T11:05:00.327Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · https://openrouter.ai/api/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 11,
+    "gpuPercent": {
+      "min": 0,
+      "max": 1,
+      "mean": 0.1
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.07,
+      "mean": 0
+    },
+    "load": {
+      "min": 11.61,
+      "max": 16.14,
+      "mean": 14.6
+    },
+    "memoryFreePercent": {
+      "min": 90,
+      "max": 90,
+      "mean": 90
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-deepseek-deepseek-v3.2-ref.json"
+  },
+  "seeds": 4,
+  "resolved": 0,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 32,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 47,
+    "cache": "evals/model-cache/deepseek-deepseek-v3.2",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "turing-machine": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 13,
+        "modelCalls": 13,
+        "lookups": 12,
+        "tokens": 31218
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 3,
+        "sections": 8,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 47,
+      "wiki": {
+        "hits": 8,
+        "misses": 7,
+        "added": 7,
+        "entries": 1364
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 13
+      },
+      "budget": {
+        "calls": 80,
+        "tokens": 35934
+      },
+      "stoppedBy": "answer",
+      "dropped": 9,
+      "refused": 0,
+      "answer": "Now I have enough information to write a profile about Alan Turing and his impact using direct quotes from the sources. Here is my profile:\n\n**Alan Turing Profile**\n\nAlan Turing was a British mathematician, computer scientist, logician, cryptanalyst, philosopher, and theoretical biologist. \"The Turing machine was invented in 1936 by Alan Turing, who called it an 'a-machine' (automatic machine).\" With this model, Turing was able to answer two questions in the negative: \"Does a machine exist that can determine whether any arbitrary machine on its tape is 'circular' (e.g., freezes, or fails to continue its computational task)? Does a machine exist that can determine whether any arbitrary machine on its tape ever prints a given symbol?\"\n\nDuring World War II, Turing made crucial contributions to codebreaking efforts. \"Turing played a crucial role in cracking intercepted coded messages that enabled the Allies to defeat the Axis powers in many crucial engagements, including the Battle of the Atlantic.\" His work at Bletchley Park was particularly significant: \"He devised a number of techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bomba method, an electromechanical machine that could find settings for the Enigma machine.\"\n\nTuring's work on early computers was foundational. \"After the war, Turing worked at the National Physical Laboratory, where he designed the Automatic Computing Engine (ACE), one of the first designs for a stored-program computer.\" His theoretical contributions extended to artificial intelligence: \"Turing proposed the Turing test as a criterion of intelligence, a concept that has had a lasting influence on the philosophy of artificial intelligence.\"\n\nThe impact of Turing's work is profound and far-reaching. \"Turing is widely considered to be the father of theoretical computer science and artificial intelligence.\" His mathematical models established fundamental principles: \"Turing machines proved the existence of fundamental limitations on the power of mechanical computation.\" The Church-Turing thesis, which bears his name,",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-cited-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "silk": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 15,
+        "modelCalls": 15,
+        "lookups": 14,
+        "tokens": 39508
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 3,
+        "sections": 6,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 46,
+      "wiki": {
+        "hits": 18,
+        "misses": 14,
+        "added": 14,
+        "entries": 1371
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 15
+      },
+      "budget": {
+        "calls": 83,
+        "tokens": 36528
+      },
+      "stoppedBy": "tokens",
+      "dropped": 9,
+      "refused": 0,
+      "answer": "Let me read the main article about Buddhism transmission\n\n\n\n<function_calls>\n<invoke name=\"read\">\n<parameter name=\"title\" string=\"true\">Silk Road transmission of Buddhism</parameter>\n</invoke>\n</function_calls>",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-cited-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 12,
+        "modelCalls": 12,
+        "lookups": 11,
+        "tokens": 28374
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 7,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 35,
+      "wiki": {
+        "hits": 26,
+        "misses": 19,
+        "added": 19,
+        "entries": 1376
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 12
+      },
+      "budget": {
+        "calls": 59,
+        "tokens": 28478
+      },
+      "stoppedBy": "tokens",
+      "dropped": 5,
+      "refused": 0,
+      "answer": "Let me search for specific exoplanet discoveries\n\n<function_calls>\n<invoke name=\"search\">\n<parameter name=\"term\" string=\"true\">Hubble Space Telescope exoplanet atmosphere</parameter>\n</invoke>\n</function_calls>",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-cited-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "size": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "bleaching": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "climate": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "runoff": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 7,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 14310
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 29,
+      "wiki": {
+        "hits": 34,
+        "misses": 19,
+        "added": 19,
+        "entries": 1376
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 7
+      },
+      "budget": {
+        "calls": 27,
+        "tokens": 13584
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "Now I have enough information to write the profile. I'll compile the relevant sentences from what I've read.\n\n```json\n{\n  \"answer\": \"The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres over an area of approximately 344,400 square kilometres. The reef is located in the Coral Sea, off the coast of Queensland, Australia. This reef structure is composed of and built by billions of tiny organisms, known as coral polyps. It supports a wide diversity of life and was selected as a World Heritage Site in 1981. A large part of the reef is protected by the Great Barrier Reef Marine Park, which helps to limit the impact of human use, such as fishing and tourism. According to a study published in October 2012 by the Proceedings of the National Academy of Sciences, the reef has lost more than half its coral cover since 1985, a finding reaffirmed by a 2020 study which found over half of the reef's coral cover to have been lost between 1995 and 2017. The Great Barrier Reef Marine Park Authority considers the greatest threat to the Great Barrier Reef to be climate change, causing ocean warming which increases coral bleaching. Mass coral bleaching events due to marine heatwaves occurred in the summers of 1998, 2002, 2006, 2016, 2017 and 2020, and coral bleaching is expected to become an annual occurrence. Another key threat faced by the Great Barrier Reef is pollution and declining water quality. The rivers of north-eastern Australia pollute the Reef during tropical flood events. Over 90% of this pollution comes from farm runoff. Farming practices damage the reef due to overgrazing, increased run-off of agricultural sediments, nutrients and chemicals including fertilisers, herbicides and pesticides representing a major health risk for the coral and biodiversity of the reefs. The crown-of-thorns starfish preys on coral polyps. Large outbreaks of these starfish can devastate reefs. Outbreaks are believed to occur in natural cycles, worsened by poor water quality and overfishing of the starfish's predators. Other environmental pressures on the reef and its ecosystem include runoff of humanmade pollutants, climate change accompanied by mass coral bleaching, dumping of dredging sludge and cyclic population outbreaks of the crown-of-thorns starfish.\"\n}\n```",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-cited-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T11:05:00.326Z node runtime node v25.9.0 · https://openrouter.ai/api/v1",
+    "model deepseek/deepseek-v3.2: served by https://openrouter.ai/api/v1 (0 s)",
+    "2026-09-19T11:05:00.562Z model cache evals/model-cache/deepseek-deepseek-v3.2: 505 responses loaded",
+    "machine at start: gpu 0% · vram 0.07 GiB · load 14.46 · mem 90% free (normal) · no throttling recorded",
+    "2026-09-19T11:05:00.664Z 4 seeds from evals/seeds-profile.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-deepseek-deepseek-v3.2-ref.json\"} · prompt tools-3 · grammar tools:cited · matched · commit 4aa0cdd (uncommitted changes)",
+    "wiki recording: 1357 responses loaded",
+    "turing: root blocked · topics 0/8 · supported 0/8 · read 8/8 · ¶0 · 0 sentences · read 3 articles, 8 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 13 calls, 12 lookups, 31218 tokens · stopped by answer · 9 results dropped from the context · 47 s · model 0 replayed 13 missed",
+    "silk-road: root blocked · topics 0/9 · supported 0/9 · read 7/9 · ¶0 · 0 sentences · read 3 articles, 6 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 15 calls, 14 lookups, 39508 tokens · stopped by tokens · 9 results dropped from the context · 46 s · model 0 replayed 15 missed",
+    "hubble: root blocked · topics 0/8 · supported 0/8 · read 8/8 · ¶0 · 0 sentences · read 2 articles, 7 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 12 calls, 11 lookups, 28374 tokens · stopped by tokens · 5 results dropped from the context · 35 s · model 0 replayed 12 missed",
+    "great-barrier-reef: root blocked · topics 0/10 · supported 0/10 · read 9/10 · ¶0 · 0 sentences · read 2 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 7 calls, 6 lookups, 14310 tokens · stopped by tokens · 29 s · model 0 replayed 7 missed",
+    "machine during the suite: gpu 0.1% mean, 1% peak · vram up to 0.07 GiB · load up to 16.14 · no throttling in 11 samples"
+  ]
+}

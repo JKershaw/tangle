@@ -96,7 +96,7 @@ One HTML file. Questions: the walk reads, picks a sentence, reads on, splits two
 - **Entry:** milestones 4 and 6, and a task the local ladder fails. Milestone 4's ladder already answers part of this: on the briefs a 32B picker adds three topics over 8B on the same candidates, and on question seeds nothing; a judge for open-ended output is the part a key still buys.
 - **Work:** `OPENROUTER_API_KEY` on the machine; DeepSeek as one more column in node evals, the benchmark and the profile table, at roughly a tenth of a dollar per forty-node run. Also the judge for open-ended profiles, where a deterministic grader runs out.
 - **Verified by:** the same tables.
-- **Exit:** we know whether a stronger picker moves the ceiling, or whether the ceiling is the candidates code prepares. That answer shapes everything after.
+- **Exit:** we know whether a stronger picker moves the ceiling, or whether the ceiling is the candidates code prepares. That answer shapes everything after. **Begun 2026-09-19, a day early, at John's question:** the graph and the tool control on DeepSeek V3.2 and Claude Haiku 4.5 over OpenRouter on the profile and MangoDB suites, under a dollar. The graph beats the tool control on both models and both suites; Haiku through the graph is the best code row (25 of 42, all cited); DeepSeek is poor at the picks (13 of 42). Rows in PROGRESS.md; reading in [evals/readings.md](evals/readings.md). The judge is not built.
 
 ### 8. Against another agent
 

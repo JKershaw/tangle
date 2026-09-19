@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "anthropic/claude-haiku-4.5",
+  "runtime": "node",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "commit": "4aa0cdd (uncommitted changes)",
+  "head": "4aa0cdd (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T11:19:52.882Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · https://openrouter.ai/api/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 4,
+    "gpuPercent": {
+      "min": 0,
+      "max": 1,
+      "mean": 0.3
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.09,
+      "mean": 0
+    },
+    "load": {
+      "min": 16.3,
+      "max": 18.45,
+      "mean": 17.4
+    },
+    "memoryFreePercent": {
+      "min": 89,
+      "max": 89,
+      "mean": 89
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-anthropic-claude-haiku-4.5-ref.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 12,
+  "factsSupported": 12,
+  "factsRead": 32,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 0,
+    "misses": 25,
+    "cache": "evals/model-cache/anthropic-claude-haiku-4.5",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "turing-test": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 12,
+        "modelCalls": 12,
+        "lookups": 14,
+        "tokens": 39867
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "\"Computing Machinery and Intelligence\" is a paper written by Alan Turing on the topic of artificial intelligence.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 1,
+        "chars": 113,
+        "duplicates": 0,
+        "articles": 5,
+        "sections": 9,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 19,
+      "wiki": {
+        "hits": 16,
+        "misses": 3,
+        "added": 3,
+        "entries": 1390
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 12
+      },
+      "budget": {
+        "calls": 83,
+        "tokens": 41717
+      },
+      "stoppedBy": "answer",
+      "dropped": 9,
+      "refused": 0,
+      "answer": "Now I have enough information to write a comprehensive profile. Let me compile it:\n\n## Alan Turing: Pioneer of Computing and Artificial Intelligence\n\nAlan Turing was a transformative figure in mathematics, computer science, and philosophy whose theoretical and practical contributions fundamentally shaped the modern world. \"Alan Turing, a Cambridge University mathematician and logician, provided much of the original thinking that led to upgrading of the Polish cryptologic bomb used in decrypting German Enigma ciphers.\" His work during World War II at Bletchley Park had immediate strategic consequences, as \"Cryptanalysis of the Enigma ciphering system enabled the western Allies in World War II to read substantial amounts of Morse-coded radio communications of the Axis powers that had been enciphered using Enigma machines.\"\n\nBeyond his wartime contributions, Turing's theoretical work laid the foundation for modern computer science. \"The Turing machine was designed by Alan Turing to assess a machine's ability to exhibit intelligent behaviour equivalent to that of a human by imitating interactive dialogue.\" His most influential contribution came through his groundbreaking paper on artificial intelligence. \"Computing Machinery and Intelligence\" is a paper written by Alan Turing on the topic of artificial intelligence. The paper, published in 1950 in Mind, was the first to introduce his concept of what is now known as the Turing test to the general public.\" In this work, \"The test was introduced as the imitation game by Turing in his 1950 paper 'Computing Machinery and Intelligence' while working at the University of Manchester.\"\n\nThe impact of Turing's ideas on artificial intelligence has been profound and enduring. \"Since Turing introduced his test, it has been highly influential in the philosophy of artificial intelligence, resulting in substantial discussion and controversy, as well as criticism from philosophers like John",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-cited-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 6,
+        "tokens": 9017
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece.\n\nOther lucrative commodities from the East included tea, dyes, perfumes, and porcelain; among Western exports were horses, camels, honey, wine, and gold. Aside from generating substantial wealth for emerging mercantile classes, the proliferation of goods such as paper and gunpowder greatly affected the trajectory of political history in several theatres in Eurasia and beyond.\n\nTrading activities along the Silk Road over many centuries facilitated the transmission not just of goods but also ideas and culture, notably in the area of religions. Zoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across Eurasia through trade networks that were tied to specific religious communities and their institutions.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 8,
+        "chars": 1363,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 4,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 10,
+      "wiki": {
+        "hits": 23,
+        "misses": 3,
+        "added": 3,
+        "entries": 1390
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 64,
+        "tokens": 33388
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "Perfect! Now I have comprehensive information. Let me write the profile:\n\n## The Silk Road: A Network of Trade and Cultural Exchange\n\nThe Silk Road was a network of Asian trade routes active from the second century BCE until the mid-15th century. Spanning over 6,400 km (4,000 mi) on land, it played a central role in facilitating economic, cultural, political, and religious interactions between the Eastern and Western worlds. The network began with the expansion of the Han dynasty (202 BCE – 220 CE) into Central Asia around 114 BCE, through the missions and explorations of the Chinese imperial envoy Zhang Qian, which brought the region under unified control. By the first century CE, Chinese silk was widely sought after in Rome, Egypt, and Greece.\n\nThe Silk Road derived its name from the highly lucrative trade of silk textiles that were primarily produced in China. Other lucrative commodities from the East included tea, dyes, perfumes, and porcelain; among Western exports were horses, camels, honey, wine, and gold. Aside from generating substantial wealth for emerging mercantile classes, the proliferation of goods such as paper and gunpowder greatly affected the trajectory of political history in several theatres in Eurasia and beyond.\n\nThe influence of the Silk Road extended far beyond commerce. Trading activities along the Silk Road over many centuries facilitated the transmission not just of goods but also ideas and culture, notably in the area of religions. Zoroastrianism, Judaism, Buddhism, Christianity, Manichaeism, and Islam all spread across Eurasia through trade networks that were tied to specific religious communities and their institutions. The transmission of Buddhism to China via the Silk Road began in the 1st century CE, and the Buddhist movement was the first large-scale missionary movement in the history of world",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-cited-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mirror": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "servicing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 6,
+        "tokens": 10601
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. The Hubble Space Telescope is named after astronomer Edwin Hubble and is one of NASA's Great Observatories. Hubble features a 2.4 m (7 ft 10 in) mirror, and its five main instruments observe in the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum.\n\nHubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe.\n\nBefore the launch of HST, estimates of the Hubble constant typically had errors of up to 50%, but Hubble measurements of Cepheid variables in the Virgo Cluster and other distant galaxy clusters provided a measured value with an accuracy of ±10%.",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 7,
+        "chars": 1073,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 10,
+      "wiki": {
+        "hits": 30,
+        "misses": 3,
+        "added": 3,
+        "entries": 1390
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 79,
+        "tokens": 40765
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "Perfect! Now I have enough information to write a comprehensive profile. Let me create it using only direct quotes from what I've read.\n\n## The Hubble Space Telescope: A Vital Research Tool\n\nThe Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It is one of the largest and most versatile space telescopes, renowned as a vital research tool and as a public relations boon for astronomy. The Hubble Space Telescope is named after astronomer Edwin Hubble and is one of NASA's Great Observatories. Hubble features a 2.4 m (7 ft 10 in) mirror, and its five main instruments observe in the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum.\n\nThe telescope's unique position in space has proven invaluable for scientific discovery. Hubble's orbit outside the distortion of Earth's atmosphere allows it to capture extremely high-resolution images with substantially lower background light than ground-based telescopes. It has recorded some of the most detailed visible light images, allowing a deep view into space. Many Hubble observations have led to breakthroughs in astrophysics, such as determining the rate of expansion of the universe.\n\nAmong Hubble's most significant discoveries is its measurement of cosmic expansion. Before the launch of HST, estimates of the Hubble constant typically had errors of up to 50%, but Hubble measurements of Cepheid variables in the Virgo Cluster and other distant galaxy clusters provided a measured value with an accuracy of ±10%. The estimated age of the universe is now 13.7 billion years, compared to the previous estimate of ten to twenty billion years. Additionally, astronomers using HST uncovered evidence that the expansion of the",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-cited-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "runoff": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "marine-park": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 7,
+        "tokens": 9750
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Great Barrier Reef is the world's largest reef systems, stretching along the East coast of Australia from the northern tip down at Cape York to the town of Bundaberg, is composed of roughly 2,900 individual reefs and 940 islands and cays that stretch for 2,300 kilometres (1,616 mi) and cover an area of approximately 344,400 square kilometres (133,000 sq mi). The reef is located in the Coral Sea, off the coast of Queensland in northeast Australia. A large part of the reef is protected by the Great Barrier Reef Marine Park.\n\nAccording to the GBRMPA in 2014, the most significant threat to the status of the Great Barrier Reef is climate change, due to the consequential rise of sea temperatures, gradual ocean acidification and an increase in the number of \"intense weather events\". A temperature rise of between two and three degrees Celsius would result in 97% of the Great Barrier Reef being bleached every year. Reef scientist Terry Done has predicted that a one-degree rise in global temperature would result in 82% of the reef bleached—two degrees would result in 97%, while three degrees would result in \"total devastation\".\n\nWater quality was first identified as a threat to the Great Barrier Reef in 1989. River discharges are the single biggest source of nutrients, providing significant pollution of the Reef during tropical flood events with over 90% of this pollution being sourced from farms. Due to the range of human uses made of the water catchment area adjacent to the Great Barrier Reef, some 700 of the 3,000 reefs are within",
+      "profile": {
+        "paragraphs": 3,
+        "sentences": 9,
+        "chars": 1553,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 10,
+      "wiki": {
+        "hits": 39,
+        "misses": 3,
+        "added": 3,
+        "entries": 1390
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 45,
+        "tokens": 22887
+      },
+      "stoppedBy": "answer",
+      "dropped": 3,
+      "refused": 0,
+      "answer": "Now I have enough information to write the profile. Let me compose it using only sentences from what I've read.\n\n## The Great Barrier Reef and Its Threats\n\nThe Great Barrier Reef is the world's largest reef systems, stretching along the East coast of Australia from the northern tip down at Cape York to the town of Bundaberg, is composed of roughly 2,900 individual reefs and 940 islands and cays that stretch for 2,300 kilometres (1,616 mi) and cover an area of approximately 344,400 square kilometres (133,000 sq mi). The reef is located in the Coral Sea, off the coast of Queensland in northeast Australia. A large part of the reef is protected by the Great Barrier Reef Marine Park.\n\nAccording to the GBRMPA in 2014, the most significant threat to the status of the Great Barrier Reef is climate change, due to the consequential rise of sea temperatures, gradual ocean acidification and an increase in the number of \"intense weather events\". A temperature rise of between two and three degrees Celsius would result in 97% of the Great Barrier Reef being bleached every year. Reef scientist Terry Done has predicted that a one-degree rise in global temperature would result in 82% of the reef bleached—two degrees would result in 97%, while three degrees would result in \"total devastation\".\n\nWater quality was first identified as a threat to the Great Barrier Reef in 1989. River discharges are the single biggest source of nutrients, providing significant pollution of the Reef during tropical flood events with over 90% of this pollution being sourced from farms. Due to the range of human uses made of the water catchment area adjacent to the Great Barrier Reef, some 700 of the 3,000 reefs are within",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-cited-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T11:19:52.881Z node runtime node v25.9.0 · https://openrouter.ai/api/v1",
+    "model anthropic/claude-haiku-4.5: served by https://openrouter.ai/api/v1 (0 s)",
+    "2026-09-19T11:19:53.054Z model cache evals/model-cache/anthropic-claude-haiku-4.5: 571 responses loaded",
+    "machine at start: gpu 0% · vram 0.04 GiB · load 18.45 · mem 89% free (normal) · no throttling recorded",
+    "2026-09-19T11:19:53.153Z 4 seeds from evals/seeds-profile.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-anthropic-claude-haiku-4.5-ref.json\"} · prompt tools-3 · grammar tools:cited · matched · commit 4aa0cdd (uncommitted changes)",
+    "wiki recording: 1387 responses loaded",
+    "turing: resolved · topics 1/8 · supported 1/8 · read 8/8 · ¶1 · 1 sentences · read 5 articles, 9 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 12 calls, 14 lookups, 39867 tokens · stopped by answer · 9 results dropped from the context · 19 s · model 0 replayed 12 missed",
+    "silk-road: resolved · topics 3/9 · supported 3/9 · read 7/9 · ¶3 · 8 sentences · read 1 articles, 4 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 6 lookups, 9017 tokens · stopped by answer · 10 s · model 0 replayed 4 missed",
+    "hubble: resolved · topics 3/8 · supported 3/8 · read 7/8 · ¶3 · 7 sentences · read 1 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 6 lookups, 10601 tokens · stopped by answer · 10 s · model 0 replayed 5 missed",
+    "great-barrier-reef: resolved · topics 5/10 · supported 5/10 · read 10/10 · ¶3 · 9 sentences · read 2 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 7 lookups, 9750 tokens · stopped by answer · 3 results dropped from the context · 10 s · model 0 replayed 4 missed",
+    "machine during the suite: gpu 0.3% mean, 1% peak · vram up to 0.09 GiB · load up to 18.45 · no throttling in 4 samples"
+  ]
+}

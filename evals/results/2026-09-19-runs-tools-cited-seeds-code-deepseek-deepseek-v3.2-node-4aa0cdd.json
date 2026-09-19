@@ -1,0 +1,536 @@
+{
+  "suite": "runs",
+  "model": "deepseek/deepseek-v3.2",
+  "runtime": "node",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "4aa0cdd (uncommitted changes)",
+  "head": "4aa0cdd (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T10:55:22.213Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · https://openrouter.ai/api/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 6,
+    "gpuPercent": {
+      "min": 0,
+      "max": 1,
+      "mean": 0.2
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.03,
+      "mean": 0
+    },
+    "load": {
+      "min": 9.7,
+      "max": 19.51,
+      "mean": 14.6
+    },
+    "memoryFreePercent": {
+      "min": 90,
+      "max": 90,
+      "mean": 90
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-code-deepseek-deepseek-v3.2-ref.json"
+  },
+  "seeds": 4,
+  "resolved": 0,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 30,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 35,
+    "cache": "evals/model-cache/deepseek-deepseek-v3.2",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "streamed-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "serialisation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 5,
+        "tokens": 7733
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 14,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 12,
+        "tokens": 6480
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "Based on the available documentation, MangoDB persists writes to disk through file-based storage operations. The system uses asynchronous write operations to save document data to JSON files. Each collection maintains its data in persistent storage files that are read and written during database operations. The writeDocuments method handles the actual persistence of document arrays to disk storage. The implementation ensures data durability through file system operations that commit changes to permanent storage.",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-cited-persist.json"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "matches-filter": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "logical-operators": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 10,
+        "modelCalls": 10,
+        "lookups": 9,
+        "tokens": 22640
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 23,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 10
+      },
+      "budget": {
+        "calls": 44,
+        "tokens": 20911
+      },
+      "stoppedBy": "tokens",
+      "dropped": 3,
+      "refused": 0,
+      "answer": "MongoDB evaluates a find query with a filter by first analyzing the query to determine if an index can be used, then executing the query by matching documents against the filter criteria. The query analyzer examines the filter to determine the best index to use, scoring each available index based on how well it matches the query conditions. For compound indexes, MongoDB only uses them if there's a full key match for equality queries or a prefix match for range queries. The main query matching function evaluates whether a document satisfies a MongoDB-style filter, supporting all standard MongoDB query features including equality, operators, logical operators, and dot notation for nested field access. The system handles logical operators like $and, $or, and $nor by evaluating each condition against the document, with $and requiring all conditions to match, $or requiring at least one condition to match, and $nor requiring no conditions to match.",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-cited-find.json"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "default-id-index": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "built-lazily-in-memory": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "equality-map": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sorted-entries": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "compound-prefix": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "non-indexable": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "special-indexes-skipped": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 12,
+        "modelCalls": 12,
+        "lookups": 11,
+        "tokens": 30007
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 9,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 26,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 12
+      },
+      "budget": {
+        "calls": 58,
+        "tokens": 28740
+      },
+      "stoppedBy": "tokens",
+      "dropped": 5,
+      "refused": 0,
+      "answer": "MangoDB indexes work by creating in-memory data structures that store document references by their _id for efficient lookup. For equality lookups, indexes use a Map<serializedKeyValue, Set<documentIdString>>, and for range queries, indexes use a sorted array of { value, docIds } for single-field indexes. Indexes are built lazily on first query after documents are loaded, and the system checks if a field condition can use an index, returning the type of usage: 'equality', 'range', or null if not indexable. Queries use indexes for simple equality conditions, the $eq operator, and $in with single value which is effectively equality, as well as range operators. However, queries cannot use indexes efficiently with operators like $ne, $nin, $regex, $not, $elemMatch, $all, $size, $type, $mod, $geoWithin, $geoIntersects, $near, and $nearSphere, and certain query operators like $or, $nor, $not, $text, $where, $expr, and $jsonSchema force a full collection scan.",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-cited-indexes.json"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "stage-dispatch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "in-memory-sequential": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "out-and-merge-last": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "accumulators": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "lookup": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "system-variables": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "one-key-per-stage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 7,
+        "modelCalls": 7,
+        "lookups": 6,
+        "tokens": 12746
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 3,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 19,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 7
+      },
+      "budget": {
+        "calls": 23,
+        "tokens": 11309
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "Let me read the collection.ts file to see how aggregation is initiated\n\n<function_calls>\n<invoke name=\"section\">\n<parameter name=\"title\" string=\"true\">src/collection.ts</parameter>\n<parameter name=\"heading\" string=\"true\">Execute an aggregation pipeline on the collection</parameter>\n</invoke>\n</function_calls>",
+      "export": "evals/results/runs/2026-09-19-deepseek-deepseek-v3.2-node-tools-cited-aggregate.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T10:55:22.211Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T10:55:22.213Z node runtime node v25.9.0 · https://openrouter.ai/api/v1",
+    "model deepseek/deepseek-v3.2: served by https://openrouter.ai/api/v1 (0 s)",
+    "2026-09-19T10:55:22.377Z model cache evals/model-cache/deepseek-deepseek-v3.2: 176 responses loaded",
+    "machine at start: gpu 0% · vram 0.03 GiB · load 18.8 · mem 90% free (normal) · no throttling recorded",
+    "2026-09-19T10:55:22.459Z 4 seeds from evals/seeds-code.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-code-deepseek-deepseek-v3.2-ref.json\"} · prompt tools-3 · grammar tools:cited · matched · commit 4aa0cdd (uncommitted changes)",
+    "wiki recording: 0 responses loaded",
+    "persist: root blocked · topics 0/9 · supported 0/9 · read 4/9 · ¶0 · 0 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 6 calls, 5 lookups, 7733 tokens · stopped by tokens · 14 s · model 0 replayed 6 missed",
+    "find: root blocked · topics 0/11 · supported 0/11 · read 7/11 · ¶0 · 0 sentences · read 2 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 10 calls, 9 lookups, 22640 tokens · stopped by tokens · 3 results dropped from the context · 23 s · model 0 replayed 10 missed",
+    "indexes: root blocked · topics 0/11 · supported 0/11 · read 9/11 · ¶0 · 0 sentences · read 2 articles, 9 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 12 calls, 11 lookups, 30007 tokens · stopped by tokens · 5 results dropped from the context · 26 s · model 0 replayed 12 missed",
+    "aggregate: root blocked · topics 0/11 · supported 0/11 · read 10/11 · ¶0 · 0 sentences · read 1 articles, 3 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 7 calls, 6 lookups, 12746 tokens · stopped by tokens · 19 s · model 0 replayed 7 missed",
+    "machine during the suite: gpu 0.2% mean, 1% peak · vram up to 0.03 GiB · load up to 19.51 · no throttling in 6 samples"
+  ]
+}

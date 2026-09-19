@@ -1,0 +1,536 @@
+{
+  "suite": "runs",
+  "model": "anthropic/claude-haiku-4.5",
+  "runtime": "node",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "4aa0cdd (uncommitted changes)",
+  "head": "4aa0cdd (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T11:13:01.378Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · https://openrouter.ai/api/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 3,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.05,
+      "mean": 0
+    },
+    "load": {
+      "min": 12.95,
+      "max": 14.93,
+      "mean": 14
+    },
+    "memoryFreePercent": {
+      "min": 90,
+      "max": 90,
+      "mean": 90
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-code-anthropic-claude-haiku-4.5-ref.json"
+  },
+  "seeds": 4,
+  "resolved": 0,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 31,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 22,
+    "cache": "evals/model-cache/anthropic-claude-haiku-4.5",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "streamed-write": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "serialisation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 5,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 7,
+        "modelCalls": 7,
+        "lookups": 5,
+        "tokens": 13489
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 12,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 7
+      },
+      "budget": {
+        "calls": 20,
+        "tokens": 10001
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "MangoDB persists writes to disk through an atomic write mechanism. When writing documents, it first writes to a temporary file with a random UUID suffix, then performs an atomic rename operation to replace the original file. The system uses streaming writes to avoid exceeding V8's string length limit on large collections. Each document is serialized and formatted as JSON with proper indentation before being written to the stream. The temporary file is cleaned up in a finally block if the rename operation fails, ensuring data integrity through this atomic write-then-rename pattern.",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-cited-persist.json"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "matches-filter": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "logical-operators": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 6,
+        "tokens": 9437
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 9,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 64,
+        "tokens": 34207
+      },
+      "stoppedBy": "answer",
+      "dropped": 1,
+      "refused": 0,
+      "answer": "Based on the source code I've reviewed, here's how MongoDB evaluates a find query with a filter:\n\n## MongoDB Find Query Filter Evaluation\n\n**Main Entry Point and Document Matching**\n\nThe primary entry point for document matching is the `matchesFilter` function, which \"evaluates whether a document satisfies a MongoDB-style filter.\" The function \"supports all standard MongoDB query features including equality, operators, logical operators, and dot notation for nested field access.\"\n\n**Filter Processing**\n\nWhen evaluating a filter, MongoDB processes each key-value pair in the filter object. For each field condition, the system checks if the key is a logical operator like `$and`, `$or`, or `$nor`. If it encounters `$expr`, it \"evaluates aggregation expression against the document.\" The function also handles `$comment`, which is \"purely for logging/profiling\" and \"does not affect query results.\"\n\n**Operator Evaluation**\n\nFor field-level conditions, MongoDB uses the `matchesOperators` function to \"evaluate whether a document value satisfies all specified MongoDB query operators.\" This function supports \"comparison operators ($eq, $ne, $gt, $gte, $lt, $lte), array operators ($in, $nin, $all, $elemMatch), existence checks ($exists), size checks ($size), and negation ($not).\"\n\n**Query Optimization**\n\nMongoDB also analyzes queries to determine if indexes can be used. The `analyzeQuery` function checks for \"non-indexable operators at top level\" and extracts \"field conditions (skip operators).\" It then scores available indexes to find the best match, skipping \"special index types,\" \"hidden indexes,\" \"sparse indexes,\" and \"partial indexes\" to ensure complete and accurate results.",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-cited-find.json"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "default-id-index": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "built-lazily-in-memory": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "equality-map": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sorted-entries": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "compound-prefix": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "non-indexable": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "special-indexes-skipped": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 10,
+        "tokens": 14783
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 8,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 12,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 72,
+        "tokens": 38875
+      },
+      "stoppedBy": "answer",
+      "dropped": 4,
+      "refused": 0,
+      "answer": "Now I have enough information to write a profile. Let me compile this into a comprehensive answer.\n\n## How MongoDB's Indexes Work and When Queries Use Them\n\n**Index Structure and Storage**\n\nMongoDB indexes are stored in an in-memory data structure that maintains two key components for efficient lookups. The index contains \"an equalityMap: Map<serializedKeyValue, Set<documentIdString>>\" for equality lookups and \"sortedEntries: sorted array of { value, docIds } for single-field indexes\" for range queries. When indexes are built, \"all index data structures from documents\" are created, and this process is \"called lazily on first query after documents are loaded.\"\n\n**How Equality Queries Use Indexes**\n\nWhen a query performs an equality lookup, MongoDB uses the equality map to find matching documents. The system \"look[s] up documents by equality on indexed fields\" by taking the \"field values to match\" and returning a \"Set of document IDs matching the query, or null if index not found.\" This process involves serializing the key values and retrieving the corresponding document IDs from the equality map.\n\n**How Range Queries Use Indexes**\n\nFor range queries, MongoDB uses a different approach with sorted entries. The system \"look[s] up documents by range on the first field of an index\" using \"binary search\" to \"find start position\" and \"find end position\" based on the range bounds. Once the boundaries are identified, the system collects \"all document IDs in the range\" from the sorted entries.\n\n**Query Analysis and Index Selection**\n\nMongoDB analyzes queries to determine which index to use. The system \"analyze[s] a query filter and determine[s] the best index to use\" by scoring how well each available index matches the query conditions. The analyzer skips certain indexes: it skips \"special index types",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-cited-indexes.json"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "stage-dispatch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "in-memory-sequential": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "out-and-merge-last": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "accumulators": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "lookup": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "system-variables": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "one-key-per-stage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 6,
+        "tokens": 15409
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 5,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 12,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 83,
+        "tokens": 45002
+      },
+      "stoppedBy": "answer",
+      "dropped": 2,
+      "refused": 0,
+      "answer": "Perfect! Now I have the information I need. Let me write the profile based on what I've read.\n\n## How MongoDB Executes an Aggregation Pipeline\n\nMongoDB's aggregation pipeline processes documents through a sequence of stages, each transforming the document stream. \"Stages are executed in order.\" The execution begins when the `toArray()` method is called on an AggregationCursor, which validates stage positions and then processes the pipeline sequentially.\n\nThe pipeline execution starts by retrieving source documents. \"If the pipeline.length > 0\" and the first stage is `$documents`, it executes that stage specially as the initial data source. Similarly, if `$geoNear` is the first stage, it receives special handling since \"it needs to sort results.\" Otherwise, the pipeline retrieves documents from the collection using the `source()` method.\n\nOnce documents are loaded, MongoDB processes each stage through the `executeStage()` method. \"Pipeline stage must have exactly one field,\" and the method uses a switch statement to route each stage to its corresponding execution function. For example, `$match` calls `execMatch()`, `$project` calls `execProject()`, `$sort` calls `execSort()`, and so on. \"For each stage of the pipeline,\" the output documents from one stage become the input documents for the next stage.\n\nMongoDB enforces strict validation rules on pipeline structure. \"$out can only be the final stage in the pipeline,\" \"$documents must be the first stage in the pipeline,\" and \"$geoNear is only valid as the first stage in an aggregation pipeline.\" Additionally, \"Set shared $$NOW for this pipeline execution\" to ensure consistent timestamp values throughout the entire pipeline. After all stages complete, the final document array is returned to the caller.",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-cited-aggregate.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T11:13:01.377Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T11:13:01.378Z node runtime node v25.9.0 · https://openrouter.ai/api/v1",
+    "model anthropic/claude-haiku-4.5: served by https://openrouter.ai/api/v1 (0 s)",
+    "2026-09-19T11:13:01.555Z model cache evals/model-cache/anthropic-claude-haiku-4.5: 259 responses loaded",
+    "machine at start: gpu 1% · vram 0.05 GiB · load 12.95 · mem 90% free (normal) · no throttling recorded",
+    "2026-09-19T11:13:01.638Z 4 seeds from evals/seeds-code.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-code-anthropic-claude-haiku-4.5-ref.json\"} · prompt tools-3 · grammar tools:cited · matched · commit 4aa0cdd (uncommitted changes)",
+    "wiki recording: 0 responses loaded",
+    "persist: root blocked · topics 0/9 · supported 0/9 · read 5/9 · ¶0 · 0 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 7 calls, 5 lookups, 13489 tokens · stopped by tokens · 1 unread answers refused · 12 s · model 0 replayed 7 missed",
+    "find: root blocked · topics 0/11 · supported 0/11 · read 7/11 · ¶0 · 0 sentences · read 2 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 4 calls, 6 lookups, 9437 tokens · stopped by answer · 1 results dropped from the context · 9 s · model 0 replayed 4 missed",
+    "indexes: root blocked · topics 0/11 · supported 0/11 · read 9/11 · ¶0 · 0 sentences · read 2 articles, 8 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 5 calls, 10 lookups, 14783 tokens · stopped by answer · 4 results dropped from the context · 12 s · model 0 replayed 5 missed",
+    "aggregate: root blocked · topics 0/11 · supported 0/11 · read 10/11 · ¶0 · 0 sentences · read 2 articles, 5 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 6 calls, 6 lookups, 15409 tokens · stopped by answer · 2 results dropped from the context · 12 s · model 0 replayed 6 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 0.05 GiB · load up to 14.93 · no throttling in 3 samples"
+  ]
+}

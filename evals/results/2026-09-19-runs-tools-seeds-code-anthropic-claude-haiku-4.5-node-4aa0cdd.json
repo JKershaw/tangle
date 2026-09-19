@@ -1,0 +1,536 @@
+{
+  "suite": "runs",
+  "model": "anthropic/claude-haiku-4.5",
+  "runtime": "node",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "4aa0cdd (uncommitted changes)",
+  "head": "4aa0cdd (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T11:12:19.293Z",
+  "loadSeconds": 0,
+  "prompt": "tools-3",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · https://openrouter.ai/api/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 3,
+    "gpuPercent": {
+      "min": 0,
+      "max": 0,
+      "mean": 0
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.03,
+      "mean": 0
+    },
+    "load": {
+      "min": 11.47,
+      "max": 14.75,
+      "mean": 12.8
+    },
+    "memoryFreePercent": {
+      "min": 90,
+      "max": 90,
+      "mean": 90
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-code-anthropic-claude-haiku-4.5-ref.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 20,
+  "factsSupported": 20,
+  "factsRead": 29,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 20,
+    "cache": "evals/model-cache/anthropic-claude-haiku-4.5",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "streamed-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "serialisation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 4,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 5,
+        "tokens": 11016
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "I cannot provide a complete answer because the available source material (MangoDB - a file-based MongoDB-compatible library) does not contain documentation about how the actual MongoDB database system persists writes to disk. The search results only return information about MangoDB's implementation, which is a lightweight TypeScript/JavaScript library that mimics MongoDB's API. To properly answer your question about MongoDB's write persistence mechanisms (such as journaling, WiredTiger storage engine, checkpoints, and write concern levels), I would need access to MongoDB's official technical documentation or architecture guides, which are not available in the current knowledge base.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 3,
+        "chars": 691,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 6
+      },
+      "budget": {
+        "calls": 20,
+        "tokens": 10001
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "I cannot provide a complete answer because the available source material (MangoDB - a file-based MongoDB-compatible library) does not contain documentation about how the actual MongoDB database system persists writes to disk. The search results only return information about MangoDB's implementation, which is a lightweight TypeScript/JavaScript library that mimics MongoDB's API. To properly answer your question about MongoDB's write persistence mechanisms (such as journaling, WiredTiger storage engine, checkpoints, and write concern levels), I would need access to MongoDB's official technical documentation or architecture guides, which are not available in the current knowledge base.",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-persist.json"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "matches-filter": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "path-values": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "logical-operators": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 7,
+        "tokens": 13576
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Perfect! Now I have enough information to write a comprehensive profile. Let me compile this into a clear explanation.\n\n## How MongoDB Evaluates a Find Query with a Filter\n\nMongoDB's find query evaluation with filters follows a two-phase process: **query planning** and **document matching**.\n\n### Query Planning and Index Analysis\n\nWhen a find query is executed, MongoDB first analyzes the filter using the `analyzeQuery` function to determine whether an index can be used. The system examines the filter conditions and scores available indexes to find the best match. Queries with non-indexable operators (like `$expr`, `$where`, or `$regex`) automatically fall back to a full collection scan. The analyzer skips special index types (text, geospatial, hashed), hidden indexes, sparse indexes, and partial indexes, as these could return incomplete results. If indexable fields are found, the system generates an `IndexScanPlan` that specifies which index to use and the range bounds for the scan.\n\n### Document Matching Process\n\nOnce the execution plan is determined, MongoDB evaluates each document against the filter using the `matchesFilter` function. This is the primary entry point for document matching and supports all standard MongoDB query features. The function iterates through each key-value pair in the filter object. For logical operators (`$and`, `$or`, `$nor`), it recursively evaluates the conditions—`$and` requires all conditions to match (using `every`), `$or` requires at least one match (using `some`), and `$nor` requires none to match. For field conditions, the system uses dot notation to access nested fields and array element traversal (e.g., `\"items.0.name\"`).\n\n### Operator Evaluation\n\nWhen a field has query operators, the `matchesOperators` function evaluates them.",
+      "profile": {
+        "paragraphs": 9,
+        "sentences": 19,
+        "chars": 1797,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 6,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 10,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 64,
+        "tokens": 34207
+      },
+      "stoppedBy": "answer",
+      "dropped": 2,
+      "refused": 0,
+      "answer": "Perfect! Now I have enough information to write a comprehensive profile. Let me compile this into a clear explanation.\n\n## How MongoDB Evaluates a Find Query with a Filter\n\nMongoDB's find query evaluation with filters follows a two-phase process: **query planning** and **document matching**.\n\n### Query Planning and Index Analysis\n\nWhen a find query is executed, MongoDB first analyzes the filter using the `analyzeQuery` function to determine whether an index can be used. The system examines the filter conditions and scores available indexes to find the best match. Queries with non-indexable operators (like `$expr`, `$where`, or `$regex`) automatically fall back to a full collection scan. The analyzer skips special index types (text, geospatial, hashed), hidden indexes, sparse indexes, and partial indexes, as these could return incomplete results. If indexable fields are found, the system generates an `IndexScanPlan` that specifies which index to use and the range bounds for the scan.\n\n### Document Matching Process\n\nOnce the execution plan is determined, MongoDB evaluates each document against the filter using the `matchesFilter` function. This is the primary entry point for document matching and supports all standard MongoDB query features. The function iterates through each key-value pair in the filter object. For logical operators (`$and`, `$or`, `$nor`), it recursively evaluates the conditions—`$and` requires all conditions to match (using `every`), `$or` requires at least one match (using `some`), and `$nor` requires none to match. For field conditions, the system uses dot notation to access nested fields and array element traversal (e.g., `\"items.0.name\"`).\n\n### Operator Evaluation\n\nWhen a field has query operators, the `matchesOperators` function evaluates them.",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-find.json"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "default-id-index": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "built-lazily-in-memory": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "equality-map": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sorted-entries": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "compound-prefix": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "non-indexable": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "special-indexes-skipped": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 6,
+      "factsSupported": 6,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 10,
+        "tokens": 15075
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Perfect! Now I have enough information to write a comprehensive profile about MongoDB indexes.\n\n## How MongoDB Indexes Work and When Queries Use Them\n\n**Index Structure and Building**\n\nMongoDB indexes are built lazily on first query after documents are loaded. The `buildIndexes` function creates data structures for each index defined on a collection, storing them in an `IndexData` object that contains two key components: an `equalityMap` for fast lookups on exact values, and `sortedEntries` for range queries. When building indexes, MongoDB extracts key values from each document and organizes them by the indexed fields. The system also respects special index configurations like sparse indexes (which exclude documents missing the indexed field) and partial indexes (which only include documents matching a filter expression).\n\n**Query Analysis and Index Selection**\n\nWhen a query is executed, the `analyzeQuery` function examines the filter to determine if an index can be used. The system first checks for non-indexable operators like `$or`, `$nor`, `$not`, `$text`, `$where`, `$expr`, and `$jsonSchema`—if any are present at the top level, the query forces a full collection scan. For queries that can use indexes, MongoDB scores each available index using `scoreIndexMatch`, which evaluates how well the index matches the query's field conditions. The scoring system awards 10 points for equality conditions (highly selective) and 5 points for range conditions (less selective), with the highest-scoring index being selected for execution.\n\n**Equality and Range Lookups**\n\nOnce an index is selected, MongoDB performs either an equality lookup or a range lookup. The `lookupEquality` function retrieves documents by matching exact values on indexed fields using a compound key serialization. For range queries, the `lookupRange` function uses binary search to find the start and",
+      "profile": {
+        "paragraphs": 8,
+        "sentences": 17,
+        "chars": 1888,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 8,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 12,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 72,
+        "tokens": 38875
+      },
+      "stoppedBy": "answer",
+      "dropped": 4,
+      "refused": 0,
+      "answer": "Perfect! Now I have enough information to write a comprehensive profile about MongoDB indexes.\n\n## How MongoDB Indexes Work and When Queries Use Them\n\n**Index Structure and Building**\n\nMongoDB indexes are built lazily on first query after documents are loaded. The `buildIndexes` function creates data structures for each index defined on a collection, storing them in an `IndexData` object that contains two key components: an `equalityMap` for fast lookups on exact values, and `sortedEntries` for range queries. When building indexes, MongoDB extracts key values from each document and organizes them by the indexed fields. The system also respects special index configurations like sparse indexes (which exclude documents missing the indexed field) and partial indexes (which only include documents matching a filter expression).\n\n**Query Analysis and Index Selection**\n\nWhen a query is executed, the `analyzeQuery` function examines the filter to determine if an index can be used. The system first checks for non-indexable operators like `$or`, `$nor`, `$not`, `$text`, `$where`, `$expr`, and `$jsonSchema`—if any are present at the top level, the query forces a full collection scan. For queries that can use indexes, MongoDB scores each available index using `scoreIndexMatch`, which evaluates how well the index matches the query's field conditions. The scoring system awards 10 points for equality conditions (highly selective) and 5 points for range conditions (less selective), with the highest-scoring index being selected for execution.\n\n**Equality and Range Lookups**\n\nOnce an index is selected, MongoDB performs either an equality lookup or a range lookup. The `lookupEquality` function retrieves documents by matching exact values on indexed fields using a compound key serialization. For range queries, the `lookupRange` function uses binary search to find the start and",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-indexes.json"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "stage-dispatch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "in-memory-sequential": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "out-and-merge-last": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "accumulators": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "lookup": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "unwind": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "system-variables": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "one-key-per-stage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 8,
+      "factsSupported": 8,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 4,
+        "tokens": 7955
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "Perfect! Now I have the information I need. Let me write a profile about how MangoDB executes an aggregation pipeline.\n\n## How MangoDB Executes an Aggregation Pipeline\n\nMangoDB executes aggregation pipelines through a sequential, stage-by-stage processing model implemented in the `AggregationCursor` class. When `toArray()` is called, the pipeline begins execution by first validating stage positions to ensure that certain stages like `$out`, `$documents`, and `$geoNear` appear only in their designated positions—`$out` must be final, while `$documents` and `$geoNear` must be first.\n\nThe execution flow starts by retrieving source documents from the collection via the `source()` method, unless the pipeline begins with special stages like `$documents` or `$geoNear`, which generate or filter initial data differently. Once source documents are obtained, MangoDB iterates through each stage in the pipeline sequentially, passing the output documents from one stage as input to the next through the `executeStage()` method.\n\nThe `executeStage()` method acts as a dispatcher that validates each stage has exactly one field and routes it to the appropriate handler. MangoDB supports a comprehensive set of stages including `$match` for filtering, `$project` for field selection, `$sort` for ordering, `$limit` and `$skip` for pagination, `$group` for aggregation, `$lookup` for joins, `$unwind` for array expansion, `$addFields` for field addition, and many others like `$facet`, `$bucket`, `$graphLookup`, and `$geoNear`. Each stage handler processes the entire document array and returns the transformed results, which then flow into the next stage. This pipeline architecture ensures that",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 12,
+        "chars": 1692,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 3,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 4
+      },
+      "budget": {
+        "calls": 83,
+        "tokens": 45002
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 0,
+      "answer": "Perfect! Now I have the information I need. Let me write a profile about how MangoDB executes an aggregation pipeline.\n\n## How MangoDB Executes an Aggregation Pipeline\n\nMangoDB executes aggregation pipelines through a sequential, stage-by-stage processing model implemented in the `AggregationCursor` class. When `toArray()` is called, the pipeline begins execution by first validating stage positions to ensure that certain stages like `$out`, `$documents`, and `$geoNear` appear only in their designated positions—`$out` must be final, while `$documents` and `$geoNear` must be first.\n\nThe execution flow starts by retrieving source documents from the collection via the `source()` method, unless the pipeline begins with special stages like `$documents` or `$geoNear`, which generate or filter initial data differently. Once source documents are obtained, MangoDB iterates through each stage in the pipeline sequentially, passing the output documents from one stage as input to the next through the `executeStage()` method.\n\nThe `executeStage()` method acts as a dispatcher that validates each stage has exactly one field and routes it to the appropriate handler. MangoDB supports a comprehensive set of stages including `$match` for filtering, `$project` for field selection, `$sort` for ordering, `$limit` and `$skip` for pagination, `$group` for aggregation, `$lookup` for joins, `$unwind` for array expansion, `$addFields` for field addition, and many others like `$facet`, `$bucket`, `$graphLookup`, and `$geoNear`. Each stage handler processes the entire document array and returns the transformed results, which then flow into the next stage. This pipeline architecture ensures that",
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tools-aggregate.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T11:12:19.291Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T11:12:19.292Z node runtime node v25.9.0 · https://openrouter.ai/api/v1",
+    "model anthropic/claude-haiku-4.5: served by https://openrouter.ai/api/v1 (0 s)",
+    "2026-09-19T11:12:19.657Z model cache evals/model-cache/anthropic-claude-haiku-4.5: 239 responses loaded",
+    "machine at start: gpu 0% · vram 0.03 GiB · load 14.75 · mem 90% free (normal) · no throttling recorded",
+    "2026-09-19T11:12:19.738Z 4 seeds from evals/seeds-code.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-code-anthropic-claude-haiku-4.5-ref.json\"} · prompt tools-3 · grammar tools:composing · matched · commit 4aa0cdd (uncommitted changes)",
+    "wiki recording: 0 responses loaded",
+    "persist: resolved · topics 0/9 · supported 0/9 · read 4/9 · ¶1 · 3 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 5 lookups, 11016 tokens · stopped by tokens · 1 unread answers refused · 11 s · model 0 replayed 6 missed",
+    "find: resolved · topics 6/11 · supported 6/11 · read 7/11 · ¶9 · 19 sentences · read 2 articles, 6 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 7 lookups, 13576 tokens · stopped by answer · 2 results dropped from the context · 10 s · model 0 replayed 5 missed",
+    "indexes: resolved · topics 6/11 · supported 6/11 · read 8/11 · ¶8 · 17 sentences · read 2 articles, 8 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 5 calls, 10 lookups, 15075 tokens · stopped by answer · 4 results dropped from the context · 12 s · model 0 replayed 5 missed",
+    "aggregate: resolved · topics 8/11 · supported 8/11 · read 10/11 · ¶5 · 12 sentences · read 1 articles, 3 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 4 lookups, 7955 tokens · stopped by answer · 8 s · model 0 replayed 4 missed",
+    "machine during the suite: gpu 0% mean, 0% peak · vram up to 0.03 GiB · load up to 14.75 · no throttling in 3 samples"
+  ]
+}

@@ -1,0 +1,512 @@
+{
+  "suite": "runs",
+  "model": "anthropic/claude-haiku-4.5",
+  "runtime": "node",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "4aa0cdd (uncommitted changes)",
+  "head": "4aa0cdd (uncommitted changes)",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T11:07:38.071Z",
+  "loadSeconds": 0,
+  "prompt": "walk-15/asks-4",
+  "schema": "sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "check",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · https://openrouter.ai/api/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 19,
+    "gpuPercent": {
+      "min": 0,
+      "max": 1,
+      "mean": 0.1
+    },
+    "vramGiB": {
+      "min": 0.03,
+      "max": 0.03,
+      "mean": 0
+    },
+    "load": {
+      "min": 12.08,
+      "max": 18.39,
+      "mean": 15.6
+    },
+    "memoryFreePercent": {
+      "min": 90,
+      "max": 90,
+      "mean": 90
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tangle",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": "default",
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 25,
+  "factsSupported": 25,
+  "factsRead": 33,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 0,
+    "misses": 239,
+    "cache": "evals/model-cache/anthropic-claude-haiku-4.5",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "streamed-write": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "serialisation": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "read-path": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 5,
+      "factsSupported": 5,
+      "factsRead": 6,
+      "distractors": [],
+      "cost": {
+        "nodes": 5,
+        "visits": 8,
+        "modelCalls": 20,
+        "lookups": 5,
+        "tokens": 10001
+      },
+      "statuses": {
+        "resolved": 4,
+        "blocked": 1
+      },
+      "finding": "* The write path (`MangoCollection.writeDocuments`) already streams one\n* This scanner walks the file in chunks, tracking string/escape state and\n\n// Atomic write: write to temp file, then rename\n// Use streaming write to avoid RangeError on large collections\nconst stream = createWriteStream(tempPath);\n\n* @description Converts a MongoDB document to a JSON-serializable format by transforming\n* ObjectIds to { $oid: string } and Dates to { $date: string }.\nreturn transformDocument(doc, 'serialize');\n\n// Streamed rather than readFile+JSON.parse: building the whole collection\n// as one string throws RangeError past V8's max string length (~512MB),",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 10,
+        "chars": 650,
+        "duplicates": 0,
+        "articles": 3,
+        "sections": 5,
+        "hopsChosen": 4,
+        "hopsRead": 4,
+        "hopsCited": 3,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 27,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 20
+      },
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tangle-persist.json",
+      "summary": "live run · seed: Tell me how MangoDB persists writes to disk.\nmodel anthropic/claude-haiku-4.5 · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T11:07:38.382Z · exported 2026-09-19T11:08:05.866Z\nnodes 5 · visits 8 · model calls 20 · lookups 5 · evidence 5 · tokens 10001\nstatuses {\"resolved\":4,\"blocked\":1} · outcome: root resolved\n\nn1 [resolved v2] Tell me how MangoDB persists writes to disk. → * The write path (`MangoCollection.writeDocuments`) already streams one\n* This scanner wal\n  n2 [resolved v2] Tell me how MangoDB persists writes to disk. — about writeDocuments (src/collection.ts) → // Atomic write: write to temp file, then rename\n// Use streaming write to avoid RangeErro\n    n4 [resolved] Tell me how MangoDB persists writes to disk. — about serializeDocument (src/document-utils.ts) → * @description Converts a MongoDB document to a JSON-serializable format by transforming\n*\n  n3 [resolved v2] Tell me how MangoDB persists writes to disk. — about readDocuments (src/collection.ts) → // Streamed rather than readFile+JSON.parse: building the whole collection\n// as one strin\n    n5 [blocked] Tell me how MangoDB persists writes to disk. — about readJsonArray (src/stream-json.ts) !! Nothing of what readJsonArray (src/stream-json.ts) says about the subject was kept.\n\nmodel latency ms: median 1235 · max 2527 · n 20\nworth a look:\n- n5 blocked: Nothing of what readJsonArray (src/stream-json.ts) says about the subject was kept."
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "matches-filter": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "logical-operators": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 3,
+      "factsSupported": 3,
+      "factsRead": 6,
+      "distractors": [],
+      "cost": {
+        "nodes": 15,
+        "visits": 21,
+        "modelCalls": 64,
+        "lookups": 15,
+        "tokens": 34207
+      },
+      "statuses": {
+        "resolved": 15
+      },
+      "finding": "* Query matching logic for MongoDB-compatible filters.\n\n* Check if an object contains query operators (keys starting with $).\n* @description Determines whether a value is an object where all keys are MongoDB query operators.\n* Query operators are identified by keys that start with a dollar sign ($).\n\n* Check if a document value matches any value in the $in array.\n* Supports RegExp objects in the $in array for pattern matching.\n// This matches MongoDB behavior where { field: { $in: [null] } } matches\n\n* Check if a document value matches a single filter value.\n* Handles array field matching (any element match).\nfunction matchesSingleValue(docValue: unknown, filterValue: unknown): boolean {\n\n* Check if a value matches query operators.\n* @description Evaluates whether a document value satisfies all specified MongoDB query operators.\n* @returns True if the value matches all operators, false otherwise\n\nexport function compareValues(a: unknown, b: unknown): number {\nif (aIsNullish) return -1; // null/undefined is less than everything\nif (a instanceof ObjectId && b instanceof ObjectId) {\n\n* Registry of all expression operators.\n* Each operator is a function that takes (args, doc, vars, evaluate) and returns a value.\n\n* Evaluate a logical operator ($and, $or, $nor) against a document.\nswitch (operator) {\nreturn filters.every((cond) => matchesFilter(doc, cond));\n\n* Check if a document matches a MongoDB-style filter.\n* @description The main query matching function that evaluates whether a document satisfies\n* a MongoDB-style filter. This is the primary entry point for document matching and supports\n\n* Check if ANY of the values matches a filter condition.\nfunction anyValueMatches(values: unknown[], filterValue: unknown, isOperator: boolean): boolean {\nreturn values.some((v) => matchesOperators(v, filterValue as QueryOperators));\n\n* Get all possible values from a document using dot notation.\n* @description Retrieves all values matching a dot-notation path. When traversing arrays with\n* non-numeric path segments, returns values from all matching elements. This matches MongoDB's\n\n* Supports field conditions and logical operators ($and, $or, $nor).\n* Allows querying documents by field values with support for MongoDB query operators.\n\n* - Query operators ($eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $exists, $not, $size, $all, $elemMatch)\n* @param doc - The document to test against the filter\n* @param filter - MongoDB-style filter object with field conditions and/or logical operators\n\n* Evaluate an aggregation expression against a document.\n* - Operator expressions: { $add: [...] }, { $concat: [...] }, etc.\nexport function evaluateExpression(expr: unknown, doc: Document, vars?: VariableContext): unknown {\n\n* Get a single value from a document using dot notation (first non-undefined).\n* @param path - Dot-notation path (e.g., \"user.address.city\")\nexport function getValueByPath(doc: unknown, path: string): unknown {",
+      "profile": {
+        "paragraphs": 15,
+        "sentences": 41,
+        "chars": 2948,
+        "duplicates": 0,
+        "articles": 5,
+        "sections": 14,
+        "hopsChosen": 8,
+        "hopsRead": 8,
+        "hopsCited": 8,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 73,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 64
+      },
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tangle-find.json",
+      "summary": "live run · seed: Tell me how MangoDB evaluates a find query with a filter.\nmodel anthropic/claude-haiku-4.5 · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T11:08:05.874Z · exported 2026-09-19T11:09:19.200Z\nnodes 15 · visits 21 · model calls 64 · lookups 15 · evidence 15 · tokens 34207\nstatuses {\"resolved\":15} · outcome: root resolved\n\nn1 [resolved v2] Tell me how MangoDB evaluates a find query with a filter. → * Query matching logic for MongoDB-compatible filters.\n\n* Check if an object contains quer\n  n2 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about isOperatorObject → * Check if an object contains query operators (keys starting with $).\n* @description Deter\n  n3 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about matchesIn → * Check if a document value matches any value in the $in array.\n* Supports RegExp objects \n  n4 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about matchesSingleValue → * Check if a document value matches a single filter value.\n* Handles array field matching \n  n5 [resolved v2] Tell me how MangoDB evaluates a find query with a filter. — about matchesOperators → * Check if a value matches query operators.\n* @description Evaluates whether a document va\n    n8 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about compareValues (src/document-utils.ts) → export function compareValues(a: unknown, b: unknown): number {\nif (aIsNullish) return -1;\n    n9 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about operators (src/aggregation/operators/index.ts) → * Registry of all expression operators.\n* Each operator is a function that takes (args, do\n  n6 [resolved v2] Tell me how MangoDB evaluates a find query with a filter. — about evaluateLogicalOperator → * Evaluate a logical operator ($and, $or, $nor) against a document.\nswitch (operator) {\nre\n    n10 [resolved v2] Tell me how MangoDB evaluates a find query with a filter. — about matchesFilter (src/query-matcher.ts) → * Check if a document matches a MongoDB-style filter.\n* @description The main query matchi\n      n12 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about anyValueMatches (src/query-matcher.ts) → * Check if ANY of the values matches a filter condition.\nfunction anyValueMatches(values: \n      n13 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about getValuesByPath (src/document-utils.ts) → * Get all possible values from a document using dot notation.\n* @description Retrieves all\n    n11 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about Filter (src/types.ts) → * Supports field conditions and logical operators ($and, $or, $nor).\n* Allows querying doc\n  n7 [resolved v2] Tell me how MangoDB evaluates a find query with a filter. — about matchesFilter → * - Query operators ($eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $exists, $not, $size, $all\n    n14 [resolved v2] Tell me how MangoDB evaluates a find query with a filter. — about evaluateExpression (src/aggregation/expression.ts) → * Evaluate an aggregation expression against a document.\n* - Operator expressions: { $add:\n      n15 [resolved] Tell me how MangoDB evaluates a find query with a filter. — about getValueByPath (src/document-utils.ts) → * Get a single value from a document using dot notation (first non-undefined).\n* @param pa\n\nmodel latency ms: median 1042 · max 2423 · n 64\nnothing flagged"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "default-id-index": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "metadata-file": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "built-lazily-in-memory": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "equality-map": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "sorted-entries": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "compound-prefix": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "non-indexable": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "special-indexes-skipped": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "unique-at-write": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 10,
+      "factsSupported": 10,
+      "factsRead": 10,
+      "distractors": [],
+      "cost": {
+        "nodes": 19,
+        "visits": 28,
+        "modelCalls": 72,
+        "lookups": 19,
+        "tokens": 38875
+      },
+      "statuses": {
+        "resolved": 17,
+        "blocked": 2
+      },
+      "finding": "* Index management for MangoDB collections.\n\n* In-memory index data structure for query optimization.\n* Stores document references by their _id for efficient lookup.\n/** For equality lookups: Map<serializedKeyValue, Set<documentIdString>> */\n\n* IndexManager handles index operations for a MangoDB collection.\n* Stores index metadata in a separate JSON file and manages index creation,\n/** In-memory index data structures for query optimization */\n\n* Build all index data structures from documents.\n* Called lazily on first query after documents are loaded.\n\n* Read index metadata from the index file.\n* If the file doesn't exist, returns the default _id index.\n\n* Extract the key value from a document for a given index key specification.\n* Supports nested field paths using dot notation.\n* For hashed indexes, values are hashed and arrays are rejected.\n\n* Floating-point numbers are truncated to 64-bit integer before hashing.\n* Arrays cannot be hashed (multikey not supported for hashed indexes).\n* @throws Error if value is an array (hashed indexes don't support arrays)\n\n* Look up documents by equality on indexed fields.\n* @returns Set of document IDs matching the query, or null if index not found\nconst docIds = data.equalityMap.get(compoundKey);\n\n* Serialize a compound key (multiple fields) for equality map.\n\n* Serialize a key value for use as a map key.\n* Handles ObjectId, Date, and other special types.\n\n* Look up documents by range on the first field of an index.\n* @returns Set of document IDs matching the range, or null if index not found\n// Find start position using binary search\n\n* Find the lower bound index for a range query.\n\n* Find the upper bound index for a range query.\n\n// MongoDB uses binary comparison by default (not locale-aware)\n\n* Create an index on the collection.\n* @param keySpec - Fields to index (e.g., { email: 1 })\n* @param options - Index options (unique, name, sparse, expireAfterSeconds, partialFilterExpression)\n\n* For example, combining sparse and partialFilterExpression.\n\n* Indexes can improve query performance and enforce unique constraints.\n* Multiple indexes can be created on a single collection.\n* @param keySpec - The fields to index, e.g., { name: 1 } for ascending or { age: -1 } for descending",
+      "profile": {
+        "paragraphs": 17,
+        "sentences": 36,
+        "chars": 2251,
+        "duplicates": 0,
+        "articles": 5,
+        "sections": 19,
+        "hopsChosen": 12,
+        "hopsRead": 12,
+        "hopsCited": 10,
+        "blocked": 2
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 80,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 72
+      },
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tangle-indexes.json",
+      "summary": "live run · seed: Tell me how MangoDB's indexes work and when a query uses them.\nmodel anthropic/claude-haiku-4.5 · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T11:09:19.211Z · exported 2026-09-19T11:10:39.732Z\nnodes 19 · visits 28 · model calls 72 · lookups 19 · evidence 19 · tokens 38875\nstatuses {\"resolved\":17,\"blocked\":2} · outcome: root resolved\n\nn1 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. → * Index management for MangoDB collections.\n\n* In-memory index data structure for query op\n  n2 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about IndexData → * In-memory index data structure for query optimization.\n* Stores document references by t\n  n3 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about IndexManager → * IndexManager handles index operations for a MangoDB collection.\n* Stores index metadata \n  n4 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about buildIndexes → * Build all index data structures from documents.\n* Called lazily on first query after doc\n    n8 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about loadIndexes (src/index-manager.ts) → * Read index metadata from the index file.\n* If the file doesn't exist, returns the defaul\n      n10 [blocked] Tell me how MangoDB's indexes work and when a query uses them. — about indexes (src/collection.ts) !! Nothing of what indexes (src/collection.ts) says about the subject was kept.\n    n9 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about extractKeyValue (src/index-manager.ts) → * Extract the key value from a document for a given index key specification.\n* Supports ne\n      n11 [blocked] Tell me how MangoDB's indexes work and when a query uses them. — about getValueByPath (src/document-utils.ts) !! Nothing of what getValueByPath (src/document-utils.ts) says about the subject was kept.\n      n12 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about hashValue (src/index-manager.ts) → * Floating-point numbers are truncated to 64-bit integer before hashing.\n* Arrays cannot b\n  n5 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about lookupEquality → * Look up documents by equality on indexed fields.\n* @returns Set of document IDs matching\n    n13 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about serializeCompoundKey (src/index-manager.ts) → * Serialize a compound key (multiple fields) for equality map.\n\n* Serialize a key value fo\n      n14 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about serializeKeyValue (src/index-manager.ts) → * Serialize a key value for use as a map key.\n* Handles ObjectId, Date, and other special \n  n6 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about lookupRange → * Look up documents by range on the first field of an index.\n* @returns Set of document ID\n    n15 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about findLowerBound (src/index-manager.ts) → * Find the lower bound index for a range query.\n    n16 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about findUpperBound (src/index-manager.ts) → * Find the upper bound index for a range query.\n\n// MongoDB uses binary comparison by defa\n      n17 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about compareScalarValues (src/utils.ts) → // MongoDB uses binary comparison by default (not locale-aware)\n  n7 [resolved v2] Tell me how MangoDB's indexes work and when a query uses them. — about createIndex → * Create an index on the collection.\n* @param keySpec - Fields to index (e.g., { email: 1 \n    n18 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about InvalidIndexOptionsError (src/errors.ts) → * For example, combining sparse and partialFilterExpression.\n    n19 [resolved] Tell me how MangoDB's indexes work and when a query uses them. — about createIndex (src/collection.ts) → * Indexes can improve query performance and enforce unique constraints.\n* Multiple indexes\n\nmodel latency ms: median 1024 · max 1913 · n 72\nworth a look:\n- n10 blocked: Nothing of what indexes (src/collection.ts) says about the subject was kept.\n- n11 blocked: Nothing of what getValueByPath (src/document-utils.ts) says about the subject was kept."
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "Root resolved",
+      "facts": {
+        "stage-dispatch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "in-memory-sequential": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "out-and-merge-last": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "expression-evaluator": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "operator-registry": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "accumulators": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "lookup": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "system-variables": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "one-key-per-stage": {
+          "present": true,
+          "supported": true,
+          "read": true
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 7,
+      "factsSupported": 7,
+      "factsRead": 11,
+      "distractors": [],
+      "cost": {
+        "nodes": 22,
+        "visits": 32,
+        "modelCalls": 83,
+        "lookups": 22,
+        "tokens": 45002
+      },
+      "statuses": {
+        "resolved": 20,
+        "blocked": 2
+      },
+      "finding": "* AggregationCursor and pipeline stage implementations.\nprivate async executeStage(stage: PipelineStage, docs: Document[]): Promise<Document[]>\nprivate execMatch(filter: Filter<Document>, docs: Document[]): Document[]\n\n* AggregationCursor represents a cursor over aggregation pipeline results.\n\nasync toArray(): Promise<Document[]> {\nthis.pipelineNow = new Date();\nif ('$out' in stage && i !== this.pipeline.length - 1) {\n\nconst stageValue = (stage as unknown as Record<string, unknown>)[stageKey];\nswitch (stageKey) {\ncase '$match':\n\nprivate execAddFields(addFieldsSpec: Record<string, unknown>, docs: Document[]): Document[] {\nfor (const [field, expr] of Object.entries(addFieldsSpec)) {\nconst value = evaluateExpression(expr, doc, this.getSystemVars(doc));\n\nprivate execProject(\nthrow new Error('$project requires at least one field');\n\n* $documents - injects literal documents into the pipeline.\nprivate execDocuments(spec: unknown): Document[] {\nconst result = evaluateExpression(spec, {}, systemVars);\n\n* Evaluate an aggregation expression against a document.\n* - Operator expressions: { $add: [...] }, { $concat: [...] }, etc.\nexport function evaluateExpression(expr: unknown, doc: Document, vars?: VariableContext): unknown {\n\n* Create system variables context for expression evaluation.\n* @returns Variable context with system variables\nexport function createSystemVars(doc?: Document, now?: Date): VariableContext {\n\nthrow new Error('Pipeline stage must have exactly one field');\nconst stageKey = stageKeys[0];\n\nprivate execReplaceRoot(spec: { newRoot: unknown }, docs: Document[]): Document[] {\nreturn docs.map((doc) => {\nconst newRoot = evaluateExpression(spec.newRoot, doc, this.getSystemVars(doc));\n\n* Get system variables for a document.\n* Uses shared $$NOW date for consistency across pipeline.\n\n* $facet - Processes multiple aggregation pipelines within a single stage.\n* Returns a single document where each field contains the array of results from its pipeline.\n// Process each facet pipeline independently\n\nthrow new Error('Cannot mix inclusion and exclusion in projection');\n\nprivate projectDocument(\n\n* @param path - Dot-notation path (e.g., \"user.address.city\")\n\nprivate execSort(sortSpec: SortSpec, docs: Document[]): Document[] {\nreturn [...docs].sort((a, b) => {\nfor (const [field, direction] of sortFields) {\n\n* Compares two values according to MongoDB sort semantics, including special\n* handling for arrays. Arrays are compared using their minimum element (for\n* This is the main comparison function used for sorting documents by field values.\n\n* Compare two scalar (non-array) values for sorting using MongoDB's comparison rules.\n* Performs a comparison between two values following MongoDB's BSON type ordering\n* and value comparison semantics. First compares by type order, then by value\n\n* Extract the sort key from an array based on sort direction.\n* In MongoDB, when sorting by a field that contains arrays, the array's sort key\n* - Ascending (1): use the minimum (smallest) element in the array",
+      "profile": {
+        "paragraphs": 20,
+        "sentences": 49,
+        "chars": 3030,
+        "duplicates": 0,
+        "articles": 5,
+        "sections": 20,
+        "hopsChosen": 15,
+        "hopsRead": 15,
+        "hopsCited": 14,
+        "blocked": 2
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 99,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 0,
+        "misses": 83
+      },
+      "export": "evals/results/runs/2026-09-19-anthropic-claude-haiku-4.5-node-tangle-aggregate.json",
+      "summary": "live run · seed: Tell me how MangoDB executes an aggregation pipeline.\nmodel anthropic/claude-haiku-4.5 · prompt walk-15/asks-4/sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · created 2026-09-19T11:10:39.739Z · exported 2026-09-19T11:12:19.123Z\nnodes 22 · visits 32 · model calls 83 · lookups 22 · evidence 22 · tokens 45002\nstatuses {\"resolved\":20,\"blocked\":2} · outcome: root resolved\n\nn1 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. → * AggregationCursor and pipeline stage implementations.\nprivate async executeStage(stage: \n  n2 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about AggregationCursor → * AggregationCursor represents a cursor over aggregation pipeline results.\n  n3 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about toArray → async toArray(): Promise<Document[]> {\nthis.pipelineNow = new Date();\nif ('$out' in stage \n    n8 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about executeStage (src/aggregation/cursor.ts) → const stageValue = (stage as unknown as Record<string, unknown>)[stageKey];\nswitch (stageK\n      n10 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about execAddFields (src/aggregation/cursor.ts) → private execAddFields(addFieldsSpec: Record<string, unknown>, docs: Document[]): Document[\n      n11 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about execProject (src/aggregation/cursor.ts) → private execProject(\nthrow new Error('$project requires at least one field');\n    n9 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about execDocuments (src/aggregation/cursor.ts) → * $documents - injects literal documents into the pipeline.\nprivate execDocuments(spec: un\n      n12 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about evaluateExpression (src/aggregation/expression.ts) → * Evaluate an aggregation expression against a document.\n* - Operator expressions: { $add:\n      n13 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about createSystemVars (src/aggregation/system-vars.ts) → * Create system variables context for expression evaluation.\n* @returns Variable context w\n  n4 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about executeStage → throw new Error('Pipeline stage must have exactly one field');\nconst stageKey = stageKeys[\n    n14 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about execReplaceRoot (src/aggregation/cursor.ts) → private execReplaceRoot(spec: { newRoot: unknown }, docs: Document[]): Document[] {\nreturn\n      n16 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about getSystemVars (src/aggregation/cursor.ts) → * Get system variables for a document.\n* Uses shared $$NOW date for consistency across pip\n    n15 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about execFacet (src/aggregation/cursor.ts) → * $facet - Processes multiple aggregation pipelines within a single stage.\n* Returns a sin\n  n5 [blocked] Tell me how MangoDB executes an aggregation pipeline. — about execMatch !! Nothing read states the answer, and no further lookup or question is allowed here.\n  n6 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about execProject → throw new Error('Cannot mix inclusion and exclusion in projection');\n\nprivate projectDocum\n    n17 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about projectDocument (src/aggregation/cursor.ts) → private projectDocument(\n\n* @param path - Dot-notation path (e.g., \"user.address.city\")\n      n18 [blocked] Tell me how MangoDB executes an aggregation pipeline. — about cloneDocument (src/document-utils.ts) !! Nothing of what cloneDocument (src/document-utils.ts) says about the subject was kept.\n      n19 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about getValueByPath (src/document-utils.ts) → * @param path - Dot-notation path (e.g., \"user.address.city\")\n  n7 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about execSort → private execSort(sortSpec: SortSpec, docs: Document[]): Document[] {\nreturn [...docs].sort\n    n20 [resolved v2] Tell me how MangoDB executes an aggregation pipeline. — about compareValuesForSort (src/utils.ts) → * Compares two values according to MongoDB sort semantics, including special\n* handling fo\n      n21 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about compareScalarValues (src/utils.ts) → * Compare two scalar (non-array) values for sorting using MongoDB's comparison rules.\n* Pe\n      n22 [resolved] Tell me how MangoDB executes an aggregation pipeline. — about getArraySortKey (src/utils.ts) → * Extract the sort key from an array based on sort direction.\n* In MongoDB, when sorting b\n\nmodel latency ms: median 1094 · max 2438 · n 83\nworth a look:\n- n5 blocked: Nothing read states the answer, and no further lookup or question is allowed here.\n- n18 blocked: Nothing of what cloneDocument (src/document-utils.ts) says about the subject was kept."
+    }
+  ],
+  "notes": [
+    "2026-09-19T11:07:38.069Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T11:07:38.071Z node runtime node v25.9.0 · https://openrouter.ai/api/v1",
+    "model anthropic/claude-haiku-4.5: served by https://openrouter.ai/api/v1 (0 s)",
+    "2026-09-19T11:07:38.305Z model cache evals/model-cache/anthropic-claude-haiku-4.5: 0 responses loaded",
+    "machine at start: gpu 0% · vram 0.03 GiB · load 15.42 · mem 90% free (normal) · no throttling recorded",
+    "2026-09-19T11:07:38.382Z 4 seeds from evals/seeds-code.json · mode tangle · limits {} · prompt walk-15/asks-4 · grammar sentence:check,section:list,missing:search,question:one,article:snippets,confirm:yesno · commit 4aa0cdd (uncommitted changes)",
+    "wiki recording: 0 responses loaded",
+    "2026-09-19T11:08:05.855Z run stopped: Root resolved",
+    "persist: resolved · topics 5/9 · supported 5/9 · read 6/9 · ¶4 · 10 sentences · read 3 articles, 5 sections · hops 3 cited / 4 read / 4 chosen · 1 blocked · 5 nodes, 20 calls, 5 lookups, 10001 tokens · 27 s · wiki 0 hits 0 misses · model 0 replayed 20 missed",
+    "2026-09-19T11:09:19.177Z run stopped: Root resolved",
+    "find: resolved · topics 3/11 · supported 3/11 · read 6/11 · ¶15 · 41 sentences · read 5 articles, 14 sections · hops 8 cited / 8 read / 8 chosen · 15 nodes, 64 calls, 15 lookups, 34207 tokens · 73 s · wiki 0 hits 0 misses · model 0 replayed 64 missed",
+    "2026-09-19T11:10:39.707Z run stopped: Root resolved",
+    "indexes: resolved · topics 10/11 · supported 10/11 · read 10/11 · ¶17 · 36 sentences · read 5 articles, 19 sections · hops 10 cited / 12 read / 12 chosen · 2 blocked · 19 nodes, 72 calls, 19 lookups, 38875 tokens · 80 s · wiki 0 hits 0 misses · model 0 replayed 72 missed",
+    "2026-09-19T11:12:19.107Z run stopped: Root resolved",
+    "aggregate: resolved · topics 7/11 · supported 7/11 · read 11/11 · ¶20 · 49 sentences · read 5 articles, 20 sections · hops 14 cited / 15 read / 15 chosen · 2 blocked · 22 nodes, 83 calls, 22 lookups, 45002 tokens · 99 s · wiki 0 hits 0 misses · model 0 replayed 83 missed",
+    "machine during the suite: gpu 0.1% mean, 1% peak · vram up to 0.03 GiB · load up to 18.39 · no throttling in 19 samples"
+  ]
+}

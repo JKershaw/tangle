@@ -2,6 +2,16 @@
 
 *What each eval round meant, newest first. The rows themselves are in [results.md](results.md); the node-eval rows in [node/results.md](node/results.md).*
 
+## 2026-09-19 · the reference column: the graph and the tool control on DeepSeek and Haiku
+
+Milestone 7 brought forward by a day, at John's question: does the boost run out when the model is large, or does a task that needs a large model run cheaper as the graph on a mid-sized one? The same graph and the same tool control over OpenRouter, DeepSeek V3.2 and Claude Haiku 4.5, on the profile and MangoDB suites, under a dollar in all; rows added to the table below.
+
+- **The graph beats the tool control on both API models, on both suites.** DeepSeek: profiles 27 against 21, MangoDB 13 against 8. Haiku: profiles 23 against 15, MangoDB 25 against 20. The one size where the single context won, 8B on code, stays the one size.
+- **Haiku through the graph is the best code row by seven topics**, 25 of 42 against 14B's 18, every one cited, at 5.1k tokens a topic (about a cent a topic at Haiku's prices). So the harness is not the ceiling over code: given a model that picks well, the same units and candidates reach most of the rubric. The first draft of this note, written on DeepSeek's row alone, said the opposite and was wrong.
+- **DeepSeek V3.2 is poor at these picks.** 13 of 42 on code, with the persist brief a single paragraph of one topic, and 27 of 35 on profiles, level with 14B. As the tool control it is worse still (8 of 42) and it never copies a sentence word for word (0 cited on both suites). A frontier-class model is not automatically a good picker; the node evals over the recorded calls can now say which ask it fails.
+- **The cited single context stays near zero on code at every size and model.** Haiku copies 12 of 35 on profiles and 0 of 42 on code; 14B 16 and 3; DeepSeek 0 and 0. Only the graph cites over code, at any size.
+- **Cost, in money.** Haiku's graph rows cost about twenty cents a suite and its tool control eight; the whole reference column was under a dollar. A 1.7B graph on this machine costs electricity. For Harbour the question is now concrete: the graph on Haiku reads a codebase better than Haiku driving itself and better than any local size, at two and a half times the tokens.
+
 ## 2026-09-19 · milestone 5b: the tool control, 1.7B to 8B
 
 The control the graph had to beat (ROADMAP 5b): the same model with the four source requests as tools in one context, driving itself, each seed given the calls and tokens the graph's row spent on it, in the walk's context window. tools-3: an answer given before anything was read is refused with the reason and charged; a search line handed back as a title is cut to the title; the budget is checked against the next call's cost. Rows in Node against Ollama, the four seed sets, three sizes, and 14B on the profile and code suites (the 14B memory row is from the walk-12 day; there is none for MangoDB).
@@ -15,6 +25,8 @@ The control the graph had to beat (ROADMAP 5b): the same model with the four sou
 | | 4B | **24** · 241 · 76k · 3.2k | 11 · 28 · 64k · 5.8k | 1 | 10 |
 | | 8B | **24** · 266 · 85k · 3.5k | 20 · 19 · 25k · 1.3k | 8 | 20 |
 | | 14B | **27** · 265 · 87k · 3.2k | 20 (18 supported) · 15 · 16k · 0.8k | 16 | 21 (walk-12 day) |
+| | DeepSeek V3.2 (API) | **27** · 249 · 115k · 4.2k | 21 · 45 · 106k · 5.0k | 0 | — |
+| | Haiku 4.5 (API) | **23** · 271 · 139k · 6.0k | 15 · 19 · 46k · 3.0k | 12 | — |
 | overflow, 30 topics | 1.7B | **24** · 117 · 44k · 1.8k | 11 · 25 · 39k · 3.5k | 0 | 5 |
 | | 4B | **23** · 135 · 50k · 2.2k | 11 · 17 · 35k · 3.2k | 0 | 12 |
 | | 8B | **24** · 141 · 51k · 2.1k | 21 · 15 · 18k · 0.9k | 6 | 17 |
@@ -22,6 +34,8 @@ The control the graph had to beat (ROADMAP 5b): the same model with the four sou
 | | 4B | **11** · 164 · 47k · 4.3k | 11 (6 supported) · 24 · 43k · 4.0k | 0 | 8 |
 | | 8B | 12 · 167 · 53k · 4.4k | **15** (14 supported) · 16 · 15k · 1.0k | 0 | 9 |
 | | 14B | **18** · 201 · 62k · 3.5k | 15 · 26 · 32k · 2.1k | 3 | — |
+| | DeepSeek V3.2 (API) | **13** · 137 · 67k · 5.2k | 8 (7 supported) · 35 · 76k · 9.4k | 0 | — |
+| | Haiku 4.5 (API) | **25** · 239 · 128k · 5.1k | 20 · 20 · 48k · 2.4k | 0 | — |
 
 Each cell: topics (or facts) present · model calls · tokens · tokens per topic. The graph's topics are all supported by construction; the tool control's "supported" means the fact was named and something read held it. Memory is the closed-book column (page rows for Wikipedia, Node for MangoDB). Budget: each seed's calls and tokens are the graph's spend on that seed; the tool control may stop early, and at 8B it does.
 
