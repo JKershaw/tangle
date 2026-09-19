@@ -37,7 +37,8 @@ export function endpointOptions(endpoint, env = process.env) {
 }
 
 export async function openNodeLab({ endpoint = DEFAULT_ENDPOINT, fetchImpl = globalThis.fetch, wikiCache = null, modelCache = null, live = true, ask: scripted = null, offline = false, source = null, onUpdate = null, note = console.log } = {}) {
-  const adapter = replayAdapter(createEndpointAdapter({ url: endpoint, fetchImpl, ...endpointOptions(endpoint) }), { live });
+  const contextWindow = Number(process.env.OLLAMA_CONTEXT_LENGTH) || undefined;
+  const adapter = replayAdapter(createEndpointAdapter({ url: endpoint, fetchImpl, contextWindow, ...endpointOptions(endpoint) }), { live });
   let modelDir = null;
   let saved = { hits: 0, misses: 0 };
   const replayStats = () => adapter.replay.stats();

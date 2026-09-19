@@ -216,6 +216,7 @@ export function createEngineAdapter(webllm, options = {}) {
     get modelId() {
       return modelId;
     },
+    config: { extra: null, contextWindow: CONTEXT_WINDOW },
     async isCached(id) {
       try {
         return await webllm.hasModelInCache(id, appConfig());

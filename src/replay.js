@@ -9,8 +9,10 @@
 
 // The context of one call, as readable JSON with the keys in a fixed order.
 // Anything that is not context (a signal, a delta callback) is left out.
-export function replayKey(model, messages, { schema = null, maxTokens = null, temperature = null, seed = null, tools = null } = {}) {
-  return JSON.stringify({ model, messages, schema, maxTokens, temperature, seed, ...(tools?.length ? { tools } : {}) });
+// config is the adapter's (extra request fields, the context window): the
+// same call to the same weights answers differently under a different one.
+export function replayKey(model, messages, { schema = null, maxTokens = null, temperature = null, seed = null, tools = null } = {}, config = null) {
+  return JSON.stringify({ model, messages, schema, maxTokens, temperature, seed, ...(tools?.length ? { tools } : {}), ...(config ? { config } : {}) });
 }
 
 // The wrapped adapter keeps every method of the one underneath, with the
@@ -43,7 +45,7 @@ export function replayAdapter(adapter, { live = true } = {}) {
     generate: {
       enumerable: true,
       async value(messages, options = {}) {
-        const key = replayKey(modelId(), messages, options);
+        const key = replayKey(modelId(), messages, options, adapter.config ?? null);
         const hit = entries.get(key);
         if (hit) {
           stats.hits++;

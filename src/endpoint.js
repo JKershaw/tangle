@@ -5,7 +5,7 @@
 // call is one request carrying the ask's JSON schema, so the server constrains
 // the output the way the page's grammar does; the harness still validates
 // what comes back, as it does for the page.
-import { GENERATION_TIMEOUT_MS, MAX_ACTION_TOKENS, SAMPLING } from "./webllm.js";
+import { CONTEXT_WINDOW, GENERATION_TIMEOUT_MS, MAX_ACTION_TOKENS, SAMPLING } from "./webllm.js";
 
 export const DEFAULT_ENDPOINT = "http://127.0.0.1:11434/v1";
 // Qwen3 thinks before it answers unless told not to, and the thinking is
@@ -43,7 +43,9 @@ export function toolCallsOf(message) {
   });
 }
 
-export function createEndpointAdapter({ url = DEFAULT_ENDPOINT, fetchImpl = globalThis.fetch, apiKey = null, headers = {}, timeoutMs = GENERATION_TIMEOUT_MS, extra = NO_THINKING } = {}) {
+// contextWindow is what the server was started with (OLLAMA_CONTEXT_LENGTH):
+// the adapter cannot ask, so the caller says, and the replay keys on it.
+export function createEndpointAdapter({ url = DEFAULT_ENDPOINT, fetchImpl = globalThis.fetch, apiKey = null, headers = {}, timeoutMs = GENERATION_TIMEOUT_MS, extra = NO_THINKING, contextWindow = CONTEXT_WINDOW } = {}) {
   const base = String(url).replace(/\/+$/, "");
   const inFlight = new Set();
   let modelId = null;
@@ -64,6 +66,8 @@ export function createEndpointAdapter({ url = DEFAULT_ENDPOINT, fetchImpl = glob
       return modelId;
     },
     url: base,
+    // What shapes every answer besides the call itself (src/replay.js keys on it).
+    config: { extra, contextWindow },
     // What the server serves (GET /models), so a typo is an error before a run.
     async models() {
       const body = await request("/models");
