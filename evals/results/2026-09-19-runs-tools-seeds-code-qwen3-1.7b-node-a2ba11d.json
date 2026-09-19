@@ -1,0 +1,536 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "source": {
+    "kind": "files",
+    "name": "MangoDB",
+    "root": "/Users/work/development/mangodb",
+    "files": 45,
+    "hash": "a5efe859"
+  },
+  "commit": "a2ba11d",
+  "head": "a2ba11d",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:12:39.336Z",
+  "loadSeconds": 0,
+  "prompt": "tools-2",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 3,
+    "gpuPercent": {
+      "min": 0,
+      "max": 94,
+      "mean": 62.7
+    },
+    "vramGiB": {
+      "min": 5.02,
+      "max": 5.03,
+      "mean": 5
+    },
+    "load": {
+      "min": 18.01,
+      "max": 18.44,
+      "mean": 18.3
+    },
+    "memoryFreePercent": {
+      "min": 72,
+      "max": 72,
+      "mean": 72
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-code.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 9,
+  "factsSupported": 5,
+  "factsRead": 11,
+  "factsTotal": 42,
+  "replay": {
+    "hits": 4,
+    "misses": 28,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "persist",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "json-file-per-collection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "temp-then-rename": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "streamed-write": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "serialisation": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mutex": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "whole-collection-rewrite": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "read-path": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-sidecar": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "missing-file-is-empty": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 1,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 10,
+        "modelCalls": 10,
+        "lookups": 8,
+        "tokens": 9620
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB uses a write-ahead log (WAL) to persist writes to disk. When a write operation occurs, the transaction is first recorded in the WAL, which ensures data integrity and recovery. The actual data is then written to the main data file. This mechanism allows MangoDB to recover from system crashes by reading the WAL to reconstruct the state of the database. The WAL is essential for maintaining durability and consistency in the database.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 5,
+        "chars": 441,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 9
+      },
+      "budget": {
+        "calls": 23,
+        "tokens": 8177
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "MangoDB uses a write-ahead log (WAL) to persist writes to disk. When a write operation occurs, the transaction is first recorded in the WAL, which ensures data integrity and recovery. The actual data is then written to the main data file. This mechanism allows MangoDB to recover from system crashes by reading the WAL to reconstruct the state of the database. The WAL is essential for maintaining durability and consistency in the database.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-persist.json"
+    },
+    {
+      "id": "find",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "reads-whole-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "index-first": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "query-analyzer": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "remaining-filter": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "matches-filter": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "path-values": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "logical-operators": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "lazy-cursor": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "sort-skip-limit": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "projection": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "text-search": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 2,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 10,
+        "modelCalls": 10,
+        "lookups": 7,
+        "tokens": 17562
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "I have successfully read the relevant section of the file `src/query-matcher.ts` and found the definition of the `BSON_TYPE_ALIASES` mapping, which is used for schema validation in MangoDB.\n\n### Key Points from the Section:\n\n- **BSON Type Aliases**: The file defines a mapping between BSON type names (like `double`, `string`, `object`, etc.) and numeric codes. This mapping is essential for schema validation, ensuring that the data types used in queries and documents are correctly identified and validated.\n\n- **Purpose**: The `BSON_TYPE_ALIASES` object is exported and used to convert string type names into numeric codes, which are then used in query operations to determine the correct data type handling.\n\n- **Usage in Queries**: When a filter is applied in a `find` query, MangoDB uses this mapping to validate the types of the filter values against the expected types in the database schema.\n\n- **Example**: If a query filter includes a `date` type, the `BSON_TYPE_ALIASES` mapping ensures that the value is correctly interpreted as a date type in the database.\n\nThis mapping is critical for ensuring that queries are evaluated correctly and that the data types are handled appropriately, which is essential for the performance and correctness of MangoDB queries.",
+      "profile": {
+        "paragraphs": 7,
+        "sentences": 8,
+        "chars": 1272,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 11,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 9
+      },
+      "budget": {
+        "calls": 50,
+        "tokens": 15898
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 2,
+      "answer": "I have successfully read the relevant section of the file `src/query-matcher.ts` and found the definition of the `BSON_TYPE_ALIASES` mapping, which is used for schema validation in MangoDB.\n\n### Key Points from the Section:\n\n- **BSON Type Aliases**: The file defines a mapping between BSON type names (like `double`, `string`, `object`, etc.) and numeric codes. This mapping is essential for schema validation, ensuring that the data types used in queries and documents are correctly identified and validated.\n\n- **Purpose**: The `BSON_TYPE_ALIASES` object is exported and used to convert string type names into numeric codes, which are then used in query operations to determine the correct data type handling.\n\n- **Usage in Queries**: When a filter is applied in a `find` query, MangoDB uses this mapping to validate the types of the filter values against the expected types in the database schema.\n\n- **Example**: If a query filter includes a `date` type, the `BSON_TYPE_ALIASES` mapping ensures that the value is correctly interpreted as a date type in the database.\n\nThis mapping is critical for ensuring that queries are evaluated correctly and that the data types are handled appropriately, which is essential for the performance and correctness of MangoDB queries.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-find.json"
+    },
+    {
+      "id": "indexes",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "default-id-index": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "metadata-file": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "built-lazily-in-memory": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "equality-map": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "sorted-entries": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "compound-prefix": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "non-indexable": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "special-indexes-skipped": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "unique-at-write": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "hint": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "ttl-not-enforced": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 3,
+        "tokens": 6951
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The `index-manager.ts` file provides detailed information about how MangoDB manages indexes. It includes interfaces for `GeoIndexInfo` and `IndexData`, as well as methods for managing indexes, such as `buildIndexes`, `addToIndexes`, and `dropIndex`.\n\n### Key Points:\n\n- **Index Management**: The `IndexManager` class is responsible for managing indexes in MangoDB collections. It handles operations like creating, updating, and removing indexes, as well as loading and saving index information.\n- **Index Creation**: The `createIndex` method allows the creation of indexes with specified key specifications. This is crucial for optimizing queries by creating structured references to data.\n- **Index Usage**: The `buildIndexes` method is used to build indexes for a collection of documents. When a query is made, MangoDB uses the index to quickly locate and retrieve specific data, significantly reducing query execution time.\n- **Index Types**: The `hasGeoIndex` method checks if a collection has a geo index, which is essential for efficient geospatial queries. The `requireGeoIndex` method ensures that geo queries are executed with the appropriate geo index.\n\n### Example Usage:\nWhen a query is executed on a collection, MangoDB uses the index to determine which documents to retrieve. For instance, if a query is made on a collection with a large number of documents, the index helps narrow down the search space, making the query faster.\n\nIn summary, MangoDB's index management is designed to optimize query performance by creating and maintaining indexes that allow the database to quickly locate and retrieve specific data. The `IndexManager` class provides the necessary tools for managing these indexes, ensuring efficient data retrieval and scalability.",
+      "profile": {
+        "paragraphs": 5,
+        "sentences": 11,
+        "chars": 1764,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 39,
+        "tokens": 12657
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 2,
+      "answer": "The `index-manager.ts` file provides detailed information about how MangoDB manages indexes. It includes interfaces for `GeoIndexInfo` and `IndexData`, as well as methods for managing indexes, such as `buildIndexes`, `addToIndexes`, and `dropIndex`.\n\n### Key Points:\n\n- **Index Management**: The `IndexManager` class is responsible for managing indexes in MangoDB collections. It handles operations like creating, updating, and removing indexes, as well as loading and saving index information.\n- **Index Creation**: The `createIndex` method allows the creation of indexes with specified key specifications. This is crucial for optimizing queries by creating structured references to data.\n- **Index Usage**: The `buildIndexes` method is used to build indexes for a collection of documents. When a query is made, MangoDB uses the index to quickly locate and retrieve specific data, significantly reducing query execution time.\n- **Index Types**: The `hasGeoIndex` method checks if a collection has a geo index, which is essential for efficient geospatial queries. The `requireGeoIndex` method ensures that geo queries are executed with the appropriate geo index.\n\n### Example Usage:\nWhen a query is executed on a collection, MangoDB uses the index to determine which documents to retrieve. For instance, if a query is made on a collection with a large number of documents, the index helps narrow down the search space, making the query faster.\n\nIn summary, MangoDB's index management is designed to optimize query performance by creating and maintaining indexes that allow the database to quickly locate and retrieve specific data. The `IndexManager` class provides the necessary tools for managing these indexes, ensuring efficient data retrieval and scalability.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-indexes.json"
+    },
+    {
+      "id": "aggregate",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "stage-dispatch": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "in-memory-sequential": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "out-and-merge-last": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "expression-evaluator": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "operator-registry": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "accumulators": {
+          "present": true,
+          "supported": false,
+          "read": false
+        },
+        "lookup": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "unwind": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "window-functions": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "system-variables": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "one-key-per-stage": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 11,
+      "factsPresent": 4,
+      "factsSupported": 0,
+      "factsRead": 0,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 2,
+        "tokens": 5666
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "MangoDB's aggregation pipeline is implemented through a series of stages that process data and apply transformations. The pipeline is executed in a sequential manner, with each stage processing the output of the previous stage. Key components include the $match stage for filtering documents, the $group stage for aggregating data, and the $sort and $limit stages for final sorting and limiting results. The pipeline is optimized for performance, with MangoDB using a query execution plan to minimize operations on large datasets. The implementation is found in files such as `src/aggregation/cursor.ts`, `src/db.ts`, and `src/collection.ts`, which handle the execution of pipelines on databases and collections. The pipeline is flexible, allowing users to add or remove stages as needed to achieve the desired transformation of the data.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 6,
+        "chars": 838,
+        "duplicates": 0,
+        "articles": 0,
+        "sections": 0,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 7,
+      "wiki": {
+        "hits": 0,
+        "misses": 0,
+        "added": 0,
+        "entries": 0
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 10,
+        "tokens": 3659
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 3,
+      "answer": "MangoDB's aggregation pipeline is implemented through a series of stages that process data and apply transformations. The pipeline is executed in a sequential manner, with each stage processing the output of the previous stage. Key components include the $match stage for filtering documents, the $group stage for aggregating data, and the $sort and $limit stages for final sorting and limiting results. The pipeline is optimized for performance, with MangoDB using a query execution plan to minimize operations on large datasets. The implementation is found in files such as `src/aggregation/cursor.ts`, `src/db.ts`, and `src/collection.ts`, which handle the execution of pipelines on databases and collections. The pipeline is flexible, allowing users to add or remove stages as needed to achieve the desired transformation of the data.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-aggregate.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:12:39.335Z corpus MangoDB: 45 files, 568 declared names, a5efe859",
+    "2026-09-19T08:12:39.336Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:12:39.373Z model cache evals/model-cache/qwen3-1.7b: 599 responses loaded",
+    "machine at start: gpu 96% · vram 5.03 GiB · load 18.44 · mem 72% free (normal) · no throttling recorded",
+    "2026-09-19T08:12:39.475Z 4 seeds from evals/seeds-code.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-code-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-2 · grammar tools:composing · matched · commit a2ba11d",
+    "wiki recording: 0 responses loaded",
+    "persist: resolved · topics 0/9 · supported 0/9 · read 1/9 · ¶1 · 5 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 10 calls, 8 lookups, 9620 tokens · stopped by tokens · 1 unread answers refused · 5 s · model 1 replayed 9 missed",
+    "find: resolved · topics 1/11 · supported 1/11 · read 2/11 · ¶7 · 8 sentences · read 1 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 10 calls, 7 lookups, 17562 tokens · stopped by answer · 2 unread answers refused · 11 s · model 1 replayed 9 missed",
+    "indexes: resolved · topics 4/11 · supported 4/11 · read 8/11 · ¶5 · 11 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 3 lookups, 6951 tokens · stopped by answer · 2 unread answers refused · 8 s · model 1 replayed 5 missed",
+    "aggregate: resolved · topics 4/11 · supported 0/11 · read 0/11 · ¶1 · 6 sentences · read 0 articles, 0 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 6 calls, 2 lookups, 5666 tokens · stopped by tokens · 3 unread answers refused · 7 s · model 1 replayed 5 missed",
+    "machine during the suite: gpu 62.7% mean, 94% peak · vram up to 5.03 GiB · load up to 18.44 · no throttling in 3 samples"
+  ]
+}

@@ -1,0 +1,410 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a2ba11d",
+  "head": "a2ba11d",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:14:01.683Z",
+  "loadSeconds": 0,
+  "prompt": "tools-2",
+  "schema": "tools:cited · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 96,
+      "mean": 48
+    },
+    "vramGiB": {
+      "min": 2.07,
+      "max": 2.09,
+      "mean": 2.1
+    },
+    "load": {
+      "min": 20.34,
+      "max": 20.78,
+      "mean": 20.6
+    },
+    "memoryFreePercent": {
+      "min": 81,
+      "max": 82,
+      "mean": 81.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools-cited",
+  "seedSet": "evals/seeds-overflow.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools-cited",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 3,
+  "resolved": 0,
+  "factsPresent": 0,
+  "factsSupported": 0,
+  "factsRead": 23,
+  "factsTotal": 30,
+  "replay": {
+    "hits": 3,
+    "misses": 23,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "antikythera",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "wreck": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "price": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "wright": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "research-project": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "cycles": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "imaging": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "olympiad": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "divers": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "origin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "museum": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 6,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 4,
+        "tokens": 7969
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 5,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 5
+      },
+      "budget": {
+        "calls": 37,
+        "tokens": 15754
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Antikythera mechanism is an ancient Greek analog computer discovered in 1901 in the Antikythera shipwreck off the coast of Greece. It dates back to around 330 BCE and is considered one of the earliest known mechanisms of its kind. The mechanism was used to predict astronomical events such as the positions of the planets, the phases of the moon, and the movements of the sun. It also included a calendar for the Olympic Games, which were held every four years.\n\nThe mechanism was decoded in the 1950s by a team of researchers, including Dr. John L. H. Dobbins. They used advanced imaging techniques and computer modeling to understand the complex gear system within the mechanism. The decoding revealed that the mechanism was a sophisticated device capable of calculating the positions of the planets and the phases of the moon with remarkable accuracy for its time. The discovery of the Antikythera mechanism has provided valuable insights into the technological and scientific capabilities of ancient Greek civilization.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-antikythera.json"
+    },
+    {
+      "id": "rosetta",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "philae": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "comet": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "launch": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "arrival": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "water": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "organics": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "landing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "end": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "flybys": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 11,
+        "modelCalls": 11,
+        "lookups": 9,
+        "tokens": 20669
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 2,
+        "sections": 2,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 7,
+      "wiki": {
+        "hits": 14,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 10
+      },
+      "budget": {
+        "calls": 42,
+        "tokens": 15344
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "Rosetta Mission to Comet 67P/Churyumov–Gerasimenko",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-rosetta.json"
+    },
+    {
+      "id": "aral-restoration",
+      "kind": "brief",
+      "resolved": false,
+      "outcome": "root blocked",
+      "facts": {
+        "dam": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "north-aral": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "kazakhstan": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "uzbekistan": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "world-bank": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "rivers": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "cotton": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "salinity": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "desert": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 9,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 9,
+        "modelCalls": 9,
+        "lookups": 7,
+        "tokens": 16418
+      },
+      "statuses": {
+        "blocked": 1
+      },
+      "finding": null,
+      "profile": {
+        "paragraphs": 0,
+        "sentences": 0,
+        "chars": 0,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 1
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 8,
+      "wiki": {
+        "hits": 21,
+        "misses": 0,
+        "added": 0,
+        "entries": 1319
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 8
+      },
+      "budget": {
+        "calls": 38,
+        "tokens": 12757
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Aral Sea, once the third-largest lake in the world, began shrinking in the 1960s due to the diversion of the Amu Darya river's flow by Soviet irrigation projects. By 2007, it had reduced to 10% of its original size, splitting into four lakes: the North Aral Sea, the eastern and western basins of the South Aral Sea, and the intermediate Barsakelmes Lake. The eastern basin, now called the Aralkum Desert, had completely dried up by 2014. Efforts to restore the North Aral Sea included the construction of the Dike Kokaral dam, which raised the water level by 12 meters (39 feet) by 2008. The restoration project aimed to replenish the North Aral Sea and reduce salinity, though challenges such as continued water diversion and insufficient flow remained. The International Fund for Saving the Aral Sea (IFAS) was established to support these restoration efforts, and the World Bank played a role in funding and implementing restoration strategies. Despite these efforts, the Aral Sea's recovery remains complex and ongoing, highlighting the difficulties of environmental restoration and the importance of sustainable water management.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-cited-aral-restoration.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:14:01.681Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:14:01.718Z model cache evals/model-cache/qwen3-1.7b: 683 responses loaded",
+    "machine at start: gpu 91% · vram 2.09 GiB · load 20.34 · mem 81% free (normal) · no throttling recorded",
+    "2026-09-19T08:14:01.821Z 3 seeds from evals/seeds-overflow.json · mode tools-cited · limits {\"tools\":\"tools-cited\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-overflow-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-2 · grammar tools:cited · matched · commit a2ba11d",
+    "wiki recording: 1319 responses loaded",
+    "antikythera: root blocked · topics 0/10 · supported 0/10 · read 6/10 · ¶0 · 0 sentences · read 2 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 6 calls, 4 lookups, 7969 tokens · stopped by answer · 1 unread answers refused · 5 s · model 1 replayed 5 missed",
+    "rosetta: root blocked · topics 0/10 · supported 0/10 · read 8/10 · ¶0 · 0 sentences · read 2 articles, 2 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 11 calls, 9 lookups, 20669 tokens · stopped by tokens · 1 unread answers refused · 7 s · model 1 replayed 10 missed",
+    "aral-restoration: root blocked · topics 0/10 · supported 0/10 · read 9/10 · ¶0 · 0 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 blocked · 1 nodes, 9 calls, 7 lookups, 16418 tokens · stopped by tokens · 1 unread answers refused · 8 s · model 1 replayed 8 missed",
+    "machine during the suite: gpu 48% mean, 96% peak · vram up to 2.09 GiB · load up to 20.78 · no throttling in 2 samples"
+  ]
+}

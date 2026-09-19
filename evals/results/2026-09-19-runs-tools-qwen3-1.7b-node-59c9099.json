@@ -7,9 +7,9 @@
   "head": "59c9099",
   "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
   "browser": "node v25.9.0",
-  "date": "2026-09-19T08:07:15.502Z",
+  "date": "2026-09-19T08:11:26.703Z",
   "loadSeconds": 0,
-  "prompt": "tools-1",
+  "prompt": "tools-2",
   "schema": "tools:composing · matched",
   "page": {
     "prompt": null,
@@ -28,26 +28,26 @@
     "page": "0.2.0"
   },
   "machineHealth": {
-    "samples": 1,
+    "samples": 2,
     "gpuPercent": {
       "min": 0,
-      "max": 0,
-      "mean": 0
+      "max": 95,
+      "mean": 47.5
     },
     "vramGiB": {
-      "min": 5.55,
-      "max": 5.55,
-      "mean": 5.5
+      "min": 4.73,
+      "max": 5.03,
+      "mean": 4.9
     },
     "load": {
-      "min": 18.54,
-      "max": 18.54,
-      "mean": 18.5
+      "min": 22.09,
+      "max": 22.13,
+      "mean": 22.1
     },
     "memoryFreePercent": {
-      "min": 72,
-      "max": 72,
-      "mean": 72
+      "min": 48,
+      "max": 49,
+      "mean": 48.5
     },
     "throttledSamples": 0,
     "worstSpeedLimit": 100
@@ -62,13 +62,13 @@
   },
   "seeds": 7,
   "resolved": 7,
-  "factsPresent": 14,
+  "factsPresent": 13,
   "factsSupported": 0,
-  "factsRead": 0,
+  "factsRead": 2,
   "factsTotal": 23,
   "replay": {
-    "hits": 0,
-    "misses": 7,
+    "hits": 7,
+    "misses": 28,
     "cache": "evals/model-cache/qwen3-1.7b",
     "replayOnly": false
   },
@@ -82,12 +82,12 @@
         "jordan-diversion": {
           "present": false,
           "supported": false,
-          "read": false
+          "read": true
         },
         "mineral-extraction": {
           "present": false,
           "supported": false,
-          "read": false
+          "read": true
         },
         "rate": {
           "present": false,
@@ -98,50 +98,51 @@
       "factsTotal": 3,
       "factsPresent": 0,
       "factsSupported": 0,
-      "factsRead": 0,
+      "factsRead": 2,
       "distractors": [],
       "cost": {
         "nodes": 1,
-        "visits": 1,
-        "modelCalls": 1,
-        "lookups": 0,
-        "tokens": 438
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 3,
+        "tokens": 5504
       },
       "statuses": {
         "resolved": 1
       },
-      "finding": "The Dead Sea is shrinking due to the withdrawal of freshwater from its basin, which reduces the volume of water and increases salinity. This process is exacerbated by the fact that the region has limited natural inflows, leading to a gradual decrease in the sea's size. The shrinking is also influenced by the lack of significant replenishment from rivers or other sources.",
+      "finding": "The Dead Sea is shrinking primarily due to the excessive withdrawal of freshwater from its basin, which reduces the volume of water and increases salinity. This is exacerbated by the limited natural inflows and the lack of significant replenishment from rivers or other sources. The shrinking is also influenced by the reduction in water levels in surrounding regions, such as the Caspian Sea, which affects the overall water balance of the Dead Sea.",
       "profile": {
         "paragraphs": 1,
         "sentences": 3,
-        "chars": 373,
+        "chars": 450,
         "duplicates": 0,
-        "articles": 0,
-        "sections": 0,
+        "articles": 1,
+        "sections": 1,
         "hopsChosen": 0,
         "hopsRead": 0,
         "hopsCited": 0,
         "blocked": 0
       },
       "retriesUsed": 0,
-      "wallSeconds": 2,
+      "wallSeconds": 5,
       "wiki": {
-        "hits": 0,
-        "misses": 0,
-        "added": 0,
-        "entries": 1302
+        "hits": 3,
+        "misses": 1,
+        "added": 1,
+        "entries": 1303
       },
       "replay": {
-        "hits": 0,
-        "misses": 1
+        "hits": 1,
+        "misses": 5
       },
       "budget": {
         "calls": 6,
         "tokens": 3051
       },
-      "stoppedBy": "answer",
+      "stoppedBy": "tokens",
       "dropped": 0,
-      "answer": "The Dead Sea is shrinking due to the withdrawal of freshwater from its basin, which reduces the volume of water and increases salinity. This process is exacerbated by the fact that the region has limited natural inflows, leading to a gradual decrease in the sea's size. The shrinking is also influenced by the lack of significant replenishment from rivers or other sources.",
+      "refused": 2,
+      "answer": "The Dead Sea is shrinking primarily due to the excessive withdrawal of freshwater from its basin, which reduces the volume of water and increases salinity. This is exacerbated by the limited natural inflows and the lack of significant replenishment from rivers or other sources. The shrinking is also influenced by the reduction in water levels in surrounding regions, such as the Caspian Sea, which affects the overall water balance of the Dead Sea.",
       "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-dead-sea.json"
     },
     {
@@ -173,10 +174,10 @@
       "distractors": [],
       "cost": {
         "nodes": 1,
-        "visits": 1,
-        "modelCalls": 1,
-        "lookups": 0,
-        "tokens": 435
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 2,
+        "tokens": 3343
       },
       "statuses": {
         "resolved": 1
@@ -195,23 +196,24 @@
         "blocked": 0
       },
       "retriesUsed": 0,
-      "wallSeconds": 1,
+      "wallSeconds": 2,
       "wiki": {
-        "hits": 0,
-        "misses": 0,
-        "added": 0,
-        "entries": 1302
+        "hits": 5,
+        "misses": 1,
+        "added": 1,
+        "entries": 1303
       },
       "replay": {
-        "hits": 0,
-        "misses": 1
+        "hits": 1,
+        "misses": 4
       },
       "budget": {
         "calls": 5,
         "tokens": 1921
       },
-      "stoppedBy": "answer",
+      "stoppedBy": "tokens",
       "dropped": 0,
+      "refused": 2,
       "answer": "The water cycle continues due to solar energy, which drives evaporation from oceans, lakes, and rivers. This evaporated water rises, condenses into clouds, and falls as precipitation. The cycle is also driven by the movement of air masses and the Earth's rotation, which influence weather patterns and the distribution of water across the globe.",
       "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-water-cycle.json"
     },
@@ -237,31 +239,31 @@
           "read": false
         },
         "systems": {
-          "present": true,
+          "present": false,
           "supported": false,
           "read": false
         }
       },
       "factsTotal": 4,
-      "factsPresent": 1,
+      "factsPresent": 0,
       "factsSupported": 0,
       "factsRead": 0,
       "distractors": [],
       "cost": {
         "nodes": 1,
-        "visits": 1,
-        "modelCalls": 1,
-        "lookups": 0,
-        "tokens": 424
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 2,
+        "tokens": 3630
       },
       "statuses": {
         "resolved": 1
       },
-      "finding": "The Late Bronze Age collapse was caused by a combination of factors, including overexploitation of resources, environmental degradation, and conflicts among city-states. These factors led to economic decline, social unrest, and ultimately the collapse of the Minoan and Mycenaean civilizations.",
+      "finding": "The Late Bronze Age collapse occurred during the late 13th to early 12th century BC, primarily in the Mediterranean region. It was caused by factors such as overexploitation of resources, environmental degradation, and conflicts among city-states. This collapse led to the decline of the Minoan and Mycenaean civilizations, as documented in archaeological records and historical texts like 'The Year Civilization Collapsed' by Eric H. Cline.",
       "profile": {
         "paragraphs": 1,
-        "sentences": 2,
-        "chars": 294,
+        "sentences": 3,
+        "chars": 441,
         "duplicates": 0,
         "articles": 0,
         "sections": 0,
@@ -271,24 +273,25 @@
         "blocked": 0
       },
       "retriesUsed": 0,
-      "wallSeconds": 0,
+      "wallSeconds": 3,
       "wiki": {
-        "hits": 0,
-        "misses": 0,
-        "added": 0,
-        "entries": 1302
+        "hits": 7,
+        "misses": 1,
+        "added": 1,
+        "entries": 1303
       },
       "replay": {
-        "hits": 0,
-        "misses": 1
+        "hits": 1,
+        "misses": 4
       },
       "budget": {
         "calls": 5,
         "tokens": 1914
       },
-      "stoppedBy": "answer",
+      "stoppedBy": "tokens",
       "dropped": 0,
-      "answer": "The Late Bronze Age collapse was caused by a combination of factors, including overexploitation of resources, environmental degradation, and conflicts among city-states. These factors led to economic decline, social unrest, and ultimately the collapse of the Minoan and Mycenaean civilizations.",
+      "refused": 2,
+      "answer": "The Late Bronze Age collapse occurred during the late 13th to early 12th century BC, primarily in the Mediterranean region. It was caused by factors such as overexploitation of resources, environmental degradation, and conflicts among city-states. This collapse led to the decline of the Minoan and Mycenaean civilizations, as documented in archaeological records and historical texts like 'The Year Civilization Collapsed' by Eric H. Cline.",
       "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-bronze-age.json"
     },
     {
@@ -325,19 +328,19 @@
       "distractors": [],
       "cost": {
         "nodes": 1,
-        "visits": 1,
-        "modelCalls": 1,
-        "lookups": 0,
-        "tokens": 419
+        "visits": 6,
+        "modelCalls": 6,
+        "lookups": 2,
+        "tokens": 4347
       },
       "statuses": {
         "resolved": 1
       },
-      "finding": "Honey bee colony collapse is primarily attributed to factors such as habitat loss, pesticide exposure, and disease. These factors disrupt the bees' ability to forage, reproduce, and maintain healthy colonies. The exact causes are complex and involve multiple environmental and biological factors.",
+      "finding": "The search results indicate that honey bee colony collapse is primarily caused by factors such as habitat loss, pesticide exposure, and disease. These factors disrupt the bees' ability to forage, reproduce, and maintain healthy colonies. The exact causes are complex and involve multiple environmental and biological factors.",
       "profile": {
         "paragraphs": 1,
         "sentences": 3,
-        "chars": 296,
+        "chars": 325,
         "duplicates": 0,
         "articles": 0,
         "sections": 0,
@@ -347,24 +350,25 @@
         "blocked": 0
       },
       "retriesUsed": 0,
-      "wallSeconds": 0,
+      "wallSeconds": 3,
       "wiki": {
-        "hits": 0,
-        "misses": 0,
-        "added": 0,
-        "entries": 1302
+        "hits": 8,
+        "misses": 2,
+        "added": 2,
+        "entries": 1304
       },
       "replay": {
-        "hits": 0,
-        "misses": 1
+        "hits": 1,
+        "misses": 5
       },
       "budget": {
         "calls": 6,
         "tokens": 2842
       },
-      "stoppedBy": "answer",
+      "stoppedBy": "tokens",
       "dropped": 0,
-      "answer": "Honey bee colony collapse is primarily attributed to factors such as habitat loss, pesticide exposure, and disease. These factors disrupt the bees' ability to forage, reproduce, and maintain healthy colonies. The exact causes are complex and involve multiple environmental and biological factors.",
+      "refused": 3,
+      "answer": "The search results indicate that honey bee colony collapse is primarily caused by factors such as habitat loss, pesticide exposure, and disease. These factors disrupt the bees' ability to forage, reproduce, and maintain healthy colonies. The exact causes are complex and involve multiple environmental and biological factors.",
       "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-colony-collapse.json"
     },
     {
@@ -396,19 +400,19 @@
       "distractors": [],
       "cost": {
         "nodes": 1,
-        "visits": 1,
-        "modelCalls": 1,
-        "lookups": 0,
-        "tokens": 451
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 2448
       },
       "statuses": {
         "resolved": 1
       },
-      "finding": "Coral reefs bleach primarily due to environmental stressors such as rising sea temperatures, ocean acidification, and pollution. These factors disrupt the delicate balance of the reef ecosystem, leading to the mass expulsion of symbiotic algae (zooxanthellae) that provide corals with essential nutrients and color. This process is often exacerbated by human activities, such as overfishing and habitat destruction, which further compromise reef health.",
+      "finding": "The title 'Coral Bleaching and Mass Bleaching Events' is relevant. Reading this section, we learn that coral reefs bleach primarily due to rising sea temperatures, ocean acidification, and pollution. These factors disrupt the symbiotic relationship between corals and algae, leading to the expulsion of algae and the subsequent whitening of corals. The process is often exacerbated by human activities such as overfishing and habitat destruction.",
       "profile": {
         "paragraphs": 1,
-        "sentences": 3,
-        "chars": 453,
+        "sentences": 4,
+        "chars": 446,
         "duplicates": 0,
         "articles": 0,
         "sections": 0,
@@ -418,24 +422,25 @@
         "blocked": 0
       },
       "retriesUsed": 0,
-      "wallSeconds": 1,
+      "wallSeconds": 3,
       "wiki": {
-        "hits": 0,
-        "misses": 0,
-        "added": 0,
-        "entries": 1302
+        "hits": 8,
+        "misses": 3,
+        "added": 3,
+        "entries": 1305
       },
       "replay": {
-        "hits": 0,
-        "misses": 1
+        "hits": 1,
+        "misses": 3
       },
       "budget": {
         "calls": 4,
         "tokens": 1420
       },
-      "stoppedBy": "answer",
+      "stoppedBy": "tokens",
       "dropped": 0,
-      "answer": "Coral reefs bleach primarily due to environmental stressors such as rising sea temperatures, ocean acidification, and pollution. These factors disrupt the delicate balance of the reef ecosystem, leading to the mass expulsion of symbiotic algae (zooxanthellae) that provide corals with essential nutrients and color. This process is often exacerbated by human activities, such as overfishing and habitat destruction, which further compromise reef health.",
+      "refused": 2,
+      "answer": "The title 'Coral Bleaching and Mass Bleaching Events' is relevant. Reading this section, we learn that coral reefs bleach primarily due to rising sea temperatures, ocean acidification, and pollution. These factors disrupt the symbiotic relationship between corals and algae, leading to the expulsion of algae and the subsequent whitening of corals. The process is often exacerbated by human activities such as overfishing and habitat destruction.",
       "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-coral.json"
     },
     {
@@ -467,19 +472,19 @@
       "distractors": [],
       "cost": {
         "nodes": 1,
-        "visits": 1,
-        "modelCalls": 1,
-        "lookups": 0,
-        "tokens": 425
+        "visits": 5,
+        "modelCalls": 5,
+        "lookups": 2,
+        "tokens": 3369
       },
       "statuses": {
         "resolved": 1
       },
-      "finding": "The sky appears blue due to a phenomenon called Rayleigh scattering, where shorter wavelengths of light (blue and violet) are scattered in all directions by the gases and particles in the Earth's atmosphere. This scattering is more pronounced for blue light, which is why the sky appears blue to our eyes.",
+      "finding": "The sky appears blue due to Rayleigh scattering, a phenomenon where shorter wavelengths of light (such as blue and violet) are scattered in all directions by the gases and particles in the Earth's atmosphere. This scattering is more pronounced for blue light, which is why the sky appears blue to our eyes.",
       "profile": {
         "paragraphs": 1,
         "sentences": 2,
-        "chars": 305,
+        "chars": 306,
         "duplicates": 0,
         "articles": 0,
         "sections": 0,
@@ -489,24 +494,25 @@
         "blocked": 0
       },
       "retriesUsed": 0,
-      "wallSeconds": 0,
+      "wallSeconds": 2,
       "wiki": {
-        "hits": 0,
-        "misses": 0,
-        "added": 0,
-        "entries": 1302
+        "hits": 10,
+        "misses": 3,
+        "added": 3,
+        "entries": 1305
       },
       "replay": {
-        "hits": 0,
-        "misses": 1
+        "hits": 1,
+        "misses": 4
       },
       "budget": {
         "calls": 8,
         "tokens": 2314
       },
-      "stoppedBy": "answer",
+      "stoppedBy": "tokens",
       "dropped": 0,
-      "answer": "The sky appears blue due to a phenomenon called Rayleigh scattering, where shorter wavelengths of light (blue and violet) are scattered in all directions by the gases and particles in the Earth's atmosphere. This scattering is more pronounced for blue light, which is why the sky appears blue to our eyes.",
+      "refused": 2,
+      "answer": "The sky appears blue due to Rayleigh scattering, a phenomenon where shorter wavelengths of light (such as blue and violet) are scattered in all directions by the gases and particles in the Earth's atmosphere. This scattering is more pronounced for blue light, which is why the sky appears blue to our eyes.",
       "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-sky-blue.json"
     },
     {
@@ -538,19 +544,19 @@
       "distractors": [],
       "cost": {
         "nodes": 1,
-        "visits": 1,
-        "modelCalls": 1,
-        "lookups": 0,
-        "tokens": 431
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 1,
+        "tokens": 2372
       },
       "statuses": {
         "resolved": 1
       },
-      "finding": "The Aral Sea shrunk primarily due to the diversion of the Amur River for irrigation, which led to the reduction of water flow into the sea. This caused the sea to shrink and eventually dry up. The process was exacerbated by the construction of the Turkestan Canal, which further reduced the water supply.",
+      "finding": "The Aral Sea shrunk due to the diversion of the Amur River for irrigation, leading to reduced water flow and the eventual drying of the sea. This was exacerbated by the construction of the Turkestan Canal, which further reduced the water supply. The search results indicate that the Aral Sea's shrinking is linked to agricultural activities and water diversion projects in the region.",
       "profile": {
         "paragraphs": 1,
         "sentences": 3,
-        "chars": 304,
+        "chars": 384,
         "duplicates": 0,
         "articles": 0,
         "sections": 0,
@@ -560,41 +566,42 @@
         "blocked": 0
       },
       "retriesUsed": 0,
-      "wallSeconds": 1,
+      "wallSeconds": 2,
       "wiki": {
-        "hits": 0,
-        "misses": 0,
-        "added": 0,
-        "entries": 1302
+        "hits": 11,
+        "misses": 3,
+        "added": 3,
+        "entries": 1305
       },
       "replay": {
-        "hits": 0,
-        "misses": 1
+        "hits": 1,
+        "misses": 3
       },
       "budget": {
         "calls": 4,
         "tokens": 2093
       },
-      "stoppedBy": "answer",
+      "stoppedBy": "calls",
       "dropped": 0,
-      "answer": "The Aral Sea shrunk primarily due to the diversion of the Amur River for irrigation, which led to the reduction of water flow into the sea. This caused the sea to shrink and eventually dry up. The process was exacerbated by the construction of the Turkestan Canal, which further reduced the water supply.",
+      "refused": 2,
+      "answer": "The Aral Sea shrunk due to the diversion of the Amur River for irrigation, leading to reduced water flow and the eventual drying of the sea. This was exacerbated by the construction of the Turkestan Canal, which further reduced the water supply. The search results indicate that the Aral Sea's shrinking is linked to agricultural activities and water diversion projects in the region.",
       "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-aral.json"
     }
   ],
   "notes": [
-    "2026-09-19T08:07:15.501Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "2026-09-19T08:11:26.701Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
     "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
-    "2026-09-19T08:07:15.541Z model cache evals/model-cache/qwen3-1.7b: 474 responses loaded",
-    "machine at start: gpu 98% · vram 5.55 GiB · load 18.54 · mem 72% free (normal) · no throttling recorded",
-    "2026-09-19T08:07:15.682Z 7 seeds from evals/seeds.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-1 · grammar tools:composing · matched · commit 59c9099",
+    "2026-09-19T08:11:26.745Z model cache evals/model-cache/qwen3-1.7b: 510 responses loaded",
+    "machine at start: gpu 96% · vram 4.73 GiB · load 22.09 · mem 49% free (normal) · no throttling recorded",
+    "2026-09-19T08:11:26.890Z 7 seeds from evals/seeds.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-2 · grammar tools:composing · matched · commit 59c9099",
     "wiki recording: 1302 responses loaded",
-    "dead-sea: resolved · facts 0/3 · supported 0/3 · read 0/3 · 1 nodes, 1 calls, 0 lookups, 438 tokens · stopped by answer · 2 s · model 0 replayed 1 missed",
-    "water-cycle: resolved · facts 3/3 · supported 0/3 · read 0/3 · 1 nodes, 1 calls, 0 lookups, 435 tokens · stopped by answer · 1 s · model 0 replayed 1 missed",
-    "bronze-age: resolved · facts 1/4 · supported 0/4 · read 0/4 · 1 nodes, 1 calls, 0 lookups, 424 tokens · stopped by answer · 0 s · model 0 replayed 1 missed",
-    "colony-collapse: resolved · facts 3/4 · supported 0/4 · read 0/4 · 1 nodes, 1 calls, 0 lookups, 419 tokens · stopped by answer · 0 s · model 0 replayed 1 missed",
-    "coral: resolved · facts 2/3 · supported 0/3 · read 0/3 · 1 nodes, 1 calls, 0 lookups, 451 tokens · stopped by answer · 1 s · model 0 replayed 1 missed",
-    "sky-blue: resolved · facts 3/3 · supported 0/3 · read 0/3 · 1 nodes, 1 calls, 0 lookups, 425 tokens · stopped by answer · 0 s · model 0 replayed 1 missed",
-    "aral: resolved · facts 2/3 · supported 0/3 · read 0/3 · 1 nodes, 1 calls, 0 lookups, 431 tokens · stopped by answer · 1 s · model 0 replayed 1 missed",
-    "machine during the suite: gpu 0% mean, 0% peak · vram up to 5.55 GiB · load up to 18.54 · no throttling in 1 samples"
+    "dead-sea: resolved · facts 0/3 · supported 0/3 · read 2/3 · 1 nodes, 6 calls, 3 lookups, 5504 tokens · stopped by tokens · 2 unread answers refused · 5 s · model 1 replayed 5 missed",
+    "water-cycle: resolved · facts 3/3 · supported 0/3 · read 0/3 · 1 nodes, 5 calls, 2 lookups, 3343 tokens · stopped by tokens · 2 unread answers refused · 2 s · model 1 replayed 4 missed",
+    "bronze-age: resolved · facts 0/4 · supported 0/4 · read 0/4 · 1 nodes, 5 calls, 2 lookups, 3630 tokens · stopped by tokens · 2 unread answers refused · 3 s · model 1 replayed 4 missed",
+    "colony-collapse: resolved · facts 3/4 · supported 0/4 · read 0/4 · 1 nodes, 6 calls, 2 lookups, 4347 tokens · stopped by tokens · 3 unread answers refused · 3 s · model 1 replayed 5 missed",
+    "coral: resolved · facts 2/3 · supported 0/3 · read 0/3 · 1 nodes, 4 calls, 1 lookups, 2448 tokens · stopped by tokens · 2 unread answers refused · 3 s · model 1 replayed 3 missed",
+    "sky-blue: resolved · facts 3/3 · supported 0/3 · read 0/3 · 1 nodes, 5 calls, 2 lookups, 3369 tokens · stopped by tokens · 2 unread answers refused · 2 s · model 1 replayed 4 missed",
+    "aral: resolved · facts 2/3 · supported 0/3 · read 0/3 · 1 nodes, 4 calls, 1 lookups, 2372 tokens · stopped by calls · 2 unread answers refused · 2 s · model 1 replayed 3 missed",
+    "machine during the suite: gpu 47.5% mean, 95% peak · vram up to 5.03 GiB · load up to 22.13 · no throttling in 2 samples"
   ]
 }

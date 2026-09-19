@@ -44,6 +44,7 @@ test("the tools read the recording in the walk's shapes: a search shows titles w
   assert.equal(about.evidence.kind, "about");
   assert.match(about.evidence.text, /Jordan/);
   assert.match((await runTool(wiki, { name: "read", arguments: { title: "" } })).shown, /needs a title/);
+  assert.equal((await runTool(wiki, { name: "read", arguments: { title: "1. Dead Sea — is a landlocked salt lake" } })).evidence.article, "Dead Sea", "a search line handed back whole is its title");
   assert.match((await runTool(wiki, { name: "fly", arguments: {} })).shown, /No tool named fly/);
   assert.deepEqual(TOOL_DEFINITIONS.map((tool) => tool.function.name), ["search", "read", "section", "about"]);
 });
@@ -106,8 +107,8 @@ test("an answer given before anything was read is refused with the reason and co
   assert.equal(stubborn.stoppedBy, "calls");
   assert.equal(stubborn.nodes[0].finding, "Made up.", "and the forced answer stands, unread, for the row to show");
   const spent = scripted([{ calls: [{ name: "search", arguments: { term: "Dead Sea" } }] }, { calls: [{ name: "search", arguments: { term: "Jordan River" } }] }, { answer: "An answer." }]);
-  const run = await runTools(seed.seed, { generate: spent.generate, wiki, budget: { calls: 8, tokens: 150 } });
-  assert.equal(run.modelCalls, 3, "after two calls the tokens are spent, so the third is the answer");
+  const run = await runTools(seed.seed, { generate: spent.generate, wiki, budget: { calls: 8, tokens: 250 } });
+  assert.equal(run.modelCalls, 3, "two calls cost 200 and the next would cost about 100 more, so the third is the answer");
   assert.equal(run.stoppedBy, "tokens");
   assert.ok(spent.seen[2].options.schema);
 });

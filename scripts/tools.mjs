@@ -15,7 +15,7 @@
 import { NO_THINK, unitsOf } from "../src/asks.js";
 import { CONTEXT_WINDOW } from "../src/webllm.js";
 
-export const TOOLS_VERSION = "tools-2";
+export const TOOLS_VERSION = "tools-3";
 // About four characters a token for English prose under Qwen's tokeniser;
 // the answer needs room at the end.
 export const CONTEXT_CHARS = CONTEXT_WINDOW * 3;
@@ -62,7 +62,8 @@ export async function runTool(wiki, call, { signal, resultChars = RESULT_CHARS }
       return { shown: found.hits.map((title, index) => `${index + 1}. ${title}${found.snippets?.[index] ? ` — ${clip(found.snippets[index], 160)}` : ""}`).join("\n") };
     }
     if (!["read", "section", "about"].includes(call.name)) return { shown: `No tool named ${call.name}.` };
-    const title = text(args.title);
+    // A search line handed back whole ("Title — snippet") is its title.
+    const title = text(args.title).split(" — ")[0].replace(/^\d+\.\s+/, "").trim();
     if (!title) return { shown: `${call.name} needs a title.` };
     let found;
     if (call.name === "read") found = await wiki(title, { signal });
@@ -128,19 +129,27 @@ export async function runTools(seed, { generate, wiki, kind = "question", cited 
   let lookups = 0;
   let dropped = 0;
   let refused = 0;
+  let lastCost = 0;
   let answer = "";
   let stoppedBy = "answer";
   const log = (event, detail) => trace.push({ seq: trace.length + 1, time: new Date().toISOString(), event, node: "n1", ...detail });
   for (;;) {
     signal?.throwIfAborted();
-    const last = limits.calls - modelCalls <= 1 || tokens >= limits.tokens;
-    if (last) stoppedBy = tokens >= limits.tokens ? "tokens" : "calls";
+    // The next call costs about what the last one did, since the transcript
+    // only grows; the budget is checked against that, not the tokens so far
+    // (tools-2 overshot the graph's spend by half).
+    const spent = tokens + lastCost >= limits.tokens;
+    const last = limits.calls - modelCalls <= 1 || spent;
+    if (last) stoppedBy = spent ? "tokens" : "calls";
     const options = last ? { schema: answerSchema(kind), maxTokens: answerTokens(kind) } : { tools: [...TOOL_DEFINITIONS], maxTokens: 400 };
     log("model_input", { ask: last ? "answer" : "tools", messages: messages.length, chars: chars(messages) });
     const started = performance.now();
     const output = await generate(messages, { ...options, signal });
     modelCalls++;
-    if (Number.isFinite(output.tokens)) tokens += output.tokens;
+    if (Number.isFinite(output.tokens)) {
+      tokens += output.tokens;
+      lastCost = output.tokens;
+    }
     log("model_output", { ask: last ? "answer" : "tools", raw: output.text, toolCalls: output.toolCalls ?? null, tokens: output.tokens ?? null, latencyMs: Math.round(performance.now() - started), replayed: output.replayed ?? false });
     if (!last && output.toolCalls?.length) {
       messages.push({ role: "assistant", content: output.text || "", tool_calls: output.toolCalls.map((call) => ({ id: call.id, type: "function", function: { name: call.name, arguments: JSON.stringify(call.arguments ?? {}) } })) });

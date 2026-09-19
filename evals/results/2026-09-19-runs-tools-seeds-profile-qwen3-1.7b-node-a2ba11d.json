@@ -1,0 +1,493 @@
+{
+  "suite": "runs",
+  "model": "qwen3:1.7b",
+  "runtime": "node",
+  "endpoint": "http://127.0.0.1:11434/v1",
+  "commit": "a2ba11d",
+  "head": "a2ba11d",
+  "machine": "Apple M1 Max, 32 GB, darwin 25.6.0",
+  "browser": "node v25.9.0",
+  "date": "2026-09-19T08:11:47.556Z",
+  "loadSeconds": 0,
+  "prompt": "tools-2",
+  "schema": "tools:composing · matched",
+  "page": {
+    "prompt": null,
+    "schema": null,
+    "walk": "walk-15",
+    "asks": "asks-4",
+    "variants": {
+      "sentence": "list",
+      "section": "list",
+      "missing": "search",
+      "question": "one",
+      "article": "snippets",
+      "confirm": "yesno"
+    },
+    "runtime": "node v25.9.0 · http://127.0.0.1:11434/v1",
+    "page": "0.2.0"
+  },
+  "machineHealth": {
+    "samples": 2,
+    "gpuPercent": {
+      "min": 0,
+      "max": 94,
+      "mean": 47
+    },
+    "vramGiB": {
+      "min": 5.03,
+      "max": 5.04,
+      "mean": 5
+    },
+    "load": {
+      "min": 21.8,
+      "max": 23.03,
+      "mean": 22.4
+    },
+    "memoryFreePercent": {
+      "min": 43,
+      "max": 48,
+      "mean": 45.5
+    },
+    "throttledSamples": 0,
+    "worstSpeedLimit": 100
+  },
+  "mode": "tools",
+  "seedSet": "evals/seeds-profile.json",
+  "repeat": 1,
+  "repeats": 1,
+  "limits": {
+    "tools": "tools",
+    "matched": "evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-1.7b-node-0b0ed70.json"
+  },
+  "seeds": 4,
+  "resolved": 4,
+  "factsPresent": 9,
+  "factsSupported": 9,
+  "factsRead": 29,
+  "factsTotal": 35,
+  "replay": {
+    "hits": 4,
+    "misses": 37,
+    "cache": "evals/model-cache/qwen3-1.7b",
+    "replayOnly": false
+  },
+  "results": [
+    {
+      "id": "turing",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "turing-machine": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "enigma": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "ace": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "turing-test": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "morphogenesis": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "conviction": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "apology": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "manchester": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 0,
+      "factsSupported": 0,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 14,
+        "modelCalls": 14,
+        "lookups": 12,
+        "tokens": 23057
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "section needs a title.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 1,
+        "chars": 22,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 6,
+      "wiki": {
+        "hits": 2,
+        "misses": 1,
+        "added": 1,
+        "entries": 1306
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 13
+      },
+      "budget": {
+        "calls": 56,
+        "tokens": 20198
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "section needs a title.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-turing.json"
+    },
+    {
+      "id": "silk-road",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "han": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "silk": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "buddhism": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "plague": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "mongol": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marco-polo": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "richthofen": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "maritime": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "belt-and-road": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 9,
+      "factsPresent": 1,
+      "factsSupported": 1,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 12,
+        "modelCalls": 12,
+        "lookups": 10,
+        "tokens": 24763
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Silk Roads: A New History of the World is a 2015 non-fiction book written by English historian Peter Frankopan, a historian at the University of Oxford. It provides a comprehensive overview of the Silk Road's role in connecting civilizations across Asia, the Middle East, and Europe. The book explores the economic, cultural, and political impacts of the Silk Road, emphasizing the interactions between different cultures and the transmission of ideas, technologies, and religions. It is part of a broader effort to understand the historical significance of the Silk Road and its lasting influence on global history.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 4,
+        "chars": 620,
+        "duplicates": 0,
+        "articles": 4,
+        "sections": 4,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 12,
+      "wiki": {
+        "hits": 6,
+        "misses": 10,
+        "added": 10,
+        "entries": 1315
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 11
+      },
+      "budget": {
+        "calls": 55,
+        "tokens": 19421
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Silk Roads: A New History of the World is a 2015 non-fiction book written by English historian Peter Frankopan, a historian at the University of Oxford. It provides a comprehensive overview of the Silk Road's role in connecting civilizations across Asia, the Middle East, and Europe. The book explores the economic, cultural, and political impacts of the Silk Road, emphasizing the interactions between different cultures and the transmission of ideas, technologies, and religions. It is part of a broader effort to understand the historical significance of the Silk Road and its lasting influence on global history.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-silk-road.json"
+    },
+    {
+      "id": "hubble",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "launch": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "mirror": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "servicing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "expansion": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "deep-field": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "webb": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "edwin": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "esa": {
+          "present": false,
+          "supported": false,
+          "read": true
+        }
+      },
+      "factsTotal": 8,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 7,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 4,
+        "modelCalls": 4,
+        "lookups": 2,
+        "tokens": 4495
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Hubble Space Telescope (HST) is a pivotal instrument in modern astronomy, launched in 1990 and operated by NASA. It is one of the most advanced telescopes in space, designed to capture high-resolution images across the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum. The HST has been instrumental in numerous scientific discoveries and has significantly advanced our understanding of the universe.\n\nOne of its most significant contributions is the measurement of the Hubble constant, which helped confirm the universe's accelerating expansion, driven by dark energy. The telescope has also provided detailed images of distant galaxies, nebulae, and other celestial objects, allowing scientists to study their formation and evolution. Notably, Hubble has observed the life cycle of stars, including the death of massive stars and the formation of neutron stars and black holes.\n\nThe HST was initially delayed due to technical issues, including a flawed mirror that compromised its capabilities. These issues were resolved through a series of servicing missions, including STS-61 in 1993, which corrected the optics. The telescope has been maintained in space by astronauts, with five Space Shuttle missions repairing and upgrading its systems. The most recent servicing mission, STS-61, was completed in 2009, and the HST is predicted to last until 2030 to 2040.\n\nHubble's data has been used in various scientific projects, such as the Cosmic Assembly Near-infrared Deep Extragalactic Legacy Survey (CANDID) and the Frontier Fields program, which have provided insights into the early universe and galaxy formation. Its images have also contributed to the study of the Milky Way, dark matter, and the life cycles of stars. The HST's impact extends beyond astronomy, influencing aerospace engineering and public outreach in the field of astrophysics.",
+      "profile": {
+        "paragraphs": 4,
+        "sentences": 13,
+        "chars": 1885,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 5,
+      "wiki": {
+        "hits": 9,
+        "misses": 10,
+        "added": 10,
+        "entries": 1315
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 3
+      },
+      "budget": {
+        "calls": 47,
+        "tokens": 17825
+      },
+      "stoppedBy": "answer",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Hubble Space Telescope (HST) is a pivotal instrument in modern astronomy, launched in 1990 and operated by NASA. It is one of the most advanced telescopes in space, designed to capture high-resolution images across the ultraviolet, visible, and near-infrared regions of the electromagnetic spectrum. The HST has been instrumental in numerous scientific discoveries and has significantly advanced our understanding of the universe.\n\nOne of its most significant contributions is the measurement of the Hubble constant, which helped confirm the universe's accelerating expansion, driven by dark energy. The telescope has also provided detailed images of distant galaxies, nebulae, and other celestial objects, allowing scientists to study their formation and evolution. Notably, Hubble has observed the life cycle of stars, including the death of massive stars and the formation of neutron stars and black holes.\n\nThe HST was initially delayed due to technical issues, including a flawed mirror that compromised its capabilities. These issues were resolved through a series of servicing missions, including STS-61 in 1993, which corrected the optics. The telescope has been maintained in space by astronauts, with five Space Shuttle missions repairing and upgrading its systems. The most recent servicing mission, STS-61, was completed in 2009, and the HST is predicted to last until 2030 to 2040.\n\nHubble's data has been used in various scientific projects, such as the Cosmic Assembly Near-infrared Deep Extragalactic Legacy Survey (CANDID) and the Frontier Fields program, which have provided insights into the early universe and galaxy formation. Its images have also contributed to the study of the Milky Way, dark matter, and the life cycles of stars. The HST's impact extends beyond astronomy, influencing aerospace engineering and public outreach in the field of astrophysics.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-hubble.json"
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "brief",
+      "resolved": true,
+      "outcome": "root resolved",
+      "facts": {
+        "size": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "bleaching": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "climate": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "starfish": {
+          "present": false,
+          "supported": false,
+          "read": false
+        },
+        "runoff": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "heritage": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "queensland": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "marine-park": {
+          "present": false,
+          "supported": false,
+          "read": true
+        },
+        "fishing": {
+          "present": true,
+          "supported": true,
+          "read": true
+        },
+        "cyclone": {
+          "present": false,
+          "supported": false,
+          "read": false
+        }
+      },
+      "factsTotal": 10,
+      "factsPresent": 4,
+      "factsSupported": 4,
+      "factsRead": 8,
+      "distractors": [],
+      "cost": {
+        "nodes": 1,
+        "visits": 11,
+        "modelCalls": 11,
+        "lookups": 9,
+        "tokens": 14993
+      },
+      "statuses": {
+        "resolved": 1
+      },
+      "finding": "The Great Barrier Reef is the world's largest coral reef system, located in the Coral Sea off the northeastern coast of Australia. It spans over 2,300 kilometers and is home to thousands of species of marine life, including over 1,500 species of fish, 600 species of coral, and numerous other marine organisms. The reef is a critical habitat for many sea turtles, dolphins, and other wildlife, and it supports a significant portion of Australia's tourism industry. However, the Great Barrier Reef faces several threats, including climate change, ocean acidification, warming ocean temperatures, and human activities such as coastal development and fishing. Rising sea temperatures have led to coral bleaching events, where corals expel their algae and turn white, often leading to their death. Additionally, increased carbon dioxide levels in the atmosphere have caused ocean acidification, which harms the ability of corals and other marine organisms to build their calcium carbonate structures. These factors have contributed to the decline in reef health and biodiversity, prompting conservation efforts and international cooperation to protect this vital ecosystem.",
+      "profile": {
+        "paragraphs": 1,
+        "sentences": 7,
+        "chars": 1169,
+        "duplicates": 0,
+        "articles": 1,
+        "sections": 1,
+        "hopsChosen": 0,
+        "hopsRead": 0,
+        "hopsCited": 0,
+        "blocked": 0
+      },
+      "retriesUsed": 0,
+      "wallSeconds": 6,
+      "wiki": {
+        "hits": 12,
+        "misses": 10,
+        "added": 10,
+        "entries": 1315
+      },
+      "replay": {
+        "hits": 1,
+        "misses": 10
+      },
+      "budget": {
+        "calls": 39,
+        "tokens": 13326
+      },
+      "stoppedBy": "tokens",
+      "dropped": 0,
+      "refused": 1,
+      "answer": "The Great Barrier Reef is the world's largest coral reef system, located in the Coral Sea off the northeastern coast of Australia. It spans over 2,300 kilometers and is home to thousands of species of marine life, including over 1,500 species of fish, 600 species of coral, and numerous other marine organisms. The reef is a critical habitat for many sea turtles, dolphins, and other wildlife, and it supports a significant portion of Australia's tourism industry. However, the Great Barrier Reef faces several threats, including climate change, ocean acidification, warming ocean temperatures, and human activities such as coastal development and fishing. Rising sea temperatures have led to coral bleaching events, where corals expel their algae and turn white, often leading to their death. Additionally, increased carbon dioxide levels in the atmosphere have caused ocean acidification, which harms the ability of corals and other marine organisms to build their calcium carbonate structures. These factors have contributed to the decline in reef health and biodiversity, prompting conservation efforts and international cooperation to protect this vital ecosystem.",
+      "export": "evals/results/runs/2026-09-19-qwen3-1.7b-node-tools-great-barrier-reef.json"
+    }
+  ],
+  "notes": [
+    "2026-09-19T08:11:47.554Z node runtime node v25.9.0 · http://127.0.0.1:11434/v1",
+    "model qwen3:1.7b: served by http://127.0.0.1:11434/v1 (0 s)",
+    "2026-09-19T08:11:47.591Z model cache evals/model-cache/qwen3-1.7b: 538 responses loaded",
+    "machine at start: gpu 95% · vram 5.03 GiB · load 21.8 · mem 48% free (normal) · no throttling recorded",
+    "2026-09-19T08:11:47.680Z 4 seeds from evals/seeds-profile.json · mode tools · limits {\"tools\":\"tools\",\"matched\":\"evals/results/2026-09-19-runs-tangle-seeds-profile-qwen3-1.7b-node-0b0ed70.json\"} · prompt tools-2 · grammar tools:composing · matched · commit a2ba11d",
+    "wiki recording: 1305 responses loaded",
+    "turing: resolved · topics 0/8 · supported 0/8 · read 7/8 · ¶1 · 1 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 14 calls, 12 lookups, 23057 tokens · stopped by tokens · 1 unread answers refused · 6 s · model 1 replayed 13 missed",
+    "silk-road: resolved · topics 1/9 · supported 1/9 · read 7/9 · ¶1 · 4 sentences · read 4 articles, 4 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 12 calls, 10 lookups, 24763 tokens · stopped by tokens · 1 unread answers refused · 12 s · model 1 replayed 11 missed",
+    "hubble: resolved · topics 4/8 · supported 4/8 · read 7/8 · ¶4 · 13 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 4 calls, 2 lookups, 4495 tokens · stopped by answer · 1 unread answers refused · 5 s · model 1 replayed 3 missed",
+    "great-barrier-reef: resolved · topics 4/10 · supported 4/10 · read 8/10 · ¶1 · 7 sentences · read 1 articles, 1 sections · hops 0 cited / 0 read / 0 chosen · 1 nodes, 11 calls, 9 lookups, 14993 tokens · stopped by tokens · 1 unread answers refused · 6 s · model 1 replayed 10 missed",
+    "machine during the suite: gpu 47% mean, 94% peak · vram up to 5.04 GiB · load up to 23.03 · no throttling in 2 samples"
+  ]
+}
